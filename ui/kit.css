@@ -6,7 +6,8 @@
    does not allow custom properties in media queries.
    ===================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap");
+/* Fonts: Geist (400, 500, 600) and Newsreader italic. The site loads them with next/font
+   and overrides --font-sans / --font-serif; static pages load them with a <link>. */
 
 /* ---------------------------------------------------------------------
    TOKENS

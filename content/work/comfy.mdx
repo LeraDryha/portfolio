@@ -1,0 +1,249 @@
+export const meta = {
+  lead: "Making credit purchases clear and calm for Ukraine’s largest retailer of home appliances and electronics.",
+  facts: [
+    { label: "Role", value: "UX / Product Designer" },
+    { label: "Team", value: "4 designers" },
+    { label: "Year", value: "2024" },
+    { label: "Business goal", value: "Credit order share 30% → 40%" },
+  ],
+  answer: {
+    problem: "Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, and checkout overloaded people at the moment they had to commit.",
+    did: "15 interviews, a survey of 178 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.",
+    result: "In moderated tests the redesign reached 100% task completion with zero errors, against 75% for the current flow. In Maze, the success rate rose from 87.5% to 92.3% between iterations.",
+  },
+  proof: {
+    mark: "75% → 100%",
+    cap: "task completion, current flow vs redesign (moderated, 4 and 7 sessions)",
+    sr: "Task completion was 75% in the current flow and 100% in the redesign, in moderated tests with 4 and 7 sessions.",
+  },
+  hero: {
+    src: "/work/comfy/c16.jpg", width: 1600, height: 1224,
+    alt: "Redesigned Comfy product page: a “Pay in installments” button sits next to “Buy” and shows the minimum monthly payment.",
+    label: "After",
+    caption: "“Pay in installments” sits next to “Buy” and shows the lowest monthly payment.",
+  },
+  phases: [
+    { id: "discover", label: "discover", kind: "diverge" },
+    { id: "define", label: "define", kind: "converge" },
+    { id: "develop", label: "develop", kind: "diverge" },
+    { id: "deliver", label: "deliver", kind: "converge" },
+  ],
+};
+
+<Chapter id="discover" title="Discover" sub="Desk research, a kick-off with the business, competitors, 15 interviews and a survey.">
+
+COMFY is the largest retailer of home appliances and electronics in Ukraine. It has run an omnichannel business for over 10 years and is the #2 player in Ukrainian e-commerce.
+
+### Desk research
+
+Before the kick-off meeting, we explored the context from several angles to prepare informed questions and spot early opportunities:
+
+- Analyzed traffic data and user behavior using SimilarWeb.
+- Reviewed customer reviews to find recurring complaints and concerns.
+- Studied Comfy’s credit purchase flow against competitors to spot UX patterns.
+
+<Figure src="/work/comfy/c03.jpg" width={1600} height={1133} alt="Desk research board: traffic data, customer reviews and the existing credit flow." caption="Desk research board." />
+
+### What the business told us
+
+- Not every product or service is eligible for credit; it depends on vendor agreements.
+- Adding services to a purchase, such as setup or warranty, can unlock better terms: 12 months instead of 7.
+- The company works with several banks to offer installments.
+- People choose credit for different reasons: some lack the funds, others have the money but prefer to spread the cost.
+
+After the kick-off we combined a Business Model Canvas and a Lean Canvas, adapted to cover every aspect of the business. It helped us understand the domain and organise everything we had collected.
+
+<Figure src="/work/comfy/c04.jpg" width={1600} height={938} alt="Combined Business Model Canvas and Lean Canvas for Comfy’s credit purchases." caption="Business Model Canvas and Lean Canvas, combined." />
+
+### Competitor analysis
+
+We reviewed UX flows, UI patterns and best practices, and sorted features into Points of Parity, which every store in the domain needs, and Points of Difference, which can set a product apart.
+
+<Stats items={[
+  { value: "3", cap: "direct competitors: MOYO, Stylus, Foxtrot" },
+  { value: "3", cap: "secondary: ROZETKA, ALLO, Citrus" },
+  { value: "54", cap: "features compared" },
+]} />
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c05.jpg" width={1600} height={1519} alt="Feature comparison matrix across six competitors." caption="Points of Parity and Difference." />
+  <HalfFigure src="/work/comfy/c06.jpg" width={1600} height={1259} alt="Competitor credit flows with annotated UI patterns." caption="Competitor credit flows." />
+</FigurePair>
+
+### What needs to be better
+
+- Credit terms and payment conditions were often unclear or overly complex.
+- Users struggled to understand how the final amount was calculated.
+- There was no guidance on choosing the most favourable bank offer.
+
+### 15 in-depth interviews
+
+We looked for what makes people buy, or not buy, on credit: their barriers, motivations, triggers and context.
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c07.jpg" width={1600} height={854} alt="Interview participants and their key quotes." caption="Who we talked to." />
+  <HalfFigure src="/work/comfy/c08.jpg" width={1353} height={1600} alt="Affinity map of interview findings." caption="Affinity map of interview findings." />
+</FigurePair>
+
+<Quote by="A shopper in an interview, translated from Ukrainian">“I didn’t read the terms, like everyone who doesn’t read the small print. All I did was multiply the monthly payment by six and compare it with the order price.”</Quote>
+
+### Follow-up survey
+
+To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents.
+
+<Stats items={[{ value: "178 / 385", cap: "responses against the target sample" }]} />
+
+The survey tested four insights: clarity of information, package deals, comparing credit terms, and wanting to see a product in person before buying.
+
+<Figure src="/work/comfy/c09.jpg" width={1600} height={1137} alt="Survey results charts." caption="Survey results." />
+
+</Chapter>
+
+<Chapter id="define" title="Define" sub="Jobs to be done, the customer journey and the value proposition.">
+
+Comfy is a large product, and narrowing it to one or two personas wasn’t realistic. We used Jobs to be Done instead. The JTBD timeline showed the real-life context, decision triggers and emotional journey from the first need to the final purchase.
+
+<Figure src="/work/comfy/c10.jpg" width={1600} height={815} alt="Jobs to be Done timeline from need to purchase." caption="JTBD timeline." />
+
+The customer journey map showed pain points, motivations and friction at each step of the purchase, so we could improve where it mattered most.
+
+<Figure src="/work/comfy/c11.jpg" width={1600} height={1415} alt="Customer journey map of a credit purchase." caption="Customer journey map." />
+
+The value proposition canvas showed which needs Comfy already meets, and which barriers create friction or distrust.
+
+<Figure src="/work/comfy/c12.jpg" width={1600} height={1101} alt="Value proposition canvas." caption="Value proposition canvas." />
+
+<Statement>Comfy helps people buy conveniently and right away by offering credit and installments through many banks, without visiting a bank or a store.</Statement>
+
+<TileLists lists={[
+  { title: "What Comfy covers well", items: ["Inspecting the product in store", "Flexible credit through familiar banks", "No interest on installments", "Splitting large payments over time", "Bonuses and loyalty rewards", "A quick credit-based purchase"] },
+  { title: "What it doesn’t fully cover", items: ["Effortful or uncomfortable contact with banks", "Website and app that feel inconvenient", "Anxiety about repayment and credit reliability", "Uncertainty about returns on credit purchases", "Confusing or non-transparent terms", "Not knowing if promotions apply to installments"] },
+]} />
+
+</Chapter>
+
+<Chapter id="develop" title="Develop" sub="Three problems worth solving, How Might We, and a MoSCoW-ranked MVP.">
+
+From the research we picked the problems with the biggest impact on trust, decisions and completion. Each is backed by direct quotes from interviews.
+
+<Figure src="/work/comfy/c13.jpg" width={1600} height={508} alt="Three key problems with supporting user quotes: lack of transparency in credit terms, cognitive overload, uncertainty about product suitability." caption="Three key problems, with what users said." />
+
+<Side>
+  <HalfFigure src="/work/comfy/c14.jpg" width={1010} height={1600} alt="How Might We map with grouped ideas." caption="How Might We map." />
+  <SideCopy>
+    <p>These became the base for How Might We mapping, which guided ideation.</p>
+    <h3 className="subhead">From ideas to action</h3>
+    <p>We generated many solutions and ranked them with MoSCoW: must-haves first, should-haves if possible, could-haves for the backlog. It aligned the team on a realistic MVP with the highest user and business impact.</p>
+  </SideCopy>
+</Side>
+
+</Chapter>
+
+<Chapter id="deliver" title="Deliver" sub="Solutions for each problem, two rounds of usability testing, and ideas for the business goal.">
+
+### 1. Lack of transparency in credit terms
+
+- Bank icons weren’t clickable; they only opened a tooltip.
+- The tooltip held generic information that didn’t help anyone choose.
+- “Buy on credit” and “Buy” led to the same drawer, with no difference in the flow.
+
+<Figure src="/work/comfy/c15.jpg" width={1600} height={1243} alt="Original product page with non-clickable bank icons and identical buttons." label="Before" caption="Bank icons only open a tooltip; both buttons do the same thing." />
+
+We put a visible “Оплата частинами” (Pay in installments) button next to the main “Купити” (Buy) button, showing the lowest monthly payment the banks offer.
+
+<Note>We renamed it from “Купити в кредит” (Buy on credit) after interviews showed that the word “credit” made people anxious.</Note>
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c17.jpg" width={1600} height={1224} alt="Bank offers redesigned as clickable buttons with conditions per bank." label="After" caption="Each bank offer is a button with its own terms." />
+  <HalfFigure src="/work/comfy/c18.jpg" width={1600} height={1340} alt="Drawer listing all credit offers with a payment calculator." label="After" caption="All offers in one drawer, with a calculator." />
+</FigurePair>
+
+A “Як це працює” (How it works) button inside the calculator opens the full terms with a timeline of payments.
+
+<Figure src="/work/comfy/c19.jpg" width={1600} height={1340} alt="Expanded credit terms with a visual payment timeline." label="After" caption="“How it works” shows the payment timeline." />
+
+<Figure src="/work/comfy/c20.jpg" width={1600} height={654} alt="The same credit changes in the mobile app." caption="The same changes in the mobile app." />
+
+### 2. Cognitive overload
+
+- Product details, total cost and credit info disappeared while scrolling.
+- Completed form sections looked the same as empty ones.
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c21.jpg" width={1600} height={1033} alt="Original checkout where the order summary scrolls away." label="Before" caption="The order summary scrolls away." />
+  <HalfFigure src="/work/comfy/c22.jpg" width={1525} height={1600} alt="Original checkout form where completed and empty sections look identical." label="Before" caption="Done and empty sections look alike." />
+</FigurePair>
+
+- The product and payment summary stays visible while scrolling.
+- Completed blocks change colour, so progress is easy to scan.
+- The store chosen on the product page carries over to checkout.
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c23.jpg" width={1600} height={1584} alt="Redesigned checkout with a sticky summary and highlighted completed blocks." label="After" caption="Sticky summary, completed blocks stand out." />
+  <HalfFigure src="/work/comfy/c24.jpg" width={1600} height={1154} alt="Mobile checkout before and after." caption="Mobile app, before and after." />
+</FigurePair>
+
+People also skimmed delivery options and struggled to spot stores with stock. We highlighted “Pick up today” in green and kept the other options neutral.
+
+<FigurePair>
+  <HalfFigure src="/work/comfy/c25.jpg" width={1600} height={804} alt="Store pickup options with “Pick up today” highlighted." label="After" caption="“Pick up today” stands out." />
+  <HalfFigure src="/work/comfy/c26.jpg" width={1600} height={1154} alt="Mobile pickup options before and after." caption="Mobile app, before and after." />
+</FigurePair>
+
+### 3. Uncertainty about product suitability
+
+People wanted to see a product in person before committing to credit. We added a video consultation on the product page.
+
+<Figure src="/work/comfy/c27.jpg" width={1600} height={905} alt="Product page with a video consultation entry point." label="After" caption="Video consultation on the product page." />
+
+### Usability testing
+
+We tested twice: unmoderated in Maze, and moderated sessions comparing the current Comfy flow with each iteration.
+
+<ResultsTable
+  caption="Unmoderated, Maze"
+  columns={["Iteration 1 · 10 tests", "Iteration 2 · 14 tests"]}
+  rows={[
+    { metric: "Success rate", cells: [{ v: "87.5%" }, { v: "92.3%", improved: true }] },
+    { metric: "Time on task", cells: [{ v: "80.2 s" }, { v: "155.1 s*" }] },
+    { metric: "Easy to use", cells: [{ v: "6.7 / 10" }, { v: "9 / 10", improved: true }] },
+  ]}
+  foot="* Time on task grew because we added an information block. Heatmaps showed people stopping there to read about credit options. Highlighted values are the ones that improved."
+/>
+
+<ResultsTable
+  caption="Moderated"
+  columns={["Comfy today · 4 tests", "Iteration 1 · 3 tests", "Iteration 2 · 7 tests"]}
+  rows={[
+    { metric: "Completion rate", cells: [{ v: "75%" }, { v: "67%" }, { v: "100%", improved: true }] },
+    { metric: "Time on task", cells: [{ v: "5.75 min" }, { v: "4.87 min" }, { v: "3.52 min", improved: true }] },
+    { metric: "Errors", cells: [{ v: "1.75" }, { v: "1" }, { v: "0", improved: true }] },
+    { metric: "Easy to use", cells: [{ v: "4.75 / 5" }, { v: "3 / 5" }, { v: "4.34 / 5" }] },
+    { metric: "Satisfaction", cells: [{ v: "3.75 / 5" }, { v: "3.67 / 5" }, { v: "4.14 / 5", improved: true }] },
+  ]}
+/>
+
+### Ideas for the business goal
+
+To grow the share of credit orders, we prepared four ideas for the product and marketing teams.
+
+<FigureGrid>
+  <HalfFigure src="/work/comfy/c28.jpg" width={1600} height={1133} alt="Banner concept for package deals with extended installments." title="Package deals with longer installments" caption="About a third of surveyed shoppers wanted them (34.4% of 90). Next step is a fake-door test." />
+  <HalfFigure src="/work/comfy/c29.jpg" width={1600} height={1190} alt="Higher cashback for credit purchases." title="Higher cashback on credit purchases" caption="Than on cash purchases." />
+  <HalfFigure src="/work/comfy/c30.jpg" width={1600} height={1026} alt="Transferring bonuses to family and friends." title="Transfer bonuses to family and friends" caption="Bonuses can already cover the first installment." />
+  <HalfFigure src="/work/comfy/c31.jpg" width={1600} height={1069} alt="Loyalty levels for credit purchases." title="Loyalty levels" caption="Each credit purchase counts toward extra rewards." />
+</FigureGrid>
+
+</Chapter>
+
+<Chapter id="outcome" title="Outcome" sub="A credit flow that is clear, calm and tested.">
+
+The project uncovered real pain points and turned the credit purchase into something transparent, intuitive and emotionally comfortable, because “credit” shouldn’t feel like a horror story.
+
+Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow. The ideas for growing credit orders are ready for the product and marketing teams.
+
+<ProofStrip mark="87.5% → 92.3%" cap="success rate in Maze, iteration 1 vs 2 (10 and 14 tests)" sr="In unmoderated Maze tests the success rate rose from 87.5% in iteration 1 to 92.3% in iteration 2, with 10 and 14 tests." />
+
+<CaseEnd />
+
+</Chapter>

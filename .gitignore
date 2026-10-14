@@ -7,3 +7,7 @@ dist/
 .impeccable/critique/
 .claude/scheduled_tasks.lock
 .impeccable/review/
+.next/
+next-env.d.ts
+.vercel
+*.tsbuildinfo

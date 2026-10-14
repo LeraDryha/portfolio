@@ -13,4 +13,4 @@ Personal portfolio of Valeriia Dryha, Product Designer. It replaces the current 
 
 **Design system:** [`DESIGN.md`](DESIGN.md), "The Proof Sheet": each case shown through one real piece of evidence, one accent colour (Mulberry Ink), Geist with Newsreader italic.
 
-**Status:** brief and design system done; homepage concept in `docs/concept/`. The full brief is in [`CLAUDE.md`](CLAUDE.md).
+**Status:** Next.js site with the home page and the Comfy case page. Run locally with `npm install` and `npm run dev`. UI kit: `ui/kit.css`, showcase `ui/kit.html`. The full brief is in [`CLAUDE.md`](CLAUDE.md).

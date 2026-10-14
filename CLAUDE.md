@@ -83,7 +83,9 @@ Lera зробила продукт сама, від ідеї до релізу. 
 ## Технічне
 
 - Next.js (App Router) і TypeScript.
-- Хостинг — Vercel. Зараз на GitHub Pages висить тимчасова заглушка, `.github/workflows/deploy.yml` прибираємо після переїзду на Vercel.
+- Хостинг — Vercel (автодеплой з гілки `main`). GitHub Pages більше не використовуємо.
+- Стилі: єдине джерело — `ui/kit.css` (імпортується в `app/layout.tsx`). Нових значень у компонентах не пишемо: лише класи кіта й змінні з його `:root`. Шрифти — через `next/font`, `app/globals.css` лише підміняє `--font-sans` / `--font-serif`.
+- Новий кейс: файл `content/work/<slug>.mdx` (`export const meta` + текст з компонентами з `components/case/CaseBlocks.tsx`), зображення в `public/work/<slug>/`, рядок у `lib/cases.ts`. Поки сторінки немає, плитка веде на Notion.
 - Контент живе в репозиторії як MDX. Зображення з Notion переносимо в репозиторій.
 - Аналітика — найпростіший варіант, Vercel Web Analytics.
 - Репозиторій: https://github.com/LeraDryha/portfolio (публічний). Не комітимо приватних даних.
@@ -91,23 +93,25 @@ Lera зробила продукт сама, від ідеї до релізу. 
 ## Структура репозиторію
 
 ```
-app/                    сторінки (App Router): layout, головна, about/, work/[slug]/
-components/ui/          дрібні компоненти: Button, Tag, ThemeToggle…
-components/sections/    великі блоки сторінок: Hero, CaseGrid, Writing…
+app/                    сторінки: layout, головна, work/[slug]/, not-found, icon
+components/shell/       оболонка: покажчик, етапи-ромби, поведінка прокрутки, іконки
+components/home/        головна: плитка кейсу, доказ, More work, привітання
+components/case/        блоки кейсу для MDX, рядок завершення
+content/site.ts         кейси для плиток, More work, статті, контакти, привітання
 content/work/           кейси, по MDX-файлу на кейс
-content/site.ts         контакти, статті, підпис та інші дані, що не є кейсами
+lib/cases.ts            які кейси мають сторінку, куди веде плитка, наступний кейс
+mdx-components.tsx      як Markdown у кейсах мапиться на кіт
 public/work/<slug>/     зображення кейсу
-public/cv.pdf           CV (коли з'явиться)
-styles/                 дизайн-токени й теми (світла/темна)
-lib/                    технічні помічники (читання MDX тощо)
+ui/kit.css              UI-кіт: токени в :root + класи компонентів (джерело стилів)
+ui/shell.html           оболонка як розмітка; ui/kit.html — вітрина кіта
+ui/inventory.md         інвентар компонентів
 docs/references.md      візуальні референси: лише посилання й нотатки
 docs/concept/           еталонні HTML-концепти: головна і сторінка кейсу
-ui/inventory.md         інвентар компонентів: що повторюється, що разове, що ще знадобиться
 DESIGN.md               дизайн-система (джерело правди для візуалу)
 PRODUCT.md              продукт: для кого сайт, що доводить, які докази є
 ```
 
-Без папки `src/`. Файли `.gitkeep` прибираємо, коли в папці з'являється справжній вміст.
+Без папки `src/`. Запуск локально: `npm run dev`; збірка: `npm run build`.
 
 ## Пов'язані проєкти
 
