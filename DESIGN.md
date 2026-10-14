@@ -400,8 +400,8 @@ Quiet white object, confident inside.
 One real fact from the case, set in Proof type in Mulberry Ink, with an optional Pencil caption under it. Allowed forms: a number or before → after, a short list of the metrics users actually check, a user quote in Voice Quote, a factual status line. It is always real case content, never invented, and always has a plain-text equivalent for screen readers.
 
 ### Summary Sheet
-The case answers before it explains. Top to bottom: case name in Headline, Lead line, a facts row, then three summary blocks and a full-width proof strip.
-- **Facts row:** Label term in Pencil over a 16px 500 Ink value (role, team, year, business goal). A goal is labelled as a goal, never as a result.
+The case answers before it explains. Top to bottom: case name in Headline, Lead line, a facts list, then three summary blocks and a full-width proof strip.
+- **Facts list:** one fact per row (role, context, team, year, business goal). Label terms in Pencil sit in their own column, sized to the longest label, and the 16px 500 Ink values line up beside them on a shared baseline, so the list scans top to bottom. Same on phones. A goal is labelled as a goal, never as a result.
 - **Summary blocks:** Tile, 22px corners, 28px padding (22px on phones), a Voice title in Ink (Problem / What we did / Result) over Body in Graphite.
 - **Proof strip:** a full-width tile (32px × 36px padding; 24px × 22px on phones) carrying a Proof Mark with its Caption beside it, bottom-aligned. On phones the caption drops under the mark and the mark may wrap. The same strip can close a case with a second real number.
 
