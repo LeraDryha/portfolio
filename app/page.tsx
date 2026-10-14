@@ -38,17 +38,19 @@ export default function Home() {
               {moreWork.map((c) => {
                 const t = caseHref(c);
                 return (
-                  <li className="list__item" key={c.slug}>
-                    {t ? (
-                      <a className="link link--plain" href={t.href} {...(t.external ? { target: "_blank", rel: "noopener" } : {})}>
-                        {c.title}
-                        {t.external && <NewTab />}
-                      </a>
-                    ) : (
-                      <span className="list__title">{c.title}</span>
-                    )}
-                    <span>{c.desc}</span>
-                  </li>
+                  <article className="tile case-tile mini-tile" key={c.slug}>
+                    <h3 className="mini-tile__title">
+                      {t ? (
+                        <a className="case-tile__link" href={t.href} {...(t.external ? { target: "_blank", rel: "noopener" } : {})}>
+                          {c.title}
+                          {t.external && <NewTab />}
+                        </a>
+                      ) : (
+                        c.title
+                      )}
+                    </h3>
+                    <p className="mini-tile__desc">{c.desc}</p>
+                  </article>
                 );
               })}
             </MoreWork>

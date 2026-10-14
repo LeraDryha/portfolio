@@ -276,7 +276,7 @@
           <div class="tile tile--block"><div class="proof proof--num"><span class="proof__mark">30% → 40%</span><span class="proof__cap">--num: credit order share, business goal</span></div></div>
           <div class="tile tile--block"><div class="proof proof--words"><span class="proof__mark"><span class="proof__line">Ad Requests</span><span class="proof__line">Impressions</span><span class="proof__line">Spent · eCPM</span></span><span class="proof__cap">--words</span></div></div>
           <div class="tile tile--block"><blockquote class="proof proof--quote"><span class="proof__mark">“I connected my accounts… and then what?”</span><span class="proof__cap">--quote: a user, before the redesign</span></blockquote></div>
-          <div class="tile tile--block"><div class="proof proof--specimen"><span class="proof__mark">Aa<span class="chips"><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i></span></span><span class="proof__cap">--specimen (GRX)</span></div></div>
+          <div class="tile tile--block"><div class="proof proof--specimen"><span class="proof__mark">Aa<span class="chips"><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i></span></span><span class="proof__cap">--specimen (GRG)</span></div></div>
         </div>
         <div class="tile tile--block" style="display:grid"><div class="proof proof--hero"><span class="proof__mark">Designed, built, shipped.</span><span class="proof__cap">--hero: iOS in SwiftUI is live. Android in Kotlin is in review.</span></div></div>
         <div class="tile proof proof--strip"><div class="proof__mark">75% → 100%</div><div class="proof__cap">--strip: task completion, current flow vs redesign (moderated, 4 and 7 sessions)</div></div>
@@ -331,17 +331,24 @@
     </div>
 
     <div class="kd-item">
-      <header><h3>Логотипи біля назви</h3><code>.brand-marks · .brand-mark · --mono · .brand-plus</code><p>Головна і кейс. На плитках — сірі в спокої, кольорові при наведенні; на сторінці кейсу — завжди в кольорі. Кілька логотипів з'єднуються «+».</p></header>
+      <header><h3>Логотипи біля назви</h3><code>.brand-marks · .brand-mark · .brand-plus</code><p>Головна і кейс. Кольору заголовка поруч, в обох темах. Кілька логотипів з'єднуються «+».</p></header>
       <div class="kd-demo">
-        <div class="kd-row">
-          <div class="kd-state"><small>плитка, спокій</small>
-            <div class="tile case-tile" style="min-height:0"><h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><img class="brand-mark" src="../public/logos/comfy.svg" width="33" height="36" alt=""><span class="brand-plus">+</span><span class="brand-mark brand-mark--mono" style="--mark-src:url(../public/logos/projector.svg);--mark-ratio:74 / 32;--mark-color:var(--brand-projector)"></span></span>Comfy</h3></div></div>
-          <div class="kd-state"><small>плитка, наведення</small>
-            <div class="tile case-tile is-hover" style="min-height:0"><h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><img class="brand-mark" src="../public/logos/comfy.svg" width="33" height="36" alt=""><span class="brand-plus">+</span><span class="brand-mark brand-mark--mono" style="--mark-src:url(../public/logos/projector.svg);--mark-ratio:74 / 32;--mark-color:var(--brand-projector)"></span></span>Comfy</h3></div></div>
-        </div>
-        <div class="kd-row">
-          <h1 class="headline"><span class="brand-marks" aria-hidden="true"><img class="brand-mark" src="../public/logos/prevently.svg" width="100" height="100" alt=""></span>Prevently</h1>
-          <h1 class="headline"><span class="brand-marks" aria-hidden="true"><span class="brand-mark brand-mark--mono" style="--mark-src:url(../public/logos/adtelligent.svg);--mark-ratio:1 / 1;--mark-color:var(--brand-adtelligent)"></span></span>Adtelligent</h1>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../public/logos/comfy.svg);--mark-ratio:33 / 36"></span><span class="brand-plus">+</span><span class="brand-mark" style="--mark-src:url(../public/logos/projector.svg);--mark-ratio:74 / 32"></span></span>Comfy</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../public/logos/adtelligent.svg);--mark-ratio:1 / 1"></span></span>Adtelligent</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../public/logos/hubmee.svg);--mark-ratio:38.92 / 38.06"></span></span>Smart Financial Assistant</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../public/logos/grg.svg);--mark-ratio:159 / 104.3"></span></span>GRG Design System</h3>
+        <p class="headline"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../public/logos/prevently.svg);--mark-ratio:1 / 1"></span></span>Prevently</p>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Малі плитки (More work)</h3><code>.mini-tiles · .tile.case-tile.mini-tile</code><p>Лише головна. Чотири в ряд, на телефоні — стовпчиком. Назва-посилання на всю плитку і один рядок.</p></header>
+      <div class="kd-demo">
+        <div class="mini-tiles" style="margin-top:0">
+          <article class="tile case-tile mini-tile"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Task Creation Reimagined</a></h3><p class="mini-tile__desc">Спокій. 2025 · Sole designer.</p></article>
+          <article class="tile case-tile mini-tile is-hover"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Onboarding through Hypotheses &amp; A/B Testing</a></h3><p class="mini-tile__desc">Наведення: підйом і тінь.</p></article>
+          <article class="tile case-tile mini-tile is-focus"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Mental health support MVP</a></h3><p class="mini-tile__desc">Фокус з клавіатури.</p></article>
+          <article class="tile case-tile mini-tile"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Dnipropetrovsk Regional Center for Educational Quality Assessment</a></h3><p class="mini-tile__desc">UX audit and redesign of a public education website.</p></article>
         </div>
       </div>
     </div>

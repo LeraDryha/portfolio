@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 
-/** "More work / Less work" pill that reveals the list of secondary cases. */
+/** "More work / Less work" pill that reveals the secondary cases as small white cards. */
 export function MoreWork({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
@@ -16,9 +16,9 @@ export function MoreWork({ children }: { children: ReactNode }) {
       >
         {open ? "Less work" : "More work"}
       </button>
-      <ul className="list list--reveal" id="moreList" hidden={!open}>
+      <div className="mini-tiles" id="moreList" hidden={!open}>
         {children}
-      </ul>
+      </div>
     </>
   );
 }

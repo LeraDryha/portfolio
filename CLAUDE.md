@@ -29,8 +29,8 @@ https://app.notion.com/p/Hi-I-m-Lera-13b44bdcbfce80dfba23e68b5324093f
    https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2
 3. **From Transaction Log to Smart Financial Assistant** (2024). Фінтех для ринку США, утримання користувачів після підключення банку. У Notion не заповнені «Focus» і «Skills».
    https://app.notion.com/p/From-Transaction-Log-to-Smart-Financial-Assistant-24244bdcbfce8040876dfe857d29eb36
-4. **GRX Design System.** Великий кейс з купою специфікацій, у Notion його немає, лише у Figma:
-   https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/GRX-Design-System-%F0%9F%9A%A8?node-id=417-706
+4. **GRG Design System.** Великий кейс з купою специфікацій, у Notion його немає, лише у Figma:
+   https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/GRG-Design-System-%F0%9F%9A%A8?node-id=417-706
    Як подати кейс, вирішимо після того, як оцінимо масштаб файлу. Для цієї дизайн-системи окремо робимо з нуля Storybook на PrimeReact (див. «Пов'язані проєкти»).
 
 ### Prevently — особистий продукт, окремий акцент
@@ -115,13 +115,13 @@ PRODUCT.md              продукт: для кого сайт, що дово�
 
 ## Пов'язані проєкти
 
-- **Storybook для GRX Design System** на PrimeReact, з нуля. Пропозиція: окремий репозиторій і окремий деплой, а кейс у портфоліо посилається на нього.
+- **Storybook для GRG Design System** на PrimeReact, з нуля. Пропозиція: окремий репозиторій і окремий деплой, а кейс у портфоліо посилається на нього.
 
 ## Відкриті питання
 
 - Яка головна дія відвідувача (CTA)? Треба дослідити.
 - Візуальні референси й напрям.
-- Як подати кейс GRX Design System, коли оцінимо масштаб Figma-файлу.
+- Як подати кейс GRG Design System, коли оцінимо масштаб Figma-файлу.
 - Чи показувати телефон на сайті?
 - CV у PDF.
 - Інші кейси: повноцінні сторінки чи короткі картки?

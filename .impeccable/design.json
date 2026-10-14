@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T16:30:00Z",
+  "generatedAt": "2026-10-14T17:30:00Z",
   "title": "Design System: Lera Dryha Portfolio",
   "extensions": {
     "colorMeta": {
@@ -109,11 +109,6 @@
       "night-focus": {
         "role": "neutral",
         "displayName": "Night Focus"
-      },
-      "brand-adtelligent": {
-        "role": "neutral",
-        "displayName": "Brand Adtelligent",
-        "canonical": "#ff0066"
       }
     },
     "typographyMeta": {
@@ -331,9 +326,17 @@
       "name": "Brand Marks",
       "kind": "custom",
       "refersTo": "brand-marks",
-      "description": "Logos before a case title, joined by '+'. Grey on home tiles at rest, own colours on hover; always in colour on the case page. Decorative.",
+      "description": "Logos before a case title in the title's colour, joined by '+'. One-colour SVG masks. Decorative.",
       "html": "<h3 class=\"ds-title\"><span class=\"ds-marks\" aria-hidden=\"true\"><span class=\"ds-mark ds-mark--dot\"></span><span class=\"ds-plus\">+</span><span class=\"ds-mark ds-mark--mono\"></span></span>Comfy</h3>",
-      "css": ".ds-title { margin: 0; font: 600 42px/1.02 Geist, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -.03em; color: #16181d; } .ds-marks { display: inline-flex; align-items: center; gap: .22em; margin-right: .22em; vertical-align: -.06em; } .ds-mark { display: block; height: .7em; aspect-ratio: 1; border-radius: 50%; background: #43b02a; filter: grayscale(1); opacity: .6; transition: filter .35s cubic-bezier(.2,.7,.2,1), opacity .35s cubic-bezier(.2,.7,.2,1); } .ds-mark--mono { aspect-ratio: 74 / 32; border-radius: 2px; background: #656b74; filter: none; } .ds-plus { font: 400 .45em Geist, sans-serif; color: #656b74; } .ds-title:hover .ds-mark { filter: none; opacity: 1; } .ds-title:hover .ds-mark--mono { background: #16181d; }"
+      "css": ".ds-title { margin: 0; font: 600 42px/1.02 Geist, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -.03em; color: #16181d; } .ds-marks { display: inline-flex; align-items: center; gap: .22em; margin-right: .22em; vertical-align: -.06em; } .ds-mark { display: block; height: .7em; aspect-ratio: 1; border-radius: 50%; background: currentColor; } .ds-mark--mono { aspect-ratio: 74 / 32; border-radius: 2px; } .ds-plus { font: 400 .45em Geist, sans-serif; color: #656b74; }"
+    },
+    {
+      "name": "Mini Tile",
+      "kind": "card",
+      "refersTo": "mini-tile",
+      "description": "Small white card for a secondary case: name as stretched link and one line. Four in a row.",
+      "html": "<article class=\"ds-mini\"><h3><a href=\"#\">Task Creation Reimagined</a></h3><p>2025 · Sole designer. A simpler task creation flow and new repeat logic.</p></article>",
+      "css": ".ds-mini { position: relative; display: grid; gap: 8px; padding: 24px; background: #fff; border-radius: 22px; max-width: 260px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1); } .ds-mini:hover { transform: translateY(-3px); box-shadow: 0 14px 32px -18px rgba(22,24,29,.28); } .ds-mini h3 { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.25; letter-spacing: -.015em; color: #16181d; } .ds-mini a { color: inherit; text-decoration: none; } .ds-mini a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } .ds-mini p { margin: 0; font-size: 14px; line-height: 1.4; color: #4a515b; }"
     }
   ],
   "narrative": {
@@ -415,7 +418,7 @@
       "Don't colour a worse or unchanged number in Mulberry Ink.",
       "Don't set a heading's number in the accent.",
       "Don't crop case images to fit a frame; contain them.",
-      "Don't use a logo's brand colour for anything but the logo itself."
+      "Don't colour logos: they take the title colour."
     ]
   }
 }

@@ -27,7 +27,7 @@ The site has worked when:
 
 A product designer who combines three things a typical portfolio shows one at a time:
 - **Decisions that move metrics:** research, hypotheses and numbers (Comfy's credit order goal from 30% to 40%, A/B-framed onboarding, task-flow conversion work).
-- **Systems thinking:** design systems, detailed specs and hand-off (GRX Design System, a Storybook built from scratch, articles about hand-off).
+- **Systems thinking:** design systems, detailed specs and hand-off (GRG Design System, a Storybook built from scratch, articles about hand-off).
 - **Taking a product to release alone:** Prevently went from idea to the App Store with Lera doing research, design and build, working with AI tools.
 
 ## Operating Context
@@ -41,7 +41,7 @@ A product designer who combines three things a typical portfolio shows one at a 
 - Pages: Home (case tiles, More work, Writing, Contact), one case page template at `/work/<slug>`, About.
 - No NDA material; all listed cases can be shown.
 - Case texts and images are ready in Notion. Reworking case content is not planned for now, which is why the home page shows no case images.
-- GRX Design System lives in Figma. A Storybook for it, on PrimeReact, will be built from scratch as a separate project and linked from the case.
+- GRG Design System lives in Figma. A Storybook for it, on PrimeReact, will be built from scratch as a separate project and linked from the case.
 - Prevently: iOS app live in the App Store; Android app in review, no Google Play link yet.
 - Contacts: email and LinkedIn. A phone number exists but whether to show it is undecided, so it is never committed to the public repository.
 - Title on the site is "Product Designer" for now.
@@ -57,16 +57,16 @@ A product designer who combines three things a typical portfolio shows one at a 
 ## Evidence on Hand
 
 Notion case studies (texts and images ready):
-- **Comfy: UX Case Study** (2024, e-commerce, team of 4 designers). Business goal: credit order share from 30% to 40%. Full research cycle.
+- **Comfy: UX Case Study** (2024, e-commerce, team of 4 designers). A Projector school course project: the business came to the course and all work was handed over to Comfy. Business goal: credit order share from 30% to 40%. Full research cycle.
 - **Solutions for Adtelligent** (2025, AdTech B2B SaaS). Role and Skills are empty in Notion and must be filled with Lera, not invented.
-- **From Transaction Log to Smart Financial Assistant** (2024, fintech, US market). Includes the user problem "I connected my accounts… and then what?". Focus and Skills are empty in Notion.
+- **From Transaction Log to Smart Financial Assistant** (2024, fintech, US market), for hubmee (https://hubmee.com). Includes the user problem "I connected my accounts… and then what?". Focus and Skills are empty in Notion.
 - **Task Creation Reimagined** (2025, sole designer). Has conversion and usability metrics in Notion.
 - **Onboarding through Hypotheses & A/B Testing** (2025, concept project).
 - **Mental health support MVP** (2023).
 - **Dnipropetrovsk Regional Center for Educational Quality Assessment** (very little text).
 
 Other evidence:
-- **GRX Design System** in Figma: https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/ (Claude has no access yet).
+- **GRG Design System** (Golden Ratio Group, https://goldenratiogroup.co) in Figma: https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/ (Claude has no access yet).
 - **Prevently**: https://preventlyapp.com and the App Store listing; iOS in SwiftUI, Android in Kotlin.
 - **Writing**: two Medium articles in Ukrainian, "Місце, де UX помер" and "Hand-off без сліз".
 

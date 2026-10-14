@@ -5,7 +5,7 @@ Personal portfolio of Valeriia Dryha, Product Designer. It replaces the current 
 **Audience:** hiring managers and recruiters. The site is in English.
 
 **Content**
-- Featured case studies: Comfy, Adtelligent, Smart Financial Assistant, GRX Design System
+- Featured case studies: Comfy, Adtelligent, Smart Financial Assistant, GRG Design System
 - Prevently: a personal product taken from idea to App Store release ([preventlyapp.com](https://preventlyapp.com))
 - More work, writing (Medium) and contacts
 

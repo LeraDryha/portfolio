@@ -31,5 +31,5 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 - The page closes on a second Proof strip (Maze 87.5% → 92.3%) before the next case.
 
 ## Unresolved
-- Cases without a Double Diamond process (Prevently, GRX) need a phase set of their own; the index must accept any 3-5 phases.
+- Cases without a Double Diamond process (Prevently, GRG) need a phase set of their own; the index must accept any 3-5 phases.
 - Case copy for the summary blocks is drafted from Notion and needs Lera's approval.

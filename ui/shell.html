@@ -128,6 +128,8 @@
     var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var now = document.querySelector(".bar__now");
     var ticking = false;
+    /* A section picked from the menu stays current while it is on screen; any scrolling by the reader releases it. */
+    var picked = null;
 
     function progressOf(el, line) {
       var r = el.getBoundingClientRect();
@@ -139,6 +141,9 @@
       var line = window.innerHeight * LINE;
       var current = sections.length ? sections[0].id : null;
       sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) current = s.id; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2 && sections.length) current = sections[sections.length - 1].id;
+      var pickedEl = picked ? document.getElementById(picked) : null;
+      if (pickedEl && pickedEl.getBoundingClientRect().top < window.innerHeight) current = picked;
 
       spyLinks.forEach(function (a) {
         if (a.getAttribute("href") === "#" + current) a.setAttribute("aria-current", "location");
@@ -166,6 +171,15 @@
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href^='#']");
+      var id = a && a.getAttribute("href").slice(1);
+      if (id && ids.indexOf(id) !== -1) { picked = id; onScroll(); }
+    });
+    function release() { picked = null; }
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchmove", release, { passive: true });
+    window.addEventListener("keydown", release);
     update();
 
     /* Lets the kit showcase switch this shell's theme from outside the frame. */

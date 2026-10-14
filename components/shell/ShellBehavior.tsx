@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Shell behaviour, shared by every page:
@@ -10,6 +11,10 @@ import { useEffect } from "react";
  * Same logic as ui/shell.html.
  */
 export function ShellBehavior() {
+  // Re-bind on every client-side navigation: the layout (and this component) stays mounted,
+  // but the page's index links and sections are new elements.
+  const pathname = usePathname();
+
   useEffect(() => {
     const LINE = 0.35;
     const spyLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".index a[href^='#']:not(.index__back)"));
@@ -19,6 +24,9 @@ export function ShellBehavior() {
     const phaseLinks = Array.from(document.querySelectorAll<HTMLElement>("[data-phase], [data-hphase]"));
     const now = document.querySelector<HTMLElement>(".bar__now");
     let ticking = false;
+    // A section picked from the menu stays current while it is on screen, even when it is
+    // too close to the bottom to reach the line; any scrolling by the reader releases it.
+    let picked: string | null = null;
 
     const progressOf = (el: HTMLElement, line: number) => {
       const r = el.getBoundingClientRect();
@@ -32,6 +40,11 @@ export function ShellBehavior() {
       sections.forEach((s) => {
         if (s.getBoundingClientRect().top <= line) current = s.id;
       });
+      // At the very bottom the last sections can never reach the line: treat the last one as current.
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom && sections.length) current = sections[sections.length - 1].id;
+      const pickedEl = picked ? document.getElementById(picked) : null;
+      if (pickedEl && pickedEl.getBoundingClientRect().top < window.innerHeight) current = pickedEl.id;
 
       spyLinks.forEach((a) => {
         if (a.getAttribute("href") === `#${current}`) a.setAttribute("aria-current", "location");
@@ -64,14 +77,33 @@ export function ShellBehavior() {
         requestAnimationFrame(update);
       }
     };
+    const onPick = (e: MouseEvent) => {
+      const a = (e.target as Element).closest?.("a[href^='#']");
+      const id = a?.getAttribute("href")!.slice(1);
+      if (id && sections.some((s) => s.id === id)) {
+        picked = id;
+        onScroll();
+      }
+    };
+    const release = () => {
+      picked = null;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    document.addEventListener("click", onPick);
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchmove", release, { passive: true });
+    window.addEventListener("keydown", release);
     update();
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      document.removeEventListener("click", onPick);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchmove", release);
+      window.removeEventListener("keydown", release);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
