@@ -10,7 +10,7 @@ export function BrandMarks({ marks }: { marks?: Mark[] }) {
         <Fragment key={m.src}>
           {i > 0 && <span className="brand-plus">+</span>}
           <span
-            className={m.art ? "brand-mark brand-mark--art" : "brand-mark"}
+            className={m.art && !m.overlay ? "brand-mark brand-mark--art" : "brand-mark"}
             style={
               {
                 "--mark-src": `url(${m.src})`,

@@ -10,8 +10,8 @@ export type Proof =
   | { kind: "hero"; mark: string; cap: string; sr: string };
 
 /** A logo beside a case title, drawn in the title's colour. src is a one-colour SVG used as a mask; ratio is width / height. */
-/** Logo beside a title: one-colour mask, plus how it looks on hover (original file or brand colour). */
-export type Mark = { src: string; ratio: string; art?: string; color?: string };
+/** Logo beside a title: one-colour mask, plus how it looks on hover (original file, a coloured layer over it, or brand colour). */
+export type Mark = { src: string; ratio: string; art?: string; overlay?: boolean; color?: string };
 
 export type CaseEntry = {
   slug: string;
@@ -68,7 +68,7 @@ export const featured: CaseEntry[] = [
     meta: "2024 · E-commerce · Projector course, handed over to Comfy",
     marks: [
       { src: "/logos/comfy.svg", ratio: "33 / 36", art: "/logos/color/comfy.svg" },
-      { src: "/logos/projector.svg", ratio: "74 / 32" },
+      { src: "/logos/projector.svg", ratio: "74 / 32", color: "var(--brand-projector)" },
     ],
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
     proof: {
@@ -84,7 +84,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "Solutions for Adtelligent (AdTech B2B SaaS platform)",
     desc: "Reports and a new overview built around what users check every day.",
     meta: "2025 · AdTech B2B SaaS",
-    marks: [{ src: "/logos/adtelligent.svg", ratio: "1 / 1", color: "var(--brand-adtelligent)" }],
+    marks: [{ src: "/logos/adtelligent.svg", ratio: "40 / 35", art: "/logos/color/adtelligent.svg", overlay: true }],
     notionUrl: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
     proof: {
       kind: "words",

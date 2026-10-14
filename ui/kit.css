@@ -214,7 +214,7 @@
   --size-mark-shift: -.06em;
   --text-mark-plus: .45em;
   /* Single-colour brand logos show their colour only on hover */
-  --brand-adtelligent: #ff0066;
+  --brand-projector: #3548fe;
   --brand-hubmee: #075f47;
   --brand-grg: #e2a574;
 
@@ -388,7 +388,8 @@
    BRAND MARKS: logos beside a case title, in the title's own colour; original colours on hover
    Each logo is a one-colour SVG used as a mask: set --mark-src and --mark-ratio inline.
    On hover a single-colour brand takes --mark-color; a multi-colour one (.brand-mark--art)
-   fades to its original file in --mark-art. Decorative (aria-hidden); the title names the case.
+   fades to its original file in --mark-art. Without --art, a --mark-art file is laid over the
+   title-coloured logo (Adtelligent: its pink fold over the dark arrow). Decorative (aria-hidden); the title names the case.
    --------------------------------------------------------------------- */
 .brand-marks { display: inline-flex; align-items: center; gap: var(--space-mark-gap); margin-right: var(--space-mark-gap); vertical-align: var(--size-mark-shift); }
 .brand-mark { position: relative; display: block; height: var(--size-mark); aspect-ratio: var(--mark-ratio); }
@@ -397,7 +398,7 @@
 .brand-mark::after { background: var(--mark-art) center / contain no-repeat; opacity: var(--opacity-hidden); }
 :is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark::before { background-color: var(--mark-color, currentColor); }
 :is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark--art::before { opacity: var(--opacity-hidden); }
-:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark--art::after { opacity: var(--opacity-full); }
+:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark::after { opacity: var(--opacity-full); }
 .brand-plus { font-family: var(--font-sans); font-weight: var(--weight-regular); font-size: var(--text-mark-plus); color: var(--color-pencil); }
 
 /* ---------------------------------------------------------------------
