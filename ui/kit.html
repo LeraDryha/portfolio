@@ -237,9 +237,9 @@
     </div>
 
     <div class="kd-item">
-      <header><h3>Рядок завершення кейсу</h3><code>.case-end</code><p>Кейс (усі). На телефоні наступний кейс переноситься окремим рядком.</p></header>
+      <header><h3>Рядок завершення кейсу</h3><code>.case-end</code><p>Кейс (усі). На сторінці стоїть на 120px нижче за останній блок кейсу (80px на телефоні), тут — без цього відступу. На телефоні наступний кейс переноситься окремим рядком.</p></header>
       <div class="kd-demo">
-        <nav class="case-end" aria-label="More work (demo)">
+        <nav class="case-end" aria-label="More work (demo)" style="margin-top:0">
           <div class="case-end__links"><a class="link link--tap" href="#nav">All work</a><a class="link link--tap" href="#nav">Back to summary</a></div>
           <a class="link link--nudge case-end__next" href="#nav">Next case: Solutions for Adtelligent (AdTech B2B SaaS platform) <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </nav>
@@ -414,7 +414,7 @@
     </div>
 
     <div class="kd-item kd-item--wide">
-      <header><h3>Рамка зображення</h3><code>.figure · --loading · --portrait · .figure-pair</code><p>Кейс (усі). Потрібна картинка. Скелетон — стан завантаження.</p></header>
+      <header><h3>Рамка зображення</h3><code>.figure · --loading · --portrait · .figure-pair · .figure-grid</code><p>Кейс (усі). Потрібна картинка. Скелетон — стан завантаження. Картки в ряд (пара, сітка) мають однакову зону 4:3 під картинку, тайтл і рядок під ним завжди на 4px, зайве місце — внизу.</p></header>
       <div class="kd-demo">
         <div class="figure-pair">
           <figure class="tile figure">
@@ -434,6 +434,16 @@
           <figure class="tile figure">
             <a class="figure__zoom is-focus" href="#cards"><img class="figure__img" src="../docs/concept/img/c25.jpg" width="1600" height="804" alt="Pick up today option."></a>
             <figcaption class="figure__cap figure__cap--stack"><b>Фокус на зображенні</b><span>Підпис стовпчиком (сітка ідей).</span></figcaption>
+          </figure>
+        </div>
+        <div class="figure-grid">
+          <figure class="tile figure">
+            <a class="figure__zoom" href="../docs/concept/img/c28.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../docs/concept/img/c28.jpg" width="1600" height="1133" alt="Package deals banner."></a>
+            <figcaption class="figure__cap figure__cap--stack"><b>Картки в ряд: однакова зона 4:3</b><span>Тайтл одразу під зоною зображення, до рядка під ним завжди 4px, навіть коли підпис довший, ніж у сусідньої картки.</span></figcaption>
+          </figure>
+          <figure class="tile figure">
+            <a class="figure__zoom" href="../docs/concept/img/c30.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../docs/concept/img/c30.jpg" width="1600" height="1026" alt="Bonus transfer screens."></a>
+            <figcaption class="figure__cap figure__cap--stack"><b>Інша пропорція картинки</b><span>Тайтли не стрибають.</span></figcaption>
           </figure>
         </div>
       </div>

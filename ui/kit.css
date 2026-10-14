@@ -122,6 +122,7 @@
   --space-96: 96px;
   --space-104: 104px;
   --space-120: 120px;
+  --space-case-end: var(--space-120);
   --space-pull-1: -1px;
   --space-pull-6: -6px;
   --space-list-indent: 1.1em;
@@ -150,7 +151,6 @@
   --layout-image-ratio: 4 / 3;
   --layout-span-all: 1 / -1;
   --layout-rows-copy: auto 1fr;
-  --layout-rows-figure: 1fr auto;
   --layout-bar: auto 1fr auto;
   --clip-hidden: rect(0 0 0 0);
   --size-tile-min: 380px;
@@ -537,15 +537,17 @@
 .figure--loading .figure__zoom { aspect-ratio: var(--layout-image-ratio); background: var(--color-hairline); }
 .figure__cap { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-16); padding: var(--space-0) var(--space-8) var(--space-4); font-size: var(--text-caption); line-height: var(--leading-caption); color: var(--color-pencil); }
 .figure__cap b { font-weight: var(--weight-medium); color: var(--color-ink); }
-.figure__cap--stack { display: grid; gap: var(--space-4); }
+.figure__cap--stack { display: grid; gap: var(--space-4); align-content: start; }
 .figure__open { flex: none; display: inline-flex; gap: var(--space-4); align-items: center; color: var(--color-pencil); font-size: var(--text-label); }
 .figure__zoom:hover + .figure__cap .figure__open, .figure.is-hover .figure__open { color: var(--color-ink); }
 .figure--portrait { max-width: var(--layout-portrait); }
 .figure-pair, .figure-grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-16); }
-.figure-pair { align-items: stretch; }
-.figure-pair .figure { grid-template-rows: var(--layout-rows-figure); }
-.figure-pair .figure__zoom { aspect-ratio: var(--layout-image-ratio); display: grid; place-items: center; }
-.figure-pair .figure__img { width: var(--size-full); height: var(--size-full); object-fit: contain; background: var(--color-transparent); }
+/* Figure cards in a row (pairs, grids): every image gets the same reserved 4:3 area, the caption
+   starts right under it with a fixed title-to-line gap, and spare height stays at the bottom. */
+.figure-pair, .figure-grid { align-items: stretch; }
+.figure-pair .figure, .figure-grid .figure { align-content: start; }
+.figure-pair .figure__zoom, .figure-grid .figure__zoom { aspect-ratio: var(--layout-image-ratio); display: grid; place-items: center; }
+.figure-pair .figure__img, .figure-grid .figure__img { width: var(--size-full); height: var(--size-full); object-fit: contain; background: var(--color-transparent); }
 .side { display: grid; grid-template-columns: var(--layout-col-1) var(--layout-col-1); gap: var(--space-40); align-items: start; }
 .side__copy { display: grid; gap: var(--space-16); align-content: start; position: sticky; top: var(--space-48); }
 .side__copy .subhead { margin: var(--space-0); }
@@ -567,7 +569,7 @@
 .table__foot { font-size: var(--text-caption); line-height: var(--leading-foot); color: var(--color-pencil); }
 
 /* End of case: one row of text links */
-.case-end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-12) var(--space-32); padding-top: var(--space-28); border-top: var(--size-hairline) solid var(--color-hairline); font-size: var(--text-action); }
+.case-end { margin-top: var(--space-case-end); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-12) var(--space-32); padding-top: var(--space-28); border-top: var(--size-hairline) solid var(--color-hairline); font-size: var(--text-action); }
 .case-end__links { display: flex; flex-wrap: wrap; gap: var(--space-12) var(--space-28); }
 .case-end__next { display: inline-block; min-height: var(--space-0); padding-block: var(--space-11); margin-left: auto; text-align: right; line-height: var(--leading-lead); }
 .case-end__next .icon { margin-left: var(--space-4); }
@@ -647,6 +649,7 @@
   .side__copy { position: static; }
   .figure { padding: var(--space-8); }
   .case-end__next { margin-left: var(--space-0); text-align: left; }
+  :root { --space-case-end: var(--space-80); }
 
   .table-tile { padding: var(--space-4) var(--space-16) var(--space-16); }
   .table thead { position: absolute; width: var(--size-sr); height: var(--size-sr); overflow: hidden; clip: var(--clip-hidden); }
