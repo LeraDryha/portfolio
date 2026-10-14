@@ -326,7 +326,7 @@ Display, Headline, Title, Proof, Proof Hero, Closing, Greeting and Voice Quote a
 **Character:** Geist speaks with confidence: names, numbers, titles, tight and heavy. Newsreader italic is the quiet human voice around it: the index, the section names, a user's quote, the one emphasised phrase in a heading.
 
 ### Hierarchy
-- **Display** (600, clamp 40–68px, line-height 1, −0.03em): the hero greeting only. Its last phrase switches to Voice in Mulberry Ink.
+- **Display** (600, clamp 40–68px, line-height 1, −0.03em): the hero greeting only. Its last phrase switches to Voice in Mulberry Ink and always starts its own line ("Hi, I’m Lera," / "a product designer.").
 - **Headline** (600, clamp 48–80px): the name of the full-width hero tile.
 - **Title** (600, clamp 30–42px, line-height 1.02): case names in tiles. Ink, never accent.
 - **Proof** (600, clamp 44–84px, line-height 0.95, tabular numerals): the evidence mark in each tile. Numbers stay on one line.

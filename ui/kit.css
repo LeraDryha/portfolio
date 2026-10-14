@@ -414,6 +414,8 @@
    --------------------------------------------------------------------- */
 .intro { display: grid; gap: var(--space-20); max-width: var(--layout-intro); scroll-margin-top: var(--space-48); }
 .intro__title { margin: var(--space-0); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-display); font-size: var(--text-display); line-height: var(--leading-display); color: var(--color-ink); text-wrap: balance; }
+/* The italic role always starts its own line */
+.intro__title .voice-accent { display: block; }
 .intro__text { margin: var(--space-0); font-size: var(--text-body-lead); color: var(--color-graphite); }
 
 .tiles { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-16); }
