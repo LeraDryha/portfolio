@@ -75,6 +75,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 - Творчий орієнтир: **«The Proof Sheet»** — кожен кейс показуємо однією справжньою деталлю з кейсу, без картинок.
 - Обрано: один акцент (**Mulberry Ink**), заголовки Geist, курсив Newsreader для меню, підписів і цитат.
 - Проєктуємо одразу в коді, без макетів у Figma. Еталонний концепт головної: `docs/concept/portfolio-concept.html` (живий: https://claude.ai/artifact/UXTrEBiWLrvCXGHcLK4Sro).
+- Еталонний концепт сторінки кейсу (на Comfy): `docs/concept/case-comfy.html` (живий: https://claude.ai/artifact/WfTmvosY6mafSZBFwcsHr8). Структура: спершу підсумок, далі історія з навігацією-діамантом (Double Diamond). Бриф і контракт напряму: `.impeccable/surfaces/docs-concept-case-comfy-html.md`.
 - Історія рішень і референси: `docs/references.md`. Машинний опис дизайн-системи для Impeccable: `.impeccable/design.json`.
 - Для дизайн-рішень і перевірок використовуємо скіл Impeccable (critique, polish, audit тощо).
 - **Російська й білоруська заборонені завжди**, зокрема в привітанні.

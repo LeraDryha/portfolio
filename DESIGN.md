@@ -110,15 +110,41 @@ typography:
     fontWeight: 400
     lineHeight: 1.22
     letterSpacing: "-0.01em"
+  lead:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "20px"
+    fontWeight: 400
+    lineHeight: 1.45
+  subhead:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "22px"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.015em"
+  stat:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "30px"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
+    fontFeature: "'tnum' 1"
+  voice-note:
+    fontFamily: "Newsreader, Baskerville, Georgia, serif"
+    fontSize: "18px"
+    fontWeight: 400
+    lineHeight: 1.6
 rounded:
   focus: "4px"
   swatch: "6px"
   tile: "22px"
+  image: "12px"
   pill: "999px"
 spacing:
   tile-gap: "16px"
   tile-pad: "36px"
   tile-pad-hero: "56px"
+  tile-pad-compact: "28px"
+  figure-pad: "12px"
   nav-gap: "56px"
   section: "104px"
   section-mobile: "80px"
@@ -170,6 +196,69 @@ components:
     typography: "{typography.tag}"
     rounded: "{rounded.focus}"
     padding: "5px"
+  case-lead:
+    textColor: "{colors.ink}"
+    typography: "{typography.lead}"
+  chapter-subhead:
+    textColor: "{colors.ink}"
+    typography: "{typography.subhead}"
+  voice-note:
+    textColor: "{colors.ink}"
+    typography: "{typography.voice-note}"
+  stat-number:
+    textColor: "{colors.mulberry-ink}"
+    typography: "{typography.stat}"
+  phase-link:
+    textColor: "{colors.pencil}"
+    typography: "{typography.voice-nav}"
+  phase-link-current:
+    textColor: "{colors.ink}"
+    typography: "{typography.voice-nav}"
+  phase-half-active:
+    backgroundColor: "{colors.mulberry-ink}"
+  phase-half-active-night:
+    backgroundColor: "{colors.mulberry-ink-night}"
+  summary-block:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.graphite}"
+    rounded: "{rounded.tile}"
+    padding: "28px"
+  summary-block-title:
+    textColor: "{colors.ink}"
+    typography: "{typography.voice}"
+  proof-strip:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.mulberry-ink}"
+    typography: "{typography.proof}"
+    rounded: "{rounded.tile}"
+    padding: "36px"
+  figure-frame:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.pencil}"
+    typography: "{typography.caption}"
+    rounded: "{rounded.tile}"
+    padding: "12px"
+  figure-image:
+    rounded: "{rounded.image}"
+  results-table:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.tile}"
+    padding: "28px"
+  results-table-head:
+    textColor: "{colors.pencil}"
+    typography: "{typography.label}"
+  result-improved:
+    textColor: "{colors.mulberry-ink}"
+  next-case-tile:
+    backgroundColor: "{colors.tile}"
+    textColor: "{colors.graphite}"
+    rounded: "{rounded.tile}"
+    padding: "40px"
+  next-case-action:
+    textColor: "{colors.mulberry-ink}"
+    typography: "{typography.action}"
 ---
 
 # Design System: Lera Dryha Portfolio
@@ -182,6 +271,8 @@ The site is a sheet of evidence. Each case is a quiet white tile that leads with
 
 The frame is calm and literary: an italic vertical index in the top-left corner (after shud.in), a hairline separating it from the content, generous space between sections. The tiles bring the confidence: big Geist titles and Apple-style tiles in a two-up grid, with the owner's own product as the one full-width tile. Colour is rationed to a single ink, Mulberry Ink, which marks only evidence and actions.
 
+Case pages extend the same sheet. A summary sheet answers the recruiter first (role, problem, what was done, the strongest real number), then the case is read through the process it actually followed, drawn as the page's own navigation. Case images appear here, never on the home tiles: shown as they are, uncropped, inside calm white frames with a caption.
+
 Motion is restrained: a short multilingual greeting on the first visit, a small lift on tile hover, nothing else moves by itself. Light and dark themes are equal citizens; the accent is re-tuned per theme, never reused as-is.
 
 **Key Characteristics:**
@@ -190,6 +281,7 @@ Motion is restrained: a short multilingual greeting on the first visit, a small 
 - Italic serif as the quiet voice (navigation, section labels, quotes); Geist as the confident voice (names, titles, numbers).
 - White tiles on warm-neutral paper, flat at rest.
 - Restrained motion; everything readable without it.
+- Case pages answer first (summary sheet), then follow the real process (Phase Index), with images as-is in white frames.
 
 ## Colors
 
@@ -198,6 +290,7 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 ### Primary
 - **Mulberry Ink** (light theme): the only accent. Evidence marks inside tiles, the italic emphasis in the hero heading and the closing line, and "View case" links. It came from Prevently and was kept as the owner's own colour.
 - **Mulberry Ink, Night** (dark theme): a lighter, softer version of the same hue so evidence keeps about 7:1 contrast on night tiles.
+- **On case pages** Mulberry Ink also marks the reader's position: the outline and growing fill of the phase being read in the Phase Index, and a 16% tint of the accent (20% of the night value) on finished phases. It also sets inline research counts (Stat), user quotes and the improved values in results tables.
 
 ### Neutral
 - **Paper**: page background. Slightly warm so white tiles read as objects lying on it.
@@ -211,6 +304,10 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 
 ### Named Rules
 **The One Ink Rule.** Mulberry Ink is the only colour that is not a neutral. It marks evidence and actions, never surfaces, borders or large fills.
+
+**The Improved Only Rule.** In a results comparison Mulberry Ink marks only values that improved. A worse or unchanged number stays Ink, and a footnote says why it moved and that highlighted values are the improved ones.
+
+**The Reading Position Rule.** The only Mulberry fill in the system is the Phase Index half being read, growing with reading progress. Finished halves keep the faint tint; unread halves are outline only.
 
 **The Re-tune Rule.** Every accent use has a dark-theme value of its own. Reusing the light value on a night tile fails contrast (2.5:1) and is a bug.
 
@@ -241,12 +338,20 @@ Display, Headline, Title, Proof, Proof Hero, Closing, Greeting and Voice Quote a
 - **Caption** (400, 14px, line-height 1.4): the small Pencil note under an evidence mark.
 - **Voice** (Newsreader italic 400, 19px): section labels.
 - **Voice Nav** (Newsreader italic 400, 17px): navigation links.
-- **Voice Quote** (Newsreader italic 400, clamp 26–36px, line-height 1.22): user quotes used as evidence.
+- **Voice Quote** (Newsreader italic 400, clamp 26–36px, line-height 1.22): user quotes used as evidence. On case pages, interview quotes in Mulberry Ink with a Caption attribution under them ("A shopper in an interview, translated from Ukrainian").
+- **Lead** (400, 20px, line-height 1.45, Ink): the one-line context under a case name, and a single stated conclusion inside a chapter (such as the value proposition). Measure about 30–32em.
+- **Subhead** (600, 22px, line-height 1.25, −0.015em, Ink): step headings inside a case chapter. A leading number ("1.") is part of the heading, in Ink.
+- **Stat** (600, 30px, line-height 1.1, −0.02em, tabular numerals): inline research counts in Mulberry Ink, each with a Caption under it.
+- **Voice Note** (Newsreader italic 400, 18px, Ink): a short aside between figures, such as why a label was renamed.
+
+On case pages, running text is Body Lead (17px) on desktop and Body (16px) at 860px and below, at a 38em measure. Chapter titles use Title, with a one-line Voice subtitle in Graphite under them. Voice in Ink also titles content inside tiles: summary blocks, table captions, paired list tiles. In results tables, cells are Body and column heads are Label in Pencil.
 
 ### Named Rules
 **The Two Voices Rule.** Geist states, Newsreader italic speaks. Never set a case name, a number or a button in italic serif, and never set the index or a quote in Geist.
 
 **The No Eyebrow Rule.** Nothing small sits above a title. Year, field and role go under the description.
+
+**The Plain Numbering Rule.** A heading's number belongs to the heading: same Ink, same weight. The accent never decorates a counter.
 
 ## Layout
 
@@ -256,14 +361,18 @@ Work is an Apple-style tile grid: two equal columns with a 16px gap. The owner's
 
 Sections are separated by 104px. Inside a tile, copy sits top-left and evidence sits at the bottom, so the space between them is intentional air rather than a gap to fill.
 
-At 860px and below: one column, 16px gutter, 80px between sections. The index becomes a sticky horizontal row at the top with a hairline underneath and 48px-tall touch targets. Tiles stack; the hero tile stays visibly larger because its Headline and Proof Hero sizes bottom out above the other tiles' Title (48px against 30px).
+Case pages keep the same frame with a wider index column (168px) to hold the Phase Index. The content column stacks a summary sheet and then one chapter per phase, 104px apart (80px on phones), 22px between items inside a chapter. Running text holds a 38em measure; figures, figure pairs, tables, stat rows and proof strips use the full column. Summary blocks sit three across with a 16px gap and the proof strip spans all three; figure pairs and list tiles sit two across. A copy-beside-figure layout keeps its copy sticky on desktop.
+
+At 860px and below: one column, 16px gutter, 80px between sections. The index becomes a sticky horizontal row at the top with a hairline underneath and 48px-tall touch targets. Tiles stack; the hero tile stays visibly larger because its Headline and Proof Hero sizes bottom out above the other tiles' Title (48px against 30px). On case pages the index becomes a sticky bar (at least 52px tall, 48px touch targets): back link, the four phase halves turned horizontal, and the current phase name in Voice. Summary blocks, pairs and list tiles stack to one column; the summary facts become a two-column grid.
 
 ## Elevation & Depth
 
 Flat by default. Depth comes from tone (white tile on warm paper) rather than shadows. A single soft shadow appears only on hover, together with a 3px lift. In dark theme tiles carry a 1px inner contour instead of relying on tone.
 
+Case-page tiles (summary blocks, proof strips, figure frames, table tiles, list tiles) follow the same law: flat, with the Night contour in dark theme. Only the Next case tile lifts on hover, because it is the only one that is a link.
+
 ### Shadow Vocabulary
-- **Tile lift** (`0 14px 32px -18px rgba(22,24,29,.28)`): hover state of case tiles only.
+- **Tile lift** (`0 14px 32px -18px rgba(22,24,29,.28)`): hover state of case tiles and the Next case tile only.
 - **Night contour** (`inset 0 0 0 1px #2a2c2f`): resting edge of tiles in dark theme.
 
 ### Named Rules
@@ -271,7 +380,7 @@ Flat by default. Depth comes from tone (white tile on warm paper) rather than sh
 
 ## Shapes
 
-Large soft corners on tiles (22px), fully round pills for the few buttons, small 4–6px corners on tags and swatches. Borders are 1px hairlines or nothing. No decorative geometry.
+Large soft corners on tiles (22px), fully round pills for the few buttons, small 4–6px corners on tags and swatches. Images inside a figure frame get a 12px corner and sit 12px in from the 22px tile edge (8px on phones), so the corners nest. Borders are 1px hairlines or nothing. No decorative geometry; the Phase Index triangles are navigation, not ornament.
 
 ## Components
 
@@ -286,6 +395,32 @@ Quiet white object, confident inside.
 
 ### Proof Mark (signature component)
 One real fact from the case, set in Proof type in Mulberry Ink, with an optional Pencil caption under it. Allowed forms: a number or before → after, a short list of the metrics users actually check, a user quote in Voice Quote, a factual status line. It is always real case content, never invented, and always has a plain-text equivalent for screen readers.
+
+### Summary Sheet
+The case answers before it explains. Top to bottom: case name in Headline, Lead line, a facts row, then three summary blocks and a full-width proof strip.
+- **Facts row:** Label term in Pencil over a 16px 500 Ink value (role, team, year, business goal). A goal is labelled as a goal, never as a result.
+- **Summary blocks:** Tile, 22px corners, 28px padding (22px on phones), a Voice title in Ink (Problem / What we did / Result) over Body in Graphite.
+- **Proof strip:** a full-width tile (32px × 36px padding; 24px × 22px on phones) carrying a Proof Mark with its Caption beside it, bottom-aligned. On phones the caption drops under the mark and the mark may wrap. The same strip can close a case with a second real number.
+
+### Figure Frame
+Case images as they are, in a calm frame.
+- **Frame:** Tile, 22px corners, 12px padding (8px on phones); the image has a 12px corner and is the link to the full-size file in a new tab.
+- **Caption:** Caption in Pencil, an optional bold Ink lead-in ("Before." / "After."), and a 13px "Full size" hint with an out-arrow that darkens to Ink on hover.
+- **Pairs:** two frames side by side share a 4:3 image area with the image contained (never cropped), so mismatched screenshots line up. Portrait images cap at 560px wide.
+
+### Results Table
+A tile (28px side padding) holding a comparison table with a Voice caption in Ink, Label column heads in Pencil, Body cells in Ink with tabular numerals and hairline row dividers. Improved values only are in Mulberry Ink at 600 (The Improved Only Rule); a footnote explains any regression. On phones the header row is visually hidden and each row becomes the metric name followed by labelled values in two or three columns.
+
+### Next Case Tile
+Closes a case. A Case Tile variant with 40px padding (28px × 24px on phones): next case name in Title as the stretched link, one Graphite line, and "Next case" with an arrow in Mulberry Ink at the bottom right. Nothing sits above the name. Hover lifts it like a case tile; two plain Ink text links (All work, Back to summary) follow under it.
+
+### Phase Index (signature component)
+The case's own process drawn as its navigation (Double Diamond for Comfy). Each phase is one half of a diamond: diverging phases open downward, converging ones close.
+- **Desktop:** in the sticky index column, under the back link and "summary", each phase is a Voice Nav label beside a 44 × 34px triangle; "outcome" follows.
+- **States:** unread halves are an outline only, which must hold 3:1 against the page; the half being read takes a Mulberry Ink outline and fills with Mulberry Ink in proportion to reading progress through that chapter (`aria-current="location"` on the link); finished halves get an Ink outline and the faint Mulberry tint. Labels follow Navigation: Pencil at rest, Ink when current.
+- **Phones:** the same halves turn horizontal in the sticky bar (26 × 30px in 48px targets), labelled for screen readers only; the current phase name shows as Voice text at the right, announced politely.
+- **Motion:** the fill follows scroll directly; only the outline colour transitions (250ms), and that transition is removed under reduced motion.
+- A case without a Double Diamond uses its own 3–5 phases in the same form.
 
 ### Navigation
 Italic Voice links in Pencil, the current section in Ink (scroll-spy, `aria-current="location"`). Desktop: vertical, right-aligned, sticky, hairline on the right. Mobile: sticky horizontal row with a hairline underneath.
@@ -310,6 +445,9 @@ On first visit a full-screen curtain shows "Hello", then "Привіт", then a 
 - **Do** keep small text at Pencil or darker (4.5:1 or more).
 - **Do** let the owner's own product be the single full-width tile.
 - **Do** greet in English first, then Ukrainian.
+- **Do** open a case page with the summary sheet: role, problem, what was done, result, and the strongest real number.
+- **Do** show case images as they are, contained in a Figure Frame with a caption.
+- **Do** colour only improved values in Mulberry Ink and footnote any regression.
 
 ### Don't:
 - **Don't** put screenshots or mockups on the home page tiles; mixed case imagery reads as noise.
@@ -318,3 +456,6 @@ On first visit a full-screen curtain shows "Hello", then "Привіт", then a 
 - **Don't** place a label or eyebrow above a title.
 - **Don't** make text quieter with opacity.
 - **Don't** include Russian or Belarusian anywhere, including the greeting.
+- **Don't** colour a worse or unchanged number in Mulberry Ink.
+- **Don't** set a heading's number in the accent.
+- **Don't** crop case images to fit a frame; contain them.

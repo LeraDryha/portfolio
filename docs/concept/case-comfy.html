@@ -1,0 +1,779 @@
+<title>Comfy Case Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+<style>
+  /* Case page, "The Proof Sheet" world (DESIGN.md). Structure: summary sheet first,
+     then the case read through a Double Diamond index that doubles as navigation. */
+  :root {
+    --page: #f4f4f2;
+    --tile: #ffffff;
+    --tile-edge: transparent;
+    --ink: #16181d;
+    --text: #4a515b;
+    --quiet: #656b74;
+    --hair: #e1e2df;
+    --focus: #3b5bdb;
+    --accent: oklch(48% 0.15 352);
+    --accent-soft: oklch(48% 0.15 352 / .16);
+    --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Newsreader", Baskerville, Georgia, "Times New Roman", serif;
+    --radius: 22px;
+    --measure: 38em;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #0e0f10; --tile: #18191b; --tile-edge: #2a2c2f; --ink: #f2f2f0; --text: #b4b9c0; --quiet: #8b919a;
+      --hair: #2a2c2f; --focus: #8ea2ff; --accent: oklch(74% 0.11 352); --accent-soft: oklch(74% 0.11 352 / .2);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #0e0f10; --tile: #18191b; --tile-edge: #2a2c2f; --ink: #f2f2f0; --text: #b4b9c0; --quiet: #8b919a;
+    --hair: #2a2c2f; --focus: #8ea2ff; --accent: oklch(74% 0.11 352); --accent-soft: oklch(74% 0.11 352 / .2);
+    color-scheme: dark;
+  }
+
+  body { background: var(--page); color: var(--text); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
+  ::selection { background: var(--accent-soft); color: var(--ink); }
+  a { color: inherit; text-underline-offset: 3px; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .i { width: .9em; height: .9em; vertical-align: -.08em; flex: none; }
+
+  .frame {
+    display: grid;
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 56px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+    padding-block: 48px 120px;
+  }
+
+  /* ---------- Index: back link, summary, the double diamond, outcome ---------- */
+  .index {
+    position: sticky;
+    top: calc(48px + env(safe-area-inset-top, 0px));
+    align-self: start;
+    display: grid;
+    justify-items: end;
+    gap: 6px;
+    padding-right: 28px;
+    border-right: 1px solid var(--hair);
+  }
+  .index a { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--quiet); text-decoration: none; transition: color .2s; }
+  .index a:hover, .index a[aria-current] { color: var(--ink); }
+  .index .back { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px; }
+  .index .back .i { transform: scaleX(-1); }
+  .phases { list-style: none; margin: 6px 0; padding: 0; display: grid; justify-items: end; }
+  .phases li + li.converge { margin-top: 0; }
+  .phases li.diverge:not(:first-child) { margin-top: 10px; }
+  .phase { display: grid; grid-template-columns: auto 44px; align-items: center; gap: 12px; }
+  .phase svg { width: 44px; height: 34px; overflow: visible; display: block; }
+  .phase .edge { fill: none; stroke: var(--quiet); stroke-width: 1.25; transition: stroke .25s; }
+  .phase .fill { fill: var(--accent); }
+  .phase.done .fill { fill: var(--accent-soft); }
+  .phase[aria-current] .edge, .phase.done .edge { stroke: var(--ink); }
+  .phase[aria-current] .edge { stroke: var(--accent); }
+
+  /* ---------- Mobile bar: the same diamonds, turned horizontal ---------- */
+  .bar { display: none; }
+  .hphases .edge { fill: none; stroke: var(--quiet); stroke-width: 1.25; }
+  .hphases .fill { fill: var(--accent); }
+  .hphases .done .fill { fill: var(--accent-soft); }
+  .hphases .done .edge { stroke: var(--ink); }
+  .hphases [aria-current] .edge { stroke: var(--accent); }
+
+  main { min-width: 0; display: grid; gap: 104px; }
+
+  /* ---------- Summary sheet ---------- */
+  .sheet { display: grid; gap: 28px; scroll-margin-top: 48px; }
+  .sheet h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    color: var(--ink);
+  }
+  .lead { margin: 0; max-width: 30em; font-size: 20px; line-height: 1.45; color: var(--ink); text-wrap: pretty; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px 36px; margin: 0; }
+  .facts div { display: grid; gap: 0; align-content: start; }
+  .facts dt { font-size: 13px; letter-spacing: .01em; color: var(--quiet); }
+  .facts dd { margin: 0; font-size: 16px; color: var(--ink); font-weight: 500; }
+
+  .answer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .answer section, .answer .proof {
+    background: var(--tile);
+    border-radius: var(--radius);
+    box-shadow: inset 0 0 0 1px var(--tile-edge);
+    padding: 28px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+  .answer h2 { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 19px; color: var(--ink); }
+  .answer p { margin: 0; font-size: 16px; color: var(--text); }
+  .answer .proof { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 22em); align-items: end; justify-content: space-between; column-gap: 40px; padding: 32px 36px; }
+  .proof .mark {
+    font-weight: 600;
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: .95;
+    letter-spacing: -.03em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .proof .cap { font-size: 14px; line-height: 1.4; color: var(--quiet); text-wrap: balance; padding-bottom: 8px; }
+
+  /* ---------- Chapters ---------- */
+  .chapter { display: grid; gap: 22px; scroll-margin-top: 48px; }
+  main > *, .chapter > *, .sheet > * { min-width: 0; }
+  .chapter > * { max-width: var(--measure); }
+  .chapter > figure, .chapter > .pair, .chapter > .table-wrap, .chapter > .ideas, .chapter > .opener, .chapter > .two-lists, .chapter > .side, .chapter > .proof { max-width: none; }
+  .opener { display: grid; gap: 6px; padding-bottom: 8px; }
+  .opener h2 { margin: 0; font-weight: 600; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.02; letter-spacing: -.03em; color: var(--ink); }
+  .opener p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--text); max-width: 36em; }
+  .chapter h3 { margin: 26px 0 -6px; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -.015em; color: var(--ink); text-wrap: balance; }
+  .chapter h3 .num { color: var(--ink); }
+  .chapter p { margin: 0; color: var(--text); }
+  .chapter ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+  .chapter li::marker { color: var(--quiet); }
+  .label { font-size: 13px; letter-spacing: .01em; color: var(--quiet); margin: 0; }
+  .note { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink); }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(10em, 1fr)); gap: 12px 32px; max-width: 40em; }
+  .stats div { display: grid; }
+  .stats b { font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -.02em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 14px; line-height: 1.4; color: var(--quiet); }
+  .statement { font-size: 20px; line-height: 1.45; color: var(--ink); max-width: 32em; }
+  .quote { margin: 8px 0; display: grid; gap: 10px; max-width: 30em; }
+  .quote p { font-family: var(--serif); font-style: italic; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.22; letter-spacing: -.01em; color: var(--accent); text-wrap: balance; }
+  .quote footer { font-size: 14px; line-height: 1.4; color: var(--quiet); }
+  .proof.strip { background: var(--tile); border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--tile-edge); display: grid; grid-template-columns: auto minmax(0, 22em); align-items: end; justify-content: space-between; gap: 10px 40px; padding: 32px 36px; }
+
+  /* ---------- Figures: Notion images as they are, in calm frames ---------- */
+  figure { margin: 0; }
+  .fig {
+    background: var(--tile);
+    border-radius: var(--radius);
+    box-shadow: inset 0 0 0 1px var(--tile-edge);
+    padding: 12px;
+    display: grid;
+    gap: 10px;
+  }
+  .fig a.zoom { display: block; border-radius: 12px; overflow: hidden; }
+  .fig img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--hair); }
+  .fig figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0 8px 4px; font-size: 14px; line-height: 1.4; color: var(--quiet); }
+  .fig figcaption b { font-weight: 500; color: var(--ink); }
+  .fig .open { flex: none; display: inline-flex; gap: 4px; align-items: center; color: var(--quiet); font-size: 13px; }
+  .fig a.zoom:hover + figcaption .open, .fig .open:hover { color: var(--ink); }
+  .fig.portrait { max-width: 560px; }
+  .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+  .pair .fig { grid-template-rows: 1fr auto; }
+  .pair .fig a.zoom { aspect-ratio: 4 / 3; display: grid; place-items: center; }
+  .pair .fig img { width: 100%; height: 100%; object-fit: contain; background: transparent; }
+  .side { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; max-width: none; }
+  .side .copy { display: grid; gap: 16px; align-content: start; position: sticky; top: 48px; }
+  .side .copy h3 { margin: 0; }
+
+  /* ---------- Tables ---------- */
+  .table-wrap { background: var(--tile); border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--tile-edge); padding: 8px 28px 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  caption { text-align: left; padding: 18px 0 10px; font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink); }
+  th, td { text-align: left; padding: 11px 16px 11px 0; border-bottom: 1px solid var(--hair); font-size: 16px; }
+  thead th { font-size: 13px; font-weight: 400; color: var(--quiet); letter-spacing: .01em; }
+  tbody th { font-weight: 400; color: var(--text); }
+  td { color: var(--ink); }
+  td.last { color: var(--accent); font-weight: 600; }
+  tr:last-child th, tr:last-child td { border-bottom: 0; }
+  .foot { font-size: 14px; line-height: 1.5; color: var(--quiet); }
+
+  .two-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .two-lists section { background: var(--tile); border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--tile-edge); padding: 24px 28px; display: grid; gap: 12px; align-content: start; }
+  .two-lists h4 { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 19px; color: var(--ink); }
+  .two-lists ul { font-size: 16px; }
+
+  .ideas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .ideas .fig figcaption { display: grid; gap: 4px; }
+
+  /* ---------- Close: next case ---------- */
+  .next {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px;
+    background: var(--tile);
+    border-radius: var(--radius);
+    box-shadow: inset 0 0 0 1px var(--tile-edge);
+    padding: 40px;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .next:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--tile-edge), 0 14px 32px -18px rgba(22,24,29,.28); }
+  .next:focus-within { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .next h2 { margin: 0; font-weight: 600; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.02; letter-spacing: -.03em; color: var(--ink); }
+  .next h2 a { text-decoration: none; }
+  .next h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+  .next h2 a:focus-visible { outline: none; }
+  .next p { margin: 8px 0 0; max-width: 30em; }
+  .next .go { display: inline-flex; gap: 6px; align-items: center; font-size: 15px; font-weight: 500; color: var(--accent); }
+  .next .go .i { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
+  .next:hover .go .i { transform: translateX(4px); }
+  .after-next { display: flex; gap: 28px; margin-top: 20px; font-size: 15px; }
+  .after-next a { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--hair); }
+  .after-next a:hover { text-decoration-color: currentColor; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .next, .next .go .i, .phase .edge { transition: none; }
+    .next:hover { transform: none; }
+  }
+
+  /* ---------- Prototype controls, not part of the design ---------- */
+  .proto {
+    position: fixed;
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 30;
+    display: flex; gap: 4px; align-items: center;
+    padding: 6px;
+    background: var(--ink);
+    border-radius: 999px;
+    font: 500 12px/1 var(--sans);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  }
+  .proto span { color: var(--page); opacity: .75; padding: 0 6px 0 8px; }
+  .proto button { font: inherit; color: var(--page); background: transparent; border: 1px solid color-mix(in srgb, var(--page) 30%, transparent); border-radius: 999px; padding: 7px 10px; cursor: pointer; }
+  .proto button[aria-pressed="true"] { background: var(--page); color: var(--ink); }
+
+  /* ---------- Small screens ---------- */
+  @media (max-width: 860px) {
+    body { font-size: 16px; }
+    .frame { grid-template-columns: minmax(0, 1fr); gap: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 96px; }
+    .index { display: none; }
+    .bar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+      margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+      padding-inline: max(16px, env(safe-area-inset-left, 0px));
+      background: var(--page);
+      border-bottom: 1px solid var(--hair);
+      min-height: 52px;
+      padding-block: 2px;
+    }
+    .bar a.back { display: inline-flex; align-items: center; gap: 6px; min-height: 48px; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--quiet); text-decoration: none; }
+    .bar a.back .i { transform: scaleX(-1); }
+    .bar .now { justify-self: end; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink); }
+    .hphases { display: flex; justify-self: center; list-style: none; margin: 0; padding: 0; }
+    .hphases a { display: grid; place-items: center; width: 30px; height: 48px; }
+    .hphases li:nth-child(2) a, .hphases li:nth-child(4) a { margin-left: -1px; }
+    .hphases li:nth-child(3) { margin-left: 6px; }
+    .hphases svg { width: 26px; height: 30px; overflow: visible; }
+    main { gap: 80px; padding-top: 28px; }
+    .sheet, .chapter { scroll-margin-top: 68px; }
+    .answer { grid-template-columns: minmax(0, 1fr); }
+    .answer .proof { grid-template-columns: minmax(0, 1fr); row-gap: 10px; padding: 24px 22px; }
+    .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
+    .answer section, .answer .proof { padding: 22px; }
+    .pair, .two-lists, .ideas, .side { grid-template-columns: minmax(0, 1fr); }
+    .side .copy { position: static; }
+    .proof.strip { grid-template-columns: minmax(0, 1fr); padding: 24px 22px; }
+    .proof .mark { font-size: clamp(36px, 10vw, 56px); white-space: normal; }
+    .fig { padding: 8px; }
+    .table-wrap { padding: 4px 16px 16px; }
+    table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    table tbody, table caption { display: block; }
+    table tr { display: grid; gap: 4px 12px; padding: 12px 0; border-bottom: 1px solid var(--hair); }
+    table.t2 tr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    table.t3 tr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    table tr:last-child { border-bottom: 0; }
+    table th[scope="row"] { grid-column: 1 / -1; padding: 0; border: 0; color: var(--ink); font-weight: 500; }
+    table td { padding: 0; border: 0; font-size: 15px; }
+    table td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 400; color: var(--quiet); }
+    .next { grid-template-columns: minmax(0, 1fr); padding: 28px 24px; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M2.5 8h10M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <!-- vertical halves: diverge opens downward, converge closes downward -->
+  <clipPath id="cl-div"><polygon points="22,1 43,33 1,33"/></clipPath>
+  <clipPath id="cl-con"><polygon points="1,1 43,1 22,33"/></clipPath>
+  <!-- horizontal halves for the phone bar -->
+  <clipPath id="cl-hdiv"><polygon points="1,15 25,1 25,29"/></clipPath>
+  <clipPath id="cl-hcon"><polygon points="1,1 25,15 1,29"/></clipPath>
+</svg>
+
+<div class="frame" id="site">
+  <nav class="index" aria-label="Case navigation">
+    <a class="back" href="#">
+      <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg>work
+    </a>
+    <a href="#summary" data-spy="summary">summary</a>
+    <ol class="phases">
+      <li class="diverge"><a class="phase" href="#discover" data-phase="discover">discover
+        <svg viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="fill" x="0" y="0" width="44" height="0"/></g><polygon class="edge" points="22,1 43,33 1,33"/></svg></a></li>
+      <li class="converge"><a class="phase" href="#define" data-phase="define">define
+        <svg viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="fill" x="0" y="0" width="44" height="0"/></g><polygon class="edge" points="1,1 43,1 22,33"/></svg></a></li>
+      <li class="diverge"><a class="phase" href="#develop" data-phase="develop">develop
+        <svg viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="fill" x="0" y="0" width="44" height="0"/></g><polygon class="edge" points="22,1 43,33 1,33"/></svg></a></li>
+      <li class="converge"><a class="phase" href="#deliver" data-phase="deliver">deliver
+        <svg viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="fill" x="0" y="0" width="44" height="0"/></g><polygon class="edge" points="1,1 43,1 22,33"/></svg></a></li>
+    </ol>
+    <a href="#outcome" data-spy="outcome">outcome</a>
+  </nav>
+
+  <div class="bar" aria-label="Case navigation">
+    <a class="back" href="#"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg>work</a>
+    <ol class="hphases">
+      <li><a href="#discover" data-hphase="discover" aria-label="Discover"><svg viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hdiv)"><rect class="fill" x="0" y="0" width="0" height="30"/></g><polygon class="edge" points="1,15 25,1 25,29"/></svg></a></li>
+      <li><a href="#define" data-hphase="define" aria-label="Define"><svg viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hcon)"><rect class="fill" x="0" y="0" width="0" height="30"/></g><polygon class="edge" points="1,1 25,15 1,29"/></svg></a></li>
+      <li><a href="#develop" data-hphase="develop" aria-label="Develop"><svg viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hdiv)"><rect class="fill" x="0" y="0" width="0" height="30"/></g><polygon class="edge" points="1,15 25,1 25,29"/></svg></a></li>
+      <li><a href="#deliver" data-hphase="deliver" aria-label="Deliver"><svg viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hcon)"><rect class="fill" x="0" y="0" width="0" height="30"/></g><polygon class="edge" points="1,1 25,15 1,29"/></svg></a></li>
+    </ol>
+    <span class="now" id="now" aria-live="polite">summary</span>
+  </div>
+
+  <main>
+    <!-- ======================= SUMMARY ======================= -->
+    <header class="sheet" id="summary" aria-labelledby="case-title">
+      <h1 id="case-title">Comfy</h1>
+      <p class="lead">Making credit purchases clear and calm for Ukraine’s largest retailer of home appliances and electronics.</p>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>UX / Product Designer</dd></div>
+        <div><dt>Team</dt><dd>4 designers</dd></div>
+        <div><dt>Year</dt><dd>2024</dd></div>
+        <div><dt>Business goal</dt><dd>Credit order share 30% → 40%</dd></div>
+      </dl>
+      <div class="answer">
+        <section aria-labelledby="a-problem">
+          <h2 id="a-problem">Problem</h2>
+          <p>Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, and checkout overloaded people at the moment they had to commit.</p>
+        </section>
+        <section aria-labelledby="a-did">
+          <h2 id="a-did">What we did</h2>
+          <p>15 interviews, a survey of 178 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.</p>
+        </section>
+        <section aria-labelledby="a-result">
+          <h2 id="a-result">Result</h2>
+          <p>In moderated tests the redesign reached 100% task completion with zero errors, against 75% for the current flow. In Maze, the success rate rose from 87.5% to 92.3% between iterations.</p>
+        </section>
+        <div class="proof">
+          <div class="mark" aria-hidden="true">75% → 100%</div>
+          <div class="cap" aria-hidden="true">task completion, current flow vs redesign (moderated, 4 and 7 sessions)</div>
+          <p class="sr-only">Task completion was 75% in the current flow and 100% in the redesign, in moderated tests with 4 and 7 sessions.</p>
+        </div>
+      </div>
+      <figure class="fig">
+        <a class="zoom" href="img/c16.jpg" target="_blank" rel="noopener"><img src="img/c16.jpg" width="1600" height="1224" alt="Redesigned Comfy product page: a “Pay in installments” button sits next to “Buy” and shows the minimum monthly payment."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span><b>After.</b> “Pay in installments” sits next to “Buy” and shows the lowest monthly payment.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+    </header>
+
+    <!-- ======================= DISCOVER ======================= -->
+    <section class="chapter" id="discover" data-chapter="discover" aria-labelledby="h-discover">
+      <div class="opener">
+        <h2 id="h-discover">Discover</h2>
+        <p>Desk research, a kick-off with the business, competitors, 15 interviews and a survey.</p>
+      </div>
+      <p>COMFY is the largest retailer of home appliances and electronics in Ukraine. It has run an omnichannel business for over 10 years and is the #2 player in Ukrainian e-commerce.</p>
+
+      <h3>Desk research</h3>
+      <p>Before the kick-off meeting, we explored the context from several angles to prepare informed questions and spot early opportunities:</p>
+      <ul>
+        <li>Analyzed traffic data and user behavior using SimilarWeb.</li>
+        <li>Reviewed customer reviews to find recurring complaints and concerns.</li>
+        <li>Studied Comfy’s credit purchase flow against competitors to spot UX patterns.</li>
+      </ul>
+      <figure class="fig">
+        <a class="zoom" href="img/c03.jpg" target="_blank" rel="noopener"><img src="img/c03.jpg" width="1600" height="1133" loading="lazy" alt="Desk research board: traffic data, customer reviews and the existing credit flow."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Desk research board.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+
+      <h3>What the business told us</h3>
+      <ul>
+        <li>Not every product or service is eligible for credit; it depends on vendor agreements.</li>
+        <li>Adding services to a purchase, such as setup or warranty, can unlock better terms: 12 months instead of 7.</li>
+        <li>The company works with several banks to offer installments.</li>
+        <li>People choose credit for different reasons: some lack the funds, others have the money but prefer to spread the cost.</li>
+      </ul>
+      <p>After the kick-off we combined a Business Model Canvas and a Lean Canvas, adapted to cover every aspect of the business. It helped us understand the domain and organise everything we had collected.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c04.jpg" target="_blank" rel="noopener"><img src="img/c04.jpg" width="1600" height="938" loading="lazy" alt="Combined Business Model Canvas and Lean Canvas for Comfy’s credit purchases."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Business Model Canvas and Lean Canvas, combined.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+
+      <h3>Competitor analysis</h3>
+      <p>We reviewed UX flows, UI patterns and best practices, and sorted features into Points of Parity, which every store in the domain needs, and Points of Difference, which can set a product apart.</p>
+      <div class="stats">
+        <div><b>3</b><span>direct competitors: MOYO, Stylus, Foxtrot</span></div>
+        <div><b>3</b><span>secondary: ROZETKA, ALLO, Citrus</span></div>
+        <div><b>54</b><span>features compared</span></div>
+      </div>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c05.jpg" target="_blank" rel="noopener"><img src="img/c05.jpg" width="1600" height="1519" loading="lazy" alt="Feature comparison matrix across six competitors."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Points of Parity and Difference.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c06.jpg" target="_blank" rel="noopener"><img src="img/c06.jpg" width="1600" height="1259" loading="lazy" alt="Competitor credit flows with annotated UI patterns."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Competitor credit flows.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+      <h3>What needs to be better</h3>
+      <ul>
+        <li>Credit terms and payment conditions were often unclear or overly complex.</li>
+        <li>Users struggled to understand how the final amount was calculated.</li>
+        <li>There was no guidance on choosing the most favourable bank offer.</li>
+      </ul>
+
+      <h3>15 in-depth interviews</h3>
+      <p>We looked for what makes people buy, or not buy, on credit: their barriers, motivations, triggers and context.</p>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c07.jpg" target="_blank" rel="noopener"><img src="img/c07.jpg" width="1600" height="854" loading="lazy" alt="Interview participants and their key quotes."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Who we talked to.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c08.jpg" target="_blank" rel="noopener"><img src="img/c08.jpg" width="1353" height="1600" loading="lazy" alt="Affinity map of interview findings."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Affinity map of interview findings.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+      <blockquote class="quote">
+        <p>“I didn’t read the terms, like everyone who doesn’t read the small print. All I did was multiply the monthly payment by six and compare it with the order price.”</p>
+        <footer>A shopper in an interview, translated from Ukrainian</footer>
+      </blockquote>
+
+      <h3>Follow-up survey</h3>
+      <p>To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents.</p>
+      <div class="stats">
+        <div><b>178 / 385</b><span>responses against the target sample</span></div>
+      </div>
+      <p>The survey tested four insights: clarity of information, package deals, comparing credit terms, and wanting to see a product in person before buying.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c09.jpg" target="_blank" rel="noopener"><img src="img/c09.jpg" width="1600" height="1137" loading="lazy" alt="Survey results charts."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Survey results.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ======================= DEFINE ======================= -->
+    <section class="chapter" id="define" data-chapter="define" aria-labelledby="h-define">
+      <div class="opener">
+        <h2 id="h-define">Define</h2>
+        <p>Jobs to be done, the customer journey and the value proposition.</p>
+      </div>
+      <p>Comfy is a large product, and narrowing it to one or two personas wasn’t realistic. We used Jobs to be Done instead. The JTBD timeline showed the real-life context, decision triggers and emotional journey from the first need to the final purchase.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c10.jpg" target="_blank" rel="noopener"><img src="img/c10.jpg" width="1600" height="815" loading="lazy" alt="Jobs to be Done timeline from need to purchase."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>JTBD timeline.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <p>The customer journey map showed pain points, motivations and friction at each step of the purchase, so we could improve where it mattered most.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c11.jpg" target="_blank" rel="noopener"><img src="img/c11.jpg" width="1600" height="1415" loading="lazy" alt="Customer journey map of a credit purchase."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Customer journey map.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <p>The value proposition canvas showed which needs Comfy already meets, and which barriers create friction or distrust.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c12.jpg" target="_blank" rel="noopener"><img src="img/c12.jpg" width="1600" height="1101" loading="lazy" alt="Value proposition canvas."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Value proposition canvas.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <p class="statement">Comfy helps people buy conveniently and right away by offering credit and installments through many banks, without visiting a bank or a store.</p>
+      <div class="two-lists">
+        <section aria-labelledby="covers">
+          <h4 id="covers">What Comfy covers well</h4>
+          <ul>
+            <li>Inspecting the product in store</li>
+            <li>Flexible credit through familiar banks</li>
+            <li>No interest on installments</li>
+            <li>Splitting large payments over time</li>
+            <li>Bonuses and loyalty rewards</li>
+            <li>A quick credit-based purchase</li>
+          </ul>
+        </section>
+        <section aria-labelledby="gaps">
+          <h4 id="gaps">What it doesn’t fully cover</h4>
+          <ul>
+            <li>Effortful or uncomfortable contact with banks</li>
+            <li>Website and app that feel inconvenient</li>
+            <li>Anxiety about repayment and credit reliability</li>
+            <li>Uncertainty about returns on credit purchases</li>
+            <li>Confusing or non-transparent terms</li>
+            <li>Not knowing if promotions apply to installments</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <!-- ======================= DEVELOP ======================= -->
+    <section class="chapter" id="develop" data-chapter="develop" aria-labelledby="h-develop">
+      <div class="opener">
+        <h2 id="h-develop">Develop</h2>
+        <p>Three problems worth solving, How Might We, and a MoSCoW-ranked MVP.</p>
+      </div>
+      <p>From the research we picked the problems with the biggest impact on trust, decisions and completion. Each is backed by direct quotes from interviews.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c13.jpg" target="_blank" rel="noopener"><img src="img/c13.jpg" width="1600" height="508" loading="lazy" alt="Three key problems with supporting user quotes: lack of transparency in credit terms, cognitive overload, uncertainty about product suitability."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>Three key problems, with what users said.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <div class="side">
+        <figure class="fig">
+          <a class="zoom" href="img/c14.jpg" target="_blank" rel="noopener"><img src="img/c14.jpg" width="1010" height="1600" loading="lazy" alt="How Might We map with grouped ideas."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>How Might We map.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <div class="copy">
+          <p>These became the base for How Might We mapping, which guided ideation.</p>
+          <h3>From ideas to action</h3>
+          <p>We generated many solutions and ranked them with MoSCoW: must-haves first, should-haves if possible, could-haves for the backlog. It aligned the team on a realistic MVP with the highest user and business impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DELIVER ======================= -->
+    <section class="chapter" id="deliver" data-chapter="deliver" aria-labelledby="h-deliver">
+      <div class="opener">
+        <h2 id="h-deliver">Deliver</h2>
+        <p>Solutions for each problem, two rounds of usability testing, and ideas for the business goal.</p>
+      </div>
+
+      <h3><span class="num">1.</span> Lack of transparency in credit terms</h3>
+      <ul>
+        <li>Bank icons weren’t clickable; they only opened a tooltip.</li>
+        <li>The tooltip held generic information that didn’t help anyone choose.</li>
+        <li>“Buy on credit” and “Buy” led to the same drawer, with no difference in the flow.</li>
+      </ul>
+      <figure class="fig">
+        <a class="zoom" href="img/c15.jpg" target="_blank" rel="noopener"><img src="img/c15.jpg" width="1600" height="1243" loading="lazy" alt="Original product page with non-clickable bank icons and identical buttons."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span><b>Before.</b> Bank icons only open a tooltip; both buttons do the same thing.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <p>We put a visible “Оплата частинами” (Pay in installments) button next to the main “Купити” (Buy) button, showing the lowest monthly payment the banks offer.</p>
+      <p class="note">We renamed it from “Купити в кредит” (Buy on credit) after interviews showed that the word “credit” made people anxious.</p>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c17.jpg" target="_blank" rel="noopener"><img src="img/c17.jpg" width="1600" height="1224" loading="lazy" alt="Bank offers redesigned as clickable buttons with conditions per bank."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>After.</b> Each bank offer is a button with its own terms.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c18.jpg" target="_blank" rel="noopener"><img src="img/c18.jpg" width="1600" height="1340" loading="lazy" alt="Drawer listing all credit offers with a payment calculator."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>After.</b> All offers in one drawer, with a calculator.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+      <p>A “Як це працює” (How it works) button inside the calculator opens the full terms with a timeline of payments.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c19.jpg" target="_blank" rel="noopener"><img src="img/c19.jpg" width="1600" height="1340" loading="lazy" alt="Expanded credit terms with a visual payment timeline."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span><b>After.</b> “How it works” shows the payment timeline.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+      <figure class="fig">
+        <a class="zoom" href="img/c20.jpg" target="_blank" rel="noopener"><img src="img/c20.jpg" width="1600" height="654" loading="lazy" alt="The same credit changes in the mobile app."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span>The same changes in the mobile app.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+
+      <h3><span class="num">2.</span> Cognitive overload</h3>
+      <ul>
+        <li>Product details, total cost and credit info disappeared while scrolling.</li>
+        <li>Completed form sections looked the same as empty ones.</li>
+      </ul>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c21.jpg" target="_blank" rel="noopener"><img src="img/c21.jpg" width="1600" height="1033" loading="lazy" alt="Original checkout where the order summary scrolls away."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>Before.</b> The order summary scrolls away.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c22.jpg" target="_blank" rel="noopener"><img src="img/c22.jpg" width="1525" height="1600" loading="lazy" alt="Original checkout form where completed and empty sections look identical."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>Before.</b> Done and empty sections look alike.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+      <ul>
+        <li>The product and payment summary stays visible while scrolling.</li>
+        <li>Completed blocks change colour, so progress is easy to scan.</li>
+        <li>The store chosen on the product page carries over to checkout.</li>
+      </ul>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c23.jpg" target="_blank" rel="noopener"><img src="img/c23.jpg" width="1600" height="1584" loading="lazy" alt="Redesigned checkout with a sticky summary and highlighted completed blocks."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>After.</b> Sticky summary, completed blocks stand out.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c24.jpg" target="_blank" rel="noopener"><img src="img/c24.jpg" width="1600" height="1154" loading="lazy" alt="Mobile checkout before and after."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Mobile app, before and after.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+      <p>People also skimmed delivery options and struggled to spot stores with stock. We highlighted “Pick up today” in green and kept the other options neutral.</p>
+      <div class="pair">
+        <figure class="fig">
+          <a class="zoom" href="img/c25.jpg" target="_blank" rel="noopener"><img src="img/c25.jpg" width="1600" height="804" loading="lazy" alt="Store pickup options with “Pick up today” highlighted."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span><b>After.</b> “Pick up today” stands out.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c26.jpg" target="_blank" rel="noopener"><img src="img/c26.jpg" width="1600" height="1154" loading="lazy" alt="Mobile pickup options before and after."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><span>Mobile app, before and after.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+        </figure>
+      </div>
+
+      <h3><span class="num">3.</span> Uncertainty about product suitability</h3>
+      <p>People wanted to see a product in person before committing to credit. We added a video consultation on the product page.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/c27.jpg" target="_blank" rel="noopener"><img src="img/c27.jpg" width="1600" height="905" loading="lazy" alt="Product page with a video consultation entry point."><span class="sr-only">Open full size in a new tab</span></a>
+        <figcaption><span><b>After.</b> Video consultation on the product page.</span><span class="open" aria-hidden="true">Full size <svg class="i"><use href="#i-out"/></svg></span></figcaption>
+      </figure>
+
+      <h3>Usability testing</h3>
+      <p>We tested twice: unmoderated in Maze, and moderated sessions comparing the current Comfy flow with each iteration.</p>
+      <div class="table-wrap">
+        <table class="t2">
+          <caption>Unmoderated, Maze</caption>
+          <thead><tr><th scope="col">Metric</th><th scope="col">Iteration 1 · 10 tests</th><th scope="col">Iteration 2 · 14 tests</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Success rate</th><td data-label="Iteration 1">87.5%</td><td class="last" data-label="Iteration 2">92.3%</td></tr>
+            <tr><th scope="row">Time on task</th><td data-label="Iteration 1">80.2 s</td><td data-label="Iteration 2">155.1 s*</td></tr>
+            <tr><th scope="row">Easy to use</th><td data-label="Iteration 1">6.7 / 10</td><td class="last" data-label="Iteration 2">9 / 10</td></tr>
+          </tbody>
+        </table>
+        <p class="foot">* Time on task grew because we added an information block. Heatmaps showed people stopping there to read about credit options. Highlighted values are the ones that improved.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="t3">
+          <caption>Moderated</caption>
+          <thead><tr><th scope="col">Metric</th><th scope="col">Comfy today · 4 tests</th><th scope="col">Iteration 1 · 3 tests</th><th scope="col">Iteration 2 · 7 tests</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Completion rate</th><td data-label="Comfy today">75%</td><td data-label="Iteration 1">67%</td><td class="last" data-label="Iteration 2">100%</td></tr>
+            <tr><th scope="row">Time on task</th><td data-label="Comfy today">5.75 min</td><td data-label="Iteration 1">4.87 min</td><td class="last" data-label="Iteration 2">3.52 min</td></tr>
+            <tr><th scope="row">Errors</th><td data-label="Comfy today">1.75</td><td data-label="Iteration 1">1</td><td class="last" data-label="Iteration 2">0</td></tr>
+            <tr><th scope="row">Easy to use</th><td data-label="Comfy today">4.75 / 5</td><td data-label="Iteration 1">3 / 5</td><td data-label="Iteration 2">4.34 / 5</td></tr>
+            <tr><th scope="row">Satisfaction</th><td data-label="Comfy today">3.75 / 5</td><td data-label="Iteration 1">3.67 / 5</td><td class="last" data-label="Iteration 2">4.14 / 5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Ideas for the business goal</h3>
+      <p>To grow the share of credit orders, we prepared four ideas for the product and marketing teams.</p>
+      <div class="ideas">
+        <figure class="fig">
+          <a class="zoom" href="img/c28.jpg" target="_blank" rel="noopener"><img src="img/c28.jpg" width="1600" height="1133" loading="lazy" alt="Banner concept for package deals with extended installments."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><b>Package deals with longer installments</b><span>About a third of surveyed shoppers wanted them (34.4% of 90). Next step is a fake-door test.</span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c29.jpg" target="_blank" rel="noopener"><img src="img/c29.jpg" width="1600" height="1190" loading="lazy" alt="Higher cashback for credit purchases."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><b>Higher cashback on credit purchases</b><span>Than on cash purchases.</span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c30.jpg" target="_blank" rel="noopener"><img src="img/c30.jpg" width="1600" height="1026" loading="lazy" alt="Transferring bonuses to family and friends."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><b>Transfer bonuses to family and friends</b><span>Bonuses can already cover the first installment.</span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/c31.jpg" target="_blank" rel="noopener"><img src="img/c31.jpg" width="1600" height="1069" loading="lazy" alt="Loyalty levels for credit purchases."><span class="sr-only">Open full size in a new tab</span></a>
+          <figcaption><b>Loyalty levels</b><span>Each credit purchase counts toward extra rewards.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================= OUTCOME ======================= -->
+    <section class="chapter" id="outcome" data-chapter="outcome" aria-labelledby="h-outcome">
+      <div class="opener">
+        <h2 id="h-outcome">Outcome</h2>
+        <p>A credit flow that is clear, calm and tested.</p>
+      </div>
+      <p>The project uncovered real pain points and turned the credit purchase into something transparent, intuitive and emotionally comfortable, because “credit” shouldn’t feel like a horror story.</p>
+      <p>Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow. The ideas for growing credit orders are ready for the product and marketing teams.</p>
+      <div class="proof strip">
+        <div class="mark" aria-hidden="true">87.5% → 92.3%</div>
+        <div class="cap" aria-hidden="true">success rate in Maze, iteration 1 vs 2 (10 and 14 tests)</div>
+        <p class="sr-only">In unmoderated Maze tests the success rate rose from 87.5% in iteration 1 to 92.3% in iteration 2, with 10 and 14 tests.</p>
+      </div>
+
+      <article class="next">
+        <div>
+          <h2><a href="#">Adtelligent<span class="sr-only">, next case</span></a></h2>
+          <p>Reports and a new overview built around what users check every day.</p>
+        </div>
+        <span class="go" aria-hidden="true">Next case <svg class="i"><use href="#i-arrow"/></svg></span>
+      </article>
+      <div class="after-next"><a href="#">All work</a><a href="#summary">Back to summary</a></div>
+    </section>
+  </main>
+</div>
+
+<div class="proto" role="group" aria-label="Тема прототипу">
+  <span>Тема</span>
+  <button type="button" data-v="auto" aria-pressed="true">Авто</button>
+  <button type="button" data-v="light" aria-pressed="false">Світла</button>
+  <button type="button" data-v="dark" aria-pressed="false">Темна</button>
+</div>
+
+<script>
+  (function () {
+    document.documentElement.lang = "en";
+
+    var proto = document.querySelector(".proto");
+    proto.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-v]");
+      if (!b) return;
+      proto.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      if (b.dataset.v === "auto") document.documentElement.removeAttribute("data-theme");
+      else document.documentElement.setAttribute("data-theme", b.dataset.v);
+    });
+
+    // Signature: the diamond half of the phase you are reading fills with ink as you read it.
+    var order = ["summary", "discover", "define", "develop", "deliver", "outcome"];
+    var phases = ["discover", "define", "develop", "deliver"];
+    var sections = order.map(function (id) { return document.getElementById(id); });
+    var vLinks = {}, hLinks = {};
+    phases.forEach(function (p) {
+      vLinks[p] = document.querySelector('.index [data-phase="' + p + '"]');
+      hLinks[p] = document.querySelector('.bar [data-hphase="' + p + '"]');
+    });
+    var spyLinks = { summary: document.querySelector('.index [data-spy="summary"]'), outcome: document.querySelector('.index [data-spy="outcome"]') };
+    var now = document.getElementById("now");
+    var ticking = false;
+
+    function progressOf(el, line) {
+      var r = el.getBoundingClientRect();
+      var p = (line - r.top) / r.height;
+      return Math.max(0, Math.min(1, p));
+    }
+
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * 0.35;
+      var current = "summary";
+      sections.forEach(function (s, i) { if (s.getBoundingClientRect().top <= line) current = order[i]; });
+
+      phases.forEach(function (p) {
+        var prog = progressOf(document.getElementById(p), line);
+        var a = vLinks[p], h = hLinks[p];
+        var isCur = p === current;
+        var done = !isCur && prog >= 1;
+        [a, h].forEach(function (link) {
+          if (!link) return;
+          link.classList.toggle("done", done);
+          if (isCur) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
+        });
+        var vr = a.querySelector(".fill");
+        vr.setAttribute("height", String((isCur || done ? (done ? 1 : prog) : 0) * 34));
+        var hr = h.querySelector(".fill");
+        hr.setAttribute("width", String((isCur || done ? (done ? 1 : prog) : 0) * 26));
+        h.classList.toggle("done", done);
+        if (isCur) h.setAttribute("aria-current", "location");
+      });
+      Object.keys(spyLinks).forEach(function (k) {
+        if (k === current) spyLinks[k].setAttribute("aria-current", "location"); else spyLinks[k].removeAttribute("aria-current");
+      });
+      now.textContent = current;
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  })();
+</script>

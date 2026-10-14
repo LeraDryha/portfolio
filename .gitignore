@@ -6,3 +6,4 @@ dist/
 .impeccable/live/
 .impeccable/critique/
 .claude/scheduled_tasks.lock
+.impeccable/review/

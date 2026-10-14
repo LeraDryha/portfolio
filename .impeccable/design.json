@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T11:00:00Z",
+  "generatedAt": "2026-10-14T12:00:00Z",
   "title": "Design System: Lera Dryha Portfolio",
   "extensions": {
     "colorMeta": {
@@ -175,6 +175,22 @@
       "tag": {
         "displayName": "Tag",
         "purpose": "Language tags such as UA."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "One-line context under a case name and a single stated conclusion in a chapter. Ink."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Step headings inside a case chapter; a leading number stays Ink."
+      },
+      "stat": {
+        "displayName": "Stat",
+        "purpose": "Inline research counts in Mulberry Ink, each with a Caption under it."
+      },
+      "voice-note": {
+        "displayName": "Voice Note",
+        "purpose": "Short aside between figures. Newsreader, always italic, Ink."
       }
     },
     "shadows": [
@@ -204,6 +220,11 @@
         "name": "greeting-step",
         "value": "170ms",
         "purpose": "Time each greeting word stays on screen."
+      },
+      {
+        "name": "phase-edge",
+        "value": "250ms",
+        "purpose": "Phase Index outline colour change; the fill itself follows scroll without easing. Removed under reduced motion."
       }
     ],
     "breakpoints": [
@@ -260,22 +281,73 @@
       "description": "Article in the Writing list: original title, English gloss, source and language tag.",
       "html": "<div class=\"ds-item\"><a href=\"#\" lang=\"uk\">Місце, де UX помер</a><span class=\"ds-gloss\">Where UX died</span><span class=\"ds-src\">Medium <span class=\"ds-lang\">UA</span></span></div>",
       "css": ".ds-item { display: grid; gap: 2px; font: 400 16px/1.6 Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-item a { color: #16181d; font-weight: 500; text-decoration: none; } .ds-item a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #656b74; } .ds-gloss { color: #4a515b; } .ds-src { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: #656b74; } .ds-lang { font-size: 11px; font-weight: 500; letter-spacing: .06em; border: 1px solid #e1e2df; border-radius: 4px; padding: 1px 5px; }"
+    },
+    {
+      "name": "Phase Index",
+      "kind": "nav",
+      "refersTo": "phase-link",
+      "description": "The case's process drawn as navigation: each phase is a diamond half; the half being read fills with Mulberry Ink with reading progress, finished halves keep a faint tint.",
+      "html": "<nav class=\"ds-phases\" aria-label=\"Case navigation\"><a href=\"#\">summary</a><a class=\"ds-ph ds-done\" href=\"#\">discover<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-fill\" points=\"22,1 43,33 1,33\"/><polygon class=\"ds-edge\" points=\"22,1 43,33 1,33\"/></svg></a><a class=\"ds-ph ds-cur\" href=\"#\" aria-current=\"location\">define<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-fill\" points=\"1,1 43,1 32.5,17 11.5,17\"/><polygon class=\"ds-edge\" points=\"1,1 43,1 22,33\"/></svg></a><a class=\"ds-ph\" href=\"#\">develop<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-edge\" points=\"22,1 43,33 1,33\"/></svg></a><a class=\"ds-ph\" href=\"#\">deliver<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-edge\" points=\"1,1 43,1 22,33\"/></svg></a><a href=\"#\">outcome</a></nav>",
+      "css": ".ds-phases { display: grid; justify-items: end; gap: 6px; width: 140px; padding-right: 28px; border-right: 1px solid #e1e2df; } .ds-phases a { font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-size: 17px; color: #656b74; text-decoration: none; transition: color .2s; } .ds-phases a:hover, .ds-phases a[aria-current] { color: #16181d; } .ds-phases a:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; } .ds-ph { display: grid; grid-template-columns: auto 44px; align-items: center; gap: 12px; } .ds-ph svg { width: 44px; height: 34px; overflow: visible; } .ds-edge { fill: none; stroke: #656b74; stroke-width: 1.25; transition: stroke .25s; } .ds-fill { fill: oklch(48% 0.15 352); } .ds-done .ds-fill { fill: oklch(48% 0.15 352 / .16); } .ds-done .ds-edge { stroke: #16181d; } .ds-cur .ds-edge { stroke: oklch(48% 0.15 352); }"
+    },
+    {
+      "name": "Summary Sheet",
+      "kind": "card",
+      "refersTo": "summary-block",
+      "description": "Answer-first summary: three Voice-titled blocks and a full-width proof strip.",
+      "html": "<div class=\"ds-answer\"><section><h2>Problem</h2><p>Buying on credit felt risky. Terms were unclear.</p></section><section><h2>What we did</h2><p>15 interviews, a survey of 178 shoppers, a clearer credit block.</p></section><section><h2>Result</h2><p>100% task completion with zero errors in moderated tests.</p></section><div class=\"ds-strip\"><div class=\"ds-mark\">75% → 100%</div><div class=\"ds-cap\">task completion, current flow vs redesign</div></div></div>",
+      "css": ".ds-answer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; font: 400 16px/1.6 Geist, 'Helvetica Neue', Arial, sans-serif; color: #4a515b; } .ds-answer section, .ds-strip { background: #ffffff; border-radius: 22px; padding: 28px; display: grid; gap: 10px; align-content: start; } .ds-answer h2 { margin: 0; font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; color: #16181d; } .ds-answer p { margin: 0; } .ds-strip { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 22em); align-items: end; justify-content: space-between; column-gap: 40px; padding: 32px 36px; } .ds-mark { font-weight: 600; font-size: 72px; line-height: .95; letter-spacing: -.03em; color: oklch(48% 0.15 352); font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-cap { font-size: 14px; line-height: 1.4; color: #656b74; padding-bottom: 8px; }"
+    },
+    {
+      "name": "Figure Frame",
+      "kind": "card",
+      "refersTo": "figure-frame",
+      "description": "Case image as it is in a white tile, 12px image corner, caption with a Full size hint.",
+      "html": "<figure class=\"ds-fig\"><a class=\"ds-zoom\" href=\"#\"><span class=\"ds-img\" role=\"img\" aria-label=\"Screenshot\"></span></a><figcaption><span><b>After.</b> Each bank offer is a button with its own terms.</span><span class=\"ds-open\">Full size <svg width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5 11l6-6M6 5h5v5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></figcaption></figure>",
+      "css": ".ds-fig { margin: 0; background: #ffffff; border-radius: 22px; padding: 12px; display: grid; gap: 10px; max-width: 520px; } .ds-zoom { display: block; border-radius: 12px; overflow: hidden; } .ds-zoom:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; } .ds-img { display: block; aspect-ratio: 4 / 3; border-radius: 12px; background: #e1e2df; } .ds-fig figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0 8px 4px; font: 400 14px/1.4 Geist, 'Helvetica Neue', Arial, sans-serif; color: #656b74; } .ds-fig b { font-weight: 500; color: #16181d; } .ds-open { flex: none; display: inline-flex; gap: 4px; align-items: center; font-size: 13px; } .ds-zoom:hover + figcaption .ds-open { color: #16181d; }"
+    },
+    {
+      "name": "Results Table",
+      "kind": "custom",
+      "refersTo": "results-table",
+      "description": "Comparison table in a tile; only improved values in Mulberry Ink, regressions footnoted.",
+      "html": "<div class=\"ds-table\"><table><caption>Moderated</caption><thead><tr><th scope=\"col\">Metric</th><th scope=\"col\">Comfy today</th><th scope=\"col\">Iteration 2</th></tr></thead><tbody><tr><th scope=\"row\">Completion rate</th><td>75%</td><td class=\"ds-up\">100%</td></tr><tr><th scope=\"row\">Easy to use</th><td>4.75 / 5</td><td>4.34 / 5</td></tr></tbody></table></div>",
+      "css": ".ds-table { background: #ffffff; border-radius: 22px; padding: 8px 28px 20px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-table table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; } .ds-table caption { text-align: left; padding: 18px 0 10px; font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-size: 19px; color: #16181d; } .ds-table th, .ds-table td { text-align: left; padding: 11px 16px 11px 0; border-bottom: 1px solid #e1e2df; font-size: 16px; } .ds-table thead th { font-size: 13px; font-weight: 400; letter-spacing: .01em; color: #656b74; } .ds-table tbody th { font-weight: 400; color: #4a515b; } .ds-table td { color: #16181d; } .ds-table td.ds-up { color: oklch(48% 0.15 352); font-weight: 600; } .ds-table tr:last-child th, .ds-table tr:last-child td { border-bottom: 0; }"
+    },
+    {
+      "name": "Next Case Tile",
+      "kind": "card",
+      "refersTo": "next-case-tile",
+      "description": "Closing tile: next case name as the stretched link, one line, Next case action. No kicker.",
+      "html": "<article class=\"ds-next\"><div><h2><a href=\"#\">Adtelligent</a></h2><p>Reports and a new overview built around what users check every day.</p></div><span class=\"ds-go\" aria-hidden=\"true\">Next case <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\"><path d=\"M2.5 8h10M8.5 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></article>",
+      "css": ".ds-next { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; background: #ffffff; border-radius: 22px; padding: 40px; font: 400 16px/1.6 Geist, 'Helvetica Neue', Arial, sans-serif; color: #4a515b; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1); } .ds-next:hover { transform: translateY(-3px); box-shadow: 0 14px 32px -18px rgba(22,24,29,.28); } .ds-next:focus-within { outline: 2px solid #3b5bdb; outline-offset: 3px; } .ds-next h2 { margin: 0; font-weight: 600; font-size: 40px; line-height: 1.02; letter-spacing: -.03em; color: #16181d; } .ds-next h2 a { color: inherit; text-decoration: none; } .ds-next h2 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } .ds-next h2 a:focus-visible { outline: none; } .ds-next p { margin: 8px 0 0; } .ds-go { display: inline-flex; gap: 6px; align-items: center; font-size: 15px; font-weight: 500; color: oklch(48% 0.15 352); } .ds-go svg { transition: transform .25s cubic-bezier(.2,.7,.2,1); } .ds-next:hover .ds-go svg { transform: translateX(4px); }"
     }
   ],
   "narrative": {
     "northStar": "The Proof Sheet",
-    "overview": "The site is a sheet of evidence. Each case is a quiet white tile that leads with its name and ends with one real fact taken from the case: a number, a user's own words, a release status. No screenshots, no mockups, no decoration standing in for the work. A recruiter who skims for ten seconds should leave with that fact.\n\nThe frame is calm and literary: an italic vertical index in the top-left corner (after shud.in), a hairline separating it from the content, generous space between sections. The tiles bring the confidence: big Geist titles and Apple-style tiles in a two-up grid, with the owner's own product as the one full-width tile. Colour is rationed to a single ink, Mulberry Ink, which marks only evidence and actions.\n\nMotion is restrained: a short multilingual greeting on the first visit, a small lift on tile hover, nothing else moves by itself. Light and dark themes are equal citizens; the accent is re-tuned per theme, never reused as-is.",
+    "overview": "The site is a sheet of evidence. Each case is a quiet white tile that leads with its name and ends with one real fact taken from the case: a number, a user's own words, a release status. No screenshots, no mockups, no decoration standing in for the work. A recruiter who skims for ten seconds should leave with that fact.\n\nThe frame is calm and literary: an italic vertical index in the top-left corner (after shud.in), a hairline separating it from the content, generous space between sections. The tiles bring the confidence: big Geist titles and Apple-style tiles in a two-up grid, with the owner's own product as the one full-width tile. Colour is rationed to a single ink, Mulberry Ink, which marks only evidence and actions.\n\nCase pages extend the same sheet. A summary sheet answers the recruiter first (role, problem, what was done, the strongest real number), then the case is read through the process it actually followed, drawn as the page's own navigation. Case images appear here, never on the home tiles: shown as they are, uncropped, inside calm white frames with a caption.\n\nMotion is restrained: a short multilingual greeting on the first visit, a small lift on tile hover, nothing else moves by itself. Light and dark themes are equal citizens; the accent is re-tuned per theme, never reused as-is.",
     "keyCharacteristics": [
       "One piece of real evidence per case, set large, instead of an image.",
       "One accent colour, used only for evidence, the italic emphasis in headings and \"View case\".",
       "Italic serif as the quiet voice (navigation, section labels, quotes); Geist as the confident voice (names, titles, numbers).",
       "White tiles on warm-neutral paper, flat at rest.",
-      "Restrained motion; everything readable without it."
+      "Restrained motion; everything readable without it.",
+      "Case pages answer first (summary sheet), then follow the real process (Phase Index), with images as-is in white frames."
     ],
     "rules": [
       {
         "name": "The One Ink Rule",
         "body": "Mulberry Ink is the only colour that is not a neutral. It marks evidence and actions, never surfaces, borders or large fills.",
+        "section": "colors"
+      },
+      {
+        "name": "The Improved Only Rule",
+        "body": "In a results comparison Mulberry Ink marks only values that improved. A worse or unchanged number stays Ink, and a footnote says why it moved and that highlighted values are the improved ones.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reading Position Rule",
+        "body": "The only Mulberry fill in the system is the Phase Index half being read, growing with reading progress. Finished halves keep the faint tint; unread halves are outline only.",
         "section": "colors"
       },
       {
@@ -299,6 +371,11 @@
         "section": "typography"
       },
       {
+        "name": "The Plain Numbering Rule",
+        "body": "A heading's number belongs to the heading: same Ink, same weight. The accent never decorates a counter.",
+        "section": "typography"
+      },
+      {
         "name": "The Flat at Rest Rule",
         "body": "Nothing has a shadow until the visitor points at it.",
         "section": "elevation"
@@ -310,7 +387,10 @@
       "Do give every accent a separate dark-theme value and check contrast in both themes.",
       "Do keep small text at Pencil or darker (4.5:1 or more).",
       "Do let the owner's own product be the single full-width tile.",
-      "Do greet in English first, then Ukrainian."
+      "Do greet in English first, then Ukrainian.",
+      "Do open a case page with the summary sheet: role, problem, what was done, result, and the strongest real number.",
+      "Do show case images as they are, contained in a Figure Frame with a caption.",
+      "Do colour only improved values in Mulberry Ink and footnote any regression."
     ],
     "donts": [
       "Don't put screenshots or mockups on the home page tiles; mixed case imagery reads as noise.",
@@ -318,7 +398,10 @@
       "Don't show popovers or extra panels when hovering a case.",
       "Don't place a label or eyebrow above a title.",
       "Don't make text quieter with opacity.",
-      "Don't include Russian or Belarusian anywhere, including the greeting."
+      "Don't include Russian or Belarusian anywhere, including the greeting.",
+      "Don't colour a worse or unchanged number in Mulberry Ink.",
+      "Don't set a heading's number in the accent.",
+      "Don't crop case images to fit a frame; contain them."
     ]
   }
 }
