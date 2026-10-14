@@ -18,6 +18,7 @@ colors:
   night-graphite: "#b4b9c0"
   night-pencil: "#8b919a"
   night-focus: "#8ea2ff"
+  brand-adtelligent: "#ff0066"
 typography:
   display:
     fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
@@ -296,6 +297,7 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 - **Pencil**: small print: year and role lines, captions under evidence, navigation at rest, language tags. Never lighter than this; it is the 4.5:1 floor.
 - **Hairline**: the navigation divider, pill-button borders, link underlines at rest.
 - **Focus Blue / Night Focus**: keyboard focus ring only. It is deliberately not the accent.
+- **Brand Adtelligent**: only the Adtelligent logo mark, on hover. Logo colours are content, not UI colour.
 - **Night, Night Tile, Night Edge, Night Ink, Night Graphite, Night Pencil**: the dark-theme counterparts. Night tiles get a 1px Night Edge contour because tile and page are too close in value to separate on their own.
 
 ### Named Rules
@@ -410,6 +412,9 @@ A tile (28px side padding) holding a comparison table with a Voice caption in In
 ### Case End Row
 Closes a case under the final Proof strip, after a hairline. One row of plain text links in Action type (Ink, 500, hairline underline that darkens on hover, 44px tall): "All work" and "Back to summary" on the left, "Next case: <full case title>" with an arrow on the right, the way forward. The arrow nudges 4px right on hover. On phones the row wraps: the two return links first, the next case on its own line below. The next case is a link like the others, not a tile, so the case ends quietly instead of starting another story.
 
+### Brand Marks
+Logos of the product, client and school sit before a case title, at 0.7em of the title, joined by a small Pencil "+" when there are several (Comfy + Projector: a Projector course whose work was handed over to Comfy). They are decorative (`aria-hidden`); the title names the case. Multi-colour logos keep their own colours; one-colour logos are drawn in `currentColor` through a mask so they work in both themes. On home tiles they rest in grey (grayscale, 60% opacity) and take their colours when the tile is hovered; on a case page they are always in colour. Logo colours are the logo's own and never become UI colour.
+
 ### Phase Index (signature component)
 The case's own process drawn as its navigation (Double Diamond for Comfy). Each phase is one half of a diamond: diverging phases open downward, converging ones close.
 - **Desktop:** in the sticky index column, under the back link and "summary", each phase is a Voice Nav label beside a 44 × 34px triangle; "outcome" follows.
@@ -452,6 +457,7 @@ On first visit a full-screen curtain shows "Hello", then "Привіт", then a 
 - **Don't** place a label or eyebrow above a title.
 - **Don't** make text quieter with opacity.
 - **Don't** include Russian or Belarusian anywhere, including the greeting.
+- **Don't** use a logo's brand colour for anything but the logo itself.
 - **Don't** colour a worse or unchanged number in Mulberry Ink.
 - **Don't** set a heading's number in the accent.
 - **Don't** crop case images to fit a frame; contain them.

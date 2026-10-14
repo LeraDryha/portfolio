@@ -3,6 +3,7 @@ import type { CaseEntry } from "@/content/site";
 import { caseHref } from "@/lib/cases";
 import { Icon, NewTab } from "@/components/shell/Icons";
 import { ProofMark } from "./ProofMark";
+import { BrandMarks } from "@/components/shell/BrandMarks";
 
 /** A case on the home page. The title link stretches over the whole tile. */
 export function CaseTile({ entry, hero = false }: { entry: CaseEntry; hero?: boolean }) {
@@ -23,7 +24,10 @@ export function CaseTile({ entry, hero = false }: { entry: CaseEntry; hero?: boo
   return (
     <article className={hero ? "tile case-tile case-tile--hero" : "tile case-tile"}>
       <div className="case-tile__copy">
-        <h3 className="case-tile__title">{title}</h3>
+        <h3 className="case-tile__title">
+          <BrandMarks marks={entry.marks} />
+          {title}
+        </h3>
         <p className="case-tile__desc">{entry.desc}</p>
         <span className="label">{entry.meta}</span>
         {(target || entry.appStoreUrl) && (

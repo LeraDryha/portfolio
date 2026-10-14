@@ -5,6 +5,7 @@ import { caseSlugs, loadCase, nextCase } from "@/lib/cases";
 import { CaseIndex } from "@/components/shell/CaseIndex";
 import { CaseEnd } from "@/components/case/CaseEnd";
 import { Icon } from "@/components/shell/Icons";
+import { BrandMarks } from "@/components/shell/BrandMarks";
 
 export const dynamicParams = false;
 
@@ -33,7 +34,10 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
 
         <main className="page-main page-main--case">
           <header className="sheet" id="summary" aria-labelledby="case-title">
-            <h1 className="headline" id="case-title">{entry.title}</h1>
+            <h1 className="headline" id="case-title">
+              <BrandMarks marks={entry.marks} />
+              {entry.title}
+            </h1>
             <p className="lead">{meta.lead}</p>
             <dl className="facts">
               {meta.facts.map((f) => (

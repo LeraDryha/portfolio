@@ -9,6 +9,11 @@ export type Proof =
   | { kind: "specimen" }
   | { kind: "hero"; mark: string; cap: string; sr: string };
 
+/** A logo beside a case title. "img" keeps the logo's own colours; "mono" is a one-colour logo drawn in currentColor. */
+export type Mark =
+  | { kind: "img"; src: string; width: number; height: number }
+  | { kind: "mono"; src: string; ratio: string; color: string };
+
 export type CaseEntry = {
   slug: string;
   title: string;
@@ -19,6 +24,8 @@ export type CaseEntry = {
   notionUrl?: string;
   proof?: Proof;
   appStoreUrl?: string;
+  /** Logos beside the title; more than one are joined with "+" (for example client + school) */
+  marks?: Mark[];
 };
 
 export const person = {
@@ -43,6 +50,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "Prevently",
     desc: "A personal preventive-care planner for women. Research, design and build, from idea to App Store, solo.",
     meta: "Personal product · iOS and Android",
+    marks: [{ kind: "img", src: "/logos/prevently.svg", width: 100, height: 100 }],
     notionUrl: "https://preventlyapp.com",
     appStoreUrl:
       "https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262",
@@ -58,7 +66,11 @@ export const featured: CaseEntry[] = [
     title: "Comfy",
     fullTitle: "Comfy: UX Case Study",
     desc: "Redesigned the credit order flow to grow its share of orders.",
-    meta: "2024 · E-commerce · Team of 4 designers",
+    meta: "2024 · E-commerce · Projector course, handed over to Comfy",
+    marks: [
+      { kind: "img", src: "/logos/comfy.svg", width: 33, height: 36 },
+      { kind: "mono", src: "/logos/projector.svg", ratio: "74 / 32", color: "var(--brand-projector)" },
+    ],
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
     proof: {
       kind: "num",
@@ -73,6 +85,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "Solutions for Adtelligent (AdTech B2B SaaS platform)",
     desc: "Reports and a new overview built around what users check every day.",
     meta: "2025 · AdTech B2B SaaS",
+    marks: [{ kind: "mono", src: "/logos/adtelligent.svg", ratio: "1 / 1", color: "var(--brand-adtelligent)" }],
     notionUrl: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
     proof: {
       kind: "words",

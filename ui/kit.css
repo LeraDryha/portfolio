@@ -31,6 +31,10 @@
   --color-accent-78: color-mix(in oklch, var(--color-accent) 78%, var(--color-tile));
   --color-accent-60: color-mix(in oklch, var(--color-accent) 60%, var(--color-tile));
 
+  /* Client and product logo colours (content, used only by brand marks) */
+  --brand-adtelligent: #ff0066;
+  --brand-projector: var(--color-ink);
+
   /* Fonts */
   --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Newsreader", Baskerville, Georgia, "Times New Roman", serif;
@@ -207,6 +211,16 @@
   --move-curtain-down: translateY(0);
   --flip-x: scaleX(-1);
 
+  /* Brand marks (logos beside case titles) */
+  --size-mark: .7em;
+  --space-mark-gap: .22em;
+  --size-mark-shift: -.06em;
+  --text-mark-plus: .45em;
+  --filter-mono: grayscale(1);
+  --filter-none: none;
+  --opacity-mark-rest: .6;
+  --opacity-full: 1;
+
   /* Layers and opacity */
   --z-raise: 1;
   --z-index-nav: 5;
@@ -371,6 +385,21 @@
 .tile--list { padding: var(--space-24) var(--space-28); display: grid; gap: var(--space-12); align-content: start; }
 
 /* ---------------------------------------------------------------------
+   BRAND MARKS: logos beside a case title (decorative; the title says the name)
+   Multi-colour logos are <img class="brand-mark">; single-colour logos are
+   <span class="brand-mark brand-mark--mono"> with --mark-src, --mark-ratio and --mark-color set inline.
+   On home tiles they rest in grey and take their colours when the tile is hovered.
+   --------------------------------------------------------------------- */
+.brand-marks { display: inline-flex; align-items: center; gap: var(--space-mark-gap); margin-right: var(--space-mark-gap); vertical-align: var(--size-mark-shift); }
+.brand-mark { display: block; height: var(--size-mark); width: auto; transition: filter var(--duration-lift) var(--ease-out), opacity var(--duration-lift) var(--ease-out), color var(--duration-lift) var(--ease-out); }
+.brand-mark--mono { aspect-ratio: var(--mark-ratio); color: var(--mark-color); background: currentColor; -webkit-mask: var(--mark-src) center / contain no-repeat; mask: var(--mark-src) center / contain no-repeat; }
+.brand-plus { font-family: var(--font-sans); font-weight: var(--weight-regular); font-size: var(--text-mark-plus); color: var(--color-pencil); }
+.case-tile .brand-mark { filter: var(--filter-mono); opacity: var(--opacity-mark-rest); }
+.case-tile .brand-mark--mono { filter: var(--filter-none); color: var(--color-pencil); }
+.case-tile:hover .brand-mark, .case-tile.is-hover .brand-mark { filter: var(--filter-none); opacity: var(--opacity-full); }
+.case-tile:hover .brand-mark--mono, .case-tile.is-hover .brand-mark--mono { color: var(--mark-color); }
+
+/* ---------------------------------------------------------------------
    HOME: intro, case tiles, lists, contact, greeting
    --------------------------------------------------------------------- */
 .intro { display: grid; gap: var(--space-20); max-width: var(--layout-intro); scroll-margin-top: var(--space-48); }
@@ -530,7 +559,7 @@
    --------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .curtain--leave { transform: var(--move-none); opacity: var(--opacity-hidden); transition: opacity var(--duration-fade) var(--ease-fade); }
-  .case-tile, .link .icon, .case-tile .link--accent .icon, .phase__edge { transition: none; }
+  .case-tile, .link .icon, .case-tile .link--accent .icon, .phase__edge, .brand-mark { transition: none; }
   .case-tile:hover, .case-tile.is-hover { transform: var(--move-none); }
   .link--nudge:hover .icon, .case-tile:hover .link--accent .icon { transform: var(--move-none); }
 }
