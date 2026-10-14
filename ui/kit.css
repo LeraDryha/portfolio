@@ -396,9 +396,9 @@
 .brand-mark::before, .brand-mark::after { content: ""; position: absolute; inset: var(--space-0); transition: opacity var(--duration-lift) var(--ease-out), background-color var(--duration-lift) var(--ease-out); }
 .brand-mark::before { background-color: currentColor; -webkit-mask: var(--mark-src) center / contain no-repeat; mask: var(--mark-src) center / contain no-repeat; }
 .brand-mark::after { background: var(--mark-art) center / contain no-repeat; opacity: var(--opacity-hidden); }
-:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark::before { background-color: var(--mark-color, currentColor); }
-:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark--art::before { opacity: var(--opacity-hidden); }
-:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline:hover) .brand-mark::after { opacity: var(--opacity-full); }
+:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline) .brand-mark::before { background-color: var(--mark-color, currentColor); }
+:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline) .brand-mark--art::before { opacity: var(--opacity-hidden); }
+:is(.case-tile:hover, .case-tile:focus-within, .case-tile.is-hover, .headline) .brand-mark::after { opacity: var(--opacity-full); }
 .brand-plus { font-family: var(--font-sans); font-weight: var(--weight-regular); font-size: var(--text-mark-plus); color: var(--color-pencil); }
 
 /* ---------------------------------------------------------------------
