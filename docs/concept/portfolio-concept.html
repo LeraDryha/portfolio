@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
 <style>
   /* Layout: Shu Ding's frame (italic vertical nav, hairline, calm column) holding Apple-style tiles.
      No case images: each tile carries one real detail from its case, set large. Chosen variant: one accent + Geist. */
@@ -50,8 +50,6 @@
     color-scheme: dark;
   }
 
-  [data-type="serif"] { --display: "Instrument Serif", var(--serif); --display-weight: 400; --display-track: -.01em; }
-  [data-type="bricolage"] { --display: "Bricolage Grotesque", var(--sans); --display-weight: 700; --display-track: -.035em; }
 
   body { background: var(--page); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
   ::selection { background: color-mix(in oklch, oklch(var(--accent-l) var(--accent-c) var(--accent-h)) 28%, transparent); color: var(--ink); }
@@ -99,7 +97,7 @@
     text-wrap: balance;
   }
   .intro h1 em { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.01em; color: var(--accent-ink, var(--ink)); }
-  .intro p { margin: 0; font-size: 17px; }
+  .intro p { margin: 0; font-size: 17px; color: var(--text); }
 
   section { scroll-margin-top: 48px; }
   .section-label { margin: 0 0 20px; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 19px; color: var(--ink); }
@@ -163,7 +161,7 @@
   .mark.num { white-space: nowrap; }
   .mark small { display: block; font-family: var(--sans); font-weight: 400; letter-spacing: 0; line-height: 1.4; font-size: 14px; color: var(--t-meta); margin-top: 12px; white-space: normal; text-wrap: balance; }
   .mark.quote { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.22; max-width: 14em; }
-  .mark.words { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; }
+  .mark.words { font-size: clamp(30px, 3.2vw, 42px); line-height: 1.05; }
   .mark.words span { display: block; }
   .mark.words span:nth-child(2) { color: color-mix(in oklch, var(--t-ink) 78%, var(--t-bg)); }
   .mark.words span:nth-child(3) { color: color-mix(in oklch, var(--t-ink) 60%, var(--t-bg)); }
@@ -183,21 +181,9 @@
   .t-finance { --h: 158; }
   .t-grx { --h: 292; }
 
-  [data-color="tint"] .tile {
-    --t-bg: oklch(var(--tint-l) var(--tint-c) var(--h));
-    --t-ink: oklch(var(--tint-ink-l) var(--tint-ink-c) var(--h));
-    --t-meta: color-mix(in oklch, var(--t-ink) 70%, var(--t-bg));
-    --t-text: color-mix(in oklch, var(--t-ink) 82%, var(--text));
-  }
   [data-color="accent"] { --accent-ink: oklch(var(--accent-l) var(--accent-c) var(--accent-h)); }
   [data-color="accent"] .tile { --t-ink: var(--accent-ink); }
   [data-color="accent"] .tile h3 { color: var(--ink); }
-  [data-color="deep"] .tile {
-    --t-bg: oklch(var(--deep-l) var(--deep-c) var(--h));
-    --t-ink: var(--deep-ink);
-    --t-text: color-mix(in srgb, var(--deep-ink) 86%, transparent);
-    --t-meta: color-mix(in srgb, var(--deep-ink) 72%, transparent);
-  }
 
   .list { margin: 0; padding: 0; list-style: none; display: grid; gap: 22px; max-width: 40em; }
   .list li { display: grid; gap: 2px; }
@@ -213,7 +199,8 @@
     background: var(--tile);
     border: 1px solid var(--hair);
     border-radius: 999px;
-    padding: 14px 22px;
+    min-height: 44px;
+    padding: 0 22px;
     cursor: pointer;
   }
   .reveal-btn:hover { border-color: var(--quiet); }
@@ -296,8 +283,7 @@
     .tiles { grid-template-columns: minmax(0, 1fr); }
     .tile { min-height: 0; padding: 28px 24px; gap: 40px; }
     .tile.hero { grid-template-columns: minmax(0, 1fr); padding: 32px 24px; gap: 48px; }
-    .tile.hero h3 { font-size: 56px; }
-    .tile.hero .mark { justify-self: start; text-align: left; font-size: 40px; }
+    .tile.hero .mark { justify-self: start; text-align: left; }
     .tile.hero .mark small { margin-left: 0; }
     .intro, section { scroll-margin-top: 64px; }
     .intro { padding-top: 24px; }
@@ -427,22 +413,6 @@
   <summary>Налаштування прототипу</summary>
   <div class="proto-body">
     <div class="row">
-      <b>Колір</b>
-      <div class="seg" id="colorSeg">
-        <button type="button" data-v="tint" aria-pressed="false">М'які відтінки кейсів</button>
-        <button type="button" data-v="deep" aria-pressed="false">Глибокі кольори</button>
-        <button type="button" data-v="accent" aria-pressed="true">Один акцент</button>
-      </div>
-    </div>
-    <div class="row">
-      <b>Шрифт заголовків</b>
-      <div class="seg" id="typeSeg">
-        <button type="button" data-v="sans" aria-pressed="true">Geist</button>
-        <button type="button" data-v="serif" aria-pressed="false">Instrument Serif</button>
-        <button type="button" data-v="bricolage" aria-pressed="false">Bricolage</button>
-      </div>
-    </div>
-    <div class="row">
       <b>Тема</b>
       <div class="seg" id="themeSeg">
         <button type="button" data-v="auto" aria-pressed="true">Як у системі</button>
@@ -451,7 +421,7 @@
       </div>
     </div>
     <div class="seg"><button type="button" id="greet">Програти привітання</button></div>
-    <p class="note">Обрано: один акцент і Geist. Після перевірки Impeccable. Привітання можна пропустити кліком або Esc. Тексти чорнові.</p>
+    <p class="note">Один акцент (Mulberry Ink) і Geist, за DESIGN.md. Привітання можна пропустити кліком або Esc. Тексти чорнові.</p>
   </div>
 </details>
 
@@ -470,8 +440,6 @@
         apply(b.dataset.v);
       });
     }
-    seg("colorSeg", function (v) { site.dataset.color = v; });
-    seg("typeSeg", function (v) { site.dataset.type = v; document.getElementById("curtain").dataset.type = v; });
     seg("themeSeg", function (v) {
       if (v === "auto") document.documentElement.removeAttribute("data-theme");
       else document.documentElement.setAttribute("data-theme", v);

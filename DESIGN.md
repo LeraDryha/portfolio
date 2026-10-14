@@ -32,6 +32,24 @@ typography:
     lineHeight: 0.95
     letterSpacing: "-0.03em"
     fontFeature: "'tnum' 1"
+  proof-hero:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "clamp(36px, 4.4vw, 60px)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  closing:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "clamp(28px, 3.2vw, 40px)"
+    fontWeight: 600
+    lineHeight: 1.08
+    letterSpacing: "-0.03em"
+  greeting:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "clamp(32px, 5vw, 56px)"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.01em"
   headline:
     fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "clamp(48px, 6vw, 80px)"
@@ -58,21 +76,40 @@ typography:
     fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
     fontSize: "13px"
     fontWeight: 400
-    lineHeight: 1.4
+    lineHeight: 1.6
     letterSpacing: "0.01em"
+  action:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "15px"
+    fontWeight: 500
+    lineHeight: 1.4
+  tag:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "11px"
+    fontWeight: 500
+    lineHeight: 1.4
+    letterSpacing: "0.06em"
+  caption:
+    fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
+    fontSize: "14px"
+    fontWeight: 400
+    lineHeight: 1.4
   voice:
     fontFamily: "Newsreader, Baskerville, Georgia, serif"
     fontSize: "19px"
     fontWeight: 400
-    lineHeight: 1.3
-    fontVariation: "'ital' 1"
+    lineHeight: 1.6
+  voice-nav:
+    fontFamily: "Newsreader, Baskerville, Georgia, serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.6
   voice-quote:
     fontFamily: "Newsreader, Baskerville, Georgia, serif"
     fontSize: "clamp(26px, 2.8vw, 36px)"
     fontWeight: 400
     lineHeight: 1.22
     letterSpacing: "-0.01em"
-    fontVariation: "'ital' 1"
 rounded:
   focus: "4px"
   swatch: "6px"
@@ -114,22 +151,25 @@ components:
     typography: "{typography.proof}"
   view-case-link:
     textColor: "{colors.mulberry-ink}"
-    typography: "{typography.body}"
+    typography: "{typography.action}"
   nav-link:
     textColor: "{colors.pencil}"
-    typography: "{typography.voice}"
+    typography: "{typography.voice-nav}"
   nav-link-current:
     textColor: "{colors.ink}"
-    typography: "{typography.voice}"
+    typography: "{typography.voice-nav}"
   pill-button:
     backgroundColor: "{colors.tile}"
     textColor: "{colors.ink}"
+    typography: "{typography.action}"
     rounded: "{rounded.pill}"
-    padding: "14px 22px"
+    padding: "22px"
+    height: "44px"
   lang-tag:
     textColor: "{colors.pencil}"
+    typography: "{typography.tag}"
     rounded: "{rounded.focus}"
-    padding: "1px 5px"
+    padding: "5px"
 ---
 
 # Design System: Lera Dryha Portfolio
@@ -181,6 +221,8 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 **Display Font:** Geist (with Helvetica Neue, Arial)
 **Voice Font:** Newsreader italic (with Baskerville, Georgia)
 
+Display, Headline, Title, Proof, Proof Hero, Closing, Greeting and Voice Quote are fluid: their tokens are `clamp()` ranges that shrink with the viewport. Every Voice role is set in italic (`font-style: italic`); the token format has no field for style, so treat italic as part of the role.
+
 **Character:** Geist speaks with confidence: names, numbers, titles, tight and heavy. Newsreader italic is the quiet human voice around it: the index, the section names, a user's quote, the one emphasised phrase in a heading.
 
 ### Hierarchy
@@ -188,10 +230,17 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 - **Headline** (600, clamp 48–80px): the name of the full-width hero tile.
 - **Title** (600, clamp 30–42px, line-height 1.02): case names in tiles. Ink, never accent.
 - **Proof** (600, clamp 44–84px, line-height 0.95, tabular numerals): the evidence mark in each tile. Numbers stay on one line.
+- **Proof Hero** (600, clamp 36–60px, line-height 1): the evidence line in the full-width hero tile.
+- **Closing** (600, clamp 28–40px, line-height 1.08): the closing invitation in Contact; its last phrase switches to Voice in Mulberry Ink.
+- **Greeting** (600, clamp 32–56px): the words on the first-visit greeting curtain.
 - **Body** (400, 16px, line-height 1.6): descriptions and lists. Measure under 40em.
 - **Body Lead** (400, 17px): the intro paragraph.
 - **Label** (400, 13px, +0.01em): year · field · team lines, placed under the description.
-- **Voice** (Newsreader italic 400, 17–19px): navigation links and section labels.
+- **Action** (500, 15px): "View case", secondary text links and the pill button.
+- **Tag** (500, 11px, +0.06em): language tags such as UA.
+- **Caption** (400, 14px, line-height 1.4): the small Pencil note under an evidence mark.
+- **Voice** (Newsreader italic 400, 19px): section labels.
+- **Voice Nav** (Newsreader italic 400, 17px): navigation links.
 - **Voice Quote** (Newsreader italic 400, clamp 26–36px, line-height 1.22): user quotes used as evidence.
 
 ### Named Rules
@@ -207,7 +256,7 @@ Work is an Apple-style tile grid: two equal columns with a 16px gap. The owner's
 
 Sections are separated by 104px. Inside a tile, copy sits top-left and evidence sits at the bottom, so the space between them is intentional air rather than a gap to fill.
 
-At 860px and below: one column, 16px gutter, 80px between sections. The index becomes a sticky horizontal row at the top with a hairline underneath and 48px-tall touch targets. Tiles stack; the hero tile stays visibly larger (56px title, 40px evidence).
+At 860px and below: one column, 16px gutter, 80px between sections. The index becomes a sticky horizontal row at the top with a hairline underneath and 48px-tall touch targets. Tiles stack; the hero tile stays visibly larger because its Headline and Proof Hero sizes bottom out above the other tiles' Title (48px against 30px).
 
 ## Elevation & Depth
 
@@ -243,11 +292,11 @@ Italic Voice links in Pencil, the current section in Ink (scroll-spy, `aria-curr
 
 ### Buttons
 - **Shape:** fully round pill (999px).
-- **Pill button:** Tile background, Ink text, Hairline border, 14px × 22px padding. Hover darkens the border to Pencil.
+- **Pill button:** Tile background, Ink text, Hairline border, 44px tall with 22px side padding. Hover darkens the border to Pencil.
 - There is no filled accent button. Actions are text links in Mulberry Ink.
 
 ### Lists (More work, Writing)
-Ink title at 500 weight, Graphite line under it, no bullets, 22px between items. Ukrainian articles carry `lang="uk"`, an English gloss line and a small UA tag.
+Ink title at 500 weight, Graphite line under it, no bullets, 22px between items. Ukrainian articles carry `lang="uk"`, an English gloss line and a small UA tag (11px, Hairline border, 4px corners, 5px side padding).
 
 ### Greeting Curtain
 On first visit a full-screen curtain shows "Hello", then "Привіт", then a few more languages, about 170ms each, then slides up over 0.8s. Click or Esc skips it. With reduced motion it shows only "Hello" and fades out.
