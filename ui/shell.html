@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio Shell</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Placeholder blocks only, so the shell has something to scroll. Not part of the kit. */
+  .slot { min-height: 70vh; display: grid; place-items: center; color: var(--color-pencil); font-size: var(--text-caption); }
+</style>
+</head>
+<body class="page">
+
+<!--
+  Portfolio shell. Two variants share one frame:
+
+  1. HOME SHELL  (#home, default)
+     Desktop: italic index column on the left with a hairline, content on the right.
+     Phone (≤ 860px): the index becomes a sticky row at the top, 48px tap targets.
+
+  2. CASE SHELL  (#case)
+     Desktop: wider index column: back link, "summary", the phase index (diamond halves), "outcome".
+     Phone (≤ 860px): the index is hidden; a sticky bar shows the back link,
+     the same phases drawn horizontally, and the name of the current phase.
+
+  Copy the markup from the <template> you need. Put page content where SLOT is.
+  Keep the ids on sections: the index links and the script below point at them.
+  The script at the bottom drives the "current section" state and the reading progress
+  in the phase index; copy it together with the case shell.
+-->
+
+<!-- Shared icon sprite and the clip paths for the phase halves -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M2.5 8h10M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <clipPath id="cl-div"><polygon points="22,1 43,33 1,33"/></clipPath>
+  <clipPath id="cl-con"><polygon points="1,1 43,1 22,33"/></clipPath>
+  <clipPath id="cl-hdiv"><polygon points="1,15 25,1 25,29"/></clipPath>
+  <clipPath id="cl-hcon"><polygon points="1,1 25,15 1,29"/></clipPath>
+</svg>
+
+<!-- ============================ HOME SHELL ============================ -->
+<template id="shell-home">
+  <div class="frame">
+    <nav class="index" aria-label="Main">
+      <a class="index__link" href="#about">about</a>
+      <a class="index__link" href="#work">work</a>
+      <a class="index__link" href="#writing">writing</a>
+      <a class="index__link" href="#contact">contact</a>
+    </nav>
+
+    <main class="page-main">
+      <!-- SLOT: page content. One section per index link. -->
+      <section class="intro" id="about"><div class="tile slot">about</div></section>
+      <section class="page-section" id="work"><div class="tile slot">work</div></section>
+      <section class="page-section" id="writing"><div class="tile slot">writing</div></section>
+      <section class="page-section" id="contact"><div class="tile slot">contact</div></section>
+    </main>
+  </div>
+</template>
+
+<!-- ============================ CASE SHELL ============================ -->
+<template id="shell-case">
+  <div class="frame frame--case">
+    <nav class="index index--case" aria-label="Case navigation">
+      <a class="index__link index__back" href="#">
+        <svg class="icon icon--back" aria-hidden="true"><use href="#i-arrow"/></svg>work
+      </a>
+      <a class="index__link" href="#summary" data-spy="summary">summary</a>
+      <ol class="phases">
+        <!-- One <li> per phase. Diverging phases use cl-div and points "22,1 43,33 1,33";
+             converging phases use cl-con and points "1,1 43,1 22,33". -->
+        <li class="phases__step--diverge"><a class="index__link phase" href="#discover" data-phase="discover">discover
+          <svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="22,1 43,33 1,33"/></svg></a></li>
+        <li class="phases__step--converge"><a class="index__link phase" href="#define" data-phase="define">define
+          <svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="1,1 43,1 22,33"/></svg></a></li>
+        <li class="phases__step--diverge"><a class="index__link phase" href="#develop" data-phase="develop">develop
+          <svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="22,1 43,33 1,33"/></svg></a></li>
+        <li class="phases__step--converge"><a class="index__link phase" href="#deliver" data-phase="deliver">deliver
+          <svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="1,1 43,1 22,33"/></svg></a></li>
+      </ol>
+      <a class="index__link" href="#outcome" data-spy="outcome">outcome</a>
+    </nav>
+
+    <div class="bar" aria-label="Case navigation">
+      <a class="bar__back" href="#"><svg class="icon icon--back" aria-hidden="true"><use href="#i-arrow"/></svg>work</a>
+      <ol class="bar-phases">
+        <li><a class="bar-phase" href="#discover" data-hphase="discover" aria-label="Discover"><svg class="phase__shape" viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hdiv)"><rect class="phase__fill" x="0" y="0" width="0" height="30"/></g><polygon class="phase__edge" points="1,15 25,1 25,29"/></svg></a></li>
+        <li><a class="bar-phase" href="#define" data-hphase="define" aria-label="Define"><svg class="phase__shape" viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hcon)"><rect class="phase__fill" x="0" y="0" width="0" height="30"/></g><polygon class="phase__edge" points="1,1 25,15 1,29"/></svg></a></li>
+        <li><a class="bar-phase" href="#develop" data-hphase="develop" aria-label="Develop"><svg class="phase__shape" viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hdiv)"><rect class="phase__fill" x="0" y="0" width="0" height="30"/></g><polygon class="phase__edge" points="1,15 25,1 25,29"/></svg></a></li>
+        <li><a class="bar-phase" href="#deliver" data-hphase="deliver" aria-label="Deliver"><svg class="phase__shape" viewBox="0 0 26 30" aria-hidden="true"><g clip-path="url(#cl-hcon)"><rect class="phase__fill" x="0" y="0" width="0" height="30"/></g><polygon class="phase__edge" points="1,1 25,15 1,29"/></svg></a></li>
+      </ol>
+      <span class="bar__now" aria-live="polite">summary</span>
+    </div>
+
+    <main class="page-main page-main--case">
+      <!-- SLOT: case content. Keep these ids: summary, the phase ids, outcome. -->
+      <header class="sheet" id="summary"><div class="tile slot">summary</div></header>
+      <section class="chapter" id="discover"><div class="tile slot is-wide">discover</div></section>
+      <section class="chapter" id="define"><div class="tile slot is-wide">define</div></section>
+      <section class="chapter" id="develop"><div class="tile slot is-wide">develop</div></section>
+      <section class="chapter" id="deliver"><div class="tile slot is-wide">deliver</div></section>
+      <section class="chapter" id="outcome"><div class="tile slot is-wide">outcome</div></section>
+    </main>
+  </div>
+</template>
+
+<div id="mount"></div>
+
+<script>
+  /* Shell behaviour.
+     - Index links get aria-current="location" for the section in view.
+     - In the case shell, the phase being read fills in proportion to reading progress;
+       finished phases get .is-done; the phone bar names the current section. */
+  (function () {
+    var variant = location.hash === "#case" ? "case" : "home";
+    var tpl = document.getElementById("shell-" + variant);
+    document.getElementById("mount").appendChild(tpl.content.cloneNode(true));
+    if (variant === "case") document.body.classList.add("page--reading");
+
+    var LINE = 0.35;
+    var spyLinks = Array.prototype.slice.call(document.querySelectorAll(".index a[href^='#']:not(.index__back)"));
+    var ids = spyLinks.map(function (a) { return a.getAttribute("href").slice(1); }).filter(Boolean);
+    var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var now = document.querySelector(".bar__now");
+    var ticking = false;
+
+    function progressOf(el, line) {
+      var r = el.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (line - r.top) / r.height));
+    }
+
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * LINE;
+      var current = sections.length ? sections[0].id : null;
+      sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) current = s.id; });
+
+      spyLinks.forEach(function (a) {
+        if (a.getAttribute("href") === "#" + current) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+
+      document.querySelectorAll("[data-phase], [data-hphase]").forEach(function (link) {
+        var id = link.getAttribute("data-phase") || link.getAttribute("data-hphase");
+        var sec = document.getElementById(id);
+        if (!sec) return;
+        var prog = progressOf(sec, line);
+        var isCur = id === current;
+        var done = !isCur && prog >= 1;
+        link.classList.toggle("is-done", done);
+        if (isCur) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
+        var fill = link.querySelector(".phase__fill");
+        var amount = isCur ? prog : (done ? 1 : 0);
+        if (link.hasAttribute("data-phase")) fill.setAttribute("height", String(amount * 34));
+        else fill.setAttribute("width", String(amount * 26));
+      });
+
+      if (now && current) now.textContent = current;
+    }
+
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+
+    /* Lets the kit showcase switch this shell's theme from outside the frame. */
+    window.addEventListener("message", function (e) {
+      var v = e.data && e.data.kitTheme;
+      if (!v) return;
+      if (v === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", v);
+    });
+  })();
+</script>
+</body>
+</html>
