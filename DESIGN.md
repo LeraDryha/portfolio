@@ -18,6 +18,10 @@ colors:
   night-graphite: "#b4b9c0"
   night-pencil: "#8b919a"
   night-focus: "#8ea2ff"
+  verdict-green: "#1e7a3e"
+  verdict-red: "#b42318"
+  verdict-green-night: "#5fcf86"
+  verdict-red-night: "#f28b82"
 typography:
   display:
     fontFamily: "Geist, 'Helvetica Neue', Arial, sans-serif"
@@ -288,6 +292,9 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 - **Mulberry Ink, Night** (dark theme): a lighter, softer version of the same hue so evidence keeps about 7:1 contrast on night tiles.
 - **On case pages** Mulberry Ink also marks the reader's position: the outline and growing fill of the phase being read in the Phase Index, and a 16% tint of the accent (20% of the night value) on finished phases. It also sets inline research counts (Stat), user quotes and the improved values in results tables.
 
+### Verdict
+- **Verdict Green / Verdict Red** (Night: a lighter green and red): only for the titles of paired lists that judge something, such as "What Comfy covers well" (green) and "What it doesn't fully cover" (red), so a case page is not all white and mulberry. Never for body text, fills, borders or numbers. Both keep at least 5:1 on tiles in both themes.
+
 ### Neutral
 - **Paper**: page background. Slightly warm so white tiles read as objects lying on it.
 - **Tile**: case tile surface.
@@ -299,7 +306,7 @@ A near-monochrome paper-and-graphite palette with one deep mulberry ink.
 - **Night, Night Tile, Night Edge, Night Ink, Night Graphite, Night Pencil**: the dark-theme counterparts. Night tiles get a 1px Night Edge contour because tile and page are too close in value to separate on their own.
 
 ### Named Rules
-**The One Ink Rule.** Mulberry Ink is the only colour that is not a neutral. It marks evidence and actions, never surfaces, borders or large fills.
+**The One Ink Rule.** Mulberry Ink is the only accent colour. It marks evidence and actions, never surfaces, borders or large fills. The only other non-neutrals are the Verdict pair (titles of good / bad lists) and brand logos.
 
 **The Improved Only Rule.** In a results comparison Mulberry Ink marks only values that improved. A worse or unchanged number stays Ink, and a footnote says why it moved and that highlighted values are the improved ones.
 

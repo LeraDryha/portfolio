@@ -24,6 +24,9 @@
   --color-focus: #3b5bdb;
   --color-accent: oklch(48% 0.15 352);
   --color-accent-soft: oklch(48% 0.15 352 / .16);
+  /* Verdict colours: only the titles of paired good / bad lists on case pages */
+  --color-positive: #1e7a3e;
+  --color-negative: #b42318;
   --color-curtain: #16181d;
   --color-curtain-ink: #f4f4f2;
   --color-lift-shadow: rgba(22, 24, 29, .28);
@@ -243,6 +246,8 @@
     --color-focus: #8ea2ff;
     --color-accent: oklch(74% 0.11 352);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
+    --color-positive: #5fcf86;
+    --color-negative: #f28b82;
     --color-curtain: #f2f2f0;
     --color-curtain-ink: #0e0f10;
     --brand-hubmee: #18d0b1;
@@ -260,6 +265,8 @@
   --color-focus: #8ea2ff;
   --color-accent: oklch(74% 0.11 352);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
+  --color-positive: #5fcf86;
+  --color-negative: #f28b82;
   --color-curtain: #f2f2f0;
   --color-curtain-ink: #0e0f10;
   --brand-hubmee: #18d0b1;
@@ -544,6 +551,8 @@
 .side__copy .subhead { margin: var(--space-0); }
 .tile-lists { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-16); }
 .tile-lists ul { font-size: var(--text-body); }
+.voice-title--positive { color: var(--color-positive); }
+.voice-title--negative { color: var(--color-negative); }
 
 /* Results table: improved values only in Mulberry */
 .table-tile { padding: var(--space-8) var(--space-28) var(--space-20); overflow-x: auto; }

@@ -8,7 +8,7 @@ export const meta = {
     { label: "Business goal", value: "Credit order share 30% → 40%" },
   ],
   answer: {
-    problem: "Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, and checkout overloaded people at the moment they had to commit.",
+    problem: "Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, checkout overloaded people at the moment they had to commit, and online they couldn’t tell if a product would suit them.",
     did: "15 interviews, a survey of 178 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.",
     result: "In moderated tests the redesign reached 100% task completion with zero errors, against 75% for the current flow. In Maze, the success rate rose from 87.5% to 92.3% between iterations.",
   },
@@ -67,8 +67,8 @@ We reviewed UX flows, UI patterns and best practices, and sorted features into P
 ]} />
 
 <FigurePair>
-  <HalfFigure src="/work/comfy/c05.jpg" width={1600} height={1519} alt="Feature comparison matrix across six competitors." caption="Points of Parity and Difference." />
-  <HalfFigure src="/work/comfy/c06.jpg" width={1600} height={1259} alt="Competitor credit flows with annotated UI patterns." caption="Competitor credit flows." />
+  <HalfFigure src="/work/comfy/c05.jpg" width={1600} height={1519} alt="Feature comparison matrix across six competitors." caption="Feature comparison across competitors." />
+  <HalfFigure src="/work/comfy/c06.jpg" width={1600} height={1259} alt="Comfy product pages annotated with Points of Parity and Difference." caption="Points of Parity and Difference, shown on Comfy pages." />
 </FigurePair>
 
 ### What needs to be better
@@ -83,7 +83,7 @@ We looked for what makes people buy, or not buy, on credit: their barriers, moti
 
 <FigurePair>
   <HalfFigure src="/work/comfy/c07.jpg" width={1600} height={854} alt="Interview participants and their key quotes." caption="Who we talked to." />
-  <HalfFigure src="/work/comfy/c08.jpg" width={1353} height={1600} alt="Affinity map of interview findings." caption="Affinity map of interview findings." />
+  <HalfFigure src="/work/comfy/c08.jpg" width={1353} height={1600} alt="Interview notes grouped by respondent, one board each." caption="Interview notes, one board per respondent." />
 </FigurePair>
 
 <Quote by="A shopper in an interview, translated from Ukrainian">“I didn’t read the terms, like everyone who doesn’t read the small print. All I did was multiply the monthly payment by six and compare it with the order price.”</Quote>
@@ -96,7 +96,7 @@ To check interview insights at scale, we turned recurring themes into survey que
 
 The survey tested four insights: clarity of information, package deals, comparing credit terms, and wanting to see a product in person before buying.
 
-<Figure src="/work/comfy/c09.jpg" width={1600} height={1137} alt="Survey results charts." caption="Survey results." />
+<Figure src="/work/comfy/c09.jpg" width={1600} height={1137} alt="Survey results charts, at 90 responses." caption="Survey charts, captured at 90 responses, before the survey closed at 178." />
 
 </Chapter>
 
@@ -117,8 +117,8 @@ The value proposition canvas showed which needs Comfy already meets, and which b
 <Statement>Comfy helps people buy conveniently and right away by offering credit and installments through many banks, without visiting a bank or a store.</Statement>
 
 <TileLists lists={[
-  { title: "What Comfy covers well", items: ["Inspecting the product in store", "Flexible credit through familiar banks", "No interest on installments", "Splitting large payments over time", "Bonuses and loyalty rewards", "A quick credit-based purchase"] },
-  { title: "What it doesn’t fully cover", items: ["Effortful or uncomfortable contact with banks", "Website and app that feel inconvenient", "Anxiety about repayment and credit reliability", "Uncertainty about returns on credit purchases", "Confusing or non-transparent terms", "Not knowing if promotions apply to installments"] },
+  { title: "What Comfy covers well", tone: "positive", items: ["Inspecting the product in store", "Flexible credit through familiar banks", "No interest on installments", "Splitting large payments over time", "Bonuses and loyalty rewards", "A quick credit-based purchase"] },
+  { title: "What it doesn’t fully cover", tone: "negative", items: ["Effortful or uncomfortable contact with banks", "Website and app that feel inconvenient", "Anxiety about repayment and credit reliability", "Uncertainty about returns on credit purchases", "Confusing or non-transparent terms", "Not knowing if promotions apply to installments"] },
 ]} />
 
 </Chapter>
@@ -184,10 +184,10 @@ A “Як це працює” (How it works) button inside the calculator opens
   <HalfFigure src="/work/comfy/c24.jpg" width={1600} height={1154} alt="Mobile checkout before and after." caption="Mobile app, before and after." />
 </FigurePair>
 
-People also skimmed delivery options and struggled to spot stores with stock. We highlighted “Pick up today” in green and kept the other options neutral.
+In the list of stores for pickup, people skimmed without reading and struggled to spot the ones with the item in stock. We highlighted “Pick up today” in green and kept the other stores neutral.
 
 <FigurePair>
-  <HalfFigure src="/work/comfy/c25.jpg" width={1600} height={804} alt="Store pickup options with “Pick up today” highlighted." label="After" caption="“Pick up today” stands out." />
+  <HalfFigure src="/work/comfy/c25.jpg" width={1600} height={804} alt="Store pickup list before and after, with “Pick up today” highlighted in the redesign." label="Before & after" caption="“Pick up today” stands out." />
   <HalfFigure src="/work/comfy/c26.jpg" width={1600} height={1154} alt="Mobile pickup options before and after." caption="Mobile app, before and after." />
 </FigurePair>
 
@@ -229,7 +229,7 @@ We tested twice: unmoderated in Maze, and moderated sessions comparing the curre
 To grow the share of credit orders, we prepared four ideas for the product and marketing teams.
 
 <FigureGrid>
-  <HalfFigure src="/work/comfy/c28.jpg" width={1600} height={1133} alt="Banner concept for package deals with extended installments." title="Package deals with longer installments" caption="About a third of surveyed shoppers wanted them (34.4% of 90). Next step is a fake-door test." />
+  <HalfFigure src="/work/comfy/c28.jpg" width={1600} height={1133} alt="Banner concept for package deals with extended installments." title="Package deals with longer installments" caption="About 40% of surveyed shoppers were interested or open to the idea. Next step is a fake-door test." />
   <HalfFigure src="/work/comfy/c29.jpg" width={1600} height={1190} alt="Higher cashback for credit purchases." title="Higher cashback on credit purchases" caption="Than on cash purchases." />
   <HalfFigure src="/work/comfy/c30.jpg" width={1600} height={1026} alt="Transferring bonuses to family and friends." title="Transfer bonuses to family and friends" caption="Bonuses can already cover the first installment." />
   <HalfFigure src="/work/comfy/c31.jpg" width={1600} height={1069} alt="Loyalty levels for credit purchases." title="Loyalty levels" caption="Each credit purchase counts toward extra rewards." />
@@ -241,7 +241,7 @@ To grow the share of credit orders, we prepared four ideas for the product and m
 
 The project uncovered real pain points and turned the credit purchase into something transparent, intuitive and emotionally comfortable, because “credit” shouldn’t feel like a horror story.
 
-Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow. The ideas for growing credit orders are ready for the product and marketing teams.
+Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow. Next, the improvements that tested well go into implementation, and the ideas for growing credit orders get validated and tested further with the product and marketing teams.
 
 <ProofStrip mark="87.5% → 92.3%" cap="success rate in Maze, iteration 1 vs 2 (10 and 14 tests)" sr="In unmoderated Maze tests the success rate rose from 87.5% in iteration 1 to 92.3% in iteration 2, with 10 and 14 tests." />
 

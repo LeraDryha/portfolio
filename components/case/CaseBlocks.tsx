@@ -110,12 +110,13 @@ export function Quote({ by, children }: { by: string; children: ReactNode }) {
   );
 }
 
-export function TileLists({ lists }: { lists: { title: string; items: string[] }[] }) {
+/** Paired lists in tiles. A tone colours the title: green for what works, red for what doesn't. */
+export function TileLists({ lists }: { lists: { title: string; tone?: "positive" | "negative"; items: string[] }[] }) {
   return (
     <div className="tile-lists is-wide">
       {lists.map((l) => (
         <section className="tile tile--list" key={l.title}>
-          <h3 className="voice-title">{l.title}</h3>
+          <h3 className={l.tone ? `voice-title voice-title--${l.tone}` : "voice-title"}>{l.title}</h3>
           <ul>
             {l.items.map((i) => (
               <li key={i}>{i}</li>

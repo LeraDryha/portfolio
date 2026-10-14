@@ -109,6 +109,26 @@
       "night-focus": {
         "role": "neutral",
         "displayName": "Night Focus"
+      },
+      "verdict-green": {
+        "role": "semantic",
+        "displayName": "Verdict Green",
+        "canonical": "#1e7a3e"
+      },
+      "verdict-red": {
+        "role": "semantic",
+        "displayName": "Verdict Red",
+        "canonical": "#b42318"
+      },
+      "verdict-green-night": {
+        "role": "semantic",
+        "displayName": "Verdict Green, Night",
+        "canonical": "#5fcf86"
+      },
+      "verdict-red-night": {
+        "role": "semantic",
+        "displayName": "Verdict Red, Night",
+        "canonical": "#f28b82"
       }
     },
     "typographyMeta": {
@@ -353,7 +373,7 @@
     "rules": [
       {
         "name": "The One Ink Rule",
-        "body": "Mulberry Ink is the only colour that is not a neutral. It marks evidence and actions, never surfaces, borders or large fills.",
+        "body": "Mulberry Ink is the only accent colour. It marks evidence and actions, never surfaces, borders or large fills. The only other non-neutrals are the Verdict pair (titles of good / bad lists) and brand logos.",
         "section": "colors"
       },
       {
