@@ -11,4 +11,6 @@ Personal portfolio of Valeriia Dryha, Product Designer. It replaces the current 
 
 **Stack:** Next.js (App Router), TypeScript, MDX content, Vercel.
 
-**Status:** brief done; collecting visual references. The full brief is in [`CLAUDE.md`](CLAUDE.md).
+**Design system:** [`DESIGN.md`](DESIGN.md), "The Proof Sheet": each case shown through one real piece of evidence, one accent colour (Mulberry Ink), Geist with Newsreader italic.
+
+**Status:** brief and design system done; homepage concept in `docs/concept/`. The full brief is in [`CLAUDE.md`](CLAUDE.md).

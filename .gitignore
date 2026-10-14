@@ -3,5 +3,6 @@ node_modules/
 dist/
 .env*
 .playwright-mcp/
-.impeccable/
+.impeccable/live/
+.impeccable/critique/
 .claude/scheduled_tasks.lock
