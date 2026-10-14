@@ -408,7 +408,7 @@ Case images as they are, in a calm frame.
 A tile (28px side padding) holding a comparison table with a Voice caption in Ink, Label column heads in Pencil, Body cells in Ink with tabular numerals and hairline row dividers. Improved values only are in Mulberry Ink at 600 (The Improved Only Rule); a footnote explains any regression. On phones the header row is visually hidden and each row becomes the metric name followed by labelled values in two or three columns.
 
 ### Case End Row
-Closes a case under the final Proof strip, after a hairline. One row of plain text links in Action type (Ink, 500, hairline underline that darkens on hover, 44px tall): "Next case: <name>" with an arrow on the left, "All work" and "Back to summary" on the right. The arrow nudges 4px right on hover. On phones the row wraps: the next case on its own line, the other two below. The next case is a link like the others, not a tile, so the case ends quietly instead of starting another story.
+Closes a case under the final Proof strip, after a hairline. One row of plain text links in Action type (Ink, 500, hairline underline that darkens on hover, 44px tall): "All work" and "Back to summary" on the left, "Next case: <full case title>" with an arrow on the right, the way forward. The arrow nudges 4px right on hover. On phones the row wraps: the two return links first, the next case on its own line below. The next case is a link like the others, not a tile, so the case ends quietly instead of starting another story.
 
 ### Phase Index (signature component)
 The case's own process drawn as its navigation (Double Diamond for Comfy). Each phase is one half of a diamond: diverging phases open downward, converging ones close.

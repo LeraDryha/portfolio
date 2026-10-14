@@ -221,6 +221,8 @@
   .case-end a:hover { text-decoration-color: currentColor; }
   .case-end a .i { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
   .case-end a:hover .i { transform: translateX(4px); }
+  .case-end .next-link { display: inline-block; min-height: 0; padding-block: 11px; margin-left: auto; text-align: right; line-height: 1.45; }
+  .case-end .next-link .i { margin-left: 4px; }
 
   @media (prefers-reduced-motion: reduce) {
     .case-end a .i, .phase .edge { transition: none; }
@@ -278,6 +280,7 @@
     .answer section, .answer .proof { padding: 22px; }
     .pair, .two-lists, .ideas, .side { grid-template-columns: minmax(0, 1fr); }
     .side .copy { position: static; }
+    .case-end .next-link { margin-left: 0; text-align: left; }
     .proof.strip { grid-template-columns: minmax(0, 1fr); padding: 24px 22px; }
     .proof .mark { font-size: clamp(36px, 10vw, 56px); white-space: normal; }
     .fig { padding: 8px; }
@@ -682,8 +685,8 @@
       </div>
 
       <nav class="case-end" aria-label="More work">
-        <a href="#">Next case: Adtelligent <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <div class="end-links"><a href="#">All work</a><a href="#summary">Back to summary</a></div>
+        <a class="next-link" href="#">Next case: Solutions for Adtelligent (AdTech B2B SaaS platform) <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </nav>
     </section>
   </main>
