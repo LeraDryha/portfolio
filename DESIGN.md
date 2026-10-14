@@ -251,14 +251,10 @@ components:
     typography: "{typography.label}"
   result-improved:
     textColor: "{colors.mulberry-ink}"
-  next-case-tile:
-    backgroundColor: "{colors.tile}"
-    textColor: "{colors.graphite}"
-    rounded: "{rounded.tile}"
-    padding: "40px"
-  next-case-action:
-    textColor: "{colors.mulberry-ink}"
+  case-end-link:
+    textColor: "{colors.ink}"
     typography: "{typography.action}"
+    height: "44px"
 ---
 
 # Design System: Lera Dryha Portfolio
@@ -369,10 +365,10 @@ At 860px and below: one column, 16px gutter, 80px between sections. The index be
 
 Flat by default. Depth comes from tone (white tile on warm paper) rather than shadows. A single soft shadow appears only on hover, together with a 3px lift. In dark theme tiles carry a 1px inner contour instead of relying on tone.
 
-Case-page tiles (summary blocks, proof strips, figure frames, table tiles, list tiles) follow the same law: flat, with the Night contour in dark theme. Only the Next case tile lifts on hover, because it is the only one that is a link.
+Case-page tiles (summary blocks, proof strips, figure frames, table tiles, list tiles) follow the same law: flat, with the Night contour in dark theme. None of them lifts: on case pages nothing is a tile-shaped link.
 
 ### Shadow Vocabulary
-- **Tile lift** (`0 14px 32px -18px rgba(22,24,29,.28)`): hover state of case tiles and the Next case tile only.
+- **Tile lift** (`0 14px 32px -18px rgba(22,24,29,.28)`): hover state of home-page case tiles only.
 - **Night contour** (`inset 0 0 0 1px #2a2c2f`): resting edge of tiles in dark theme.
 
 ### Named Rules
@@ -411,8 +407,8 @@ Case images as they are, in a calm frame.
 ### Results Table
 A tile (28px side padding) holding a comparison table with a Voice caption in Ink, Label column heads in Pencil, Body cells in Ink with tabular numerals and hairline row dividers. Improved values only are in Mulberry Ink at 600 (The Improved Only Rule); a footnote explains any regression. On phones the header row is visually hidden and each row becomes the metric name followed by labelled values in two or three columns.
 
-### Next Case Tile
-Closes a case. A Case Tile variant with 40px padding (28px × 24px on phones): next case name in Title as the stretched link, one Graphite line, and "Next case" with an arrow in Mulberry Ink at the bottom right. Nothing sits above the name. Hover lifts it like a case tile; two plain Ink text links (All work, Back to summary) follow under it.
+### Case End Row
+Closes a case under the final Proof strip, after a hairline. One row of plain text links in Action type (Ink, 500, hairline underline that darkens on hover, 44px tall): "Next case: <name>" with an arrow on the left, "All work" and "Back to summary" on the right. The arrow nudges 4px right on hover. On phones the row wraps: the next case on its own line, the other two below. The next case is a link like the others, not a tile, so the case ends quietly instead of starting another story.
 
 ### Phase Index (signature component)
 The case's own process drawn as its navigation (Double Diamond for Comfy). Each phase is one half of a diamond: diverging phases open downward, converging ones close.

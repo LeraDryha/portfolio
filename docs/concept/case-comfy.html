@@ -139,7 +139,7 @@
   .chapter { display: grid; gap: 22px; scroll-margin-top: 48px; }
   main > *, .chapter > *, .sheet > * { min-width: 0; }
   .chapter > * { max-width: var(--measure); }
-  .chapter > figure, .chapter > .pair, .chapter > .table-wrap, .chapter > .ideas, .chapter > .opener, .chapter > .two-lists, .chapter > .side, .chapter > .proof { max-width: none; }
+  .chapter > figure, .chapter > .pair, .chapter > .table-wrap, .chapter > .ideas, .chapter > .opener, .chapter > .two-lists, .chapter > .side, .chapter > .proof, .chapter > .case-end { max-width: none; }
   .opener { display: grid; gap: 6px; padding-bottom: 8px; }
   .opener h2 { margin: 0; font-weight: 600; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.02; letter-spacing: -.03em; color: var(--ink); }
   .opener p { margin: 0; font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--text); max-width: 36em; }
@@ -205,36 +205,26 @@
   .ideas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .ideas .fig figcaption { display: grid; gap: 4px; }
 
-  /* ---------- Close: next case ---------- */
-  .next {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: 24px;
-    background: var(--tile);
-    border-radius: var(--radius);
-    box-shadow: inset 0 0 0 1px var(--tile-edge);
-    padding: 40px;
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1);
+  /* ---------- Close: one row of text links ---------- */
+  .case-end {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hair);
+    font-size: 15px;
   }
-  .next:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--tile-edge), 0 14px 32px -18px rgba(22,24,29,.28); }
-  .next:focus-within { outline: 2px solid var(--focus); outline-offset: 3px; }
-  .next h2 { margin: 0; font-weight: 600; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.02; letter-spacing: -.03em; color: var(--ink); }
-  .next h2 a { text-decoration: none; }
-  .next h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
-  .next h2 a:focus-visible { outline: none; }
-  .next p { margin: 8px 0 0; max-width: 30em; }
-  .next .go { display: inline-flex; gap: 6px; align-items: center; font-size: 15px; font-weight: 500; color: var(--accent); }
-  .next .go .i { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
-  .next:hover .go .i { transform: translateX(4px); }
-  .after-next { display: flex; gap: 28px; margin-top: 20px; font-size: 15px; }
-  .after-next a { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--hair); }
-  .after-next a:hover { text-decoration-color: currentColor; }
+  .case-end .end-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+  .case-end a { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--hair); }
+  .case-end a:hover { text-decoration-color: currentColor; }
+  .case-end a .i { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
+  .case-end a:hover .i { transform: translateX(4px); }
 
   @media (prefers-reduced-motion: reduce) {
-    .next, .next .go .i, .phase .edge { transition: none; }
-    .next:hover { transform: none; }
+    .case-end a .i, .phase .edge { transition: none; }
+    .case-end a:hover .i { transform: none; }
   }
 
   /* ---------- Prototype controls, not part of the design ---------- */
@@ -301,7 +291,6 @@
     table th[scope="row"] { grid-column: 1 / -1; padding: 0; border: 0; color: var(--ink); font-weight: 500; }
     table td { padding: 0; border: 0; font-size: 15px; }
     table td::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 400; color: var(--quiet); }
-    .next { grid-template-columns: minmax(0, 1fr); padding: 28px 24px; }
   }
 </style>
 
@@ -692,14 +681,10 @@
         <p class="sr-only">In unmoderated Maze tests the success rate rose from 87.5% in iteration 1 to 92.3% in iteration 2, with 10 and 14 tests.</p>
       </div>
 
-      <article class="next">
-        <div>
-          <h2><a href="#">Adtelligent<span class="sr-only">, next case</span></a></h2>
-          <p>Reports and a new overview built around what users check every day.</p>
-        </div>
-        <span class="go" aria-hidden="true">Next case <svg class="i"><use href="#i-arrow"/></svg></span>
-      </article>
-      <div class="after-next"><a href="#">All work</a><a href="#summary">Back to summary</a></div>
+      <nav class="case-end" aria-label="More work">
+        <a href="#">Next case: Adtelligent <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <div class="end-links"><a href="#">All work</a><a href="#summary">Back to summary</a></div>
+      </nav>
     </section>
   </main>
 </div>
