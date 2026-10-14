@@ -326,7 +326,7 @@
       "name": "Brand Marks",
       "kind": "custom",
       "refersTo": "brand-marks",
-      "description": "Logos before a case title in the title's colour, joined by '+'. One-colour SVG masks. Decorative.",
+      "description": "Logos before a case title in the title's colour at rest, original colours on tile hover or focus (multi-colour: original file; single-colour: brand colour), joined by '+'. One-colour SVG masks. Decorative.",
       "html": "<h3 class=\"ds-title\"><span class=\"ds-marks\" aria-hidden=\"true\"><span class=\"ds-mark ds-mark--dot\"></span><span class=\"ds-plus\">+</span><span class=\"ds-mark ds-mark--mono\"></span></span>Comfy</h3>",
       "css": ".ds-title { margin: 0; font: 600 42px/1.02 Geist, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -.03em; color: #16181d; } .ds-marks { display: inline-flex; align-items: center; gap: .22em; margin-right: .22em; vertical-align: -.06em; } .ds-mark { display: block; height: .7em; aspect-ratio: 1; border-radius: 50%; background: currentColor; } .ds-mark--mono { aspect-ratio: 74 / 32; border-radius: 2px; } .ds-plus { font: 400 .45em Geist, sans-serif; color: #656b74; }"
     },
@@ -418,7 +418,7 @@
       "Don't colour a worse or unchanged number in Mulberry Ink.",
       "Don't set a heading's number in the accent.",
       "Don't crop case images to fit a frame; contain them.",
-      "Don't colour logos: they take the title colour."
+      "Don't show logos in colour at rest: they take the title colour and reveal their original colours only on hover."
     ]
   }
 }

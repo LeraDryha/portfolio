@@ -411,7 +411,7 @@ A tile (28px side padding) holding a comparison table with a Voice caption in In
 Closes a case under the final Proof strip, after a hairline. One row of plain text links in Action type (Ink, 500, hairline underline that darkens on hover, 44px tall): "All work" and "Back to summary" on the left, "Next case: <full case title>" with an arrow on the right, the way forward. The arrow nudges 4px right on hover. On phones the row wraps: the two return links first, the next case on its own line below. The next case is a link like the others, not a tile, so the case ends quietly instead of starting another story.
 
 ### Brand Marks
-Logos of the product, client and school sit before a case title, at 0.7em of the title, in the title's own colour (Ink; light in the dark theme). Several logos are joined by a small Pencil "+" (Comfy + Projector: a Projector course whose work was handed over to Comfy). Each logo is a one-colour SVG used as a mask, so one file works in both themes; brand colours are never used. They are decorative (`aria-hidden`); the title names the case. Current set: Prevently, Comfy + Projector, Adtelligent, hubmee (Smart Financial Assistant), Golden Ratio Group (GRG Design System).
+Logos of the product, client and school sit before a case title, at 0.7em of the title. At rest they take the title's own colour (Ink; light in the dark theme), so the tiles stay quiet. When a case tile is hovered or focused (and when the case page title is hovered) they fade to their original colours over 0.35s: multi-colour logos (Prevently, Comfy) show their original file; single-colour brands take their brand colour (Adtelligent #ff0066, hubmee #075f47, light #18d0b1 in the dark theme, Golden Ratio Group #e2a574); Projector, black and white by nature, stays in the title colour. Several logos are joined by a small Pencil "+" (Comfy + Projector: a Projector course whose work was handed over to Comfy). The resting logo is a one-colour SVG mask, so one file works in both themes; original files live in `public/logos/color/`. They are decorative (`aria-hidden`); the title names the case. Current set: Prevently, Comfy + Projector, Adtelligent, hubmee (Smart Financial Assistant), Golden Ratio Group (GRG Design System).
 
 ### Mini Tiles
 Secondary cases ("More work") as small white cards, four in a row (one column on phones): the case name as a stretched link (17px, 600) and its one line (14px Graphite). Same surface, hover lift and focus ring as a case tile, 24px padding, no proof mark.
@@ -458,7 +458,7 @@ On first visit a full-screen curtain shows "Hello", then "Привіт", then a 
 - **Don't** place a label or eyebrow above a title.
 - **Don't** make text quieter with opacity.
 - **Don't** include Russian or Belarusian anywhere, including the greeting.
-- **Don't** colour logos: they take the title colour.
+- **Don't** show logos in colour at rest: they take the title colour and reveal their original colours only on hover.
 - **Don't** colour a worse or unchanged number in Mulberry Ink.
 - **Don't** set a heading's number in the accent.
 - **Don't** crop case images to fit a frame; contain them.

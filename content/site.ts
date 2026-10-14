@@ -10,7 +10,8 @@ export type Proof =
   | { kind: "hero"; mark: string; cap: string; sr: string };
 
 /** A logo beside a case title, drawn in the title's colour. src is a one-colour SVG used as a mask; ratio is width / height. */
-export type Mark = { src: string; ratio: string };
+/** Logo beside a title: one-colour mask, plus how it looks on hover (original file or brand colour). */
+export type Mark = { src: string; ratio: string; art?: string; color?: string };
 
 export type CaseEntry = {
   slug: string;
@@ -48,7 +49,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "Prevently",
     desc: "A personal preventive-care planner for women. Research, design and build, from idea to App Store, solo.",
     meta: "Personal product · iOS and Android",
-    marks: [{ src: "/logos/prevently.svg", ratio: "1 / 1" }],
+    marks: [{ src: "/logos/prevently.svg", ratio: "1 / 1", art: "/logos/color/prevently.svg" }],
     notionUrl: "https://preventlyapp.com",
     appStoreUrl:
       "https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262",
@@ -66,7 +67,7 @@ export const featured: CaseEntry[] = [
     desc: "Redesigned the credit order flow to grow its share of orders.",
     meta: "2024 · E-commerce · Projector course, handed over to Comfy",
     marks: [
-      { src: "/logos/comfy.svg", ratio: "33 / 36" },
+      { src: "/logos/comfy.svg", ratio: "33 / 36", art: "/logos/color/comfy.svg" },
       { src: "/logos/projector.svg", ratio: "74 / 32" },
     ],
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
@@ -83,7 +84,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "Solutions for Adtelligent (AdTech B2B SaaS platform)",
     desc: "Reports and a new overview built around what users check every day.",
     meta: "2025 · AdTech B2B SaaS",
-    marks: [{ src: "/logos/adtelligent.svg", ratio: "1 / 1" }],
+    marks: [{ src: "/logos/adtelligent.svg", ratio: "1 / 1", color: "var(--brand-adtelligent)" }],
     notionUrl: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
     proof: {
       kind: "words",
@@ -98,7 +99,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "From Transaction Log to Smart Financial Assistant",
     desc: "Turning a transaction log into an assistant people come back to.",
     meta: "2024 · Fintech · US market",
-    marks: [{ src: "/logos/hubmee.svg", ratio: "38.92 / 38.06" }],
+    marks: [{ src: "/logos/hubmee.svg", ratio: "38.92 / 38.06", color: "var(--brand-hubmee)" }],
     notionUrl: "https://app.notion.com/p/From-Transaction-Log-to-Smart-Financial-Assistant-24244bdcbfce8040876dfe857d29eb36",
     proof: { kind: "quote", mark: "“I connected my accounts… and then what?”", cap: "a user, before the redesign" },
   },
@@ -108,7 +109,7 @@ export const featured: CaseEntry[] = [
     fullTitle: "GRG Design System",
     desc: "A large design system with detailed component specs, plus a Storybook built from scratch.",
     meta: "Design system · Storybook",
-    marks: [{ src: "/logos/grg.svg", ratio: "159 / 104.3" }],
+    marks: [{ src: "/logos/grg.svg", ratio: "159 / 104.3", color: "var(--brand-grg)" }],
     proof: { kind: "specimen" },
   },
 ];
