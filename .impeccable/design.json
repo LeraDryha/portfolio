@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T12:00:00Z",
+  "generatedAt": "2026-10-14T16:30:00Z",
   "title": "Design System: Lera Dryha Portfolio",
   "extensions": {
     "colorMeta": {
@@ -109,6 +109,11 @@
       "night-focus": {
         "role": "neutral",
         "displayName": "Night Focus"
+      },
+      "brand-adtelligent": {
+        "role": "neutral",
+        "displayName": "Brand Adtelligent",
+        "canonical": "#ff0066"
       }
     },
     "typographyMeta": {
@@ -321,6 +326,14 @@
       "description": "Closing row of plain text links: All work and Back to summary on the left, Next case with the full case title on the right.",
       "html": "<nav class=\"ds-end\" aria-label=\"More work\"><div class=\"ds-end-links\"><a href=\"#\">All work</a><a href=\"#\">Back to summary</a></div><a class=\"ds-next\" href=\"#\">Next case: Solutions for Adtelligent (AdTech B2B SaaS platform) <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2.5 8h10M8.5 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></nav>",
       "css": ".ds-end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; padding-top: 28px; border-top: 1px solid #e1e2df; font: 500 15px/1.4 Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-end-links { display: flex; flex-wrap: wrap; gap: 12px 28px; } .ds-end a { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; color: #16181d; text-decoration: underline; text-decoration-color: #e1e2df; text-underline-offset: 3px; } .ds-end a:hover { text-decoration-color: currentColor; } .ds-end a svg { transition: transform .25s cubic-bezier(.2,.7,.2,1); } .ds-end a:hover svg { transform: translateX(4px); } .ds-end a:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; } .ds-end .ds-next { margin-left: auto; text-align: right; }"
+    },
+    {
+      "name": "Brand Marks",
+      "kind": "custom",
+      "refersTo": "brand-marks",
+      "description": "Logos before a case title, joined by '+'. Grey on home tiles at rest, own colours on hover; always in colour on the case page. Decorative.",
+      "html": "<h3 class=\"ds-title\"><span class=\"ds-marks\" aria-hidden=\"true\"><span class=\"ds-mark ds-mark--dot\"></span><span class=\"ds-plus\">+</span><span class=\"ds-mark ds-mark--mono\"></span></span>Comfy</h3>",
+      "css": ".ds-title { margin: 0; font: 600 42px/1.02 Geist, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -.03em; color: #16181d; } .ds-marks { display: inline-flex; align-items: center; gap: .22em; margin-right: .22em; vertical-align: -.06em; } .ds-mark { display: block; height: .7em; aspect-ratio: 1; border-radius: 50%; background: #43b02a; filter: grayscale(1); opacity: .6; transition: filter .35s cubic-bezier(.2,.7,.2,1), opacity .35s cubic-bezier(.2,.7,.2,1); } .ds-mark--mono { aspect-ratio: 74 / 32; border-radius: 2px; background: #656b74; filter: none; } .ds-plus { font: 400 .45em Geist, sans-serif; color: #656b74; } .ds-title:hover .ds-mark { filter: none; opacity: 1; } .ds-title:hover .ds-mark--mono { background: #16181d; }"
     }
   ],
   "narrative": {
@@ -401,7 +414,8 @@
       "Don't include Russian or Belarusian anywhere, including the greeting.",
       "Don't colour a worse or unchanged number in Mulberry Ink.",
       "Don't set a heading's number in the accent.",
-      "Don't crop case images to fit a frame; contain them."
+      "Don't crop case images to fit a frame; contain them.",
+      "Don't use a logo's brand colour for anything but the logo itself."
     ]
   }
 }

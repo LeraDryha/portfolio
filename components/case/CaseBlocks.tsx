@@ -115,7 +115,7 @@ export function TileLists({ lists }: { lists: { title: string; items: string[] }
     <div className="tile-lists is-wide">
       {lists.map((l) => (
         <section className="tile tile--list" key={l.title}>
-          <h4 className="voice-title">{l.title}</h4>
+          <h3 className="voice-title">{l.title}</h3>
           <ul>
             {l.items.map((i) => (
               <li key={i}>{i}</li>
