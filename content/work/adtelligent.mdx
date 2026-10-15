@@ -1,36 +1,86 @@
 export const meta = {
   heading: "Adtelligent: reports built around what users check every day",
-  lead: "Reports and a new overview for an AdTech B2B SaaS platform. The focus was on uncovering users’ pains and gains and crafting design solutions that improve their workflow and the product experience.",
+  lead: "Reports for an AdTech B2B SaaS platform. I focused on uncovering users’ pains and gains and crafted design solutions to improve their workflow and the overall product experience.",
   facts: [
     { label: "Year", value: "2025" },
-    { label: "Domain", value: "AdTech B2B SaaS" },
+    { label: "Product", value: "AdTech B2B SaaS platform" },
+    { label: "Scope", value: "Reports: structure, overview, saved reports, report builder" },
   ],
-  proof: { mark: "Ad Requests · eCPM", cap: "what users open the platform for, every day" },
+  proof: { mark: "Ad Requests · eCPM", cap: "what users log in to check, every day" },
 };
 
-## My reports
+<Figure src="/work/adtelligent/r01.jpg" width={1600} height={892} alt="The redesigned reports overview on a laptop, with charts and a data table." caption="The redesigned reports." priority />
 
-<Figure src="/work/adtelligent/a01.jpg" width={1600} height={1075} alt="My Reports in a grid view with large report cards." caption="My Reports in a grid view." />
+## Reports information architecture
 
-For testing:
+Reports were rebuilt around three places: an Overview for the daily check, Statistic API Access, and My Reports for saved, template and scheduled reports, each with a clear way to create a new one.
 
-- In a grid view, larger cards let users scan key information from report previews and find the right report faster.
-- Actions can sit right on the card, hide in a context menu, or both: frequent actions such as Edit or Export stay visible, less common ones go into the menu.
+<Figure src="/work/adtelligent/r02.jpg" width={1600} height={755} alt="Map of the updated reports structure: Overview with charts, table and create report; Statistic API Access; My Reports with favourites, templates, current and scheduled reports, and create report." caption="Updated reports information architecture." />
+
+## Overview
+
+### What users need
+
+Users log in every day to check the volume of Ad Requests, Ad Opportunities and Impressions, and ad spend (Spent and eCPM), broken down by campaigns, sites and countries.
+
+### Ideas
+
+- A dedicated Overview page for quick data visualisation: charts are easier and faster to read than tables.
+- Flexible chart filters: by campaigns, sites and countries, plus dates.
+- The usual data table on the overview, with quick view settings and export.
+- Sorting icons on table pills, so users see the available actions right away.
+
+<Figure src="/work/adtelligent/r03.jpg" width={1600} height={1075} alt="Overview page with filters, line charts for volumes and spend, and a data table." caption="Overview: charts first, the table under them." />
+
+<FigurePair>
+  <HalfFigure src="/work/adtelligent/r04.jpg" width={1600} height={858} alt="The charts block of the overview: volumes and spend." title="Charts" caption="Volumes and spend as separate charts." />
+  <HalfFigure src="/work/adtelligent/r05.jpg" width={1600} height={858} alt="Edit columns menu with checkboxes for metrics." title="Table" caption="Columns chosen in one menu." />
+</FigurePair>
+
+## My Reports
+
+### What users need
+
+- A convenient way to save reports and add them to favourites for quick access to important data.
+- Ready-made report sets (templates) to create new reports from proven setups.
+- Navigation between report types: current reports, including saved ones, and scheduled reports sent by email.
+
+### Ideas
+
+- A dedicated reports page with grouping, search and filters.
+- A Create report button that starts from a saved report or a template.
+- A list and grid switch, for easier scanning of the reports.
+
+<FigurePair>
+  <HalfFigure src="/work/adtelligent/r06.jpg" width={1600} height={1075} alt="My Reports in a list view with tabs for favourites, templates, current and scheduled reports." title="List view" caption="Tabs by report type, search and filters." />
+  <HalfFigure src="/work/adtelligent/r07.jpg" width={1600} height={1075} alt="My Reports in a grid view with report preview cards." title="Grid view" caption="Report previews, actions in a menu." />
+</FigurePair>
+
+<Statement>To test: larger cards in the grid view, so people scan report previews and find the right report faster; and frequent actions such as Edit or Export kept on the card, with the rest in a menu.</Statement>
+
+<Figure src="/work/adtelligent/r08.jpg" width={1600} height={1075} alt="Grid view with larger report cards and an actions menu open." caption="Larger cards, with actions on the card and in a menu." />
 
 ## Creating a report
 
-When creating a new report, the user wants to visualise table data after applying filters, manage and customise tables and charts, and save and export reports.
+### What users need
 
-- Instead of showing all metrics mixed together in one table, group them by context into separate charts: volumes (Ad Requests, Ad Opportunities, Impressions), money (Spent, eCPM) and percentages (Fill Rate by Ad Requests and by Ad Opportunities).
-- Let users name a report right when they create it, so the list isn’t full of “New Report”.
+When creating a report, users want to visualise the table after applying filters, manage and customise tables and charts, and save and export the report.
 
-<Figure src="/work/adtelligent/a02.jpg" width={1600} height={1075} alt="Creating a report, first version." caption="Creating a report, first version." />
+### Ideas
 
-- A side panel brings all table settings into one place: columns, metrics and filter pills, so users see and change every parameter at once.
-- A plus next to each section title follows the pattern of most systems with complex configuration. Selected filters move to the top of the list, so applied parameters are easy to review.
+- Group metrics by meaning into separate charts instead of one mixed table: volumes (Ad Requests, Ad Opportunities, Impressions), money (Spent, eCPM) and percentages (Fill Rate by Ad Requests and by Ad Opportunities).
+- Let people name a report as they create it, so the list isn’t full of “New Report”.
 
-<Figure src="/work/adtelligent/report.jpg" width={1600} height={1479} alt="Report with charts grouped by metric type and a settings side panel." caption="Charts grouped by metric type, settings in a side panel." />
+<Figure src="/work/adtelligent/r09.jpg" width={1600} height={1075} alt="Report builder: a table with a settings panel on the right." caption="Report builder, first version." />
 
-For testing: adding metrics and options with a “Plus” button keeps unused elements hidden and the interface cleaner.
+- A side panel brings every table setting into one place: columns, metrics and filter pills, so people see and change all parameters at once.
+- A plus next to each section title follows the pattern of most systems with complex settings. Selected filters move to the top of the list, so applied parameters are easy to review.
 
-<Figure src="/work/adtelligent/a04.jpg" width={1600} height={1075} alt="Creating a report, second version with a Plus button for metrics." caption="Creating a report, second version." />
+<Figure src="/work/adtelligent/report.jpg" width={1600} height={1479} alt="Report with charts grouped by metric type, a data table and the settings side panel." caption="Charts grouped by what they measure, settings in one panel." />
+
+<Statement>To test: adding metrics and options with a “Plus” button keeps unused settings hidden and the interface cleaner.</Statement>
+
+<FigurePair>
+  <HalfFigure src="/work/adtelligent/r11.jpg" width={1600} height={1075} alt="Adding a filter with the Plus button and a search field." title="Adding a filter" caption="Plus opens a searchable list." />
+  <HalfFigure src="/work/adtelligent/r12.jpg" width={1600} height={1075} alt="Applied country filters shown at the top of the panel." title="Applied filters" caption="Selected filters stay on top." />
+</FigurePair>
