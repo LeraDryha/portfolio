@@ -460,6 +460,12 @@
 .intro__title em { display: block; font-family: var(--font-serif); font-style: italic; font-weight: var(--weight-regular); color: var(--color-accent); letter-spacing: var(--tracking-voice); }
 .intro__text { margin: var(--space-0); color: var(--color-graphite); }
 
+/* Text tile: a title and a line at the bottom-left; an arrow action on hover (Learning) */
+.text-tile { justify-content: flex-end; gap: var(--space-4); padding: var(--space-22) var(--space-24); }
+.text-tile__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-proof-small); line-height: var(--leading-proof); letter-spacing: var(--tracking-proof); }
+.text-tile__line { color: var(--color-pencil); font-size: var(--text-label); }
+.text-tile:hover .act, .text-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
+
 /* Logo tiles (email, LinkedIn, Medium); a round action appears on hover */
 .logo-tile { align-items: center; justify-content: center; border: none; font: inherit; cursor: pointer; }
 .logo-yahoo { font: var(--weight-heavy) var(--text-yahoo) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-yahoo); }
@@ -704,6 +710,7 @@
   .logo-yahoo { font-size: var(--text-yahoo-phone); }
   .logo-linkedin { font-size: var(--text-linkedin-phone); }
   .logo-medium { width: var(--size-medium-phone); height: var(--size-medium-phone); }
+  .text-tile { padding: var(--space-18); }
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
   .pin__note { width: var(--size-note-phone); font-size: var(--text-micro); }

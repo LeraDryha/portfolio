@@ -219,7 +219,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 ## Layout
 
 - **Top bar** (sticky, frosted page colour): the mark on the left (back to the top), the filter in the centre, the theme switch on the right. On phones the filter drops to a second row.
-- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Order: intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) with Comfy (2 × 2) and GRG (2 wide, text left, spec right) beside it; Adtelligent (2 × 2), Smart Financial Assistant (1 × 2), Medium (1 × 2). At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
+- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Order: intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) with Comfy (2 × 2) and GRG (2 wide, text left, spec right) beside it; Adtelligent (2 × 2), Smart Financial Assistant (1 × 2), and Medium over Learning (1 × 1 each). At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
 - **More work**: a pill under the bento opens four small cards in a row (2 on tablets, 1 on phones).
 - **Case page**: no top bar. A round close button top right (Esc does the same) returns to the tile; the hero (the tile's product, 280–480px tall) sits on top; one reading column below; a back-to-top button appears after scrolling. The page ends with "All work" on the left and "Next case: <title> →" on the right.
 - **Figures in a row** share one 4:3 image area so captions line up; any card with an image, a title and a line follows this rule.
@@ -252,6 +252,9 @@ A Figma cursor with a name tag in the person's colour. They arrive when their ti
 
 ### Logo Tiles
 Yahoo (copies the email, "Email copied" toast), LinkedIn and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
+
+### Text Tile
+Learning: a title (21px, ink) and a line (Pencil) at the bottom-left, an arrow action on hover; it opens the Learning page (courses and certificates). Filtered under About.
 
 ### Filter and Theme
 Pill segmented control: All / About / Work / Writing hides and shows tiles with a soft transition; More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.

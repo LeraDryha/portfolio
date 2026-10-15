@@ -15,6 +15,9 @@ export function IconSprite() {
       <symbol id="i-out" viewBox="0 0 20 20">
         <path d="M11 3h6v6M17 3l-8 8M15 12v3.5A1.5 1.5 0 0 1 13.5 17h-9A1.5 1.5 0 0 1 3 15.5v-9A1.5 1.5 0 0 1 4.5 5H8" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
       </symbol>
+      <symbol id="i-arrow" viewBox="0 0 20 20">
+        <path d="M4 10h11M11 5.5 15.5 10 11 14.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      </symbol>
       <symbol id="i-close" viewBox="0 0 20 20">
         <path d="M8 3v5H3M12 17v-5h5M8 8 3 3M12 12l5 5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
       </symbol>
@@ -36,7 +39,7 @@ export function IconSprite() {
   );
 }
 
-export type IconName = "mark" | "cursor" | "copy" | "out" | "close" | "up" | "auto" | "light" | "dark";
+export type IconName = "mark" | "cursor" | "copy" | "out" | "arrow" | "close" | "up" | "auto" | "light" | "dark";
 
 export function Icon({ name }: { name: IconName }) {
   return (

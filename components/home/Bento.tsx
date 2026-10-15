@@ -66,7 +66,7 @@ export function Bento() {
           <CaseTile key={c.slug} entry={c} />
         ))}
 
-        <a className="tile tile--h2 logo-tile" data-cat="writing" href={person.medium} target="_blank" rel="noopener" aria-label="Articles on Medium">
+        <a className="tile logo-tile" data-cat="writing" href={person.medium} target="_blank" rel="noopener" aria-label="Articles on Medium">
           <svg className="logo-medium" viewBox="0 0 48 48" aria-hidden="true">
             <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
             <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
@@ -74,6 +74,13 @@ export function Bento() {
           </svg>
           <span className="act" aria-hidden="true"><Icon name="out" /></span>
           <NewTab />
+          <Selection />
+        </a>
+
+        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
+          <span className="text-tile__title">Learning</span>
+          <span className="text-tile__line">Courses and certificates</span>
+          <span className="act" aria-hidden="true"><Icon name="arrow" /></span>
           <Selection />
         </a>
       </div>
