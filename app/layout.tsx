@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { IconSprite } from "@/components/shell/Icons";
-import { ShellBehavior } from "@/components/shell/ShellBehavior";
+import { themeScript } from "@/components/shell/theme";
 import "../ui/kit.css";
 import "./globals.css";
 
 const geist = Geist({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-geist",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-geist-mono",
 });
 
 const newsreader = Newsreader({
@@ -27,11 +33,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${newsreader.variable}`} suppressHydrationWarning>
+      <head>
+        <script id="theme-gate" dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="page">
         <IconSprite />
         {children}
-        <ShellBehavior />
         <Analytics />
       </body>
     </html>

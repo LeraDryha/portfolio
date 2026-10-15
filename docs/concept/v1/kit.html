@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* Showcase chrome only (layout of this catalogue). Uses kit tokens, adds no new values
+     except the catalogue's own frame sizes below. Not part of the kit. */
+  :root { --kitdoc-col: 280px; --kitdoc-iframe-h: 640px; --kitdoc-iframe-m: 390px; }
+  .kd { max-width: var(--layout-max); margin: 0 auto; padding: var(--space-48) var(--gutter-right) var(--space-120) var(--gutter); display: grid; gap: var(--space-80); }
+  .kd-head { display: grid; gap: var(--space-16); max-width: var(--layout-measure); }
+  .kd-head h1 { margin: 0; font-weight: var(--weight-semibold); font-size: var(--text-title); line-height: var(--leading-title); letter-spacing: var(--tracking-display); color: var(--color-ink); }
+  .kd-head p { margin: 0; }
+  .kd-bar { position: sticky; top: var(--safe-top); z-index: var(--z-sticky); display: flex; flex-wrap: wrap; gap: var(--space-8) var(--space-16); align-items: center; padding-block: var(--space-12); background: var(--color-paper); border-bottom: var(--size-hairline) solid var(--color-hairline); }
+  .kd-bar nav { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-16); }
+  .kd-bar nav a { font-family: var(--font-serif); font-style: italic; color: var(--color-pencil); text-decoration: none; }
+  .kd-bar nav a:hover { color: var(--color-ink); }
+  .kd-theme { margin-left: auto; display: flex; gap: var(--space-4); }
+  .kd-theme .pill[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+  .kd-group { display: grid; gap: var(--space-40); scroll-margin-top: var(--space-80); }
+  .kd-group > h2 { margin: 0; padding-top: var(--space-24); border-top: var(--size-hairline) solid var(--color-hairline); font-weight: var(--weight-semibold); font-size: var(--text-title); line-height: var(--leading-title); letter-spacing: var(--tracking-display); color: var(--color-ink); }
+  .kd-item { display: grid; grid-template-columns: var(--kitdoc-col) var(--layout-col-1); gap: var(--space-32); align-items: start; }
+  .kd-item > header { display: grid; gap: var(--space-6); position: sticky; top: var(--space-80); }
+  .kd-item--wide { grid-template-columns: var(--layout-col-1); }
+  .kd-item--wide > header { position: static; max-width: var(--layout-measure); }
+  .kd-item > header h3 { margin: 0; font-size: var(--text-body); font-weight: var(--weight-semibold); color: var(--color-ink); }
+  .kd-item > header code, .kd-code, .kd-scale code { font-family: var(--font-sans); font-size: var(--text-label); color: var(--color-pencil); }
+  .kd-item header p { margin: 0; font-size: var(--text-caption); line-height: var(--leading-caption); }
+  .kd-demo { display: grid; gap: var(--space-16); min-width: 0; }
+  .kd-row { display: flex; flex-wrap: wrap; gap: var(--space-16) var(--space-32); align-items: center; }
+  .kd-state { display: grid; gap: var(--space-8); justify-items: start; }
+  .kd-state > small { font-size: var(--text-micro); color: var(--color-pencil); letter-spacing: var(--tracking-label); }
+  .kd-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--layout-stat-min), 1fr)); gap: var(--space-12); }
+  .kd-swatch { display: grid; gap: var(--space-6); font-size: var(--text-label); }
+  .kd-swatch i { display: block; height: var(--size-tap); border-radius: var(--radius-image); box-shadow: inset 0 0 0 var(--size-hairline) var(--color-hairline); }
+  .kd-scale { display: grid; gap: var(--space-10); }
+  .kd-scale div { display: grid; grid-template-columns: var(--kitdoc-col) var(--layout-col-1); gap: var(--space-16); align-items: baseline; min-width: 0; }
+  .kd-scale span:last-child { min-width: 0; overflow-wrap: anywhere; }
+  .kd-space { display: flex; gap: var(--space-12); align-items: center; font-size: var(--text-label); }
+  .kd-space b { display: block; height: var(--space-12); background: var(--color-accent); border-radius: var(--radius-focus); }
+  .kd-frame { width: var(--size-full); height: var(--kitdoc-iframe-h); border: var(--size-hairline) solid var(--color-hairline); border-radius: var(--radius-tile); background: var(--color-paper); }
+  .kd-frame--m { width: var(--kitdoc-iframe-m); max-width: var(--size-full); }
+  .kd-frames { display: flex; flex-wrap: wrap; gap: var(--space-16); align-items: start; }
+  .kd-frames > div { display: grid; gap: var(--space-8); min-width: 0; flex: 1 1 var(--size-full); }
+  .kd-frames > div.kd-m { flex: 0 0 var(--kitdoc-iframe-m); max-width: var(--size-full); }
+  .kd-narrow { max-width: var(--layout-measure); }
+  .kd-index-demo { position: static; }
+  .kd-dashed { border: var(--size-hairline) dashed var(--color-hairline); border-radius: var(--radius-tile); padding: var(--space-16); }
+  .kd-list { margin: 0; padding-left: var(--space-list-indent); display: grid; gap: var(--space-6); }
+  @media (max-width: 860px) {
+    .kd { padding: var(--space-24) var(--gutter-mobile-right) var(--space-96) var(--gutter-mobile); gap: var(--space-56); }
+    .kd-item { grid-template-columns: var(--layout-col-1); }
+    .kd-item > header { position: static; }
+    .kd-scale div { grid-template-columns: var(--layout-col-1); gap: var(--space-2); }
+    .kd-theme { margin-left: 0; }
+  }
+</style>
+</head>
+<body class="page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M2.5 8h10M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11l6-6M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <clipPath id="cl-div"><polygon points="22,1 43,33 1,33"/></clipPath>
+  <clipPath id="cl-con"><polygon points="1,1 43,1 22,33"/></clipPath>
+</svg>
+
+<div class="curtain" id="curtain" aria-hidden="true"><div class="curtain__word" id="word">Hello</div></div>
+
+<div class="kd">
+  <header class="kd-head">
+    <h1>UI kit</h1>
+    <p>Кожен компонент сайту з усіма станами, на одному файлі стилів <code class="kd-code">ui/kit.css</code>. Усі значення беруться зі змінних у <code class="kd-code">:root</code>. Стани наведення й фокусу показані статично класами <code class="kd-code">.is-hover</code> і <code class="kd-code">.is-focus</code>; наживо вони спрацьовують від миші й клавіатури. Порядок груп — як в <code class="kd-code">ui/inventory.md</code>.</p>
+  </header>
+
+  <div class="kd-bar">
+    <nav aria-label="Розділи вітрини">
+      <a href="#tokens">токени</a>
+      <a href="#shell">оболонка</a>
+      <a href="#nav">навігація</a>
+      <a href="#cards">картки й списки</a>
+      <a href="#forms">форми</a>
+      <a href="#feedback">зворотний зв'язок</a>
+      <a href="#once">разове</a>
+    </nav>
+    <div class="kd-theme" role="group" aria-label="Тема">
+      <button class="pill" type="button" data-theme-v="auto" aria-pressed="true">Авто</button>
+      <button class="pill" type="button" data-theme-v="light" aria-pressed="false">Світла</button>
+      <button class="pill" type="button" data-theme-v="dark" aria-pressed="false">Темна</button>
+    </div>
+  </div>
+
+  <!-- ============================== TOKENS ============================== -->
+  <section class="kd-group" id="tokens" aria-labelledby="g-tokens">
+    <h2 id="g-tokens">Токени</h2>
+
+    <div class="kd-item">
+      <header><h3>Кольори</h3><p>Перемкніть тему вгорі: ті самі назви, нічні значення.</p></header>
+      <div class="kd-demo kd-swatches">
+        <div class="kd-swatch"><i style="background:var(--color-accent)"></i>Mulberry Ink<br><code>--color-accent</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-accent-soft)"></i>Accent soft<br><code>--color-accent-soft</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-paper)"></i>Paper<br><code>--color-paper</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-tile)"></i>Tile<br><code>--color-tile</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-ink)"></i>Ink<br><code>--color-ink</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-graphite)"></i>Graphite<br><code>--color-graphite</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-pencil)"></i>Pencil<br><code>--color-pencil</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-hairline)"></i>Hairline<br><code>--color-hairline</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-focus)"></i>Focus<br><code>--color-focus</code></div>
+        <div class="kd-swatch"><i style="background:var(--color-tile-edge)"></i>Tile edge (dark)<br><code>--color-tile-edge</code></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Шрифти й розміри</h3><p>Geist — впевнений голос, Newsreader курсивом — тихий. Розміри в clamp() гумові.</p></header>
+      <div class="kd-demo kd-scale">
+        <div><code>--text-display</code><span style="font-size:var(--text-display);font-weight:var(--weight-semibold);letter-spacing:var(--tracking-display);line-height:var(--leading-display);color:var(--color-ink)">Display</span></div>
+        <div><code>--text-headline</code><span class="headline">Headline</span></div>
+        <div><code>--text-title</code><span class="opener__title">Title</span></div>
+        <div><code>--text-proof</code><span class="proof__mark">75% → 100%</span></div>
+        <div><code>--text-voice-quote</code><span class="voice-accent" style="font-size:var(--text-voice-quote);line-height:var(--leading-quote)">“A quote”</span></div>
+        <div><code>--text-stat</code><span class="stat__value">178 / 385</span></div>
+        <div><code>--text-subhead</code><span class="subhead" style="margin:0">Subhead</span></div>
+        <div><code>--text-lead</code><span class="lead">Lead paragraph</span></div>
+        <div><code>--text-voice</code><span class="voice-title">Voice title</span></div>
+        <div><code>--text-voice-note</code><span class="note">Voice note</span></div>
+        <div><code>--text-reading / --text-body</code><span>Body 17 / 16px, line-height 1.6</span></div>
+        <div><code>--text-action</code><span style="font-size:var(--text-action);font-weight:var(--weight-medium);color:var(--color-ink)">Action 15px</span></div>
+        <div><code>--text-caption</code><span class="stat__cap">Caption 14px</span></div>
+        <div><code>--text-label</code><span class="label">Label 13px</span></div>
+        <div><code>--text-micro</code><span style="font-size:var(--text-micro);color:var(--color-pencil)">Micro 12px (phone table labels)</span></div>
+        <div><code>--text-tag</code><span><span class="tag">UA</span></span></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Відступи</h3><p>Шкала <code>--space-*</code>; назва — значення в пікселях.</p></header>
+      <div class="kd-demo kd-scale">
+        <div class="kd-space"><code>--space-4</code><b style="width:var(--space-4)"></b></div>
+        <div class="kd-space"><code>--space-8</code><b style="width:var(--space-8)"></b></div>
+        <div class="kd-space"><code>--space-12</code><b style="width:var(--space-12)"></b></div>
+        <div class="kd-space"><code>--space-16</code><b style="width:var(--space-16)"></b></div>
+        <div class="kd-space"><code>--space-22</code><b style="width:var(--space-22)"></b></div>
+        <div class="kd-space"><code>--space-28</code><b style="width:var(--space-28)"></b></div>
+        <div class="kd-space"><code>--space-36</code><b style="width:var(--space-36)"></b></div>
+        <div class="kd-space"><code>--space-56</code><b style="width:var(--space-56)"></b></div>
+        <div class="kd-space"><code>--space-80</code><b style="width:var(--space-80)"></b></div>
+        <div class="kd-space"><code>--space-104</code><b style="width:var(--space-104)"></b></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Кути, тіні, рух</h3><p>Плоско в спокої; тінь лише при наведенні на плитку-посилання.</p></header>
+      <div class="kd-demo kd-row">
+        <div class="kd-state"><small>--radius-tile 22px</small><div class="tile tile--block" style="width:var(--space-104);height:var(--space-80)"></div></div>
+        <div class="kd-state"><small>--radius-image 12px</small><div style="width:var(--space-104);height:var(--space-80);border-radius:var(--radius-image);background:var(--color-hairline)"></div></div>
+        <div class="kd-state"><small>--radius-pill</small><span class="pill" style="display:inline-grid;place-items:center">Pill</span></div>
+        <div class="kd-state"><small>--shadow-lift</small><div class="tile" style="width:var(--space-104);height:var(--space-80);box-shadow:var(--shadow-lift)"></div></div>
+        <div class="kd-state"><small>Рух</small><span class="stat__cap">--ease-out · 0.35s підйом · 0.25s стрілка · 0.8s завіса</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SHELL ============================== -->
+  <section class="kd-group" id="shell" aria-labelledby="g-shell">
+    <h2 id="g-shell">Оболонка</h2>
+    <div class="kd-item kd-item--wide">
+      <header><h3>Головна</h3><p>Покажчик зліва з лінією; на телефоні — липкий рядок угорі. Розмітка: <code>ui/shell.html</code>. Прокрутіть усередині рамки — поточний розділ підсвічується.</p></header>
+      <div class="kd-demo kd-frames">
+        <div><small class="label">Комп'ютер</small><iframe class="kd-frame" src="shell.html#home" title="Оболонка головної, комп'ютер"></iframe></div>
+        <div class="kd-m"><small class="label">Телефон, 390px</small><iframe class="kd-frame kd-frame--m" src="shell.html#home" title="Оболонка головної, телефон"></iframe></div>
+      </div>
+    </div>
+    <div class="kd-item kd-item--wide">
+      <header><h3>Кейс</h3><p>Ширший покажчик з етапами-ромбами; на телефоні — липка панель з горизонтальними ромбами й назвою етапу.</p></header>
+      <div class="kd-demo kd-frames">
+        <div><small class="label">Комп'ютер</small><iframe class="kd-frame" src="shell.html#case" title="Оболонка кейсу, комп'ютер"></iframe></div>
+        <div class="kd-m"><small class="label">Телефон, 390px</small><iframe class="kd-frame kd-frame--m" src="shell.html#case" title="Оболонка кейсу, телефон"></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== NAVIGATION ============================== -->
+  <section class="kd-group" id="nav" aria-labelledby="g-nav">
+    <h2 id="g-nav">Навігація</h2>
+
+    <div class="kd-item">
+      <header><h3>Покажчик-навігація</h3><code>.index · .index__link</code><p>Головна і кейс.</p></header>
+      <div class="kd-demo kd-row">
+        <div class="kd-state"><small>спокій</small><a class="index__link" href="#nav">writing</a></div>
+        <div class="kd-state"><small>наведення</small><a class="index__link is-hover" href="#nav">writing</a></div>
+        <div class="kd-state"><small>поточний розділ</small><a class="index__link" href="#nav" aria-current="location">work</a></div>
+        <div class="kd-state"><small>фокус</small><a class="index__link is-focus" href="#nav">contact</a></div>
+        <div class="kd-state"><small>назад</small><a class="index__link index__back" href="#nav"><svg class="icon icon--back" aria-hidden="true"><use href="#i-arrow"/></svg>work</a></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Покажчик етапів</h3><code>.phases · .phase · .phase__fill</code><p>Кейс (усі). Половинка ромба на етап; заливка росте разом із прочитаним.</p></header>
+      <div class="kd-demo kd-row">
+        <div class="kd-state"><small>непрочитано</small>
+          <a class="index__link phase" href="#nav">discover<svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="22,1 43,33 1,33"/></svg></a></div>
+        <div class="kd-state"><small>читається (40%)</small>
+          <a class="index__link phase" href="#nav" aria-current="location">define<svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="phase__fill" x="0" y="0" width="44" height="13.6"/></g><polygon class="phase__edge" points="1,1 43,1 22,33"/></svg></a></div>
+        <div class="kd-state"><small>прочитано</small>
+          <a class="index__link phase is-done" href="#nav">develop<svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-div)"><rect class="phase__fill" x="0" y="0" width="44" height="34"/></g><polygon class="phase__edge" points="22,1 43,33 1,33"/></svg></a></div>
+        <div class="kd-state"><small>фокус</small>
+          <a class="index__link phase is-focus" href="#nav">deliver<svg class="phase__shape" viewBox="0 0 44 34" aria-hidden="true"><g clip-path="url(#cl-con)"><rect class="phase__fill" x="0" y="0" width="44" height="0"/></g><polygon class="phase__edge" points="1,1 43,1 22,33"/></svg></a></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Текстове посилання-дія</h3><code>.link · --muted · --plain · --accent · --nudge · --tap</code><p>Головна і кейс.</p></header>
+      <div class="kd-demo">
+        <div class="kd-row">
+          <div class="kd-state"><small>.link спокій</small><a class="link" href="#nav">All work</a></div>
+          <div class="kd-state"><small>наведення</small><a class="link is-hover" href="#nav">All work</a></div>
+          <div class="kd-state"><small>фокус</small><a class="link is-focus" href="#nav">All work</a></div>
+          <div class="kd-state"><small>зовнішнє</small><a class="link" href="#nav">LinkedIn<span class="sr-only"> (opens in a new tab)</span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-state"><small>.link--nudge спокій</small><a class="link link--nudge" href="#nav">Next case <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="kd-state"><small>наведення (стрілка зсувається)</small><a class="link link--nudge is-hover" href="#nav">Next case <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="kd-state"><small>.link--muted</small><a class="link link--muted" href="#nav">App Store<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+          <div class="kd-state"><small>--muted наведення</small><a class="link link--muted is-hover" href="#nav">App Store<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a></div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-state"><small>.link--plain спокій</small><a class="link link--plain" href="#nav">Task Creation Reimagined</a></div>
+          <div class="kd-state"><small>--plain наведення</small><a class="link link--plain is-hover" href="#nav">Task Creation Reimagined</a></div>
+          <div class="kd-state"><small>.link--accent (декоративне в плитці)</small><span class="link--accent" style="font-size:var(--text-action)">View case <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Рядок завершення кейсу</h3><code>.case-end</code><p>Кейс (усі). На сторінці стоїть на 120px нижче за останній блок кейсу (80px на телефоні), тут — без цього відступу. На телефоні наступний кейс переноситься окремим рядком.</p></header>
+      <div class="kd-demo">
+        <nav class="case-end" aria-label="More work (demo)" style="margin-top:0">
+          <div class="case-end__links"><a class="link link--tap" href="#nav">All work</a><a class="link link--tap" href="#nav">Back to summary</a></div>
+          <a class="link link--nudge case-end__next" href="#nav">Next case: Solutions for Adtelligent (AdTech B2B SaaS platform) <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Іконки</h3><code>.icon · .icon--back</code><p>Стрілка і зовнішнє посилання; колір від тексту.</p></header>
+      <div class="kd-demo kd-row" style="color:var(--color-ink)">
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <svg class="icon icon--back" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <svg class="icon" aria-hidden="true"><use href="#i-out"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CARDS & LISTS ============================== -->
+  <section class="kd-group" id="cards" aria-labelledby="g-cards">
+    <h2 id="g-cards">Картки й списки</h2>
+
+    <div class="kd-item">
+      <header><h3>Плитка-контейнер</h3><code>.tile · --block · --list</code><p>Головна і кейс. У темній темі — контур 1px.</p></header>
+      <div class="kd-demo answer" style="margin:0">
+        <section class="tile tile--block"><h3 class="voice-title">Problem</h3><p class="answer__text">Buying on credit felt risky. Terms were unclear.</p></section>
+        <section class="tile tile--list"><h3 class="voice-title">What Comfy covers well</h3><p class="answer__text">Tile with list padding.</p></section>
+        <div class="tile tile--block"><p class="answer__text">Plain tile block.</p></div>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Доказ</h3><code>.proof · --num · --words · --quote · --specimen · --hero · --strip</code><p>Головна (у плитках) і кейс (смуга).</p></header>
+      <div class="kd-demo">
+        <div class="tiles">
+          <div class="tile tile--block"><div class="proof proof--num"><span class="proof__mark">30% → 40%</span><span class="proof__cap">--num: credit order share, business goal</span></div></div>
+          <div class="tile tile--block"><div class="proof proof--words"><span class="proof__mark"><span class="proof__line">Ad Requests</span><span class="proof__line">Impressions</span><span class="proof__line">Spent · eCPM</span></span><span class="proof__cap">--words</span></div></div>
+          <div class="tile tile--block"><blockquote class="proof proof--quote"><span class="proof__mark">“I connected my accounts… and then what?”</span><span class="proof__cap">--quote: a user, before the redesign</span></blockquote></div>
+          <div class="tile tile--block"><div class="proof proof--specimen"><span class="proof__mark">Aa<span class="chips"><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i><i class="chips__chip"></i></span></span><span class="proof__cap">--specimen (GRG)</span></div></div>
+        </div>
+        <div class="tile tile--block" style="display:grid"><div class="proof proof--hero"><span class="proof__mark">Designed, built, shipped.</span><span class="proof__cap">--hero: iOS in SwiftUI is live. Android in Kotlin is in review.</span></div></div>
+        <div class="tile proof proof--strip"><div class="proof__mark">75% → 100%</div><div class="proof__cap">--strip: task completion, current flow vs redesign (moderated, 4 and 7 sessions)</div></div>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Плитка кейсу</h3><code>.case-tile · --hero</code><p>Лише головна (у «Разовому»), але показана тут з усіма станами, бо це головний елемент сітки робіт.</p></header>
+      <div class="kd-demo">
+        <div class="tiles">
+          <article class="tile case-tile">
+            <div class="case-tile__copy">
+              <h3 class="case-tile__title"><a class="case-tile__link" href="#cards">Comfy</a></h3>
+              <p class="case-tile__desc">Спокій. Redesigned the credit order flow to grow its share of orders.</p>
+              <span class="label">2024 · E-commerce · Team of 4 designers</span>
+              <div class="case-tile__actions"><span class="link--accent" aria-hidden="true">View case <svg class="icon"><use href="#i-arrow"/></svg></span></div>
+            </div>
+            <div class="proof proof--num" aria-hidden="true"><span class="proof__mark">30% → 40%</span><span class="proof__cap">credit order share, business goal</span></div>
+          </article>
+          <article class="tile case-tile is-hover">
+            <div class="case-tile__copy">
+              <h3 class="case-tile__title"><a class="case-tile__link" href="#cards">Comfy</a></h3>
+              <p class="case-tile__desc">Наведення: підйом, тінь, стрілка зсувається.</p>
+              <span class="label">2024 · E-commerce · Team of 4 designers</span>
+              <div class="case-tile__actions"><span class="link--accent" aria-hidden="true">View case <svg class="icon"><use href="#i-arrow"/></svg></span></div>
+            </div>
+            <div class="proof proof--num" aria-hidden="true"><span class="proof__mark">30% → 40%</span><span class="proof__cap">credit order share, business goal</span></div>
+          </article>
+          <article class="tile case-tile is-focus">
+            <div class="case-tile__copy">
+              <h3 class="case-tile__title"><a class="case-tile__link" href="#cards">Comfy</a></h3>
+              <p class="case-tile__desc">Фокус з клавіатури обводить усю плитку.</p>
+              <span class="label">2024 · E-commerce · Team of 4 designers</span>
+              <div class="case-tile__actions"><span class="link--accent" aria-hidden="true">View case <svg class="icon"><use href="#i-arrow"/></svg></span></div>
+            </div>
+            <div class="proof proof--num" aria-hidden="true"><span class="proof__mark">30% → 40%</span><span class="proof__cap">credit order share, business goal</span></div>
+          </article>
+          <article class="tile case-tile case-tile--hero">
+            <div class="case-tile__copy">
+              <h3 class="case-tile__title"><a class="case-tile__link" href="#cards">Prevently</a></h3>
+              <p class="case-tile__desc">--hero на всю ширину, з другою дією поверх посилання.</p>
+              <span class="label">Personal product · iOS and Android</span>
+              <div class="case-tile__actions">
+                <span class="link--accent" aria-hidden="true">View case <svg class="icon"><use href="#i-arrow"/></svg></span>
+                <a class="link link--muted" href="#cards">App Store<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
+              </div>
+            </div>
+            <div class="proof proof--hero" aria-hidden="true"><span class="proof__mark">Designed, built, shipped.</span><span class="proof__cap">iOS in SwiftUI is live. Android in Kotlin is in review.</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Логотипи біля назви</h3><code>.brand-marks · .brand-mark · .brand-mark--art · .brand-plus</code><p>Головна і кейс. На плитці в спокої кольору заголовка, в обох темах, при наведенні — оригінальні кольори; на сторінці кейсу завжди оригінальні. Оригінали: багатоколірні лого (Prevently, Comfy) показують свій файл, Adtelligent — рожевий злам поверх стрілки, одноколірні (Projector, hubmee, GRG) — колір бренду. Кілька логотипів з'єднуються «+».</p></header>
+      <div class="kd-demo">
+        <div class="kd-row">
+          <div>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark brand-mark--art" style="--mark-src:url(../../../public/logos/prevently.svg);--mark-ratio:1 / 1;--mark-art:url(../../../public/logos/color/prevently.svg)"></span></span>Prevently</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark brand-mark--art" style="--mark-src:url(../../../public/logos/comfy.svg);--mark-ratio:33 / 36;--mark-art:url(../../../public/logos/color/comfy.svg)"></span><span class="brand-plus">+</span><span class="brand-mark" style="--mark-src:url(../../../public/logos/projector.svg);--mark-ratio:74 / 32;--mark-color:var(--brand-projector)"></span></span>Comfy</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/adtelligent.svg);--mark-ratio:40 / 35;--mark-art:url(../../../public/logos/color/adtelligent.svg)"></span></span>Adtelligent</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/hubmee.svg);--mark-ratio:38.92 / 38.06;--mark-color:var(--brand-hubmee)"></span></span>Smart Financial Assistant</h3>
+        <h3 class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/grg.svg);--mark-ratio:159 / 104.3;--mark-color:var(--brand-grg)"></span></span>GRG Design System</h3>
+          </div>
+          <div class="tile case-tile is-hover">
+        <p class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark brand-mark--art" style="--mark-src:url(../../../public/logos/prevently.svg);--mark-ratio:1 / 1;--mark-art:url(../../../public/logos/color/prevently.svg)"></span></span>Prevently</p>
+        <p class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark brand-mark--art" style="--mark-src:url(../../../public/logos/comfy.svg);--mark-ratio:33 / 36;--mark-art:url(../../../public/logos/color/comfy.svg)"></span><span class="brand-plus">+</span><span class="brand-mark" style="--mark-src:url(../../../public/logos/projector.svg);--mark-ratio:74 / 32;--mark-color:var(--brand-projector)"></span></span>Comfy</p>
+        <p class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/adtelligent.svg);--mark-ratio:40 / 35;--mark-art:url(../../../public/logos/color/adtelligent.svg)"></span></span>Adtelligent</p>
+        <p class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/hubmee.svg);--mark-ratio:38.92 / 38.06;--mark-color:var(--brand-hubmee)"></span></span>Smart Financial Assistant</p>
+        <p class="case-tile__title"><span class="brand-marks" aria-hidden="true"><span class="brand-mark" style="--mark-src:url(../../../public/logos/grg.svg);--mark-ratio:159 / 104.3;--mark-color:var(--brand-grg)"></span></span>GRG Design System</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Малі плитки (More work)</h3><code>.mini-tiles · .tile.case-tile.mini-tile</code><p>Лише головна. Чотири в ряд, на телефоні — стовпчиком. Назва-посилання на всю плитку і один рядок.</p></header>
+      <div class="kd-demo">
+        <div class="mini-tiles" style="margin-top:0">
+          <article class="tile case-tile mini-tile"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Task Creation Reimagined</a></h3><p class="mini-tile__desc">Спокій. 2025 · Sole designer.</p></article>
+          <article class="tile case-tile mini-tile is-hover"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Onboarding through Hypotheses &amp; A/B Testing</a></h3><p class="mini-tile__desc">Наведення: підйом і тінь.</p></article>
+          <article class="tile case-tile mini-tile is-focus"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Mental health support MVP</a></h3><p class="mini-tile__desc">Фокус з клавіатури.</p></article>
+          <article class="tile case-tile mini-tile"><h3 class="mini-tile__title"><a class="case-tile__link" href="#cards">Dnipropetrovsk Regional Center for Educational Quality Assessment</a></h3><p class="mini-tile__desc">UX audit and redesign of a public education website.</p></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Метадані кейсу</h3><code>.label · .facts</code><p>Головна (рядок у плитці) і кейс (факти списком: мітки в окремій колонці, значення вирівняні, один факт на рядок).</p></header>
+      <div class="kd-demo">
+        <span class="label">2024 · E-commerce · Team of 4 designers</span>
+        <dl class="facts">
+          <div class="facts__item"><dt class="label">Role</dt><dd class="facts__value">UX / Product Designer</dd></div>
+          <div class="facts__item"><dt class="label">Context</dt><dd class="facts__value">Projector course; all work handed over to Comfy</dd></div>
+          <div class="facts__item"><dt class="label">Team</dt><dd class="facts__value">4 designers</dd></div>
+          <div class="facts__item"><dt class="label">Year</dt><dd class="facts__value">2024</dd></div>
+          <div class="facts__item"><dt class="label">Business goal</dt><dd class="facts__value">Credit order share 30% → 40%</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Цитата «голосом»</h3><code>.quote · .proof--quote</code><p>Головна (доказ у плитці) і кейс (цитата з інтерв'ю).</p></header>
+      <div class="kd-demo chapter">
+        <blockquote class="quote">
+          <p class="quote__text">“I didn’t read the terms, like everyone who doesn’t read the small print.”</p>
+          <footer class="quote__by">A shopper in an interview, translated from Ukrainian</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Підсумок кейсу</h3><code>.sheet · .headline · .lead · .answer</code><p>Кейс (усі). На телефоні блоки в один стовпчик.</p></header>
+      <div class="kd-demo sheet">
+        <h1 class="headline">Comfy</h1>
+        <p class="lead">Making credit purchases clear and calm for Ukraine’s largest retailer of home appliances and electronics.</p>
+        <div class="answer">
+          <section class="tile tile--block"><h2 class="voice-title">Problem</h2><p class="answer__text">Buying on credit felt risky.</p></section>
+          <section class="tile tile--block"><h2 class="voice-title">What we did</h2><p class="answer__text">15 interviews, a survey and a competitor review.</p></section>
+          <section class="tile tile--block"><h2 class="voice-title">Result</h2><p class="answer__text">100% task completion in the redesign.</p></section>
+          <div class="tile proof proof--strip"><div class="proof__mark">75% → 100%</div><div class="proof__cap">task completion, current flow vs redesign</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Відкривач розділу і текст</h3><code>.opener · .subhead · .chapter p/ul · .note · .statement</code><p>Кейс (усі).</p></header>
+      <div class="kd-demo chapter">
+        <div class="opener is-wide"><h2 class="opener__title">Discover</h2><p class="opener__sub">Desk research, a kick-off with the business, competitors, 15 interviews and a survey.</p></div>
+        <h3 class="subhead"><span class="num">1.</span> Lack of transparency in credit terms</h3>
+        <p>Before the kick-off meeting, we explored the context from several angles.</p>
+        <ul><li>Analyzed traffic data and user behavior using SimilarWeb.</li><li>Reviewed customer reviews to find recurring complaints.</li></ul>
+        <p class="note">We renamed it from “Купити в кредит” after interviews.</p>
+        <p class="statement">Comfy helps people buy conveniently and right away.</p>
+      </div>
+    </div>
+
+    <div class="kd-item kd-item--wide">
+      <header><h3>Рамка зображення</h3><code>.figure · --loading · --portrait · .figure-pair · .figure-grid</code><p>Кейс (усі). Потрібна картинка. Скелетон — стан завантаження. Картки в ряд (пара, сітка) мають однакову зону 4:3 під картинку, тайтл і рядок під ним завжди на 4px, зайве місце — внизу.</p></header>
+      <div class="kd-demo">
+        <div class="figure-pair">
+          <figure class="tile figure">
+            <a class="figure__zoom" href="../img/c15.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../img/c15.jpg" width="1600" height="1243" alt="Original Comfy product page."><span class="sr-only">Open full size in a new tab</span></a>
+            <figcaption class="figure__cap"><span><b>Before.</b> Спокій.</span><a class="figure__open" href="../img/c15.jpg" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">Full size <svg class="icon"><use href="#i-out"/></svg></a></figcaption>
+          </figure>
+          <figure class="tile figure is-hover">
+            <a class="figure__zoom" href="../img/c16.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../img/c16.jpg" width="1600" height="1224" alt="Redesigned Comfy product page."><span class="sr-only">Open full size in a new tab</span></a>
+            <figcaption class="figure__cap"><span><b>After.</b> Наведення: «Full size» темнішає. Клік по картинці чи по «Full size» відкриває повний розмір.</span><a class="figure__open" href="../img/c16.jpg" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">Full size <svg class="icon"><use href="#i-out"/></svg></a></figcaption>
+          </figure>
+        </div>
+        <div class="figure-pair">
+          <figure class="tile figure figure--loading">
+            <a class="figure__zoom" href="#cards"><span class="sr-only">Loading image</span></a>
+            <figcaption class="figure__cap"><span>Завантаження (скелетон).</span><a class="figure__open" href="#cards" tabindex="-1" aria-hidden="true">Full size <svg class="icon"><use href="#i-out"/></svg></a></figcaption>
+          </figure>
+          <figure class="tile figure">
+            <a class="figure__zoom is-focus" href="#cards"><img class="figure__img" src="../img/c25.jpg" width="1600" height="804" alt="Pick up today option."></a>
+            <figcaption class="figure__cap figure__cap--stack"><b>Фокус на зображенні</b><span>Підпис стовпчиком (сітка ідей).</span></figcaption>
+          </figure>
+        </div>
+        <div class="figure-grid">
+          <figure class="tile figure">
+            <a class="figure__zoom" href="../img/c28.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../img/c28.jpg" width="1600" height="1133" alt="Package deals banner."></a>
+            <figcaption class="figure__cap figure__cap--stack"><b>Картки в ряд: однакова зона 4:3</b><span>Тайтл одразу під зоною зображення, до рядка під ним завжди 4px, навіть коли підпис довший, ніж у сусідньої картки.</span></figcaption>
+          </figure>
+          <figure class="tile figure">
+            <a class="figure__zoom" href="../img/c30.jpg" target="_blank" rel="noopener"><img class="figure__img" src="../img/c30.jpg" width="1600" height="1026" alt="Bonus transfer screens."></a>
+            <figcaption class="figure__cap figure__cap--stack"><b>Інша пропорція картинки</b><span>Тайтли не стрибають.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Таблиця результатів</h3><code>.table-tile · .table · .table__improved</code><p>Кейс (лише Comfy зараз). Акцент лише на покращених значеннях. На телефоні рядки стають метриками з підписами.</p></header>
+      <div class="kd-demo chapter">
+        <div class="tile table-tile is-wide">
+          <table class="table table--cols-3">
+            <caption class="voice-title">Moderated</caption>
+            <thead><tr><th scope="col">Metric</th><th scope="col">Comfy today</th><th scope="col">Iteration 1</th><th scope="col">Iteration 2</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Completion rate</th><td data-label="Comfy today">75%</td><td data-label="Iteration 1">67%</td><td class="table__improved" data-label="Iteration 2">100%</td></tr>
+              <tr><th scope="row">Easy to use</th><td data-label="Comfy today">4.75 / 5</td><td data-label="Iteration 1">3 / 5</td><td data-label="Iteration 2">4.34 / 5</td></tr>
+            </tbody>
+          </table>
+          <p class="table__foot">Highlighted values are the ones that improved.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Рядок цифр</h3><code>.stats · .stat</code><p>Кейс (лише Comfy зараз).</p></header>
+      <div class="kd-demo stats">
+        <div class="stat"><b class="stat__value">3</b><span class="stat__cap">direct competitors</span></div>
+        <div class="stat"><b class="stat__value">3</b><span class="stat__cap">secondary</span></div>
+        <div class="stat"><b class="stat__value">54</b><span class="stat__cap">features compared</span></div>
+      </div>
+    </div>
+
+    <div class="kd-item">
+      <header><h3>Списки</h3><code>.list · .list__item · .tag · .tile-lists</code><p>Список робіт і статей — головна; два списки в плитках — кейс.</p></header>
+      <div class="kd-demo">
+        <ul class="list">
+          <li class="list__item"><a class="link link--plain" href="#cards">Task Creation Reimagined</a><span>2025 · Sole designer. A simpler task creation flow and new repeat logic.</span></li>
+          <li class="list__item"><a class="link link--plain" href="#cards" lang="uk">Місце, де UX помер</a><span class="list__gloss">Where UX died</span><span class="list__src">Medium <span class="tag">UA</span></span></li>
+        </ul>
+        <div class="chapter"><div class="tile-lists is-wide">
+          <section class="tile tile--list"><h3 class="voice-title voice-title--positive">What Comfy covers well</h3><ul><li>Inspecting the product in store</li><li>Flexible credit through familiar banks</li></ul></section>
+          <section class="tile tile--list"><h3 class="voice-title voice-title--negative">What it doesn’t fully cover</h3><ul><li>Effortful contact with banks</li><li>Confusing or non-transparent terms</li></ul></section>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FORMS ============================== -->
+  <section class="kd-group" id="forms" aria-labelledby="g-forms">
+    <h2 id="g-forms">Форми</h2>
+    <div class="kd-item">
+      <header><h3>Кнопка-«пігулка»</h3><code>.pill</code><p>Єдина форма кнопки. Форм і полів введення в продукті немає (див. inventory.md).</p></header>
+      <div class="kd-demo kd-row">
+        <div class="kd-state"><small>спокій</small><button class="pill" type="button">More work</button></div>
+        <div class="kd-state"><small>наведення</small><button class="pill is-hover" type="button">More work</button></div>
+        <div class="kd-state"><small>фокус</small><button class="pill is-focus" type="button">More work</button></div>
+        <div class="kd-state"><small>розгорнуто</small><button class="pill" type="button" aria-expanded="true">Less work</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FEEDBACK ============================== -->
+  <section class="kd-group" id="feedback" aria-labelledby="g-feedback">
+    <h2 id="g-feedback">Зворотний зв'язок</h2>
+    <div class="kd-item">
+      <header><h3>Кільце фокусу</h3><code>:focus-visible · .is-focus</code><p>Синє, не акцентне; лише з клавіатури. Спробуйте Tab по сторінці.</p></header>
+      <div class="kd-demo kd-row">
+        <a class="link is-focus" href="#feedback">Focused link</a>
+        <button class="pill is-focus" type="button">Focused pill</button>
+      </div>
+    </div>
+    <div class="kd-item">
+      <header><h3>Поточне місце і прогрес читання</h3><p>Описано в «Покажчику-навігації» та «Покажчику етапів» вище; наживо — у рамках оболонки.</p></header>
+      <div class="kd-demo"><p class="stat__cap">aria-current="location" + заливка половинки ромба.</p></div>
+    </div>
+    <div class="kd-item">
+      <header><h3>Статусний підпис</h3><code>.status</code><p>Разове: «coming soon», «in review».</p></header>
+      <div class="kd-demo contact__links"><span class="status">CV · coming soon</span></div>
+    </div>
+  </section>
+
+  <!-- ============================== ONE-OFFS ============================== -->
+  <section class="kd-group" id="once" aria-labelledby="g-once">
+    <h2 id="g-once">Разове (лише головна)</h2>
+    <div class="kd-item">
+      <header><h3>Вступ</h3><code>.intro · .voice-accent</code></header>
+      <div class="kd-demo intro"><h1 class="intro__title">Hi, I’m Lera, <em class="voice-accent">a product designer.</em></h1><p class="intro__text">I design intuitive interfaces for mobile and web.</p></div>
+    </div>
+    <div class="kd-item">
+      <header><h3>Підпис розділу</h3><code>.voice-title.section-label</code></header>
+      <div class="kd-demo"><h2 class="voice-title section-label">Selected work</h2></div>
+    </div>
+    <div class="kd-item">
+      <header><h3>Блок контактів</h3><code>.contact</code></header>
+      <div class="kd-demo contact">
+        <p class="contact__closing">Looking for a product designer who <em class="voice-accent">also ships?</em> Let’s talk.</p>
+        <div class="contact__links"><a class="link" href="#once">dryga_v@yahoo.com</a><a class="link" href="#once">LinkedIn<svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a><span class="status">CV · coming soon</span></div>
+      </div>
+    </div>
+    <div class="kd-item">
+      <header><h3>Привітання</h3><code>.curtain · --on · --leave</code><p>Перше відвідування. Клік або Esc пропускає; з «менше руху» — лише Hello.</p></header>
+      <div class="kd-demo kd-row"><button class="pill" type="button" id="greet">Програти привітання</button></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var group = document.querySelector(".kd-theme");
+    group.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-theme-v]");
+      if (!b) return;
+      group.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      var v = b.getAttribute("data-theme-v");
+      if (v === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.setAttribute("data-theme", v);
+      document.querySelectorAll("iframe").forEach(function (f) { if (f.contentWindow) f.contentWindow.postMessage({ kitTheme: v }, "*"); });
+    });
+
+    var words = ["Hello", "Привіт", "Hola", "Bonjour", "Ciao", "Cześć", "Hallo", "Olá", "こんにちは"];
+    var curtain = document.getElementById("curtain");
+    var word = document.getElementById("word");
+    var timer = null;
+    function finish() { clearTimeout(timer); if (curtain.classList.contains("curtain--on")) curtain.className = "curtain curtain--on curtain--leave"; }
+    function greet() {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var seq = reduce ? ["Hello"] : words, i = 0;
+      clearTimeout(timer);
+      curtain.className = "curtain curtain--on";
+      word.textContent = seq[0];
+      (function next() {
+        timer = setTimeout(function () {
+          i += 1;
+          if (i < seq.length) { word.textContent = seq[i]; next(); } else finish();
+        }, i === 0 ? (reduce ? 700 : 380) : 170);
+      })();
+    }
+    curtain.addEventListener("click", finish);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") finish(); });
+    document.getElementById("greet").addEventListener("click", greet);
+  })();
+</script>
+</body>
+</html>

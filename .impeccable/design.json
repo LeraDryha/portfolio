@@ -1,114 +1,93 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T17:30:00Z",
+  "generatedAt": "2026-10-15T16:00:00Z",
   "title": "Design System: Lera Dryha Portfolio",
   "extensions": {
     "colorMeta": {
+      "page": {
+        "role": "neutral",
+        "displayName": "Page",
+        "canonical": "#ffffff"
+      },
+      "tile": {
+        "role": "neutral",
+        "displayName": "Tile",
+        "canonical": "#f5f5f7"
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised",
+        "canonical": "#ffffff"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1d1d1f"
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#424245"
+      },
+      "pencil": {
+        "role": "neutral",
+        "displayName": "Pencil",
+        "canonical": "#6e6e73"
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e3e3e6"
+      },
       "mulberry-ink": {
         "role": "primary",
         "displayName": "Mulberry Ink",
-        "canonical": "oklch(48% 0.15 352)",
-        "tonalRamp": [
-          "#2e0011",
-          "#4e0029",
-          "#6e0042",
-          "#982f66",
-          "#b26387",
-          "#e08db2",
-          "#e9c1d1",
-          "#ffe1f2"
-        ]
+        "canonical": "oklch(48% 0.15 352)"
       },
       "mulberry-ink-night": {
         "role": "primary",
         "displayName": "Mulberry Ink, Night",
-        "canonical": "oklch(74% 0.11 352)",
-        "tonalRamp": [
-          "#2e0011",
-          "#4e0029",
-          "#6e0042",
-          "#982f66",
-          "#b26387",
-          "#e08db2",
-          "#e9c1d1",
-          "#ffe1f2"
-        ]
+        "canonical": "oklch(74% 0.11 352)"
       },
-      "paper": {
-        "role": "neutral",
-        "displayName": "Paper",
-        "tonalRamp": [
-          "#16181d",
-          "#2a2d33",
-          "#4a515b",
-          "#656b74",
-          "#8b919a",
-          "#c9ccc8",
-          "#e1e2df",
-          "#f4f4f2"
-        ]
+      "figma-blue": {
+        "role": "semantic",
+        "displayName": "Figma Blue",
+        "canonical": "#0d99ff"
       },
-      "tile": {
-        "role": "neutral",
-        "displayName": "Tile"
+      "redline": {
+        "role": "semantic",
+        "displayName": "Redline",
+        "canonical": "#f24822"
       },
-      "ink": {
-        "role": "neutral",
-        "displayName": "Ink"
+      "who-designer": {
+        "role": "semantic",
+        "displayName": "Cursor, UX designer",
+        "canonical": "#9747ff"
       },
-      "graphite": {
-        "role": "neutral",
-        "displayName": "Graphite"
+      "who-developer": {
+        "role": "semantic",
+        "displayName": "Cursor, Developer",
+        "canonical": "#14ae5c"
       },
-      "pencil": {
-        "role": "neutral",
-        "displayName": "Pencil"
+      "who-research": {
+        "role": "semantic",
+        "displayName": "Cursor, Researcher",
+        "canonical": "#f24822"
       },
-      "hairline": {
-        "role": "neutral",
-        "displayName": "Hairline"
+      "prevently-2": {
+        "role": "brand",
+        "displayName": "Prevently pink",
+        "canonical": "#c15182"
       },
-      "focus-blue": {
-        "role": "neutral",
-        "displayName": "Focus Blue"
+      "yahoo": {
+        "role": "brand",
+        "displayName": "Yahoo violet",
+        "canonical": "#6001d2"
       },
-      "night": {
-        "role": "neutral",
-        "displayName": "Night",
-        "tonalRamp": [
-          "#0e0f10",
-          "#18191b",
-          "#2a2c2f",
-          "#4a4e54",
-          "#8b919a",
-          "#b4b9c0",
-          "#d8dbd8",
-          "#f2f2f0"
-        ]
-      },
-      "night-tile": {
-        "role": "neutral",
-        "displayName": "Night Tile"
-      },
-      "night-edge": {
-        "role": "neutral",
-        "displayName": "Night Edge"
-      },
-      "night-ink": {
-        "role": "neutral",
-        "displayName": "Night Ink"
-      },
-      "night-graphite": {
-        "role": "neutral",
-        "displayName": "Night Graphite"
-      },
-      "night-pencil": {
-        "role": "neutral",
-        "displayName": "Night Pencil"
-      },
-      "night-focus": {
-        "role": "neutral",
-        "displayName": "Night Focus"
+      "linkedin": {
+        "role": "brand",
+        "displayName": "LinkedIn blue",
+        "canonical": "#0a66c2"
       },
       "verdict-green": {
         "role": "semantic",
@@ -120,137 +99,82 @@
         "displayName": "Verdict Red",
         "canonical": "#b42318"
       },
-      "verdict-green-night": {
-        "role": "semantic",
-        "displayName": "Verdict Green, Night",
-        "canonical": "#5fcf86"
+      "night-page": {
+        "role": "neutral",
+        "displayName": "Night Page",
+        "canonical": "#000000"
       },
-      "verdict-red-night": {
-        "role": "semantic",
-        "displayName": "Verdict Red, Night",
-        "canonical": "#f28b82"
+      "night-tile": {
+        "role": "neutral",
+        "displayName": "Night Tile",
+        "canonical": "#1c1c1e"
       }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Hero greeting only; last phrase switches to Voice in Mulberry Ink."
+      "intro": {
+        "displayName": "Intro"
       },
-      "headline": {
-        "displayName": "Headline",
-        "purpose": "Name of the full-width hero tile."
+      "tile-proof": {
+        "displayName": "Tile Proof"
       },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Case names in tiles. Ink, never accent."
+      "case-title": {
+        "displayName": "Case Title"
       },
-      "proof": {
-        "displayName": "Proof",
-        "purpose": "The evidence mark in each tile; tabular numerals, numbers on one line."
+      "case-h2": {
+        "displayName": "Case H2"
       },
-      "body": {
-        "displayName": "Body",
-        "purpose": "Descriptions and lists."
-      },
-      "body-lead": {
-        "displayName": "Body Lead",
-        "purpose": "Intro paragraph."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Year, field and team line under the description."
+      "reading": {
+        "displayName": "Reading"
       },
       "voice": {
-        "displayName": "Voice",
-        "purpose": "Section labels. Newsreader, always italic."
+        "displayName": "Voice (Newsreader italic)"
       },
-      "voice-quote": {
-        "displayName": "Voice Quote",
-        "purpose": "User quotes used as evidence. Newsreader, always italic."
-      },
-      "voice-nav": {
-        "displayName": "Voice Nav",
-        "purpose": "Navigation links. Newsreader, always italic."
-      },
-      "caption": {
-        "displayName": "Caption",
-        "purpose": "Pencil note under an evidence mark."
-      },
-      "proof-hero": {
-        "displayName": "Proof Hero",
-        "purpose": "Evidence line in the full-width hero tile."
-      },
-      "closing": {
-        "displayName": "Closing",
-        "purpose": "Closing invitation in Contact; last phrase in Voice, Mulberry Ink."
-      },
-      "greeting": {
-        "displayName": "Greeting",
-        "purpose": "Words on the first-visit greeting curtain."
-      },
-      "action": {
-        "displayName": "Action",
-        "purpose": "View case, secondary text links, pill button."
-      },
-      "tag": {
-        "displayName": "Tag",
-        "purpose": "Language tags such as UA."
-      },
-      "lead": {
-        "displayName": "Lead",
-        "purpose": "One-line context under a case name and a single stated conclusion in a chapter. Ink."
-      },
-      "subhead": {
-        "displayName": "Subhead",
-        "purpose": "Step headings inside a case chapter; a leading number stays Ink."
-      },
-      "stat": {
-        "displayName": "Stat",
-        "purpose": "Inline research counts in Mulberry Ink, each with a Caption under it."
-      },
-      "voice-note": {
-        "displayName": "Voice Note",
-        "purpose": "Short aside between figures. Newsreader, always italic, Ink."
+      "measure": {
+        "displayName": "Measure (Geist Mono)"
       }
     },
     "shadows": [
       {
-        "name": "tile-lift",
-        "value": "0 14px 32px -18px rgba(22,24,29,.28)",
-        "purpose": "Hover state of case tiles only, with a 3px lift."
+        "name": "float",
+        "value": "0 6px 18px -10px rgb(0 0 0 / .35)",
+        "purpose": "Round case buttons (close, back to top)."
       },
       {
-        "name": "night-contour",
-        "value": "inset 0 0 0 1px #2a2c2f",
-        "purpose": "Resting edge of tiles in dark theme."
+        "name": "action",
+        "value": "0 4px 14px -6px rgb(0 0 0 / .25)",
+        "purpose": "Hover actions on logo tiles."
+      },
+      {
+        "name": "note",
+        "value": "0 12px 28px -14px rgb(0 0 0 / .45)",
+        "purpose": "The open Figma comment on Comfy."
       }
     ],
     "motion": [
       {
-        "name": "ease-lift",
-        "value": "cubic-bezier(.2,.7,.2,1) 350ms",
-        "purpose": "Tile hover lift and arrow nudge."
+        "name": "page",
+        "value": "cubic-bezier(.2,.7,.2,1) 500ms",
+        "purpose": "Page transition: the tile's product moves into the case hero."
       },
       {
-        "name": "ease-curtain",
-        "value": "cubic-bezier(.76,0,.24,1) 800ms",
-        "purpose": "Greeting curtain sliding away."
+        "name": "arrive",
+        "value": "cubic-bezier(.2,.7,.2,1) 1s, then 7s drift",
+        "purpose": "Role cursors arriving on their tile."
       },
       {
-        "name": "greeting-step",
-        "value": "170ms",
-        "purpose": "Time each greeting word stays on screen."
-      },
-      {
-        "name": "phase-edge",
-        "value": "250ms",
-        "purpose": "Phase Index outline colour change; the fill itself follows scroll without easing. Removed under reduced motion."
+        "name": "products",
+        "value": "reveal 14s, wipe 9s, pan 18s, phones 20s, spec 6s",
+        "purpose": "Products alive in tiles; paused off screen and on hover; off with reduced motion."
       }
     ],
     "breakpoints": [
       {
-        "name": "single-column",
+        "name": "two-columns",
         "value": "860px"
+      },
+      {
+        "name": "phone",
+        "value": "640px"
       }
     ]
   },
@@ -259,186 +183,78 @@
       "name": "Case Tile",
       "kind": "card",
       "refersTo": "case-tile",
-      "description": "White tile: case name as the stretched link, description, label line, View case, evidence mark at the bottom.",
-      "html": "<article class=\"ds-tile\"><div class=\"ds-tile-copy\"><h3 class=\"ds-tile-title\"><a class=\"ds-tile-link\" href=\"#\">Comfy</a></h3><p class=\"ds-tile-desc\">Redesigned the credit order flow to grow its share of orders.</p><span class=\"ds-label\">2024 · E-commerce · Team of 4 designers</span><span class=\"ds-view\" aria-hidden=\"true\">View case <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\"><path d=\"M2.5 8h10M8.5 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></div><div class=\"ds-proof\" aria-hidden=\"true\">30% → 40%<small>credit order share, business goal</small></div></article>",
-      "css": ".ds-tile { position: relative; display: grid; grid-template-rows: auto 1fr; gap: 32px; padding: 36px; min-height: 380px; background: #ffffff; color: #4a515b; border-radius: 22px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.6; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1); } .ds-tile:hover { transform: translateY(-3px); box-shadow: 0 14px 32px -18px rgba(22,24,29,.28); } .ds-tile:focus-within { outline: 2px solid #3b5bdb; outline-offset: 3px; } .ds-tile-copy { display: grid; gap: 10px; align-content: start; } .ds-tile-title { margin: 0; font-weight: 600; font-size: 40px; line-height: 1.02; letter-spacing: -.03em; color: #16181d; } .ds-tile-link { color: inherit; text-decoration: none; } .ds-tile-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } .ds-tile-link:focus-visible { outline: none; } .ds-tile-desc { margin: 0; } .ds-label { font-size: 13px; letter-spacing: .01em; color: #656b74; } .ds-view { display: inline-flex; gap: 6px; align-items: center; font-size: 15px; font-weight: 500; color: oklch(48% 0.15 352); } .ds-view svg { transition: transform .25s cubic-bezier(.2,.7,.2,1); } .ds-tile:hover .ds-view svg { transform: translateX(4px); } .ds-proof { align-self: end; font-weight: 600; font-size: 72px; line-height: .95; letter-spacing: -.03em; color: oklch(48% 0.15 352); white-space: nowrap; font-variant-numeric: tabular-nums; } .ds-proof small { display: block; margin-top: 12px; font-weight: 400; font-size: 14px; letter-spacing: 0; line-height: 1.4; color: #656b74; white-space: normal; }"
+      "description": "Grey tile: evidence in ink, then bold product name and a short line, then the product alive. Whole tile links to the case; Figma selection on hover.",
+      "html": "<article class=\"ds-tile\"><p class=\"ds-proof\">30% → 40%<small>credit order share, business goal</small></p><p class=\"ds-line\"><b>Comfy.</b> Making credit purchases clear and calm.</p></article>",
+      "css": ".ds-tile{background:#f5f5f7;border-radius:28px;padding:28px 30px;font-family:Geist,Arial,sans-serif;color:#1d1d1f;max-width:460px}.ds-proof{margin:0;font-weight:600;font-size:34px;line-height:1.05;letter-spacing:-.025em}.ds-proof small{display:block;margin-top:8px;font-size:13px;font-weight:400;color:#6e6e73;letter-spacing:0}.ds-line{margin:10px 0 0;font-size:15px;color:#424245}.ds-line b{color:#1d1d1f}"
     },
     {
-      "name": "Proof Mark: Quote",
+      "name": "Figma Selection",
       "kind": "custom",
-      "refersTo": "proof-mark",
-      "description": "Evidence as a user's own words, in Voice Quote.",
-      "html": "<blockquote class=\"ds-quote\">“I connected my accounts… and then what?”<small>a user, before the redesign</small></blockquote>",
-      "css": ".ds-quote { margin: 0; max-width: 14em; font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-weight: 400; font-size: 34px; line-height: 1.22; letter-spacing: -.01em; color: oklch(48% 0.15 352); } .ds-quote small { display: block; margin-top: 12px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; font-style: normal; font-size: 14px; line-height: 1.4; color: #656b74; }"
+      "refersTo": "sel",
+      "description": "Square Figma Blue frame with four handles and a live size label in Geist Mono, on hover and focus.",
+      "html": "<div class=\"ds-selwrap\"><div class=\"ds-box\"></div><span class=\"ds-sel\"><i></i><i></i><i></i><i></i><b>248 × 250</b></span></div>",
+      "css": ".ds-selwrap{position:relative;width:200px;height:120px;margin:12px}.ds-box{position:absolute;inset:0;background:#f5f5f7;border-radius:28px}.ds-sel{position:absolute;inset:-5px;border:1.5px solid #0d99ff}.ds-sel i{position:absolute;width:8px;height:8px;background:#fff;border:1.5px solid #0d99ff}.ds-sel i:nth-child(1){left:-4px;top:-4px}.ds-sel i:nth-child(2){right:-4px;top:-4px}.ds-sel i:nth-child(3){left:-4px;bottom:-4px}.ds-sel i:nth-child(4){right:-4px;bottom:-4px}.ds-sel b{position:absolute;left:50%;top:calc(100% + 3px);transform:translateX(-50%);padding:1px 6px;border-radius:4px;background:#0d99ff;color:#fff;font:500 10px/1.5 'Geist Mono',monospace}"
     },
     {
-      "name": "Index Navigation",
-      "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Italic vertical index with a hairline on the right; current section in Ink.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"#\">about</a><a href=\"#\" aria-current=\"location\">work</a><a href=\"#\">writing</a><a href=\"#\">contact</a></nav>",
-      "css": ".ds-nav { display: grid; justify-items: end; gap: 4px; width: 84px; padding-right: 28px; border-right: 1px solid #e1e2df; } .ds-nav a { font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-size: 17px; color: #656b74; text-decoration: none; transition: color .2s; } .ds-nav a:hover, .ds-nav a[aria-current] { color: #16181d; } .ds-nav a:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; }"
-    },
-    {
-      "name": "Pill Button",
-      "kind": "button",
-      "refersTo": "pill-button",
-      "description": "The only button shape: white pill with a hairline border, used for More work.",
-      "html": "<button class=\"ds-pill\" type=\"button\">More work</button>",
-      "css": ".ds-pill { font: 500 15px/1 Geist, 'Helvetica Neue', Arial, sans-serif; color: #16181d; background: #ffffff; border: 1px solid #e1e2df; border-radius: 999px; min-height: 44px; padding: 0 22px; cursor: pointer; transition: border-color .2s; } .ds-pill:hover { border-color: #656b74; } .ds-pill:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; }"
-    },
-    {
-      "name": "Text Action",
-      "kind": "button",
-      "refersTo": "view-case-link",
-      "description": "Actions are text links in Mulberry Ink with a drawn arrow, never filled buttons.",
-      "html": "<a class=\"ds-action\" href=\"#\">App Store <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5 11l6-6M6 5h5v5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
-      "css": ".ds-action { display: inline-flex; gap: 6px; align-items: center; font: 500 15px/1.4 Geist, 'Helvetica Neue', Arial, sans-serif; color: #4a515b; text-decoration: underline; text-decoration-color: #e1e2df; text-underline-offset: 3px; } .ds-action:hover { color: #16181d; text-decoration-color: currentColor; } .ds-action:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; }"
-    },
-    {
-      "name": "Writing Item",
+      "name": "Role Cursor",
       "kind": "custom",
-      "description": "Article in the Writing list: original title, English gloss, source and language tag.",
-      "html": "<div class=\"ds-item\"><a href=\"#\" lang=\"uk\">Місце, де UX помер</a><span class=\"ds-gloss\">Where UX died</span><span class=\"ds-src\">Medium <span class=\"ds-lang\">UA</span></span></div>",
-      "css": ".ds-item { display: grid; gap: 2px; font: 400 16px/1.6 Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-item a { color: #16181d; font-weight: 500; text-decoration: none; } .ds-item a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #656b74; } .ds-gloss { color: #4a515b; } .ds-src { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: #656b74; } .ds-lang { font-size: 11px; font-weight: 500; letter-spacing: .06em; border: 1px solid #e1e2df; border-radius: 4px; padding: 1px 5px; }"
+      "refersTo": "cursor",
+      "description": "Figma cursor with a name tag in the person's colour. Decorative.",
+      "html": "<span class=\"ds-cur\">UX designer</span>",
+      "css": ".ds-cur{display:inline-block;padding:2px 7px;border-radius:9px 9px 9px 2px;background:#9747ff;color:#fff;font:500 11.5px Geist,sans-serif}"
     },
     {
-      "name": "Phase Index",
-      "kind": "nav",
-      "refersTo": "phase-link",
-      "description": "The case's process drawn as navigation: each phase is a diamond half; the half being read fills with Mulberry Ink with reading progress, finished halves keep a faint tint.",
-      "html": "<nav class=\"ds-phases\" aria-label=\"Case navigation\"><a href=\"#\">summary</a><a class=\"ds-ph ds-done\" href=\"#\">discover<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-fill\" points=\"22,1 43,33 1,33\"/><polygon class=\"ds-edge\" points=\"22,1 43,33 1,33\"/></svg></a><a class=\"ds-ph ds-cur\" href=\"#\" aria-current=\"location\">define<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-fill\" points=\"1,1 43,1 32.5,17 11.5,17\"/><polygon class=\"ds-edge\" points=\"1,1 43,1 22,33\"/></svg></a><a class=\"ds-ph\" href=\"#\">develop<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-edge\" points=\"22,1 43,33 1,33\"/></svg></a><a class=\"ds-ph\" href=\"#\">deliver<svg viewBox=\"0 0 44 34\" aria-hidden=\"true\"><polygon class=\"ds-edge\" points=\"1,1 43,1 22,33\"/></svg></a><a href=\"#\">outcome</a></nav>",
-      "css": ".ds-phases { display: grid; justify-items: end; gap: 6px; width: 140px; padding-right: 28px; border-right: 1px solid #e1e2df; } .ds-phases a { font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-size: 17px; color: #656b74; text-decoration: none; transition: color .2s; } .ds-phases a:hover, .ds-phases a[aria-current] { color: #16181d; } .ds-phases a:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; } .ds-ph { display: grid; grid-template-columns: auto 44px; align-items: center; gap: 12px; } .ds-ph svg { width: 44px; height: 34px; overflow: visible; } .ds-edge { fill: none; stroke: #656b74; stroke-width: 1.25; transition: stroke .25s; } .ds-fill { fill: oklch(48% 0.15 352); } .ds-done .ds-fill { fill: oklch(48% 0.15 352 / .16); } .ds-done .ds-edge { stroke: #16181d; } .ds-cur .ds-edge { stroke: oklch(48% 0.15 352); }"
+      "name": "Filter",
+      "kind": "control",
+      "refersTo": "filter",
+      "description": "Pill segmented control: All / About / Work / Writing.",
+      "html": "<div class=\"ds-f\"><b>All</b><span>About</span><span>Work</span><span>Writing</span></div>",
+      "css": ".ds-f{display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:#f5f5f7;font:500 14px Geist,sans-serif;color:#424245}.ds-f>*{padding:7px 16px;border-radius:999px}.ds-f b{background:#fff;color:#1d1d1f;font-weight:500;box-shadow:0 1px 3px rgb(0 0 0/.1)}"
     },
     {
-      "name": "Summary Sheet",
+      "name": "Proof Block",
       "kind": "card",
-      "refersTo": "summary-block",
-      "description": "Answer-first summary: three Voice-titled blocks and a full-width proof strip.",
-      "html": "<div class=\"ds-answer\"><section><h2>Problem</h2><p>Buying on credit felt risky. Terms were unclear.</p></section><section><h2>What we did</h2><p>15 interviews, a survey of 178 shoppers, a clearer credit block.</p></section><section><h2>Result</h2><p>100% task completion with zero errors in moderated tests.</p></section><div class=\"ds-strip\"><div class=\"ds-mark\">75% → 100%</div><div class=\"ds-cap\">task completion, current flow vs redesign</div></div></div>",
-      "css": ".ds-answer { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; font: 400 16px/1.6 Geist, 'Helvetica Neue', Arial, sans-serif; color: #4a515b; } .ds-answer section, .ds-strip { background: #ffffff; border-radius: 22px; padding: 28px; display: grid; gap: 10px; align-content: start; } .ds-answer h2 { margin: 0; font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-weight: 400; font-size: 19px; color: #16181d; } .ds-answer p { margin: 0; } .ds-strip { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 22em); align-items: end; justify-content: space-between; column-gap: 40px; padding: 32px 36px; } .ds-mark { font-weight: 600; font-size: 72px; line-height: .95; letter-spacing: -.03em; color: oklch(48% 0.15 352); font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-cap { font-size: 14px; line-height: 1.4; color: #656b74; padding-bottom: 8px; }"
-    },
-    {
-      "name": "Figure Frame",
-      "kind": "card",
-      "refersTo": "figure-frame",
-      "description": "Case image as it is in a white tile, 12px image corner, caption with a Full size hint.",
-      "html": "<figure class=\"ds-fig\"><a class=\"ds-zoom\" href=\"#\"><span class=\"ds-img\" role=\"img\" aria-label=\"Screenshot\"></span></a><figcaption><span><b>After.</b> Each bank offer is a button with its own terms.</span><span class=\"ds-open\">Full size <svg width=\"12\" height=\"12\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5 11l6-6M6 5h5v5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></figcaption></figure>",
-      "css": ".ds-fig { margin: 0; background: #ffffff; border-radius: 22px; padding: 12px; display: grid; gap: 10px; max-width: 520px; } .ds-zoom { display: block; border-radius: 12px; overflow: hidden; } .ds-zoom:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; } .ds-img { display: block; aspect-ratio: 4 / 3; border-radius: 12px; background: #e1e2df; } .ds-fig figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0 8px 4px; font: 400 14px/1.4 Geist, 'Helvetica Neue', Arial, sans-serif; color: #656b74; } .ds-fig b { font-weight: 500; color: #16181d; } .ds-open { flex: none; display: inline-flex; gap: 4px; align-items: center; font-size: 13px; } .ds-zoom:hover + figcaption .ds-open { color: #16181d; }"
-    },
-    {
-      "name": "Results Table",
-      "kind": "custom",
-      "refersTo": "results-table",
-      "description": "Comparison table in a tile; only improved values in Mulberry Ink, regressions footnoted.",
-      "html": "<div class=\"ds-table\"><table><caption>Moderated</caption><thead><tr><th scope=\"col\">Metric</th><th scope=\"col\">Comfy today</th><th scope=\"col\">Iteration 2</th></tr></thead><tbody><tr><th scope=\"row\">Completion rate</th><td>75%</td><td class=\"ds-up\">100%</td></tr><tr><th scope=\"row\">Easy to use</th><td>4.75 / 5</td><td>4.34 / 5</td></tr></tbody></table></div>",
-      "css": ".ds-table { background: #ffffff; border-radius: 22px; padding: 8px 28px 20px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-table table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; } .ds-table caption { text-align: left; padding: 18px 0 10px; font-family: Newsreader, Baskerville, Georgia, serif; font-style: italic; font-size: 19px; color: #16181d; } .ds-table th, .ds-table td { text-align: left; padding: 11px 16px 11px 0; border-bottom: 1px solid #e1e2df; font-size: 16px; } .ds-table thead th { font-size: 13px; font-weight: 400; letter-spacing: .01em; color: #656b74; } .ds-table tbody th { font-weight: 400; color: #4a515b; } .ds-table td { color: #16181d; } .ds-table td.ds-up { color: oklch(48% 0.15 352); font-weight: 600; } .ds-table tr:last-child th, .ds-table tr:last-child td { border-bottom: 0; }"
-    },
-    {
-      "name": "Case End Row",
-      "kind": "nav",
-      "refersTo": "case-end-link",
-      "description": "Closing row of plain text links: All work and Back to summary on the left, Next case with the full case title on the right.",
-      "html": "<nav class=\"ds-end\" aria-label=\"More work\"><div class=\"ds-end-links\"><a href=\"#\">All work</a><a href=\"#\">Back to summary</a></div><a class=\"ds-next\" href=\"#\">Next case: Solutions for Adtelligent (AdTech B2B SaaS platform) <svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2.5 8h10M8.5 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></nav>",
-      "css": ".ds-end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; padding-top: 28px; border-top: 1px solid #e1e2df; font: 500 15px/1.4 Geist, 'Helvetica Neue', Arial, sans-serif; } .ds-end-links { display: flex; flex-wrap: wrap; gap: 12px 28px; } .ds-end a { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; color: #16181d; text-decoration: underline; text-decoration-color: #e1e2df; text-underline-offset: 3px; } .ds-end a:hover { text-decoration-color: currentColor; } .ds-end a svg { transition: transform .25s cubic-bezier(.2,.7,.2,1); } .ds-end a:hover svg { transform: translateX(4px); } .ds-end a:focus-visible { outline: 2px solid #3b5bdb; outline-offset: 3px; border-radius: 4px; } .ds-end .ds-next { margin-left: auto; text-align: right; }"
-    },
-    {
-      "name": "Brand Marks",
-      "kind": "custom",
-      "refersTo": "brand-marks",
-      "description": "Logos before a case title in the title's colour at rest, original colours on tile hover or focus and always on the case page (multi-colour: original file; single-colour: brand colour), joined by '+'. One-colour SVG masks. Decorative.",
-      "html": "<h3 class=\"ds-title\"><span class=\"ds-marks\" aria-hidden=\"true\"><span class=\"ds-mark ds-mark--dot\"></span><span class=\"ds-plus\">+</span><span class=\"ds-mark ds-mark--mono\"></span></span>Comfy</h3>",
-      "css": ".ds-title { margin: 0; font: 600 42px/1.02 Geist, 'Helvetica Neue', Arial, sans-serif; letter-spacing: -.03em; color: #16181d; } .ds-marks { display: inline-flex; align-items: center; gap: .22em; margin-right: .22em; vertical-align: -.06em; } .ds-mark { display: block; height: .7em; aspect-ratio: 1; border-radius: 50%; background: currentColor; } .ds-mark--mono { aspect-ratio: 74 / 32; border-radius: 2px; } .ds-plus { font: 400 .45em Geist, sans-serif; color: #656b74; }"
-    },
-    {
-      "name": "Mini Tile",
-      "kind": "card",
-      "refersTo": "mini-tile",
-      "description": "Small white card for a secondary case: name as stretched link and one line. Four in a row.",
-      "html": "<article class=\"ds-mini\"><h3><a href=\"#\">Task Creation Reimagined</a></h3><p>2025 · Sole designer. A simpler task creation flow and new repeat logic.</p></article>",
-      "css": ".ds-mini { position: relative; display: grid; gap: 8px; padding: 24px; background: #fff; border-radius: 22px; max-width: 260px; font-family: Geist, 'Helvetica Neue', Arial, sans-serif; transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s cubic-bezier(.2,.7,.2,1); } .ds-mini:hover { transform: translateY(-3px); box-shadow: 0 14px 32px -18px rgba(22,24,29,.28); } .ds-mini h3 { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.25; letter-spacing: -.015em; color: #16181d; } .ds-mini a { color: inherit; text-decoration: none; } .ds-mini a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } .ds-mini p { margin: 0; font-size: 14px; line-height: 1.4; color: #4a515b; }"
+      "refersTo": "proof-block",
+      "description": "Case page evidence in Mulberry Ink on a grey block.",
+      "html": "<div class=\"ds-pb\"><b>75% → 100%</b><span>task completion, current flow vs redesign</span></div>",
+      "css": ".ds-pb{background:#f5f5f7;border-radius:20px;padding:24px 26px;font-family:Geist,sans-serif;max-width:460px}.ds-pb b{display:block;color:oklch(48% 0.15 352);font-weight:600;font-size:40px;line-height:1;letter-spacing:-.03em}.ds-pb span{display:block;margin-top:8px;color:#6e6e73;font-size:14px}"
     }
   ],
   "narrative": {
-    "northStar": "The Proof Sheet",
-    "overview": "The site is a sheet of evidence. Each case is a quiet white tile that leads with its name and ends with one real fact taken from the case: a number, a user's own words, a release status. No screenshots, no mockups, no decoration standing in for the work. A recruiter who skims for ten seconds should leave with that fact.\n\nThe frame is calm and literary: an italic vertical index in the top-left corner (after shud.in), a hairline separating it from the content, generous space between sections. The tiles bring the confidence: big Geist titles and Apple-style tiles in a two-up grid, with the owner's own product as the one full-width tile. Colour is rationed to a single ink, Mulberry Ink, which marks only evidence and actions.\n\nCase pages extend the same sheet. A summary sheet answers the recruiter first (role, problem, what was done, the strongest real number), then the case is read through the process it actually followed, drawn as the page's own navigation. Case images appear here, never on the home tiles: shown as they are, uncropped, inside calm white frames with a caption.\n\nMotion is restrained: a short multilingual greeting on the first visit, a small lift on tile hover, nothing else moves by itself. Light and dark themes are equal citizens; the accent is re-tuned per theme, never reused as-is.",
-    "keyCharacteristics": [
-      "One piece of real evidence per case, set large, instead of an image.",
-      "One accent colour, used only for evidence, the italic emphasis in headings and \"View case\".",
-      "Italic serif as the quiet voice (navigation, section labels, quotes); Geist as the confident voice (names, titles, numbers).",
-      "White tiles on warm-neutral paper, flat at rest.",
-      "Restrained motion; everything readable without it.",
-      "Case pages answer first (summary sheet), then follow the real process (Phase Index), with images as-is in white frames."
-    ],
+    "northStar": "The Shared File: the portfolio as a design file with the people Lera works with in it; a bento of grey tiles on white, evidence first, the product alive, and a quiet Figma layer.",
     "rules": [
       {
-        "name": "The One Ink Rule",
-        "body": "Mulberry Ink is the only accent colour. It marks evidence and actions, never surfaces, borders or large fills. The only other non-neutrals are the Verdict pair (titles of good / bad lists) and brand logos.",
+        "name": "The Ink Headline Rule",
+        "body": "Tile headlines are evidence in ink; the accent belongs to case pages and the intro's italic phrase.",
         "section": "colors"
       },
       {
-        "name": "The Improved Only Rule",
-        "body": "In a results comparison Mulberry Ink marks only values that improved. A worse or unchanged number stays Ink, and a footnote says why it moved and that highlighted values are the improved ones.",
-        "section": "colors"
-      },
-      {
-        "name": "The Reading Position Rule",
-        "body": "The only Mulberry fill in the system is the Phase Index half being read, growing with reading progress. Finished halves keep the faint tint; unread halves are outline only.",
+        "name": "The Figma Only Rule",
+        "body": "Figma Blue only for the Figma layer: selection, focus, the You tag.",
         "section": "colors"
       },
       {
         "name": "The Re-tune Rule",
-        "body": "Every accent use has a dark-theme value of its own. Reusing the light value on a night tile fails contrast (2.5:1) and is a bug.",
+        "body": "Every colour has a night value.",
         "section": "colors"
       },
       {
-        "name": "The Pencil Floor Rule",
-        "body": "Small text never goes lighter than Pencil (light) or Night Pencil (dark). Opacity is not a way to make text quieter; mix the colour toward the surface and check it stays at 3:1 or more for large text, 4.5:1 for small.",
-        "section": "colors"
-      },
-      {
-        "name": "The Two Voices Rule",
-        "body": "Geist states, Newsreader italic speaks. Never set a case name, a number or a button in italic serif, and never set the index or a quote in Geist.",
-        "section": "typography"
-      },
-      {
-        "name": "The No Eyebrow Rule",
-        "body": "Nothing small sits above a title. Year, field and role go under the description.",
-        "section": "typography"
-      },
-      {
-        "name": "The Plain Numbering Rule",
-        "body": "A heading's number belongs to the heading: same Ink, same weight. The accent never decorates a counter.",
-        "section": "typography"
-      },
-      {
-        "name": "The Flat at Rest Rule",
-        "body": "Nothing has a shadow until the visitor points at it.",
-        "section": "elevation"
+        "name": "Square Selection",
+        "body": "The Figma selection is never rounded.",
+        "section": "components"
       }
     ],
     "dos": [
-      "Do show each case through one real fact from the case itself.",
-      "Do keep Mulberry Ink for evidence, the italic emphasis and \"View case\" only.",
-      "Do give every accent a separate dark-theme value and check contrast in both themes.",
-      "Do keep small text at Pencil or darker (4.5:1 or more).",
-      "Do let the owner's own product be the single full-width tile.",
-      "Do greet in English first, then Ukrainian.",
-      "Do open a case page with the summary sheet: role, problem, what was done, result, and the strongest real number.",
-      "Do show case images as they are, contained in a Figure Frame with a caption.",
-      "Do colour only improved values in Mulberry Ink and footnote any regression."
+      "Lead every case tile with one real piece of evidence, in ink.",
+      "Show the product alive in its tile and at the top of its case.",
+      "Colour only evidence in Mulberry Ink on case pages."
     ],
     "donts": [
-      "Don't put screenshots or mockups on the home page tiles; mixed case imagery reads as noise.",
-      "Don't use a bright colour on the first screen.",
-      "Don't show popovers or extra panels when hovering a case.",
-      "Don't place a label or eyebrow above a title.",
-      "Don't make text quieter with opacity.",
-      "Don't include Russian or Belarusian anywhere, including the greeting.",
-      "Don't colour a worse or unchanged number in Mulberry Ink.",
-      "Don't set a heading's number in the accent.",
-      "Don't crop case images to fit a frame; contain them.",
-      "Don't show logos in colour at rest: they take the title colour and reveal their original colours only on hover; the case page shows them in colour."
+      "Don't round the Figma selection.",
+      "Don't colour tile headlines.",
+      "Don't add labels above tiles or captions under contact logos.",
+      "Don't show popovers when hovering a case.",
+      "Don't include Russian or Belarusian anywhere."
     ]
   }
 }

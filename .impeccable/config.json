@@ -13,10 +13,39 @@
         "rule": "italic-serif-display",
         "value": "*",
         "files": [
-          "ui/kit.html"
+          "ui/kit.html",
+          "components/home/Bento.tsx",
+          "ui/kit.css"
         ],
         "createdAt": "2026-10-14T12:20:02.783Z",
         "reason": "user confirmed: italic Newsreader phrase in the hero kept; kit.html only showcases it"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "#0d99ff",
+        "createdAt": "2026-10-15T13:17:23.857686Z",
+        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "#14ae5c",
+        "createdAt": "2026-10-15T13:17:23.857686Z",
+        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "#f24822",
+        "createdAt": "2026-10-15T13:17:23.857686Z",
+        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "ui/kit.html"
+        ],
+        "createdAt": "2026-10-15T13:17:23.857686Z",
+        "reason": "Display-size tile proofs (26\u201336px) set at 1.05; body text stays 1.5\u20131.65"
       }
     ]
   }

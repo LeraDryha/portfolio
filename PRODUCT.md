@@ -38,9 +38,9 @@ A product designer who combines three things a typical portfolio shows one at a 
 
 ## Capabilities and Constraints
 
-- Pages: Home (case tiles, More work, Writing, Contact), one case page template at `/work/<slug>`, About.
+- Pages: Home (a bento of tiles: intro, contacts, case tiles, Medium, More work, filtered by About / Work / Writing), one case page template at `/work/<slug>`, About.
 - No NDA material; all listed cases can be shown.
-- Case texts and images are ready in Notion. Reworking case content is not planned for now, which is why the home page shows no case images.
+- Case texts and images are ready in Notion; case images are moved into the repository. Each case tile shows its product alive (animated screenshots).
 - GRG Design System lives in Figma. A Storybook for it, on PrimeReact, will be built from scratch as a separate project and linked from the case.
 - Prevently: iOS app live in the App Store; Android app in review, no Google Play link yet.
 - Contacts: email and LinkedIn. A phone number exists but whether to show it is undecided, so it is never committed to the public repository.

@@ -11,6 +11,6 @@ Personal portfolio of Valeriia Dryha, Product Designer. It replaces the current 
 
 **Stack:** Next.js (App Router), TypeScript, MDX content, Vercel.
 
-**Design system:** [`DESIGN.md`](DESIGN.md), "The Proof Sheet": each case shown through one real piece of evidence, one accent colour (Mulberry Ink), Geist with Newsreader italic.
+**Design system:** [`DESIGN.md`](DESIGN.md), "The Shared File": a bento of tiles where each case leads with one real piece of evidence and shows its product alive, with a quiet Figma layer; one accent colour (Mulberry Ink), Geist with Newsreader italic.
 
-**Status:** Next.js site with the home page and the Comfy case page. Run locally with `npm install` and `npm run dev`. UI kit: `ui/kit.css`, showcase `ui/kit.html`. The full brief is in [`CLAUDE.md`](CLAUDE.md).
+**Status:** Next.js site: a bento home page and five case pages (Comfy and Smart Financial Assistant in full). Run locally with `npm install` and `npm run dev`. UI kit: `ui/kit.css`, showcase `ui/kit.html`, design system `DESIGN.md` ("The Shared File"). The full brief is in [`CLAUDE.md`](CLAUDE.md).

@@ -1,9 +1,8 @@
 import type { MDXComponents } from "mdx/types";
 import * as Blocks from "@/components/case/CaseBlocks";
 
-/** Markdown in case files maps onto the kit: ### becomes a chapter sub-heading. */
+/** Markdown in case files maps onto the kit through the .prose styles; the blocks add the rest. */
 const components: MDXComponents = {
-  h3: ({ children }) => <h3 className="subhead">{children}</h3>,
   ...Blocks,
 };
 
