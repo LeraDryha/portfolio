@@ -48,9 +48,10 @@ export function Figure({ src, width, height, alt, caption, label, title, sizes =
           <span>
             {label && <b>{label}.</b>} {caption}
           </span>
-          <span className="figure__open" aria-hidden="true">
+          {/* Clickable twin of the image link; the image link carries the accessible name, so this one stays out of the tab order. */}
+          <a className="figure__open" href={src} target="_blank" rel="noopener" tabIndex={-1} aria-hidden="true">
             Full size <Icon name="out" />
-          </span>
+          </a>
         </figcaption>
       )}
     </figure>

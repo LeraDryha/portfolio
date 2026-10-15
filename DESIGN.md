@@ -408,7 +408,7 @@ The case answers before it explains. Top to bottom: case name in Headline, Lead 
 ### Figure Frame
 Case images as they are, in a calm frame.
 - **Frame:** Tile, 22px corners, 12px padding (8px on phones); the image has a 12px corner and is the link to the full-size file in a new tab.
-- **Caption:** Caption in Pencil, an optional bold Ink lead-in ("Before." / "After."), and a 13px "Full size" hint with an out-arrow that darkens to Ink on hover.
+- **Caption:** Caption in Pencil, an optional bold Ink lead-in ("Before." / "After."), and a 13px "Full size" link with an out-arrow that darkens to Ink on hover. It opens the full-size image in a new tab, like the image itself; it is a mouse twin of the image link, so it stays out of the tab order.
 - **Pairs and grids (figure cards in a row):** every frame reserves the same 4:3 image area with the image contained (never cropped), so mismatched screenshots line up. The caption starts right under that area, a stacked title and its line always sit 4px apart, and any spare height stays at the bottom of the card, so titles in a row never jump. Any new card type with an image, a title and a line follows the same rule. Portrait images cap at 560px wide.
 
 ### Results Table

@@ -542,8 +542,8 @@
 .figure__cap { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-16); padding: var(--space-0) var(--space-8) var(--space-4); font-size: var(--text-caption); line-height: var(--leading-caption); color: var(--color-pencil); }
 .figure__cap b { font-weight: var(--weight-medium); color: var(--color-ink); }
 .figure__cap--stack { display: grid; gap: var(--space-4); align-content: start; }
-.figure__open { flex: none; display: inline-flex; gap: var(--space-4); align-items: center; color: var(--color-pencil); font-size: var(--text-label); }
-.figure__zoom:hover + .figure__cap .figure__open, .figure.is-hover .figure__open { color: var(--color-ink); }
+.figure__open { flex: none; display: inline-flex; gap: var(--space-4); align-items: center; color: var(--color-pencil); font-size: var(--text-label); text-decoration: none; }
+.figure__zoom:hover + .figure__cap .figure__open, .figure__open:hover, .figure.is-hover .figure__open { color: var(--color-ink); }
 .figure--portrait { max-width: var(--layout-portrait); }
 .figure-pair, .figure-grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-16); }
 /* Figure cards in a row (pairs, grids): every image gets the same reserved 4:3 area, the caption
