@@ -300,6 +300,7 @@
   --scale-pin-dot-from: 0;
   --scale-note-from: .6;
   --cam-full: translate(0, 0) scale(1);
+  --cam-k: 1;
   --origin-start: 0 0;
   --origin-end-bottom: 100% 100%;
   --origin-start-bottom: 0 100%;
@@ -538,11 +539,11 @@
    In a tile the stage covers the product area; at the top of the case page it is contained. */
 .story { container-type: size; }
 .story__stage { position: absolute; top: var(--space-0); left: var(--pos-centre); width: var(--size-stage-cover); aspect-ratio: var(--ratio); translate: var(--move-centre-x-only); overflow: hidden; }
-.story__cam { position: absolute; inset: var(--space-0); transform-origin: var(--origin-start); transform: var(--cam-full); animation: storyCam var(--duration-story) var(--ease-cam) infinite; }
+.story__cam { position: absolute; top: var(--space-0); left: var(--space-0); width: calc(var(--size-full) * var(--cam-k)); height: calc(var(--size-full) * var(--cam-k)); transform-origin: var(--origin-start); transform: var(--cam-full); animation: storyCam var(--duration-story) var(--ease-cam) infinite; }
 .story img { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); object-fit: contain; }
 .story__after { clip-path: var(--clip-after-shown); animation: storyAfter var(--duration-story) var(--ease-wipe) infinite; }
-.story__bar { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--pos-wipe-hidden); z-index: var(--z-raise); width: var(--size-wipe-bar); background: var(--color-on-dark); box-shadow: var(--shadow-wipe); opacity: var(--opacity-hidden); animation: storyBar var(--duration-story) var(--ease-wipe) infinite; }
-.story__grip { position: absolute; top: var(--pos-centre); left: var(--pos-centre); width: var(--size-grip-w); height: var(--size-grip-h); translate: var(--move-centre); border-radius: var(--radius-pill); background: var(--color-on-dark); box-shadow: var(--shadow-action), var(--shadow-wipe); }
+.story__bar { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--pos-wipe-hidden); z-index: var(--z-raise); width: calc(var(--size-wipe-bar) * var(--cam-k)); background: var(--color-on-dark); box-shadow: var(--shadow-wipe); opacity: var(--opacity-hidden); animation: storyBar var(--duration-story) var(--ease-wipe) infinite; }
+.story__grip { position: absolute; top: var(--pos-centre); left: var(--pos-centre); width: calc(var(--size-grip-w) * var(--cam-k)); height: calc(var(--size-grip-h) * var(--cam-k)); translate: var(--move-centre); border-radius: var(--radius-pill); background: var(--color-on-dark); box-shadow: var(--shadow-action), var(--shadow-wipe); }
 .story__drawer { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--left); right: var(--space-0); z-index: var(--z-raise); box-shadow: var(--shadow-drawer); transform: var(--move-drawer-out); animation: storyDrawer var(--duration-story) var(--ease-wipe) infinite; }
 .story .badge--start { left: var(--inset-stage-badge); animation: storyBadgeBefore var(--duration-story) var(--ease-fade) infinite; }
 .story .badge--end { right: var(--inset-stage-badge); opacity: var(--opacity-hidden); animation: storyBadgeAfter var(--duration-story) var(--ease-fade) infinite; }

@@ -33,13 +33,16 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
   }
 
   if (v.kind === "story") {
-    const cam = (f: Focus) => `translate(${pct(0.5 - f.s * f.x)}, ${pct(0.5 - f.s * f.y)}) scale(${f.s})`;
+    // The camera is drawn at the deepest zoom (k × the stage) and scaled down, never up:
+    // browsers rasterise an animated layer at its own size, so scaling up would blur the screenshots.
+    const k = Math.max(v.focus.before.s, v.focus.after.s);
+    const cam = (f: Focus) => `translate(${pct((0.5 - f.s * f.x) / k)}, ${pct((0.5 - f.s * f.y) / k)}) scale(${+(f.s / k).toFixed(4)})`;
     // Pins sit outside the camera so notes keep their size: place each where the camera puts its point (the drawer is seen whole).
     const at = (p: Point, f: Focus) => ({ "--x": pct(0.5 + f.s * (p.x - f.x)), "--y": pct(0.5 + f.s * (p.y - f.y)) });
     return (
       <div
         className="vis vis--inset story"
-        style={{ ...vt, ...style({ "--ratio": String(v.ratio), "--cam-before": cam(v.focus.before), "--cam-after": cam(v.focus.after) }) }}
+        style={{ ...vt, ...style({ "--ratio": String(v.ratio), "--cam-k": String(k), "--cam-full": cam({ s: 1, x: 0.5, y: 0.5 }), "--cam-before": cam(v.focus.before), "--cam-after": cam(v.focus.after) }) }}
       >
         <div className="story__stage">
           <div className="story__cam">
