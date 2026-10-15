@@ -78,9 +78,8 @@ export function Bento() {
         </a>
 
         <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
-          <span className="text-tile__title">Learning</span>
+          <span className="text-tile__title" style={{ viewTransitionName: "learning-title" }}>Learning</span>
           <span className="text-tile__line">Courses and certificates</span>
-          <span className="act" aria-hidden="true"><Icon name="arrow" /></span>
           <Selection />
         </a>
       </div>

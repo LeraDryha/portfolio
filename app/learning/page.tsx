@@ -17,7 +17,7 @@ export default function LearningPage() {
       </a>
       <main className="case">
         <article className="prose" aria-labelledby="learning-title">
-          <h1 id="learning-title">Learning</h1>
+          <h1 id="learning-title" style={{ viewTransitionName: "learning-title" }}>Learning</h1>
           <p className="lead">Courses and certificates.</p>
           <p className="note">The list is coming soon.</p>
           <nav className="case-end" aria-label="More work">
