@@ -1,0 +1,753 @@
+<title>Portfolio Bento</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23982f66%27/%3E%3Cpath d=%27M16 5 L25 16 L16 27 L7 16 Z M7 16 H25%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%271.6%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@500&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+<style>
+  /* Layout: a filter bar on top; below, a bento of grey tiles on white (the apple.com way: headline first, product under it).
+     A Figma layer on top: blue selection on hover, role cursors, the visitor's name tag, one open comment. */
+  :root {
+    --page: #ffffff;
+    --tile: #f5f5f7;
+    --raised: #ffffff;
+    --ink: #1d1d1f;
+    --graphite: #424245;
+    --pencil: #6e6e73;
+    --hairline: #e3e3e6;
+    --accent: oklch(48% 0.15 352);
+    --figma-blue: #0d99ff;
+    --redline: #f24822;
+    --yahoo: #6001d2;
+    --linkedin: #0a66c2;
+    --c-lera: oklch(48% 0.15 352);
+    --c-pm: #9747ff;
+    --c-dev: #14ae5c;
+    --c-research: #f24822;
+    --c-you: #0d99ff;
+    --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+    --font-serif: "Newsreader", Baskerville, Georgia, serif;
+    --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --row: 250px;
+    --gap: 20px;
+    --radius: 28px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #000000; --tile: #1c1c1e; --raised: #2c2c2e; --ink: #f5f5f7; --graphite: #c7c7cc; --pencil: #98989d; --hairline: #2c2c2e;
+      --accent: oklch(74% 0.11 352); --yahoo: #a678ff; --linkedin: #4c9be8; --c-lera: oklch(70% 0.13 352);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #000000; --tile: #1c1c1e; --raised: #2c2c2e; --ink: #f5f5f7; --graphite: #c7c7cc; --pencil: #98989d; --hairline: #2c2c2e;
+    --accent: oklch(74% 0.11 352); --yahoo: #a678ff; --linkedin: #4c9be8; --c-lera: oklch(70% 0.13 352);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--page); color: var(--graphite); font-family: var(--font-sans); font-size: 15px; line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--figma-blue); outline-offset: 3px; border-radius: 8px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- Top bar: name, filter, theme ---------- */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+    padding: 14px max(24px, env(safe-area-inset-right, 0px)) 14px max(24px, env(safe-area-inset-left, 0px));
+    background: color-mix(in srgb, var(--page) 82%, transparent); backdrop-filter: saturate(1.6) blur(16px); -webkit-backdrop-filter: saturate(1.6) blur(16px);
+  }
+  .me { justify-self: start; display: grid; place-items: center; width: 40px; height: 40px; margin-left: -6px; color: var(--accent); border-radius: 10px; }
+  .me svg { width: 34px; height: 34px; }
+  .me:hover { background: var(--tile); }
+  .filter { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--tile); }
+  .filter button { height: 32px; padding: 0 16px; border: 0; border-radius: 999px; background: none; color: var(--graphite); font: 500 14px var(--font-sans); cursor: pointer; }
+  .filter button:hover { color: var(--ink); }
+  .filter button[aria-pressed="true"] { background: var(--raised); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / .1); }
+  .theme { justify-self: end; display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: var(--tile); color: var(--ink); font: 500 13px var(--font-sans); cursor: pointer; }
+  .theme svg { width: 16px; height: 16px; }
+
+  /* ---------- Bento ---------- */
+  main { max-width: 1100px; margin: 0 auto; padding: 64px max(24px, env(safe-area-inset-right, 0px)) 120px max(24px, env(safe-area-inset-left, 0px)); display: grid; gap: 28px; }
+  .bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: var(--row); gap: var(--gap); grid-auto-flow: dense; }
+  .w2 { grid-column: span 2; } .h2 { grid-row: span 2; }
+  .card { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0; border-radius: var(--radius); background: var(--tile); color: var(--ink); }
+  .card[hidden] { display: none; }
+
+  /* Figma selection around the tile you point at or tab to */
+  .sel { position: absolute; inset: -5px; border: 1.5px solid var(--figma-blue); border-radius: calc(var(--radius) + 4px); pointer-events: none; opacity: 0; transition: opacity .16s; z-index: 5; }
+  .sel i { position: absolute; width: 8px; height: 8px; background: #fff; border: 1.5px solid var(--figma-blue); }
+  .sel i:nth-child(1) { left: -4px; top: -4px; } .sel i:nth-child(2) { right: -4px; top: -4px; }
+  .sel i:nth-child(3) { left: -4px; bottom: -4px; } .sel i:nth-child(4) { right: -4px; bottom: -4px; }
+  .sel b { position: absolute; left: 50%; top: calc(100% + 3px); transform: translateX(-50%); padding: 1px 6px; border-radius: 4px; background: var(--figma-blue); color: #fff; font: 500 10px/1.5 var(--font-mono); white-space: nowrap; }
+  .card:hover .sel, .card:focus-visible .sel, .card:focus-within .sel { opacity: 1; }
+  .card:focus-visible { outline: none; }
+
+  /* Cursors with role labels */
+  .cursor { position: absolute; z-index: 6; pointer-events: none; display: flex; align-items: flex-start; color: var(--who); }
+  .cursor svg { width: 16px; height: 16px; flex: none; filter: drop-shadow(0 1px 1px rgb(0 0 0 / .25)); }
+  .cursor span { margin: 12px 0 0 -3px; padding: 2px 7px; border-radius: 9px 9px 9px 2px; background: var(--who); color: #fff; font-size: 11.5px; font-weight: 500; line-height: 1.35; white-space: nowrap; }
+  .cursor.in { animation: arrive 1s cubic-bezier(.2, .7, .2, 1) both, drift 7s 1s ease-in-out infinite; }
+  @keyframes arrive { from { transform: translate(70px, 46px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes drift { 0%, 100% { transform: none; } 35% { transform: translate(6px, -4px); } 70% { transform: translate(-4px, 3px); } }
+  .you { position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  .you span { display: inline-block; padding: 2px 7px; border-radius: 2px 9px 9px 9px; background: var(--c-you); color: #fff; font-size: 11.5px; font-weight: 500; }
+  .you.on { opacity: 1; }
+
+  /* Intro */
+  .intro { justify-content: center; gap: 14px; padding: 28px 32px; }
+  .intro h1 { margin: 0; font-weight: 600; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; letter-spacing: -.03em; }
+  .intro h1 em { display: block; font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -.01em; }
+  .intro p { margin: 0; color: var(--graphite); }
+
+  /* Logo tiles: Yahoo Mail, LinkedIn, Medium. A round action appears on hover, like Alex Chiu's */
+  .logo-tile { align-items: center; justify-content: center; cursor: pointer; border: 0; font: inherit; }
+  .yahoo { font: 800 40px/1 var(--font-sans); letter-spacing: -.04em; color: var(--yahoo); }
+  .li-logo { font: 700 52px/1 var(--font-sans); letter-spacing: -.05em; color: var(--linkedin); }
+  .medium { width: 64px; height: 64px; color: var(--ink); }
+  .act { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; background: var(--raised); color: var(--ink); display: grid; place-items: center; opacity: 0; transform: scale(.85); transition: opacity .18s, transform .18s; box-shadow: 0 4px 14px -6px rgb(0 0 0 / .25); }
+  .act svg { width: 18px; height: 18px; }
+  .logo-tile:hover .act, .logo-tile:focus-visible .act { opacity: 1; transform: none; }
+  .toast { position: absolute; left: 50%; bottom: 16px; transform: translate(-50%, 6px); padding: 4px 10px; border-radius: 999px; background: var(--ink); color: var(--page); font-size: 12px; font-weight: 500; opacity: 0; transition: opacity .2s, transform .2s; white-space: nowrap; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+  /* Cases: headline first, the product under it */
+  .case { overflow: visible; }
+  .head { padding: 30px 28px 0; text-align: center; }
+  .head h2 { margin: 0 auto; max-width: 18em; font-weight: 600; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.12; letter-spacing: -.02em; text-wrap: balance; }
+  .head--sm h2 { font-size: 19px; }
+  .vis { position: relative; flex: 1; min-height: 0; margin-top: 22px; overflow: hidden; border-radius: 0 0 var(--radius) var(--radius); }
+  .vis--inset { margin: 22px 28px 0; border-radius: 14px 14px 0 0; }
+  .side { flex-direction: row; }
+  .side .head { flex: 0 0 44%; text-align: left; padding: 30px 0 30px 32px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .side .head h2 { margin: 0; font-size: 22px; }
+  .stat small { display: block; color: var(--pencil); font-size: 12px; }
+  .stat b { display: block; color: var(--ink); font-weight: 600; font-size: 17px; }
+  .side .vis { margin: 24px 0 24px 24px; border-radius: 14px 0 0 14px; }
+  .article { padding: 26px; justify-content: space-between; }
+  .article .q { font-family: var(--font-serif); font-style: italic; font-size: 24px; line-height: 1.12; }
+  .article small { color: var(--pencil); font-size: 12.5px; }
+  .tag { font: 500 10px/1 var(--font-mono); padding: 3px 5px; border-radius: 4px; border: 1px solid var(--hairline); color: var(--pencil); margin-left: 6px; }
+
+  /* More work */
+  .more-row[hidden], .minis[hidden] { display: none; }
+  .pill { height: 40px; padding: 0 18px; border-radius: 999px; border: 0; background: var(--tile); color: var(--ink); font: 500 14px var(--font-sans); cursor: pointer; }
+  .minis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+  .mini { position: relative; display: grid; gap: 6px; align-content: start; padding: 18px 20px; border-radius: 20px; background: var(--tile); }
+  .mini b { color: var(--ink); font-weight: 600; font-size: 14px; line-height: 1.3; }
+  .mini span { color: var(--pencil); font-size: 12px; }
+  .mini:hover { box-shadow: 0 0 0 1.5px var(--figma-blue); }
+  /* Alive: Prevently, a slow strip of App Store screens */
+  .strip { position: absolute; inset: 0 0 24px; display: flex; gap: 12px; width: max-content; animation: strip 38s linear infinite; }
+  .strip img { height: 100%; width: auto; border-radius: 12px; display: block; }
+  @keyframes strip { to { transform: translateX(calc(-50% - 6px)); } }
+
+  /* Alive: Comfy, before and after wiping into each other */
+  .wipe img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .wipe .after { clip-path: inset(0 0 0 100%); animation: wipe 9s cubic-bezier(.65, 0, .35, 1) infinite; }
+  .wipe .bar { position: absolute; top: 0; bottom: 0; left: 100%; width: 2px; background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .08); animation: bar 9s cubic-bezier(.65, 0, .35, 1) infinite; z-index: 1; }
+  @keyframes wipe { 0%, 12% { clip-path: inset(0 0 0 100%); } 42%, 70% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
+  @keyframes bar { 0%, 12% { left: 100%; } 42%, 70% { left: 0%; } 100% { left: 100%; } }
+  .ba { position: absolute; top: 12px; z-index: 2; padding: 2px 8px; border-radius: 999px; background: rgb(22 24 29 / .72); color: #fff; font-size: 11px; font-weight: 500; }
+  .ba--b { left: 12px; } .ba--a { right: 12px; }
+  .pin { position: absolute; z-index: 3; right: calc(100% - var(--x)); top: var(--y); display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 7px; }
+  .pin__dot { width: 26px; height: 26px; flex: none; border-radius: 50% 50% 4px 50%; transform: translate(4px, -22px); background: var(--c-lera); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 600; box-shadow: 0 0 0 2px #fff; }
+  .pin__note { margin: 0; transform: translateY(-26px); width: 220px; padding: 9px 11px; border-radius: 10px; background: var(--tile); color: var(--graphite); font-size: 12.5px; line-height: 1.4; box-shadow: 0 0 0 1px var(--hairline), 0 12px 28px -14px rgb(0 0 0 / .4); }
+  .pin__note b { display: block; color: var(--ink); font-size: 11.5px; }
+
+  /* Alive: Adtelligent, the report scrolls like someone reading it */
+  .pan { position: absolute; inset: 0; background: var(--adt) top center / 112% auto no-repeat; animation: pan 18s ease-in-out infinite alternate; }
+  @keyframes pan { 0%, 10% { background-position: 0% 0%; } 90%, 100% { background-position: 100% 100%; } }
+
+  /* Alive: Smart Financial Assistant, phone screens one after another */
+  .phones { position: absolute; inset: 0; background: var(--sfa) 0% 0% / 400% auto no-repeat; animation: phones 20s infinite; }
+  @keyframes phones {
+    0%, 9% { background-position: 0% 0%; } 12.5%, 21.5% { background-position: 33.33% 0%; } 25%, 34% { background-position: 66.66% 0%; } 37.5%, 46.5% { background-position: 100% 0%; }
+    50%, 59% { background-position: 0% 100%; } 62.5%, 71.5% { background-position: 33.33% 100%; } 75%, 84% { background-position: 66.66% 100%; } 87.5%, 96.5% { background-position: 100% 100%; } 100% { background-position: 0% 0%; }
+  }
+
+  /* Alive: GRG, a spec being measured */
+  .spec { position: absolute; inset: 0; display: grid; place-content: center; justify-items: start; gap: 16px; padding: 0 22px; }
+  .spec__aa { color: var(--accent); font-weight: 600; font-size: 64px; line-height: .8; letter-spacing: -.04em; }
+  .spec__row { position: relative; display: flex; gap: 14px; }
+  .spec__row i { width: 24px; height: 24px; border-radius: 6px; animation: chip 6s ease-in-out infinite; }
+  .spec__row i:nth-child(1) { background: var(--accent); }
+  .spec__row i:nth-child(2) { background: color-mix(in oklch, var(--accent) 70%, var(--tile)); animation-delay: .15s; }
+  .spec__row i:nth-child(3) { background: color-mix(in oklch, var(--accent) 42%, var(--tile)); animation-delay: .3s; }
+  .spec__row i:nth-child(4) { background: color-mix(in oklch, var(--accent) 18%, var(--tile)); animation-delay: .45s; }
+  @keyframes chip { 0%, 8% { transform: scale(.6); opacity: 0; } 20%, 100% { transform: none; opacity: 1; } }
+  .rl { position: absolute; left: 24px; top: 33px; height: 1px; width: 14px; background: var(--redline); transform-origin: left; animation: rl 6s ease-in-out infinite; }
+  .rl::before, .rl::after { content: ""; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--redline); }
+  .rl::before { left: 0; } .rl::after { right: 0; }
+  .rl em { position: absolute; left: 50%; top: 5px; transform: translateX(-50%); font: 500 10px/1 var(--font-mono); font-style: normal; color: var(--redline); }
+  @keyframes rl { 0%, 30% { transform: scaleX(0); opacity: 0; } 42%, 88% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+
+
+  .stretch::after { content: ""; position: absolute; inset: 0; z-index: 4; border-radius: var(--radius); }
+  .pin { z-index: 5; }
+  .pin__note { background: var(--raised); box-shadow: 0 12px 28px -14px rgb(0 0 0 / .45); }
+
+  /* Animations run only while the tile is on screen, and stop on hover so it can be read */
+  .vis * { animation-play-state: paused; }
+  .card.run .vis * { animation-play-state: running; }
+  .card.run:hover .strip, .card.run:hover .phones, .card.run:hover .pan { animation-play-state: paused; }
+
+
+  /* Case titles: the proof leads, in ink; the product name and a short line sit under it */
+  .lead-proof { display: block; margin: 0 auto; max-width: 16em; color: var(--ink); font-weight: 600; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.05; letter-spacing: -.025em; text-wrap: balance; font-variant-numeric: tabular-nums; }
+  .lead-proof small { display: block; margin-top: 8px; color: var(--pencil); font-size: 13px; font-weight: 400; letter-spacing: 0; }
+  .lead-proof--quote { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.005em; }
+  .head h2 { margin: 10px auto 0; font-size: 15px; font-weight: 400; line-height: 1.35; letter-spacing: 0; color: var(--graphite); }
+  .nm { color: var(--ink); font-weight: 600; }
+  .head--sm .lead-proof { font-size: 21px; }
+  .head--sm:not(:has(.lead-proof)) h2 { margin-top: 0; font-size: 21px; font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+  .head--sm:not(:has(.lead-proof)) h2 .nm { font-weight: 600; }
+  .side .head .lead-proof { margin: 0; font-size: 30px; }
+  .side .head h2 { margin: 0; font-size: 15px; font-weight: 400; }
+  .stat { display: none; }
+
+  /* All case text aligned to the left edge */
+  .head { text-align: left; padding: 28px 30px 0; }
+  .lead-proof, .head h2 { margin-left: 0; margin-right: 0; }
+  .vis--inset { margin-left: 30px; margin-right: 30px; }
+  @media (max-width: 640px) {
+    .head { padding: 22px 18px 0; } .vis--inset { margin-left: 18px; margin-right: 18px; }
+    .case .head h2, .case.side .head h2 { font-size: 14px; }
+    .lead-proof { font-size: 26px; }
+    .case .head--sm .lead-proof { font-size: 17px; }
+    .case .head--sm { padding: 18px 14px 0; }
+  }
+
+
+  /* Layout of the work rows */
+  .h3 { grid-row: span 3; }
+  .grg .head { flex: 0 0 52%; }
+  .grg .vis { margin: 0; border-radius: 0 var(--radius) var(--radius) 0; }
+
+  /* Prevently: a pink tile; the logo appears in the middle, hides, then the product shows */
+  .prev { background: linear-gradient(160deg, #d0679a 0%, #c15182 42%, #8f2f5c 100%); color: #fff; }
+  .prev .lead-proof, .prev .nm { color: #fff; }
+  .prev .lead-proof small, .prev .head h2 { color: #fff; }
+  .prev__stage { margin-top: 24px; background: none; border-radius: 0 0 var(--radius) var(--radius); }
+  .prev__logo { position: absolute; left: 50%; top: 50%; width: 132px; height: 132px; margin: -66px 0 0 -66px; background: #fff; -webkit-mask: url(logos/prevently.svg) center / contain no-repeat; mask: url(logos/prevently.svg) center / contain no-repeat; animation: prevLogo 14s cubic-bezier(.4, 0, .2, 1) infinite; }
+  .prev__product { position: absolute; inset: 0; animation: prevProduct 14s cubic-bezier(.4, 0, .2, 1) infinite; }
+  .prev__product .strip { inset: 8px 0 32px; }
+  @keyframes prevLogo { 0% { opacity: 0; transform: scale(.7) rotate(-20deg); } 7%, 20% { opacity: 1; transform: none; } 27%, 100% { opacity: 0; transform: scale(1.15) rotate(10deg); } }
+  @keyframes prevProduct { 0%, 24% { opacity: 0; transform: translateY(40px); } 33%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-10px); } }
+
+
+  /* ---------- Case view: the card opens into a page; its animation moves to the top ---------- */
+  html.cv-open { overflow: hidden; }
+  .cv { position: fixed; inset: 0; z-index: 50; background: var(--page); overflow-y: auto; overscroll-behavior: contain; }
+  .cv[hidden] { display: none; }
+  .cv__close, .cv__top { position: fixed; z-index: 3; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--tile); color: var(--ink); display: grid; place-items: center; cursor: pointer; box-shadow: 0 6px 18px -10px rgb(0 0 0 / .35); }
+  .cv__close { top: calc(20px + env(safe-area-inset-top, 0px)); right: max(24px, env(safe-area-inset-right, 0px)); }
+  .cv__top { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); right: max(24px, env(safe-area-inset-right, 0px)); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .cv__top.on { opacity: 1; pointer-events: auto; }
+  .cv__close svg, .cv__top svg { width: 18px; height: 18px; }
+  .cv__wrap { max-width: 680px; margin: 0 auto; padding: 40px max(20px, env(safe-area-inset-right, 0px)) 140px max(20px, env(safe-area-inset-left, 0px)); }
+  .cv__hero { position: relative; height: clamp(280px, 52vh, 480px); border-radius: var(--radius); background: var(--tile); overflow: hidden; display: flex; flex-direction: column; }
+  .cv__hero.is-prev { background: linear-gradient(160deg, #d0679a 0%, #c15182 42%, #8f2f5c 100%); }
+  .cv__hero > .vis { flex: 1; margin: 0; border-radius: 0; }
+  .cv__hero > .vis.vis--inset { margin: 32px 40px 0; border-radius: 14px 14px 0 0; }
+  .cv__hero > .prev__stage { margin-top: 24px; }
+  .cv__hero .vis * { animation-play-state: running !important; }
+  .cv__hero .pin { --y: 64%; }
+  .cv__hero .phones { background-size: 100% auto; animation: pan 18s ease-in-out infinite alternate; }
+  .cv__hero .spec { padding: 0 48px; }
+  .cv__hero .spec__aa { font-size: 96px; }
+  .cv__seg { position: sticky; top: 14px; z-index: 2; display: flex; justify-content: center; margin: 18px 0 0; }
+  .cv__seg div { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--tile); box-shadow: 0 6px 18px -12px rgb(0 0 0 / .3); }
+  .cv__seg button { height: 34px; padding: 0 18px; border: 0; border-radius: 999px; background: none; color: var(--graphite); font: 500 14px var(--font-sans); cursor: pointer; }
+  .cv__seg button[aria-pressed="true"] { background: var(--raised); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / .1); }
+  .cv__seg[hidden] { display: none; }
+  .cv__body { margin-top: 48px; color: var(--graphite); font-size: 17px; line-height: 1.65; }
+  .cv__body h1 { margin: 0 0 20px; color: var(--ink); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -.025em; text-wrap: balance; }
+  .cv__body h2 { margin: 56px 0 12px; color: var(--ink); font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -.015em; }
+  .cv__body h3 { margin: 32px 0 6px; color: var(--ink); font-weight: 600; font-size: 18px; line-height: 1.3; }
+  .cv__body p { margin: 0 0 14px; }
+  .cv__body ul { margin: 0 0 14px; padding-left: 1.2em; display: grid; gap: 6px; }
+  .cv__body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 4px; }
+  .cv__body a:hover { text-decoration-color: currentColor; }
+  .cv-facts { display: grid; grid-template-columns: max-content 1fr; gap: 8px 28px; margin: 0 0 28px; font-size: 15px; }
+  .cv-facts dt { color: var(--pencil); }
+  .cv-facts dd { margin: 0; color: var(--ink); font-weight: 500; }
+  .cv-proof { margin: 28px 0; padding: 24px 26px; border-radius: 20px; background: var(--tile); }
+  .cv-proof b { display: block; color: var(--ink); font-weight: 600; font-size: 40px; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .cv-proof span { display: block; margin-top: 8px; color: var(--pencil); font-size: 14px; }
+  .cv-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 22px; }
+  .cv-stats div { padding: 16px; border-radius: 16px; background: var(--tile); }
+  .cv-stats b { display: block; color: var(--ink); font-size: 28px; font-weight: 600; letter-spacing: -.02em; line-height: 1; }
+  .cv-stats span { display: block; margin-top: 6px; color: var(--pencil); font-size: 13px; line-height: 1.35; }
+  .cv-quote { margin: 24px 0; font-family: var(--font-serif); font-style: italic; font-size: 24px; line-height: 1.3; color: var(--ink); }
+  .cv-quote small { display: block; margin-top: 8px; font-family: var(--font-sans); font-style: normal; font-size: 13px; color: var(--pencil); }
+  .cv-fig { position: relative; margin: 26px 0; }
+  .cv-fig img { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--tile); }
+  .cv-fig figcaption { margin-top: 10px; color: var(--pencil); font-size: 14px; text-align: center; }
+  .cv-fig .sel { inset: -5px -5px 26px; }
+  .cv-fig:hover .sel { opacity: 1; }
+  .cv-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+  .cv-lists section { padding: 20px 22px; border-radius: 18px; background: var(--tile); font-size: 15px; }
+  .cv-lists h3 { margin: 0 0 8px; font-size: 15px; }
+  .cv-lists .good { color: #1e7a3e; } .cv-lists .bad { color: #b42318; }
+  .cv-table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .cv-table th, .cv-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--hairline); }
+  .cv-table th { color: var(--pencil); font-weight: 500; font-size: 13px; }
+  .cv-table td b { color: var(--ink); }
+  .cv-table-wrap { overflow-x: auto; }
+  .cv-note { color: var(--pencil); font-size: 14px; }
+  .linkish { border: 0; background: none; padding: 0; color: var(--ink); font: inherit; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 4px; cursor: pointer; }
+  .linkish:hover { text-decoration-color: currentColor; }
+  .cv-next { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--hairline); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-weight: 500; }
+  .cv-next button { border: 0; background: none; padding: 0; color: var(--ink); font: 500 16px var(--font-sans); cursor: pointer; text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 4px; }
+  .cv-next button:hover { text-decoration-color: currentColor; }
+  ::view-transition-group(case-hero) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+  @media (max-width: 640px) {
+    .cv__wrap { padding-top: 76px; }
+    .cv__hero { height: 300px; }
+    .cv__hero > .vis.vis--inset { margin: 20px 18px 0; }
+    .cv__body { font-size: 16px; }
+    .cv-stats { grid-template-columns: minmax(0, 1fr); }
+    .cv-lists { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cv-lists .good { color: #5fcf86; } :root:not([data-theme="light"]) .cv-lists .bad { color: #f28b82; } }
+  :root[data-theme="dark"] .cv-lists .good { color: #5fcf86; } :root[data-theme="dark"] .cv-lists .bad { color: #f28b82; }
+  @media (prefers-reduced-motion: reduce) { .cv__hero .vis * { animation: none !important; } ::view-transition-group(case-hero) { animation: none; } }
+
+
+
+  .cv-hyp { margin: 18px 0 8px; padding: 22px 24px; border-radius: 20px; background: var(--tile); font-size: 16px; }
+  .cv-hyp h3 { margin: 0 0 10px; }
+  .cv-hyp p { margin: 0 0 6px; }
+  .cv-hyp b { color: var(--ink); font-weight: 600; }
+  .cv-hyp small { display: block; margin-top: 10px; color: var(--pencil); font-size: 13px; line-height: 1.5; font-family: var(--font-mono); }
+  .cv-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; }
+  .cv-grid3 .cv-fig { margin: 0; }
+  .cv-grid3 figcaption { font-size: 13px; }
+  .cv-insight { margin: 22px 0 0; }
+  .cv-insight .cv-quote { margin: 6px 0 8px; font-size: 21px; }
+  @media (max-width: 640px) { .cv-grid3 { grid-template-columns: minmax(0, 1fr); } }
+
+  /* Case page: important numbers, quotes and improved values in Mulberry, as on the current site */
+  .cv-proof b, .cv-stats b, .cv-quote, .cv-table td b { color: var(--accent); }
+
+  /* Figma selection is square, like in Figma */
+  .sel { border-radius: 0 !important; }
+
+  /* ---------- Narrow ---------- */
+  @media (max-width: 900px) {
+    :root { --row: 200px; --gap: 14px; --radius: 22px; }
+    .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .minis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .side { flex-direction: column; }
+    .side .head { flex: none; padding: 24px 22px 0; gap: 10px; }
+    .side .vis { margin: 16px 0 0; border-radius: 0 0 var(--radius) var(--radius); }
+    .grg { grid-row: span 2; }
+    .grg .head { flex: none; }
+    .grg .vis { border-radius: 0 0 var(--radius) var(--radius); }
+  }
+  @media (max-width: 640px) {
+    :root { --row: 168px; }
+    .top { grid-template-columns: 1fr auto; padding-block: 10px; }
+    .filter { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+    .filter button { padding: 0 12px; font-size: 13px; }
+    .theme span { display: none; }
+    main { padding-top: 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+    .intro { padding: 22px; }
+    .head { padding: 22px 18px 0; }
+    .head h2 { font-size: 19px; }
+    .vis { margin-top: 14px; }
+    .vis--inset { margin: 14px 16px 0; }
+    .yahoo { font-size: 30px; } .li-logo { font-size: 40px; } .medium { width: 48px; height: 48px; }
+    .act { width: 36px; height: 36px; opacity: 1; transform: none; top: 10px; right: 10px; }
+    .article { padding: 20px; } .article .q { font-size: 19px; }
+    .cursor, .you { display: none; }
+    .pin__note { width: 170px; font-size: 12px; }
+    .minis { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vis *, .cursor.in, .prev__logo, .prev__product { animation: none !important; }
+    .prev__logo { opacity: 0; }
+    .wipe .after { clip-path: inset(0 0 0 50%); } .wipe .bar { left: 50%; }
+    .act, .sel, .toast { transition: none; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 18 18"><path d="M2 1.5 16 8.2l-6.3 1.5L6.6 16Z" fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+  <symbol id="copy" viewBox="0 0 20 20"><rect x="7" y="7" width="10" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13 7V5.5A2.5 2.5 0 0 0 10.5 3h-5A2.5 2.5 0 0 0 3 5.5v5A2.5 2.5 0 0 0 5.5 13H7" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="out" viewBox="0 0 20 20"><path d="M11 3h6v6M17 3l-8 8M15 12v3.5A1.5 1.5 0 0 1 13.5 17h-9A1.5 1.5 0 0 1 3 15.5v-9A1.5 1.5 0 0 1 4.5 5H8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="sun" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="moon" viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="auto" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 3a7 7 0 0 1 0 14Z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="top">
+  <a class="me" href="#" aria-label="Lera Dryha, back to top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5 L25 16 L16 27 L7 16 Z M7 16 H25" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a>
+  <nav class="filter" aria-label="Show">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="about" aria-pressed="false">About</button>
+    <button type="button" data-f="work" aria-pressed="false">Work</button>
+    <button type="button" data-f="writing" aria-pressed="false">Writing</button>
+  </nav>
+  <button class="theme" type="button" id="theme" aria-label="Theme: auto"><svg aria-hidden="true"><use href="#auto"/></svg><span>Auto</span></button>
+</header>
+
+<main>
+  <div class="bento" id="bento">
+    <section class="card intro w2" data-cat="about" aria-labelledby="hello">
+      <h1 id="hello">Hi, I’m Lera, <em>a product designer.</em></h1>
+      <p>I design intuitive interfaces for mobile and web, B2B and B2C.</p>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+      <span class="cursor" data-cursor aria-hidden="true" style="--who:var(--c-lera); right:9%; top:24%"><svg><use href="#arrow"/></svg><span>Lera</span></span>
+    </section>
+
+    <button class="card logo-tile" type="button" id="mailTile" data-cat="about" aria-label="Copy email dryga_v@yahoo.com">
+      <span class="yahoo" aria-hidden="true">yahoo!</span>
+      <span class="act" aria-hidden="true"><svg><use href="#copy"/></svg></span>
+      <span class="toast" id="toast" role="status"></span>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+    </button>
+
+    <a class="card logo-tile" data-cat="about" href="https://www.linkedin.com/in/valeriia-dryha-37b083247/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)">
+      <span class="li-logo" aria-hidden="true">in</span>
+      <span class="act" aria-hidden="true"><svg><use href="#out"/></svg></span>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+    </a>
+
+    <article class="card case prev w2 h3" data-cat="work">
+      <div class="head"><p class="lead-proof">Designed, built, shipped.<small>iOS live · Android in review</small></p><h2><a class="stretch nm" href="#case-prevently" data-open="prevently">Prevently.</a> From idea to App Store, solo.</h2></div>
+      <div class="vis prev__stage" aria-hidden="true">
+        <span class="prev__logo"></span>
+        <div class="prev__product"><div class="strip">
+          <img src="img/prevently-1.jpg" alt=""><img src="img/prevently-2.jpg" alt=""><img src="img/prevently-3.jpg" alt=""><img src="img/prevently-4.jpg" alt=""><img src="img/prevently-5.jpg" alt="">
+          <img src="img/prevently-1.jpg" alt=""><img src="img/prevently-2.jpg" alt=""><img src="img/prevently-3.jpg" alt=""><img src="img/prevently-4.jpg" alt=""><img src="img/prevently-5.jpg" alt="">
+        </div></div>
+      </div>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+    </article>
+
+    <article class="card case w2 h2" data-cat="work">
+      <div class="head"><p class="lead-proof">30% → 40%<small>credit order share, business goal</small></p><h2><a class="stretch nm" href="#case-comfy" data-open="comfy">Comfy.</a> Making credit purchases clear and calm.</h2></div>
+      <div class="vis vis--inset wipe">
+        <img src="img/comfy-before.jpg" alt="Comfy product page before the redesign">
+        <img class="after" src="img/comfy-after.jpg" alt="Comfy product page after the redesign, with “Pay in installments” next to “Buy”">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="ba ba--b" aria-hidden="true">Before</span><span class="ba ba--a" aria-hidden="true">After</span>
+      </div>
+      <div class="pin" style="--x:80%; --y:66%">
+        <span class="pin__dot" aria-hidden="true">L</span>
+        <p class="pin__note"><b>Lera · design decision</b>Renamed “Buy on credit” to “Pay in installments”: the word “credit” made people anxious.</p>
+      </div>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+    </article>
+
+    <article class="card case side w2 grg" data-cat="work">
+      <div class="head"><p class="lead-proof">Detailed component specs.</p><h2><a class="stretch nm" href="#case-grg" data-open="grg">GRG Design System.</a> Plus a Storybook from scratch.</h2></div>
+      <div class="vis" aria-hidden="true" style="background:none"><div class="spec"><span class="spec__aa">Aa</span><span class="spec__row"><i></i><i></i><i></i><i></i><span class="rl"><em>14</em></span></span></div></div>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+      <span class="cursor" data-cursor aria-hidden="true" style="--who:var(--c-dev); right:6%; top:16%"><svg><use href="#arrow"/></svg><span>Developer</span></span>
+    </article>
+
+    <article class="card case w2 h2" data-cat="work">
+      <div class="head"><p class="lead-proof">Ad Requests&nbsp;· eCPM<small>what users check every day</small></p><h2><a class="stretch nm" href="#case-adtelligent" data-open="adtelligent">Adtelligent.</a> Reports built around what users check every day.</h2></div>
+      <div class="vis vis--inset" aria-hidden="true"><div class="pan" style="--adt:url(img/adt-report.jpg)"></div></div>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+      <span class="cursor" data-cursor aria-hidden="true" style="--who:var(--c-pm); left:58%; top:58%"><svg><use href="#arrow"/></svg><span>UX designer</span></span>
+    </article>
+
+    <article class="card case h2" data-cat="work">
+      <div class="head head--sm"><p class="lead-proof lead-proof--quote">“I connected my accounts… and then what?”<small>a user, before the redesign</small></p><h2><a class="stretch nm" href="#case-sfa" data-open="sfa">Smart Financial Assistant.</a> From transaction log to assistant.</h2></div>
+      <div class="vis vis--inset" aria-hidden="true"><div class="phones" style="--sfa:url(img/sfa-screens.jpg)"></div></div>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+      <span class="cursor" data-cursor aria-hidden="true" style="--who:var(--c-research); left:16%; top:62%"><svg><use href="#arrow"/></svg><span>Researcher</span></span>
+    </article>
+
+    <a class="card logo-tile h2" data-cat="writing" href="https://medium.com/@dynya.90" target="_blank" rel="noopener" aria-label="Medium (opens in a new tab)">
+      <svg class="medium" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor"/><ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor"/><ellipse cx="41" cy="24" rx="1.8" ry="8.6" fill="currentColor"/></svg>
+      <span class="act" aria-hidden="true"><svg><use href="#out"/></svg></span>
+      <span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
+    </a>
+  </div>
+
+  <div class="more-row" id="moreRow"><button class="pill" type="button" id="moreBtn" aria-expanded="false" aria-controls="moreList">More work</button></div>
+  <div class="minis" id="moreList" hidden>
+    <a class="mini" href="https://app.notion.com/p/Task-Creation-Reimagined-22f44bdcbfce803b8820ff2f98222f09" target="_blank" rel="noopener"><b>Task Creation Reimagined</b><span>2025</span></a>
+    <a class="mini" href="https://app.notion.com/p/Onboarding-through-Hypotheses-A-B-Testing-26e44bdcbfce8067a499f30c9ae13e82" target="_blank" rel="noopener"><b>Onboarding through Hypotheses &amp; A/B Testing</b><span>2025</span></a>
+    <a class="mini" href="https://app.notion.com/p/Case-Study-ce5fb0f537104a5eb7d2346460588691" target="_blank" rel="noopener"><b>Mental health support MVP</b><span>2023</span></a>
+    <a class="mini" href="https://app.notion.com/p/Dnipropetrovsk-Regional-Center-for-Educational-Quality-Assessment-13b44bdcbfce8050b01ecb958ac85f3b" target="_blank" rel="noopener"><b>Dnipropetrovsk Regional Center for Educational Quality Assessment</b><span>UX audit</span></a>
+  </div>
+</main>
+
+
+
+
+<div class="cv" id="cv" role="dialog" aria-modal="true" aria-labelledby="cvTitle" hidden>
+  <button class="cv__close" type="button" id="cvClose" aria-label="Close case"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 3v5H3M12 17v-5h5M8 8 3 3M12 12l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="cv__wrap">
+    <div class="cv__hero" id="cvHero" aria-hidden="true"></div>
+    <article class="cv__body" id="cvBody"></article>
+  </div>
+  <button class="cv__top" type="button" id="cvTop" aria-label="Back to top"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 12l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+<div class="you" id="you" aria-hidden="true"><span>You</span></div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Theme: auto → light → dark */
+  var modes = ["auto", "light", "dark"], icons = { auto: "#auto", light: "#sun", dark: "#moon" };
+  var tbtn = document.getElementById("theme");
+  var mode = "auto";
+  try { mode = localStorage.getItem("theme") || "auto"; } catch (e) {}
+  function applyTheme() {
+    if (mode === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", mode);
+    tbtn.querySelector("use").setAttribute("href", icons[mode]);
+    tbtn.querySelector("span").textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+    tbtn.setAttribute("aria-label", "Theme: " + mode);
+  }
+  applyTheme();
+  tbtn.addEventListener("click", function () {
+    mode = modes[(modes.indexOf(mode) + 1) % modes.length];
+    try { localStorage.setItem("theme", mode); } catch (e) {}
+    applyTheme();
+  });
+
+  /* Live size on each selection, like Figma */
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+  function sizes() { cards.forEach(function (c) { var b = c.querySelector(".sel b"); if (b) b.textContent = Math.round(c.offsetWidth) + " × " + Math.round(c.offsetHeight); }); }
+  sizes(); window.addEventListener("resize", sizes);
+
+  /* Filter, like Alex Chiu's: All / About / Work / Writing */
+  var fbtns = Array.prototype.slice.call(document.querySelectorAll(".filter button"));
+  var moreRow = document.getElementById("moreRow"), moreList = document.getElementById("moreList"), moreBtn = document.getElementById("moreBtn");
+  function filter(f) {
+    fbtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.f === f)); });
+    cards.forEach(function (c) { c.hidden = !(f === "all" || c.dataset.cat === f); });
+    var showMore = f === "all" || f === "work";
+    moreRow.hidden = !showMore;
+    if (!showMore) moreList.hidden = true; else moreList.hidden = moreBtn.getAttribute("aria-expanded") !== "true";
+    sizes();
+  }
+  fbtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var go = function () { filter(b.dataset.f); };
+      if (document.startViewTransition && !reduce) document.startViewTransition(go); else go();
+    });
+  });
+  moreBtn.addEventListener("click", function () {
+    var open = moreList.hidden; moreList.hidden = !open;
+    moreBtn.setAttribute("aria-expanded", String(open)); moreBtn.textContent = open ? "Less work" : "More work";
+  });
+
+  /* Email: copy on click, with a small confirmation */
+  var mail = "dryga_v@yahoo.com", toast = document.getElementById("toast"), timer;
+  document.getElementById("mailTile").addEventListener("click", function () {
+    var show = function (t) { toast.textContent = t; toast.classList.add("on"); clearTimeout(timer); timer = setTimeout(function () { toast.classList.remove("on"); }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(function () { show("Email copied"); }, function () { show(mail); });
+    else show(mail);
+  });
+
+
+  /* Animations and cursors wake up when a tile is on screen */
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        e.target.classList.toggle("run", e.isIntersecting);
+        if (e.isIntersecting && !reduce) Array.prototype.forEach.call(e.target.querySelectorAll("[data-cursor]:not(.in)"), function (c) { c.classList.add("in"); });
+      });
+    }, { threshold: 0.25 });
+    cards.forEach(function (c) { io.observe(c); });
+  } else cards.forEach(function (c) { c.classList.add("run"); });
+
+  /* The visitor's own name tag, next to the real pointer */
+  var you = document.getElementById("you");
+  if (window.matchMedia("(pointer: fine)").matches) {
+    document.addEventListener("pointermove", function (e) { you.style.transform = "translate(" + (e.clientX + 14) + "px," + (e.clientY + 18) + "px)"; you.classList.add("on"); });
+    document.documentElement.addEventListener("pointerleave", function () { you.classList.remove("on"); });
+  }
+})();
+</script>
+
+<script>
+(function () {
+  var NOTION = {
+    adtelligent: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
+    sfa: "https://app.notion.com/p/From-Transaction-Log-to-Smart-Financial-Assistant-24244bdcbfce8040876dfe857d29eb36"
+  };
+  var SEL = '<span class="sel" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>';
+  function fig(src, cap) { return '<figure class="cv-fig"><img src="' + src + '" alt="' + cap + '" loading="lazy">' + SEL + '<figcaption>' + cap + '</figcaption></figure>'; }
+  var comfyFacts = '<dl class="cv-facts"><dt>Role</dt><dd>UX / Product Designer</dd><dt>Context</dt><dd>Projector course; all work handed over to Comfy</dd><dt>Team</dt><dd>4 designers</dd><dt>Year</dt><dd>2024</dd><dt>Business goal</dt><dd>Credit order share 30% → 40%</dd></dl>';
+  var comfySummary =
+    '<h2>Problem</h2><p>Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, checkout overloaded people at the moment they had to commit, and online they couldn’t tell if a product would suit them.</p>' +
+    '<h2>What we did</h2><p>15 interviews, a survey of 178 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.</p>' +
+    '<h2>Result</h2><p>In moderated tests the redesign reached 100% task completion with zero errors, against 75% for the current flow. In Maze, the success rate rose from 87.5% to 92.3% between iterations.</p>' +
+    '<div class="cv-proof"><b>75% → 100%</b><span>task completion, current flow vs redesign (moderated, 4 and 7 sessions)</span></div>';
+  var CASES = {
+    comfy: {
+      title: "Comfy: making credit purchases clear and calm",
+      tldr: '<h1 id="cvTitle">Comfy: making credit purchases clear and calm</h1>' + comfyFacts + comfySummary +
+        '<p><button class="linkish" type="button" data-mode-link="detailed">Read the detailed case</button></p>',
+      detailed: '<h1 id="cvTitle">Comfy: making credit purchases clear and calm</h1>' +
+        '<p>Making credit purchases clear and calm for Ukraine’s largest retailer of home appliances and electronics.</p>' + comfyFacts + comfySummary +
+        '<h2>Discover</h2><p>COMFY is the largest retailer of home appliances and electronics in Ukraine. It has run an omnichannel business for over 10 years and is the #2 player in Ukrainian e-commerce.</p>' +
+        '<h3>What the business told us</h3><ul><li>Not every product or service is eligible for credit; it depends on vendor agreements.</li><li>Adding services to a purchase, such as setup or warranty, can unlock better terms: 12 months instead of 7.</li><li>People choose credit for different reasons: some lack the funds, others have the money but prefer to spread the cost.</li></ul>' +
+        '<h3>Competitor analysis</h3><div class="cv-stats"><div><b>3</b><span>direct competitors: MOYO, Stylus, Foxtrot</span></div><div><b>3</b><span>secondary: ROZETKA, ALLO, Citrus</span></div><div><b>54</b><span>features compared</span></div></div>' +
+        '<h3>15 in-depth interviews</h3><p>We looked for what makes people buy, or not buy, on credit: their barriers, motivations, triggers and context.</p>' +
+        '<p class="cv-quote">“I didn’t read the terms, like everyone who doesn’t read the small print. All I did was multiply the monthly payment by six and compare it with the order price.”<small>A shopper in an interview, translated from Ukrainian</small></p>' +
+        '<h3>Follow-up survey</h3><p>To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents; 178 answered.</p>' +
+        fig("img/comfy-c09.jpg", "Survey charts, captured at 90 responses, before the survey closed at 178.") +
+        '<h2>Define</h2><p>Comfy is a large product, and narrowing it to one or two personas wasn’t realistic. We used Jobs to be Done instead, then mapped the customer journey to see pain points, motivations and friction at each step.</p>' +
+        fig("img/comfy-c11.jpg", "Customer journey map.") +
+        '<div class="cv-lists"><section><h3 class="good">What Comfy covers well</h3><ul><li>Inspecting the product in store</li><li>Flexible credit through familiar banks</li><li>No interest on installments</li><li>Bonuses and loyalty rewards</li></ul></section><section><h3 class="bad">What it doesn’t fully cover</h3><ul><li>Effortful contact with banks</li><li>Anxiety about repayment</li><li>Uncertainty about returns on credit</li><li>Confusing or non-transparent terms</li></ul></section></div>' +
+        '<h2>Develop</h2><p>From the research we picked the problems with the biggest impact on trust, decisions and completion, mapped How Might We, and ranked ideas with MoSCoW into a realistic MVP.</p>' +
+        fig("img/comfy-c13.jpg", "Three key problems, with what users said.") +
+        '<h2>Deliver</h2><h3>1. Lack of transparency in credit terms</h3><p>We put a visible “Оплата частинами” (Pay in installments) button next to “Купити” (Buy), showing the lowest monthly payment. We renamed it from “Купити в кредит” (Buy on credit) after interviews showed that the word “credit” made people anxious. Each bank offer became a button with its own terms, and all offers sit in one drawer with a calculator.</p>' +
+        fig("img/comfy-c17.jpg", "Each bank offer is a button with its own terms.") +
+        '<h3>2. Cognitive overload</h3><p>The product and payment summary stays visible while scrolling, completed blocks change colour, and the store chosen on the product page carries over to checkout.</p>' +
+        fig("img/comfy-c23.jpg", "Sticky summary, completed blocks stand out.") +
+        '<h3>3. Uncertainty about product suitability</h3><p>People wanted to see a product in person before committing to credit. We added a video consultation on the product page.</p>' +
+        fig("img/comfy-c27.jpg", "Video consultation on the product page.") +
+        '<h3>Usability testing</h3><div class="cv-table-wrap"><table class="cv-table"><thead><tr><th>Moderated</th><th>Comfy today · 4</th><th>Iteration 1 · 3</th><th>Iteration 2 · 7</th></tr></thead><tbody>' +
+        '<tr><td>Completion rate</td><td>75%</td><td>67%</td><td><b>100%</b></td></tr><tr><td>Time on task</td><td>5.75 min</td><td>4.87 min</td><td><b>3.52 min</b></td></tr><tr><td>Errors</td><td>1.75</td><td>1</td><td><b>0</b></td></tr><tr><td>Satisfaction</td><td>3.75 / 5</td><td>3.67 / 5</td><td><b>4.14 / 5</b></td></tr></tbody></table></div>' +
+        '<h2>Outcome</h2><p>The project turned the credit purchase into something transparent, intuitive and emotionally comfortable, because “credit” shouldn’t feel like a horror story. Next, the improvements that tested well go into implementation, and the ideas for growing credit orders get validated and tested further with the product and marketing teams.</p>'
+    },
+    prevently: {
+      title: "Prevently",
+      tldr: '<h1 id="cvTitle">Prevently: from idea to App Store, solo</h1><p>A personal preventive-care planner for women. Research, design and build, from idea to App Store, solo.</p>' +
+        '<dl class="cv-facts"><dt>Role</dt><dd>Research, design, build</dd><dt>Platforms</dt><dd>iOS in SwiftUI · Android in Kotlin</dd><dt>Status</dt><dd>iOS live · Android in review</dd></dl>' +
+        '<div class="cv-proof"><b>Designed, built, shipped.</b><span>iOS in SwiftUI is live. Android in Kotlin is in review.</span></div>' +
+        '<p><a href="https://preventlyapp.com" target="_blank" rel="noopener">preventlyapp.com ↗</a> · <a href="https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262" target="_blank" rel="noopener">App Store ↗</a></p><p class="cv-note">The full case is being written.</p>'
+    },
+    adtelligent: {
+      title: "Adtelligent",
+      tldr: '<h1 id="cvTitle">Adtelligent: reports built around what users check every day</h1><p>Reports and a new overview for an AdTech B2B SaaS platform, built around what users check every day.</p>' +
+        '<dl class="cv-facts"><dt>Year</dt><dd>2025</dd><dt>Domain</dt><dd>AdTech B2B SaaS</dd></dl>' +
+        '<div class="cv-proof"><b>Ad Requests · eCPM</b><span>what users open the platform for, every day</span></div>' +
+        '<p><a href="' + NOTION.adtelligent + '" target="_blank" rel="noopener">Read the full case on Notion ↗</a></p>'
+    },
+    sfa: {
+      title: "Smart Financial Assistant",
+      detailed: (function () {
+        function ins(n, h, q, t) { return '<div class="cv-insight"><h3>' + n + '. ' + h + '</h3><p class="cv-quote">“' + q + '”</p><p>' + t + '</p></div>'; }
+        function hyp(h, ifT, thenT, becauseT, leadT, metrics, img, cap) {
+          return '<div class="cv-hyp"><h3>' + h + '</h3><p><b>If</b> ' + ifT + '</p><p><b>Then</b> ' + thenT + '</p><p><b>Because</b> ' + becauseT + '</p><p><b>This will lead to</b> ' + leadT + '</p><small>Mixpanel: ' + metrics + '</small></div>' + fig(img, cap);
+        }
+        return '<h1 id="cvTitle">From transaction log to smart financial assistant</h1>' +
+        '<p>A household finance manager for the US market, for hubmee. People connected their bank accounts and then had no reason to come back. I reworked raw transaction data into something actionable, insightful and worth revisiting.</p>' +
+        '<dl class="cv-facts"><dt>Role</dt><dd>UX/UI Designer, led the design</dd><dt>Team</dt><dd>UX/UI designer, PM, system architect</dd><dt>Year</dt><dd>2024</dd><dt>Market</dt><dd>US · household finance</dd><dt>Client</dt><dd>hubmee</dd></dl>' +
+        '<div class="cv-proof"><b>60%+</b><span>of users returned to the forecast graph more than once a month after release (Mixpanel)</span></div>' +
+        '<h2>The problem</h2><p>Users could connect their bank accounts via Plaid, but the product failed to keep them engaged. After the initial setup many didn’t return or explore further. The experience lacked perceived value beyond basic transaction aggregation.</p>' +
+        fig("img/sfa-s03.jpg", "User problems, and the question behind them.") +
+        '<h2>The challenge</h2><p>The MVP offered a list of all transactions from connected accounts, filtering by account and category, category-based spending insights, and an overview of balances. It quickly proved insufficient for long-term engagement. As part of a small product team, I led the design as we began scaling the product.</p>' +
+        '<h2>Process</h2><p>Design Thinking, to keep the solution aligned with both user needs and business goals: desk research, in-depth interviews, competitive analysis, hypotheses, testing, and building on.</p>' +
+        '<h3>What the data told us</h3><p>The goal was to understand real behaviour, find drop-off points and spot opportunities.</p>' +
+        '<div class="cv-stats"><div><b>3.66%</b><span>of users who connected a bank account went on to explore the financial tabs</span></div><div><b>14 days</b><span>without action after connecting meant the feature failed to retain interest</span></div><div><b>6</b><span>user interviews, plus support requests</span></div></div>' +
+        fig("img/sfa-s04.jpg", "Funnel from connecting an account to opening the finance tabs.") +
+        '<h3>What we learned from users</h3>' +
+        ins(1, "Viewing transactions alone isn’t valuable", "I already have banking apps, why would I use another just to look at the same list of transactions?", "People trusted their bank apps more and didn’t want to duplicate them.") +
+        ins(2, "Users want control over recurring payments", "I want to track my subscriptions, mortgage, and insurance, not every cup of coffee.", "They cared about regular, essential commitments more than everyday spending.") +
+        ins(3, "Fear of price changes or unexpected charges", "What if Netflix suddenly charges more and I don’t notice?", "They wanted cues about unusual patterns in recurring charges.") +
+        ins(4, "Need to anticipate what’s coming next", "Show me which bills are coming soon and from which card.", "Predictability was key: upcoming payments by date and source.") +
+        ins(5, "Desire for spending breakdowns", "I’d love to see how much I spend on subscriptions vs. insurance.", "Category-level analytics on recurring expenses, in % and in money.") +
+        ins(6, "Poor feedback after account connection", "I connected my account... and nothing happened. Did it even work?", "No confirmation or next step after Plaid led to drop-off.") +
+        '<h3>What others are doing</h3><p>Three direct competitors for this functionality, to benchmark and find room to differ.</p>' +
+        '<div class="cv-grid3">' + fig("img/sfa-s05.jpg", "Monarch") + fig("img/sfa-s06.jpg", "Revolut") + fig("img/sfa-s07.jpg", "Origin") + '</div>' +
+        '<h2>Hypotheses and validation</h2><p>I formulated hypotheses for new recurring-payment features from research and behaviour, and defined the Mixpanel events and success metrics so product and data teams could measure the real impact after launch.</p>' +
+        '<p class="cv-note">Null hypothesis: recurring bill tracking does not increase perceived value, does not improve conversion into financial features, and does not reduce bank disconnections.</p>' +
+        hyp("Recurring payments tracking", "we add tracking of recurring bills to the financial section,", "users will better control regular spending, forecast budgets and avoid missed charges,", "they get structured, automated analytics on recurring payments.", "+50% conversion to the financial feature and fewer bank disconnections.", "Recurring_Tab_Opened · Recurring_Widget_Viewed · Avg_Time_on_Recurring_Screen · Bank_Disconnect", "img/sfa-s08.jpg", "Recurring payments on the overview.") +
+        hyp("Upcoming payments", "we show upcoming charges with date, amount and card,", "users can plan expenses and avoid unexpected withdrawals,", "they get clarity and control over future transactions.", "fewer overdue bills, more trust and retention.", "Upcoming_Widget_Clicked · Recurring_Calendar_Date_Clicked · Recurring_Tab_All_Viewed", "img/sfa-s09.jpg", "Upcoming payments and the recurring calendar.") +
+        hyp("Breakdown by type", "users can sort bills by type (subscriptions, rent, utilities, insurance),", "they can analyse the structure of their expenses and prioritise,", "it simplifies how recurring costs are perceived and budgeted.", "more engagement and better retention of active users.", "Recurring_Widget_Clicked · Sort_By_Type_Selected", "img/sfa-s10.jpg", "Recurring bills by type.") +
+        hyp("Forecasting", "we forecast the total of recurring charges for the current month,", "users can plan the remaining budget and decide, for example, to cancel a subscription,", "they see the financial picture ahead of time.", "more engagement, satisfaction and trust.", "Recurring_Tab_Monthly_Viewed · Forecast_Return_Visits", "img/sfa-s11.jpg", "Monthly forecast of recurring charges.") +
+        hyp("Bill details and merchant grouping", "we show each bill’s full history and group bills by merchant,", "users get a complete picture of spending per service,", "they don’t have to track recurring charges down across records.", "less confusion and a stronger sense of control.", "Recurring_Merchant_Clicked · Recurring_Details_Viewed", "img/sfa-s12.jpg", "Bill details with payment history.") +
+        '<div class="cv-hyp"><h3>Main hypothesis: Dark Mode = happy CEO</h3><p><b>If</b> we implement Dark Mode,</p><p><b>Then</b> our CEO will finally feel seen and indescribably happy,</p><p><b>Because</b> he’s been using Dark Mode on everything since 2017.</p><p><b>This will lead to</b> increased happiness across the team, and maybe fewer design debates at the end of the day.</p></div>' +
+        fig("img/sfa-s13.jpg", "Hypotheses, by level of ambition.") +
+        fig("img/sfa-s14.jpg", "Colour variables for light and dark.") +
+        fig("img/sfa-s16.jpg", "The widgets in dark mode.") +
+        '<h2>Impact</h2><div class="cv-stats"><div><b>60%+</b><span>returned to the forecast graph more than once a month</span></div><div><b>↑</b><span>clicks on the Recurring widget and calendar</span></div><div><b>Week 2</b><span>higher retention among users who used recurring features</span></div></div>' +
+        '<p class="cv-note">Based on Mixpanel: Forecast view frequency; Upcoming_Widget_Clicked and Recurring_Calendar_Date_Clicked events; engagement of users with and without recurring interactions.</p>' +
+        '<h2>What’s next</h2><ul><li>Reminders for upcoming charges</li><li>Month-over-month spending comparison</li><li>A/B test alternative layouts for the forecast block, such as a calendar view vs a chart</li></ul>' +
+        '<p><a href="' + NOTION.sfa + '" target="_blank" rel="noopener">The original case on Notion ↗</a></p>';
+      })()
+    },
+    grg: {
+      title: "GRG Design System",
+      tldr: '<h1 id="cvTitle">GRG Design System</h1><p>A large design system with detailed component specs, plus a Storybook built from scratch.</p>' +
+        '<dl class="cv-facts"><dt>Client</dt><dd>Golden Ratio Group</dd><dt>Work</dt><dd>Design system · Storybook</dd></dl><p class="cv-note">The case is being prepared.</p>'
+    }
+  };
+  var ORDER = ["prevently", "comfy", "grg", "adtelligent", "sfa"];
+
+  var root = document.documentElement, cv = document.getElementById("cv"), hero = document.getElementById("cvHero"), body = document.getElementById("cvBody"),
+      top = document.getElementById("cvTop"), closeBtn = document.getElementById("cvClose");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var current = null, opener = null, mode = "detailed";
+
+  function cardOf(id) { var a = document.querySelector('[data-open="' + id + '"]'); return a ? a.closest(".card") : null; }
+  function render() {
+    var c = CASES[current];
+    var i = ORDER.indexOf(current), next = ORDER[(i + 1) % ORDER.length];
+    body.innerHTML = (c.detailed || c.tldr) +
+      '<nav class="cv-next" aria-label="More work"><button type="button" data-close>All work</button><button type="button" data-go="' + next + '">Next: ' + CASES[next].title + ' →</button></nav>';
+    Array.prototype.forEach.call(body.querySelectorAll(".cv-fig"), function (f) { var b = f.querySelector(".sel b"), im = f.querySelector("img"); var put = function () { b.textContent = Math.round(im.offsetWidth) + " × " + Math.round(im.offsetHeight); }; if (im.complete) put(); else im.addEventListener("load", put); });
+  }
+  function fillHero(card) {
+    hero.innerHTML = "";
+    hero.className = "cv__hero" + (card.classList.contains("prev") ? " is-prev" : "");
+    var vis = card.querySelector(".vis"); if (vis) hero.appendChild(vis.cloneNode(true));
+    var pin = card.querySelector(".pin"); if (pin) hero.appendChild(pin.cloneNode(true));
+  }
+  function open(id, fromCard) {
+    var card = cardOf(id); if (!card || !CASES[id]) return;
+    var doIt = function () {
+      current = id; mode = "detailed";
+      fillHero(card); render();
+      cv.hidden = false; root.classList.add("cv-open"); cv.scrollTop = 0; requestAnimationFrame(function () { cv.scrollTop = 0; });
+      var v = card.querySelector(".vis"); if (v) v.style.viewTransitionName = "";
+      var hv = hero.querySelector(".vis"); if (hv) hv.style.viewTransitionName = "case-hero";
+    };
+    opener = fromCard || card;
+    var v = card.querySelector(".vis");
+    if (document.startViewTransition && !reduce && v) { v.style.viewTransitionName = "case-hero"; document.startViewTransition(doIt).finished.then(function () { var hv = hero.querySelector(".vis"); if (hv) hv.style.viewTransitionName = ""; closeBtn.focus(); }); }
+    else { doIt(); closeBtn.focus(); }
+    try { history.replaceState(null, "", "#case-" + id); } catch (e) {}
+  }
+  function close() {
+    if (cv.hidden) return;
+    var card = cardOf(current);
+    var doIt = function () {
+      cv.hidden = true; root.classList.remove("cv-open"); hero.innerHTML = "";
+      var v = card && card.querySelector(".vis"); if (v) v.style.viewTransitionName = "case-hero";
+    };
+    var hv = hero.querySelector(".vis");
+    if (document.startViewTransition && !reduce && hv && card) {
+      hv.style.viewTransitionName = "case-hero";
+      card.scrollIntoView({ block: "center" });
+      document.startViewTransition(doIt).finished.then(function () { var v = card.querySelector(".vis"); if (v) v.style.viewTransitionName = ""; });
+    } else doIt();
+    var link = card && card.querySelector("[data-open]"); if (link) link.focus({ preventScroll: true });
+    try { history.replaceState(null, "", location.pathname); } catch (e) {}
+    current = null;
+  }
+
+  document.addEventListener("click", function (e) {
+    var o = e.target.closest("[data-open]");
+    if (o) { e.preventDefault(); open(o.dataset.open); return; }
+  });
+  body.addEventListener("click", function (e) {
+    var g = e.target.closest("[data-go]"); if (g) { var id = g.dataset.go; current = id; mode = "detailed"; fillHero(cardOf(id)); render(); cv.scrollTop = 0; return; }
+    if (e.target.closest("[data-close]")) { close(); return; }
+    var m = e.target.closest("[data-mode-link]"); if (m) { mode = m.dataset.modeLink; render(); }
+  });
+  closeBtn.addEventListener("click", close);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  cv.addEventListener("scroll", function () { top.classList.toggle("on", cv.scrollTop > 600); }, { passive: true });
+  top.addEventListener("click", function () { cv.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); });
+
+  var h = (location.hash || "").replace("#case-", "");
+  if (CASES[h]) open(h);
+})();
+</script>
