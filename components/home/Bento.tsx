@@ -77,14 +77,25 @@ export function Bento() {
           <Selection />
         </a>
 
-        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
+        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning" aria-label="Learning: courses and certificates">
           <svg className="text-tile__icon" viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M24 9 45 18.5 24 28 3 18.5Z" fill="currentColor" />
-            <path d="M12 23.5v8c0 3.6 5.4 6.5 12 6.5s12-2.9 12-6.5v-8L24 29Z" fill="currentColor" />
-            <path d="M40.5 20.5V32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="40.5" cy="34" r="2.2" fill="currentColor" />
+            <mask id="cert-sheet">
+              <rect width="48" height="48" fill="#fff" />
+              <rect x="10" y="15" width="19" height="2.6" rx="1.3" fill="#000" />
+              <rect x="10" y="21" width="15" height="2.6" rx="1.3" fill="#000" />
+              <rect x="10" y="27" width="10" height="2.6" rx="1.3" fill="#000" />
+              <circle cx="34" cy="32" r="9.5" fill="#000" />
+            </mask>
+            <mask id="cert-seal">
+              <rect width="48" height="48" fill="#fff" />
+              <circle cx="34" cy="32" r="4.2" fill="none" stroke="#000" strokeWidth="1.5" />
+            </mask>
+            <rect x="4" y="8" width="40" height="29" rx="3.5" fill="currentColor" mask="url(#cert-sheet)" />
+            <g mask="url(#cert-seal)" fill="currentColor">
+              <path d="M29.6 36.5 28 45l6-3.2 6 3.2-1.6-8.5Z" />
+              <circle cx="34" cy="32" r="7.5" />
+            </g>
           </svg>
-          <span className="text-tile__title">Learning</span>
           <span className="text-tile__line">Courses and certificates</span>
           <span className="act" aria-hidden="true"><Icon name="arrow" /></span>
           <Selection />
