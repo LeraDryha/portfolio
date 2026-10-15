@@ -22,30 +22,12 @@
       },
       {
         "rule": "low-contrast",
-        "value": "#0d99ff",
-        "createdAt": "2026-10-15T13:17:23.857686Z",
-        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
-      },
-      {
-        "rule": "low-contrast",
-        "value": "#14ae5c",
-        "createdAt": "2026-10-15T13:17:23.857686Z",
-        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
-      },
-      {
-        "rule": "low-contrast",
-        "value": "#f24822",
-        "createdAt": "2026-10-15T13:17:23.857686Z",
-        "reason": "Figma layer by design (user confirmed 2026-10-15): white name tags and size labels on Figma's own multiplayer colours; decorative, aria-hidden"
-      },
-      {
-        "rule": "tight-leading",
         "value": "*",
         "files": [
           "ui/kit.html"
         ],
-        "createdAt": "2026-10-15T13:17:23.857686Z",
-        "reason": "Display-size tile proofs (26\u201336px) set at 1.05; body text stays 1.5\u20131.65"
+        "createdAt": "2026-10-15T13:20:02.993Z",
+        "reason": "user confirmed: Figma layer uses Figma's own colours (2026-10-15); the remaining hits are white name tags and size labels on Figma blue/green/red-orange, decorative and aria-hidden, plus the redline label measured against its own line"
       }
     ]
   }
