@@ -254,7 +254,7 @@ A Figma cursor with a name tag in the person's colour. They arrive when their ti
 Yahoo (copies the email, "Email copied" toast), LinkedIn and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
 
 ### Text Tile
-Learning: a title (21px, ink) and a line (Pencil) at the bottom-left, an arrow action on hover; it opens the Learning page (courses and certificates). Filtered under About.
+Learning: a small graduation-cap illustration in ink, the size of the Medium logo, in the middle; a title (21px, ink) and a line (Pencil) at the bottom-left; an arrow action on hover; it opens the Learning page (courses and certificates). Filtered under About.
 
 ### Filter and Theme
 Pill segmented control: All / About / Work / Writing hides and shows tiles with a soft transition; More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.

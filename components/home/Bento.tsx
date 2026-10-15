@@ -78,6 +78,12 @@ export function Bento() {
         </a>
 
         <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
+          <svg className="text-tile__icon" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 9 45 18.5 24 28 3 18.5Z" fill="currentColor" />
+            <path d="M12 23.5v8c0 3.6 5.4 6.5 12 6.5s12-2.9 12-6.5v-8L24 29Z" fill="currentColor" />
+            <path d="M40.5 20.5V32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="40.5" cy="34" r="2.2" fill="currentColor" />
+          </svg>
           <span className="text-tile__title">Learning</span>
           <span className="text-tile__line">Courses and certificates</span>
           <span className="act" aria-hidden="true"><Icon name="arrow" /></span>
