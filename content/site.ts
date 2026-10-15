@@ -4,13 +4,35 @@
 /** The product shown inside a tile and, the same element, at the top of its case page. */
 export type Vis =
   | { kind: "reveal"; logo: string; screens: string[] } // logo appears, hides, then a strip of phone screens
-  | { kind: "wipe"; before: { src: string; alt: string }; after: { src: string; alt: string }; pin?: Pin } // before and after
+  | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
   | { kind: "pan"; src: string } // a report read top to bottom
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
   | { kind: "spec" }; // type and colour chips being measured
 
-/** An open Figma comment on the product. x and y place the pin, in % of the product area. */
-export type Pin = { x: string; y: string; who: string; text: string };
+export type Shot = { src: string; alt: string };
+
+/** A point on a screenshot, as fractions of its width and height (0–1). */
+export type Point = { x: number; y: number };
+
+/** Where the camera looks: zoom s, with point (x, y) of the screenshot brought to the centre. */
+export type Focus = Point & { s: number };
+
+/** An open Figma comment: the tip of the pin sits on a point of the screenshot, the note opens above it, to the left or the right. */
+export type Pin = Point & { side: "left" | "right"; who: string; text: string };
+
+export type Story = {
+  kind: "story";
+  /** Screenshot width / height; every screen of the story shares it */
+  ratio: number;
+  before: Shot;
+  after: Shot;
+  /** A drawer over the after: its left edge as a fraction of the width, full height */
+  drawer: Shot & { left: number };
+  /** Where the camera zooms on the before and on the after; the drawer is shown whole */
+  focus: { before: Focus; after: Focus };
+  /** One comment per step */
+  pins: { before: Pin; after: Pin; drawer: Pin };
+};
 
 /** A role cursor on a tile. x and y place it, in % of the tile. */
 export type Cursor = { role: "lera" | "designer" | "developer" | "research"; label: string; x: string; y: string };
@@ -52,6 +74,24 @@ const APP_STORE =
 
 export const links = { preventlyApp: APP_STORE, preventlySite: "https://preventlyapp.com" };
 
+/** Comfy's product, alive: the old and the new product page, whole and in scale. */
+const comfyVis: Story = {
+  kind: "story",
+  ratio: 2506 / 2074,
+  before: { src: "/work/comfy/before.webp", alt: "Comfy product page before the redesign: a generic monobank tooltip and a separate “Buy on credit” button" },
+  after: { src: "/work/comfy/after-1.webp", alt: "After the redesign: “Pay in installments, from 1,233.27 ₴ a month” next to “Buy”, with every bank offer below" },
+  drawer: { src: "/work/comfy/drawer.webp", alt: "Installment offers with “How it works” open: what is charged today, then each month", left: 505 / 2506 },
+  focus: {
+    before: { s: 1.5, x: 0.667, y: 0.456 },
+    after: { s: 1.75, x: 0.714, y: 0.46 },
+  },
+  pins: {
+    before: { x: 0.622, y: 0.592, side: "right", who: "Lera · needs improvement", text: "A click on a bank icon only shows general info, nothing about this purchase." },
+    after: { x: 0.856, y: 0.421, side: "left", who: "Lera · design decision", text: "Not “Buy on credit”: that word made people anxious. Now it’s “Pay in installments”, with the monthly price." },
+    drawer: { x: 0.44, y: 0.614, side: "right", who: "Lera · design decision", text: "“How it works” opens a clear timeline: what’s charged today, then every month." },
+  },
+};
+
 /** Cases in site order (tiles and "Next case"). The bento places them by shape. */
 export const cases: CaseEntry[] = [
   {
@@ -73,12 +113,7 @@ export const cases: CaseEntry[] = [
     line: "Making credit purchases clear and calm.",
     title: "Comfy: UX Case Study",
     proof: { text: "30% → 40%", cap: "credit order share, business goal" },
-    vis: {
-      kind: "wipe",
-      before: { src: "/work/comfy/c15.jpg", alt: "Comfy product page before the redesign" },
-      after: { src: "/work/comfy/c16.jpg", alt: "Comfy product page after the redesign, with “Pay in installments” next to “Buy”" },
-      pin: { x: "80%", y: "66%", who: "Lera · design decision", text: "Renamed “Buy on credit” to “Pay in installments”: the word “credit” made people anxious." },
-    },
+    vis: comfyVis,
     shape: "wide-tall",
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
   },

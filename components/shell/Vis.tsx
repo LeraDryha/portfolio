@@ -1,9 +1,13 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import type { CaseEntry, Cursor as CursorData } from "@/content/site";
+import type { CaseEntry, Cursor as CursorData, Focus, Pin, Point } from "@/content/site";
 import { Icon } from "@/components/shell/Icons";
 
 const style = (vars: Record<string, string>) => vars as CSSProperties;
+const pct = (n: number) => `${+(n * 100).toFixed(2)}%`;
+// The camera zooms up to 1.75×, so a screenshot is drawn wider than its tile
+const SHOT_SIZES = "(max-width: 640px) 160vw, 1100px";
+const SHOT_QUALITY = 90;
 
 /**
  * The product of a case, alive: the same element sits in the home tile and at the top of the case page.
@@ -28,26 +32,33 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
     );
   }
 
-  if (v.kind === "wipe") {
+  if (v.kind === "story") {
+    const cam = (f: Focus) => `translate(${pct(0.5 - f.s * f.x)}, ${pct(0.5 - f.s * f.y)}) scale(${f.s})`;
+    // Pins sit outside the camera so notes keep their size: place each where the camera puts its point (the drawer is seen whole).
+    const at = (p: Point, f: Focus) => ({ "--x": pct(0.5 + f.s * (p.x - f.x)), "--y": pct(0.5 + f.s * (p.y - f.y)) });
     return (
-      <>
-        <div className="vis vis--inset wipe" style={vt}>
-          <Image src={v.before.src} alt={v.before.alt} fill sizes="(max-width: 860px) 100vw, 600px" priority={priority} />
-          <Image className="wipe__after" src={v.after.src} alt={v.after.alt} fill sizes="(max-width: 860px) 100vw, 600px" priority={priority} />
-          <span className="wipe__bar" aria-hidden="true" />
+      <div
+        className="vis vis--inset story"
+        style={{ ...vt, ...style({ "--ratio": String(v.ratio), "--cam-before": cam(v.focus.before), "--cam-after": cam(v.focus.after) }) }}
+      >
+        <div className="story__stage">
+          <div className="story__cam">
+            <Image src={v.before.src} alt={v.before.alt} fill sizes={SHOT_SIZES} quality={SHOT_QUALITY} priority={priority} />
+            <Image className="story__after" src={v.after.src} alt={v.after.alt} fill sizes={SHOT_SIZES} quality={SHOT_QUALITY} priority={priority} />
+            <span className="story__bar" aria-hidden="true">
+              <span className="story__grip" />
+            </span>
+            <div className="story__drawer" style={style({ "--left": pct(v.drawer.left) })}>
+              <Image src={v.drawer.src} alt={v.drawer.alt} fill sizes={SHOT_SIZES} quality={SHOT_QUALITY} />
+            </div>
+          </div>
+          <Comment pin={v.pins.before} step={1} pos={at(v.pins.before, v.focus.before)} />
+          <Comment pin={v.pins.after} step={2} pos={at(v.pins.after, v.focus.after)} />
+          <Comment pin={v.pins.drawer} step={3} pos={at(v.pins.drawer, { s: 1, x: 0.5, y: 0.5 })} />
           <span className="badge badge--start" aria-hidden="true">Before</span>
           <span className="badge badge--end" aria-hidden="true">After</span>
         </div>
-        {v.pin && (
-          <div className="pin" style={style({ "--x": v.pin.x, "--y": v.pin.y })}>
-            <span className="pin__dot" aria-hidden="true">L</span>
-            <p className="pin__note">
-              <b>{v.pin.who}</b>
-              {v.pin.text}
-            </p>
-          </div>
-        )}
-      </>
+      </div>
     );
   }
 
@@ -94,3 +105,18 @@ export function Cursor({ c }: { c: CursorData }) {
     </span>
   );
 }
+
+/** A Figma comment: the pin drops in closed, then the note opens from it. */
+function Comment({ pin, step, pos }: { pin: Pin; step: number; pos: Record<string, string> }) {
+  const high = parseFloat(pos["--y"]) < 50;
+  return (
+    <div className={`pin pin--${pin.side} pin--step-${step}${high ? " pin--high" : ""}`} style={style(pos)}>
+      <span className="pin__dot" aria-hidden="true">L</span>
+      <p className="pin__note">
+        <b>{pin.who}</b>
+        {pin.text}
+      </p>
+    </div>
+  );
+}
+

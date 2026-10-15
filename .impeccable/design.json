@@ -147,7 +147,7 @@
       {
         "name": "note",
         "value": "0 12px 28px -14px rgb(0 0 0 / .45)",
-        "purpose": "The open Figma comment on Comfy."
+        "purpose": "Figma comments on Comfy, one per step of the before / after story: a closed pin that opens."
       }
     ],
     "motion": [
@@ -163,7 +163,7 @@
       },
       {
         "name": "products",
-        "value": "reveal 14s, wipe 9s, pan 18s, phones 20s, spec 6s",
+        "value": "reveal 14s, story 30s, pan 18s, phones 20s, spec 6s",
         "purpose": "Products alive in tiles; paused off screen and on hover; off with reduced motion."
       }
     ],

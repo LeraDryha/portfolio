@@ -36,7 +36,7 @@ export function Figure({ src, width, height, alt, caption, label, title, sizes =
     <figure className="fig">
       <div className="fig__frame">
         <a className="fig__zoom" href={src} target="_blank" rel="noopener">
-          <Image className="fig__img" src={src} width={width} height={height} alt={alt} sizes={sizes} priority={priority} />
+          <Image className="fig__img" src={src} width={width} height={height} alt={alt} sizes={sizes} quality={90} priority={priority} />
           <span className="sr-only">Open full size in a new tab</span>
         </a>
         <Selection />

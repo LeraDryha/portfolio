@@ -157,7 +157,7 @@ components:
 
 The portfolio reads like a design file Lera is working in, with the people she works with in it. The home page is a bento of grey tiles on a white page: an intro, her contacts as plain logos, and one tile per case. Each case tile leads with one real piece of evidence ("30% → 40%", "Designed, built, shipped.") and shows its product alive underneath: screens drift, a before turns into an after, a report scrolls as if someone were reading it.
 
-On top lies a quiet Figma layer, the thing that makes the site hers: pointing at a tile selects it the way Figma does (a square blue frame, four handles, the live size in a label), role cursors (UX designer, Researcher, Developer) sit on the tiles they would care about, the visitor's own pointer carries a "You" tag, and one open comment on the Comfy screen explains a design decision.
+On top lies a quiet Figma layer, the thing that makes the site hers: pointing at a tile selects it the way Figma does (a square blue frame, four handles, the live size in a label), role cursors (UX designer, Researcher, Developer) sit on the tiles they would care about, the visitor's own pointer carries a "You" tag, and on the Comfy screen Lera's comments explain design decisions, one per step of the story.
 
 Opening a case moves the tile's product to the top of the case page (a browser page transition), and the story continues in one reading column. Evidence is marked in Mulberry Ink; everything else is ink and grey.
 
@@ -167,7 +167,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 - White page, grey tiles with large soft corners, equal gaps; text in tiles aligned to the left edge.
 - Every case tile: evidence first (ink), then the product name in bold and a short line, then the product, alive.
 - One brand tile: Prevently, Lera's own product, in its pink gradient.
-- Figma layer: square blue selection on hover and focus, role cursors, a "You" tag, one comment.
+- Figma layer: square blue selection on hover and focus, role cursors, a "You" tag, decision comments on Comfy.
 - A top bar with the mark, a filter (All / About / Work / Writing) and a theme switch (Auto / Light / Dark).
 - Light and dark themes; motion only where it shows the product, and none with reduced motion.
 
@@ -226,7 +226,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 
 ## Elevation & Depth
 
-Flat. Tiles have no border or shadow in either theme. Only floating controls lift: the round case buttons and the hover actions on logo tiles (soft shadows), the selected filter (a hairline shadow) and the Comfy comment (a soft drop shadow).
+Flat. Tiles have no border or shadow in either theme. Only floating controls lift: the round case buttons and the hover actions on logo tiles (soft shadows), the selected filter (a hairline shadow) and the Comfy comments (a soft drop shadow).
 
 ## Shapes
 
@@ -239,7 +239,7 @@ Evidence first, in ink; under it the product name in bold and a short line; the 
 
 ### The products, alive
 - **Reveal** (Prevently): the white logo appears in the middle, holds, hides; then the App Store screens slide in and drift (14s loop).
-- **Wipe** (Comfy): after wipes over before and back (9s), with Before / After badges and the open comment.
+- **Story** (Comfy, 30s): whole screens in scale. The camera zooms into the before (the tooltip and the bank icons) and a "needs improvement" comment opens; it zooms out, a white bar with a grip wipes in the after, the camera zooms into its highlighted price block and a design-decision comment opens. Then the camera zooms out and the installment offers slide in like a drawer, seen whole, with a comment on the payment timeline. Each comment drops in as a closed pin, then opens, as in Figma. Before / After badges. In a tile the screen covers the product area; at the top of the case page it is contained. With reduced motion: the zoomed after with its comment, still. On phones a pin in the upper half opens its note below.
 - **Pan** (Adtelligent): the report scrolls top to bottom and back (18s).
 - **Phones** (Smart Financial Assistant): screens change one after another (20s); on the case hero the whole sheet pans.
 - **Spec** (GRG): type and four colour chips appear, a redline measures the gap.
@@ -270,7 +270,7 @@ On the first visit only: "Hello", "Привіт", then other languages flash on 
 ### Do:
 - **Do** lead every case tile with one real piece of evidence, in ink.
 - **Do** show the product alive in its tile, and the same animation at the top of its case.
-- **Do** keep the Figma layer purposeful: selection, people who care about that tile, one decision comment.
+- **Do** keep the Figma layer purposeful: selection, people who care about that tile, a decision comment for each step of a story, never more than one at a time.
 - **Do** colour only evidence in Mulberry Ink on case pages.
 - **Do** keep every value in `ui/kit.css` tokens.
 

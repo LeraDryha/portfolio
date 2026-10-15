@@ -206,6 +206,7 @@
   --size-pin: 26px;
   --size-note: 220px;
   --size-note-phone: 170px;
+  --size-note-phone-narrow: 140px;
   --size-medium: 64px;
   --size-medium-phone: 48px;
   --size-logo-reveal: 132px;
@@ -215,6 +216,9 @@
   --size-hairline: 1px;
   --size-stroke: 1.5px;
   --size-wipe-bar: 2px;
+  --size-grip-w: 12px;
+  --size-grip-h: 30px;
+  --inset-stage-badge: calc(max(0px, (var(--size-full) - 100cqw) / 2) + var(--space-12));
   --size-focus: 2px;
   --size-redline-tick: 7px;
   --size-redline: 14px;
@@ -235,6 +239,9 @@
   --radius-pill: 999px;
   --radius-round: 50%;
   --radius-pin: 50% 50% 4px 50%;
+  --radius-pin-right: 50% 50% 50% 4px;
+  --radius-pin-below: 50% 4px 50% 50%;
+  --radius-pin-below-right: 4px 50% 50% 50%;
   --radius-name-tag: 9px 9px 9px 2px;
   --radius-you-tag: 2px 9px 9px 9px;
   --radius-none: 0;
@@ -246,6 +253,7 @@
   --shadow-note: 0 12px 28px -14px rgb(0 0 0 / .45);
   --shadow-cursor: drop-shadow(0 1px 1px rgb(0 0 0 / .25));
   --shadow-wipe: 0 0 0 1px rgb(0 0 0 / .08);
+  --shadow-drawer: -14px 0 30px -18px rgb(0 0 0 / .45);
   --shadow-mini-hover: 0 0 0 var(--size-stroke) var(--color-figma);
   --shadow-pin-ring: 0 0 0 2px var(--color-on-dark);
   --blur-bar: saturate(1.6) blur(16px);
@@ -258,6 +266,8 @@
   /* Motion */
   --ease-out: cubic-bezier(.2, .7, .2, 1);
   --ease-wipe: cubic-bezier(.65, 0, .35, 1);
+  --ease-cam: cubic-bezier(.45, 0, .2, 1);
+  --ease-pop: cubic-bezier(.34, 1.56, .64, 1);
   --ease-reveal: cubic-bezier(.4, 0, .2, 1);
   --ease-curtain: cubic-bezier(.76, 0, .24, 1);
   --ease-fade: ease;
@@ -269,7 +279,7 @@
   --duration-curtain: .8s;
   --duration-fade: .4s;
   --duration-strip: 38s;
-  --duration-wipe: 9s;
+  --duration-story: 30s;
   --duration-pan: 18s;
   --duration-phones: 20s;
   --duration-spec: 6s;
@@ -283,8 +293,18 @@
   --move-toast-rest: translate(-50%, 6px);
   --move-toast-on: translate(-50%, 0);
   --move-centre-x: translateX(-50%);
-  --move-pin-dot: translate(4px, -22px);
-  --move-pin-note: translateY(-26px);
+  --move-pin-up: 0 -100%;
+  --move-centre: -50% -50%;
+  --move-centre-x-only: -50% 0;
+  --move-drawer-out: translateX(101%);
+  --scale-pin-dot-from: 0;
+  --scale-note-from: .6;
+  --cam-full: translate(0, 0) scale(1);
+  --origin-start: 0 0;
+  --origin-end-bottom: 100% 100%;
+  --origin-start-bottom: 0 100%;
+  --origin-end-top: 100% 0;
+  --scale-none: 1;
   --move-curtain-up: translateY(-101%);
   --move-curtain-down: translateY(0);
   --move-arrive-from: translate(70px, 46px);
@@ -299,10 +319,8 @@
   --move-product-out: translateY(-10px);
   --clip-after-hidden: inset(0 0 0 100%);
   --clip-after-shown: inset(0 0 0 0);
-  --clip-after-half: inset(0 0 0 50%);
   --pos-wipe-hidden: 100%;
   --pos-wipe-shown: 0%;
-  --pos-wipe-half: 50%;
   --pos-start: 0% 0%;
   --pos-end: 100% 100%;
   --pos-col-2: 33.33%;
@@ -338,6 +356,12 @@
   --color-accent-18: color-mix(in oklch, var(--color-accent) 18%, var(--color-tile));
 }
 
+/* Tokens that depend on a screenshot's ratio (--ratio, set by the product): declared where --ratio is known */
+.story {
+  --size-stage-cover: max(100cqw, calc(100cqh * var(--ratio)));
+  --size-stage-contain: min(100cqw, calc(100cqh * var(--ratio)));
+}
+
 /* Dark theme: same names, night values */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -353,7 +377,7 @@
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
     --color-who-lera: oklch(48% 0.15 352);
-    --color-yahoo: #a678ff;
+        --color-yahoo: #a678ff;
     --color-linkedin: #4c9be8;
     --color-curtain: #f5f5f7;
     --color-curtain-ink: #000000;
@@ -508,21 +532,53 @@
 .strip img { display: block; width: auto; height: var(--size-full); border-radius: var(--radius-shot); }
 @keyframes strip { to { transform: var(--move-strip-end); } }
 
-/* Before and after wiping into each other */
-.wipe img { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); object-fit: cover; object-position: top center; }
-.wipe__after { clip-path: var(--clip-after-hidden); animation: wipe var(--duration-wipe) var(--ease-wipe) infinite; }
-.wipe__bar { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--pos-wipe-hidden); z-index: var(--z-raise); width: var(--size-wipe-bar); background: var(--color-on-dark); box-shadow: var(--shadow-wipe); animation: wipeBar var(--duration-wipe) var(--ease-wipe) infinite; }
-@keyframes wipe { 0%, 12% { clip-path: var(--clip-after-hidden); } 42%, 70% { clip-path: var(--clip-after-shown); } 100% { clip-path: var(--clip-after-hidden); } }
-@keyframes wipeBar { 0%, 12% { left: var(--pos-wipe-hidden); } 42%, 70% { left: var(--pos-wipe-shown); } 100% { left: var(--pos-wipe-hidden); } }
+/* Story (Comfy): whole screens in scale. The camera zooms into the before, the wipe brings the after,
+   the camera zooms into its highlighted block, zooms out, and a drawer slides in. On each step
+   a Figma comment drops in closed, then opens. Pins sit outside the camera, so notes keep their size.
+   In a tile the stage covers the product area; at the top of the case page it is contained. */
+.story { container-type: size; }
+.story__stage { position: absolute; top: var(--space-0); left: var(--pos-centre); width: var(--size-stage-cover); aspect-ratio: var(--ratio); translate: var(--move-centre-x-only); overflow: hidden; }
+.story__cam { position: absolute; inset: var(--space-0); transform-origin: var(--origin-start); transform: var(--cam-full); animation: storyCam var(--duration-story) var(--ease-cam) infinite; }
+.story img { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); object-fit: contain; }
+.story__after { clip-path: var(--clip-after-shown); animation: storyAfter var(--duration-story) var(--ease-wipe) infinite; }
+.story__bar { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--pos-wipe-hidden); z-index: var(--z-raise); width: var(--size-wipe-bar); background: var(--color-on-dark); box-shadow: var(--shadow-wipe); opacity: var(--opacity-hidden); animation: storyBar var(--duration-story) var(--ease-wipe) infinite; }
+.story__grip { position: absolute; top: var(--pos-centre); left: var(--pos-centre); width: var(--size-grip-w); height: var(--size-grip-h); translate: var(--move-centre); border-radius: var(--radius-pill); background: var(--color-on-dark); box-shadow: var(--shadow-action), var(--shadow-wipe); }
+.story__drawer { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--left); right: var(--space-0); z-index: var(--z-raise); box-shadow: var(--shadow-drawer); transform: var(--move-drawer-out); animation: storyDrawer var(--duration-story) var(--ease-wipe) infinite; }
+.story .badge--start { left: var(--inset-stage-badge); animation: storyBadgeBefore var(--duration-story) var(--ease-fade) infinite; }
+.story .badge--end { right: var(--inset-stage-badge); opacity: var(--opacity-hidden); animation: storyBadgeAfter var(--duration-story) var(--ease-fade) infinite; }
+.story .pin--step-1 .pin__dot { animation: storyDot1 var(--duration-story) var(--ease-pop) infinite; }
+.story .pin--step-1 .pin__note { animation: storyNote1 var(--duration-story) var(--ease-out) infinite; }
+.story .pin--step-2 .pin__dot { animation: storyDot2 var(--duration-story) var(--ease-pop) infinite; }
+.story .pin--step-2 .pin__note { animation: storyNote2 var(--duration-story) var(--ease-out) infinite; }
+.story .pin--step-3 .pin__dot { animation: storyDot3 var(--duration-story) var(--ease-pop) infinite; }
+.story .pin--step-3 .pin__note { animation: storyNote3 var(--duration-story) var(--ease-out) infinite; }
+.story .pin--step-1 .pin__dot, .story .pin--step-1 .pin__note, .story .pin--step-3 .pin__dot, .story .pin--step-3 .pin__note { opacity: var(--opacity-hidden); }
+@keyframes storyCam { 0% { transform: var(--cam-full); } 3.33% { transform: var(--cam-full); } 8.67% { transform: var(--cam-before); } 24% { transform: var(--cam-before); } 28.67% { transform: var(--cam-full); } 34% { transform: var(--cam-full); } 38.67% { transform: var(--cam-after); } 55.33% { transform: var(--cam-after); } 60% { transform: var(--cam-full); } 100% { transform: var(--cam-full); } }
+@keyframes storyAfter { 0% { clip-path: var(--clip-after-hidden); } 28.67% { clip-path: var(--clip-after-hidden); } 34% { clip-path: var(--clip-after-shown); } 88.67% { clip-path: var(--clip-after-shown); } 94% { clip-path: var(--clip-after-hidden); } 100% { clip-path: var(--clip-after-hidden); } }
+@keyframes storyBar { 0% { left: var(--pos-wipe-hidden); opacity: var(--opacity-hidden); } 27.67% { left: var(--pos-wipe-hidden); opacity: var(--opacity-hidden); } 28.67% { left: var(--pos-wipe-hidden); opacity: var(--opacity-full); } 34% { left: var(--pos-wipe-shown); opacity: var(--opacity-full); } 35.33% { left: var(--pos-wipe-shown); opacity: var(--opacity-hidden); } 87.67% { left: var(--pos-wipe-shown); opacity: var(--opacity-hidden); } 88.67% { left: var(--pos-wipe-shown); opacity: var(--opacity-full); } 94% { left: var(--pos-wipe-hidden); opacity: var(--opacity-full); } 95.33% { left: var(--pos-wipe-hidden); opacity: var(--opacity-hidden); } 100% { left: var(--pos-wipe-hidden); opacity: var(--opacity-hidden); } }
+@keyframes storyDrawer { 0% { transform: var(--move-drawer-out); } 60% { transform: var(--move-drawer-out); } 64.67% { transform: var(--move-none); } 84% { transform: var(--move-none); } 88% { transform: var(--move-drawer-out); } 100% { transform: var(--move-drawer-out); } }
+@keyframes storyDot1 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 9.33% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 10.67% { opacity: var(--opacity-full); scale: var(--scale-none); } 23% { opacity: var(--opacity-full); scale: var(--scale-none); } 24% { opacity: var(--opacity-hidden); scale: var(--scale-none); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-none); } }
+@keyframes storyNote1 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 11.67% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 13.17% { opacity: var(--opacity-full); scale: var(--scale-none); } 22% { opacity: var(--opacity-full); scale: var(--scale-none); } 23% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } }
+@keyframes storyDot2 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 39.33% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 40.67% { opacity: var(--opacity-full); scale: var(--scale-none); } 54.67% { opacity: var(--opacity-full); scale: var(--scale-none); } 55.67% { opacity: var(--opacity-hidden); scale: var(--scale-none); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-none); } }
+@keyframes storyNote2 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 42% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 43.5% { opacity: var(--opacity-full); scale: var(--scale-none); } 53.67% { opacity: var(--opacity-full); scale: var(--scale-none); } 54.67% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } }
+@keyframes storyDot3 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 65.33% { opacity: var(--opacity-hidden); scale: var(--scale-pin-dot-from); } 66.67% { opacity: var(--opacity-full); scale: var(--scale-none); } 83% { opacity: var(--opacity-full); scale: var(--scale-none); } 84% { opacity: var(--opacity-hidden); scale: var(--scale-none); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-none); } }
+@keyframes storyNote3 { 0% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 68% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 69.5% { opacity: var(--opacity-full); scale: var(--scale-none); } 82% { opacity: var(--opacity-full); scale: var(--scale-none); } 83% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } 100% { opacity: var(--opacity-hidden); scale: var(--scale-note-from); } }
+@keyframes storyBadgeBefore { 0% { opacity: var(--opacity-full); } 29.33% { opacity: var(--opacity-full); } 32% { opacity: var(--opacity-hidden); } 92.67% { opacity: var(--opacity-hidden); } 95.33% { opacity: var(--opacity-full); } 100% { opacity: var(--opacity-full); } }
+@keyframes storyBadgeAfter { 0% { opacity: var(--opacity-hidden); } 30.67% { opacity: var(--opacity-hidden); } 33.33% { opacity: var(--opacity-full); } 91.33% { opacity: var(--opacity-full); } 94% { opacity: var(--opacity-hidden); } 100% { opacity: var(--opacity-hidden); } }
 .badge { position: absolute; top: var(--space-12); z-index: var(--z-badge); padding: var(--space-2) var(--space-8); border-radius: var(--radius-pill); background: var(--color-scrim); color: var(--color-on-dark); font-size: var(--text-badge); font-weight: var(--weight-medium); }
 .badge--start { left: var(--space-12); }
 .badge--end { right: var(--space-12); }
 
-/* An open Figma comment on the product; position from content (--x, --y) */
-.pin { position: absolute; z-index: var(--z-pin); right: calc(var(--size-full) - var(--x)); top: var(--y); display: flex; flex-direction: row-reverse; align-items: flex-start; gap: var(--space-7); }
-.pin__dot { width: var(--size-pin); height: var(--size-pin); flex: none; display: grid; place-items: center; border-radius: var(--radius-pin); background: var(--color-who-lera); color: var(--color-on-dark); font-size: var(--text-badge); font-weight: var(--weight-semibold); box-shadow: var(--shadow-pin-ring); transform: var(--move-pin-dot); }
-.pin__note { margin: var(--space-0); width: var(--size-note); padding: var(--space-9) var(--space-11); border-radius: var(--radius-note); background: var(--color-raised); color: var(--color-graphite); font-size: var(--text-label); line-height: var(--leading-caption); box-shadow: var(--shadow-note); transform: var(--move-pin-note); }
+/* An open Figma comment: the tip of the pin sits on (--x, --y), the note opens above it, from the pin */
+.pin { position: absolute; z-index: var(--z-pin); top: var(--y); display: flex; align-items: flex-end; gap: var(--space-7); translate: var(--move-pin-up); }
+.pin--left { right: calc(var(--size-full) - var(--x)); flex-direction: row-reverse; }
+.pin--right { left: var(--x); }
+.pin__dot { width: var(--size-pin); height: var(--size-pin); flex: none; display: grid; place-items: center; border-radius: var(--radius-pin); background: var(--color-who-lera); color: var(--color-on-dark); font-size: var(--text-badge); font-weight: var(--weight-semibold); box-shadow: var(--shadow-pin-ring); transform-origin: var(--origin-end-bottom); }
+.pin--right .pin__dot { border-radius: var(--radius-pin-right); transform-origin: var(--origin-start-bottom); }
+.pin__note { margin: var(--space-0) var(--space-0) var(--space-12); width: var(--size-note); padding: var(--space-9) var(--space-11); border-radius: var(--radius-note); background: var(--color-raised); color: var(--color-graphite); font-size: var(--text-label); line-height: var(--leading-caption); box-shadow: var(--shadow-note); transform-origin: var(--origin-end-bottom); }
+.pin--right .pin__note { transform-origin: var(--origin-start-bottom); }
 .pin__note b { display: block; color: var(--color-ink); font-size: var(--text-micro); }
+
 
 /* A report read top to bottom */
 .pan { position: absolute; inset: var(--space-0); background: var(--img) top center / var(--size-pan) no-repeat; animation: pan var(--duration-pan) var(--ease-loop) infinite alternate; }
@@ -562,7 +618,7 @@
 /* Tile animations run only on screen, and stop on hover so the product can be read */
 .tile .vis * { animation-play-state: paused; }
 .tile.is-running .vis * { animation-play-state: running; }
-.tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .pan { animation-play-state: paused; }
+.tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .pan, .tile.is-running:hover .story * { animation-play-state: paused; }
 
 /* More work */
 .more-row[hidden], .minis[hidden] { display: none; }
@@ -595,6 +651,8 @@
 .case-hero > .vis--inset { margin: var(--space-32) var(--space-40) var(--space-0); border-radius: var(--radius-inner) var(--radius-inner) var(--radius-none) var(--radius-none); }
 .case-hero > .vis--stage { margin-top: var(--space-24); }
 .case-hero .phones { background-size: var(--size-phones-hero); animation: pan var(--duration-pan) var(--ease-loop) infinite alternate; }
+.case-hero .story__stage { top: auto; bottom: var(--space-0); width: var(--size-stage-contain); }
+.case-hero > .vis--inset.story { border-radius: var(--radius-none); }
 .case-hero .spec { padding: var(--space-0) var(--space-48); }
 .case-hero .spec__aa { font-size: var(--text-spec-hero); }
 
@@ -713,6 +771,13 @@
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
   .pin__note { width: var(--size-note-phone); font-size: var(--text-micro); }
+  .pin--right .pin__note { width: var(--size-note-phone-narrow); }
+  /* Product areas are short on phones: a pin in the upper half opens its note below */
+  .pin--high { align-items: flex-start; translate: var(--move-none); }
+  .pin--high .pin__dot { border-radius: var(--radius-pin-below); transform-origin: var(--origin-end-top); }
+  .pin--high.pin--right .pin__dot { border-radius: var(--radius-pin-below-right); transform-origin: var(--origin-start); }
+  .pin--high .pin__note { margin: var(--space-12) var(--space-0) var(--space-0); transform-origin: var(--origin-end-top); }
+  .pin--high.pin--right .pin__note { transform-origin: var(--origin-start); }
   .minis { grid-template-columns: var(--layout-col-1); }
   .case { padding-top: var(--space-76); }
   .case-hero { height: var(--size-hero-phone); }
@@ -724,8 +789,9 @@
 @media (prefers-reduced-motion: reduce) {
   .vis *, .cursor.is-in, .reveal__logo, .reveal__product { animation: none !important; }
   .reveal__logo { opacity: var(--opacity-hidden); }
-  .wipe__after { clip-path: var(--clip-after-half); }
-  .wipe__bar { left: var(--pos-wipe-half); }
+  .story__cam { transform: var(--cam-after); }
+  .story .badge--start { opacity: var(--opacity-hidden); }
+  .story .badge--end { opacity: var(--opacity-full); }
   .act, .sel, .toast, .curtain--leave { transition: none; }
   .curtain--leave { opacity: var(--opacity-hidden); }
   ::view-transition-group(*) { animation: none; }
