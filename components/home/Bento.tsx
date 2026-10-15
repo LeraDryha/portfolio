@@ -77,25 +77,8 @@ export function Bento() {
           <Selection />
         </a>
 
-        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning" aria-label="Learning: courses and certificates">
-          <svg className="text-tile__icon" viewBox="0 0 48 48" aria-hidden="true">
-            <mask id="cert-sheet">
-              <rect width="48" height="48" fill="#fff" />
-              <rect x="10" y="15" width="19" height="2.6" rx="1.3" fill="#000" />
-              <rect x="10" y="21" width="15" height="2.6" rx="1.3" fill="#000" />
-              <rect x="10" y="27" width="10" height="2.6" rx="1.3" fill="#000" />
-              <circle cx="34" cy="32" r="9.5" fill="#000" />
-            </mask>
-            <mask id="cert-seal">
-              <rect width="48" height="48" fill="#fff" />
-              <circle cx="34" cy="32" r="4.2" fill="none" stroke="#000" strokeWidth="1.5" />
-            </mask>
-            <rect x="4" y="8" width="40" height="29" rx="3.5" fill="currentColor" mask="url(#cert-sheet)" />
-            <g mask="url(#cert-seal)" fill="currentColor">
-              <path d="M29.6 36.5 28 45l6-3.2 6 3.2-1.6-8.5Z" />
-              <circle cx="34" cy="32" r="7.5" />
-            </g>
-          </svg>
+        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
+          <span className="text-tile__title">Learning</span>
           <span className="text-tile__line">Courses and certificates</span>
           <span className="act" aria-hidden="true"><Icon name="arrow" /></span>
           <Selection />

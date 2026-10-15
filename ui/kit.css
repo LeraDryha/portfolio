@@ -462,7 +462,6 @@
 
 /* Text tile: a title and a line at the bottom-left; an arrow action on hover (Learning) */
 .text-tile { justify-content: flex-end; gap: var(--space-4); padding: var(--space-22) var(--space-24); }
-.text-tile__icon { flex: none; width: var(--size-medium); height: var(--size-medium); margin: auto; color: var(--color-ink); }
 .text-tile__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-proof-small); line-height: var(--leading-proof); letter-spacing: var(--tracking-proof); }
 .text-tile__line { color: var(--color-pencil); font-size: var(--text-label); }
 .text-tile:hover .act, .text-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
@@ -712,7 +711,6 @@
   .logo-linkedin { font-size: var(--text-linkedin-phone); }
   .logo-medium { width: var(--size-medium-phone); height: var(--size-medium-phone); }
   .text-tile { padding: var(--space-18); }
-  .text-tile__icon { width: var(--size-medium-phone); height: var(--size-medium-phone); }
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
   .pin__note { width: var(--size-note-phone); font-size: var(--text-micro); }
