@@ -31,7 +31,7 @@ https://app.notion.com/p/Hi-I-m-Lera-13b44bdcbfce80dfba23e68b5324093f
    https://app.notion.com/p/From-Transaction-Log-to-Smart-Financial-Assistant-24244bdcbfce8040876dfe857d29eb36
 4. **GRG Design System.** Великий кейс з купою специфікацій, у Notion його немає, лише у Figma:
    https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/GRG-Design-System-%F0%9F%9A%A8?node-id=417-706
-   Як подати кейс, вирішимо після того, як оцінимо масштаб файлу. Для цієї дизайн-системи окремо робимо з нуля Storybook на PrimeReact (див. «Пов'язані проєкти»).
+   Як подати кейс, вирішимо після того, як оцінимо масштаб файлу. Кейс посилатиметься на живий Storybook цієї дизайн-системи (див. «Пов'язані проєкти»).
 
 ### Prevently — особистий продукт, окремий акцент
 
@@ -115,7 +115,11 @@ PRODUCT.md              продукт: для кого сайт, що дово�
 
 ## Пов'язані проєкти
 
-- **Storybook для GRG Design System** на PrimeReact, з нуля. Пропозиція: окремий репозиторій і окремий деплой, а кейс у портфоліо посилається на нього.
+- **Storybook для GRG Design System** — живий: https://grg-design-system.vercel.app (репозиторій LeraDryha/grg-design-system, Vercel, автодеплой з `main`). Кейс GRG у портфоліо посилається на нього.
+  - Стек: React 19, PrimeReact 10.9.9 без теми (поведінка, клавіатура, ARIA), вигляд — лише з токенів, згенерованих з Figma-змінних. Золота світла й темна теми; ціль — WCAG 2.2 AA.
+  - Готово (жовтень 2026): Foundations (кольори, типографіка, відступи, радіуси, тіні, 362 Base icons); компоненти Button, Action Button, Link, Input з повними сторінками документації; частини Form Field та Inline Select. Sign-up приклад і Social Button відкладені до Modal.
+  - Кожна сторінка компонента: статус і Figma-посилання, Playground, When to use, анатомія, типи / розміри / стани, доступність, мапа «властивість Figma → проп». Для кейсу це доказ системного зв'язку Figma ↔ код.
+  - Не показуємо: white-label палітри, логотипи GRX Pay / GRX Exchange / Golden Ratio Exchange, display-шрифт Bounded.
 
 ## Відкриті питання
 
