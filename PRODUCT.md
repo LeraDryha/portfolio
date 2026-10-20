@@ -41,7 +41,7 @@ A product designer who combines three things a typical portfolio shows one at a 
 - Pages: Home (a bento of tiles: intro, contacts, case tiles, Medium, More work, filtered by About / Work / Writing), one case page template at `/work/<slug>`, About.
 - No NDA material; all listed cases can be shown.
 - Case texts and images are ready in Notion; case images are moved into the repository. Each case tile shows its product alive (animated screenshots).
-- GRG Design System lives in Figma. A Storybook for it, on PrimeReact, will be built from scratch as a separate project and linked from the case.
+- GRG Design System lives in Figma: a legacy system Lera updated alone in 2026 (35 components, 2,700+ variants, 371 colour tokens, usage guidelines for 33 components). Screens for payments, a crypto exchange, internal admin panels and a website with API references are built on it. A Storybook for it (React 19 + PrimeReact 10.9.9, unstyled, tokens generated from Figma) is being built with Claude in a separate project, `grg-design-system`; the case will link to it once deployed. The case shows only the gold (light) and dark themes, never the white-label themes, and never the product logos (GRX Pay, GRX Exchange, Golden Ratio Exchange); the client is named Golden Ratio Group.
 - Prevently: iOS app live in the App Store; Android app in review, no Google Play link yet.
 - Contacts: email and LinkedIn. A phone number exists but whether to show it is undecided, so it is never committed to the public repository.
 - Title on the site is "Product Designer" for now.
@@ -66,7 +66,7 @@ Notion case studies (texts and images ready):
 - **Dnipropetrovsk Regional Center for Educational Quality Assessment** (very little text).
 
 Other evidence:
-- **GRG Design System** (Golden Ratio Group, https://goldenratiogroup.co) in Figma: https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/ (Claude has no access yet).
+- **GRG Design System** (Golden Ratio Group, https://goldenratiogroup.co) in Figma: https://www.figma.com/design/r3E5XdifyoiiNeuj7mOjBk/ (the case page is built from it; logos are removed from the exported images). No metrics beyond the scale of the system.
 - **Prevently**: https://preventlyapp.com and the App Store listing; iOS in SwiftUI, Android in Kotlin.
 - **Writing**: two Medium articles in Ukrainian, "Місце, де UX помер" and "Hand-off без сліз".
 

@@ -37,6 +37,24 @@
         ],
         "createdAt": "2026-10-15T14:34:58.063Z",
         "reason": "Claude, per DESIGN.md: display-size headlines (intro 32–46px, tile proofs 26–36px) are set at 1–1.05 as in the bento concept Lera approved; reading text stays 1.5–1.65"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "ui/kit.html"
+        ],
+        "createdAt": "2026-10-20T14:02:26.808Z",
+        "reason": "Claude, per DESIGN.md: the live product is a framed viewport by design; screenshots, the before/after bar and Figma comment pins are meant to stay inside it"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "ui/kit.html"
+        ],
+        "createdAt": "2026-10-20T14:02:26.826Z",
+        "reason": "Claude, per DESIGN.md: the inset product screenshot runs off the bottom edge of the tile and case hero on purpose (approved bento concept)"
       }
     ]
   }

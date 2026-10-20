@@ -1,10 +1,80 @@
 export const meta = {
-  heading: "GRG Design System",
-  lead: "A large design system for Golden Ratio Group, with detailed component specs. A Storybook for it, on PrimeReact, is being built from scratch.",
+  heading: "GRG Design System: a legacy system, rebuilt",
+  lead: "A design system for Golden Ratio Group’s fintech products: payments, a crypto exchange, internal admin panels and a website with API references. I took over a legacy system and rebuilt it on my own, from tokens to documented components.",
   facts: [
+    { label: "Role", value: "Product Designer, the only designer on the system" },
+    { label: "Year", value: "2026" },
     { label: "Client", value: "Golden Ratio Group" },
-    { label: "Work", value: "Design system · component specs · Storybook" },
+    { label: "Scope", value: "Tokens · components · usage guidelines · light and dark themes" },
   ],
+  proof: { mark: "2,700+", cap: "component variants across 35 components, in light and dark" },
 };
 
-<Note>The case is being prepared.</Note>
+<Note>This case is still in progress. The live Storybook of the system is already online: <a href="https://grg-design-system.vercel.app/?path=/docs/getting-started-about--docs" target="_blank" rel="noopener">GRG Design System Storybook ↗</a></Note>
+
+<Stats items={[
+  { value: "35", cap: "components in the library" },
+  { value: "371", cap: "colour tokens behind both themes" },
+  { value: "33", cap: "components with written usage guidelines" },
+]} />
+
+## Where it started
+
+The company already had a design system, a legacy one, and I was the only designer updating it. It had to serve several products at once: payments, a crypto exchange, internal admin panels and a marketing website with API references, each in a light and a dark theme.
+
+## Foundations
+
+Everything starts from tokens: colour, typography, spacing, corner radius and elevation. Components use them instead of raw values: fills, paddings and corners are bound to variables, and every label uses a text style. Switching the theme changes the whole product at once.
+
+<Figure src="/work/grg-design-system/colors.webp" width={2000} height={854} alt="Primary palette: gold, neutral, green, red, blue and amber, each in steps from light to dark, with a contrast rating on every swatch." caption="Primary palette, with a contrast rating on every step." />
+
+<Figure src="/work/grg-design-system/typography.webp" width={1692} height={2434} alt="Nunito Sans specimen and the type scale: headings H1 to H5 and title styles, each with size, line height and tracking." caption="One typeface, Nunito Sans, with size, line height and tracking set for every style." />
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/spacing.webp" width={2000} height={1215} alt="Spacing scale from 0 to 200px on a 2px base, shown horizontally and vertically." title="Spacing" caption="A 2px base, from 0 to 200px." />
+  <HalfFigure src="/work/grg-design-system/shadows.webp" width={1988} height={1876} alt="Five shadow levels, from xs to xl, with separate recipes for the light and the dark theme." title="Shadows" caption="Five levels, a separate recipe for dark." />
+</FigurePair>
+
+## Components
+
+35 components, from buttons and inputs to tables, date pickers and navigation. Every component page follows the same structure: the full variant matrix, usage guidelines, and examples on real screens.
+
+<Figure src="/work/grg-design-system/buttons.webp" width={2000} height={2461} alt="The button matrix: primary, secondary, outline and text buttons in five sizes and every state, in neutral, destructive and green, in the light and the dark theme." caption="Buttons: every type, size and state, in both themes." />
+
+### One component in detail: the button
+
+The button has 720 variants, driven by a few properties: type, size, state, destructive, icon only, and left or right icons.
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/button-sizes.webp" width={1085} height={1084} alt="Five button sizes from xlg-56 to xs-24, each with its label style, icon size and corner radius, plus a justified button." title="Sizes" caption="Five sizes, each with its label style, icon and radius." />
+  <HalfFigure src="/work/grg-design-system/button-states.webp" width={1085} height={2148} alt="Primary, secondary, outline and text buttons through default, hovered, pressed, focused, loading and disabled states." title="States" caption="Six states for every type." />
+</FigurePair>
+
+### Specs for hand-off
+
+Composite components are assembled from atomic parts, and the parts are measured, so developers don’t have to guess paddings and gaps.
+
+<Figure src="/work/grg-design-system/modal-specs.webp" width={2000} height={1512} alt="Modal header and footer parts with measured paddings and gaps for desktop and mobile, and footer button layouts." caption="Modal header and footer: measured for desktop and mobile." />
+
+<Figure src="/work/grg-design-system/table.webp" width={2000} height={2440} alt="Table header and row cells built from atomic parts, with sorting icons and a scroll indicator, in light and dark." caption="Table: header and row cells built from atomic parts." />
+
+## The system in products
+
+Screens for payments, the exchange, internal admin panels and the website are built on the system.
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/pay-dashboard-light.webp" width={1440} height={968} alt="Payments dashboard in the light theme: balance, successful payments, last transactions and an open notification feed." title="Payments, light" caption="Dashboard with the notification feed." />
+  <HalfFigure src="/work/grg-design-system/pay-dashboard-dark.webp" width={1440} height={968} alt="The same payments dashboard in the dark theme." title="Payments, dark" caption="The same screen, one theme switch." />
+</FigurePair>
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/exchange-trading-light.webp" width={1440} height={900} alt="Exchange trading screen in the light theme: price chart, order book, recent trades and a new order form." title="Exchange, light" caption="Trading: chart, order book, new order." />
+  <HalfFigure src="/work/grg-design-system/exchange-trading-dark.webp" width={1440} height={900} alt="The same trading screen in the dark theme." title="Exchange, dark" caption="The same screen in dark." />
+</FigurePair>
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/pay-invoice-light.webp" width={1440} height={968} alt="Create invoice form in payments: currency select, amounts, an auto-convert switch and redirect links." title="Forms" caption="Creating an invoice." />
+  <HalfFigure src="/work/grg-design-system/exchange-orders-light.webp" width={1440} height={640} alt="Orders table in the exchange with tabs, filters, buy and sell badges and execution progress." title="Tables" caption="Orders, with tabs and filters." />
+</FigurePair>
+
+<Figure src="/work/grg-design-system/site-header.webp" width={1440} height={800} alt="Website header with an open dropdown menu: partner program, news, FAQ, API references and about us, over the layout grid." caption="Website: header navigation on the layout grid." />

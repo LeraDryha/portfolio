@@ -108,6 +108,16 @@ export const cases: CaseEntry[] = [
     shape: "brand-tall",
   },
   {
+    slug: "grg-design-system",
+    name: "GRG Design System.",
+    line: "A legacy system, rebuilt solo.",
+    title: "GRG Design System",
+    proof: { text: "2,700+ variants", cap: "35 components, light and dark" },
+    vis: { kind: "spec" },
+    shape: "wide-side",
+    cursor: { role: "developer", label: "Developer", x: "78%", y: "16%" },
+  },
+  {
     slug: "comfy",
     name: "Comfy.",
     line: "Making credit purchases clear and calm.",
@@ -116,16 +126,6 @@ export const cases: CaseEntry[] = [
     vis: comfyVis,
     shape: "wide-tall",
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
-  },
-  {
-    slug: "grg-design-system",
-    name: "GRG Design System.",
-    line: "Plus a Storybook from scratch.",
-    title: "GRG Design System",
-    proof: { text: "Detailed component specs." },
-    vis: { kind: "spec" },
-    shape: "wide-side",
-    cursor: { role: "developer", label: "Developer", x: "78%", y: "16%" },
   },
   {
     slug: "adtelligent",
