@@ -150,16 +150,6 @@ export const cases: CaseEntry[] = [
     shape: "brand-tall",
   },
   {
-    slug: "comfy",
-    name: "Comfy.",
-    line: "Making credit purchases clear and calm.",
-    title: "Comfy: UX Case Study",
-    proof: { text: "30% → 40%", cap: "credit order share, business goal" },
-    vis: comfyVis,
-    shape: "wide-tall",
-    notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
-  },
-  {
     slug: "grg-design-system",
     name: "GRG Design System.",
     line: "Audited and fixed in the system first.",
@@ -168,6 +158,16 @@ export const cases: CaseEntry[] = [
     vis: grgVis,
     shape: "wide-side",
     cursor: { role: "developer", label: "Developer", x: "78%", y: "16%" },
+  },
+  {
+    slug: "comfy",
+    name: "Comfy.",
+    line: "Making credit purchases clear and calm.",
+    title: "Comfy: UX Case Study",
+    proof: { text: "30% → 40%", cap: "credit order share, business goal" },
+    vis: comfyVis,
+    shape: "wide-tall",
+    notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
   },
   {
     slug: "adtelligent",
