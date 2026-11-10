@@ -7,7 +7,7 @@ export type CaseMeta = {
   /** The page's h1 */
   heading: string;
   lead: string;
-  facts: { label: string; value: string }[];
+  facts: { label: string; value: string; href?: string }[];
   /** The case in three blocks; short cases leave it out */
   answer?: { problem: string; did: string; result: string };
   /** One proof in the accent, under the summary */

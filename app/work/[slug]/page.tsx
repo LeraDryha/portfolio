@@ -5,6 +5,7 @@ import { caseHref, caseSlugs, loadCase, nextCase } from "@/lib/cases";
 import { Vis } from "@/components/shell/Vis";
 import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
+import { LiveProduct } from "@/components/case/LiveProduct";
 
 export const dynamicParams = false;
 
@@ -33,9 +34,13 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         <Icon name="close" />
       </a>
       <main className="case">
-        <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
-          <Vis entry={entry} priority />
-        </div>
+        {entry.vis.kind === "inspect" ? (
+          <LiveProduct v={entry.vis} viewTransitionName={`case-${entry.slug}`} />
+        ) : (
+          <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
+            <Vis entry={entry} priority />
+          </div>
+        )}
 
         <article className="prose" aria-labelledby="case-title">
           <h1 id="case-title">{meta.heading}</h1>
@@ -44,7 +49,15 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             {meta.facts.map((f) => (
               <Fragment key={f.label}>
                 <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
+                <dd>
+                  {f.href ? (
+                    <a href={f.href} target="_blank" rel="noopener">
+                      {f.value}
+                    </a>
+                  ) : (
+                    f.value
+                  )}
+                </dd>
               </Fragment>
             ))}
           </dl>

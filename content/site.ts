@@ -7,7 +7,7 @@ export type Vis =
   | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
   | { kind: "pan"; src: string } // a report read top to bottom
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
-  | { kind: "spec" }; // type and colour chips being measured
+  | Inspect; // a product screen whose components get selected one by one, as in Figma; live on the case page
 
 export type Shot = { src: string; alt: string };
 
@@ -32,6 +32,23 @@ export type Story = {
   focus: { before: Focus; after: Focus };
   /** One comment per step */
   pins: { before: Pin; after: Pin; drawer: Pin };
+};
+
+/** A box on a screenshot, in the screenshot's pixels. */
+export type Box = { name: string; x: number; y: number; w: number; h: number; custom?: boolean };
+
+export type Inspect = {
+  kind: "inspect";
+  /** The same screen in both themes, width × height px */
+  shots: { light: string; dark: string; alt: string };
+  width: number;
+  height: number;
+  /** The part of the screen a tile shows (its left, top and width; the height follows the tile) */
+  crop: { x: number; y: number; w: number };
+  /** Components selected one after another on the tile; custom = made for this page only */
+  boxes: Box[];
+  /** The live product on the case page: a Storybook story embedded with its components layer */
+  live: { storybook: string; story: string; title: string };
 };
 
 /** A role cursor on a tile. x and y place it, in % of the tile. */
@@ -92,6 +109,31 @@ const comfyVis: Story = {
   },
 };
 
+/** GRG's product, alive: the Dashboard built from the system. The tile selects its parts one by one; the case page embeds it live. */
+const grgVis: Inspect = {
+  kind: "inspect",
+  shots: {
+    light: "/work/grg-design-system/dashboard-light.webp",
+    dark: "/work/grg-design-system/dashboard-dark.webp",
+    alt: "The GRG Dashboard: the menu, the total balance by coin, a chart of successful payments and the last transactions",
+  },
+  width: 1440,
+  height: 900,
+  crop: { x: 280, y: 64, w: 400 },
+  boxes: [
+    { name: "Page Header", x: 296, y: 84, w: 1120, h: 32 },
+    { name: "Link", x: 589, y: 160, w: 52, h: 20 },
+    { name: "Bar of shares", x: 320, y: 232, w: 321, h: 12, custom: true },
+    { name: "Coin Icon", x: 320, y: 279, w: 24, h: 24 },
+    { name: "Action Button", x: 621, y: 278, w: 20, h: 20 },
+  ],
+  live: {
+    storybook: "https://grg-design-system.vercel.app",
+    story: "in-product-dashboard--live-flow",
+    title: "Dashboard, built only from the system",
+  },
+};
+
 /** Cases in site order (tiles and "Next case"). The bento places them by shape. */
 export const cases: CaseEntry[] = [
   {
@@ -110,10 +152,10 @@ export const cases: CaseEntry[] = [
   {
     slug: "grg-design-system",
     name: "GRG Design System.",
-    line: "A legacy system, rebuilt solo.",
+    line: "Audited and fixed in the system first.",
     title: "GRG Design System",
-    proof: { text: "2,700+ variants", cap: "35 components, light and dark" },
-    vis: { kind: "spec" },
+    proof: { text: "59 components. 12 live screens." },
+    vis: grgVis,
     shape: "wide-side",
     cursor: { role: "developer", label: "Developer", x: "78%", y: "16%" },
   },
