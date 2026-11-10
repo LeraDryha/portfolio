@@ -17,13 +17,13 @@ const TABS: Tab[] = [
     label: "Figma variable",
     hl: [1, 2, 3],
     lines: [
-      "// Figma variables, the names as they are in the file",
+      "// Figma variables",
       "**Primary/primary-base-1000**",
       "  Light (gold)  →  **neutral/1000**   #0A0A0A",
       "  Dark          →  **neutral/0**      #FFFFFF",
       "",
-      "**Spasing/250**    10",
-      "**Spasing/400**    16",
+      "**Spacing/250**    10",
+      "**Spacing/400**    16",
       "**Corner/md-10**   10",
     ],
   },
@@ -111,10 +111,15 @@ export function TokenAnatomy() {
                 <path d="M10 4v12M4 10h12" />
               </svg>
               Create invoice
+              {/* The paddings measured as in Figma: space-400 at the side, space-250 at the top */}
+              <span className="measure measure--x" title="space-400">
+                <em>16</em>
+              </span>
+              <span className="measure measure--y" title="space-250">
+                <em>10</em>
+              </span>
             </span>
             <span className="redline-tag redline-tag--top">radius-md-10</span>
-            <span className="redline-tag redline-tag--side">space-400 · 16</span>
-            <span className="redline-tag redline-tag--bottom">space-250 · 10</span>
             <span className="redline-tag redline-tag--fill">primary-base-1000</span>
           </div>
         </div>

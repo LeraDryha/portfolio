@@ -374,6 +374,11 @@
   --tracking-eyebrow: .06em;
   --size-grg-stroke: 1.6;
   --size-key-w: 14px;
+  --size-redline-tick: 7px;
+  --grg-measure-gap: 6px;
+  --zoom-specimen: 1.6;
+  --zoom-specimen-phone: 1.25;
+  --move-centre-y-only: 0 -50%;
   --size-key-h: 10px;
   --size-tab-line: 2px;
   --size-chain-table: 640px;
@@ -782,14 +787,27 @@
 .specimen { display: grid; gap: var(--space-20); align-content: space-between; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .specimen__canvas { --grg-surface: var(--color-grg-light-surface); --grg-solid: var(--color-grg-light-solid); --grg-on-solid: var(--color-grg-light-on-solid); display: grid; place-items: center; min-height: var(--size-specimen); border-radius: var(--radius-inner); background: var(--grg-surface); transition: background-color var(--duration-color); }
 .specimen__canvas--dark { --grg-surface: var(--color-grg-dark-surface); --grg-solid: var(--color-grg-dark-solid); --grg-on-solid: var(--color-grg-dark-on-solid); }
-.specimen__measure { position: relative; padding: var(--space-48) var(--space-40); }
+.specimen__measure { position: relative; padding: var(--space-56) var(--space-32) var(--space-40); }
 .specimen__button { display: inline-flex; align-items: center; gap: var(--space-grg-gap); padding: var(--space-grg-button-y) var(--space-grg-button-x); border-radius: var(--radius-grg-button); background: var(--grg-solid); color: var(--grg-on-solid); font: var(--weight-semibold) var(--text-grg-button) / var(--leading-grg-button) var(--font-grg-specimen); transition: background-color var(--duration-color), color var(--duration-color); }
 .specimen__button svg { width: var(--size-grg-icon); height: var(--size-grg-icon); fill: none; stroke: currentColor; stroke-width: var(--size-grg-stroke); }
 .redline-tag { position: absolute; padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-redline); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
 .redline-tag--top { left: var(--space-0); top: var(--space-16); }
 .redline-tag--fill { right: var(--space-0); top: var(--space-16); }
-.redline-tag--bottom { left: var(--space-0); bottom: var(--space-16); }
-.redline-tag--side { right: var(--space-0); bottom: var(--space-16); }
+/* A padding measured as in Figma: a Redline with end ticks across it, its size beside it */
+.specimen__button { position: relative; zoom: var(--zoom-specimen); }
+.measure { position: absolute; background: var(--color-redline); }
+.measure::before, .measure::after { content: ""; position: absolute; background: var(--color-redline); }
+.measure em { position: absolute; color: var(--color-redline); font: var(--weight-medium) var(--text-measure) / var(--leading-tight) var(--font-mono); font-style: normal; }
+.measure--x { left: var(--space-0); top: var(--pos-centre); width: var(--space-grg-button-x); height: var(--size-hairline); }
+.measure--x::before, .measure--x::after { top: calc(var(--size-redline-tick) / -2); width: var(--size-hairline); height: var(--size-redline-tick); }
+.measure--x::before { left: var(--space-0); }
+.measure--x::after { right: var(--space-0); }
+.measure--x em { left: var(--pos-centre); top: calc(var(--size-full) + var(--grg-measure-gap)); translate: var(--move-centre-x-only); }
+.measure--y { right: calc(var(--space-grg-button-x) / 2); top: var(--space-0); width: var(--size-hairline); height: var(--space-grg-button-y); }
+.measure--y::before, .measure--y::after { left: calc(var(--size-redline-tick) / -2); width: var(--size-redline-tick); height: var(--size-hairline); }
+.measure--y::before { top: var(--space-0); }
+.measure--y::after { bottom: var(--space-0); }
+.measure--y em { left: calc(var(--space-grg-button-x) / 2 + var(--space-6)); top: var(--pos-centre); translate: var(--move-centre-y-only); }
 .specimen__tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-10); }
 .specimen__cap { color: var(--color-pencil); font-size: var(--text-label); }
 .code { display: grid; grid-template-rows: auto 1fr; min-width: var(--space-0); overflow: hidden; border-radius: var(--radius-block); background: var(--color-tile); }
@@ -907,6 +925,8 @@
   .prose { font-size: var(--text-body); }
   .stats, .lists, .fig-row, .fig-row--3, .chain, .decision__pair { grid-template-columns: var(--layout-col-1); }
   .case-wide { width: var(--layout-wide-phone); }
+  .specimen__button { zoom: var(--zoom-specimen-phone); }
+  .specimen { padding: var(--space-16); }
   .live { padding: var(--space-16); border-radius: var(--radius-tile-tablet); }
   .decision, .finding, .scenario { padding: var(--space-18); }
   .float-btn--close { right: var(--gutter-phone-right); }
