@@ -81,19 +81,26 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
     );
   }
 
+  // inspect: a crop of the product screen; its components get selected one after another, as in Figma
+  const { crop } = v;
   return (
-    <div className="vis vis--bare" style={vt} aria-hidden="true">
-      <div className="spec">
-        <span className="spec__aa">Aa</span>
-        <span className="spec__row">
-          <i />
-          <i />
-          <i />
-          <i />
-          <span className="redline">
-            <em>14</em>
-          </span>
-        </span>
+    <div
+      className="vis vis--bare inspect"
+      style={{ ...vt, ...style({ "--shot-w": String(v.width), "--shot-h": String(v.height), "--crop-x": String(crop.x), "--crop-y": String(crop.y), "--crop-w": String(crop.w), "--steps": String(v.boxes.length) }) }}
+      aria-hidden="true"
+    >
+      <div className="inspect__cam">
+        <Image className="inspect__shot inspect__shot--light" src={v.shots.light} alt="" fill sizes="(max-width: 860px) 200vw, 1100px" quality={SHOT_QUALITY} priority={priority} />
+        <Image className="inspect__shot inspect__shot--dark" src={v.shots.dark} alt="" fill sizes="(max-width: 860px) 200vw, 1100px" quality={SHOT_QUALITY} />
+        {v.boxes.map((b, i) => (
+          <i
+            key={b.name}
+            className={b.custom ? "inspect__box inspect__box--custom" : "inspect__box"}
+            style={style({ "--x": pct(b.x / v.width), "--y": pct(b.y / v.height), "--w": pct(b.w / v.width), "--h": pct(b.h / v.height), "--step": String(i) })}
+          >
+            <b>{b.name}</b>
+          </i>
+        ))}
       </div>
     </div>
   );

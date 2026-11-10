@@ -218,3 +218,182 @@ export function ProofStrip({ mark, cap, sr }: { mark: string; cap: string; sr?: 
     </div>
   );
 }
+
+/** Figma properties next to the props that carry them in code. */
+export function PropsMap({ caption, rows }: { caption: string; rows: { figma: string; prop: string; values: string }[] }) {
+  return (
+    <div className="table-wrap">
+      <table className="table props-map">
+        <caption>{caption}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Figma property</th>
+            <th scope="col">Prop</th>
+            <th scope="col">Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.figma}>
+              <th scope="row">{r.figma}</th>
+              <td>
+                <code>{r.prop}</code>
+              </td>
+              <td>{r.values}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** One fix followed through: the finding, the change in the system, what changed in the product. */
+export function Chain({ steps }: { steps: { label: string; title: string; text: ReactNode; pr?: number }[] }) {
+  return (
+    <ol className="chain">
+      {steps.map((s) => (
+        <li className="chain__step" key={s.label}>
+          <span className="chain__label">{s.label}</span>
+          <b>{s.title}</b>
+          <span>{s.text}</span>
+          {s.pr && <PrLink n={s.pr} />}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+const PR_BASE = "https://github.com/LeraDryha/grg-design-system/pull/";
+
+function PrLink({ n }: { n: number }) {
+  return (
+    <a className="pr" href={`${PR_BASE}${n}`} target="_blank" rel="noopener">
+      PR #{n}
+    </a>
+  );
+}
+
+/** Every audit decision as a row: what was found, what changed in the system, where the product changed. */
+export function ChainTable({ caption, rows }: { caption: string; rows: { finding: string; system: string; product: string; prs: number[] }[] }) {
+  return (
+    <div className="table-wrap">
+      <table className="table chain-table">
+        <caption>{caption}</caption>
+        <thead>
+          <tr>
+            <th scope="col">Finding</th>
+            <th scope="col">In the system</th>
+            <th scope="col">In the product</th>
+            <th scope="col">Pull request</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.finding}>
+              <th scope="row">{r.finding}</th>
+              <td>{r.system}</td>
+              <td>{r.product}</td>
+              <td className="chain-table__prs">
+                {r.prs.map((n) => (
+                  <PrLink key={n} n={n} />
+                ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** A decision made while rebuilding a screen: what Figma had, what the product does now, and why. */
+export function Decision({ title, figma, product, children, images }: { title: string; figma: string; product: string; children: ReactNode; images?: { figma: string; product: string; width: number; height: number; alt: [string, string] } }) {
+  return (
+    <div className="decision">
+      <h3>{title}</h3>
+      <div className="decision__pair">
+        <div>
+          <span className="decision__label">In Figma</span>
+          {images && <Image className="decision__img" src={images.figma} width={images.width} height={images.height} alt={images.alt[0]} sizes="(max-width: 640px) 100vw, 640px" quality={90} />}
+          <p>{figma}</p>
+        </div>
+        <div>
+          <span className="decision__label">In the product</span>
+          {images && <Image className="decision__img" src={images.product} width={images.width} height={images.height} alt={images.alt[1]} sizes="(max-width: 640px) 100vw, 640px" quality={90} />}
+          <p>{product}</p>
+        </div>
+      </div>
+      <div className="decision__why">{children}</div>
+    </div>
+  );
+}
+
+/** An audit finding: its id and severity, what is wrong, and what the audit recommended. */
+export function Finding({ id, severity, title, fix, children }: { id: string; severity: "High" | "Medium" | "Low"; title: string; fix: ReactNode; children: ReactNode }) {
+  return (
+    <div className="finding">
+      <p className="finding__top">
+        <span className="finding__id">{id}</span>
+        <span className="finding__sev">{severity}</span>
+      </p>
+      <h3>{title}</h3>
+      <div className="finding__body">{children}</div>
+      <p className="finding__fix">
+        <b>Recommended. </b>
+        {fix}
+      </p>
+    </div>
+  );
+}
+
+/** The ways one value was written, crossed out, and the one rule that replaced them. */
+export function Formats({ before, after, cap }: { before: string[]; after: string; cap: string }) {
+  return (
+    <div className="formats">
+      <ul className="formats__before" aria-label="Before: the formats in use">
+        {before.map((f) => (
+          <li key={f}>
+            <s>{f}</s>
+          </li>
+        ))}
+      </ul>
+      <p className="formats__after">
+        <b>{after}</b>
+        <span>{cap}</span>
+      </p>
+    </div>
+  );
+}
+
+/** A usability test task: what the person is asked to do, what it checks, what counts as success, what is measured. */
+export function Scenario({ n, task, checks, success, measure }: { n: number; task: string; checks: string; success: string; measure: string }) {
+  return (
+    <div className="scenario">
+      <h3>
+        <span className="scenario__n">{n}</span> {task}
+      </h3>
+      <dl>
+        <dt>Checks</dt>
+        <dd>{checks}</dd>
+        <dt>Success</dt>
+        <dd>{success}</dd>
+        <dt>Measure</dt>
+        <dd>{measure}</dd>
+      </dl>
+    </div>
+  );
+}
+
+export { TokenAnatomy } from "@/components/case/TokenAnatomy";
+
+/** The start of a larger part of the story, set apart from the chapters before it. */
+export function Part({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
+  return (
+    <header className="part">
+      <p className="part__eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      {children}
+    </header>
+  );
+}

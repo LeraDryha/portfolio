@@ -1,10 +1,192 @@
 export const meta = {
   heading: "GRG Design System",
-  lead: "A large design system for Golden Ratio Group, with detailed component specs. A Storybook for it, on PrimeReact, is being built from scratch.",
+  lead: "One source of truth for a crypto payments platform: a design system I made in Figma, brought into code with the front-end team, then put to work on the product’s screens, audited as one system and fixed in the system first.",
   facts: [
-    { label: "Client", value: "Golden Ratio Group" },
-    { label: "Work", value: "Design system · component specs · Storybook" },
+    { label: "Years", value: "2025–2026 · in code from 2026" },
+    { label: "Role", value: "Sole product designer, author of the design system; initiated and co-built the Storybook" },
+    { label: "Team", value: "Front-end lead, full-stack developer, me" },
+    { label: "Stack", value: "Figma variables · React · PrimeReact · Storybook" },
+    { label: "Storybook", value: "grg-design-system.vercel.app", href: "https://grg-design-system.vercel.app" },
   ],
+  answer: {
+    problem: "Every new feature got its own Figma file, and each file grew its own components: inputs looked and behaved differently from screen to screen. The design-system file was more of a UI kit. There was no single source of truth, and no Storybook for the developers to build from.",
+    did: "I rebuilt the system in Figma on variables, with a detailed spec for every component, and started the Storybook. I turned my Figma components into code, the front-end team reviewed them, and we merged them. Then I put the system to work: I rebuilt twelve of the product’s screens on it, audited them as one system and made every fix in the system first.",
+    result: "59 components with full documentation, 12 live screens built only from them, and an audit whose 15 findings became 9 decisions. Each one changed the system, and every page followed.",
+  },
+  proof: { mark: "15 → 9", cap: "audit findings turned into decisions, each fixed in the system first" },
 };
 
-<Note>The case is being prepared.</Note>
+<Chapter id="figma" title="The system in Figma">
+
+Foundations on Figma variables: colours in a light (gold) and a dark theme, type, spacing, corner radius and shadows. Every component has its own spec: anatomy, types, sizes, states and the rules for using it, so a developer never has to guess.
+
+<Note>The spec pages from the Figma file are being added.</Note>
+
+</Chapter>
+
+<Chapter id="code" title="From Figma to code" sub="One token, followed from the Figma variable to the product.">
+
+Tokens are generated from the Figma variables, and the components use nothing else: no raw colours, sizes or font names. PrimeReact gives the behaviour, the keyboard support and the ARIA; it runs without its theme, so every pixel comes from the system. Change a variable in Figma and the product follows, in both themes.
+
+<TokenAnatomy />
+
+Every component page in the Storybook has the same parts: its status, a playground, when to use it and what to use instead, examples that run as tests, the design decisions, accessibility (WCAG 2.2 AA in both themes) and a map from the Figma properties to the props, so a developer reads the Figma file and the code the same way.
+
+<PropsMap
+  caption="Button: Figma and code"
+  rows={[
+    { figma: "Type", prop: "variant", values: "primary, secondary, outline, text" },
+    { figma: "Size", prop: "size", values: "xlg-56, lg-44, md-40, sm-32, xs-24" },
+    { figma: "Destructive · Green", prop: "tone", values: "neutral, destructive, green" },
+    { figma: "State", prop: "loading · disabled", values: "hover, pressed and focus come from the pointer and the keyboard" },
+    { figma: "Left icon · Right icon", prop: "leftIcon · rightIcon", values: "an icon name" },
+  ]}
+/>
+
+</Chapter>
+
+<Part eyebrow="Putting the system to work" title="Audit → system → product">
+
+A system proves itself on real screens. I rebuilt the product on it, audited the whole app as one system and made each fix in the system, so it reached every page at once.
+
+</Part>
+
+<Chapter id="rebuilt" title="Twelve screens on the new system">
+
+The product’s screens from the Figma files, rebuilt from the system’s components only: Dashboard, Assets, Convert, Withdraw ETH, Invoices, Transactions, Reporting, Members, Settings, Profile, Notifications, and the avatar menu with the bell. They run as one app: a payment on the Dashboard opens the same record on Transactions.
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/dashboard-figma.webp" width={1168} height={960} alt="The Dashboard as designed in Figma: dates written as 12/07/26, Create new invoice inside the payments card" title="In Figma" caption="Dashboard" />
+  <HalfFigure src="/work/grg-design-system/dashboard-live.webp" width={1168} height={836} alt="The Dashboard rebuilt on the system: dates with the month as a word, Create invoice next to the page title" title="Rebuilt on the system" caption="Dashboard" />
+</FigurePair>
+
+<FigurePair>
+  <HalfFigure src="/work/grg-design-system/invoices-figma.webp" width={1168} height={960} alt="Invoices as designed in Figma: the search on the left, the filters on the far right" title="In Figma" caption="Invoices" />
+  <HalfFigure src="/work/grg-design-system/invoices-live.webp" width={1168} height={836} alt="Invoices rebuilt on the system: the filters right after the search, people by name" title="Rebuilt on the system" caption="Invoices" />
+</FigurePair>
+
+</Chapter>
+
+<Chapter id="decided" title="Decided while building it" sub="Where the old designs and the system’s rules disagreed, the rules won, and the change was written down on the page.">
+
+<Decision
+  title="Filters next to the search, and a Reset"
+  figma="The search on the left, the filters on the far right, and no way to clear them."
+  product="The filters follow the search; Reset appears as soon as anything is searched or chosen."
+  images={{ figma: "/work/grg-design-system/filters-figma.webp", product: "/work/grg-design-system/filters-live.webp", width: 1168, height: 80, alt: ["In Figma: a search field, then All invoice assets, All statuses and All period on the far right", "In the product: the search, then EUR, Paid and All time, then Reset"] }}
+>
+  More filters can join the row without moving the search, and one click brings the whole list back. The same row now works on Invoices and Transactions.
+</Decision>
+
+<Decision
+  title="Creating an invoice in a drawer"
+  figma="Create invoice opened a separate page."
+  product="A drawer: the list stays in view, and the new invoice appears in it."
+>
+  Creating, the result with its payment link, the details and deactivating are one drawer whose content changes: the Drawer rule is one task, one drawer.
+</Decision>
+
+<Decision
+  title="Limits inside the Convert window"
+  figma="Fee, minimum and maximum sat in a popover beside the window."
+  product="A card above the Convert button that turns red when the amount is outside the limits."
+>
+  The limits are where the amount is typed, so the error explains itself.
+</Decision>
+
+<Decision
+  title="A toast for a result that needs no answer"
+  figma="Adding a member ended with a success window."
+  product="A toast, and the new member appears at the top of the list, waiting for confirmation."
+>
+  A modal is for a question. A result that asks nothing goes by itself (the Modal rule).
+</Decision>
+
+<Decision
+  title="Remove at once, with Undo"
+  figma="Removing asked first."
+  product="The logo or a report goes at once; a toast offers Undo."
+>
+  Both can be brought back, so a question would only slow people down.
+</Decision>
+
+</Chapter>
+
+<Chapter id="audit" title="The UX audit" sub="The whole app walked as one system, with three questions.">
+
+Is it clear where everything is and what it is called? Does the same thing look and read the same everywhere? Which parts is the system itself missing? I went through the seven pages of the menu, Profile, the avatar menu and the bell on a 1440 desktop.
+
+<Stats
+  items={[
+    { value: "4", cap: "information architecture" },
+    { value: "8", cap: "consistency between pages" },
+    { value: "3", cap: "gaps in the design system" },
+  ]}
+/>
+
+<Finding id="C-1" severity="High" title="Six date formats" fix={<>One format with the month as a word, so it can’t be read two ways: <i>10 Nov 2026, 12:49</i> in tables, periods as <i>1–7 Nov 2026</i>, “3 h ago” only in the bell.</>}>
+  <p>The most visible one. In a US office 10/11/26 reads as 11 October, and in a payments product the date is evidence.</p>
+  <Formats before={["10/11/26, 09:52:07", "2026/11/10 12:49:41", "24/09/25, 14:49:41", "24/09/2025, 14:49:41", "2026-11-01 – 2026-11-07", "2026-11-08, 16:14:05"]} after="10 Nov 2026, 12:49" cap="one rule in Foundations → Formats, used by every page" />
+</Finding>
+
+<Finding id="C-2" severity="High" title="One payment, different IDs and times" fix="One source of data for the Dashboard, Transactions, Invoices and the notifications.">
+  <p>The same 0.065769 ETH payment had one ID and time on the Dashboard, another on Transactions, and a third ID in the bell. Someone who opens a row on the Dashboard lands on a different record, which breaks trust in a live demo.</p>
+</Finding>
+
+<Finding id="IA-3" severity="Medium" title="Ownership managed in three places" fix="Transfer ownership in the owner’s row in Members; Settings only shows the owner, with a way to Members.">
+  <p>The Owner role showed in Members and Profile, but could only be changed in Settings, while every other role changes in Members. Someone handing the company to a colleague goes to Members and finds nothing.</p>
+</Finding>
+
+<Finding id="S-1" severity="Medium" title="No Page Header in the system" fix="A Page Header component: title, actions and tabs, one height with or without buttons.">
+  <p>Every page assembled its title, buttons and tabs itself. With a button the title sat 4px lower, so the page jumped between screens, and each page named its main action its own way.</p>
+</Finding>
+
+I brought nine decisions to the table, each with a recommendation; all nine were accepted.
+
+</Chapter>
+
+<Chapter id="fixed" title="Fixed in the system first" sub="A finding becomes a rule or a component; the pages take it from there.">
+
+<Chain
+  steps={[
+    { label: "Finding · C-1", title: "Six date formats", text: "10/11/26 reads as 11 October in the US." },
+    { label: "System", title: "Foundations → Formats", text: "One rule for dates, periods and amounts, with shared formatters.", pr: 61 },
+    { label: "Product", title: "Every page", text: "Dashboard, Transactions, Invoices, Members, Settings, Reporting and the bell." },
+  ]}
+/>
+
+<ChainTable
+  caption="All nine decisions"
+  rows={[
+    { finding: "C-1, C-5 · Six date formats; amounts with different decimals", system: "Foundations → Formats, with shared formatters", product: "Every page, the bell, the date picker", prs: [61] },
+    { finding: "C-2 · One payment, different IDs and times", system: "One source of data for the app", product: "Dashboard, Transactions, Invoices, notifications", prs: [61] },
+    { finding: "IA-1 · Reporting after Settings", system: "Sidebar Navigation sections: money first, then the company", product: "The menu on every page", prs: [62, 70] },
+    { finding: "IA-2 · “Account” meant two things", system: "One name per place: the Company tab, Company settings", product: "Settings, the avatar menu", prs: [62] },
+    { finding: "C-4 · One thing, different names", system: "One word per thing: Create invoice, Invoice payment, All assets, All time", product: "Dashboard, Invoices, Transactions", prs: [62] },
+    { finding: "IA-3 · Ownership in three places", system: "Transfer ownership lives with the other roles", product: "Members, Settings", prs: [63] },
+    { finding: "C-7 · Edit buttons with and without icons", system: "A row’s button is a short verb without an icon", product: "Settings, Profile", prs: [64] },
+    { finding: "C-3 · People by name, by email, or both", system: "People by name, the email under it", product: "Members, Invoices, Reporting", prs: [65] },
+    { finding: "C-8 · Four kinds of row actions", system: "A Table rule: icons for common actions, text for the product’s own verbs, a ⋮ menu over three", product: "Assets, Invoices, Members, Reporting", prs: [67] },
+    { finding: "S-1, S-2, C-6 · No Page Header; settings rows built three ways", system: "New components: Page Header and Settings Row", product: "Every page title; Settings, Profile, Payment settings", prs: [68] },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="tests" title="Usability tests we would have run">
+
+<Statement>This is what we would have taken to users. There are no answers: the project ended first.</Statement>
+
+Moderated remote sessions with five people who handle payments at a merchant, one task at a time, thinking aloud. Each task checks a decision from the audit.
+
+<Scenario n={1} task="Hand the company over to a colleague before you go on leave." checks="IA-3: ownership moved from Settings to Members" success="Finds Transfer ownership in Members without opening Settings" measure="Completion, time on task, wrong turns" />
+
+<Scenario n={2} task="Change your password and turn on two-step verification." checks="IA-2: Profile for you, Company settings for the company" success="Goes to Profile from the avatar menu, not to Settings" measure="Completion, first click, time on task" />
+
+<Scenario n={3} task="A customer says they paid 0.065769 ETH this morning. Find the payment and tell them when it arrived." checks="C-1 and C-2: one date format, one record everywhere" success="Opens the same record from the Dashboard or Transactions and reads the date right" measure="Completion, the date as read aloud, time on task" />
+
+<Scenario n={4} task="Bill a customer 250 USDT and send them the payment link." checks="Creating an invoice in a drawer" success="Creates the invoice and copies its link without leaving the list" measure="Completion, errors in required fields, time on task" />
+
+<Scenario n={5} task="Your accountant needs last month’s USDT transactions as a CSV." checks="IA-1: Reporting next to Transactions" success="Finds Reporting, sets the period and the currency, downloads the file" measure="Completion, first click in the menu, time on task" />
+
+</Chapter>

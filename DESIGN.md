@@ -186,7 +186,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 
 ### The Figma layer
 - **Figma Blue**: selection frame, handles, size label, keyboard focus ring, the "You" tag. It belongs to the Figma layer only.
-- **Redline**: the measurement in the GRG spec animation.
+- **Redline**: measurements in the GRG case (token tags on the Button specimen, highlighted lines of code) and the parts of a screen made for one page only, in the components layer.
 - **People in the file**: Lera in Mulberry Ink, UX designer violet, Developer green, Researcher red-orange: Figma's own multiplayer palette.
 
 ### Brand and verdict
@@ -197,7 +197,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 ### Named Rules
 **The Ink Headline Rule.** Tile headlines are evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.
 
-**The Figma Only Rule.** Figma Blue appears only as the Figma layer (selection, focus, "You"). It is never a link colour or a button fill.
+**The Figma Only Rule.** Figma Blue appears only as the Figma layer (selection, focus, "You", the components layer over a live product and the part names that select in it). It is never a link colour or a button fill.
 
 **The Re-tune Rule.** Every colour has a night value; nothing reuses the light value on a night tile.
 
@@ -219,9 +219,10 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 ## Layout
 
 - **Top bar** (sticky, frosted page colour): the mark on the left (back to the top), the filter in the centre, the theme switch on the right. On phones the filter drops to a second row.
-- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Order: intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) with Comfy (2 × 2) and GRG (2 wide, text left, spec right) beside it; Adtelligent (2 × 2), Smart Financial Assistant (1 × 2), and Medium over Learning (1 × 1 each). At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
+- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Order: intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) with Comfy (2 × 2) and GRG (2 wide, text left, product right) beside it; Adtelligent (2 × 2), Smart Financial Assistant (1 × 2), and Medium over Learning (1 × 1 each). At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
 - **More work**: a pill under the bento opens four small cards in a row (2 on tablets, 1 on phones).
 - **Case page**: no top bar. A round close button top right (Esc does the same) returns to the tile; the hero (the tile's product, 280–480px tall) sits on top; one reading column below; a back-to-top button appears after scrolling. The page ends with "All work" on the left and "Next case: <title> →" on the right.
+- **Wide bands** (GRG): the live product and the token anatomy break out of the reading column to the page width (1100px; the screen minus 32px on phones), centred on it. Everything else stays in the column.
 - **Figures in a row** share one 4:3 image area so captions line up; any card with an image, a title and a line follows this rule.
 
 ## Elevation & Depth
@@ -242,7 +243,7 @@ Evidence first, in ink; under it the product name in bold and a short line; the 
 - **Story** (Comfy, 30s): whole screens in scale. The camera zooms into the before (the tooltip and the bank icons) and a "needs improvement" comment opens; it zooms out, a white bar with a grip wipes in the after, the camera zooms into its highlighted price block and a design-decision comment opens. Then the camera zooms out and the installment offers slide in like a drawer, seen whole, with a comment on the payment timeline. Each comment drops in as a closed pin, then opens, as in Figma. Before / After badges. In a tile the screen covers the product area; at the top of the case page it is contained. With reduced motion: the zoomed after with its comment, still. On phones a pin in the upper half opens its note below.
 - **Pan** (Adtelligent): the report scrolls top to bottom and back (18s).
 - **Phones** (Smart Financial Assistant): screens change one after another (20s); on the case hero the whole sheet pans.
-- **Spec** (GRG): type and four colour chips appear, a redline measures the gap.
+- **Inspect** (GRG): a crop of the Dashboard; its components are selected one after another as in Figma (Page Header, Link, Bar of shares, Coin Icon, Action Button), each with its name in a Geist Mono label; a part made only for this page is selected in Redline. 2s a step. With reduced motion: the first selection, still. On the case page the same product is live (see Live Product).
 
 ### Figma Selection
 A 1.5px Figma Blue square frame 5px outside the element, four white handles, the live size in a Geist Mono label under it. On tiles, mini cards and case figures, on hover and keyboard focus.
@@ -260,7 +261,16 @@ Learning: a title (21px, ink) and a line (Pencil) at the bottom-left, no action 
 Pill segmented control: All / About / Work / Writing hides and shows tiles with a soft transition; More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.
 
 ### Case Page Blocks
-Facts (labels in a column, values aligned), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens full size), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.
+Facts (labels in a column, values aligned; a value can be a link), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens full size), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.
+
+### Live Product (GRG case page)
+The case's product, live: the GRG Storybook's Dashboard story in a frame, on a grey band with "Live product", the screen's name and a Product / Show components switch (the filter's pill control on the page colour). On desktop widths the product keeps its 1440 layout scaled to fit; on narrow screens it shows its own phone layout. Show components outlines every system component in Figma Blue and the parts made for this page in dashed Redline; the one under the pointer is selected with its name. Under the product, the parts it is built from as pills (with ×count): hovering or focusing one selects it in the product; a system part opens its Storybook page. A legend and a line say the Storybook is rebuilt for the portfolio. The product follows the site's theme. Until the frame answers, the tile's screenshot stands in.
+
+### Token Anatomy and Code (GRG case page)
+A Button specimen on a white (or, with its own Light / Dark switch, black) canvas, with Redline tags naming its tokens; beside it, code in tabs (Figma variable, tokens.css, Button.css, the page): Geist Mono 13px on a grey block, line numbers in Pencil, token names in ink, comments in Pencil, the line that matters tinted Redline. The specimen uses the GRG product typeface (Nunito Sans), loaded for this block only. No syntax colours.
+
+### Audit Blocks (GRG case page)
+Part (an eyebrow and a heading over a hairline: the start of a larger part of the story), Decision (title; "In Figma" and "In the product" side by side on white insets, optional crops; why, in ink), Finding (id in mono, severity pill, what is wrong, "Recommended."), Formats (the ways a value was written, struck through in Redline, then the one rule in Mulberry Ink), Chain (finding → system → product, three cards, with the PR), Chain table (every decision with its PRs), Scenario (a numbered task with Checks / Success / Measure).
 
 ### Greeting Curtain
 On the first visit only: "Hello", "Привіт", then other languages flash on a dark curtain that slides up. Click or Esc skips. Never Russian or Belarusian.
