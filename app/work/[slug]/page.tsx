@@ -34,13 +34,9 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         <Icon name="close" />
       </a>
       <main className="case">
-        {entry.vis.kind === "assemble" ? (
-          <LiveProduct v={entry.vis} viewTransitionName={`case-${entry.slug}`} />
-        ) : (
-          <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
-            <Vis entry={entry} priority />
-          </div>
-        )}
+        <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : entry.vis.kind === "assemble" ? "case-hero case-hero--tile" : "case-hero"}>
+          <Vis entry={entry} priority />
+        </div>
 
         <article className="prose" aria-labelledby="case-title">
           <h1 id="case-title">{meta.heading}</h1>
@@ -65,7 +61,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             <>
               <h2>Problem</h2>
               <p>{meta.answer.problem}</p>
-              <h2>What we did</h2>
+              <h2>{meta.answer.didTitle ?? "What we did"}</h2>
               <p>{meta.answer.did}</p>
               <h2>Result</h2>
               <p>{meta.answer.result}</p>
@@ -77,6 +73,8 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
               <span>{meta.proof.cap}</span>
             </div>
           )}
+          {/* A product that can be used live (GRG): after the summary, before the story */}
+          {entry.vis.kind === "assemble" && <LiveProduct v={entry.vis} />}
 
           <Body />
 
