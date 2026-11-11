@@ -392,11 +392,9 @@
   --size-grg-field: 44px;
   --size-grg-icon: 20px;
   --size-grg-logo: 24px;
-  /* Google's logo colours, for the social button in the modal specimen */
-  --color-google-blue: #4285f4;
-  --color-google-green: #34a853;
-  --color-google-yellow: #fbbc05;
-  --color-google-red: #ea4335;
+  --space-grg-social-gap: 6px;
+  --space-grg-social-start: 16px;
+  --space-grg-social-end: 20px;
   --size-grg-stroke: 1.5;
   --radius-grg-modal: 16px;
   --radius-grg-control: 10px;
@@ -929,13 +927,9 @@
 .spec-modal__actions { display: grid; gap: var(--space-grg-foot); }
 .spec-modal__or { color: var(--grg-soft); }
 .spec-modal__socials { display: grid; gap: var(--space-grg-gap); }
-.spec-modal__social { display: flex; align-items: center; justify-content: center; gap: var(--space-grg-gap); height: var(--size-grg-field); border: var(--u) solid var(--grg-stroke); border-radius: var(--radius-grg-control); font-weight: var(--weight-semibold); font-size: var(--text-grg-button); line-height: var(--leading-grg-button); }
-.spec-modal__social svg { width: var(--size-grg-logo); height: var(--size-grg-logo); }
-.logo-google-blue { fill: var(--color-google-blue); }
-.logo-google-green { fill: var(--color-google-green); }
-.logo-google-yellow { fill: var(--color-google-yellow); }
-.logo-google-red { fill: var(--color-google-red); }
-.logo-apple { fill: currentColor; }
+/* Social Button: 44px, 1px stroke inside, padding 10 / 20 / 10 / 16, Body-lg/Semibold, the Brand icon at 24px */
+.spec-modal__social { display: flex; align-items: center; justify-content: center; gap: var(--space-grg-social-gap); height: var(--size-grg-field); padding: var(--space-0) var(--space-grg-social-end) var(--space-0) var(--space-grg-social-start); border: var(--u) solid var(--grg-stroke); border-radius: var(--radius-grg-control); font-weight: var(--weight-semibold); font-size: var(--text-grg-button); line-height: var(--leading-grg-button); }
+.spec-modal__social img { width: var(--size-grg-logo); height: var(--size-grg-logo); }
 .spec-modal__box .spec-modal__foot { margin-top: calc(var(--space-grg-foot) - var(--space-grg-fields)); color: var(--grg-soft); }
 /* Type measured as in primereact.dev: a green line under the text with end ticks, its style in a green tag */
 .spec-modal__typed { position: relative; }
