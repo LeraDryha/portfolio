@@ -4,7 +4,7 @@ import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Nunito_Sans } from "next/font/google";
 
 // The GRG product typeface, for the specimen only (not preloaded: it is needed on this one block)
-const nunito = Nunito_Sans({ subsets: ["latin"], weight: ["600"], preload: false, variable: "--font-grg" });
+const nunito = Nunito_Sans({ subsets: ["latin"], weight: ["400", "600"], preload: false, variable: "--font-grg" });
 
 /** A line of code: plain text, with **token names** in ink and //comments quiet. */
 type Line = string;
@@ -14,64 +14,74 @@ type Tab = { id: string; label: string; lines: Line[]; hl: number[] };
 const TABS: Tab[] = [
   {
     id: "figma",
-    label: "Figma variable",
-    hl: [1, 2, 3],
+    label: "Figma variables",
+    hl: [1, 2, 3, 4, 5, 6],
     lines: [
       "// Figma variables",
+      "**Surface/surface-floating**",
+      "  Light (gold)  →  **neutral/0**      #FFFFFF",
+      "  Dark          →  **neutral/850**    #1D1D1D",
       "**Primary/primary-base-1000**",
       "  Light (gold)  →  **neutral/1000**   #0A0A0A",
       "  Dark          →  **neutral/0**      #FFFFFF",
       "",
-      "**Spacing/250**    10",
-      "**Spacing/400**    16",
-      "**Corner/md-10**   10",
+      "**Corner/xl-16**     16",
+      "**Spacing/800**      32",
+      "**Spacing/1000**     40",
+      "**Elevation/md**     2 shadows, 4 in the dark",
     ],
   },
   {
     id: "tokens",
     label: "tokens.css",
-    hl: [2, 8],
+    hl: [2, 3, 9, 10],
     lines: [
       "/* generated from the Figma variables */",
       ":root {",
+      "  **--surface-floating**: var(--color-neutral-0);",
       "  **--primary-base-1000**: var(--color-neutral-1000);",
-      "  **--space-250**: 10px;",
-      "  **--space-400**: 16px;",
-      "  **--radius-md-10**: 10px;",
+      "  **--radius-xl-16**: 16px;",
+      "  **--space-800**: 32px;",
+      "  **--space-1000**: 40px;",
       "}",
       '[data-theme="dark"] {',
+      "  **--surface-floating**: var(--color-neutral-850);",
       "  **--primary-base-1000**: var(--color-neutral-0);",
       "}",
     ],
   },
   {
-    id: "button",
-    label: "Button.css",
+    id: "modal",
+    label: "Modal.css",
     hl: [4],
     lines: [
-      ".grg-button {",
-      "  --btn-pad-y: var(**--space-250**);",
-      "  --btn-pad-x: var(**--space-400**);",
-      "  --btn-radius: var(**--radius-md-10**);",
-      "  --tone-solid: var(**--primary-base-1000**);",
+      ".grg-modal {",
+      "  --modal-side: var(**--space-800**);",
+      "  border-radius: var(**--radius-xl-16**);",
+      "  box-shadow: var(**--shadow-md**);",
+      "  background: var(**--surface-floating**);",
       "}",
+      "/* fields: 40px apart */",
+      ".grg-modal__content > form { gap: var(**--space-1000**); }",
       "/* no hex values, pixel sizes or font names */",
     ],
   },
   {
     id: "page",
-    label: "Dashboard.tsx",
-    hl: [4],
+    label: "SignUp.tsx",
+    hl: [1],
     lines: [
-      "// the page's main action, next to its title",
-      "<PageHeader",
-      '  title="Dashboard"',
-      "  actions={",
-      '    <Button variant="primary" size="sm" leftIcon="plus">',
-      "      Create invoice",
-      "    </Button>",
-      "  }",
-      "/>",
+      "// the sign-up modal, from system parts only",
+      '<Modal size="sm" title="Sign up"',
+      '  description="Accept crypto payments worldwide within seconds">',
+      "  <form>",
+      '    <Input label="Email" inputType="email" leftIcon="mail" />',
+      '    <Input label="Password" type="button" action="password" />',
+      '    <Button variant="primary" size="lg" type="submit">Sign up</Button>',
+      "  </form>",
+      '  <SocialButton social="google" />',
+      '  <SocialButton social="apple" />',
+      "</Modal>",
     ],
   },
 ];
@@ -83,8 +93,9 @@ function Code({ line }: { line: Line }): ReactNode {
 }
 
 /**
- * One value followed from the Figma variable to the product: a Button specimen with its tokens marked, and the code
- * where the value lives at each step. The specimen has its own Light / Dark switch, so the token's two values show.
+ * Tokens followed from the Figma variables to the product, as on primereact.dev: the Sign up modal from Lera's Figma
+ * with its tokens marked and its spacing measured, and the code where each value lives. The specimen has its own
+ * Light / Dark switch, so the tokens' two values show.
  */
 export function TokenAnatomy() {
   const [tab, setTab] = useState(TABS[0].id);
@@ -105,27 +116,62 @@ export function TokenAnatomy() {
     <div className={`anatomy case-wide ${nunito.variable}`}>
       <div className="specimen">
         <div className={dark ? "specimen__canvas specimen__canvas--dark" : "specimen__canvas"}>
-          <div className="specimen__measure">
-            <span className="specimen__button">
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path d="M10 4v12M4 10h12" />
-              </svg>
-              Create invoice
-              {/* The paddings measured as in Figma: space-400 at the side, space-250 at the top */}
-              <span className="measure measure--x" title="space-400">
-                <em>16</em>
+          <div className="spec-modal" role="img" aria-label="The Sign up modal with its tokens marked: radius-xl-16, surface-floating, primary-base-1000 on the button, shadow-md; Sign in with Google and with Apple under it; the Email field filled and active; the footer text in Body-md/Regular, 14/20; 32px sides and top, 40px between the fields">
+            {/* The modal, zoomed out as on a Figma canvas; sizes measured as in Figma's dev mode */}
+            <div className="spec-modal__box" aria-hidden="true">
+              <div className="spec-modal__head">
+                <p className="spec-modal__title">Sign up</p>
+                <p className="spec-modal__desc">Accept crypto payments worldwide within seconds</p>
+              </div>
+              {/* Active: filled and focused, its label floated above */}
+              <span className="spec-modal__field spec-modal__field--active">
+                <span className="spec-modal__label">Email</span>
+                <span className="spec-icon spec-icon--mail" />
+                <span className="spec-modal__value">olivia@mail.com</span>
               </span>
-              <span className="measure measure--y" title="space-250">
-                <em>10</em>
+              <span className="spec-modal__field">
+                Password
+                <span className="spec-icon spec-icon--eye spec-modal__end" />
               </span>
-            </span>
-            <span className="redline-tag redline-tag--top">radius-md-10</span>
-            <span className="redline-tag redline-tag--fill">primary-base-1000</span>
+              <div className="spec-modal__actions">
+                <span className="spec-modal__button">Sign up</span>
+                <span className="spec-modal__or">or</span>
+                <div className="spec-modal__socials">
+                  {/* The system's Social Button with its Brand social icons, the same files as in the Storybook */}
+                  <span className="spec-modal__social">
+                    <img src="/work/grg-design-system/social/google-brand.svg" alt="" width={24} height={24} />
+                    Sign in with Google
+                  </span>
+                  <span className="spec-modal__social">
+                    <img src={`/work/grg-design-system/social/${dark ? "apple-brand-dark" : "apple-brand"}.svg`} alt="" width={24} height={24} />
+                    Sign in with Apple
+                  </span>
+                </div>
+              </div>
+              <p className="spec-modal__foot">
+                <span className="spec-modal__typed">I already have an account?</span>
+                <b className="spec-modal__text-button">Log in</b>
+              </p>
+              <span className="measure measure--x spec-measure--side" title="space-800">
+                <em>32</em>
+              </span>
+              <span className="measure measure--y spec-measure--top" title="space-800">
+                <em>32</em>
+              </span>
+              <span className="measure measure--y spec-measure--gap" title="space-1000">
+                <em>40</em>
+              </span>
+            </div>
+            <span className="redline-tag spec-tag--radius">radius-xl-16</span>
+            <span className="redline-tag spec-tag--surface">surface-floating</span>
+            <span className="redline-tag spec-tag--fill">primary-base-1000</span>
+            <span className="redline-tag spec-tag--shadow">shadow-md</span>
+            <span className="redline-tag type-tag spec-tag--type">Body-md/Regular · 14/20</span>
           </div>
         </div>
         <div className="specimen__tools">
-          <span className="specimen__cap">Button · Primary · md-40</span>
-          <div className="filter" role="group" aria-label="Theme of the button">
+          <span className="specimen__cap">Modal · Sign up · sm-440</span>
+          <div className="filter" role="group" aria-label="Theme of the modal">
             <button className="filter__btn" type="button" aria-pressed={!dark} onClick={() => setDark(false)}>
               Light
             </button>

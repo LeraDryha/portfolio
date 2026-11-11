@@ -6,6 +6,7 @@ import { Vis } from "@/components/shell/Vis";
 import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
 import { LiveProduct } from "@/components/case/LiveProduct";
+import { OpenCard, Stats } from "@/components/case/CaseBlocks";
 
 export const dynamicParams = false;
 
@@ -39,6 +40,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         </div>
 
         <article className="prose" aria-labelledby="case-title">
+          {meta.kicker && <p className="case-kicker">{meta.kicker}</p>}
           <h1 id="case-title">{meta.heading}</h1>
           <p className="lead">{meta.lead}</p>
           <dl className="facts">
@@ -57,6 +59,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
               </Fragment>
             ))}
           </dl>
+          {meta.cta && <OpenCard {...meta.cta} />}
           {meta.answer && (
             <>
               <h2>Problem</h2>
@@ -67,6 +70,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
               <p>{meta.answer.result}</p>
             </>
           )}
+          {meta.stats && <Stats items={meta.stats} />}
           {meta.proof && (
             <div className="proof-block">
               <b>{meta.proof.mark}</b>

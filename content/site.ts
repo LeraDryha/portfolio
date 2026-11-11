@@ -47,7 +47,8 @@ export type Live = {
   height: number;
   /** The parts the page lists before the frame reports its own (custom = made for this page only) */
   boxes: Box[];
-  live: { storybook: string; story: string; title: string };
+  /** try: what to click, under the title */
+  live: { storybook: string; story: string; title: string; try?: string };
 };
 
 /**
@@ -151,6 +152,7 @@ const grgVis: Assemble = {
     storybook: "https://grg-design-system.vercel.app",
     story: "in-product-dashboard--live-flow",
     title: "Dashboard, built only from the system",
+    try: "Everything here is live: click around, it all works.",
   },
 };
 
