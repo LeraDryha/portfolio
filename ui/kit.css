@@ -36,6 +36,7 @@
   /* Figma's colour for components: frames and names of the parts of a product (GRG tile and live product) */
   --color-figma-component: #9747ff;
   --color-redline: #f24822;
+  --color-typemark: #0d8a4b;
   --color-who-lera: var(--color-accent);
   --color-who-designer: #9747ff;
   --color-who-developer: #14ae5c;
@@ -401,7 +402,8 @@
   --radius-grg-control: 10px;
   --space-grg-side: 32px;
   --space-grg-fields: 40px;
-  --space-grg-content: 20px;
+  --space-grg-content: 44px;
+  --space-grg-label: 24px;
   --space-grg-desc: 8px;
   --space-grg-foot: 16px;
   --space-grg-inset: 12px;
@@ -413,9 +415,9 @@
   --leading-grg-body: 20px;
   --text-grg-button: 16px;
   --leading-grg-button: 24px;
-  --pos-grg-fill: 272px;
-  --pos-grg-field: 126px;
-  --pos-grg-gap: 148px;
+  --pos-grg-fill: 296px;
+  --pos-grg-field: 150px;
+  --pos-grg-gap: 172px;
   --pos-grg-measure: 64px;
   --zoom-grg-modal: .8;
   --zoom-grg-modal-phone: .62;
@@ -425,6 +427,7 @@
   --color-grg-light-surface: #ffffff;
   --color-grg-light-stroke: #d4d4d4;
   --color-grg-light-strong: #0a0a0a;
+  --color-grg-light-active: #171717;
   --color-grg-light-subtle: #404040;
   --color-grg-light-soft: #737373;
   --color-grg-light-solid: #0a0a0a;
@@ -434,6 +437,7 @@
   --color-grg-dark-surface: #1d1d1d;
   --color-grg-dark-stroke: #525252;
   --color-grg-dark-strong: #ffffff;
+  --color-grg-dark-active: #d4d4d4;
   --color-grg-dark-subtle: #d4d4d4;
   --color-grg-dark-soft: #a1a1a1;
   --color-grg-dark-solid: #ffffff;
@@ -903,8 +907,8 @@
 /* Tokens from Figma to code: the Sign up modal with its tokens marked, and the code at each step */
 .anatomy { display: grid; grid-template-columns: var(--layout-anatomy); gap: var(--space-20); margin-top: var(--space-28); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .specimen { display: grid; gap: var(--space-20); align-content: space-between; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
-.specimen__canvas { --grg-page: var(--color-grg-light-page); --grg-surface: var(--color-grg-light-surface); --grg-stroke: var(--color-grg-light-stroke); --grg-strong: var(--color-grg-light-strong); --grg-subtle: var(--color-grg-light-subtle); --grg-soft: var(--color-grg-light-soft); --grg-solid: var(--color-grg-light-solid); --grg-on-solid: var(--color-grg-light-on-solid); --grg-shadow: var(--shadow-grg-light-md); --z: var(--zoom-grg-modal); display: grid; place-items: center; padding: var(--space-spec-tags) var(--space-20); border-radius: var(--radius-inner); background: var(--grg-page); transition: background-color var(--duration-color); }
-.specimen__canvas--dark { --grg-page: var(--color-grg-dark-page); --grg-surface: var(--color-grg-dark-surface); --grg-stroke: var(--color-grg-dark-stroke); --grg-strong: var(--color-grg-dark-strong); --grg-subtle: var(--color-grg-dark-subtle); --grg-soft: var(--color-grg-dark-soft); --grg-solid: var(--color-grg-dark-solid); --grg-on-solid: var(--color-grg-dark-on-solid); --grg-shadow: var(--shadow-grg-dark-md); }
+.specimen__canvas { --grg-page: var(--color-grg-light-page); --grg-surface: var(--color-grg-light-surface); --grg-stroke: var(--color-grg-light-stroke); --grg-strong: var(--color-grg-light-strong); --grg-active: var(--color-grg-light-active); --grg-subtle: var(--color-grg-light-subtle); --grg-soft: var(--color-grg-light-soft); --grg-solid: var(--color-grg-light-solid); --grg-on-solid: var(--color-grg-light-on-solid); --grg-shadow: var(--shadow-grg-light-md); --z: var(--zoom-grg-modal); display: grid; place-items: center; padding: var(--space-spec-tags) var(--space-20); border-radius: var(--radius-inner); background: var(--grg-page); transition: background-color var(--duration-color); }
+.specimen__canvas--dark { --grg-page: var(--color-grg-dark-page); --grg-surface: var(--color-grg-dark-surface); --grg-stroke: var(--color-grg-dark-stroke); --grg-strong: var(--color-grg-dark-strong); --grg-active: var(--color-grg-dark-active); --grg-subtle: var(--color-grg-dark-subtle); --grg-soft: var(--color-grg-dark-soft); --grg-solid: var(--color-grg-dark-solid); --grg-on-solid: var(--color-grg-dark-on-solid); --grg-shadow: var(--shadow-grg-dark-md); }
 /* The modal at its own size, zoomed out; the token tags around it stay at the page's size */
 .spec-modal { position: relative; }
 .spec-modal__box { --u: calc(1px / var(--z)); position: relative; zoom: var(--z); display: grid; gap: var(--space-grg-fields); width: var(--size-grg-modal); padding: var(--space-grg-side); border-radius: var(--radius-grg-modal); background: var(--grg-surface); box-shadow: var(--grg-shadow); color: var(--grg-strong); font: var(--weight-regular) var(--text-grg-body) / var(--leading-grg-body) var(--font-grg-specimen); text-align: center; transition: background-color var(--duration-color), color var(--duration-color); }
@@ -913,6 +917,12 @@
 .spec-modal__title { font-weight: var(--weight-semibold); font-size: var(--text-grg-title); line-height: var(--leading-grg-title); letter-spacing: var(--tracking-grg-title); }
 .spec-modal__desc { color: var(--grg-subtle); }
 .spec-modal__field { display: flex; align-items: center; gap: var(--space-grg-gap); height: var(--size-grg-field); padding: var(--space-0) var(--space-grg-inset); border: var(--u) solid var(--grg-stroke); border-radius: var(--radius-grg-control); color: var(--grg-soft); text-align: left; }
+.spec-modal__field { position: relative; }
+.spec-modal__field--active { border-color: var(--grg-active); }
+/* Floating label, active: above the field, Body-md/Semibold in the strong text colour */
+.spec-modal__label { position: absolute; left: var(--space-0); bottom: calc(var(--size-full) + var(--space-grg-label) - var(--leading-grg-body)); color: var(--grg-strong); font-weight: var(--weight-semibold); }
+.spec-modal__value { color: var(--grg-strong); }
+.spec-modal__value::after { content: ""; display: inline-block; width: var(--u); height: var(--leading-grg-body); margin-left: var(--u); vertical-align: bottom; background: var(--grg-strong); }
 .spec-modal__field svg { flex: none; width: var(--size-grg-icon); height: var(--size-grg-icon); fill: none; stroke: currentColor; stroke-width: var(--size-grg-stroke); }
 .spec-modal__end { margin-left: auto; }
 .spec-modal__button { display: grid; place-items: center; height: var(--size-grg-field); border-radius: var(--radius-grg-control); background: var(--grg-solid); color: var(--grg-on-solid); font-weight: var(--weight-semibold); font-size: var(--text-grg-button); line-height: var(--leading-grg-button); }
@@ -927,11 +937,16 @@
 .logo-google-red { fill: var(--color-google-red); }
 .logo-apple { fill: currentColor; }
 .spec-modal__box .spec-modal__foot { margin-top: calc(var(--space-grg-foot) - var(--space-grg-fields)); color: var(--grg-soft); }
+/* Type measured as in primereact.dev: a green line under the text with end ticks, its style in a green tag */
+.spec-modal__typed { position: relative; }
+.spec-modal__typed::after { content: ""; position: absolute; left: var(--space-0); right: var(--space-0); top: calc(var(--size-full) + var(--space-2) / var(--z)); height: calc(var(--size-redline-tick) / var(--z)); border: solid var(--color-typemark); border-width: var(--space-0) var(--u); background: linear-gradient(var(--color-typemark), var(--color-typemark)) center / var(--size-full) var(--u) no-repeat; }
 .spec-modal__foot b { margin-left: var(--space-grg-gap); color: var(--grg-strong); font-weight: var(--weight-semibold); }
 .redline-tag { position: absolute; padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-redline); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
 .spec-tag--radius { left: var(--space-0); bottom: calc(var(--size-full) + var(--offset-spec-tag)); }
 .spec-tag--surface { right: var(--space-0); bottom: calc(var(--size-full) + var(--offset-spec-tag)); }
 .spec-tag--fill { right: calc(var(--space-grg-side) * var(--z)); bottom: calc(var(--size-full) - var(--pos-grg-fill) * var(--z) + var(--space-6)); }
+.type-tag { background: var(--color-typemark); }
+.spec-tag--type { left: var(--space-0); top: calc(var(--size-full) + var(--offset-spec-tag)); }
 .spec-tag--shadow { right: var(--space-0); top: calc(var(--size-full) + var(--offset-spec-tag)); }
 /* Spacing measured as in Figma: a Redline with end ticks and the size beside it (sized back up from the zoom) */
 .measure { position: absolute; background: var(--color-redline); }

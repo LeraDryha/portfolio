@@ -116,19 +116,21 @@ export function TokenAnatomy() {
     <div className={`anatomy case-wide ${nunito.variable}`}>
       <div className="specimen">
         <div className={dark ? "specimen__canvas specimen__canvas--dark" : "specimen__canvas"}>
-          <div className="spec-modal" role="img" aria-label="The Sign up modal with its tokens marked: radius-xl-16, surface-floating, primary-base-1000 on the button, shadow-md; Sign in with Google and with Apple under it; 32px sides and top, 40px between the fields">
+          <div className="spec-modal" role="img" aria-label="The Sign up modal with its tokens marked: radius-xl-16, surface-floating, primary-base-1000 on the button, shadow-md; Sign in with Google and with Apple under it; the Email field filled and active; the footer text in Body-md/Regular, 14/20; 32px sides and top, 40px between the fields">
             {/* The modal, zoomed out as on a Figma canvas; sizes measured as in Figma's dev mode */}
             <div className="spec-modal__box" aria-hidden="true">
               <div className="spec-modal__head">
                 <p className="spec-modal__title">Sign up</p>
                 <p className="spec-modal__desc">Accept crypto payments worldwide within seconds</p>
               </div>
-              <span className="spec-modal__field">
+              {/* Active: filled and focused, its label floated above */}
+              <span className="spec-modal__field spec-modal__field--active">
+                <span className="spec-modal__label">Email</span>
                 <svg viewBox="0 0 20 20">
                   <rect x="2.5" y="4.5" width="15" height="11" rx="2" />
                   <path d="m3 5.5 7 5 7-5" />
                 </svg>
-                Email
+                <span className="spec-modal__value">olivia@mail.com</span>
               </span>
               <span className="spec-modal__field">
                 Password
@@ -151,7 +153,7 @@ export function TokenAnatomy() {
                     Sign in with Google
                   </span>
                   <span className="spec-modal__social">
-                    <svg className="logo-apple" viewBox="0 0 24 24">
+                    <svg className="logo-apple" viewBox="2.5 1.75 19 20.5">
                       <path d="M16.37 12.62c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.77-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.99.72 1.24-.02 2.02-1.12 2.77-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66ZM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.02.61-2.67 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.06-.52 2.69-1.28Z" />
                     </svg>
                     Sign in with Apple
@@ -159,7 +161,7 @@ export function TokenAnatomy() {
                 </div>
               </div>
               <p className="spec-modal__foot">
-                I already have an account? <b>Log in</b>
+                <span className="spec-modal__typed">I already have an account?</span> <b>Log in</b>
               </p>
               <span className="measure measure--x spec-measure--side" title="space-800">
                 <em>32</em>
@@ -175,6 +177,7 @@ export function TokenAnatomy() {
             <span className="redline-tag spec-tag--surface">surface-floating</span>
             <span className="redline-tag spec-tag--fill">primary-base-1000</span>
             <span className="redline-tag spec-tag--shadow">shadow-md</span>
+            <span className="redline-tag type-tag spec-tag--type">Body-md/Regular · 14/20</span>
           </div>
         </div>
         <div className="specimen__tools">
