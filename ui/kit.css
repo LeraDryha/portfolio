@@ -912,6 +912,17 @@
 .open-card .sel b { display: none; }
 .prose .open-card:focus-visible { outline: none; }
 
+/* Storybook pages to open (GRG): three in a row, a preview, a title and a line */
+.prose .doc-links { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-20) var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); padding: var(--space-0); list-style: none; }
+.prose .doc-link { display: grid; gap: var(--space-4); color: var(--color-graphite); text-decoration: none; font-size: var(--text-label); line-height: var(--leading-tag); }
+.doc-link__shot { position: relative; display: block; margin-bottom: var(--space-6); aspect-ratio: var(--layout-image-ratio); border-radius: var(--radius-figure); background: var(--color-tile); }
+.doc-link__shot img { border-radius: var(--radius-figure); object-fit: cover; }
+.doc-link b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.doc-link:hover .sel, .doc-link:focus-visible .sel { opacity: var(--opacity-full); }
+.doc-link .sel b { display: none; }
+.prose .doc-link:focus-visible { outline: none; }
+.case-kicker { margin: var(--space-0) var(--space-0) var(--space-10); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+
 /* Product screens with a theme switch (GRG): big, in a wide band */
 .showcase { display: grid; gap: var(--space-14); margin-top: var(--space-28); margin-bottom: var(--space-28); }
 .showcase__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
@@ -1020,7 +1031,7 @@
   .case-hero > .vis--inset { margin: var(--space-20) var(--space-18) var(--space-0); }
   .prose { font-size: var(--text-body); }
   .stats, .lists, .fig-row, .fig-row--3, .chain, .decision__pair { grid-template-columns: var(--layout-col-1); }
-  .stats--4 { grid-template-columns: var(--layout-cols-2); }
+  .stats--4, .prose .doc-links { grid-template-columns: var(--layout-cols-2); }
   .prose .open-card { flex-direction: column; align-items: flex-start; }
   .case-tile__foot { flex-direction: column; align-items: flex-start; gap: var(--space-4); padding: var(--space-48) var(--space-20) var(--space-18); }
   .case-wide { width: var(--layout-wide-phone); }

@@ -1,7 +1,8 @@
 export const SB = "https://grg-design-system.vercel.app";
 
 export const meta = {
-  heading: "GRG Design System",
+  kicker: "GRG Design System",
+  heading: "A design system the product is built from, not a UI kit",
   lead: "One source of truth for a crypto payments platform: a design system I made in Figma, brought into code with the front-end team and put to work on the product’s screens.",
   facts: [
     { label: "Years", value: "2025–2026 · in code from 2026" },
@@ -26,73 +27,30 @@ export const meta = {
     { value: "368", cap: "tokens, generated from the Figma variables" },
     { value: "59", cap: "components with full documentation" },
     { value: "12", cap: "product screens, with every edge case and flow" },
+    { value: "AA", cap: "WCAG 2.2, tested on every story in both themes" },
   ],
 };
 
 <Chapter id="figma" title="The system in Figma">
 
-The system replaced a legacy one. It serves several products at once: payments, a crypto exchange, internal admin panels and a marketing website with API references, each in a light (gold) and a dark theme.
+Built on Figma variables for several products at once (payments, a crypto exchange, internal admin panels and a website), in a light (gold) and a dark theme: 35 components with 2,700+ variants and usage guidelines. Every part is documented in the <Storybook />.
 
-<Stats items={[
-  { value: "35", cap: "components in the Figma library, 2,700+ variants" },
-  { value: "371", cap: "colour tokens behind both themes" },
-  { value: "33", cap: "components with written usage guidelines" },
-]} />
-
-### Foundations
-
-Everything starts from tokens: colour, typography, spacing, corner radius and elevation. Components use them instead of raw values: fills, paddings and corners are bound to variables, and every label uses a text style. Switching the theme changes the whole product at once.
-
-<Figure src="/work/grg-design-system/colors.webp" width={2000} height={854} alt="Primary palette: gold, neutral, green, red, blue and amber, each in steps from light to dark, with a contrast rating on every swatch." caption="Primary palette, with a contrast rating on every step." />
-
-<Figure src="/work/grg-design-system/typography.webp" width={1692} height={2434} alt="Nunito Sans specimen and the type scale: headings H1 to H5 and title styles, each with size, line height and tracking." caption="One typeface, Nunito Sans, with size, line height and tracking set for every style." />
-
-<FigurePair>
-  <HalfFigure src="/work/grg-design-system/spacing.webp" width={2000} height={1215} alt="Spacing scale from 0 to 200px on a 2px base, shown horizontally and vertically." title="Spacing" caption="A 2px base, from 0 to 200px." />
-  <HalfFigure src="/work/grg-design-system/shadows.webp" width={1988} height={1876} alt="Five shadow levels, from xs to xl, with separate recipes for the light and the dark theme." title="Shadows" caption="Five levels, a separate recipe for dark." />
-</FigurePair>
-
-### Components
-
-35 components, from buttons and inputs to tables, date pickers and navigation. Every component page follows the same structure: the full variant matrix, usage guidelines, and examples on real screens.
-
-<Figure src="/work/grg-design-system/buttons.webp" width={2000} height={2461} alt="The button matrix: primary, secondary, outline and text buttons in five sizes and every state, in neutral, destructive and green, in the light and the dark theme." caption="Buttons: every type, size and state, in both themes." />
-
-### One component in detail: the button
-
-The button has 720 variants, driven by a few properties: type, size, state, destructive, icon only, and left or right icons.
-
-<FigurePair>
-  <HalfFigure src="/work/grg-design-system/button-sizes.webp" width={1085} height={1084} alt="Five button sizes from xlg-56 to xs-24, each with its label style, icon size and corner radius, plus a justified button." title="Sizes" caption="Five sizes, each with its label style, icon and radius." />
-  <HalfFigure src="/work/grg-design-system/button-states.webp" width={1085} height={2148} alt="Primary, secondary, outline and text buttons through default, hovered, pressed, focused, loading and disabled states." title="States" caption="Six states for every type." />
-</FigurePair>
-
-### Specs for hand-off
-
-Composite components are assembled from atomic parts, and the parts are measured, so developers don’t have to guess paddings and gaps.
-
-<Figure src="/work/grg-design-system/modal-specs.webp" width={2000} height={1512} alt="Modal header and footer parts with measured paddings and gaps for desktop and mobile, and footer button layouts." caption="Modal header and footer: measured for desktop and mobile." />
-
-<Figure src="/work/grg-design-system/table.webp" width={2000} height={2440} alt="Table header and row cells built from atomic parts, with sorting icons and a scroll indicator, in light and dark." caption="Table: header and row cells built from atomic parts." />
-
-### The system in products
-
-Screens for payments, the exchange, internal admin panels and the website are built on the system, in both themes.
-
-<ThemeShowcase
-  screens={[
-    { name: "Payments", light: "/work/grg-design-system/pay-dashboard-light.webp", dark: "/work/grg-design-system/pay-dashboard-dark.webp", width: 1440, height: 968, alt: "Payments dashboard: balance, successful payments, last transactions and the notification feed" },
-    { name: "Exchange", light: "/work/grg-design-system/exchange-trading-light.webp", dark: "/work/grg-design-system/exchange-trading-dark.webp", width: 1440, height: 900, alt: "Exchange trading: price chart, order book, recent trades and a new order form" },
+<DocLinks
+  items={[
+    { title: "Colors", line: "Primitives and semantic tokens, light and dark", src: "/work/grg-design-system/docs/colors.webp", path: "/docs/foundations-colors--docs" },
+    { title: "Typography", line: "One typeface, every style a token", src: "/work/grg-design-system/docs/typography.webp", path: "/docs/foundations-typography--docs" },
+    { title: "Spacing", line: "One scale on a 2px base", src: "/work/grg-design-system/docs/spacing.webp", path: "/docs/foundations-spacing--docs" },
+    { title: "Icons", line: "362 icons, searchable, copy by name", src: "/work/grg-design-system/docs/icons.webp", path: "/docs/foundations-icons-base-icons--docs" },
+    { title: "Button", line: "Types, sizes, states, Figma → props", src: "/work/grg-design-system/docs/button.webp", path: "/docs/components-button--docs" },
+    { title: "Table", line: "Sorting, row actions, selection, empty and loading", src: "/work/grg-design-system/docs/table.webp", path: "/docs/components-table--docs" },
   ]}
 />
 
 </Chapter>
 
-<Chapter id="code" title="From Figma to code" sub="One token, followed from the Figma variable to the product.">
+<Chapter id="code" title="From Figma to code">
 
-Tokens are generated from the Figma variables, and the components use nothing else: no raw colours, sizes or font names. PrimeReact gives the behaviour, the keyboard support and the ARIA; it runs without its theme, so every pixel comes from the system. Change a variable in Figma and the product follows, in both themes.
-
-<TokenAnatomy />
+Tokens are generated from the Figma variables, and the components use nothing else: no raw colours, sizes or font names. PrimeReact gives the behaviour, the keyboard support and the ARIA; it runs without its theme, so every pixel comes from the system.
 
 Every component page in the <Storybook /> has the same parts: its status, a playground, when to use it and what to use instead, examples that run as tests, the design decisions, accessibility (WCAG 2.2 AA in both themes) and a map from the Figma properties to the props, so a developer reads the Figma file and the code the same way.
 
@@ -106,6 +64,29 @@ Every component page in the <Storybook /> has the same parts: its status, a play
     { figma: "Left icon · Right icon", prop: "leftIcon · rightIcon", values: "an icon name" },
   ]}
 />
+
+</Chapter>
+
+<Chapter id="dark" title="Dark mode as proof" sub="If every colour is a token, the dark theme is one switch, not a second design.">
+
+Each semantic token has a light and a dark value in Figma, and the code only ever asks for the token. Follow one through, then switch a whole product.
+
+<TokenAnatomy />
+
+<ThemeShowcase
+  screens={[
+    { name: "Payments", light: "/work/grg-design-system/pay-dashboard-light.webp", dark: "/work/grg-design-system/pay-dashboard-dark.webp", width: 1440, height: 968, alt: "Payments dashboard: balance, successful payments, last transactions and the notification feed" },
+    { name: "Exchange", light: "/work/grg-design-system/exchange-trading-light.webp", dark: "/work/grg-design-system/exchange-trading-dark.webp", width: 1440, height: 900, alt: "Exchange trading: price chart, order book, recent trades and a new order form" },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="learned" title="What I learned">
+
+A component isn’t finished when it looks right in Figma. It’s finished when its states, keyboard behaviour and edge cases are written down where developers read them, and tested there.
+
+Rebuilding real screens is the best test of a system: every gap shows up as a page that has to assemble something itself.
 
 </Chapter>
 

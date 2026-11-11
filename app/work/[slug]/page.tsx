@@ -40,6 +40,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         </div>
 
         <article className="prose" aria-labelledby="case-title">
+          {meta.kicker && <p className="case-kicker">{meta.kicker}</p>}
           <h1 id="case-title">{meta.heading}</h1>
           <p className="lead">{meta.lead}</p>
           <dl className="facts">

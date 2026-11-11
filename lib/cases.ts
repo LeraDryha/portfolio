@@ -6,6 +6,8 @@ import { cases, type CaseEntry } from "@/content/site";
 export type CaseMeta = {
   /** The page's h1 */
   heading: string;
+  /** A small line over the h1 (the case's name when the h1 is a thesis) */
+  kicker?: string;
   lead: string;
   facts: { label: string; value: ReactNode; href?: string }[];
   /** The case in three blocks; short cases leave it out */

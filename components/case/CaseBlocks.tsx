@@ -428,4 +428,25 @@ export function Storybook({ path, children = "Storybook" }: { path?: string; chi
   );
 }
 
+/** Pages of the Storybook to open: a small preview, a title and a line, three in a row. */
+export function DocLinks({ items }: { items: { title: string; line: string; src: string; path: string }[] }) {
+  return (
+    <ul className="doc-links">
+      {items.map((d) => (
+        <li key={d.path}>
+          <a className="doc-link" href={`${STORYBOOK}/?path=${d.path}`} target="_blank" rel="noopener">
+            <span className="doc-link__shot">
+              <Image src={d.src} alt="" fill sizes="(max-width: 640px) 100vw, 220px" quality={90} />
+              <Selection />
+            </span>
+            <b>{d.title}</b>
+            <span>{d.line}</span>
+            <span className="sr-only"> (opens the Storybook page in a new tab)</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export { ThemeShowcase } from "@/components/case/ThemeShowcase";
