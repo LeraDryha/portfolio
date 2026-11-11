@@ -165,7 +165,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 
 **Key Characteristics:**
 - White page, grey tiles with large soft corners, equal gaps; text in tiles aligned to the left edge.
-- Every case tile: evidence first (ink), then the product name in bold and a short line, then the product, alive.
+- The three lead cases (Prevently, GRG, Comfy): the product, alive, fills the tile; the name, a short line and one fact sit at the bottom on a blur of it. The two smaller cases: evidence first (ink), then the name and a line, then the product.
 - One brand tile: Prevently, Lera's own product, in its pink gradient.
 - Figma layer: square blue selection on hover and focus, role cursors, a "You" tag, decision comments on Comfy.
 - A top bar with the mark, a filter (All / About / Work / Writing) and a theme switch (Auto / Light / Dark).
@@ -195,7 +195,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 - **Verdict Green / Red**: only the titles of paired "what works / what doesn't" lists on case pages.
 
 ### Named Rules
-**The Ink Headline Rule.** Tile headlines are evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.
+**The Ink Headline Rule.** Where a tile has a headline (the smaller cases), it is evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.
 
 **The Figma Only Rule.** Figma Blue appears only as the Figma layer (selection, focus, "You", the components layer over a live product and the part names that select in it). It is never a link colour or a button fill.
 
@@ -219,7 +219,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 ## Layout
 
 - **Top bar** (sticky, frosted page colour): the mark on the left (back to the top), the filter in the centre, the theme switch on the right. On phones the filter drops to a second row.
-- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Order: intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) with Comfy (2 × 2) and GRG (2 wide, text left, product right) beside it; Adtelligent (2 × 2), Smart Financial Assistant (1 × 2), and Medium over Learning (1 × 1 each). At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
+- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Desktop places every tile by name (layout A): intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) on the left, GRG (2 × 2) beside it with Medium and Learning (1 × 1) under GRG; then Comfy (2 × 2), Adtelligent and Smart Financial Assistant (1 × 2 each). GRG and Comfy are the same size; Prevently is the tallest. At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
 - **More work**: a pill under the bento opens four small cards in a row (2 on tablets, 1 on phones).
 - **Case page**: no top bar. A round close button top right (Esc does the same) returns to the tile; the hero (the tile's product, 280–480px tall) sits on top; one reading column below; a back-to-top button appears after scrolling. The page ends with "All work" on the left and "Next case: <title> →" on the right.
 - **Wide bands** (GRG): the live product and the token anatomy break out of the reading column to the page width (1100px; the screen minus 32px on phones), centred on it. Everything else stays in the column.
@@ -236,14 +236,14 @@ Tiles 28px corners (22px at 860px and below); product insets 14px; case figures 
 ## Components
 
 ### Case Tile (signature)
-Evidence first, in ink; under it the product name in bold and a short line; the product below, alive. The whole tile is one link (the product name carries the accessible name). Hover or focus shows the Figma selection; animations play only while the tile is on screen and pause on hover so the product can be read.
+Two forms. **Lead** (Prevently, GRG, Comfy): the product fills the tile edge to edge; at the bottom, on a blur of the product (no line, no shadow), the name in bold, a short line and one fact in Geist Mono on the right (iOS live · Android in review; 59 components; 30% → 40%); on phones the fact goes under the name. The caption is light on GRG and Comfy in both themes, because their products are light; white on Prevently's pink. **Small** (Adtelligent, Smart Financial Assistant): evidence first, in ink; under it the product name in bold and a short line; the product below, alive. The whole tile is one link (the product name carries the accessible name). Hover or focus shows the Figma selection; animations play only while the tile is on screen and pause on hover so the product can be read.
 
 ### The products, alive
 - **Reveal** (Prevently): the white logo appears in the middle, holds, hides; then the App Store screens slide in and drift (14s loop).
 - **Story** (Comfy, 30s): whole screens in scale. The camera zooms into the before (the tooltip and the bank icons) and a "needs improvement" comment opens; it zooms out, a white bar with a grip wipes in the after, the camera zooms into its highlighted price block and a design-decision comment opens. Then the camera zooms out and the installment offers slide in like a drawer, seen whole, with a comment on the payment timeline. Each comment drops in as a closed pin, then opens, as in Figma. Before / After badges. In a tile the screen covers the product area; at the top of the case page it is contained. With reduced motion: the zoomed after with its comment, still. On phones a pin in the upper half opens its note below.
 - **Pan** (Adtelligent): the report scrolls top to bottom and back (18s).
 - **Phones** (Smart Financial Assistant): screens change one after another (20s); on the case hero the whole sheet pans.
-- **Inspect** (GRG): a crop of the Dashboard; its components are selected one after another as in Figma (Page Header, Link, Bar of shares, Coin Icon, Action Button), each with its name in a Geist Mono label; a part made only for this page is selected in Redline. 2s a step. With reduced motion: the first selection, still. On the case page the same product is live (see Live Product).
+- **Assemble** (GRG, about 18s): the system builds the product, each step named by a Figma selection. Primitives (gold, neutral, green swatches) → five become semantic tokens (their dots move into named chips) → atoms (Input, Select, Button, Badge, Action Button) → molecules (the toolbar; the Badge and the copy button drop into their places in a table row, which appears under them) → organism (the Invoices table on its white surface) → product (the top bar drops in, the menu items slide in one by one, the title, Download and Create invoice land, the table settles). Once assembled, Topbar Navigation, Sidebar Navigation, Page Header, Button and Table are named together until the loop restarts. A camera zooms like Figma, from the atoms out to the whole page. Every part from the atoms on is the real component, captured from the Storybook's Invoices page (`npm run grg:assemble`, 2×, transparent around each part; the search and filters keep the white they have on the surface, so their border reads on grey) and lands exactly where it sits on that page. The white surface arrives only with the organism. With reduced motion: the assembled product with its names, still. On the case page the product is live (see Live Product).
 
 ### Figma Selection
 A 1.5px Figma Blue square frame 5px outside the element, four white handles, the live size in a Geist Mono label under it. On tiles, mini cards and case figures, on hover and keyboard focus.
@@ -278,7 +278,7 @@ On the first visit only: "Hello", "Привіт", then other languages flash on 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** lead every case tile with one real piece of evidence, in ink.
+- **Do** give every case tile one real piece of evidence: a large headline on the small tiles, a quiet fact in the caption of the lead tiles.
 - **Do** show the product alive in its tile, and the same animation at the top of its case.
 - **Do** keep the Figma layer purposeful: selection, people who care about that tile, a decision comment for each step of a story, never more than one at a time.
 - **Do** colour only evidence in Mulberry Ink on case pages.

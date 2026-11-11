@@ -13,19 +13,35 @@ const SHAPE: Record<CaseEntry["shape"], string> = {
 
 function CaseTile({ entry }: { entry: CaseEntry }) {
   const href = caseHref(entry);
+  const title = (
+    <h2 className="case-tile__title">
+      <a className="case-tile__name stretch" href={href}>
+        {entry.name}
+      </a>{" "}
+      {entry.line}
+    </h2>
+  );
+  // The three lead cases: the product fills the tile; the name and one fact sit at the bottom, on a blur of it
+  if (entry.full)
+    return (
+      <article className={`tile case-tile case-tile--full ${SHAPE[entry.shape]} area-${entry.area}`} id={`tile-${entry.slug}`} data-cat="work">
+        <Vis entry={entry} />
+        <div className="case-tile__foot">
+          {title}
+          <small>{entry.full.fact}</small>
+        </div>
+        <Selection />
+        {entry.cursor && <Cursor c={entry.cursor} />}
+      </article>
+    );
   return (
-    <article className={`tile case-tile ${SHAPE[entry.shape]}`} id={`tile-${entry.slug}`} data-cat="work">
+    <article className={`tile case-tile ${SHAPE[entry.shape]} area-${entry.area}`} id={`tile-${entry.slug}`} data-cat="work">
       <div className="case-tile__head">
         <p className={entry.proof.quote ? "case-tile__proof case-tile__proof--quote" : "case-tile__proof"}>
           {entry.proof.text}
           {entry.proof.cap && <small>{entry.proof.cap}</small>}
         </p>
-        <h2 className="case-tile__title">
-          <a className="case-tile__name stretch" href={href}>
-            {entry.name}
-          </a>{" "}
-          {entry.line}
-        </h2>
+        {title}
       </div>
       <Vis entry={entry} />
       <Selection />
@@ -39,7 +55,7 @@ export function Bento() {
   return (
     <main className="home" id="main">
       <div className="bento" id="bento">
-        <section className="tile tile--w2 intro" data-cat="about" aria-labelledby="hello">
+        <section className="tile tile--w2 intro area-intro" data-cat="about" aria-labelledby="hello">
           <h1 className="intro__title" id="hello">
             {intro.lead} <em>{intro.accent}</em>
           </h1>
@@ -48,14 +64,14 @@ export function Bento() {
           <Cursor c={{ role: "lera", label: "Lera", x: "84%", y: "24%" }} />
         </section>
 
-        <button className="tile logo-tile" type="button" data-cat="about" data-copy={person.email} aria-label={`Copy email ${person.email}`}>
+        <button className="tile logo-tile area-email" type="button" data-cat="about" data-copy={person.email} aria-label={`Copy email ${person.email}`}>
           <span className="logo-yahoo" aria-hidden="true">yahoo!</span>
           <span className="act" aria-hidden="true"><Icon name="copy" /></span>
           <span className="toast" role="status" />
           <Selection />
         </button>
 
-        <a className="tile logo-tile" data-cat="about" href={person.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a className="tile logo-tile area-linkedin" data-cat="about" href={person.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
           <span className="logo-linkedin" aria-hidden="true">in</span>
           <span className="act" aria-hidden="true"><Icon name="out" /></span>
           <NewTab />
@@ -66,7 +82,7 @@ export function Bento() {
           <CaseTile key={c.slug} entry={c} />
         ))}
 
-        <a className="tile logo-tile" data-cat="writing" href={person.medium} target="_blank" rel="noopener" aria-label="Articles on Medium">
+        <a className="tile logo-tile area-medium" data-cat="writing" href={person.medium} target="_blank" rel="noopener" aria-label="Articles on Medium">
           <svg className="logo-medium" viewBox="0 0 48 48" aria-hidden="true">
             <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
             <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
@@ -77,7 +93,7 @@ export function Bento() {
           <Selection />
         </a>
 
-        <a className="tile text-tile" id="tile-learning" data-cat="about" href="/learning">
+        <a className="tile text-tile area-learning" id="tile-learning" data-cat="about" href="/learning">
           <span className="text-tile__title" style={{ viewTransitionName: "learning-title" }}>Learning</span>
           <span className="text-tile__line">Courses and certificates</span>
           <Selection />

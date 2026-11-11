@@ -342,8 +342,36 @@
   --display-dark: none;
 
   /* GRG case: the live product, the Button specimen and code */
-  --duration-inspect-step: 2s;
-  --size-tile-cq: 100cqw;
+  /* GRG tile (assemble) */
+  --size-asm-w: 540px;
+  --size-asm-h: 520px;
+  --size-asm-page-w: 1440px;
+  --size-asm-page-h: 1386px;
+  --size-asm-handle: 6px;
+  --offset-asm-handle: -4.5px;
+  --text-asm-name: 8px;
+  --text-asm-chip: 11px;
+  --pos-asm-inside: 73%;
+  --pos-asm-mid: 38%;
+  --duration-asm: .7s;
+  --duration-asm-cam: 1s;
+  --shadow-asm-swatch: inset 0 0 0 1px rgb(0 0 0 / .08);
+  --color-grg-page: #fafafa;
+  --color-grg-surface: #ffffff;
+  --color-grg-stroke: #e5e5e5;
+  --color-grg-ink: #0a0a0a;
+  /* The three lead tiles: a caption on a blur of the product */
+  /* The products in these tiles are light in both themes, so their caption is too */
+  --color-glass: rgb(245 245 247 / .62);
+  --color-caption-ink: #1d1d1f;
+  --color-caption-graphite: #424245;
+  --color-caption-pencil: #6e6e73;
+  --color-glass-brand: color-mix(in srgb, var(--color-prevently-3) 55%, transparent);
+  --gradient-caption: linear-gradient(to bottom, transparent, var(--caption-glass) 55%);
+  --mask-caption: linear-gradient(to bottom, transparent 0, #000 45%);
+  --blur-caption: blur(14px) saturate(1.4);
+  --space-caption-top: 56px;
+  --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium learning" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
   --layout-wide: min(var(--layout-page), calc(100vw - var(--space-48)));
   --layout-wide-phone: calc(100vw - var(--space-32));
   --layout-anatomy: minmax(0, 5fr) minmax(0, 6fr);
@@ -482,6 +510,14 @@
 .tile--w2 { grid-column: var(--span-2); }
 .tile--h2 { grid-row: var(--span-2); }
 .tile--h3 { grid-row: var(--span-3); }
+/* Desktop: every tile has its place (layout A: Prevently tallest; GRG and Comfy the same size beside it) */
+@media (min-width: 861px) {
+  .bento { grid-template-areas: var(--layout-bento-areas); }
+  .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; }
+  .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
+  .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
+  .area-medium { grid-area: medium; } .area-learning { grid-area: learning; }
+}
 .tile:focus-visible { outline: none; }
 .stretch::after { content: ""; position: absolute; inset: var(--space-0); z-index: var(--z-link); border-radius: var(--radius-tile); }
 .stretch:focus-visible { outline: none; }
@@ -547,6 +583,18 @@
 .case-tile--side .case-tile__proof { font-size: var(--text-proof-side); }
 .case-tile--brand { background: var(--gradient-prevently); color: var(--color-on-dark); }
 .case-tile--brand .case-tile__proof, .case-tile--brand .case-tile__proof small, .case-tile--brand .case-tile__title, .case-tile--brand .case-tile__name { color: var(--color-on-dark); }
+
+/* The three lead tiles: the product fills the tile; the name, a line and one fact sit at the bottom on a blur of it */
+.case-tile--full { --caption-glass: var(--color-glass); }
+.case-tile--full:not(.case-tile--brand) .case-tile__title { color: var(--color-caption-graphite); }
+.case-tile--full:not(.case-tile--brand) .case-tile__name { color: var(--color-caption-ink); }
+.case-tile--full.case-tile--brand { --caption-glass: var(--color-glass-brand); }
+.case-tile--full > .vis { position: absolute; inset: var(--space-0); margin: var(--space-0); border-radius: var(--radius-tile); }
+.case-tile--full .strip { inset: var(--space-28) var(--space-0) var(--space-120); }
+.case-tile__foot { position: absolute; left: var(--space-0); right: var(--space-0); bottom: var(--space-0); z-index: var(--z-badge); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); padding: var(--space-caption-top) var(--space-30) var(--space-24); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); background: var(--gradient-caption); -webkit-backdrop-filter: var(--blur-caption); backdrop-filter: var(--blur-caption); -webkit-mask-image: var(--mask-caption); mask-image: var(--mask-caption); }
+.case-tile__foot .case-tile__title { margin: var(--space-0); }
+.case-tile__foot small { flex: none; color: var(--color-caption-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
+.case-tile--brand .case-tile__foot small { color: var(--color-on-dark); }
 
 /* The product inside a tile (and, the same element, at the top of a case page) */
 .vis { position: relative; flex: var(--flex-fill); min-height: var(--space-0); margin-top: var(--space-22); overflow: hidden; border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); }
@@ -631,18 +679,35 @@
   100% { background-position: var(--pos-row-1) var(--pos-row-1); }
 }
 
-/* A product screen whose components get selected one by one, as in Figma (GRG). The crop fills the tile's width. */
-.inspect { container-type: size; background: var(--color-page); }
-.inspect__cam { position: absolute; left: calc(var(--size-tile-cq) * var(--crop-x) / var(--crop-w) * -1); top: calc(var(--size-tile-cq) * var(--crop-y) / var(--crop-w) * -1); width: calc(var(--size-tile-cq) * var(--shot-w) / var(--crop-w)); aspect-ratio: var(--shot-w) / var(--shot-h); }
-.inspect__shot { object-fit: cover; }
-.inspect__shot--light { display: var(--display-light); }
-.inspect__shot--dark { display: var(--display-dark); }
-.inspect__box { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); border: var(--size-stroke) solid var(--color-figma); opacity: var(--opacity-hidden); animation: inspect-step calc(var(--duration-inspect-step) * var(--steps)) var(--ease-loop) infinite; animation-delay: calc(var(--duration-inspect-step) * var(--step)); }
-.inspect__box b { position: absolute; left: calc(var(--size-stroke) * -1); top: calc(var(--size-full) + var(--offset-measure)); padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-figma); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
-.inspect__box--custom { border-color: var(--color-redline); }
-.inspect__box--custom b { background: var(--color-redline); }
-/* Five boxes, one fifth of the loop each */
-@keyframes inspect-step { 0% { opacity: var(--opacity-hidden); } 2%, 17% { opacity: var(--opacity-full); } 19%, 100% { opacity: var(--opacity-hidden); } }
+/* Which of a product's two screenshots shows: the light one, or the dark one at night */
+.shot--light { display: var(--display-light); }
+.shot--dark { display: var(--display-dark); }
+
+/* GRG (assemble): the product put together from its real parts; a 540 × 520 canvas scaled over the tile.
+   Positions are set by components/shell/assemble.ts; looks and motion live here. */
+.asm { background: var(--color-tile); }
+.asm__canvas { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-w); height: var(--size-asm-h); transform-origin: var(--origin-start); }
+.asm__world { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-page-w); height: var(--size-asm-page-h); transform-origin: var(--origin-start); transition: transform var(--duration-asm-cam) var(--ease-cam), opacity var(--duration-color) var(--ease-fade); }
+.asm__overlay { position: absolute; inset: var(--space-0); }
+.asm-el { position: absolute; transition-property: left, top, width, height, opacity, border-radius, background-color; transition-duration: var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-fade), var(--duration-asm), var(--duration-fade); transition-timing-function: var(--ease-cam); }
+.asm-sprite { display: block; max-width: none; user-select: none; }
+.asm-front { z-index: var(--z-raise); }
+.asm-page { background: var(--color-grg-page); }
+.asm-surface { border-radius: var(--radius-figure); background: var(--color-grg-surface); }
+.asm-divider { background: var(--color-grg-stroke); }
+.asm-swatch { z-index: var(--z-raise); border-radius: var(--radius-control); box-shadow: var(--shadow-asm-swatch); }
+.asm-swatch-name { color: var(--color-pencil); font: var(--weight-medium) var(--text-asm-name) / var(--leading-tight) var(--font-mono); white-space: nowrap; translate: var(--move-centre-x-only); }
+.asm-chip { display: flex; align-items: center; padding-left: var(--space-30); border-radius: var(--radius-control); background: var(--color-grg-surface); color: var(--color-grg-ink); font: var(--weight-medium) var(--text-asm-chip) / var(--leading-tight) var(--font-mono); white-space: nowrap; }
+.asm-sel { z-index: var(--z-badge); border: var(--size-stroke) solid var(--color-figma); pointer-events: none; }
+.asm-sel--still { transition-property: opacity; }
+.asm-sel::before, .asm-sel::after { content: ""; position: absolute; width: var(--size-asm-handle); height: var(--size-asm-handle); background: var(--color-on-dark); border: var(--size-stroke) solid var(--color-figma); }
+.asm-sel::before { left: var(--offset-asm-handle); top: var(--offset-asm-handle); }
+.asm-sel::after { right: var(--offset-asm-handle); bottom: var(--offset-asm-handle); }
+.asm-sel b { position: absolute; left: calc(var(--size-stroke) * -1); top: calc(var(--size-full) + var(--space-4)); padding: var(--space-2) var(--space-6); border-radius: var(--radius-label); background: var(--color-figma); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-caption) var(--font-mono); white-space: nowrap; }
+.asm-sel b[data-spot="above"] { top: auto; bottom: calc(var(--size-full) + var(--space-4)); }
+.asm-sel b[data-spot="below-right"] { left: auto; right: calc(var(--size-stroke) * -1); }
+.asm-sel b[data-spot="inside"] { top: var(--pos-asm-inside); left: var(--space-6); }
+.asm-sel b[data-spot="inside-mid"] { top: var(--space-4); left: var(--pos-asm-mid); }
 
 /* Tile animations run only on screen, and stop on hover so the product can be read */
 .tile .vis * { animation-play-state: paused; }
@@ -924,6 +989,7 @@
   .case-hero > .vis--inset { margin: var(--space-20) var(--space-18) var(--space-0); }
   .prose { font-size: var(--text-body); }
   .stats, .lists, .fig-row, .fig-row--3, .chain, .decision__pair { grid-template-columns: var(--layout-col-1); }
+  .case-tile__foot { flex-direction: column; align-items: flex-start; gap: var(--space-4); padding: var(--space-48) var(--space-20) var(--space-18); }
   .case-wide { width: var(--layout-wide-phone); }
   .specimen__button { zoom: var(--zoom-specimen-phone); }
   .specimen { padding: var(--space-16); }
@@ -935,7 +1001,6 @@
   .vis *, .cursor.is-in, .reveal__logo, .reveal__product { animation: none !important; }
   .reveal__logo { opacity: var(--opacity-hidden); }
   .story__cam { transform: var(--cam-after); }
-  .inspect__box:nth-of-type(1) { opacity: var(--opacity-full); }
   .story .badge--start { opacity: var(--opacity-hidden); }
   .story .badge--end { opacity: var(--opacity-full); }
   .act, .sel, .toast, .curtain--leave { transition: none; }

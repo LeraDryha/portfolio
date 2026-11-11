@@ -1,3 +1,5 @@
+import grgParts from "./grg-assemble.json";
+
 // Everything on the site that is not a case page body.
 // Case pages live in content/work/<slug>.mdx (registered in lib/cases.ts).
 
@@ -7,7 +9,7 @@ export type Vis =
   | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
   | { kind: "pan"; src: string } // a report read top to bottom
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
-  | Inspect; // a product screen whose components get selected one by one, as in Figma; live on the case page
+  | Assemble; // a product put together from its parts, primitive to page (GRG); live on the case page
 
 export type Shot = { src: string; alt: string };
 
@@ -37,18 +39,26 @@ export type Story = {
 /** A box on a screenshot, in the screenshot's pixels. */
 export type Box = { name: string; x: number; y: number; w: number; h: number; custom?: boolean };
 
-export type Inspect = {
-  kind: "inspect";
+/** A product shown live on its case page: a Storybook story with its components layer, a screenshot until it loads. */
+export type Live = {
   /** The same screen in both themes, width × height px */
   shots: { light: string; dark: string; alt: string };
   width: number;
   height: number;
-  /** The part of the screen a tile shows (its left, top and width; the height follows the tile) */
-  crop: { x: number; y: number; w: number };
-  /** Components selected one after another on the tile; custom = made for this page only */
+  /** The parts the page lists before the frame reports its own (custom = made for this page only) */
   boxes: Box[];
-  /** The live product on the case page: a Storybook story embedded with its components layer */
   live: { storybook: string; story: string; title: string };
+};
+
+/**
+ * GRG on its tile: primitives become tokens, tokens components, components the Invoices page,
+ * from the real parts captured in the Storybook (npm run grg:assemble → parts, images).
+ */
+export type Assemble = Live & {
+  kind: "assemble";
+  parts: { width: number; height: number; parts: Record<string, { x: number; y: number; w: number; h: number }> };
+  /** Where the part images live: <dir>/<part>.webp */
+  dir: string;
 };
 
 /** A role cursor on a tile. x and y place it, in % of the tile. */
@@ -67,6 +77,10 @@ export type CaseEntry = {
   vis: Vis;
   /** Tile shape in the bento */
   shape: "brand-tall" | "wide-tall" | "wide-side" | "tall" | "wide";
+  /** Its place in the desktop bento (grid area) */
+  area: "prevently" | "grg" | "comfy" | "adtelligent" | "sfa";
+  /** The three lead cases: the product fills the tile, the name and one small fact sit at the bottom on a blur of it */
+  full?: { fact: string };
   cursor?: Cursor;
   notionUrl?: string;
 };
@@ -109,9 +123,11 @@ const comfyVis: Story = {
   },
 };
 
-/** GRG's product, alive: the Dashboard built from the system. The tile selects its parts one by one; the case page embeds it live. */
-const grgVis: Inspect = {
-  kind: "inspect",
+/** GRG's product, alive: on the tile the Invoices page is put together from its parts; the case page embeds the Dashboard live. */
+const grgVis: Assemble = {
+  kind: "assemble",
+  parts: grgParts,
+  dir: "/work/grg-design-system/assemble",
   shots: {
     light: "/work/grg-design-system/dashboard-light.webp",
     dark: "/work/grg-design-system/dashboard-dark.webp",
@@ -119,7 +135,6 @@ const grgVis: Inspect = {
   },
   width: 1440,
   height: 900,
-  crop: { x: 280, y: 64, w: 400 },
   boxes: [
     { name: "Page Header", x: 296, y: 84, w: 1120, h: 32 },
     { name: "Link", x: 589, y: 160, w: 52, h: 20 },
@@ -148,16 +163,19 @@ export const cases: CaseEntry[] = [
       screens: [1, 2, 3, 4, 5].map((i) => `/work/prevently/screen-${i}.jpg`),
     },
     shape: "brand-tall",
+    area: "prevently",
+    full: { fact: "iOS live · Android in review" },
   },
   {
     slug: "grg-design-system",
     name: "GRG Design System.",
-    line: "Audited and fixed in the system first.",
+    line: "From tokens to product.",
     title: "GRG Design System",
     proof: { text: "59 components. 12 live screens." },
     vis: grgVis,
-    shape: "wide-side",
-    cursor: { role: "developer", label: "Developer", x: "78%", y: "16%" },
+    shape: "wide-tall",
+    area: "grg",
+    full: { fact: "59 components" },
   },
   {
     slug: "comfy",
@@ -167,6 +185,8 @@ export const cases: CaseEntry[] = [
     proof: { text: "30% → 40%", cap: "credit order share, business goal" },
     vis: comfyVis,
     shape: "wide-tall",
+    area: "comfy",
+    full: { fact: "30% → 40%" },
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
   },
   {
@@ -176,7 +196,8 @@ export const cases: CaseEntry[] = [
     title: "Solutions for Adtelligent (AdTech B2B SaaS platform)",
     proof: { text: "Ad Requests · eCPM", cap: "what users check every day" },
     vis: { kind: "pan", src: "/work/adtelligent/report.jpg" },
-    shape: "wide",
+    shape: "tall",
+    area: "adtelligent",
     cursor: { role: "designer", label: "UX designer", x: "58%", y: "58%" },
     notionUrl: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
   },
@@ -188,6 +209,7 @@ export const cases: CaseEntry[] = [
     proof: { text: "“I connected my accounts… and then what?”", cap: "a user, before the redesign", quote: true },
     vis: { kind: "phones", src: "/work/smart-financial-assistant/screens.jpg" },
     shape: "tall",
+    area: "sfa",
     cursor: { role: "research", label: "Researcher", x: "16%", y: "62%" },
     notionUrl: "https://app.notion.com/p/From-Transaction-Log-to-Smart-Financial-Assistant-24244bdcbfce8040876dfe857d29eb36",
   },
