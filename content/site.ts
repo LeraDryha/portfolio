@@ -56,8 +56,13 @@ export type Live = {
  */
 export type Assemble = Live & {
   kind: "assemble";
-  parts: { width: number; height: number; parts: Record<string, { x: number; y: number; w: number; h: number }> };
-  /** Where the part images live: <dir>/<part>.webp */
+  parts: {
+    width: number;
+    height: number;
+    parts: Record<string, { x: number; y: number; w: number; h: number }>;
+    themes: Record<"light" | "dark", { page: string; surface: string; divider: string; tokens: { name: string; primitive: string; hex: string }[]; primitives: { name: string; hex: string }[] }>;
+  };
+  /** Where the part images live: <dir>/<theme>/<part>.webp */
   dir: string;
 };
 
@@ -80,7 +85,7 @@ export type CaseEntry = {
   /** Its place in the desktop bento (grid area) */
   area: "prevently" | "grg" | "comfy" | "adtelligent" | "sfa";
   /** The three lead cases: the product fills the tile, the name and one small fact sit at the bottom on a blur of it */
-  full?: { fact: string };
+  full?: { fact: string; /** the product stays light at night, so the caption does too */ lightProduct?: boolean };
   cursor?: Cursor;
   notionUrl?: string;
 };
@@ -186,7 +191,7 @@ export const cases: CaseEntry[] = [
     vis: comfyVis,
     shape: "wide-tall",
     area: "comfy",
-    full: { fact: "30% → 40%" },
+    full: { fact: "30% → 40%", lightProduct: true },
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
   },
   {

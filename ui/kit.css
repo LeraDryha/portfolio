@@ -363,7 +363,8 @@
   --color-grg-stroke: #e5e5e5;
   --color-grg-ink: #0a0a0a;
   /* The three lead tiles: a caption on a blur of the product */
-  /* The products in these tiles are light in both themes, so their caption is too */
+  /* Captions over a product that stays light in both themes (Comfy) */
+  --color-glass-tile: color-mix(in srgb, var(--color-tile) 62%, transparent);
   --color-glass: rgb(245 245 247 / .62);
   --color-caption-ink: #1d1d1f;
   --color-caption-graphite: #424245;
@@ -587,15 +588,18 @@
 .case-tile--brand .case-tile__proof, .case-tile--brand .case-tile__proof small, .case-tile--brand .case-tile__title, .case-tile--brand .case-tile__name { color: var(--color-on-dark); }
 
 /* The three lead tiles: the product fills the tile; the name, a line and one fact sit at the bottom on a blur of it */
-.case-tile--full { --caption-glass: var(--color-glass); }
-.case-tile--full:not(.case-tile--brand) .case-tile__title { color: var(--color-caption-graphite); }
-.case-tile--full:not(.case-tile--brand) .case-tile__name { color: var(--color-caption-ink); }
+.case-tile--full { --caption-glass: var(--color-glass-tile); }
+/* A product that stays light at night (Comfy): its caption stays light too */
+.case-tile--light-product { --caption-glass: var(--color-glass); }
+.case-tile--light-product .case-tile__title { color: var(--color-caption-graphite); }
+.case-tile--light-product .case-tile__name { color: var(--color-caption-ink); }
+.case-tile--light-product .case-tile__foot small { color: var(--color-caption-pencil); }
 .case-tile--full.case-tile--brand { --caption-glass: var(--color-glass-brand); }
 .case-tile--full > .vis { position: absolute; inset: var(--space-0); margin: var(--space-0); border-radius: var(--radius-tile); }
 .case-tile--full .strip { inset: var(--space-28) var(--space-0) var(--space-120); }
 .case-tile__foot { position: absolute; left: var(--space-0); right: var(--space-0); bottom: var(--space-0); z-index: var(--z-badge); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); padding: var(--space-caption-top) var(--space-30) var(--space-24); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); background: var(--gradient-caption); -webkit-backdrop-filter: var(--blur-caption); backdrop-filter: var(--blur-caption); -webkit-mask-image: var(--mask-caption); mask-image: var(--mask-caption); }
 .case-tile__foot .case-tile__title { margin: var(--space-0); }
-.case-tile__foot small { flex: none; color: var(--color-caption-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
+.case-tile__foot small { flex: none; color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
 .case-tile--brand .case-tile__foot small { color: var(--color-on-dark); }
 
 /* The product inside a tile (and, the same element, at the top of a case page) */
@@ -695,12 +699,12 @@
 .asm-el { position: absolute; transition-property: left, top, width, height, opacity, border-radius, background-color; transition-duration: var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-fade), var(--duration-asm), var(--duration-fade); transition-timing-function: var(--ease-cam); }
 .asm-sprite { display: block; max-width: none; user-select: none; }
 .asm-front { z-index: var(--z-raise); }
-.asm-page { background: var(--color-grg-page); }
-.asm-surface { border-radius: var(--radius-figure); background: var(--color-grg-surface); }
-.asm-divider { background: var(--color-grg-stroke); }
+.asm-page { background: var(--grg-page, var(--color-grg-page)); }
+.asm-surface { border-radius: var(--radius-figure); background: var(--grg-surface, var(--color-grg-surface)); }
+.asm-divider { background: var(--grg-divider, var(--color-grg-stroke)); }
 .asm-swatch { z-index: var(--z-raise); border-radius: var(--radius-control); box-shadow: var(--shadow-asm-swatch); }
 .asm-swatch-name { color: var(--color-pencil); font: var(--weight-medium) var(--text-asm-name) / var(--leading-tight) var(--font-mono); white-space: nowrap; translate: var(--move-centre-x-only); }
-.asm-chip { display: flex; align-items: center; padding-left: var(--space-30); border-radius: var(--radius-control); background: var(--color-grg-surface); color: var(--color-grg-ink); font: var(--weight-medium) var(--text-asm-chip) / var(--leading-tight) var(--font-mono); white-space: nowrap; }
+.asm-chip { display: flex; align-items: center; padding-left: var(--space-30); border-radius: var(--radius-control); background: var(--grg-surface, var(--color-grg-surface)); color: var(--grg-ink, var(--color-grg-ink)); font: var(--weight-medium) var(--text-asm-chip) / var(--leading-tight) var(--font-mono); white-space: nowrap; }
 .asm-sel { z-index: var(--z-badge); border: var(--size-stroke) solid var(--color-figma-component); pointer-events: none; }
 .asm-sel--still { transition-property: opacity; }
 .asm-sel::before, .asm-sel::after { content: ""; position: absolute; width: var(--size-asm-handle); height: var(--size-asm-handle); background: var(--color-on-dark); border: var(--size-stroke) solid var(--color-figma-component); }

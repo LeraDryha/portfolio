@@ -194,5 +194,155 @@
       "w": 23,
       "h": 23
     }
+  },
+  "themes": {
+    "light": {
+      "page": "rgb(250, 250, 250)",
+      "surface": "rgb(255, 255, 255)",
+      "divider": "rgb(229, 229, 229)",
+      "tokens": [
+        {
+          "name": "primary-base-1000",
+          "primitive": "neutral/1000",
+          "hex": "#0a0a0a"
+        },
+        {
+          "name": "surface-base",
+          "primitive": "neutral/0",
+          "hex": "#ffffff"
+        },
+        {
+          "name": "stroke-soft-200",
+          "primitive": "neutral/200",
+          "hex": "#e5e5e5"
+        },
+        {
+          "name": "success-base-600",
+          "primitive": "green/600",
+          "hex": "#1a853f"
+        },
+        {
+          "name": "primary-gold-base",
+          "primitive": "gold/500",
+          "hex": "#f5a70f"
+        }
+      ],
+      "primitives": [
+        {
+          "name": "gold/100",
+          "hex": "#fdedcd"
+        },
+        {
+          "name": "gold/300",
+          "hex": "#fad384"
+        },
+        {
+          "name": "gold/500",
+          "hex": "#f5a70f"
+        },
+        {
+          "name": "gold/700",
+          "hex": "#c4860c"
+        },
+        {
+          "name": "gold/900",
+          "hex": "#473000"
+        },
+        {
+          "name": "neutral/0",
+          "hex": "#ffffff"
+        },
+        {
+          "name": "neutral/200",
+          "hex": "#e5e5e5"
+        },
+        {
+          "name": "neutral/500",
+          "hex": "#737373"
+        },
+        {
+          "name": "neutral/1000",
+          "hex": "#0a0a0a"
+        },
+        {
+          "name": "green/600",
+          "hex": "#1a853f"
+        }
+      ]
+    },
+    "dark": {
+      "page": "rgb(10, 10, 10)",
+      "surface": "rgb(23, 23, 23)",
+      "divider": "rgb(64, 64, 64)",
+      "tokens": [
+        {
+          "name": "primary-base-1000",
+          "primitive": "neutral/0",
+          "hex": "#ffffff"
+        },
+        {
+          "name": "surface-base",
+          "primitive": "neutral/900",
+          "hex": "#171717"
+        },
+        {
+          "name": "stroke-soft-200",
+          "primitive": "neutral/700",
+          "hex": "#404040"
+        },
+        {
+          "name": "success-base-600",
+          "primitive": "green/500",
+          "hex": "#16a34a"
+        },
+        {
+          "name": "primary-gold-base",
+          "primitive": "gold/500",
+          "hex": "#f5a70f"
+        }
+      ],
+      "primitives": [
+        {
+          "name": "gold/100",
+          "hex": "#fdedcd"
+        },
+        {
+          "name": "gold/300",
+          "hex": "#fad384"
+        },
+        {
+          "name": "gold/500",
+          "hex": "#f5a70f"
+        },
+        {
+          "name": "gold/700",
+          "hex": "#c4860c"
+        },
+        {
+          "name": "gold/900",
+          "hex": "#473000"
+        },
+        {
+          "name": "neutral/0",
+          "hex": "#ffffff"
+        },
+        {
+          "name": "neutral/500",
+          "hex": "#737373"
+        },
+        {
+          "name": "neutral/700",
+          "hex": "#404040"
+        },
+        {
+          "name": "neutral/900",
+          "hex": "#171717"
+        },
+        {
+          "name": "green/500",
+          "hex": "#16a34a"
+        }
+      ]
+    }
   }
 }
