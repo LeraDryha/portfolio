@@ -48,12 +48,12 @@ const fit = (x: number, y: number, w: number, h: number): Cam => {
   return { s, tx: (TILE.w - w * s) / 2 - x * s, ty: (VIEW_H - h * s) / 2 - y * s };
 };
 // What the camera looks at on each step (none for the first two: they are drawn on the tile)
-const CAMS: (Cam | null)[] = [null, null, fit(310, 156, 660, 120), fit(300, 150, 720, 190), fit(246, 96, 1220, 900), { s: TILE.w / 1440, tx: 0, ty: 0 }];
+const CAMS: (Cam | null)[] = [null, null, fit(296, 150, 480, 150), fit(300, 150, 720, 190), fit(246, 96, 1220, 900), { s: TILE.w / 1440, tx: 0, ty: 0 }];
 // Selections in page coordinates (steps 2–4) and on the tile (steps 0–1)
 const SELS: Rect[][] = [
   [{ x: 100, y: 108 + DY, w: 340, h: 156 }],
   [{ x: 128, y: 68 + DY, w: 284, h: 230 }],
-  [{ x: 320, y: 170, w: 640, h: 98 }],
+  [{ x: 320, y: 171, w: 441, h: 108 }],
   [{ x: 320, y: 168, w: 635, h: 32 }, { x: 320, y: 261, w: 1072, h: 56 }],
   [{ x: 296, y: 136, w: 1120, h: 820 }],
   [],
@@ -99,7 +99,7 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   const P = PRODUCT;
 
   // ── The page ──
-  add(world, "asm-page", "", per((i) => (i === P ? H(0, 0, v.parts.width, v.parts.height) : H(0, 0, v.parts.width, v.parts.height, { o: 0 }))));
+  add(world, "asm-page", "", per((i) => (i === P ? H(0, 0, v.parts.width, v.parts.height * 1.5) : H(0, 0, v.parts.width, v.parts.height * 1.5, { o: 0 }))));
   // The white surface appears with the organism, as in the product
   add(world, "asm-surface", "", per((i) => (i === P ? H(296, 136, 1120, 1226) : i === 4 ? H(296, 136, 1120, 820) : H(296, 160, 1120, 760, { o: 0 }))));
   add(world, "asm-sprite", { img: "topbar" }, per((i) => (i === P ? at("topbar") : moved("topbar", { y: -64 }))), D(P, 0.15));
@@ -110,10 +110,10 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   add(world, "asm-sprite", { img: "download" }, per((i) => (i === P ? at("download") : moved("download", { y: 40 }))), D(P, 1));
 
   // Toolbar: the search and the status select start as atoms; the other filters join them
-  const searchAtom = H(329, 181, R.search.w, R.search.h);
+  const searchAtom = H(329, 181, R.search.w, R.search.h); // row 1: search, select; row 2: button, badge, copy
   add(world, "asm-sprite", { img: "search" }, per((i) => (i === 2 ? searchAtom : i >= 3 ? at("search") : hid(searchAtom))));
   add(world, "asm-sprite", { img: "filter-0" }, per((i) => (i >= 3 ? at("filter-0") : moved("filter-0", { y: 210 }))), D(3, 0.25));
-  const selectAtom = H(631, 181, R["filter-1"].w, R["filter-1"].h);
+  const selectAtom = H(630, 181, R["filter-1"].w, R["filter-1"].h);
   add(world, "asm-sprite", { img: "filter-1" }, per((i) => (i === 2 ? selectAtom : i >= 3 ? at("filter-1") : hid(selectAtom))));
   add(world, "asm-sprite", { img: "filter-2" }, per((i) => (i >= 3 ? at("filter-2") : moved("filter-2", { y: 210 }))), D(3, 0.35));
 
@@ -122,12 +122,12 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   add(world, "asm-sprite", { img: "row-0" }, per((i) => (i >= 3 ? at("row-0") : hid(at("row-0")))), D(3, 0.45));
   for (let k = 1; k < 12; k++) add(world, "asm-sprite", { img: `row-${k}` }, per((i) => (i >= 4 ? at(`row-${k}`) : moved(`row-${k}`, { y: R[`row-${k}`].y + 30 }))), D(4, 0.2 + k * 0.06));
   // Atoms that land in row 0, on their exact places
-  const badgeAtom = H(559, 237, R.badge.w, R.badge.h);
-  const copyAtom = H(639, 237, R.copy.w, R.copy.h);
+  const badgeAtom = H(491, 238, R.badge.w, R.badge.h);
+  const copyAtom = H(569, 238, R.copy.w, R.copy.h);
   add(world, "asm-sprite asm-front", { img: "badge" }, per((i) => (i === 2 ? badgeAtom : i === 3 ? at("badge") : i < 2 ? hid(badgeAtom) : hid(at("badge")))));
   add(world, "asm-sprite asm-front", { img: "copy" }, per((i) => (i === 2 ? copyAtom : i === 3 ? at("copy") : i < 2 ? hid(copyAtom) : hid(at("copy")))));
   // The button atom waits off screen, then lands in the page title row
-  const createAtom = H(799, 181, R.create.w, R.create.h);
+  const createAtom = H(329, 233, R.create.w, R.create.h);
   add(world, "asm-sprite", { img: "create" }, per((i) => (i === 2 ? createAtom : i === P ? at("create") : i < 2 ? hid(createAtom) : moved("create", { y: 40 }))), D(P, 1.05));
 
   // ── Primitives and semantic tokens, on the tile ──
@@ -201,10 +201,10 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
     });
   };
 
-  // Scale the 540 × 520 canvas to cover the tile
+  // Scale the 540 × 520 canvas to fit the tile, centred; the page's background runs on below it
   const fitCanvas = () => {
     const b = root.getBoundingClientRect();
-    const k = Math.max(b.width / TILE.w, b.height / TILE.h);
+    const k = Math.min(b.width / TILE.w, b.height / TILE.h);
     canvas.style.transform = `translateX(${(b.width - TILE.w * k) / 2}px) scale(${k})`;
   };
   const ro = new ResizeObserver(fitCanvas);

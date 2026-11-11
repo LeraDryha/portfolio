@@ -25,7 +25,7 @@ const pageTheme = (): "light" | "dark" => {
 /** The colours of the site's Figma layer, read from the kit, so the frame draws its boxes in them. */
 const layerColours = () => {
   const css = getComputedStyle(document.documentElement);
-  return { component: css.getPropertyValue("--color-figma").trim(), custom: css.getPropertyValue("--color-redline").trim(), label: css.getPropertyValue("--color-on-dark").trim() };
+  return { component: css.getPropertyValue("--color-figma-component").trim(), custom: css.getPropertyValue("--color-redline").trim(), label: css.getPropertyValue("--color-on-dark").trim() };
 };
 
 /**
