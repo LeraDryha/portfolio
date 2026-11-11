@@ -270,6 +270,12 @@ On the GRG case the hero is the same grey card as the tile, at the size of every
 ### Token Anatomy and Code (GRG case page)
 A Button specimen, zoomed in as in Figma (1.6×, 1.25× on phones), on a white (or, with its own Light / Dark switch, black) canvas: Redline tags name its radius and fill, and its paddings are measured with a Redline and end ticks, the size in Geist Mono beside it; beside it, code in tabs (Figma variable, tokens.css, Button.css, the page): Geist Mono 13px on a grey block, line numbers in Pencil, token names in ink, comments in Pencil, the line that matters tinted Redline. The specimen uses the GRG product typeface (Nunito Sans), loaded for this block only. No syntax colours.
 
+### Theme Wipe (GRG case page)
+One product screen, big, in a wide band: the light screen with the dark one over it, cut by a line in Component Violet with a "Light · Dark" pill. Drag it (or move it with the arrow keys); when it first comes into view the line sweeps from the right edge across and settles in the middle (none with reduced motion: it rests in the middle). Product tabs above (Payments, Invoice, Exchange, Admin); a caption under it. The screens are Figma frames in both themes.
+
+### Open Card and Storybook Links (GRG case page)
+Open Card: a grey block with an eyebrow, a title, a line and an ink pill ("Open Storybook ↗") on the right; the whole block is one link with the Figma selection on hover. After the facts and at the end of the case. Doc Links: Storybook pages as cards, three in a row (two on phones): a 4:3 preview from the page, a title, a line. Every mention of "Storybook" in a case's text links to it.
+
 ### Audit Blocks (GRG case page)
 Part (an eyebrow and a heading over a hairline: the start of a larger part of the story), Decision (title; "In Figma" and "In the product" side by side on white insets, optional crops; why, in ink), Finding (id in mono, severity pill, what is wrong, "Recommended."), Formats (the ways a value was written, struck through in Redline, then the one rule in Mulberry Ink), Chain (finding → system → product, three cards, with the PR), Chain table (every decision with its PRs), Scenario (a numbered task with Checks / Success / Measure).
 

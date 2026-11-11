@@ -67,7 +67,7 @@ Every component page in the <Storybook /> has the same parts: its status, a play
 
 </Chapter>
 
-<Chapter id="dark" title="Dark mode as proof" sub="If every colour is a token, the dark theme is one switch, not a second design.">
+<Chapter id="dark" title="Every colour is a token" sub="So the dark theme is one switch, not a second design.">
 
 Each semantic token has a light and a dark value in Figma, and the code only ever asks for the token. Follow one through, then switch a whole product.
 
@@ -75,8 +75,10 @@ Each semantic token has a light and a dark value in Figma, and the code only eve
 
 <ThemeShowcase
   screens={[
-    { name: "Payments", light: "/work/grg-design-system/pay-dashboard-light.webp", dark: "/work/grg-design-system/pay-dashboard-dark.webp", width: 1440, height: 968, alt: "Payments dashboard: balance, successful payments, last transactions and the notification feed" },
-    { name: "Exchange", light: "/work/grg-design-system/exchange-trading-light.webp", dark: "/work/grg-design-system/exchange-trading-dark.webp", width: 1440, height: 900, alt: "Exchange trading: price chart, order book, recent trades and a new order form" },
+    { name: "Payments", light: "/work/grg-design-system/themes/payments-light.webp", dark: "/work/grg-design-system/themes/payments-dark.webp", width: 2200, height: 1478, alt: "Payments dashboard with the notification feed open" },
+    { name: "Invoice", light: "/work/grg-design-system/themes/invoice-light.webp", dark: "/work/grg-design-system/themes/invoice-dark.webp", width: 2200, height: 1478, alt: "Creating an invoice, the currency list open" },
+    { name: "Exchange", light: "/work/grg-design-system/themes/exchange-light.webp", dark: "/work/grg-design-system/themes/exchange-dark.webp", width: 2200, height: 1375, alt: "Exchange: chart, order book and a new order" },
+    { name: "Admin", light: "/work/grg-design-system/themes/admin-light.webp", dark: "/work/grg-design-system/themes/admin-dark.webp", width: 2200, height: 1478, alt: "Internal admin panel: accounts with filters applied" },
   ]}
 />
 

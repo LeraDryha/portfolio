@@ -356,6 +356,7 @@
   --pos-asm-inside: 73%;
   --pos-asm-mid: 38%;
   --duration-asm: .7s;
+  --duration-wipe: 1.6s;
   --duration-asm-cam: 1s;
   --shadow-asm-swatch: inset 0 0 0 1px rgb(0 0 0 / .08);
   --color-grg-page: #fafafa;
@@ -926,9 +927,17 @@
 /* Product screens with a theme switch (GRG): big, in a wide band */
 .showcase { display: grid; gap: var(--space-14); margin-top: var(--space-28); margin-bottom: var(--space-28); }
 .showcase__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
-.showcase__screen { position: relative; overflow: hidden; border-radius: var(--radius-figure); background: var(--color-tile); }
-.showcase__img { object-fit: cover; object-position: top left; opacity: var(--opacity-hidden); transition: opacity var(--duration-fade) var(--ease-fade); }
-.showcase__img.is-on { opacity: var(--opacity-full); }
+.showcase__hint { align-self: center; color: var(--color-pencil); font-size: var(--text-label); }
+/* The wipe: the dark screen over the light one, cut at --cut; the line in component violet */
+.wipe { position: relative; overflow: hidden; border-radius: var(--radius-figure); background: var(--color-tile); touch-action: pan-y; }
+.wipe__img { object-fit: cover; object-position: top left; pointer-events: none; user-select: none; }
+.wipe__dark { position: absolute; inset: var(--space-0); clip-path: inset(0 0 0 var(--cut)); }
+.wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-stroke); translate: var(--move-centre-x-only); background: var(--color-figma-component); pointer-events: none; }
+.wipe__line span { position: absolute; top: var(--pos-centre); left: var(--pos-centre); translate: var(--move-centre); padding: var(--space-6) var(--space-10); border-radius: var(--radius-pill); background: var(--color-figma-component); color: var(--color-on-dark); font: var(--weight-medium) var(--text-micro) / var(--leading-tight) var(--font-mono); white-space: nowrap; box-shadow: var(--shadow-float); }
+.wipe__range { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); margin: var(--space-0); opacity: var(--opacity-hidden); cursor: ew-resize; }
+.wipe:has(.wipe__range:focus-visible) { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--offset-focus); }
+.wipe.is-sweeping .wipe__dark { transition: clip-path var(--duration-wipe) var(--ease-cam); }
+.wipe.is-sweeping .wipe__line { transition: left var(--duration-wipe) var(--ease-cam); }
 .showcase__cap { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); }
 
 /* A larger part of a case, set apart from the chapters before it */
