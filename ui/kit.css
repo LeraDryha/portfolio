@@ -350,6 +350,7 @@
   --size-asm-page-w: 1440px;
   --size-asm-page-h: 1386px;
   --size-asm-handle: 6px;
+  --size-asm-frame: 4px;
   --offset-asm-handle: -4.5px;
   --text-asm-name: 8px;
   --text-asm-chip: 11px;
@@ -729,6 +730,8 @@
 /* GRG (assemble): the product put together from its real parts; a 540 × 520 canvas scaled over the tile.
    Positions are set by components/shell/assemble.ts; looks and motion live here. */
 .asm { background: var(--color-tile); }
+/* The card frames the animation: a 4px inner edge in the card's own colour, so the white product never runs into the white page */
+.asm::after { content: ""; position: absolute; inset: var(--space-0); z-index: var(--z-badge); border: var(--size-asm-frame) solid var(--color-tile); border-radius: var(--radius-tile); pointer-events: none; }
 .asm__canvas { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-w); height: var(--size-asm-h); transform-origin: var(--origin-start); }
 .asm__world { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-page-w); height: var(--size-asm-page-h); transform-origin: var(--origin-start); transition: transform var(--duration-asm-cam) var(--ease-cam), opacity var(--duration-color) var(--ease-fade); }
 .asm__overlay { position: absolute; inset: var(--space-0); transform-origin: var(--origin-start); }
