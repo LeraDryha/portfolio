@@ -126,18 +126,12 @@ export function TokenAnatomy() {
               {/* Active: filled and focused, its label floated above */}
               <span className="spec-modal__field spec-modal__field--active">
                 <span className="spec-modal__label">Email</span>
-                <svg viewBox="0 0 20 20">
-                  <rect x="2.5" y="4.5" width="15" height="11" rx="2" />
-                  <path d="m3 5.5 7 5 7-5" />
-                </svg>
+                <span className="spec-icon spec-icon--mail" />
                 <span className="spec-modal__value">olivia@mail.com</span>
               </span>
               <span className="spec-modal__field">
                 Password
-                <svg className="spec-modal__end" viewBox="0 0 20 20">
-                  <path d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10Z" />
-                  <circle cx="10" cy="10" r="2.5" />
-                </svg>
+                <span className="spec-icon spec-icon--eye spec-modal__end" />
               </span>
               <div className="spec-modal__actions">
                 <span className="spec-modal__button">Sign up</span>
@@ -155,7 +149,8 @@ export function TokenAnatomy() {
                 </div>
               </div>
               <p className="spec-modal__foot">
-                <span className="spec-modal__typed">I already have an account?</span> <b>Log in</b>
+                <span className="spec-modal__typed">I already have an account?</span>
+                <b className="spec-modal__text-button">Log in</b>
               </p>
               <span className="measure measure--x spec-measure--side" title="space-800">
                 <em>32</em>

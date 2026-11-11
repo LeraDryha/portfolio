@@ -395,13 +395,13 @@
   --space-grg-social-gap: 6px;
   --space-grg-social-start: 16px;
   --space-grg-social-end: 20px;
-  --size-grg-stroke: 1.5;
   --radius-grg-modal: 16px;
   --radius-grg-control: 10px;
   --space-grg-side: 32px;
   --space-grg-fields: 40px;
   --space-grg-content: 44px;
-  --space-grg-label: 24px;
+  --space-grg-label: 22px;
+  --space-grg-text-button-y: 6px;
   --space-grg-desc: 8px;
   --space-grg-foot: 16px;
   --space-grg-inset: 12px;
@@ -426,6 +426,7 @@
   --color-grg-light-stroke: #d4d4d4;
   --color-grg-light-strong: #0a0a0a;
   --color-grg-light-active: #171717;
+  --color-grg-icon: #737373;
   --color-grg-light-subtle: #404040;
   --color-grg-light-soft: #737373;
   --color-grg-light-solid: #0a0a0a;
@@ -905,7 +906,7 @@
 /* Tokens from Figma to code: the Sign up modal with its tokens marked, and the code at each step */
 .anatomy { display: grid; grid-template-columns: var(--layout-anatomy); gap: var(--space-20); margin-top: var(--space-28); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .specimen { display: grid; gap: var(--space-20); align-content: space-between; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
-.specimen__canvas { --grg-page: var(--color-grg-light-page); --grg-surface: var(--color-grg-light-surface); --grg-stroke: var(--color-grg-light-stroke); --grg-strong: var(--color-grg-light-strong); --grg-active: var(--color-grg-light-active); --grg-subtle: var(--color-grg-light-subtle); --grg-soft: var(--color-grg-light-soft); --grg-solid: var(--color-grg-light-solid); --grg-on-solid: var(--color-grg-light-on-solid); --grg-shadow: var(--shadow-grg-light-md); --z: var(--zoom-grg-modal); display: grid; place-items: center; padding: var(--space-spec-tags) var(--space-20); border-radius: var(--radius-inner); background: var(--grg-page); transition: background-color var(--duration-color); }
+.specimen__canvas { --grg-page: var(--color-grg-light-page); --grg-surface: var(--color-grg-light-surface); --grg-stroke: var(--color-grg-light-stroke); --grg-strong: var(--color-grg-light-strong); --grg-active: var(--color-grg-light-active); --grg-icon: var(--color-grg-icon); --grg-subtle: var(--color-grg-light-subtle); --grg-soft: var(--color-grg-light-soft); --grg-solid: var(--color-grg-light-solid); --grg-on-solid: var(--color-grg-light-on-solid); --grg-shadow: var(--shadow-grg-light-md); --z: var(--zoom-grg-modal); display: grid; place-items: center; padding: var(--space-spec-tags) var(--space-20); border-radius: var(--radius-inner); background: var(--grg-page); transition: background-color var(--duration-color); }
 .specimen__canvas--dark { --grg-page: var(--color-grg-dark-page); --grg-surface: var(--color-grg-dark-surface); --grg-stroke: var(--color-grg-dark-stroke); --grg-strong: var(--color-grg-dark-strong); --grg-active: var(--color-grg-dark-active); --grg-subtle: var(--color-grg-dark-subtle); --grg-soft: var(--color-grg-dark-soft); --grg-solid: var(--color-grg-dark-solid); --grg-on-solid: var(--color-grg-dark-on-solid); --grg-shadow: var(--shadow-grg-dark-md); }
 /* The modal at its own size, zoomed out; the token tags around it stay at the page's size */
 .spec-modal { position: relative; }
@@ -921,7 +922,10 @@
 .spec-modal__label { position: absolute; left: var(--space-0); bottom: calc(var(--size-full) + var(--space-grg-label) - var(--leading-grg-body)); color: var(--grg-strong); font-weight: var(--weight-semibold); }
 .spec-modal__value { color: var(--grg-strong); }
 .spec-modal__value::after { content: ""; display: inline-block; width: var(--u); height: var(--leading-grg-body); margin-left: var(--u); vertical-align: bottom; background: var(--grg-strong); }
-.spec-modal__field svg { flex: none; width: var(--size-grg-icon); height: var(--size-grg-icon); fill: none; stroke: currentColor; stroke-width: var(--size-grg-stroke); }
+/* Base icons from the system (mail, eye), drawn as a mask in icon-base-500, as the Icon component does */
+.spec-icon { flex: none; width: var(--size-grg-icon); height: var(--size-grg-icon); background: var(--grg-icon); -webkit-mask: var(--spec-icon) center / contain no-repeat; mask: var(--spec-icon) center / contain no-repeat; }
+.spec-icon--mail { --spec-icon: url("/work/grg-design-system/icons/mail.svg"); }
+.spec-icon--eye { --spec-icon: url("/work/grg-design-system/icons/eye.svg"); }
 .spec-modal__end { margin-left: auto; }
 .spec-modal__button { display: grid; place-items: center; height: var(--size-grg-field); border-radius: var(--radius-grg-control); background: var(--grg-solid); color: var(--grg-on-solid); font-weight: var(--weight-semibold); font-size: var(--text-grg-button); line-height: var(--leading-grg-button); }
 .spec-modal__actions { display: grid; gap: var(--space-grg-foot); }
@@ -934,7 +938,8 @@
 /* Type measured as in primereact.dev: a green line under the text with end ticks, its style in a green tag */
 .spec-modal__typed { position: relative; }
 .spec-modal__typed::after { content: ""; position: absolute; left: var(--space-0); right: var(--space-0); top: calc(var(--size-full) + var(--space-2) / var(--z)); height: calc(var(--size-redline-tick) / var(--z)); border: solid var(--color-typemark); border-width: var(--space-0) var(--u); background: linear-gradient(var(--color-typemark), var(--color-typemark)) center / var(--size-full) var(--u) no-repeat; }
-.spec-modal__foot b { margin-left: var(--space-grg-gap); color: var(--grg-strong); font-weight: var(--weight-semibold); }
+/* Button, Text, sm: 6 / 12 padding, Body-md/Semibold */
+.spec-modal__text-button { padding: var(--space-grg-text-button-y) var(--space-grg-inset); color: var(--grg-strong); font-weight: var(--weight-semibold); }
 .redline-tag { position: absolute; padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-redline); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
 .spec-tag--radius { left: var(--space-0); bottom: calc(var(--size-full) + var(--offset-spec-tag)); }
 .spec-tag--surface { right: var(--space-0); bottom: calc(var(--size-full) + var(--offset-spec-tag)); }
