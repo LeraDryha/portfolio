@@ -49,7 +49,7 @@ const fit = (viewH: number, x: number, y: number, w: number, h: number): Cam => 
 };
 // What the camera looks at on each step (none for the first two: they are drawn on the tile)
 // (the product fills the width from the top, whatever the height)
-const camsFor = (viewH: number): (Cam | null)[] => [null, null, fit(viewH, 296, 150, 480, 150), fit(viewH, 300, 150, 720, 190), fit(viewH, 246, 96, 1220, 900), { s: TILE.w / 1440, tx: 0, ty: 0 }];
+const camsFor = (viewH: number): (Cam | null)[] => [null, null, fit(viewH, 296, 150, 480, 150), fit(viewH, 300, 150, 720, 190), fit(viewH, 246, 66, 1220, 990), { s: TILE.w / 1440, tx: 0, ty: 0 }];
 // Selections in page coordinates (steps 2–4) and on the tile (steps 0–1)
 const SELS: Rect[][] = [
   [{ x: 100, y: 108 + DY, w: 340, h: 156 }],
@@ -182,7 +182,7 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   };
 
   const captioned = !!root.closest(".tile");
-  let canvasH = TILE.h;
+  let canvasH = 0; // set by fitCanvas
   let viewH = TILE.h - (captioned ? CAPTION : 0);
   let cams = camsFor(viewH);
   let so = 1, ox = 0, oy = 0; // how the primitives' layer is scaled and moved
@@ -228,9 +228,9 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
     viewH = h - (captioned ? CAPTION : 0);
     cams = camsFor(viewH);
     // Primitives and tokens are drawn for a 450-high view: centred, and smaller when the view is lower
-    so = Math.min(1, (viewH - 24) / 250);
+    so = Math.min(1, (viewH - 24) / 260);
     ox = (TILE.w / 2) * (1 - so);
-    oy = viewH / 2 - 225 * so;
+    oy = viewH / 2 - 215 * so; // 215: the middle of the swatches or the chips with their name under them
     overlay.style.transform = `translate(${ox}px, ${oy}px) scale(${so})`;
     show(step);
   };
