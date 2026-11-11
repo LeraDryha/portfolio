@@ -399,11 +399,11 @@ export function Part({ eyebrow, title, children }: { eyebrow: string; title: str
 }
 
 /** A live artefact to open (the GRG Storybook): one big link that can't be missed, a Figma selection on hover. */
-export function OpenCard({ eyebrow, title, line, href, action }: { eyebrow: string; title: string; line: string; href: string; action: string }) {
+export function OpenCard({ eyebrow, title, line, href, action }: { eyebrow?: string; title: string; line: string; href: string; action: string }) {
   return (
     <a className="open-card" href={href} target="_blank" rel="noopener">
       <span className="open-card__text">
-        <span className="open-card__eyebrow">{eyebrow}</span>
+        {eyebrow && <span className="open-card__eyebrow">{eyebrow}</span>}
         <b>{title}</b>
         <span>{line}</span>
       </span>
@@ -428,7 +428,7 @@ export function Storybook({ path, children = "Storybook" }: { path?: string; chi
   );
 }
 
-/** Pages of the Storybook to open: a small preview, a title and a line, three in a row. */
+/** Pages of the Storybook to open: cards with a preview, a title and a line, two in a row. */
 export function DocLinks({ items }: { items: { title: string; line: string; src: string; path: string }[] }) {
   return (
     <ul className="doc-links">
@@ -436,12 +436,12 @@ export function DocLinks({ items }: { items: { title: string; line: string; src:
         <li key={d.path}>
           <a className="doc-link" href={`${STORYBOOK}/?path=${d.path}`} target="_blank" rel="noopener">
             <span className="doc-link__shot">
-              <Image src={d.src} alt="" fill sizes="(max-width: 640px) 100vw, 220px" quality={90} />
-              <Selection />
+              <Image src={d.src} alt="" fill sizes="(max-width: 640px) 100vw, 520px" quality={90} />
             </span>
             <b>{d.title}</b>
             <span>{d.line}</span>
             <span className="sr-only"> (opens the Storybook page in a new tab)</span>
+            <Selection />
           </a>
         </li>
       ))}

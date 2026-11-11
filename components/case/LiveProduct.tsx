@@ -113,8 +113,8 @@ export function LiveProduct({ v }: { v: Live }) {
     <section className="live case-wide" aria-labelledby="live-title">
       <div className="live__bar">
         <div>
-          <p className="live__eyebrow">Live product</p>
           <p className="live__title" id="live-title">{v.live.title}</p>
+          {v.live.try && <p className="live__try">{v.live.try}</p>}
         </div>
         <div className="filter" role="group" aria-label="What to show">
           <button className="filter__btn" type="button" aria-pressed={!inspect} onClick={() => setInspect(false)}>
