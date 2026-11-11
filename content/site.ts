@@ -152,7 +152,7 @@ const grgVis: Assemble = {
     storybook: "https://grg-design-system.vercel.app",
     story: "in-product-dashboard--live-flow",
     title: "Dashboard, built only from the system",
-    try: "It all works: pick a period or any dates, open ⋮ on Ethereum to convert or withdraw, copy a transaction ID, press View all for Assets and Dashboard in the menu to come back.",
+    try: "Everything here is live: click around, it all works.",
   },
 };
 
