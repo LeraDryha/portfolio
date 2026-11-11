@@ -23,13 +23,6 @@ const STEPS = [
 ];
 const PRODUCT = 5;
 
-// Primitives (GRG token values) and the semantic tokens five of them become
-const PRIMS: [string, string][] = [
-  ["#fdedcd", "gold/100"], ["#fad384", "gold/300"], ["#f5a70f", "gold/500"], ["#c4860c", "gold/700"], ["#473000", "gold/900"],
-  ["#ffffff", "neutral/0"], ["#e5e5e5", "neutral/200"], ["#737373", "neutral/500"], ["#0a0a0a", "neutral/1000"], ["#15803d", "green/700"],
-];
-const TO_CHIP: Record<number, number> = { 8: 0, 5: 1, 6: 2, 9: 3, 2: 4 };
-const CHIPS = ["primary-base-1000", "surface-base", "stroke-soft-200", "success-base-700", "primary-gold-base"];
 const DY = 20;
 const chipAt = (i: number): Rect => ({ x: 140, y: 80 + DY + i * 44, w: 260, h: 30 });
 
@@ -61,7 +54,15 @@ const SELS: Rect[][] = [
 ];
 const SEL_LABELS = [[STEPS[0].label], [STEPS[1].label], [STEPS[2].label], ["Molecule · Toolbar", "Molecule · Table row"], [STEPS[4].label], []];
 
-export function startAssemble(root: HTMLElement, v: Assemble) {
+export type Theme = "light" | "dark";
+
+export function startAssemble(root: HTMLElement, v: Assemble, theme: Theme) {
+  // The theme's own colours, tokens and primitives (read from the system by scripts/grg-assemble.mjs)
+  const T = v.parts.themes[theme];
+  root.style.setProperty("--grg-page", T.page);
+  root.style.setProperty("--grg-surface", T.surface);
+  root.style.setProperty("--grg-divider", T.divider);
+  root.style.setProperty("--grg-ink", T.tokens[0].hex);
   const R = v.parts.parts;
   const H = (x: number, y: number, w: number, h: number, extra?: Partial<State>): State => ({ x, y, w, h, o: 1, ...extra });
   const hid = (s: State): State => ({ ...s, o: 0 });
@@ -86,7 +87,7 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
     let e: HTMLElement;
     if (typeof inner === "object") {
       const img = document.createElement("img");
-      img.src = `${v.dir}/${inner.img}.webp`;
+      img.src = `${v.dir}/${theme}/${inner.img}.webp`;
       img.alt = "";
       img.draggable = false;
       e = img;
@@ -135,15 +136,17 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   add(world, "asm-sprite", { img: "create" }, per((i) => (i === 2 ? createAtom : i === P ? at("create") : i < 2 ? hid(createAtom) : moved("create", { y: 40 }))), D(P, 1.05));
 
   // ── Primitives and semantic tokens, on the tile ──
-  PRIMS.forEach(([c, name], k) => {
+  // Each token takes its dot from the primitive it is made of in this theme
+  const chipOf = (name: string) => T.tokens.findIndex((t) => t.primitive === name);
+  T.primitives.forEach(({ hex: c, name }, k) => {
     const col = k % 5, row = Math.floor(k / 5);
     const base = H(120 + col * 62, 120 + DY + row * 66, 44, 44, { bg: c, r: 8 });
-    const chip = TO_CHIP[k];
-    const dot = chip !== undefined ? H(chipAt(chip).x + 9, chipAt(chip).y + 9, 12, 12, { bg: c, r: 3 }) : null;
+    const chip = chipOf(name);
+    const dot = chip >= 0 ? H(chipAt(chip).x + 9, chipAt(chip).y + 9, 12, 12, { bg: c, r: 3 }) : null;
     add(overlay, "asm-swatch", "", per((i) => (i === 0 ? base : i === 1 ? (dot ?? { ...hid(base), x: base.x + 16, y: base.y + 16, w: 12, h: 12 }) : hid(dot ?? base))));
     add(overlay, "asm-swatch-name", name, per((i) => H(base.x + 22, base.y + 50, 0, 0, { o: i === 0 ? 1 : 0 })));
   });
-  CHIPS.forEach((t, k) => {
+  T.tokens.forEach(({ name: t }, k) => {
     const c = chipAt(k);
     add(overlay, "asm-chip", t, per((i) => (i === 1 ? H(c.x, c.y, c.w, c.h) : i === 0 ? H(c.x + 20, c.y, c.w - 40, c.h, { o: 0 }) : H(c.x, c.y, c.w, c.h, { o: 0 }))));
   });

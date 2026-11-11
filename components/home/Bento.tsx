@@ -24,7 +24,7 @@ function CaseTile({ entry }: { entry: CaseEntry }) {
   // The three lead cases: the product fills the tile; the name and one fact sit at the bottom, on a blur of it
   if (entry.full)
     return (
-      <article className={`tile case-tile case-tile--full ${SHAPE[entry.shape]} area-${entry.area}`} id={`tile-${entry.slug}`} data-cat="work">
+      <article className={`tile case-tile case-tile--full${entry.full.lightProduct ? " case-tile--light-product" : ""} ${SHAPE[entry.shape]} area-${entry.area}`} id={`tile-${entry.slug}`} data-cat="work">
         <Vis entry={entry} />
         <div className="case-tile__foot">
           {title}
