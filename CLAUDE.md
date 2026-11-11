@@ -64,7 +64,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 
 ### Сторінки
 
-- **Home:** верхня панель (знак, фільтр All / About / Work / Writing, тема) і бенто з плиток: інтро, пошта, LinkedIn, кейси (Prevently — велика рожева), Medium і Learning (курси й сертифікати, сторінка `/learning`); під ним «More work».
+- **Home:** верхня панель (знак, фільтр All / About / Work / Writing, тема) і бенто з плиток: інтро, пошта, LinkedIn, кейси, Medium і Learning (курси й сертифікати, сторінка `/learning`); під ним «More work». Три головні кейси — Prevently (найвища, рожева), GRG і Comfy (однакові 2×2): продукт на всю плитку, внизу назва й один факт на розмитті. Adtelligent і Financial Assistant менші, з доказом великим. Плитка GRG збирає продукт від примітивів до сторінки Invoices зі справжніх частин зі Storybook; коли Storybook зміниться, оновити їх: `npm run grg:assemble`.
 - **Сторінка кейсу:** `/work/<slug>`, один шаблон для всіх кейсів; угорі той самий живий продукт, що на плитці.
 - **About:** про Lera й контакти.
 
@@ -94,7 +94,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 
 ```
 app/                    сторінки: layout, головна, work/[slug]/, not-found, icon
-components/shell/       верхня панель, живі продукти (Vis) і курсори, іконки, тема
+components/shell/       верхня панель, живі продукти (Vis, Assemble — збирання GRG) і курсори, іконки, тема
 components/home/        головна: бенто, поведінка (фільтр, тема, копіювання, анімації), привітання
 components/case/        блоки кейсу для MDX, поведінка сторінки кейсу, живий продукт (LiveProduct) і анатомія токена (GRG)
 content/site.ts         плитки кейсів, More work, контакти, привітання
@@ -102,6 +102,7 @@ content/work/           кейси, по MDX-файлу на кейс
 lib/cases.ts            сторінки кейсів, посилання з плитки, наступний кейс
 mdx-components.tsx      як Markdown у кейсах мапиться на кіт
 public/work/<slug>/     зображення кейсу
+scripts/                grg-assemble.mjs: знімає частини сторінки Invoices зі Storybook для плитки GRG (npm run grg:assemble)
 ui/kit.css              UI-кіт: токени в :root + класи компонентів (джерело стилів)
 ui/kit.html             вітрина кіта
 ui/inventory.md         інвентар компонентів

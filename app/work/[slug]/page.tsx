@@ -34,7 +34,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         <Icon name="close" />
       </a>
       <main className="case">
-        {entry.vis.kind === "inspect" ? (
+        {entry.vis.kind === "assemble" ? (
           <LiveProduct v={entry.vis} viewTransitionName={`case-${entry.slug}`} />
         ) : (
           <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>

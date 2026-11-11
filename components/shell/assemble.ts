@@ -1,0 +1,240 @@
+import type { Assemble } from "@/content/site";
+
+/*
+ * GRG on its tile: primitives → semantic tokens → atoms → molecules → organism → product.
+ * Every part from the atoms on is the real component, captured from the Invoices page in the Storybook
+ * (scripts/grg-assemble.mjs), and lands exactly where it sits on that page. A camera moves over the page
+ * (page coordinates, 1440 × 1386) the way Figma zooms; the tile itself is a 540 × 520 canvas, scaled to fit.
+ * Classes and colours come from ui/kit.css (.asm-*); the GRG token values below are content.
+ */
+
+type Rect = { x: number; y: number; w: number; h: number };
+type State = Rect & { o: number; bg?: string; r?: number };
+
+const TILE = { w: 540, h: 520 };
+const VIEW_H = 450; // the tile above its caption
+const STEPS = [
+  { label: "Primitives · gold, neutral, green", ms: 2300 },
+  { label: "Semantic tokens", ms: 2300 },
+  { label: "Atoms · Input, Select, Button, Badge, Action Button", ms: 2400 },
+  { label: "", ms: 2600 },
+  { label: "Organism · Invoices table", ms: 2800 },
+  { label: "", ms: 6000 },
+];
+const PRODUCT = 5;
+
+// Primitives (GRG token values) and the semantic tokens five of them become
+const PRIMS: [string, string][] = [
+  ["#fdedcd", "gold/100"], ["#fad384", "gold/300"], ["#f5a70f", "gold/500"], ["#c4860c", "gold/700"], ["#473000", "gold/900"],
+  ["#ffffff", "neutral/0"], ["#e5e5e5", "neutral/200"], ["#737373", "neutral/500"], ["#0a0a0a", "neutral/1000"], ["#15803d", "green/700"],
+];
+const TO_CHIP: Record<number, number> = { 8: 0, 5: 1, 6: 2, 9: 3, 2: 4 };
+const CHIPS = ["primary-base-1000", "surface-base", "stroke-soft-200", "success-base-700", "primary-gold-base"];
+const DY = 20;
+const chipAt = (i: number): Rect => ({ x: 140, y: 80 + DY + i * 44, w: 260, h: 30 });
+
+// The parts of the finished product that get named, and where each name sits
+const NAMED: [string, Rect, "inside-mid" | "inside" | "below"][] = [
+  ["Topbar Navigation", { x: 0, y: 0, w: 1440, h: 64 }, "inside-mid"],
+  ["Sidebar Navigation", { x: 0, y: 64, w: 272, h: 1322 }, "inside"],
+  ["Page Header", { x: 296, y: 84, w: 1120, h: 32 }, "below"],
+  ["Button", { x: 1276, y: 84, w: 140, h: 32 }, "below"],
+  ["Table", { x: 320, y: 224, w: 1072, h: 709 }, "below"],
+];
+
+type Cam = { s: number; tx: number; ty: number };
+const fit = (x: number, y: number, w: number, h: number): Cam => {
+  const s = Math.min(TILE.w / w, VIEW_H / h);
+  return { s, tx: (TILE.w - w * s) / 2 - x * s, ty: (VIEW_H - h * s) / 2 - y * s };
+};
+// What the camera looks at on each step (none for the first two: they are drawn on the tile)
+const CAMS: (Cam | null)[] = [null, null, fit(296, 150, 480, 150), fit(300, 150, 720, 190), fit(246, 96, 1220, 900), { s: TILE.w / 1440, tx: 0, ty: 0 }];
+// Selections in page coordinates (steps 2–4) and on the tile (steps 0–1)
+const SELS: Rect[][] = [
+  [{ x: 100, y: 108 + DY, w: 340, h: 156 }],
+  [{ x: 128, y: 68 + DY, w: 284, h: 230 }],
+  [{ x: 320, y: 171, w: 441, h: 108 }],
+  [{ x: 320, y: 168, w: 635, h: 32 }, { x: 320, y: 261, w: 1072, h: 56 }],
+  [{ x: 296, y: 136, w: 1120, h: 820 }],
+  [],
+];
+const SEL_LABELS = [[STEPS[0].label], [STEPS[1].label], [STEPS[2].label], ["Molecule · Toolbar", "Molecule · Table row"], [STEPS[4].label], []];
+
+export function startAssemble(root: HTMLElement, v: Assemble) {
+  const R = v.parts.parts;
+  const H = (x: number, y: number, w: number, h: number, extra?: Partial<State>): State => ({ x, y, w, h, o: 1, ...extra });
+  const hid = (s: State): State => ({ ...s, o: 0 });
+  const at = (n: string): State => H(R[n].x, R[n].y, R[n].w, R[n].h);
+  const moved = (n: string, d: Partial<Rect>) => hid({ ...at(n), ...d });
+  const per = (fn: (i: number) => State) => STEPS.map((_, i) => fn(i));
+
+  const canvas = document.createElement("div");
+  canvas.className = "asm__canvas";
+  const world = document.createElement("div");
+  world.className = "asm__world";
+  const overlay = document.createElement("div");
+  overlay.className = "asm__overlay";
+  canvas.append(world, overlay);
+  root.appendChild(canvas);
+
+  const els: { e: HTMLElement; states: State[]; delays: number[] }[] = [];
+  const add = (parent: HTMLElement, cls: string, inner: string | { img: string }, states: State[], delays: number[] = []) => {
+    let e: HTMLElement;
+    if (typeof inner === "object") {
+      const img = document.createElement("img");
+      img.src = `${v.dir}/${inner.img}.webp`;
+      img.alt = "";
+      img.draggable = false;
+      e = img;
+    } else {
+      e = document.createElement("div");
+      e.innerHTML = inner;
+    }
+    e.className = `asm-el ${cls}`;
+    parent.appendChild(e);
+    els.push({ e, states, delays });
+    return e;
+  };
+  const D = (step: number, sec: number) => { const d: number[] = []; d[step] = sec; return d; };
+  const P = PRODUCT;
+
+  // ── The page ──
+  add(world, "asm-page", "", per((i) => (i === P ? H(0, 0, v.parts.width, v.parts.height * 1.5) : H(0, 0, v.parts.width, v.parts.height * 1.5, { o: 0 }))));
+  // The white surface appears with the organism, as in the product
+  add(world, "asm-surface", "", per((i) => (i === P ? H(296, 136, 1120, 1226) : i === 4 ? H(296, 136, 1120, 820) : H(296, 160, 1120, 760, { o: 0 }))));
+  add(world, "asm-sprite", { img: "topbar" }, per((i) => (i === P ? at("topbar") : moved("topbar", { y: -64 }))), D(P, 0.15));
+  for (let k = 0; k < 7; k++) add(world, "asm-sprite", { img: `side-${k}` }, per((i) => (i === P ? at(`side-${k}`) : moved(`side-${k}`, { x: -240 }))), D(P, 0.35 + k * 0.07));
+  add(world, "asm-divider", "", per((i) => (i === P ? at("divider") : moved("divider", { x: -240 }))), D(P, 0.6));
+  add(world, "asm-sprite", { img: "feature" }, per((i) => (i === P ? at("feature") : moved("feature", { y: 1420 }))), D(P, 0.9));
+  add(world, "asm-sprite", { img: "title" }, per((i) => (i === P ? at("title") : moved("title", { y: 50 }))), D(P, 0.8));
+  add(world, "asm-sprite", { img: "download" }, per((i) => (i === P ? at("download") : moved("download", { y: 40 }))), D(P, 1));
+
+  // Toolbar: the search and the status select start as atoms; the other filters join them
+  const searchAtom = H(329, 181, R.search.w, R.search.h); // row 1: search, select; row 2: button, badge, copy
+  add(world, "asm-sprite", { img: "search" }, per((i) => (i === 2 ? searchAtom : i >= 3 ? at("search") : hid(searchAtom))));
+  add(world, "asm-sprite", { img: "filter-0" }, per((i) => (i >= 3 ? at("filter-0") : moved("filter-0", { y: 210 }))), D(3, 0.25));
+  const selectAtom = H(630, 181, R["filter-1"].w, R["filter-1"].h);
+  add(world, "asm-sprite", { img: "filter-1" }, per((i) => (i === 2 ? selectAtom : i >= 3 ? at("filter-1") : hid(selectAtom))));
+  add(world, "asm-sprite", { img: "filter-2" }, per((i) => (i >= 3 ? at("filter-2") : moved("filter-2", { y: 210 }))), D(3, 0.35));
+
+  // Table: row 0 is the molecule; the header and the other rows make the organism
+  add(world, "asm-sprite", { img: "thead" }, per((i) => (i >= 4 ? at("thead") : moved("thead", { y: 244 }))), D(4, 0.15));
+  add(world, "asm-sprite", { img: "row-0" }, per((i) => (i >= 3 ? at("row-0") : hid(at("row-0")))), D(3, 0.45));
+  for (let k = 1; k < 12; k++) add(world, "asm-sprite", { img: `row-${k}` }, per((i) => (i >= 4 ? at(`row-${k}`) : moved(`row-${k}`, { y: R[`row-${k}`].y + 30 }))), D(4, 0.2 + k * 0.06));
+  // Atoms that land in row 0, on their exact places
+  const badgeAtom = H(491, 238, R.badge.w, R.badge.h);
+  const copyAtom = H(569, 238, R.copy.w, R.copy.h);
+  add(world, "asm-sprite asm-front", { img: "badge" }, per((i) => (i === 2 ? badgeAtom : i === 3 ? at("badge") : i < 2 ? hid(badgeAtom) : hid(at("badge")))));
+  add(world, "asm-sprite asm-front", { img: "copy" }, per((i) => (i === 2 ? copyAtom : i === 3 ? at("copy") : i < 2 ? hid(copyAtom) : hid(at("copy")))));
+  // The button atom waits off screen, then lands in the page title row
+  const createAtom = H(329, 233, R.create.w, R.create.h);
+  add(world, "asm-sprite", { img: "create" }, per((i) => (i === 2 ? createAtom : i === P ? at("create") : i < 2 ? hid(createAtom) : moved("create", { y: 40 }))), D(P, 1.05));
+
+  // ── Primitives and semantic tokens, on the tile ──
+  PRIMS.forEach(([c, name], k) => {
+    const col = k % 5, row = Math.floor(k / 5);
+    const base = H(120 + col * 62, 120 + DY + row * 66, 44, 44, { bg: c, r: 8 });
+    const chip = TO_CHIP[k];
+    const dot = chip !== undefined ? H(chipAt(chip).x + 9, chipAt(chip).y + 9, 12, 12, { bg: c, r: 3 }) : null;
+    add(overlay, "asm-swatch", "", per((i) => (i === 0 ? base : i === 1 ? (dot ?? { ...hid(base), x: base.x + 16, y: base.y + 16, w: 12, h: 12 }) : hid(dot ?? base))));
+    add(overlay, "asm-swatch-name", name, per((i) => H(base.x + 22, base.y + 50, 0, 0, { o: i === 0 ? 1 : 0 })));
+  });
+  CHIPS.forEach((t, k) => {
+    const c = chipAt(k);
+    add(overlay, "asm-chip", t, per((i) => (i === 1 ? H(c.x, c.y, c.w, c.h) : i === 0 ? H(c.x + 20, c.y, c.w - 40, c.h, { o: 0 }) : H(c.x, c.y, c.w, c.h, { o: 0 }))));
+  });
+
+  // Selections: two for the steps, one per named part of the product
+  const makeSel = () => {
+    const e = document.createElement("div");
+    e.className = "asm-el asm-sel";
+    e.innerHTML = "<b></b>";
+    e.style.opacity = "0";
+    overlay.appendChild(e);
+    return e;
+  };
+  const sels = [makeSel(), makeSel()];
+  const named = NAMED.map(() => {
+    const e = makeSel();
+    e.classList.add("asm-sel--still");
+    return e;
+  });
+
+  const paint = (e: HTMLElement, s: State, delay: number) => {
+    e.style.transitionDelay = `${delay}s`;
+    e.style.left = `${s.x}px`;
+    e.style.top = `${s.y}px`;
+    e.style.width = s.w ? `${s.w}px` : "";
+    e.style.height = s.h ? `${s.h}px` : "";
+    e.style.opacity = String(s.o);
+    if (s.bg) e.style.backgroundColor = s.bg;
+    if (s.r !== undefined) e.style.borderRadius = `${s.r}px`;
+  };
+  const toTile = (r: Rect, cam: Cam) => ({ x: r.x * cam.s + cam.tx, y: r.y * cam.s + cam.ty, w: r.w * cam.s, h: r.h * cam.s });
+  const label = (sel: HTMLElement, text: string, spot: "below" | "above" | "inside" | "inside-mid" | "below-right") => {
+    const b = sel.querySelector("b")!;
+    b.textContent = text;
+    b.dataset.spot = spot;
+  };
+
+  const show = (i: number) => {
+    els.forEach(({ e, states, delays }) => paint(e, states[i], delays[i] ?? 0));
+    const cam = CAMS[i] ?? CAMS[2]!;
+    world.style.transform = `translate(${cam.tx}px, ${cam.ty}px) scale(${cam.s})`;
+    world.style.opacity = i < 2 ? "0" : "1";
+    sels.forEach((sel, n) => {
+      const r = SELS[i][n];
+      if (!r) { sel.style.opacity = "0"; return; }
+      const t = i < 2 ? r : toTile(r, cam);
+      paint(sel, { ...t, o: 1 }, 0);
+      label(sel, SEL_LABELS[i][n], t.y + t.h + 24 < VIEW_H ? "below" : "above");
+    });
+    // The assembled product names its parts, all together, until the loop starts again
+    named.forEach((sel, n) => {
+      if (i !== P) { sel.style.transitionDelay = "0s"; sel.style.opacity = "0"; return; }
+      const [text, r, spot] = NAMED[n];
+      const t = toTile(r, cam);
+      t.x = Math.max(1, t.x); t.y = Math.max(1, t.y);
+      t.w = Math.min(t.w, TILE.w - 1 - t.x); t.h = Math.min(t.h, TILE.h - 1 - t.y);
+      paint(sel, { ...t, o: 1 }, 2.2 + n * 0.12);
+      label(sel, text, spot === "below" && t.x + 150 > TILE.w ? "below-right" : spot);
+    });
+  };
+
+  // Scale the 540 × 520 canvas to fit the tile, centred; the page's background runs on below it
+  const fitCanvas = () => {
+    const b = root.getBoundingClientRect();
+    const k = Math.min(b.width / TILE.w, b.height / TILE.h);
+    canvas.style.transform = `translateX(${(b.width - TILE.w * k) / 2}px) scale(${k})`;
+  };
+  const ro = new ResizeObserver(fitCanvas);
+  ro.observe(root);
+  fitCanvas();
+
+  // Runs only while the tile is on screen and not under the pointer (the tile's own is-running class)
+  const tile = root.closest<HTMLElement>(".tile");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let step = reduce ? P : 0;
+  let timer = 0;
+  let hovered = false;
+  const running = () => !reduce && (!tile || tile.classList.contains("is-running")) && !hovered;
+  const tick = () => { step = (step + 1) % STEPS.length; show(step); schedule(); };
+  const schedule = () => { window.clearTimeout(timer); if (running()) timer = window.setTimeout(tick, STEPS[step].ms); };
+  show(step);
+  schedule();
+  const mo = new MutationObserver(schedule);
+  if (tile) mo.observe(tile, { attributes: true, attributeFilter: ["class"] });
+  const enter = () => { hovered = true; schedule(); };
+  const leave = () => { hovered = false; schedule(); };
+  tile?.addEventListener("pointerenter", enter);
+  tile?.addEventListener("pointerleave", leave);
+
+  return () => {
+    window.clearTimeout(timer);
+    ro.disconnect();
+    mo.disconnect();
+    tile?.removeEventListener("pointerenter", enter);
+    tile?.removeEventListener("pointerleave", leave);
+    canvas.remove();
+  };
+}

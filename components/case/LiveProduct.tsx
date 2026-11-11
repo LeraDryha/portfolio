@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
-import type { Inspect } from "@/content/site";
+import type { Live } from "@/content/site";
 
 type Item = { name: string; count: number; custom: boolean; docs: string | null };
 
 /** The product's desktop width; narrower than DESKTOP_FROM, the product shows its own tablet or phone layout. */
 const DESKTOP_FROM = 860;
 
-const fromBoxes = (v: Inspect): Item[] => {
+const fromBoxes = (v: Live): Item[] => {
   const seen = new Map<string, Item>();
   v.boxes.forEach((b) => seen.set(b.name, { name: b.name, count: 1, custom: !!b.custom, docs: null }));
   return [...seen.values()];
@@ -25,7 +25,7 @@ const pageTheme = (): "light" | "dark" => {
 /** The colours of the site's Figma layer, read from the kit, so the frame draws its boxes in them. */
 const layerColours = () => {
   const css = getComputedStyle(document.documentElement);
-  return { component: css.getPropertyValue("--color-figma").trim(), custom: css.getPropertyValue("--color-redline").trim(), label: css.getPropertyValue("--color-on-dark").trim() };
+  return { component: css.getPropertyValue("--color-figma-component").trim(), custom: css.getPropertyValue("--color-redline").trim(), label: css.getPropertyValue("--color-on-dark").trim() };
 };
 
 /**
@@ -33,7 +33,7 @@ const layerColours = () => {
  * On wide screens the product keeps its desktop layout, scaled to fit; on narrow ones it uses its own phone layout.
  * Until the frame answers, the screenshot from the tile stands in (and stays if the Storybook can't be reached).
  */
-export function LiveProduct({ v, viewTransitionName }: { v: Inspect; viewTransitionName: string }) {
+export function LiveProduct({ v, viewTransitionName }: { v: Live; viewTransitionName: string }) {
   const screen = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
   const [inspect, setInspect] = useState(false);
@@ -133,8 +133,8 @@ export function LiveProduct({ v, viewTransitionName }: { v: Inspect; viewTransit
       >
         {fit.desktop && (
           <>
-            <Image className="live__shot inspect__shot--light" src={v.shots.light} alt="" fill sizes="1100px" quality={90} priority />
-            <Image className="live__shot inspect__shot--dark" src={v.shots.dark} alt="" fill sizes="1100px" quality={90} />
+            <Image className="live__shot shot--light" src={v.shots.light} alt="" fill sizes="1100px" quality={90} priority />
+            <Image className="live__shot shot--dark" src={v.shots.dark} alt="" fill sizes="1100px" quality={90} />
           </>
         )}
         <iframe ref={frame} className="live__frame" src={src} onLoad={hello} title={`${v.live.title}: the live product, from the GRG Storybook`} />
