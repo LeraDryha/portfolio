@@ -33,7 +33,7 @@ const layerColours = () => {
  * On wide screens the product keeps its desktop layout, scaled to fit; on narrow ones it uses its own phone layout.
  * Until the frame answers, the screenshot from the tile stands in (and stays if the Storybook can't be reached).
  */
-export function LiveProduct({ v, viewTransitionName }: { v: Live; viewTransitionName: string }) {
+export function LiveProduct({ v }: { v: Live }) {
   const screen = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
   const [inspect, setInspect] = useState(false);
@@ -129,7 +129,7 @@ export function LiveProduct({ v, viewTransitionName }: { v: Live; viewTransition
       <div
         ref={screen}
         className={`live__screen${fit.desktop ? "" : " live__screen--native"}${ready ? " is-ready" : ""}`}
-        style={{ ...vars, viewTransitionName }}
+        style={vars}
       >
         {fit.desktop && (
           <>

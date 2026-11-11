@@ -9,7 +9,7 @@ export type CaseMeta = {
   lead: string;
   facts: { label: string; value: string; href?: string }[];
   /** The case in three blocks; short cases leave it out */
-  answer?: { problem: string; did: string; result: string };
+  answer?: { problem: string; did: string; result: string; /** "What we did" unless the work was one person's */ didTitle?: string };
   /** One proof in the accent, under the summary */
   proof?: { mark: string; cap: string };
 };

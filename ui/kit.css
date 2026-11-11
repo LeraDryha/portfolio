@@ -690,7 +690,8 @@
 .asm { background: var(--color-tile); }
 .asm__canvas { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-w); height: var(--size-asm-h); transform-origin: var(--origin-start); }
 .asm__world { position: absolute; left: var(--space-0); top: var(--space-0); width: var(--size-asm-page-w); height: var(--size-asm-page-h); transform-origin: var(--origin-start); transition: transform var(--duration-asm-cam) var(--ease-cam), opacity var(--duration-color) var(--ease-fade); }
-.asm__overlay { position: absolute; inset: var(--space-0); }
+.asm__overlay { position: absolute; inset: var(--space-0); transform-origin: var(--origin-start); }
+.asm__marks { z-index: var(--z-badge); }
 .asm-el { position: absolute; transition-property: left, top, width, height, opacity, border-radius, background-color; transition-duration: var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-asm), var(--duration-fade), var(--duration-asm), var(--duration-fade); transition-timing-function: var(--ease-cam); }
 .asm-sprite { display: block; max-width: none; user-select: none; }
 .asm-front { z-index: var(--z-raise); }
@@ -743,6 +744,10 @@
 .case { max-width: var(--layout-reading); margin: var(--space-0) auto; padding: var(--space-40) var(--gutter-reading-right) var(--space-140) var(--gutter-reading); }
 .case-hero { position: relative; height: var(--size-hero); display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-tile); background: var(--color-tile); }
 .case-hero--brand { background: var(--gradient-prevently); }
+.prose .live { margin-top: var(--space-40); margin-bottom: var(--space-40); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .live__parts { display: flex; margin: var(--space-0); padding: var(--space-0); }
+.prose .live p { margin: var(--space-0); }
+.prose .live__part { text-decoration: none; }
 .case-hero > .vis { margin: var(--space-0); border-radius: var(--radius-none); }
 .case-hero > .vis--inset { margin: var(--space-32) var(--space-40) var(--space-0); border-radius: var(--radius-inner) var(--radius-inner) var(--radius-none) var(--radius-none); }
 .case-hero > .vis--stage { margin-top: var(--space-24); }

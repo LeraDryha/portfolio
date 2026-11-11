@@ -12,7 +12,7 @@ type Rect = { x: number; y: number; w: number; h: number };
 type State = Rect & { o: number; bg?: string; r?: number };
 
 const TILE = { w: 540, h: 520 };
-const VIEW_H = 450; // the tile above its caption
+const CAPTION = 70; // a tile's caption covers the bottom of the canvas; a case hero has none
 const STEPS = [
   { label: "Primitives · gold, neutral, green", ms: 2300 },
   { label: "Semantic tokens", ms: 2300 },
@@ -43,12 +43,13 @@ const NAMED: [string, Rect, "inside-mid" | "inside" | "below"][] = [
 ];
 
 type Cam = { s: number; tx: number; ty: number };
-const fit = (x: number, y: number, w: number, h: number): Cam => {
-  const s = Math.min(TILE.w / w, VIEW_H / h);
-  return { s, tx: (TILE.w - w * s) / 2 - x * s, ty: (VIEW_H - h * s) / 2 - y * s };
+const fit = (viewH: number, x: number, y: number, w: number, h: number): Cam => {
+  const s = Math.min(TILE.w / w, viewH / h);
+  return { s, tx: (TILE.w - w * s) / 2 - x * s, ty: (viewH - h * s) / 2 - y * s };
 };
 // What the camera looks at on each step (none for the first two: they are drawn on the tile)
-const CAMS: (Cam | null)[] = [null, null, fit(296, 150, 480, 150), fit(300, 150, 720, 190), fit(246, 96, 1220, 900), { s: TILE.w / 1440, tx: 0, ty: 0 }];
+// (the product fills the width from the top, whatever the height)
+const camsFor = (viewH: number): (Cam | null)[] => [null, null, fit(viewH, 296, 150, 480, 150), fit(viewH, 300, 150, 720, 190), fit(viewH, 246, 66, 1220, 990), { s: TILE.w / 1440, tx: 0, ty: 0 }];
 // Selections in page coordinates (steps 2–4) and on the tile (steps 0–1)
 const SELS: Rect[][] = [
   [{ x: 100, y: 108 + DY, w: 340, h: 156 }],
@@ -74,7 +75,10 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
   world.className = "asm__world";
   const overlay = document.createElement("div");
   overlay.className = "asm__overlay";
-  canvas.append(world, overlay);
+  // Selections sit on their own layer, in canvas coordinates (the overlay may be scaled)
+  const marks = document.createElement("div");
+  marks.className = "asm__overlay asm__marks";
+  canvas.append(world, overlay, marks);
   root.appendChild(canvas);
 
   const els: { e: HTMLElement; states: State[]; delays: number[] }[] = [];
@@ -150,7 +154,7 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
     e.className = "asm-el asm-sel";
     e.innerHTML = "<b></b>";
     e.style.opacity = "0";
-    overlay.appendChild(e);
+    marks.appendChild(e);
     return e;
   };
   const sels = [makeSel(), makeSel()];
@@ -177,17 +181,25 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
     b.dataset.spot = spot;
   };
 
+  const captioned = !!root.closest(".tile");
+  let canvasH = 0; // set by fitCanvas
+  let viewH = TILE.h - (captioned ? CAPTION : 0);
+  let cams = camsFor(viewH);
+  let so = 1, ox = 0, oy = 0; // how the primitives' layer is scaled and moved
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let step = reduce ? PRODUCT : 0;
+
   const show = (i: number) => {
     els.forEach(({ e, states, delays }) => paint(e, states[i], delays[i] ?? 0));
-    const cam = CAMS[i] ?? CAMS[2]!;
+    const cam = cams[i] ?? cams[2]!;
     world.style.transform = `translate(${cam.tx}px, ${cam.ty}px) scale(${cam.s})`;
     world.style.opacity = i < 2 ? "0" : "1";
     sels.forEach((sel, n) => {
       const r = SELS[i][n];
       if (!r) { sel.style.opacity = "0"; return; }
-      const t = i < 2 ? r : toTile(r, cam);
+      const t = i < 2 ? { x: r.x * so + ox, y: r.y * so + oy, w: r.w * so, h: r.h * so } : toTile(r, cam);
       paint(sel, { ...t, o: 1 }, 0);
-      label(sel, SEL_LABELS[i][n], t.y + t.h + 24 < VIEW_H ? "below" : "above");
+      label(sel, SEL_LABELS[i][n], t.y + t.h + 24 < viewH ? "below" : "above");
     });
     // The assembled product names its parts, all together, until the loop starts again
     named.forEach((sel, n) => {
@@ -195,17 +207,32 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
       const [text, r, spot] = NAMED[n];
       const t = toTile(r, cam);
       t.x = Math.max(1, t.x); t.y = Math.max(1, t.y);
-      t.w = Math.min(t.w, TILE.w - 1 - t.x); t.h = Math.min(t.h, TILE.h - 1 - t.y);
+      t.w = Math.min(t.w, TILE.w - 1 - t.x); t.h = Math.min(t.h, canvasH - 1 - t.y);
       paint(sel, { ...t, o: 1 }, 2.2 + n * 0.12);
       label(sel, text, spot === "below" && t.x + 150 > TILE.w ? "below-right" : spot);
     });
   };
 
-  // Scale the 540 × 520 canvas to fit the tile, centred; the page's background runs on below it
+  // The canvas is 540 wide; in a box wider than the tile's proportions (a case hero, a tablet tile) it gets shorter,
+  // so the product still fills the width; otherwise it is 540 × 520, fitted and centred
   const fitCanvas = () => {
     const b = root.getBoundingClientRect();
-    const k = Math.min(b.width / TILE.w, b.height / TILE.h);
+    if (!b.width || !b.height) return;
+    const wide = b.width / b.height > TILE.w / TILE.h;
+    const h = wide ? (TILE.w * b.height) / b.width : TILE.h;
+    const k = wide ? b.width / TILE.w : Math.min(b.width / TILE.w, b.height / TILE.h);
+    canvas.style.height = `${h}px`;
     canvas.style.transform = `translateX(${(b.width - TILE.w * k) / 2}px) scale(${k})`;
+    if (Math.abs(h - canvasH) < 1) return;
+    canvasH = h;
+    viewH = h - (captioned ? CAPTION : 0);
+    cams = camsFor(viewH);
+    // Primitives and tokens are drawn for a 450-high view: centred, and smaller when the view is lower
+    so = Math.min(1, (viewH - 24) / 260);
+    ox = (TILE.w / 2) * (1 - so);
+    oy = viewH / 2 - 215 * so; // 215: the middle of the swatches or the chips with their name under them
+    overlay.style.transform = `translate(${ox}px, ${oy}px) scale(${so})`;
+    show(step);
   };
   const ro = new ResizeObserver(fitCanvas);
   ro.observe(root);
@@ -213,8 +240,6 @@ export function startAssemble(root: HTMLElement, v: Assemble) {
 
   // Runs only while the tile is on screen and not under the pointer (the tile's own is-running class)
   const tile = root.closest<HTMLElement>(".tile");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let step = reduce ? P : 0;
   let timer = 0;
   let hovered = false;
   const running = () => !reduce && (!tile || tile.classList.contains("is-running")) && !hovered;
