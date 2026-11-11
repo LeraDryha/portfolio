@@ -34,7 +34,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         <Icon name="close" />
       </a>
       <main className="case">
-        <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : entry.vis.kind === "assemble" ? "case-hero case-hero--tile" : "case-hero"}>
+        <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
           <Vis entry={entry} priority />
         </div>
 
