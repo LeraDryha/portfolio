@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 import type { MDXComponents } from "mdx/types";
 import { cases, type CaseEntry } from "@/content/site";
 
@@ -7,9 +7,13 @@ export type CaseMeta = {
   /** The page's h1 */
   heading: string;
   lead: string;
-  facts: { label: string; value: string; href?: string }[];
+  facts: { label: string; value: ReactNode; href?: string }[];
   /** The case in three blocks; short cases leave it out */
-  answer?: { problem: string; did: string; result: string; /** "What we did" unless the work was one person's */ didTitle?: string };
+  answer?: { problem: ReactNode; did: ReactNode; result: ReactNode; /** "What we did" unless the work was one person's */ didTitle?: string };
+  /** Figures under the result, three or four in a row */
+  stats?: { value: string; cap: string }[];
+  /** A live artefact to open, shown big after the facts (e.g. a Storybook) */
+  cta?: { eyebrow: string; title: string; line: string; href: string; action: string };
   /** One proof in the accent, under the summary */
   proof?: { mark: string; cap: string };
 };

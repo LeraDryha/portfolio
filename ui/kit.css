@@ -779,6 +779,7 @@
 .proof-block b { display: block; color: var(--color-accent); font-weight: var(--weight-semibold); font-size: var(--text-case-proof); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
 .proof-block span { display: block; margin-top: var(--space-8); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); }
 .stats { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); }
+.stats--4 { grid-template-columns: var(--layout-cols-4); }
 .stat { padding: var(--space-16); border-radius: var(--radius-figure); background: var(--color-tile); }
 .stat b { display: block; color: var(--color-accent); font-size: var(--text-stat); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-heading); line-height: var(--leading-tight); }
 .stat span { display: block; margin-top: var(--space-6); color: var(--color-pencil); font-size: var(--text-label); line-height: var(--leading-tag); }
@@ -900,6 +901,25 @@
 .props-map code, .chain-table code { color: var(--color-ink); font: var(--weight-regular) var(--text-control) var(--font-mono); }
 .props-map tbody th { color: var(--color-ink); }
 
+/* A live artefact to open (GRG Storybook): one big link on a grey block */
+.prose .open-card { position: relative; display: flex; align-items: center; justify-content: space-between; gap: var(--space-20); margin: var(--space-28) var(--space-0); padding: var(--space-24) var(--space-26); border-radius: var(--radius-block); background: var(--color-tile); color: var(--color-graphite); text-decoration: none; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.open-card__text { display: grid; gap: var(--space-4); }
+.open-card__eyebrow { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.open-card b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.open-card__action { flex: none; display: inline-flex; align-items: center; gap: var(--space-8); height: var(--size-tap); padding: var(--space-0) var(--space-20); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font-weight: var(--weight-medium); font-size: var(--text-control); }
+.open-card__action svg { width: var(--size-icon-small); height: var(--size-icon-small); }
+.open-card:hover .sel, .open-card:focus-visible .sel { opacity: var(--opacity-full); }
+.open-card .sel b { display: none; }
+.prose .open-card:focus-visible { outline: none; }
+
+/* Product screens with a theme switch (GRG): big, in a wide band */
+.showcase { display: grid; gap: var(--space-14); margin-top: var(--space-28); margin-bottom: var(--space-28); }
+.showcase__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
+.showcase__screen { position: relative; overflow: hidden; border-radius: var(--radius-figure); background: var(--color-tile); }
+.showcase__img { object-fit: cover; object-position: top left; opacity: var(--opacity-hidden); transition: opacity var(--duration-fade) var(--ease-fade); }
+.showcase__img.is-on { opacity: var(--opacity-full); }
+.showcase__cap { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); }
+
 /* A larger part of a case, set apart from the chapters before it */
 .part { margin-top: var(--space-part); padding-top: var(--space-24); border-top: var(--size-hairline) solid var(--color-hairline); }
 .prose .part h2 { margin-top: var(--space-8); }
@@ -1000,6 +1020,8 @@
   .case-hero > .vis--inset { margin: var(--space-20) var(--space-18) var(--space-0); }
   .prose { font-size: var(--text-body); }
   .stats, .lists, .fig-row, .fig-row--3, .chain, .decision__pair { grid-template-columns: var(--layout-col-1); }
+  .stats--4 { grid-template-columns: var(--layout-cols-2); }
+  .prose .open-card { flex-direction: column; align-items: flex-start; }
   .case-tile__foot { flex-direction: column; align-items: flex-start; gap: var(--space-4); padding: var(--space-48) var(--space-20) var(--space-18); }
   .case-wide { width: var(--layout-wide-phone); }
   .specimen__button { zoom: var(--zoom-specimen-phone); }

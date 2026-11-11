@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { Selection } from "@/components/shell/Icons";
+import { Icon, Selection } from "@/components/shell/Icons";
 
 /* Building blocks for case pages, used from MDX (see mdx-components.tsx).
    Class names come straight from ui/kit.css. */
@@ -92,7 +92,7 @@ export function SideCopy({ children }: { children: ReactNode }) {
 
 export function Stats({ items }: { items: { value: string; cap: string }[] }) {
   return (
-    <div className="stats">
+    <div className={items.length === 4 ? "stats stats--4" : "stats"}>
       {items.map((s) => (
         <div className="stat" key={s.value + s.cap}>
           <b>{s.value}</b>
@@ -397,3 +397,35 @@ export function Part({ eyebrow, title, children }: { eyebrow: string; title: str
     </header>
   );
 }
+
+/** A live artefact to open (the GRG Storybook): one big link that can't be missed, a Figma selection on hover. */
+export function OpenCard({ eyebrow, title, line, href, action }: { eyebrow: string; title: string; line: string; href: string; action: string }) {
+  return (
+    <a className="open-card" href={href} target="_blank" rel="noopener">
+      <span className="open-card__text">
+        <span className="open-card__eyebrow">{eyebrow}</span>
+        <b>{title}</b>
+        <span>{line}</span>
+      </span>
+      <span className="open-card__action">
+        {action}
+        <Icon name="out" />
+      </span>
+      <span className="sr-only"> (opens in a new tab)</span>
+      <Selection />
+    </a>
+  );
+}
+
+const STORYBOOK = "https://grg-design-system.vercel.app";
+
+/** The word "Storybook" as a link to the GRG Storybook (or to one of its pages). */
+export function Storybook({ path, children = "Storybook" }: { path?: string; children?: ReactNode }) {
+  return (
+    <a href={path ? `${STORYBOOK}/?path=${path}` : STORYBOOK} target="_blank" rel="noopener">
+      {children}
+    </a>
+  );
+}
+
+export { ThemeShowcase } from "@/components/case/ThemeShowcase";
