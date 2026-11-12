@@ -8,6 +8,7 @@ const EASE = "cubic-bezier(.2, .8, .2, 1)";
 // the phone slides away → the figures count up → everything fades and the flower comes back
 const T = { flower: 0, phone: 2200, note: 3400, noteStep: 1300, away: 8000, figures: 8800, out: 13600, loop: 14400 };
 const SHOWN = 3;
+const START = 0.6;
 
 const format = (n: number, decimals: number) => n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
@@ -56,7 +57,8 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
         const start = performance.now() + (i === 0 ? 0 : 350);
         const tick = (t: number) => {
           const k = Math.max(0, Math.min(1, (t - start) / 1400));
-          b.textContent = format(f.to * (1 - Math.pow(1 - k, 3)), f.decimals ?? 0) + (f.suffix ?? "");
+          // From 60% of the figure, never from zero: a frame caught mid-count still reads as a result
+          b.textContent = format(f.to * (START + (1 - START) * (1 - Math.pow(1 - k, 3))), f.decimals ?? 0) + (f.suffix ?? "");
           if (k < 1) frames.push(requestAnimationFrame(tick));
         };
         frames.push(requestAnimationFrame(tick));
@@ -64,7 +66,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
 
     const run = () => {
       stack.replaceChildren();
-      nums.forEach((b, i) => (b.textContent = format(0, v.figures[i].decimals ?? 0) + (v.figures[i].suffix ?? "")));
+      nums.forEach((b, i) => (b.textContent = format(v.figures[i].to * START, v.figures[i].decimals ?? 0) + (v.figures[i].suffix ?? "")));
       const d = T.loop;
       const o = (ms: number) => ms / d;
       flower.animate(
@@ -132,7 +134,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
         {v.figures.map((f, i) => (
           <div key={f.cap} className={i === 0 ? "bloom__figure bloom__figure--lead" : "bloom__figure"}>
             <p className="bloom__value">
-              <b>0</b>
+              <b>{format(f.to, f.decimals ?? 0) + (f.suffix ?? "")}</b>
               {f.star && <span className="bloom__star">★</span>}
             </p>
             <span>{f.cap}</span>
