@@ -125,6 +125,16 @@ export function StageTable({ rows }: { rows: { stage: string; doc: string }[] })
   );
 }
 
+/** More of the same evidence, folded: a quiet button opens it (native details/summary, keyboard and screen reader ready). */
+export function More({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <details className="more case-wide">
+      <summary>{label}</summary>
+      <div className="more__body">{children}</div>
+    </details>
+  );
+}
+
 /** Small grey cards with a title and a line, three in a row. */
 export function Cards({ items, cols = 3 }: { items: { title: string; text: ReactNode }[]; cols?: 2 | 3 }) {
   return (

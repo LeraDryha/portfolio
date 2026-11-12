@@ -1442,3 +1442,12 @@
   .handsets__row { padding-right: var(--space-48); }
 }
 .handsets__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
+
+/* More: folded evidence behind a quiet pill */
+.more { margin-top: var(--space-12); margin-bottom: var(--space-28); }
+.more > summary { display: inline-flex; align-items: center; gap: var(--space-8); height: var(--size-tap); padding: var(--space-0) var(--space-20); border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font: var(--weight-medium) var(--text-control) / var(--leading-tight) var(--font-sans); cursor: pointer; list-style: none; }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::after { content: "+"; color: var(--color-pencil); font-family: var(--font-mono); }
+.more[open] > summary::after { content: "−"; }
+.more > summary:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
+.more__body { display: grid; }
