@@ -543,7 +543,7 @@
   --size-case-toc: 132px;
   --ratio-wipe-phone: 4 / 5;
   --filter-shot: none;
-  --space-toc-top: 96px;
+  --space-toc-top: var(--space-40);
   --mask-scroll-edge: linear-gradient(to right, #000 calc(100% - 48px), transparent);
   --size-phone-spec: 520px;
   --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
@@ -1111,7 +1111,7 @@
 .wipe__img { object-fit: cover; object-position: top left; pointer-events: none; user-select: none; }
 .wipe__dark { position: absolute; inset: var(--space-0); clip-path: inset(0 0 0 var(--cut)); }
 .wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-stroke); translate: var(--move-centre-x-only); background: var(--color-figma-component); pointer-events: none; }
-.wipe__line span { position: absolute; top: var(--pos-centre); left: var(--pos-centre); translate: var(--move-centre); padding: var(--space-6) var(--space-10); border-radius: var(--radius-pill); background: var(--color-figma-component); color: var(--color-on-dark); font: var(--weight-medium) var(--text-micro) / var(--leading-tight) var(--font-mono); white-space: nowrap; box-shadow: var(--shadow-float); }
+.wipe__line span, .phone-wipe__line span { position: absolute; top: var(--pos-centre); left: var(--pos-centre); translate: var(--move-centre); padding: var(--space-6) var(--space-10); border-radius: var(--radius-pill); background: var(--color-figma-component); color: var(--color-on-dark); font: var(--weight-medium) var(--text-micro) / var(--leading-tight) var(--font-mono); white-space: nowrap; box-shadow: var(--shadow-float); }
 .wipe__range { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); margin: var(--space-0); opacity: var(--opacity-hidden); cursor: ew-resize; }
 .wipe:has(.wipe__range:focus-visible) { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--offset-focus); }
 .wipe.is-sweeping .wipe__dark { transition: clip-path var(--duration-wipe) var(--ease-cam); }
@@ -1302,6 +1302,8 @@
 .phone-wipe__dark { position: absolute; inset: var(--space-0); clip-path: inset(0 0 0 var(--cut)); }
 .phone-wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-wipe-line); translate: var(--move-centre-x-only); background: var(--color-figma-component); }
 .phone-wipe__range { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); margin: var(--space-0); opacity: var(--opacity-hidden); cursor: ew-resize; }
+.phone-wipe .is-sweeping .phone-wipe__dark { transition: clip-path var(--duration-wipe) var(--ease-cam); }
+.phone-wipe .is-sweeping .phone-wipe__line { transition: left var(--duration-wipe) var(--ease-cam); }
 .phone-wipe .device:has(.phone-wipe__range:focus-visible) { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); }
 
 /* Research: the persona and the journey map */

@@ -286,9 +286,9 @@ Part (an eyebrow and a heading over a hairline: the start of a larger part of th
 - **Research**: the persona across the top (who she is, then wants, fears and needs in three columns), and under it a five-stage journey map whose rows line up across the stages (pain, a quote from the interviews in Newsreader italic in the accent, and what the app answers with).
 - **Voice table**: before (struck through in Redline), what was wrong, after (in ink).
 - **Spec to screen**: a real spec from the project, as a document (white page, its file name in mono over a hairline, the text in Geist Mono with keys and headings in ink), beside the iPhone with the screen built from it, on a grey block; tabs choose the example, an EN / UA switch on the right of the tabs reads the spec in English or in its original Ukrainian.
-- **Chapter list** (every case, screens 1400px and wider): the case's chapter titles in a quiet column fixed at the top left, 12px Pencil, the chapter in view in ink; built from the page's own sections.
+- **Chapter list** (every case, screens 1400px and wider): the case's chapter titles in a quiet column fixed at the top left, its first line level with the top of the hero card and the close button, 12px Pencil, the chapter in view in ink; built from the page's own sections.
 - **Stage table**: the same grey table: each stage of the work in semibold, and the document written before its code.
-- **Phone wipe**: one phone screen in both themes, the light one cut by a Component Violet line to drag.
+- **Phone wipe**: one phone screen in both themes, the light one cut by a Component Violet line with the same "Light · Dark" pill as the theme wipe; it sweeps once on first view and rests in the middle (still with reduced motion), then drags.
 - Cards (title and a line, three in a row), component pills (with ×2), and reviews quoted without names beside what the release shipped.
 
 ### Greeting Curtain
