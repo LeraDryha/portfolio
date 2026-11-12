@@ -257,7 +257,7 @@ A Figma cursor with a name tag in the person's colour. They arrive when their ti
 Yahoo (copies the email, "Email copied" toast), LinkedIn and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
 
 ### Text Tile
-Learning: a title (21px, ink) and a line (Pencil) at the bottom-left, no action button; the whole tile opens the Learning page the way a case tile opens its case (the title moves into the page heading). The page lists courses and certificates. Filtered under About.
+Learning & recognition: a title (21px, ink) and a line (Pencil) at the bottom-left, no action button; the whole tile opens the page the way a case tile opens its case (the title moves into the page heading). The page: a lead and a "Now" line (what is being learned), Recognition (the DEV Challenge award), Courses as grey cards two in a row (the certificate whole on the page colour, title, school · year, the result the certificate shows in ink medium; the card opens the certificate), then the CASES foundations as one line of links and a note on the previous surname. Filtered under About.
 
 ### Filter and Theme
 Pill segmented control: All / About / Work / Writing hides and shows tiles; the tiles that stay close up in the same order with no holes and slide to their new places (Work: Prevently and GRG side by side, then Comfy, Adtelligent, Financial Assistant). More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.
