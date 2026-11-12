@@ -372,6 +372,11 @@
   --blur-caption: blur(14px) saturate(1.4);
   --space-caption-top: 56px;
   --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium learning" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
+  /* Filtered views: the tiles left close up in the same order, with no holes */
+  --layout-bento-areas-work: "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
+  --layout-bento-rows-work: var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile);
+  --layout-bento-areas-about: "intro intro email linkedin" "learning . . .";
+  --layout-bento-areas-writing: "medium . . .";
   --layout-wide: min(var(--layout-page), calc(100vw - var(--space-48)));
   --layout-wide-phone: calc(100vw - var(--space-32));
   --layout-anatomy: minmax(0, 5fr) minmax(0, 6fr);
@@ -670,7 +675,16 @@
   .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
   .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
   .area-medium { grid-area: medium; } .area-learning { grid-area: learning; }
+  .bento[data-view="work"] { grid-template-areas: var(--layout-bento-areas-work); grid-template-rows: var(--layout-bento-rows-work); }
+  .bento[data-view="about"] { grid-template-areas: var(--layout-bento-areas-about); grid-template-rows: none; }
+  .bento[data-view="writing"] { grid-template-areas: var(--layout-bento-areas-writing); grid-template-rows: none; }
 }
+/* Each tile is its own view-transition group, so switching the filter slides the tiles to their new places */
+.area-intro { view-transition-name: tile-intro; } .area-email { view-transition-name: tile-email; } .area-linkedin { view-transition-name: tile-linkedin; }
+.area-prevently { view-transition-name: tile-prevently; } .area-grg { view-transition-name: tile-grg; } .area-comfy { view-transition-name: tile-comfy; }
+.area-adtelligent { view-transition-name: tile-adtelligent; } .area-sfa { view-transition-name: tile-sfa; }
+.area-medium { view-transition-name: tile-medium; } .area-learning { view-transition-name: tile-learning; }
+.is-filtering .tile [style*="view-transition-name"] { view-transition-name: none !important; }
 .tile:focus-visible { outline: none; }
 .stretch::after { content: ""; position: absolute; inset: var(--space-0); z-index: var(--z-link); border-radius: var(--radius-tile); }
 .stretch:focus-visible { outline: none; }

@@ -260,7 +260,7 @@ Yahoo (copies the email, "Email copied" toast), LinkedIn and Medium (open in a n
 Learning: a title (21px, ink) and a line (Pencil) at the bottom-left, no action button; the whole tile opens the Learning page the way a case tile opens its case (the title moves into the page heading). The page lists courses and certificates. Filtered under About.
 
 ### Filter and Theme
-Pill segmented control: All / About / Work / Writing hides and shows tiles with a soft transition; More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.
+Pill segmented control: All / About / Work / Writing hides and shows tiles; the tiles that stay close up in the same order with no holes and slide to their new places (Work: Prevently and GRG side by side, then Comfy, Adtelligent, Financial Assistant). More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.
 
 ### Case Page Blocks
 Facts (labels in a column, values aligned; a value can be a link), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens full size), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.

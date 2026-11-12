@@ -68,6 +68,8 @@ export function HomeBehavior() {
     const filter = (f: string) => {
       fbtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === f)));
       tiles.forEach((t) => (t.hidden = !(f === "all" || t.dataset.cat === f)));
+      const bento = document.getElementById("bento");
+      if (bento) bento.dataset.view = f;
       const showMore = f === "all" || f === "work";
       if (moreRow) moreRow.hidden = !showMore;
       if (moreList && moreBtn) moreList.hidden = !showMore || moreBtn.getAttribute("aria-expanded") !== "true";
@@ -75,9 +77,12 @@ export function HomeBehavior() {
     fbtns.forEach((b) =>
       on(b, "click", () => {
         const go = () => filter(b.dataset.filter!);
-        const d = document as Document & { startViewTransition?: (cb: () => void) => unknown };
-        if (d.startViewTransition && !reduce) d.startViewTransition(go);
-        else go();
+        const d = document as Document & { startViewTransition?: (cb: () => void) => { finished: Promise<void> } };
+        if (d.startViewTransition && !reduce) {
+          // While the tiles slide, the live products inside them move with their tile, not as their own layer
+          document.documentElement.classList.add("is-filtering");
+          d.startViewTransition(go).finished.finally(() => document.documentElement.classList.remove("is-filtering"));
+        } else go();
       }),
     );
 
