@@ -1314,7 +1314,7 @@
 .journey li { display: grid; grid-row: span 4; grid-template-rows: subgrid; padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
 .journey b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
 .journey q { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; }
-.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
+.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); font-style: normal; }
 .journey strong { color: var(--color-ink); font-weight: var(--weight-medium); }
 
 /* Try it: questions on the left, the plan in the app's look on the right */
