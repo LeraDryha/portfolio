@@ -541,6 +541,7 @@
   --size-voice-table: 640px;
   --size-stage-col: 160px;
   --size-case-toc: 132px;
+  --space-toc-top: 96px;
   --mask-scroll-edge: linear-gradient(to right, #000 calc(100% - 48px), transparent);
   --size-phone-spec: 520px;
   --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
@@ -1445,10 +1446,10 @@
 }
 .handsets__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
 
-/* Chapters: on wide screens only, a quiet list fixed at the left; the chapter in view in ink */
+/* Chapters: on wide screens only, a quiet list fixed at the top left; the chapter in view in ink */
 .case-toc { display: none; }
 @media (min-width: 1400px) {
-  .case-toc { position: fixed; z-index: var(--z-raise); left: var(--space-24); top: var(--pos-centre); translate: var(--move-centre-y-only); display: block; width: var(--size-case-toc); }
+  .case-toc { position: fixed; z-index: var(--z-raise); left: var(--space-24); top: var(--space-toc-top); display: block; width: var(--size-case-toc); }
   .case-toc ol { display: grid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
   .case-toc a { display: block; color: var(--color-pencil); font-size: var(--text-micro); line-height: var(--leading-tag); text-decoration: none; }
   .case-toc a:hover, .case-toc a[aria-current] { color: var(--color-ink); }
