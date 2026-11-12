@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Phone } from "@/components/case/PreventlyBlocks";
 
 /** A line of a spec document: a heading, a paragraph, a "Key: value" line or a list item with a bold lead. */
-export type SpecLine = { h: string } | { p: string } | { k: string; v: string } | { li: string; lead?: string };
+export type SpecLine = { h: string } | { p: string } | { k: string; v: string } | { li: string; lead?: string } | { code: string };
 export type SpecExample = {
   id: string;
   tab: string;
@@ -19,6 +19,7 @@ export type SpecExample = {
 function Line({ l }: { l: SpecLine }) {
   if ("h" in l) return <p className="spec__h">{l.h}</p>;
   if ("p" in l) return <p className="spec__p">{l.p}</p>;
+  if ("code" in l) return <code className="spec__code">{l.code}</code>;
   if ("k" in l)
     return (
       <p className="spec__kv">

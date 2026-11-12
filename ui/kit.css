@@ -1385,8 +1385,11 @@
 .reviews__shipped span { color: var(--color-pencil); font-size: var(--text-label); }
 
 /* Spec to screen: a real spec document beside the screen built from it */
-.spec { display: grid; gap: var(--space-14); margin-top: var(--space-18); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.spec { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-14); margin-top: var(--space-18); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .spec__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
+/* Six examples: the tabs scroll sideways when they don't fit */
+.spec__bar > .filter:first-child { min-width: var(--space-0); max-width: var(--size-full); overflow-x: auto; scrollbar-width: none; }
+.spec__bar .filter__btn { flex: none; white-space: nowrap; }
 .spec__pair { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: var(--space-28); align-items: center; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .spec__doc { align-self: stretch; display: grid; align-content: start; min-width: var(--space-0); border-radius: var(--radius-inner); background: var(--color-page); box-shadow: var(--shadow-spec-doc); }
 .prose .spec__file { margin: var(--space-0); padding: var(--space-10) var(--space-16); border-bottom: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); }
@@ -1395,6 +1398,8 @@
 .prose .spec__h { margin-top: var(--space-8); color: var(--color-ink); font-weight: var(--weight-medium); }
 .prose .spec__h:first-child { margin-top: var(--space-0); }
 .spec__body b { color: var(--color-ink); font-weight: var(--weight-medium); }
+.spec__code { display: block; margin-inline: calc(var(--space-20) * -1); padding: var(--space-2) var(--space-20); background: var(--color-code-hl); color: var(--color-ink); white-space: pre-wrap; }
+.spec__code + .spec__code { margin-top: calc(var(--space-8) * -1); }
 .spec .phone { --h: var(--size-phone-spec); }
 
 @media (max-width: 860px) {
