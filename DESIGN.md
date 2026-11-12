@@ -280,6 +280,14 @@ Open Card: a grey block with a title, a line (an eyebrow only where it adds some
 ### Audit Blocks (GRG case page)
 Part (an eyebrow and a heading over a hairline: the start of a larger part of the story), Decision (title; "In Figma" and "In the product" side by side on white insets, optional crops; why, in ink), Finding (id in mono, severity pill, what is wrong, "Recommended."), Formats (the ways a value was written, struck through in Redline, then the one rule in Mulberry Ink), Chain (finding → system → product, three cards, with the PR), Chain table (every decision with its PRs), Scenario (a numbered task with Checks / Success / Measure).
 
+### Prevently Case Blocks
+- **Phone frames**: a screen in a near-black bezel, the same height for every phone in a row. iPhone with round corners (a Dynamic Island is drawn on screenshots taken on a phone; simulator shots carry their own), Android with smaller corners and a camera dot. A pair (iOS beside Android) sits big on a grey block; a flow is five phones in a row (scrolls sideways on phones) with a mono caption under each and a platform label over the row. Screens come from the real apps: the iOS simulator, the Android emulator, or Lera's phone.
+- **Try it**: the app's questions on the left (an age slider and pill toggles), the plan on the right in the app's own look (Mulish, its category colours, pink "why" chips, the source in mono); a check-up the last change added gets a green ring and "New". The rules are the app's own, translated.
+- **Research**: the persona card beside a five-stage journey map (pain, a quote from the interviews in Newsreader italic in the accent, and what the app answers with).
+- **Voice table**: before (struck through in Redline), what was wrong, after (in ink).
+- **Phone wipe**: one phone screen in both themes, the light one cut by a Component Violet line to drag.
+- Cards (title and a line, three in a row), component pills (with ×2), and reviews quoted without names beside what the release shipped.
+
 ### Greeting Curtain
 On the first visit only: "Hello", "Привіт", then other languages flash on a dark curtain that slides up. Click or Esc skips. Never Russian or Belarusian.
 

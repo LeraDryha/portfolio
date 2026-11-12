@@ -92,7 +92,7 @@ export function SideCopy({ children }: { children: ReactNode }) {
 
 export function Stats({ items }: { items: { value: string; cap: string }[] }) {
   return (
-    <div className={items.length === 4 ? "stats stats--4" : "stats"}>
+    <div className={items.length === 5 ? "stats stats--5" : items.length === 4 ? "stats stats--4" : "stats"}>
       {items.map((s) => (
         <div className="stat" key={s.value + s.cap}>
           <b>{s.value}</b>
@@ -450,3 +450,5 @@ export function DocLinks({ items }: { items: { title: string; line: string; src:
 }
 
 export { ThemeShowcase } from "@/components/case/ThemeShowcase";
+export { Phone, Phones, Research, VoiceTable, Cards, Parts, Reviews } from "@/components/case/PreventlyBlocks";
+export { LivePlan, NativeCode, PhoneWipe } from "@/components/case/PreventlyLive";

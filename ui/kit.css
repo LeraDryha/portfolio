@@ -455,6 +455,53 @@
   --size-tab-line: 2px;
   --size-chain-table: 640px;
   --space-part: 88px;
+  /* Prevently case: phone frames, and the app's own colours inside the "Try it" phone */
+  --color-device: #0b0b0c;
+  --color-device-edge: #3a3a3c;
+  --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
+  --size-phone: 380px;
+  --space-handsets: 44px;
+  --size-phone-lg: 600px;
+  --size-phone-phone: 340px;
+  --size-phone-lg-phone: 460px;
+  --ratio-device-pad: .016;
+  --ratio-ios-radius: .085;
+  --ratio-ios-screen-radius: .07;
+  --ratio-android-radius: .06;
+  --ratio-android-screen-radius: .045;
+  --ratio-island-top: .031;
+  --ratio-island-w: .138;
+  --ratio-island-h: .041;
+  --ratio-camera: .02;
+  --color-app-canvas: #f4f4f5;
+  --color-app-card: #ffffff;
+  --color-app-ink: #0a0a0a;
+  --color-app-soft: #737373;
+  --color-app-chip: #fbe7ef;
+  --color-app-chip-ink: #a3305f;
+  --color-app-new: #2fbf71;
+  --color-cat-lab: #fdd5df; --color-cat-lab-ink: #c2335f;
+  --color-cat-ins: #fde7b0; --color-cat-ins-ink: #b07a00;
+  --color-cat-con: #d9ecff; --color-cat-con-ink: #2c6cb0;
+  --color-cat-vac: #d8f3e3; --color-cat-vac-ink: #1f8a50;
+  --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
+  --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
+  --size-try-phone: 640px;
+  --size-try-icon: 40px;
+  --radius-try-phone: 32px;
+  --radius-try-card: 20px;
+  --radius-try-icon: 12px;
+  --text-try-title: 26px;
+  --layout-research: minmax(0, 0.9fr) minmax(0, 2.5fr);
+  --layout-try: minmax(0, 1fr) minmax(0, 1.15fr);
+  --layout-journey: repeat(5, minmax(128px, 1fr));
+  --layout-cols-5: repeat(5, minmax(0, 1fr));
+  --size-voice-table: 640px;
+  --size-wipe-line: 2px;
+  --size-try-glyph: 20px;
+  --size-try-stroke: 1.7;
+  --shadow-try-new: 0 0 0 2px var(--color-app-new);
+  --shadow-none-ring: 0 0 0 0 transparent;
 }
 
 /* Tokens that depend on a screenshot's ratio (--ratio, set by the product): declared where --ratio is known */
@@ -468,6 +515,11 @@
   :root:not([data-theme="light"]) {
     --color-page: #000000;
     --color-tile: #1c1c1e;
+  --color-app-canvas: #0e0e10; --color-app-card: #1c1c1f; --color-app-ink: #f5f5f5; --color-app-soft: #a1a1a1;
+  --color-app-chip: #3b1d2a; --color-app-chip-ink: #f4a6c6;
+  --color-cat-lab: #4a1f2c; --color-cat-lab-ink: #ff9bb6; --color-cat-ins: #45370f; --color-cat-ins-ink: #ffd36b;
+  --color-cat-con: #15304a; --color-cat-con-ink: #8cc4ff; --color-cat-vac: #133825; --color-cat-vac-ink: #7fe0a8;
+  --color-cat-q: #2a2148; --color-cat-q-ink: #c4b2ff;
     --color-raised: #2c2c2e;
     --color-ink: #f5f5f7;
     --color-graphite: #c7c7cc;
@@ -490,6 +542,11 @@
 :root[data-theme="dark"] {
   --color-page: #000000;
   --color-tile: #1c1c1e;
+  --color-app-canvas: #0e0e10; --color-app-card: #1c1c1f; --color-app-ink: #f5f5f5; --color-app-soft: #a1a1a1;
+  --color-app-chip: #3b1d2a; --color-app-chip-ink: #f4a6c6;
+  --color-cat-lab: #4a1f2c; --color-cat-lab-ink: #ff9bb6; --color-cat-ins: #45370f; --color-cat-ins-ink: #ffd36b;
+  --color-cat-con: #15304a; --color-cat-con-ink: #8cc4ff; --color-cat-vac: #133825; --color-cat-vac-ink: #7fe0a8;
+  --color-cat-q: #2a2148; --color-cat-q-ink: #c4b2ff;
   --color-raised: #2c2c2e;
   --color-ink: #f5f5f7;
   --color-graphite: #c7c7cc;
@@ -1139,3 +1196,128 @@
   .curtain--leave { opacity: var(--opacity-hidden); }
   ::view-transition-group(*) { animation: none; }
 }
+
+/* ---------- Prevently case ---------- */
+.stats--5 { grid-template-columns: var(--layout-cols-5); }
+
+/* Phone frames: a screen in a bezel, the same height on both platforms */
+.phone { --h: var(--size-phone); display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-0); }
+.phone--lg { --h: var(--size-phone-lg); }
+.phone figcaption, .phone-wipe figcaption, .handsets__label { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; text-align: center; }
+.handsets__label { text-align: left; }
+/* A caption never makes its phone wider: it wraps inside the phone's width */
+.phone figcaption { width: var(--space-0); min-width: var(--size-full); }
+.device { position: relative; display: block; height: var(--h); padding: calc(var(--h) * var(--ratio-device-pad)); background: var(--color-device); box-shadow: var(--shadow-device); }
+.device__screen { position: relative; display: block; height: 100%; overflow: hidden; }
+.device__screen img { object-fit: cover; }
+.device--ios { border-radius: calc(var(--h) * var(--ratio-ios-radius)); }
+.device--ios .device__screen { border-radius: calc(var(--h) * var(--ratio-ios-screen-radius)); }
+.device--android { border-radius: calc(var(--h) * var(--ratio-android-radius)); }
+.device--android .device__screen { border-radius: calc(var(--h) * var(--ratio-android-screen-radius)); }
+.device--android::after { content: ""; position: absolute; z-index: var(--z-raise); top: calc(var(--h) * var(--ratio-island-top)); left: var(--pos-centre); width: calc(var(--h) * var(--ratio-camera)); height: calc(var(--h) * var(--ratio-camera)); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-device); }
+.device--island::after { content: ""; position: absolute; z-index: var(--z-raise); top: calc(var(--h) * var(--ratio-island-top)); left: var(--pos-centre); width: calc(var(--h) * var(--ratio-island-w)); height: calc(var(--h) * var(--ratio-island-h)); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-device); }
+.handsets { display: grid; gap: var(--space-12); margin-top: var(--space-28); margin-bottom: var(--space-28); }
+.prose .handsets__label { margin: var(--space-0); }
+/* One fixed gap on every row, so a shorter row keeps the spacing of a full one */
+.handsets__row { display: flex; justify-content: flex-start; gap: var(--space-handsets); overflow-x: auto; padding: var(--space-4) var(--space-2) var(--space-8); }
+.handsets__row--lg { display: flex; justify-content: center; gap: var(--space-48); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+
+/* Light and dark on one phone screen */
+.phone-wipe { --h: var(--size-phone-lg); display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-28) var(--space-0); }
+.phone-wipe__dark { position: absolute; inset: var(--space-0); clip-path: inset(0 0 0 var(--cut)); }
+.phone-wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-wipe-line); translate: var(--move-centre-x-only); background: var(--color-figma-component); }
+.phone-wipe__range { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); margin: var(--space-0); opacity: var(--opacity-hidden); cursor: ew-resize; }
+.phone-wipe .device:has(.phone-wipe__range:focus-visible) { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); }
+
+/* Research: the persona and the journey map */
+.research { display: grid; grid-template-columns: var(--layout-research); gap: var(--space-12); margin-top: var(--space-28); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.research__persona, .research__journey { display: grid; gap: var(--space-12); align-content: start; min-width: var(--space-0); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .research p { margin: var(--space-0); }
+.prose .research__eyebrow, .research__eyebrow { margin: var(--space-0); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.research__name { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); }
+.research dl { display: grid; gap: var(--space-12); margin: var(--space-0); }
+.research dt { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.research dd { margin: var(--space-4) var(--space-0) var(--space-0); color: var(--color-ink); }
+.prose .journey { display: grid; grid-template-columns: var(--layout-journey); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-4); overflow-x: auto; list-style: none; }
+.journey li { display: grid; align-content: start; gap: var(--space-10); padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
+.journey b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.journey q { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; }
+.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
+.journey strong { color: var(--color-ink); font-weight: var(--weight-medium); }
+
+/* Try it: questions on the left, the plan in the app's look on the right */
+.try { display: grid; grid-template-columns: var(--layout-try); gap: var(--space-28); margin-top: var(--space-28); margin-bottom: var(--space-28); padding: var(--space-28); border-radius: var(--radius-tile); background: var(--color-tile); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.try__ask { display: grid; align-content: start; gap: var(--space-16); }
+.try__label { display: flex; justify-content: space-between; color: var(--color-ink); font-weight: var(--weight-medium); }
+.try__label output { color: var(--color-accent); font-family: var(--font-mono); }
+.try__range { width: var(--size-full); accent-color: var(--color-accent); }
+.try__group { display: grid; gap: var(--space-8); }
+.try__toggles { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.try__toggle { padding: var(--space-10) var(--space-14); border: var(--size-hairline) solid var(--color-hairline); border-radius: var(--radius-pill); background: var(--color-page); color: var(--color-graphite); font: var(--weight-medium) var(--text-ui) / var(--leading-tight) var(--font-sans); cursor: pointer; }
+.try__toggle[aria-pressed="true"] { border-color: var(--color-ink); background: var(--color-ink); color: var(--color-page); }
+.try__toggle:focus-visible, .try__range:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
+.prose .try p { margin: var(--space-0); }
+.try__fine { color: var(--color-pencil); font-size: var(--text-label); }
+.try__phone { display: grid; align-content: start; gap: var(--space-8); max-height: var(--size-try-phone); min-width: var(--space-0); overflow-y: auto; padding: var(--space-20) var(--space-16); border: var(--size-hairline) solid var(--color-hairline); border-radius: var(--radius-try-phone); background: var(--color-app-canvas); color: var(--color-app-ink); font-family: var(--font-prevently-app); }
+.try__head { display: flex; justify-content: space-between; align-items: baseline; padding: var(--space-0) var(--space-4); }
+.try__head b { font-weight: var(--weight-bold); font-size: var(--text-try-title); line-height: var(--leading-tight); }
+.try__head span, .try__cat-name, .try__freq { color: var(--color-app-soft); font-size: var(--text-label); font-weight: var(--weight-medium); }
+.try__cat { display: grid; gap: var(--space-8); }
+.prose .try__cat-name { margin: var(--space-6) var(--space-4) var(--space-0); font-size: var(--text-ui); }
+.try__card { position: relative; display: grid; grid-template-columns: var(--size-try-icon) minmax(0, 1fr); gap: var(--space-12); padding: var(--space-14); border-radius: var(--radius-try-card); background: var(--color-app-card); }
+.try__card.is-new { animation: try-new var(--duration-wipe) var(--ease-cam); }
+@keyframes try-new { from { box-shadow: var(--shadow-try-new); } to { box-shadow: var(--shadow-none-ring); } }
+.try__icon { display: grid; place-items: center; width: var(--size-try-icon); height: var(--size-try-icon); border-radius: var(--radius-try-icon); }
+.try__icon svg { width: var(--size-try-glyph); height: var(--size-try-glyph); fill: none; stroke: currentColor; stroke-width: var(--size-try-stroke); stroke-linecap: round; stroke-linejoin: round; }
+.try__icon--lab { background: var(--color-cat-lab); color: var(--color-cat-lab-ink); }
+.try__icon--ins { background: var(--color-cat-ins); color: var(--color-cat-ins-ink); }
+.try__icon--con { background: var(--color-cat-con); color: var(--color-cat-con-ink); }
+.try__icon--vac { background: var(--color-cat-vac); color: var(--color-cat-vac-ink); }
+.try__icon--q { background: var(--color-cat-q); color: var(--color-cat-q-ink); }
+.try__name { font-weight: var(--weight-semibold); font-size: var(--text-body); line-height: var(--leading-ui); }
+.try__chips { display: flex; flex-wrap: wrap; gap: var(--space-4); padding-top: var(--space-8); }
+.try__chips span { padding: var(--space-4) var(--space-8); border-radius: var(--radius-label); background: var(--color-app-chip); color: var(--color-app-chip-ink); font-weight: var(--weight-semibold); font-size: var(--text-micro); line-height: var(--leading-tight); }
+.try__src { padding-top: var(--space-8); color: var(--color-app-soft); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); }
+.try__new { position: absolute; top: var(--space-12); right: var(--space-12); padding: var(--space-4) var(--space-6); border-radius: var(--radius-label); background: var(--color-app-new); color: var(--color-on-dark); font-weight: var(--weight-bold); font-size: var(--text-eyebrow); line-height: var(--leading-tight); }
+
+/* Voice: before, what was wrong, after */
+.prose .voice { margin-top: var(--space-28); margin-bottom: var(--space-28); padding: var(--space-8) var(--space-24); overflow-x: auto; border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.voice table { width: var(--size-full); min-width: var(--size-voice-table); border-collapse: collapse; }
+.voice th { padding: var(--space-14) var(--space-12) var(--space-10) var(--space-0); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-align: left; text-transform: uppercase; }
+.voice td { padding: var(--space-14) var(--space-16) var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); vertical-align: top; }
+.voice s { color: var(--color-pencil); text-decoration-color: var(--color-redline); }
+.voice td:nth-child(2) { color: var(--color-pencil); font-size: var(--text-label); }
+.voice td:last-child { color: var(--color-ink); }
+
+/* Small card rows, component pills, reviews */
+.prose .cards { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); padding: var(--space-0); list-style: none; }
+.prose .cards--2 { grid-template-columns: var(--layout-cols-2); }
+.cards li { display: grid; gap: var(--space-4); align-content: start; padding: var(--space-16); border-radius: var(--radius-figure); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
+.cards b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.cards span { color: var(--color-pencil); }
+.prose .parts-list { display: flex; flex-wrap: wrap; gap: var(--space-8); margin: var(--space-18) var(--space-0); padding: var(--space-0); list-style: none; }
+.parts-list li { padding: var(--space-6) var(--space-12); border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font-size: var(--text-label); }
+.parts-list small { margin-left: var(--space-6); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) var(--font-mono); }
+.prose .code.case-wide { margin-top: var(--space-12); margin-bottom: var(--space-28); }
+.reviews { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); margin: var(--space-28) var(--space-0); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.reviews__list { display: grid; gap: var(--space-12); align-content: start; }
+.reviews__list figure { display: grid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.reviews__stars { color: var(--color-ink); font-size: var(--text-label); letter-spacing: var(--tracking-eyebrow); }
+.reviews blockquote { margin: var(--space-0); color: var(--color-ink); font-size: var(--text-body); }
+.reviews figcaption { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.reviews__shipped { display: grid; gap: var(--space-14); align-content: start; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .reviews__shipped ul { margin: var(--space-0); padding: var(--space-0); list-style: none; gap: var(--space-12); }
+.reviews__shipped li { display: grid; gap: var(--space-2); }
+.reviews__shipped b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.reviews__shipped span { color: var(--color-pencil); font-size: var(--text-label); }
+
+@media (max-width: 860px) {
+  .research, .try, .reviews { grid-template-columns: var(--layout-col-1); }
+  .stats--5 { grid-template-columns: var(--layout-cols-2); }
+  .prose .cards { grid-template-columns: var(--layout-col-1); }
+  .try { padding: var(--space-18); }
+  .phone { --h: var(--size-phone-phone); }
+  .phone--lg, .phone-wipe { --h: var(--size-phone-lg-phone); }
+  .handsets__row--lg { justify-content: flex-start; gap: var(--space-20); padding: var(--space-18); overflow-x: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .try__card.is-new { animation: none; } }
