@@ -1428,3 +1428,9 @@
   .voice:not(.voice--stages) td:nth-child(3) { order: 2; }
   .voice:not(.voice--stages) td:nth-child(2) { order: 3; }
 }
+
+/* Phones: the journey map is a list, one stage under another, instead of a strip to scroll */
+@media (max-width: 640px) {
+  .prose .journey { grid-template-columns: var(--layout-col-1); grid-template-rows: none; overflow-x: visible; }
+  .journey li { grid-row: auto; grid-template-rows: none; gap: var(--space-10); }
+}
