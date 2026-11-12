@@ -539,6 +539,8 @@
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
   --size-stage-col: 160px;
+  --size-phone-spec: 520px;
+  --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
   --size-wipe-line: 2px;
   --size-try-glyph: 20px;
   --size-try-stroke: 1.7;
@@ -1382,8 +1384,22 @@
 .reviews__shipped b { color: var(--color-ink); font-weight: var(--weight-semibold); }
 .reviews__shipped span { color: var(--color-pencil); font-size: var(--text-label); }
 
+/* Spec to screen: a real spec document beside the screen built from it */
+.spec { display: grid; gap: var(--space-14); margin-top: var(--space-18); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.spec__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
+.spec__pair { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: var(--space-28); align-items: center; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.spec__doc { align-self: stretch; display: grid; align-content: start; min-width: var(--space-0); border-radius: var(--radius-inner); background: var(--color-page); box-shadow: var(--shadow-spec-doc); }
+.prose .spec__file { margin: var(--space-0); padding: var(--space-10) var(--space-16); border-bottom: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); }
+.spec__body { display: grid; gap: var(--space-8); padding: var(--space-18) var(--space-20) var(--space-22); color: var(--color-graphite); font: var(--weight-regular) var(--text-code) / var(--leading-code) var(--font-mono); }
+.prose .spec__body p { margin: var(--space-0); }
+.prose .spec__h { margin-top: var(--space-8); color: var(--color-ink); font-weight: var(--weight-medium); }
+.prose .spec__h:first-child { margin-top: var(--space-0); }
+.spec__body b { color: var(--color-ink); font-weight: var(--weight-medium); }
+.spec .phone { --h: var(--size-phone-spec); }
+
 @media (max-width: 860px) {
-  .research, .try, .reviews { grid-template-columns: var(--layout-col-1); }
+  .research, .try, .reviews, .spec__pair { grid-template-columns: var(--layout-col-1); }
+  .spec__pair { padding: var(--space-18); }
   .stats--5 { grid-template-columns: var(--layout-cols-2); }
   .stats--5 .stat, .stats--5 .stat:nth-child(-n + 2) { grid-column: auto; }
   .research__persona, .research dl { grid-template-columns: var(--layout-col-1); }

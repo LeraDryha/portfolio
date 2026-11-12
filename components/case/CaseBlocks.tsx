@@ -452,3 +452,4 @@ export function DocLinks({ items }: { items: { title: string; line: string; src:
 export { ThemeShowcase } from "@/components/case/ThemeShowcase";
 export { Phone, Phones, Research, VoiceTable, StageTable, Cards, Parts, Reviews } from "@/components/case/PreventlyBlocks";
 export { LivePlan, NativeCode, PhoneWipe } from "@/components/case/PreventlyLive";
+export { SpecToScreen } from "@/components/case/SpecToScreen";

@@ -110,6 +110,67 @@ I built Prevently with Claude Code. Before any code, I wrote down the decisions 
   ]}
 />
 
+Two of them, next to what came out of them:
+
+<SpecToScreen
+  examples={[
+    {
+      id: "question",
+      tab: "A sensitive question",
+      file: "Prevently_Onboarding_Spec_v1_4_FREEZE.md",
+      ua: [
+        { h: "S18 — Незахищений секс (чутливий; опт-аут обовʼязковий)" },
+        { k: "Title", v: "Чи був незахищений секс із новим або непостійним партнером?" },
+        { k: "Subtitle", v: "За останній рік. Відповідь конфіденційна і потрібна лише для твого плану." },
+        { k: "Плашка (навіщо)", v: "Деякі інфекції протікають без симптомів, тому це допомагає зрозуміти, чи додати відповідні тести." },
+        { k: "Options", v: "Ні або не актуально / Так / Воліла б не відповідати" },
+        { k: "Buttons", v: "Назад" },
+      ],
+      en: [
+        { h: "S18 — Unprotected sex (sensitive; an opt-out is required)" },
+        { k: "Title", v: "Have you had unprotected sex with a new or casual partner?" },
+        { k: "Subtitle", v: "In the last year. Your answer is confidential and only needed for your plan." },
+        { k: "Note (why)", v: "Some infections have no symptoms, so this helps decide whether to add the right tests." },
+        { k: "Options", v: "No, or not relevant / Yes / I’d rather not answer" },
+        { k: "Buttons", v: "Back" },
+      ],
+      screen: { src: "/work/prevently/screens/ios-onboarding-s18.webp", width: 720, height: 1565, alt: "The onboarding question about unprotected sex, with I'd rather not answer and a note on why it's asked" },
+      caption: "Onboarding · the screen",
+    },
+    {
+      id: "today",
+      tab: "The Today screen",
+      file: "Prevently_Today_Screen_Spec.md",
+      ua: [
+        { h: "A. Коротка продуктова логіка" },
+        { p: "«Сьогодні» — це екран уваги й орієнтації, а не повний список (повний — у «Чекапи»). Він відповідає на чотири питання за 5 секунд: що важливо знати, що попереду, до чого варто повернутись і що варто додати в план." },
+        { p: "Принципи екрана: спокій без перегонів (нуль шкал «3/9» і «прогресу здоровʼя»), кожен блок — або корисна дія, або тиша, нуль провини за невідмічене." },
+        { h: "B. Структура сторінки (зверху вниз)" },
+        { lead: "1. Привітання —", li: "«Привіт, [Імʼя]» + спокійний орієнтир-рядок. Без рахунку-перегонів." },
+        { lead: "2. Алерти (умовно) —", li: "банери безпеки, відсортовані за пріоритетом." },
+        { lead: "3. Summary-картки (2) —", li: "Заплановано · Варто запланувати." },
+        { lead: "4. Найближче (умовно) —", li: "заплановане з датою, 2–3 найскоріші." },
+        { lead: "5. Варто повернутись (умовно) —", li: "заплановане, дата минула, не відмічено." },
+        { lead: "6. Варто запланувати (умовно) —", li: "топ рекомендованого без плану." },
+      ],
+      en: [
+        { h: "A. Product logic in short" },
+        { p: "“Today” is a screen of attention and orientation, not the full list (that lives in “Check-ups”). It answers four questions in 5 seconds: what’s important to know, what’s ahead, what to come back to, and what’s worth adding to the plan." },
+        { p: "Principles: calm without a race (no “3/9” scores, no “health progress”), every block is a useful action or silence, no guilt for what isn’t marked." },
+        { h: "B. Page structure, top to bottom" },
+        { lead: "1. Greeting —", li: "“Hi, [Name]” and a calm line to orient. No score." },
+        { lead: "2. Alerts (if any) —", li: "safety banners, by priority." },
+        { lead: "3. Summary cards (2) —", li: "Planned · Worth planning." },
+        { lead: "4. Coming up (if any) —", li: "planned with a date, the 2–3 soonest." },
+        { lead: "5. Worth coming back to (if any) —", li: "planned, the date has passed, not marked." },
+        { lead: "6. Worth planning (if any) —", li: "the top recommendations not planned yet." },
+      ],
+      screen: { src: "/work/prevently/screens/ios-today.webp", width: 720, height: 1565, alt: "The Today screen: Hi, Olena, two summary cards and Worth planning" },
+      caption: "Today · the screen",
+    },
+  ]}
+/>
+
 </Chapter>
 
 <Chapter id="native" title="One design, two native apps">
