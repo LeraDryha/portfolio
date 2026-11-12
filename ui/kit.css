@@ -172,6 +172,9 @@
   --layout-image-ratio: 4 / 3;
   --layout-span-all: 1 / -1;
   --row-tile: 250px;
+  /* GRG's two rows are lower: its tile ends just under the Invoices table in the last step; Prevently beside it gets shorter with it */
+  --row-grg: 208px;
+  --layout-bento-rows: var(--row-tile) var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile) var(--row-tile);
   --row-tile-tablet: 200px;
   --row-tile-phone: 168px;
   --span-2: span 2;
@@ -639,7 +642,7 @@
 .tile--h3 { grid-row: var(--span-3); }
 /* Desktop: every tile has its place (layout A: Prevently tallest; GRG and Comfy the same size beside it) */
 @media (min-width: 861px) {
-  .bento { grid-template-areas: var(--layout-bento-areas); }
+  .bento { grid-template-areas: var(--layout-bento-areas); grid-template-rows: var(--layout-bento-rows); }
   .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; }
   .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
   .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
