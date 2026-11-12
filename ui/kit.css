@@ -1462,8 +1462,9 @@
 .prose section[id] { scroll-margin-top: var(--space-48); }
 
 /* Skip past the embedded Storybook: hidden until it takes keyboard focus */
-.skip-live { position: absolute; width: var(--size-sr); height: var(--size-sr); overflow: hidden; clip: var(--clip-hidden); white-space: nowrap; }
-.prose .skip-live:focus-visible { position: static; justify-self: start; width: auto; height: auto; overflow: visible; clip: auto; padding: var(--space-8) var(--space-14); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font: var(--weight-medium) var(--text-control) / var(--leading-tight) var(--font-sans); text-decoration: none; outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
+.live { position: relative; }
+.skip-live { position: absolute; left: var(--space-16); top: var(--space-16); z-index: var(--z-badge); padding: var(--space-8) var(--space-14); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font: var(--weight-medium) var(--text-control) / var(--leading-tight) var(--font-sans); text-decoration: none; opacity: var(--opacity-hidden); pointer-events: none; }
+.prose .skip-live:focus-visible { opacity: var(--opacity-full); pointer-events: auto; color: var(--color-page); outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
 .live__parts:focus { outline: none; }
 
 /* Dark theme: the Storybook's white page previews are dimmed so they don't glare (its docs pages have no dark mode) */
