@@ -221,11 +221,13 @@ After launch I read every review and comment. The second release answered them.
 />
 
 <Phones
-  label="iOS · Documents and notes"
-  os="ios"
+  label="Documents and notes · iOS and Android"
+  os="both"
   shots={[
-    { src: "/work/prevently/screens/ios-docs-add.webp", width: 720, height: 1561, alt: "Add a document: scan, photo, gallery or file", caption: "Scan, photo or file", island: true },
-    { src: "/work/prevently/screens/ios-docs.webp", width: 720, height: 1561, alt: "A check-up done, with two documents and a note", caption: "Results and a note together", island: true },
+    { src: "/work/prevently/screens/ios-docs-add.webp", width: 720, height: 1561, alt: "iOS: add a document by scan, photo, gallery or file", caption: "iOS · Scan, photo or file", island: true, os: "ios" },
+    { src: "/work/prevently/screens/ios-docs.webp", width: 720, height: 1561, alt: "iOS: a check-up done, with two documents and a note", caption: "iOS · Results and a note", island: true, os: "ios" },
+    { src: "/work/prevently/screens/android-docs-add.webp", width: 720, height: 1600, alt: "Android: add a document by scan, photo or file", caption: "Android · Scan, photo or file", os: "android" },
+    { src: "/work/prevently/screens/android-docs.webp", width: 720, height: 1600, alt: "Android: the same check-up with two documents and a note", caption: "Android · Results and a note", os: "android" },
   ]}
 />
 

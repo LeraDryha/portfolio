@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 /** Prevently case blocks: phone frames, the research, the voice table and small card rows. */
 
-type Shot = { src: string; width: number; height: number; alt: string; caption?: string; island?: boolean };
+type Shot = { src: string; width: number; height: number; alt: string; caption?: string; island?: boolean; /** for a row of both platforms */ os?: "ios" | "android" };
 
 /** A screen in a phone frame. iPhone: rounder corners; screenshots taken on a phone get a Dynamic Island drawn
  *  (the simulator draws its own). Android: a camera dot. */
@@ -27,7 +27,7 @@ export function Phones({ label, os, shots, size }: { label?: string; os: "ios" |
       {label && <p className="handsets__label">{label}</p>}
       <div className={size === "lg" ? "handsets__row handsets__row--lg" : "handsets__row"}>
         {shots.map((s, i) => (
-          <Phone key={s.src} os={os === "both" ? (i === 0 ? "ios" : "android") : os} shot={s} size={size} />
+          <Phone key={s.src} os={s.os ?? (os === "both" ? (i === 0 ? "ios" : "android") : os)} shot={s} size={size} />
         ))}
       </div>
     </div>
