@@ -31,7 +31,8 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
     const makeNote = (n: { title: string; body: string }) => {
       const card = document.createElement("div");
       card.className = "bloom__note";
-      card.innerHTML = `<span class="bloom__icon"></span><div><small><span>Prevently</span><span>now</span></small><b></b><span class="bloom__body"></span></div>`;
+      // iOS lock-screen notification: the app icon, a bold title with the time on the right, the body under it
+      card.innerHTML = `<span class="bloom__icon"></span><div><p class="bloom__head"><b></b><span>now</span></p><span class="bloom__body"></span></div>`;
       card.querySelector("b")!.textContent = n.title;
       card.querySelector(".bloom__body")!.textContent = n.body;
       return card;

@@ -463,33 +463,41 @@
   --size-bloom-phone-hero: 92%;
   --ratio-bloom-phone: 9 / 19.5;
   --space-bloom-phone-top: 5%;
-  --space-bloom-phone-pad: 44px;
-  --space-bloom-gap: 18px;
+  --space-bloom-phone-pad: clamp(26px, 8cqh, 44px);
+  --space-bloom-gap: clamp(10px, 3cqh, 18px);
   --size-bloom-island: 34%;
-  --size-bloom-island-h: 22px;
-  --size-bloom-icon: 24px;
+  --size-bloom-island-h: clamp(14px, 3.2cqh, 22px);
+  --size-bloom-icon: 32px;
+  /* iOS lock-screen notification, at a real phone's scale: ~300px wide, SF text, the system's light material */
+  --size-bloom-notes: 300px;
+  --space-bloom-edge: 32px;
+  --space-bloom-stack: 8px;
+  --space-bloom-note-y: 11px;
+  --space-bloom-note-x: 12px;
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", var(--font-sans);
+  --text-bloom-note: 13px;
+  --leading-bloom-note: 1.3;
+  --text-bloom-time-ago: 12px;
+  --blur-bloom-note: blur(24px) saturate(1.8);
+  --shadow-bloom-note: 0 4px 16px -8px rgb(60 0 30 / .35);
   --size-bloom-figures-hero: 420px;
-  --text-bloom-time: 52px;
+  --text-bloom-time: clamp(28px, 10cqh, 52px);
   --text-bloom-date: 12px;
-  --text-bloom-meta: 9px;
-  --text-bloom-title: 11.5px;
-  --text-bloom-body: 11px;
   --text-bloom-figure: 30px;
   --text-bloom-figure-lead: 56px;
   --tracking-display: -.02em;
   --opacity-bloom-date: .85;
   --radius-bloom-phone: 40px;
-  --radius-bloom-note: 14px;
-  --radius-bloom-icon: 6px;
+  --radius-bloom-note: 20px;
+  --radius-bloom-icon: 7px;
   --color-bloom-glass: rgb(255 255 255 / .12);
   --color-bloom-glass-edge: rgb(255 255 255 / .45);
   --shadow-bloom-glass: inset 0 1px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .15), 0 24px 48px -24px rgb(60 0 30 / .55);
   --blur-bloom-glass: blur(18px) saturate(1.4);
   --color-bloom-island: rgb(40 0 20 / .55);
-  --color-bloom-note: rgb(255 255 255 / .86);
+  --color-bloom-note: rgb(246 246 248 / .78);
   --color-bloom-ink: #111113;
-  --color-bloom-meta: #6b6b70;
-  --color-bloom-body: #2a2a2d;
+  --color-bloom-meta: rgb(60 60 67 / .6);
   --size-phone-lg: 600px;
   --size-phone-phone: 340px;
   --size-phone-lg-phone: 460px;
@@ -1218,20 +1226,22 @@
 
 /* Bloom (Prevently): the flower turns; a phone in iOS glass shows the lock screen and the app's reminders; the phone
    slides away and the results count up. Pink in both themes. */
-.bloom { overflow: hidden; color: var(--color-on-dark); }
+.bloom { overflow: hidden; color: var(--color-on-dark); container-type: size; }
 .bloom__flower { position: absolute; left: var(--pos-centre); top: var(--pos-bloom-centre); width: var(--size-bloom-flower); aspect-ratio: 1; translate: var(--move-centre); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
-.bloom__phone { position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); height: var(--size-bloom-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); display: grid; align-content: start; justify-items: center; gap: var(--space-bloom-gap); padding: var(--space-bloom-phone-pad) var(--space-10) var(--space-0); border: var(--size-hairline) solid var(--color-bloom-glass-edge); border-radius: var(--radius-bloom-phone); background: var(--color-bloom-glass); box-shadow: var(--shadow-bloom-glass); -webkit-backdrop-filter: var(--blur-bloom-glass); backdrop-filter: var(--blur-bloom-glass); opacity: var(--opacity-hidden); }
+.bloom__phone { position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); height: var(--size-bloom-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; gap: var(--space-bloom-gap); padding: var(--space-bloom-phone-pad) var(--space-10) var(--space-0); border: var(--size-hairline) solid var(--color-bloom-glass-edge); border-radius: var(--radius-bloom-phone); background: var(--color-bloom-glass); box-shadow: var(--shadow-bloom-glass); -webkit-backdrop-filter: var(--blur-bloom-glass); backdrop-filter: var(--blur-bloom-glass); opacity: var(--opacity-hidden); }
 .bloom__island { position: absolute; top: var(--space-10); left: var(--pos-centre); width: var(--size-bloom-island); height: var(--size-bloom-island-h); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-bloom-island); }
 .bloom__lock { display: grid; justify-items: center; }
 .bloom__lock b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-time); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
-.bloom__lock span { margin-top: var(--space-2); font-weight: var(--weight-medium); font-size: var(--text-bloom-date); opacity: var(--opacity-bloom-date); }
-.bloom__stack { display: grid; gap: var(--space-6); width: var(--size-full); }
-.bloom__note { display: grid; grid-template-columns: var(--size-bloom-icon) minmax(0, 1fr); gap: var(--space-8); padding: var(--space-8) var(--space-10); border-radius: var(--radius-bloom-note); background: var(--color-bloom-note); color: var(--color-bloom-ink); }
-.bloom__icon { position: relative; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--gradient-prevently); }
-.bloom__icon::after { content: ""; position: absolute; inset: var(--space-4); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
-.bloom__note small { display: flex; justify-content: space-between; color: var(--color-bloom-meta); font-weight: var(--weight-semibold); font-size: var(--text-bloom-meta); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
-.bloom__note b { display: block; font-weight: var(--weight-semibold); font-size: var(--text-bloom-title); line-height: var(--leading-tag); }
-.bloom__body { display: block; color: var(--color-bloom-body); font-size: var(--text-bloom-body); line-height: var(--leading-tag); }
+.bloom__lock span { white-space: nowrap; margin-top: var(--space-2); font-weight: var(--weight-medium); font-size: var(--text-bloom-date); opacity: var(--opacity-bloom-date); }
+/* Reminders keep the size of a real iOS notification, so on a small phone they reach past its edges */
+.bloom__stack { display: grid; gap: var(--space-bloom-stack); justify-self: start; width: min(var(--size-bloom-notes), calc(100cqw - var(--space-bloom-edge))); margin-left: var(--pos-centre); translate: var(--move-centre-x-only); }
+.bloom__note { display: grid; grid-template-columns: var(--size-bloom-icon) minmax(0, 1fr); align-items: center; gap: var(--space-10); padding: var(--space-bloom-note-y) var(--space-bloom-note-x); border-radius: var(--radius-bloom-note); background: var(--color-bloom-note); color: var(--color-bloom-ink); font-family: var(--font-ios); font-size: var(--text-bloom-note); line-height: var(--leading-bloom-note); -webkit-backdrop-filter: var(--blur-bloom-note); backdrop-filter: var(--blur-bloom-note); box-shadow: var(--shadow-bloom-note); }
+.bloom__icon { position: relative; align-self: center; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--gradient-prevently); }
+.bloom__icon::after { content: ""; position: absolute; inset: var(--space-6); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+.prose .bloom__head, .bloom__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-8); margin: var(--space-0); }
+.bloom__head span { flex: none; color: var(--color-bloom-meta); font-size: var(--text-bloom-time-ago); }
+.bloom__note b { font-weight: var(--weight-semibold); }
+.bloom__body { display: block; color: var(--color-bloom-ink); }
 .bloom__figures { position: absolute; left: var(--space-0); right: var(--space-0); top: var(--pos-bloom-centre); translate: var(--move-centre-y-only); display: grid; grid-template-columns: var(--layout-cols-2); justify-items: center; gap: var(--space-28) var(--space-12); padding: var(--space-0) var(--space-20); text-align: center; opacity: var(--opacity-hidden); }
 .bloom__figure { display: grid; gap: var(--space-4); }
 .bloom__figure--lead { grid-column: 1 / -1; }
@@ -1239,6 +1249,7 @@
 .bloom__figure--lead b { font-size: var(--text-bloom-figure-lead); }
 .bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
 .case-hero .bloom { --size-bloom-flower: var(--size-bloom-flower-hero); --size-bloom-phone: var(--size-bloom-phone-hero); --pos-bloom-centre: var(--pos-bloom-centre-hero); }
+@container (max-height: 420px) { .bloom__note:nth-child(n + 3) { display: none; } }
 .case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
 
 /* ---------- Prevently case ---------- */
