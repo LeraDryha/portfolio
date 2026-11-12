@@ -14,8 +14,17 @@ export type LearningItem = {
 export const recognition: LearningItem[] = [
   {
     title: "3rd place, Product Design",
-    meta: "DEV Challenge · 2024",
-    result: "Finalist, then third place in the Product Design nomination",
+    meta: "DEV Challenge XXI · Kyiv · 2024",
+    result: "Third place in the Product Design nomination",
+    href: "/learning/dev-challenge-third-place.webp",
+    shot: { src: "/learning/dev-challenge-third-place.webp", width: 1200, height: 848 },
+  },
+  {
+    title: "Finalist",
+    meta: "DEV Challenge XXI · Kyiv · 2024",
+    result: "Through to the final round",
+    href: "/learning/dev-challenge-finalist.webp",
+    shot: { src: "/learning/dev-challenge-finalist.webp", width: 1200, height: 848 },
   },
 ];
 
@@ -42,6 +51,13 @@ export const courses: LearningItem[] = [
     result: "97 of 100 · Top 5",
     href: "https://cases.media/en/cert/L9ADXY",
     shot: { src: "/learning/ux-research-basics.webp", width: 1200, height: 676 },
+  },
+  {
+    title: "Quantitative Methods in Research",
+    meta: "Ukraine Global Faculty · 2023",
+    result: "Lecture",
+    href: "/learning/quantitative-methods-ugf.webp",
+    shot: { src: "/learning/quantitative-methods-ugf.webp", width: 1200, height: 848 },
   },
 ];
 
