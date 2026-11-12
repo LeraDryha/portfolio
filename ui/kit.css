@@ -515,7 +515,8 @@
   --color-app-canvas: #f4f4f5;
   --color-app-card: #ffffff;
   --color-app-ink: #0a0a0a;
-  --color-app-soft: #737373;
+  /* A shade darker than the app's #737373, so small text passes 4.5:1 on the canvas */
+  --color-app-soft: #6b6b6b;
   --color-app-chip: #fbe7ef;
   --color-app-chip-ink: #a3305f;
   --color-app-new: #2fbf71;
