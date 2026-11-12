@@ -50,11 +50,11 @@ export function SpecToScreen({ examples }: { examples: SpecExample[] }) {
           ))}
         </div>
         <div className="filter" role="group" aria-label="Language of the spec">
-          <button className="filter__btn" type="button" aria-pressed={lang === "en"} onClick={() => setLang("en")}>
-            English
+          <button className="filter__btn" type="button" aria-pressed={lang === "en"} aria-label="English" onClick={() => setLang("en")}>
+            EN
           </button>
-          <button className="filter__btn" type="button" aria-pressed={lang === "ua"} onClick={() => setLang("ua")}>
-            Original
+          <button className="filter__btn" type="button" aria-pressed={lang === "ua"} aria-label="Original, in Ukrainian" onClick={() => setLang("ua")}>
+            UA
           </button>
         </div>
       </div>

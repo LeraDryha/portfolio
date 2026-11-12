@@ -1386,7 +1386,8 @@
 
 /* Spec to screen: a real spec document beside the screen built from it */
 .spec { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-14); margin-top: var(--space-18); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
-.spec__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
+.spec__bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-10); }
+.spec__bar > .filter:last-child { flex: none; }
 /* Six examples: the tabs scroll sideways when they don't fit */
 .spec__bar > .filter:first-child { min-width: var(--space-0); max-width: var(--size-full); overflow-x: auto; scrollbar-width: none; }
 .spec__bar .filter__btn { flex: none; white-space: nowrap; }
