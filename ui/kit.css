@@ -370,6 +370,8 @@
   --gradient-caption: linear-gradient(to bottom, transparent, var(--caption-glass) 55%);
   --mask-caption: linear-gradient(to bottom, transparent 0, #000 45%);
   --blur-caption: blur(14px) saturate(1.4);
+  /* On the pink tile: blur only; extra saturation turns the caption band bright pink */
+  --blur-caption-brand: blur(14px);
   --space-caption-top: 56px;
   --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium learning" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
   /* Filtered views: the tiles left close up in the same order, with no holes */
@@ -759,6 +761,7 @@
 .case-tile--light-product .case-tile__name { color: var(--color-caption-ink); }
 .case-tile--light-product .case-tile__foot small { color: var(--color-caption-pencil); }
 .case-tile--full.case-tile--brand { --caption-glass: var(--color-glass-brand); }
+.case-tile--brand .case-tile__foot { -webkit-backdrop-filter: var(--blur-caption-brand); backdrop-filter: var(--blur-caption-brand); }
 .case-tile--full > .vis { position: absolute; inset: var(--space-0); margin: var(--space-0); border-radius: var(--radius-tile); }
 .case-tile__foot { position: absolute; left: var(--space-0); right: var(--space-0); bottom: var(--space-0); z-index: var(--z-badge); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); padding: var(--space-caption-top) var(--space-30) var(--space-24); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); background: var(--gradient-caption); -webkit-backdrop-filter: var(--blur-caption); backdrop-filter: var(--blur-caption); -webkit-mask-image: var(--mask-caption); mask-image: var(--mask-caption); }
 .case-tile__foot .case-tile__title { margin: var(--space-0); }
