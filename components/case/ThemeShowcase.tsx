@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 
-type Screen = { name: string; light: string; dark: string; width: number; height: number; alt: string };
+/** focus: the part of the screen a phone shows, as an object-position ("88% 20%") */
+type Screen = { name: string; light: string; dark: string; width: number; height: number; alt: string; focus?: string };
 
 /**
  * Product screens in both themes at once: the light screen with the dark one over it, cut by a line that can be
@@ -57,7 +58,7 @@ export function ThemeShowcase({ screens }: { screens: Screen[] }) {
       <div
         ref={box}
         className={sweeping ? "wipe is-sweeping" : "wipe"}
-        style={{ aspectRatio: `${s.width} / ${s.height}`, "--cut": `${cut}%` } as CSSProperties}
+        style={{ "--wipe-ratio": `${s.width} / ${s.height}`, "--wipe-focus": s.focus ?? "50% 0%", "--cut": `${cut}%` } as CSSProperties}
       >
         <Image className="wipe__img" src={s.light} alt={`${s.alt}, light theme`} fill sizes="(max-width: 860px) 100vw, 1100px" quality={90} />
         <div className="wipe__dark">

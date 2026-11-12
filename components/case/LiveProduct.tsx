@@ -126,6 +126,10 @@ export function LiveProduct({ v }: { v: Live }) {
         </div>
       </div>
 
+      {/* The embedded product holds many tab stops: a keyboard user can jump past it (shown only on focus) */}
+      <a className="skip-live" href="#live-parts">
+        Skip the live product
+      </a>
       <div
         ref={screen}
         className={`live__screen${fit.desktop ? "" : " live__screen--native"}${ready ? " is-ready" : ""}`}
@@ -140,7 +144,7 @@ export function LiveProduct({ v }: { v: Live }) {
         <iframe ref={frame} className="live__frame" src={src} onLoad={hello} title={`${v.live.title}: the live product, from the GRG Storybook`} />
       </div>
 
-      <ul className="live__parts" aria-label="Built from">
+      <ul className="live__parts" id="live-parts" tabIndex={-1} aria-label="Built from">
         {items.map((it) => {
           const label = (
             <>

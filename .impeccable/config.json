@@ -36,7 +36,7 @@
           "ui/kit.html"
         ],
         "createdAt": "2026-10-15T14:34:58.063Z",
-        "reason": "Claude, per DESIGN.md: display-size headlines (intro 32–46px, tile proofs 26–36px) are set at 1–1.05 as in the bento concept Lera approved; reading text stays 1.5–1.65"
+        "reason": "Claude, per DESIGN.md: display-size headlines (intro 32\u201346px, tile proofs 26\u201336px) are set at 1\u20131.05 as in the bento concept Lera approved; reading text stays 1.5\u20131.65"
       },
       {
         "rule": "clipped-overflow-container",
@@ -55,6 +55,24 @@
         ],
         "createdAt": "2026-10-20T14:02:26.826Z",
         "reason": "Claude, per DESIGN.md: the inset product screenshot runs off the bottom edge of the tile and case hero on purpose (approved bento concept)"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "components/case/TokenAnatomy.tsx"
+        ],
+        "createdAt": "2026-11-12T14:40:03.000Z",
+        "reason": "user confirmed (2026-11-12): the redline token tags on the GRG Modal specimen are decorative Figma-style measure labels, 10px white on Redline/Type Green by design (DESIGN.md, Token Anatomy)"
+      },
+      {
+        "rule": "undersized-ui-text",
+        "value": "*",
+        "files": [
+          "components/case/TokenAnatomy.tsx"
+        ],
+        "createdAt": "2026-11-12T14:40:03.000Z",
+        "reason": "user confirmed (2026-11-12): the redline token tags on the GRG Modal specimen are decorative Figma-style measure labels, 10px white on Redline/Type Green by design (DESIGN.md, Token Anatomy)"
       }
     ]
   }
