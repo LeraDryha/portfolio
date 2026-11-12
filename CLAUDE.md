@@ -58,7 +58,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 ### Контакти
 
 - Email: dryga_v@yahoo.com
-- LinkedIn: https://www.linkedin.com/in/valeriia-dryha-37b083247/
+- LinkedIn: https://www.linkedin.com/in/valeriia-starychenko-37b083247/
 - Телефон: Lera його дала. Чи показувати його на сайті, ще не вирішено, тому в репозиторій його не записуємо: репозиторій публічний.
 - CV: Lera додасть пізніше.
 
