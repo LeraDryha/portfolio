@@ -1,25 +1,251 @@
+export const APP_STORE = "https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262";
+
 export const meta = {
-  heading: "Prevently: from idea to App Store, solo",
-  lead: "A B2C HealthTech mobile app that builds personalised plans of medical check-ups for women’s health. The detailed case is still being written; links to the product are below.",
+  kicker: "Prevently",
+  heading: "A doctor turned designer took a health app from a survey to the App Store",
+  lead: "Prevently plans a woman’s preventive check-ups from her own answers: which ones she needs, how often and why. I did the research, the medical logic, the design and the native code for iOS and Android.",
   facts: [
-    { label: "Role", value: "Product discovery, design, build" },
-    { label: "Platforms", value: "iOS in SwiftUI · Android in Kotlin" },
-    { label: "Launch", value: "MVP on the App Store, 14 July 2026" },
+    { label: "Years", value: "Research 2025 · on the App Store since 14 July 2026" },
+    { label: "Role", value: "Everything: research, medical rules, product design, iOS and Android code" },
+    { label: "Background", value: "10+ years as a doctor before design" },
+    { label: "Platforms", value: "iOS in SwiftUI · Android in Jetpack Compose (in review)" },
   ],
-  proof: { mark: "2,500+", cap: "organic downloads with no marketing budget · 5.0 rating from 37 App Store reviews" },
+  cta: {
+    title: "Prevently is live on the App Store",
+    line: "Free, in Ukrainian, for women from 18. Your answers stay on your phone.",
+    href: APP_STORE,
+    action: "Open in the App Store",
+  },
+  answer: {
+    problem: "Women want to look after their health ahead of time but don’t know which check-ups they need. Doctors prescribe too much or too little, every source says something else, and searching online mostly scares. Of the 358 women I surveyed, 88.8% wanted a list for their own age, health and family history.",
+    did: "I turned the clinical guidelines (USPSTF, ACOG, WHO, the Ukrainian Ministry of Health) into a rules engine, designed the app around a calm voice that doesn’t judge, and built it myself, natively for iOS and Android. Six weeks from the first commit to the App Store, then a second release built from users’ reviews.",
+    didTitle: "What I did",
+    result: "A personal plan of check-ups in five minutes, each with why it’s there and how to prepare, live on the App Store with no money spent on marketing.",
+  },
+  stats: [
+    { value: "2,650", cap: "downloads on iOS in four months, $0 on marketing" },
+    { value: "39.5%", cap: "of App Store page visitors downloaded the app" },
+    { value: "5.0", cap: "rating from 44 App Store ratings" },
+    { value: "358", cap: "women surveyed a year before launch, plus in-depth interviews" },
+  ],
 };
 
-## In short
+<Chapter id="research" title="Who it is for, and where it hurts">
 
-- **Product discovery and logic.** Validated the idea with a survey of 350+ women and in-depth interviews, built a CJM and full SRS documentation. Designed a system of medical algorithms that adapts recommendations to age, family history, risk factors and existing diagnoses, edge cases included.
-- **Build and launch.** Using my own algorithms and AI (Claude Code), built the core architecture, refined the UI/UX and released the MVP on the App Store on 14 July 2026.
-- **Traction.** 2,500+ organic downloads with no marketing budget, a 5.0 rating from 37 App Store reviews, and an engaged audience on social media.
-- **Iterations.** From early users’ feedback, designed and shipped a major update: wider personalisation with obstetric history and clinical screenings (tuberculosis, depression, anxiety), patient pathways, and action algorithms for red flags when handling sensitive medical information.
+The survey showed the demand; the interviews showed why there was no answer. Every pain on the journey map became something in the app.
 
-<FigureRow3>
-  <ThirdFigure src="/work/prevently/screen-2.jpg" width={600} height={1298} alt="Onboarding: a few simple questions build the plan." caption="A few questions, and the plan is ready." />
-  <ThirdFigure src="/work/prevently/screen-3.jpg" width={600} height={1298} alt="Every checkup in one place." caption="Every checkup in one place." />
-  <ThirdFigure src="/work/prevently/screen-4.jpg" width={600} height={1298} alt="Why each checkup matters, with how to prepare." caption="Why each checkup matters." />
-</FigureRow3>
+<Research
+  persona={{
+    name: "Olena, 29",
+    line: "A manager with a lot of pressure at work. Wants control over her own life and to understand herself better.",
+    rows: [
+      { label: "Wants", text: "A clear list of check-ups for her, without the extras, and to stop worrying “what if I’m missing something?”" },
+      { label: "Fears", text: "Missing something important. Paying for tests she doesn’t need. Another indifferent doctor." },
+      { label: "Needs", text: "A neutral source she can trust, a first step without phoning a clinic, and explanations with no judgement and no scare." },
+    ],
+  }}
+  stages={[
+    { title: "Wants to get checked", pain: "Doesn’t know where to start: tests first, or a doctor?", quote: "I know basic numbers, but do I need lipids or ferritin… who will explain?", answer: "a plan in 5 minutes" },
+    { title: "Chooses what to do", pain: "Conflicting advice; every doctor says something else.", quote: "Doctors prescribe a pile of tests. I always think: don’t con me.", answer: "why each check-up, with its source" },
+    { title: "Chooses a clinic", pain: "Prices, phone calls, everything in different places.", quote: "I build a basket of tests and compare prices.", answer: "how to prepare for each" },
+    { title: "Goes for the tests", pain: "Judgement about weight, sex life, not having children.", quote: "I want a doctor to explain, not to manipulate with fear.", answer: "a calm voice and a way to skip" },
+    { title: "Gets results", pain: "Results on paper, in emails with unreadable file names.", quote: "There’s no single place to keep it all.", answer: "documents on each check-up" },
+  ]}
+/>
 
-[preventlyapp.com ↗](https://preventlyapp.com) · [App Store ↗](https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262)
+</Chapter>
+
+<Chapter id="try" title="Try it: change the answers, watch the plan">
+
+Five of the app’s questions and its real rules: the age table and the modifiers for lifestyle and family history. Every item says why it is in the plan and which guideline it comes from.
+
+<LivePlan />
+
+</Chapter>
+
+<Chapter id="logic" title="Medical logic as design material">
+
+The plan is not a list someone wrote by hand. A rules engine reads three data files and returns the strictest interval for each check-up, why it is there, and the red flags. It is the same engine on iOS and Android, checked by the same test profiles.
+
+<Stats
+  items={[
+    { value: "114", cap: "check-ups, tests and vaccines in the registry" },
+    { value: "32", cap: "age rules" },
+    { value: "345", cap: "rules for conditions, medication, lifestyle and family history" },
+    { value: "13", cap: "red-flag alerts" },
+    { value: "9", cap: "test profiles, the same on both platforms" },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="voice" title="A voice that lowers the stress">
+
+Five rules for every line: calm, clear, no judgement, as equals, honest. Real lines from the first version, rewritten.
+
+<VoiceTable
+  rows={[
+    { before: "Wow! Almost there! 💪", why: "Forced cheer and an emoji", after: "Almost done. One last section." },
+    { before: "Your strength is in caring for yourself.", why: "A slogan on a screen about very low weight", after: "Low weight can have different causes. We’ll add the check-ups that help find out." },
+    { before: "Thank you for your trust! Your answers help us grow.", why: "Makes her a tool for our growth", after: "Thanks for answering. Your answers are used only for your plan and go nowhere else." },
+    { before: "You’ve just taken a step towards yourself: attentive, caring, strong 💗", why: "Praises her for finishing a survey", after: "Done. Below is your personal prevention plan, with a note on every item." },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="native" title="One design, two native apps">
+
+I built every component twice: in SwiftUI for iOS and in Jetpack Compose for Android, from the same Figma components and tokens. Not a cross-platform wrapper: each app follows its own platform.
+
+<Phones
+  os="both"
+  size="lg"
+  shots={[
+    { src: "/work/prevently/screens/ios-checkups.webp", width: 720, height: 1565, alt: "Check-ups on iPhone: three lab tests, then instrumental", caption: "iOS · SwiftUI" },
+    { src: "/work/prevently/screens/android-checkups.webp", width: 720, height: 1600, alt: "The same check-ups on Android", caption: "Android · Jetpack Compose" },
+  ]}
+/>
+
+<Cards
+  items={[
+    { title: "Tabs", text: "iOS: a segmented control. Android: segmented buttons with a check." },
+    { title: "Adding a check-up", text: "iOS: “+” at the top. Android: a floating action button." },
+    { title: "Navigation", text: "iOS: a floating tab bar. Android: the Material navigation bar and system back." },
+  ]}
+/>
+
+<NativeCode
+  label="The same card in two languages"
+  tabs={[
+    {
+      id: "swift",
+      label: "ExaminationCard.swift",
+      lines: [
+        "// Examination card · iOS",
+        "**struct ExaminationCard**: View {",
+        "  let item: TodayItem",
+        "  var body: some View {",
+        "    HStack(alignment: .top, spacing: **Tokens.Spacing.space200**) {",
+        "      CategoryIcon(category: item.category)",
+        "      VStack(alignment: .leading, spacing: **Tokens.Spacing.space300**) {",
+        "        Text(item.name)",
+        "          .textStyle(**AppText.bodyLGMedium**)",
+        "          .foregroundStyle(**Tokens.Semantic.Text.textStrong1000**)",
+        "        FlowLayout { ForEach(item.whyBadges) { WhyChip($0) } }",
+        "      }",
+        "    }",
+        "    .background(shape.fill(**Tokens.Semantic.Surface.surfaceBase**))",
+        "  }",
+        "}",
+      ],
+    },
+    {
+      id: "kotlin",
+      label: "ExaminationCard.kt",
+      lines: [
+        "// Examination card · Android",
+        "@Composable",
+        "**fun ExaminationCard**(item: TodayItem, status: CardStatus, onTap: () -> Unit) {",
+        "  val t = **LocalBrandTokens**.current",
+        "  Surface(onClick = onTap, shape = RoundedCornerShape(24.dp), color = **t.surfaceBase**) {",
+        "    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {",
+        "      CategoryIcon(item.category)",
+        "      Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {",
+        "        Text(item.name, style = **AppText.bodyLGMedium**, color = **t.textStrong1000**)",
+        "        FlowRow { item.whyBadges.forEach { WhyChip(it) } }",
+        "      }",
+        "    }",
+        "  }",
+        "}",
+      ],
+    },
+  ]}
+/>
+
+<Parts
+  items={[
+    { name: "Examination Card", note: "×2" },
+    { name: "Brand Button", note: "×2" },
+    { name: "Note Card", note: "×2" },
+    { name: "BMI Card", note: "×2" },
+    { name: "Image Card", note: "×2" },
+    { name: "Contact Card", note: "×2" },
+    { name: "Rules engine", note: "Swift · Kotlin" },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="update" title="Version 2.0, from what users asked for">
+
+After launch I read every review and comment. The second release answered them.
+
+<Reviews
+  reviews={[
+    { text: "Finally I can keep my check-ups in one convenient place. Great design!", meta: "App Store review" },
+    { text: "Clear and pleasant. It would be even better with a little more on why each check-up matters.", meta: "App Store review, version 1.0" },
+  ]}
+  shipped={[
+    { title: "Manage the plan", text: "Hide a check-up that doesn’t apply, bring it back any time." },
+    { title: "Documents and notes", text: "Photos, files and notes on each check-up done." },
+    { title: "Dark theme", text: "Follows the phone." },
+    { title: "A wider algorithm", text: "Obstetric history, more conditions and medication." },
+    { title: "Questionnaires", text: "Quick mental-health screenings, and a TB questionnaire that replaces routine chest X-rays under new guidelines." },
+    { title: "Support contacts", text: "Psychological help and safety services, one tap away." },
+  ]}
+/>
+
+<Phones
+  label="iOS · SwiftUI"
+  os="ios"
+  shots={[
+    { src: "/work/prevently/screens/ios-hide.webp", width: 720, height: 1561, alt: "An examination with Hide at the top", caption: "Hide a check-up", island: true },
+    { src: "/work/prevently/screens/ios-hide-confirm.webp", width: 720, height: 1561, alt: "Confirmation: history, documents and notes stay", caption: "History and notes stay", island: true },
+    { src: "/work/prevently/screens/ios-hide-search.webp", width: 720, height: 1561, alt: "Search shows the hidden check-up with Return to plan", caption: "Bring it back from search", island: true },
+    { src: "/work/prevently/screens/ios-phq.webp", width: 720, height: 1565, alt: "Depression screening PHQ-9", caption: "Mental-health screening" },
+    { src: "/work/prevently/screens/ios-contacts.webp", width: 720, height: 1565, alt: "Support contacts", caption: "Support contacts" },
+  ]}
+/>
+
+<Phones
+  label="Android · Jetpack Compose"
+  os="android"
+  shots={[
+    { src: "/work/prevently/screens/android-hide.webp", width: 720, height: 1600, alt: "The examination menu with Hide", caption: "Hide a check-up" },
+    { src: "/work/prevently/screens/android-hide-confirm.webp", width: 720, height: 1600, alt: "A Material dialog: history, documents and notes stay", caption: "History and notes stay" },
+    { src: "/work/prevently/screens/android-hide-search.webp", width: 720, height: 1600, alt: "Search shows the hidden check-up with Return to plan", caption: "Bring it back from search" },
+    { src: "/work/prevently/screens/android-phq.webp", width: 720, height: 1600, alt: "Depression screening PHQ-9", caption: "Mental-health screening" },
+    { src: "/work/prevently/screens/android-contacts.webp", width: 720, height: 1600, alt: "Support contacts", caption: "Support contacts" },
+  ]}
+/>
+
+<Phones
+  label="iOS · Documents and notes"
+  os="ios"
+  shots={[
+    { src: "/work/prevently/screens/ios-docs-add.webp", width: 720, height: 1561, alt: "Add a document: scan, photo, gallery or file", caption: "Scan, photo or file", island: true },
+    { src: "/work/prevently/screens/ios-docs.webp", width: 720, height: 1561, alt: "A check-up done, with two documents and a note", caption: "Results and a note together", island: true },
+  ]}
+/>
+
+<PhoneWipe
+  light="/work/prevently/screens/ios-checkups.webp"
+  dark="/work/prevently/screens/ios-checkups-dark.webp"
+  width={720}
+  height={1565}
+  alt="Check-ups"
+  caption="Dark theme: drag the line. Light on the left, dark on the right."
+/>
+
+</Chapter>
+
+<Chapter id="learned" title="What I learned">
+
+A medical product is mostly decisions about what not to say. The hardest rules to write were the ones that leave a check-up out, and each of them needed a source.
+
+Going native twice costs every component twice. One rules engine and the same test profiles on both platforms kept the two apps telling the same truth.
+
+</Chapter>
+
+<OpenCard title="Prevently is live on the App Store" line="Free, in Ukrainian, for women from 18. Your answers stay on your phone." href={APP_STORE} action="Open in the App Store" />
