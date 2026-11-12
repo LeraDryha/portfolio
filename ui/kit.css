@@ -150,7 +150,6 @@
   --space-140: 140px;
   --space-list-indent: 1.2em;
   --space-pull-3: -3px;
-  --space-logo-pull: calc(var(--size-logo-reveal) / -2);
   --space-word-gap: .35em;
   --space-tile-gap: 20px;
   --space-tile-gap-phone: 14px;
@@ -263,7 +262,6 @@
   --ease-wipe: cubic-bezier(.65, 0, .35, 1);
   --ease-cam: cubic-bezier(.45, 0, .2, 1);
   --ease-pop: cubic-bezier(.22, 1, .36, 1);
-  --ease-reveal: cubic-bezier(.4, 0, .2, 1);
   --ease-curtain: cubic-bezier(.76, 0, .24, 1);
   --ease-fade: ease;
   --ease-loop: ease-in-out;
@@ -273,12 +271,10 @@
   --duration-arrive: 1s;
   --duration-curtain: .8s;
   --duration-fade: .4s;
-  --duration-strip: 38s;
   --duration-story: 30s;
   --duration-pan: 18s;
   --duration-phones: 20s;
   --duration-drift: 7s;
-  --duration-reveal: 14s;
   --move-none: none;
   --move-action-rest: scale(.85);
   --move-toast-rest: translate(-50%, 6px);
@@ -302,11 +298,6 @@
   --move-arrive-from: translate(70px, 46px);
   --move-drift-1: translate(6px, -4px);
   --move-drift-2: translate(-4px, 3px);
-  --move-strip-end: translateX(calc(-50% - var(--space-6)));
-  --move-logo-from: scale(.7) rotate(-20deg);
-  --move-logo-out: scale(1.15) rotate(10deg);
-  --move-product-from: translateY(40px);
-  --move-product-out: translateY(-10px);
   --clip-after-hidden: inset(0 0 0 100%);
   --clip-after-shown: inset(0 0 0 0);
   --pos-wipe-hidden: 100%;
@@ -461,6 +452,41 @@
   --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
   --size-phone: 380px;
   --space-handsets: 44px;
+  --size-bloom-flower: 44%;
+  --size-bloom-flower-hero: 150px;
+  --pos-bloom-centre: 40%;
+  --pos-bloom-centre-hero: 50%;
+  --size-bloom-phone: 76%;
+  --size-bloom-phone-hero: 92%;
+  --ratio-bloom-phone: 9 / 19.5;
+  --space-bloom-phone-top: 5%;
+  --space-bloom-phone-pad: 44px;
+  --space-bloom-gap: 18px;
+  --size-bloom-island: 34%;
+  --size-bloom-island-h: 22px;
+  --size-bloom-icon: 24px;
+  --size-bloom-figures-hero: 420px;
+  --text-bloom-time: 52px;
+  --text-bloom-date: 12px;
+  --text-bloom-meta: 9px;
+  --text-bloom-title: 11.5px;
+  --text-bloom-body: 11px;
+  --text-bloom-figure: 30px;
+  --text-bloom-figure-lead: 56px;
+  --tracking-display: -.02em;
+  --opacity-bloom-date: .85;
+  --radius-bloom-phone: 40px;
+  --radius-bloom-note: 14px;
+  --radius-bloom-icon: 6px;
+  --color-bloom-glass: rgb(255 255 255 / .12);
+  --color-bloom-glass-edge: rgb(255 255 255 / .45);
+  --shadow-bloom-glass: inset 0 1px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .15), 0 24px 48px -24px rgb(60 0 30 / .55);
+  --blur-bloom-glass: blur(18px) saturate(1.4);
+  --color-bloom-island: rgb(40 0 20 / .55);
+  --color-bloom-note: rgb(255 255 255 / .86);
+  --color-bloom-ink: #111113;
+  --color-bloom-meta: #6b6b70;
+  --color-bloom-body: #2a2a2d;
   --size-phone-lg: 600px;
   --size-phone-phone: 340px;
   --size-phone-lg-phone: 460px;
@@ -694,7 +720,6 @@
 .case-tile--light-product .case-tile__foot small { color: var(--color-caption-pencil); }
 .case-tile--full.case-tile--brand { --caption-glass: var(--color-glass-brand); }
 .case-tile--full > .vis { position: absolute; inset: var(--space-0); margin: var(--space-0); border-radius: var(--radius-tile); }
-.case-tile--full .strip { inset: var(--space-28) var(--space-0) var(--space-120); }
 .case-tile__foot { position: absolute; left: var(--space-0); right: var(--space-0); bottom: var(--space-0); z-index: var(--z-badge); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); padding: var(--space-caption-top) var(--space-30) var(--space-24); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); background: var(--gradient-caption); -webkit-backdrop-filter: var(--blur-caption); backdrop-filter: var(--blur-caption); -webkit-mask-image: var(--mask-caption); mask-image: var(--mask-caption); }
 .case-tile__foot .case-tile__title { margin: var(--space-0); }
 .case-tile__foot small { flex: none; color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
@@ -707,15 +732,7 @@
 .vis--stage { margin-top: var(--space-24); }
 
 /* Prevently: the logo appears in the middle, hides, then the product slides in */
-.reveal__logo { position: absolute; left: var(--pos-centre); top: var(--pos-centre); width: var(--size-logo-reveal); height: var(--size-logo-reveal); margin: var(--space-logo-pull) var(--space-0) var(--space-0) var(--space-logo-pull); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; animation: revealLogo var(--duration-reveal) var(--ease-reveal) infinite; }
-.reveal__product { position: absolute; inset: var(--space-0); animation: revealProduct var(--duration-reveal) var(--ease-reveal) infinite; }
-@keyframes revealLogo { 0% { opacity: var(--opacity-hidden); transform: var(--move-logo-from); } 7%, 20% { opacity: var(--opacity-full); transform: var(--move-none); } 27%, 100% { opacity: var(--opacity-hidden); transform: var(--move-logo-out); } }
-@keyframes revealProduct { 0%, 24% { opacity: var(--opacity-hidden); transform: var(--move-product-from); } 33%, 92% { opacity: var(--opacity-full); transform: var(--move-none); } 100% { opacity: var(--opacity-hidden); transform: var(--move-product-out); } }
 
-/* A slow strip of phone screens */
-.strip { position: absolute; inset: var(--space-8) var(--space-0) var(--space-32); display: flex; gap: var(--space-12); width: max-content; animation: strip var(--duration-strip) linear infinite; }
-.strip img { display: block; width: auto; height: var(--size-full); border-radius: var(--radius-shot); }
-@keyframes strip { to { transform: var(--move-strip-end); } }
 
 /* Story (Comfy): whole screens in scale. The camera zooms into the before, the wipe brings the after,
    the camera zooms into its highlighted block, zooms out, and a drawer slides in. On each step
@@ -1187,8 +1204,7 @@
   .float-btn--close { right: var(--gutter-phone-right); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vis *, .cursor.is-in, .reveal__logo, .reveal__product { animation: none !important; }
-  .reveal__logo { opacity: var(--opacity-hidden); }
+  .vis *, .cursor.is-in { animation: none !important; }
   .story__cam { transform: var(--cam-after); }
   .story .badge--start { opacity: var(--opacity-hidden); }
   .story .badge--end { opacity: var(--opacity-full); }
@@ -1196,6 +1212,31 @@
   .curtain--leave { opacity: var(--opacity-hidden); }
   ::view-transition-group(*) { animation: none; }
 }
+
+/* Bloom (Prevently): the flower turns; a phone in iOS glass shows the lock screen and the app's reminders; the phone
+   slides away and the results count up. Pink in both themes. */
+.bloom { overflow: hidden; color: var(--color-on-dark); }
+.bloom__flower { position: absolute; left: var(--pos-centre); top: var(--pos-bloom-centre); width: var(--size-bloom-flower); aspect-ratio: 1; translate: var(--move-centre); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+.bloom__phone { position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); height: var(--size-bloom-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); display: grid; align-content: start; justify-items: center; gap: var(--space-bloom-gap); padding: var(--space-bloom-phone-pad) var(--space-10) var(--space-0); border: var(--size-hairline) solid var(--color-bloom-glass-edge); border-radius: var(--radius-bloom-phone); background: var(--color-bloom-glass); box-shadow: var(--shadow-bloom-glass); -webkit-backdrop-filter: var(--blur-bloom-glass); backdrop-filter: var(--blur-bloom-glass); opacity: var(--opacity-hidden); }
+.bloom__island { position: absolute; top: var(--space-10); left: var(--pos-centre); width: var(--size-bloom-island); height: var(--size-bloom-island-h); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-bloom-island); }
+.bloom__lock { display: grid; justify-items: center; }
+.bloom__lock b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-time); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+.bloom__lock span { margin-top: var(--space-2); font-weight: var(--weight-medium); font-size: var(--text-bloom-date); opacity: var(--opacity-bloom-date); }
+.bloom__stack { display: grid; gap: var(--space-6); width: var(--size-full); }
+.bloom__note { display: grid; grid-template-columns: var(--size-bloom-icon) minmax(0, 1fr); gap: var(--space-8); padding: var(--space-8) var(--space-10); border-radius: var(--radius-bloom-note); background: var(--color-bloom-note); color: var(--color-bloom-ink); }
+.bloom__icon { position: relative; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--gradient-prevently); }
+.bloom__icon::after { content: ""; position: absolute; inset: var(--space-4); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+.bloom__note small { display: flex; justify-content: space-between; color: var(--color-bloom-meta); font-weight: var(--weight-semibold); font-size: var(--text-bloom-meta); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.bloom__note b { display: block; font-weight: var(--weight-semibold); font-size: var(--text-bloom-title); line-height: var(--leading-tag); }
+.bloom__body { display: block; color: var(--color-bloom-body); font-size: var(--text-bloom-body); line-height: var(--leading-tag); }
+.bloom__figures { position: absolute; left: var(--space-0); right: var(--space-0); top: var(--pos-bloom-centre); translate: var(--move-centre-y-only); display: grid; grid-template-columns: var(--layout-cols-2); justify-items: center; gap: var(--space-28) var(--space-12); padding: var(--space-0) var(--space-20); text-align: center; opacity: var(--opacity-hidden); }
+.bloom__figure { display: grid; gap: var(--space-4); }
+.bloom__figure--lead { grid-column: 1 / -1; }
+.bloom__figure b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-figure); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
+.bloom__figure--lead b { font-size: var(--text-bloom-figure-lead); }
+.bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
+.case-hero .bloom { --size-bloom-flower: var(--size-bloom-flower-hero); --size-bloom-phone: var(--size-bloom-phone-hero); --pos-bloom-centre: var(--pos-bloom-centre-hero); }
+.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
 
 /* ---------- Prevently case ---------- */
 .stats--5 { grid-template-columns: var(--layout-cols-5); }

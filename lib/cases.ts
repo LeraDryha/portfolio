@@ -14,6 +14,8 @@ export type CaseMeta = {
   answer?: { problem: ReactNode; did: ReactNode; result: ReactNode; /** "What we did" unless the work was one person's */ didTitle?: string };
   /** Figures under the result, three or four in a row */
   stats?: { value: string; cap: string }[];
+  /** Count the figures up when they come into view */
+  countStats?: boolean;
   /** A live artefact to open, shown big after the facts (e.g. a Storybook) */
   cta?: { eyebrow?: string; title: string; line: string; href: string; action: string };
   /** One proof in the accent, under the summary */

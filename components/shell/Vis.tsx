@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { CaseEntry, Cursor as CursorData, Focus, Pin, Point } from "@/content/site";
 import { Icon } from "@/components/shell/Icons";
 import { AssembleVis } from "@/components/shell/AssembleVis";
+import { BloomVis } from "@/components/shell/BloomVis";
 
 const style = (vars: Record<string, string>) => vars as CSSProperties;
 const pct = (n: number) => `${+(n * 100).toFixed(2)}%`;
@@ -18,20 +19,7 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
   const v = entry.vis;
   const vt = style({ viewTransitionName: `case-${entry.slug}` });
 
-  if (v.kind === "reveal") {
-    return (
-      <div className="vis vis--stage" style={vt} aria-hidden="true">
-        <span className="reveal__logo" style={style({ "--logo": `url(${v.logo})` })} />
-        <div className="reveal__product">
-          <div className="strip">
-            {[...v.screens, ...v.screens].map((src, i) => (
-              <Image key={i} src={src} width={600} height={1298} alt="" sizes="220px" priority={priority && i < 3} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  if (v.kind === "bloom") return <BloomVis v={v} viewTransitionName={`case-${entry.slug}`} />;
 
   if (v.kind === "story") {
     // The camera is drawn at the deepest zoom (k × the stage) and scaled down, never up:

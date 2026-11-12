@@ -7,6 +7,7 @@ import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
 import { LiveProduct } from "@/components/case/LiveProduct";
 import { OpenCard, Stats } from "@/components/case/CaseBlocks";
+import { CountStats } from "@/components/case/CountStats";
 
 export const dynamicParams = false;
 
@@ -70,7 +71,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
               <p>{meta.answer.result}</p>
             </>
           )}
-          {meta.stats && <Stats items={meta.stats} />}
+          {meta.stats && (meta.countStats ? <CountStats items={meta.stats} /> : <Stats items={meta.stats} />)}
           {meta.proof && (
             <div className="proof-block">
               <b>{meta.proof.mark}</b>
