@@ -538,6 +538,7 @@
   --layout-journey: repeat(5, minmax(150px, 1fr));
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
+  --size-stage-col: 160px;
   --size-wipe-line: 2px;
   --size-try-glyph: 20px;
   --size-try-stroke: 1.7;
@@ -1355,6 +1356,9 @@
 .voice s { color: var(--color-pencil); text-decoration-color: var(--color-redline); }
 .voice td:nth-child(2) { color: var(--color-pencil); font-size: var(--text-label); }
 .voice td:last-child { color: var(--color-ink); }
+.voice--stages table { min-width: var(--space-0); }
+.voice--stages tbody th { width: var(--size-stage-col); padding: var(--space-14) var(--space-16) var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-ink); font: var(--weight-semibold) var(--text-ui) / var(--leading-ui) var(--font-sans); letter-spacing: normal; text-transform: none; text-align: left; vertical-align: top; }
+.voice--stages td:nth-child(2) { color: var(--color-ink); font-size: inherit; }
 
 /* Small card rows, component pills, reviews */
 .prose .cards { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); padding: var(--space-0); list-style: none; }

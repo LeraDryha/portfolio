@@ -100,6 +100,30 @@ export function VoiceTable({ rows }: { rows: { before: string; why: string; afte
   );
 }
 
+/** Each stage of the work and the document written before it. */
+export function StageTable({ rows }: { rows: { stage: string; doc: string }[] }) {
+  return (
+    <div className="voice voice--stages case-wide">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Stage</th>
+            <th scope="col">What I wrote before the code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.stage}>
+              <th scope="row">{r.stage}</th>
+              <td>{r.doc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /** Small grey cards with a title and a line, three in a row. */
 export function Cards({ items, cols = 3 }: { items: { title: string; text: ReactNode }[]; cols?: 2 | 3 }) {
   return (

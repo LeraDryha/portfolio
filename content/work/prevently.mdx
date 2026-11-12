@@ -18,7 +18,7 @@ export const meta = {
   },
   answer: {
     problem: "Women want to look after their health ahead of time but don’t know which check-ups they need. Doctors prescribe too much or too little, every source says something else, and searching online mostly scares. Of the 358 women I surveyed, 88.8% wanted a list for their own age, health and family history.",
-    did: "I turned the clinical guidelines (USPSTF, ACOG, WHO, the Ukrainian Ministry of Health) into a rules engine, designed the app around a calm voice that doesn’t judge, and built it myself, natively for iOS and Android. Six weeks from the first commit to the App Store, then a second release built from users’ reviews.",
+    did: "I turned clinical guidelines into a rules engine: the general ones (USPSTF, ACOG, WHO, the Ukrainian Ministry of Health) and dozens of specialist ones, from oncology (NCCN) and cardiology (ESC) to diabetes (ADA) and kidney care (KDIGO). I designed the app around a calm voice that doesn’t judge, and built it myself, natively for iOS and Android, with Claude Code as my engineering partner: every stage started from a document I wrote first. Six weeks from the first commit to the App Store, then a second release built from users’ reviews.",
     didTitle: "What I did",
     result: "A personal plan of check-ups in five minutes, each with why it’s there and how to prepare, live on the App Store with no money spent on marketing.",
   },
@@ -89,6 +89,24 @@ Five rules for every line: calm, clear, no judgement, as equals, honest. Real li
     { before: "Your strength is in caring for yourself.", why: "A slogan on a screen about very low weight", after: "Low weight can have different causes. We’ll add the check-ups that help find out." },
     { before: "Thank you for your trust! Your answers help us grow.", why: "Makes her a tool for our growth", after: "Thanks for answering. Your answers are used only for your plan and go nowhere else." },
     { before: "You’ve just taken a step towards yourself: attentive, caring, strong 💗", why: "Praises her for finishing a survey", after: "Done. Below is your personal prevention plan, with a note on every item." },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="process" title="How I worked: a document before every stage">
+
+I built Prevently with Claude Code. Before any code, I wrote down the decisions for that stage; the code came from these documents, and I checked every change against them, on both platforms.
+
+<StageTable
+  rows={[
+    { stage: "Product", doc: "MVP spec: what the app does, and what it deliberately doesn’t" },
+    { stage: "Onboarding", doc: "Onboarding spec, from v1.0 to v1.4, each version frozen before the next" },
+    { stage: "Voice", doc: "Voice and microcopy system: five principles, anti-patterns, rewritten lines" },
+    { stage: "Medicine", doc: "Rules schema, a glossary of sources, the registry of 114 check-ups, the red-flag catalogue" },
+    { stage: "Screens", doc: "A spec for the Today screen and UI handoffs for every tab" },
+    { stage: "Engine", doc: "Engine handoff and 9 test profiles both apps must pass" },
+    { stage: "Data", doc: "iCloud sync plan, privacy first: answers and files stay with her" },
   ]}
 />
 
