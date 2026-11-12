@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { caseHref, caseSlugs, loadCase, nextCase } from "@/lib/cases";
+import { person } from "@/content/site";
 import { Vis } from "@/components/shell/Vis";
 import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
@@ -82,6 +83,14 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
 
           <Body />
 
+          {/* The site's goal is a conversation: every case ends with a way to reach Lera */}
+          <p className="case-contact">
+            Hiring a {person.role}? Write to <a href={`mailto:${person.email}`}>{person.email}</a> or find me on{" "}
+            <a href={person.linkedin} target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+            .
+          </p>
           <nav className="case-end" aria-label="More work">
             <a href={home}>All work</a>
             <a className="case-end__next" href={caseHref(next)}>

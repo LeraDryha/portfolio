@@ -1451,3 +1451,7 @@
 .more[open] > summary::after { content: "−"; }
 .more > summary:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
 .more__body { display: grid; }
+
+/* The end of every case: a quiet way to reach Lera, above All work / Next case */
+.prose .case-contact { margin: var(--space-56) var(--space-0) var(--space-0); color: var(--color-graphite); font-size: var(--text-body); }
+.case-contact + .case-end { margin-top: var(--space-24); }
