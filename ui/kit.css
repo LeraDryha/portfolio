@@ -539,6 +539,7 @@
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
   --size-stage-col: 160px;
+  --mask-scroll-edge: linear-gradient(to right, #000 calc(100% - 48px), transparent);
   --size-phone-spec: 520px;
   --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
   --size-wipe-line: 2px;
@@ -1434,3 +1435,10 @@
   .prose .journey { grid-template-columns: var(--layout-col-1); grid-template-rows: none; overflow-x: visible; }
   .journey li { grid-row: auto; grid-template-rows: none; gap: var(--space-10); }
 }
+
+/* Narrow screens: rows that scroll sideways fade at the right edge, so it shows there is more */
+@media (max-width: 860px) {
+  .handsets__row, .spec__bar > .filter:first-child, .code__tabs { -webkit-mask-image: var(--mask-scroll-edge); mask-image: var(--mask-scroll-edge); }
+  .handsets__row { padding-right: var(--space-48); }
+}
+.handsets__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
