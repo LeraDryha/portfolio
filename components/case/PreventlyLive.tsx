@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { Mulish } from "next/font/google";
 import { buildPlan, categories, exams, type Answer, type Category } from "@/content/prevently-plan";
 
@@ -168,24 +168,59 @@ export function NativeCode({ tabs, label }: { tabs: Code[]; label: string }) {
 
 /** One phone screen in both themes: drag the line (or use the arrow keys) to compare. */
 export function PhoneWipe({ light, dark, width, height, alt, caption }: { light: string; dark: string; width: number; height: number; alt: string; caption: string }) {
-  const [cut, setCut] = useState(50);
+  // As on the GRG theme wipe: when the phone first comes into view, the line sweeps across once, then rests in the middle
+  const [cut, setCut] = useState(100);
+  const [sweeping, setSweeping] = useState(false);
+  const box = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCut(50);
+      return;
+    }
+    let t1 = 0, t2 = 0;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        setSweeping(true);
+        t1 = window.setTimeout(() => setCut(18), 50);
+        t2 = window.setTimeout(() => setCut(50), 1800);
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, []);
+
   return (
     <figure className="phone-wipe">
-      <span className="device device--ios" style={{ "--cut": `${cut}%` } as CSSProperties}>
+      <span ref={box} className={sweeping ? "device device--ios is-sweeping" : "device device--ios"} style={{ "--cut": `${cut}%` } as CSSProperties}>
         <span className="device__screen" style={{ width: `calc(var(--h) * (1 - 2 * var(--ratio-device-pad)) * ${width} / ${height})` }}>
           <Image src={light} alt={`${alt}, light theme`} fill sizes="320px" quality={90} />
           <span className="phone-wipe__dark">
             <Image src={dark} alt={`${alt}, dark theme`} fill sizes="320px" quality={90} />
           </span>
-          <span className="phone-wipe__line" aria-hidden="true" />
+          <span className="phone-wipe__line" aria-hidden="true">
+            <span>Light · Dark</span>
+          </span>
           <input
             className="phone-wipe__range"
             type="range"
             min={0}
             max={100}
-            value={cut}
+            value={Math.round(cut)}
             aria-label="Move the line between the light and the dark theme"
-            onChange={(e) => setCut(Number(e.target.value))}
+            onChange={(e) => {
+              setSweeping(false);
+              setCut(Number(e.target.value));
+            }}
           />
         </span>
       </span>
