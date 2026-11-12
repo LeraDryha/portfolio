@@ -27,7 +27,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
     const phone = q(".bloom__phone");
     const stack = q(".bloom__stack");
     const figures = q(".bloom__figures");
-    const nums = [...el.querySelectorAll<HTMLElement>(".bloom__figure b")];
+    const nums = [...el.querySelectorAll<HTMLElement>(".bloom__value b")];
     const makeNote = (n: { title: string; body: string }) => {
       const card = document.createElement("div");
       card.className = "bloom__note";
@@ -118,7 +118,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
   }, [v]);
 
   return (
-    <div ref={root} className="vis vis--full bloom" style={{ viewTransitionName, "--logo": `url(${v.logo})` } as CSSProperties} aria-hidden="true">
+    <div ref={root} className="vis vis--full bloom" style={{ viewTransitionName, "--logo": `url(${v.logo})`, "--app-icon": `url(${v.icon})` } as CSSProperties} aria-hidden="true">
       <span className="bloom__flower" />
       <div className="bloom__phone">
         <span className="bloom__island" />
@@ -131,7 +131,10 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
       <div className="bloom__figures">
         {v.figures.map((f, i) => (
           <div key={f.cap} className={i === 0 ? "bloom__figure bloom__figure--lead" : "bloom__figure"}>
-            <b>0</b>
+            <p className="bloom__value">
+              <b>0</b>
+              {f.star && <span className="bloom__star">★</span>}
+            </p>
             <span>{f.cap}</span>
           </div>
         ))}

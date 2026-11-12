@@ -21,8 +21,10 @@ export type Bloom = {
   time: string;
   date: string;
   notes: { title: string; body: string }[];
-  /** Counted up at the end: the first big, the rest in a row under it */
-  figures: { to: number; decimals?: number; suffix?: string; cap: string }[];
+  /** The app icon on the reminders */
+  icon: string;
+  /** Counted up at the end: the first big, the rest in a row under it; star: a rating */
+  figures: { to: number; decimals?: number; suffix?: string; star?: boolean; cap: string }[];
 };
 
 /** A point on a screenshot, as fractions of its width and height (0–1). */
@@ -179,6 +181,7 @@ export const cases: CaseEntry[] = [
     vis: {
       kind: "bloom",
       logo: "/logos/prevently.svg",
+      icon: "/logos/prevently-app.svg",
       time: "9:41",
       date: "Thursday, 12 November",
       // The app's own reminder texts (NotificationContent.swift), translated
@@ -191,7 +194,7 @@ export const cases: CaseEntry[] = [
       figures: [
         { to: 2650, cap: "Downloads in the first four months" },
         { to: 39.5, decimals: 1, suffix: "%", cap: "App Store page conversion" },
-        { to: 5, decimals: 1, cap: "Rating from 44 ratings" },
+        { to: 5, decimals: 1, star: true, cap: "Rating from 44 ratings" },
       ],
     },
     shape: "brand-tall",

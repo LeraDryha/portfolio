@@ -459,15 +459,17 @@
   --size-bloom-flower-hero: 150px;
   --pos-bloom-centre: 40%;
   --pos-bloom-centre-hero: 50%;
-  --size-bloom-phone: 76%;
-  --size-bloom-phone-hero: 92%;
+  --size-bloom-phone: max(76%, 540px);
+  --size-bloom-phone-hero: max(92%, 540px);
   --ratio-bloom-phone: 9 / 19.5;
   --space-bloom-phone-top: 5%;
-  --space-bloom-phone-pad: clamp(26px, 8cqh, 44px);
-  --space-bloom-gap: clamp(10px, 3cqh, 18px);
-  --size-bloom-island: 34%;
-  --size-bloom-island-h: clamp(14px, 3.2cqh, 22px);
+  --space-bloom-phone-pad: 44px;
+  --space-bloom-gap: 18px;
+  --size-bloom-island: 84px;
+  --size-bloom-island-h: 22px;
   --size-bloom-icon: 32px;
+  --shadow-bloom-icon: inset 0 0 0 .5px rgb(0 0 0 / .08);
+  --text-bloom-star: 24px;
   /* iOS lock-screen notification, at a real phone's scale: ~300px wide, SF text, the system's light material */
   --size-bloom-notes: 300px;
   --space-bloom-edge: 32px;
@@ -481,7 +483,7 @@
   --blur-bloom-note: blur(24px) saturate(1.8);
   --shadow-bloom-note: 0 4px 16px -8px rgb(60 0 30 / .35);
   --size-bloom-figures-hero: 420px;
-  --text-bloom-time: clamp(28px, 10cqh, 52px);
+  --text-bloom-time: 52px;
   --text-bloom-date: 12px;
   --text-bloom-figure: 30px;
   --text-bloom-figure-lead: 56px;
@@ -529,9 +531,11 @@
   --radius-try-card: 20px;
   --radius-try-icon: 12px;
   --text-try-title: 26px;
-  --layout-research: minmax(0, 0.9fr) minmax(0, 2.5fr);
+  --layout-research: minmax(0, 1fr);
+  --layout-persona: minmax(0, 1fr) minmax(0, 3fr);
+  --layout-stats-5: repeat(6, minmax(0, 1fr));
   --layout-try: minmax(0, 1fr) minmax(0, 1.15fr);
-  --layout-journey: repeat(5, minmax(128px, 1fr));
+  --layout-journey: repeat(5, minmax(150px, 1fr));
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
   --size-wipe-line: 2px;
@@ -1236,8 +1240,8 @@
 /* Reminders keep the size of a real iOS notification, so on a small phone they reach past its edges */
 .bloom__stack { display: grid; gap: var(--space-bloom-stack); justify-self: start; width: min(var(--size-bloom-notes), calc(100cqw - var(--space-bloom-edge))); margin-left: var(--pos-centre); translate: var(--move-centre-x-only); }
 .bloom__note { display: grid; grid-template-columns: var(--size-bloom-icon) minmax(0, 1fr); align-items: center; gap: var(--space-10); padding: var(--space-bloom-note-y) var(--space-bloom-note-x); border-radius: var(--radius-bloom-note); background: var(--color-bloom-note); color: var(--color-bloom-ink); font-family: var(--font-ios); font-size: var(--text-bloom-note); line-height: var(--leading-bloom-note); -webkit-backdrop-filter: var(--blur-bloom-note); backdrop-filter: var(--blur-bloom-note); box-shadow: var(--shadow-bloom-note); }
-.bloom__icon { position: relative; align-self: center; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--gradient-prevently); }
-.bloom__icon::after { content: ""; position: absolute; inset: var(--space-6); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+/* The app icon: the pink flower on white */
+.bloom__icon { align-self: center; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--color-on-dark) var(--app-icon) center / cover no-repeat; box-shadow: var(--shadow-bloom-icon); }
 .prose .bloom__head, .bloom__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-8); margin: var(--space-0); }
 .bloom__head span { flex: none; color: var(--color-bloom-meta); font-size: var(--text-bloom-time-ago); }
 .bloom__note b { font-weight: var(--weight-semibold); }
@@ -1245,6 +1249,8 @@
 .bloom__figures { position: absolute; left: var(--space-0); right: var(--space-0); top: var(--pos-bloom-centre); translate: var(--move-centre-y-only); display: grid; grid-template-columns: var(--layout-cols-2); justify-items: center; gap: var(--space-28) var(--space-12); padding: var(--space-0) var(--space-20); text-align: center; opacity: var(--opacity-hidden); }
 .bloom__figure { display: grid; gap: var(--space-4); }
 .bloom__figure--lead { grid-column: 1 / -1; }
+.prose .bloom__value, .bloom__value { display: flex; align-items: baseline; justify-content: center; gap: var(--space-4); margin: var(--space-0); }
+.bloom__value .bloom__star { font-size: var(--text-bloom-star); opacity: var(--opacity-full); }
 .bloom__figure b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-figure); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
 .bloom__figure--lead b { font-size: var(--text-bloom-figure-lead); }
 .bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
@@ -1253,7 +1259,10 @@
 .case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
 
 /* ---------- Prevently case ---------- */
-.stats--5 { grid-template-columns: var(--layout-cols-5); }
+/* Five figures: the two with the longest captions on the first row, three on the second */
+.stats--5 { grid-template-columns: var(--layout-stats-5); }
+.stats--5 .stat { grid-column: span 2; }
+.stats--5 .stat:nth-child(-n + 2) { grid-column: span 3; }
 
 /* Phone frames: a screen in a bezel, the same height on both platforms */
 .phone { --h: var(--size-phone); display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-0); }
@@ -1287,18 +1296,20 @@
 /* Research: the persona and the journey map */
 .research { display: grid; grid-template-columns: var(--layout-research); gap: var(--space-12); margin-top: var(--space-28); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .research__persona, .research__journey { display: grid; gap: var(--space-12); align-content: start; min-width: var(--space-0); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
-.research__journey { grid-template-rows: auto 1fr; align-content: stretch; }
+.research__persona { grid-template-columns: var(--layout-persona); gap: var(--space-28); }
+.research__who { display: grid; gap: var(--space-8); align-content: start; }
 .prose .research p { margin: var(--space-0); }
 .prose .research__eyebrow, .research__eyebrow { margin: var(--space-0); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .research__name { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); }
-.research dl { display: grid; gap: var(--space-12); margin: var(--space-0); }
+.research dl { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-20); margin: var(--space-0); }
 .research dt { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .research dd { margin: var(--space-4) var(--space-0) var(--space-0); color: var(--color-ink); }
-.prose .journey { display: grid; grid-template-columns: var(--layout-journey); align-items: stretch; gap: var(--space-8); margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-4); overflow-x: auto; list-style: none; }
-.journey li { display: flex; flex-direction: column; gap: var(--space-10); padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
+/* Each stage is a column of four rows shared across the map, so the pains, the quotes and "In the app" start on one line */
+.prose .journey { display: grid; grid-template-columns: var(--layout-journey); grid-template-rows: repeat(4, auto); gap: var(--space-10) var(--space-8); margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-4); overflow-x: auto; list-style: none; }
+.journey li { display: grid; grid-row: span 4; grid-template-rows: subgrid; padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
 .journey b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
 .journey q { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; }
-.journey em { margin-top: auto; padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
+.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
 .journey strong { color: var(--color-ink); font-weight: var(--weight-medium); }
 
 /* Try it: questions on the left, the plan in the app's look on the right */
@@ -1370,6 +1381,8 @@
 @media (max-width: 860px) {
   .research, .try, .reviews { grid-template-columns: var(--layout-col-1); }
   .stats--5 { grid-template-columns: var(--layout-cols-2); }
+  .stats--5 .stat, .stats--5 .stat:nth-child(-n + 2) { grid-column: auto; }
+  .research__persona, .research dl { grid-template-columns: var(--layout-col-1); }
   .prose .cards { grid-template-columns: var(--layout-col-1); }
   .try { padding: var(--space-18); }
   .phone { --h: var(--size-phone-phone); }
