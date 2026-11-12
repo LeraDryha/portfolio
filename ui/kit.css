@@ -1456,3 +1456,9 @@
   .case-toc a:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); border-radius: var(--radius-label); }
 }
 .prose section[id] { scroll-margin-top: var(--space-48); }
+
+/* Skip past the embedded Storybook: hidden until it takes keyboard focus */
+.live { position: relative; }
+.skip-live { position: absolute; left: var(--space-16); top: var(--space-16); z-index: var(--z-badge); padding: var(--space-8) var(--space-14); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font: var(--weight-medium) var(--text-control) / var(--leading-tight) var(--font-sans); text-decoration: none; opacity: var(--opacity-hidden); pointer-events: none; }
+.prose .skip-live:focus-visible { opacity: var(--opacity-full); pointer-events: auto; color: var(--color-page); outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
+.live__parts:focus { outline: none; }
