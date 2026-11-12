@@ -541,6 +541,7 @@
   --size-voice-table: 640px;
   --size-stage-col: 160px;
   --size-case-toc: 132px;
+  --ratio-wipe-phone: 4 / 5;
   --filter-shot: none;
   --space-toc-top: 96px;
   --mask-scroll-edge: linear-gradient(to right, #000 calc(100% - 48px), transparent);
@@ -1106,7 +1107,7 @@
 .showcase__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-10); }
 .showcase__hint { align-self: center; color: var(--color-pencil); font-size: var(--text-label); }
 /* The wipe: the dark screen over the light one, cut at --cut; the line in component violet */
-.wipe { position: relative; overflow: hidden; border-radius: var(--radius-figure); background: var(--color-tile); touch-action: pan-y; }
+.wipe { position: relative; aspect-ratio: var(--wipe-ratio); overflow: hidden; border-radius: var(--radius-figure); background: var(--color-tile); touch-action: pan-y; }
 .wipe__img { object-fit: cover; object-position: top left; pointer-events: none; user-select: none; }
 .wipe__dark { position: absolute; inset: var(--space-0); clip-path: inset(0 0 0 var(--cut)); }
 .wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-stroke); translate: var(--move-centre-x-only); background: var(--color-figma-component); pointer-events: none; }
@@ -1468,3 +1469,9 @@
 
 /* Dark theme: the Storybook's white page previews are dimmed so they don't glare (its docs pages have no dark mode) */
 .doc-link__shot img { filter: var(--filter-shot); }
+
+/* Phones: the theme wipe shows a part of the screen at a readable size instead of the whole screen in tiny text */
+@media (max-width: 640px) {
+  .wipe { aspect-ratio: var(--ratio-wipe-phone); }
+  .wipe .wipe__img { object-fit: cover; object-position: var(--wipe-focus); }
+}
