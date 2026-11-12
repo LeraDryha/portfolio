@@ -150,7 +150,6 @@
   --space-140: 140px;
   --space-list-indent: 1.2em;
   --space-pull-3: -3px;
-  --space-logo-pull: calc(var(--size-logo-reveal) / -2);
   --space-word-gap: .35em;
   --space-tile-gap: 20px;
   --space-tile-gap-phone: 14px;
@@ -173,6 +172,9 @@
   --layout-image-ratio: 4 / 3;
   --layout-span-all: 1 / -1;
   --row-tile: 250px;
+  /* GRG's two rows are lower: its tile ends just under the Invoices table in the last step; Prevently beside it gets shorter with it */
+  --row-grg: 208px;
+  --layout-bento-rows: var(--row-tile) var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile) var(--row-tile);
   --row-tile-tablet: 200px;
   --row-tile-phone: 168px;
   --span-2: span 2;
@@ -263,7 +265,6 @@
   --ease-wipe: cubic-bezier(.65, 0, .35, 1);
   --ease-cam: cubic-bezier(.45, 0, .2, 1);
   --ease-pop: cubic-bezier(.22, 1, .36, 1);
-  --ease-reveal: cubic-bezier(.4, 0, .2, 1);
   --ease-curtain: cubic-bezier(.76, 0, .24, 1);
   --ease-fade: ease;
   --ease-loop: ease-in-out;
@@ -273,12 +274,10 @@
   --duration-arrive: 1s;
   --duration-curtain: .8s;
   --duration-fade: .4s;
-  --duration-strip: 38s;
   --duration-story: 30s;
   --duration-pan: 18s;
   --duration-phones: 20s;
   --duration-drift: 7s;
-  --duration-reveal: 14s;
   --move-none: none;
   --move-action-rest: scale(.85);
   --move-toast-rest: translate(-50%, 6px);
@@ -302,11 +301,6 @@
   --move-arrive-from: translate(70px, 46px);
   --move-drift-1: translate(6px, -4px);
   --move-drift-2: translate(-4px, 3px);
-  --move-strip-end: translateX(calc(-50% - var(--space-6)));
-  --move-logo-from: scale(.7) rotate(-20deg);
-  --move-logo-out: scale(1.15) rotate(10deg);
-  --move-product-from: translateY(40px);
-  --move-product-out: translateY(-10px);
   --clip-after-hidden: inset(0 0 0 100%);
   --clip-after-shown: inset(0 0 0 0);
   --pos-wipe-hidden: 100%;
@@ -461,6 +455,51 @@
   --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
   --size-phone: 380px;
   --space-handsets: 44px;
+  --size-bloom-flower: 44%;
+  --size-bloom-flower-hero: 150px;
+  --pos-bloom-centre: 40%;
+  --pos-bloom-centre-hero: 50%;
+  --size-bloom-phone: max(76%, 540px);
+  --size-bloom-phone-hero: max(92%, 540px);
+  --ratio-bloom-phone: 9 / 19.5;
+  --space-bloom-phone-top: 5%;
+  --space-bloom-phone-pad: 44px;
+  --space-bloom-gap: 18px;
+  --size-bloom-island: 84px;
+  --size-bloom-island-h: 22px;
+  --size-bloom-icon: 32px;
+  --shadow-bloom-icon: inset 0 0 0 .5px rgb(0 0 0 / .08);
+  --text-bloom-star: 24px;
+  /* iOS lock-screen notification, at a real phone's scale: ~300px wide, SF text, the system's light material */
+  --size-bloom-notes: 300px;
+  --space-bloom-edge: 32px;
+  --space-bloom-stack: 8px;
+  --space-bloom-note-y: 11px;
+  --space-bloom-note-x: 12px;
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", var(--font-sans);
+  --text-bloom-note: 13px;
+  --leading-bloom-note: 1.3;
+  --text-bloom-time-ago: 12px;
+  --blur-bloom-note: blur(24px) saturate(1.8);
+  --shadow-bloom-note: 0 4px 16px -8px rgb(60 0 30 / .35);
+  --size-bloom-figures-hero: 420px;
+  --text-bloom-time: 52px;
+  --text-bloom-date: 12px;
+  --text-bloom-figure: 30px;
+  --text-bloom-figure-lead: 56px;
+  --tracking-display: -.02em;
+  --opacity-bloom-date: .85;
+  --radius-bloom-phone: 40px;
+  --radius-bloom-note: 20px;
+  --radius-bloom-icon: 7px;
+  --color-bloom-glass: rgb(255 255 255 / .12);
+  --color-bloom-glass-edge: rgb(255 255 255 / .45);
+  --shadow-bloom-glass: inset 0 1px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(255 255 255 / .15), 0 24px 48px -24px rgb(60 0 30 / .55);
+  --blur-bloom-glass: blur(18px) saturate(1.4);
+  --color-bloom-island: rgb(40 0 20 / .55);
+  --color-bloom-note: rgb(246 246 248 / .78);
+  --color-bloom-ink: #111113;
+  --color-bloom-meta: rgb(60 60 67 / .6);
   --size-phone-lg: 600px;
   --size-phone-phone: 340px;
   --size-phone-lg-phone: 460px;
@@ -492,11 +531,16 @@
   --radius-try-card: 20px;
   --radius-try-icon: 12px;
   --text-try-title: 26px;
-  --layout-research: minmax(0, 0.9fr) minmax(0, 2.5fr);
+  --layout-research: minmax(0, 1fr);
+  --layout-persona: minmax(0, 1fr) minmax(0, 3fr);
+  --layout-stats-5: repeat(6, minmax(0, 1fr));
   --layout-try: minmax(0, 1fr) minmax(0, 1.15fr);
-  --layout-journey: repeat(5, minmax(128px, 1fr));
+  --layout-journey: repeat(5, minmax(150px, 1fr));
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
+  --size-stage-col: 160px;
+  --size-phone-spec: 520px;
+  --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
   --size-wipe-line: 2px;
   --size-try-glyph: 20px;
   --size-try-stroke: 1.7;
@@ -613,7 +657,7 @@
 .tile--h3 { grid-row: var(--span-3); }
 /* Desktop: every tile has its place (layout A: Prevently tallest; GRG and Comfy the same size beside it) */
 @media (min-width: 861px) {
-  .bento { grid-template-areas: var(--layout-bento-areas); }
+  .bento { grid-template-areas: var(--layout-bento-areas); grid-template-rows: var(--layout-bento-rows); }
   .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; }
   .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
   .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
@@ -694,7 +738,6 @@
 .case-tile--light-product .case-tile__foot small { color: var(--color-caption-pencil); }
 .case-tile--full.case-tile--brand { --caption-glass: var(--color-glass-brand); }
 .case-tile--full > .vis { position: absolute; inset: var(--space-0); margin: var(--space-0); border-radius: var(--radius-tile); }
-.case-tile--full .strip { inset: var(--space-28) var(--space-0) var(--space-120); }
 .case-tile__foot { position: absolute; left: var(--space-0); right: var(--space-0); bottom: var(--space-0); z-index: var(--z-badge); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-16); padding: var(--space-caption-top) var(--space-30) var(--space-24); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); background: var(--gradient-caption); -webkit-backdrop-filter: var(--blur-caption); backdrop-filter: var(--blur-caption); -webkit-mask-image: var(--mask-caption); mask-image: var(--mask-caption); }
 .case-tile__foot .case-tile__title { margin: var(--space-0); }
 .case-tile__foot small { flex: none; color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
@@ -707,15 +750,7 @@
 .vis--stage { margin-top: var(--space-24); }
 
 /* Prevently: the logo appears in the middle, hides, then the product slides in */
-.reveal__logo { position: absolute; left: var(--pos-centre); top: var(--pos-centre); width: var(--size-logo-reveal); height: var(--size-logo-reveal); margin: var(--space-logo-pull) var(--space-0) var(--space-0) var(--space-logo-pull); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; animation: revealLogo var(--duration-reveal) var(--ease-reveal) infinite; }
-.reveal__product { position: absolute; inset: var(--space-0); animation: revealProduct var(--duration-reveal) var(--ease-reveal) infinite; }
-@keyframes revealLogo { 0% { opacity: var(--opacity-hidden); transform: var(--move-logo-from); } 7%, 20% { opacity: var(--opacity-full); transform: var(--move-none); } 27%, 100% { opacity: var(--opacity-hidden); transform: var(--move-logo-out); } }
-@keyframes revealProduct { 0%, 24% { opacity: var(--opacity-hidden); transform: var(--move-product-from); } 33%, 92% { opacity: var(--opacity-full); transform: var(--move-none); } 100% { opacity: var(--opacity-hidden); transform: var(--move-product-out); } }
 
-/* A slow strip of phone screens */
-.strip { position: absolute; inset: var(--space-8) var(--space-0) var(--space-32); display: flex; gap: var(--space-12); width: max-content; animation: strip var(--duration-strip) linear infinite; }
-.strip img { display: block; width: auto; height: var(--size-full); border-radius: var(--radius-shot); }
-@keyframes strip { to { transform: var(--move-strip-end); } }
 
 /* Story (Comfy): whole screens in scale. The camera zooms into the before, the wipe brings the after,
    the camera zooms into its highlighted block, zooms out, and a drawer slides in. On each step
@@ -1187,8 +1222,7 @@
   .float-btn--close { right: var(--gutter-phone-right); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .vis *, .cursor.is-in, .reveal__logo, .reveal__product { animation: none !important; }
-  .reveal__logo { opacity: var(--opacity-hidden); }
+  .vis *, .cursor.is-in { animation: none !important; }
   .story__cam { transform: var(--cam-after); }
   .story .badge--start { opacity: var(--opacity-hidden); }
   .story .badge--end { opacity: var(--opacity-full); }
@@ -1197,8 +1231,41 @@
   ::view-transition-group(*) { animation: none; }
 }
 
+/* Bloom (Prevently): the flower turns; a phone in iOS glass shows the lock screen and the app's reminders; the phone
+   slides away and the results count up. Pink in both themes. */
+.bloom { overflow: hidden; color: var(--color-on-dark); container-type: size; }
+.bloom__flower { position: absolute; left: var(--pos-centre); top: var(--pos-bloom-centre); width: var(--size-bloom-flower); aspect-ratio: 1; translate: var(--move-centre); background: var(--color-on-dark); -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+.bloom__phone { position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); height: var(--size-bloom-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; justify-items: center; gap: var(--space-bloom-gap); padding: var(--space-bloom-phone-pad) var(--space-10) var(--space-0); border: var(--size-hairline) solid var(--color-bloom-glass-edge); border-radius: var(--radius-bloom-phone); background: var(--color-bloom-glass); box-shadow: var(--shadow-bloom-glass); -webkit-backdrop-filter: var(--blur-bloom-glass); backdrop-filter: var(--blur-bloom-glass); opacity: var(--opacity-hidden); }
+.bloom__island { position: absolute; top: var(--space-10); left: var(--pos-centre); width: var(--size-bloom-island); height: var(--size-bloom-island-h); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-bloom-island); }
+.bloom__lock { display: grid; justify-items: center; }
+.bloom__lock b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-time); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+.bloom__lock span { white-space: nowrap; margin-top: var(--space-2); font-weight: var(--weight-medium); font-size: var(--text-bloom-date); opacity: var(--opacity-bloom-date); }
+/* Reminders keep the size of a real iOS notification, so on a small phone they reach past its edges */
+.bloom__stack { display: grid; gap: var(--space-bloom-stack); justify-self: start; width: min(var(--size-bloom-notes), calc(100cqw - var(--space-bloom-edge))); margin-left: var(--pos-centre); translate: var(--move-centre-x-only); }
+.bloom__note { display: grid; grid-template-columns: var(--size-bloom-icon) minmax(0, 1fr); align-items: center; gap: var(--space-10); padding: var(--space-bloom-note-y) var(--space-bloom-note-x); border-radius: var(--radius-bloom-note); background: var(--color-bloom-note); color: var(--color-bloom-ink); font-family: var(--font-ios); font-size: var(--text-bloom-note); line-height: var(--leading-bloom-note); -webkit-backdrop-filter: var(--blur-bloom-note); backdrop-filter: var(--blur-bloom-note); box-shadow: var(--shadow-bloom-note); }
+/* The app icon: the pink flower on white */
+.bloom__icon { align-self: center; width: var(--size-bloom-icon); height: var(--size-bloom-icon); border-radius: var(--radius-bloom-icon); background: var(--color-on-dark) var(--app-icon) center / cover no-repeat; box-shadow: var(--shadow-bloom-icon); }
+.prose .bloom__head, .bloom__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-8); margin: var(--space-0); }
+.bloom__head span { flex: none; color: var(--color-bloom-meta); font-size: var(--text-bloom-time-ago); }
+.bloom__note b { font-weight: var(--weight-semibold); }
+.bloom__body { display: block; color: var(--color-bloom-ink); }
+.bloom__figures { position: absolute; left: var(--space-0); right: var(--space-0); top: var(--pos-bloom-centre); translate: var(--move-centre-y-only); display: grid; grid-template-columns: var(--layout-cols-2); justify-items: center; gap: var(--space-28) var(--space-12); padding: var(--space-0) var(--space-20); text-align: center; opacity: var(--opacity-hidden); }
+.bloom__figure { display: grid; gap: var(--space-4); }
+.bloom__figure--lead { grid-column: 1 / -1; }
+.prose .bloom__value, .bloom__value { display: flex; align-items: baseline; justify-content: center; gap: var(--space-4); margin: var(--space-0); }
+.bloom__value .bloom__star { font-size: var(--text-bloom-star); opacity: var(--opacity-full); }
+.bloom__figure b { font-weight: var(--weight-semibold); font-size: var(--text-bloom-figure); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums; }
+.bloom__figure--lead b { font-size: var(--text-bloom-figure-lead); }
+.bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
+.case-hero .bloom { --size-bloom-flower: var(--size-bloom-flower-hero); --size-bloom-phone: var(--size-bloom-phone-hero); --pos-bloom-centre: var(--pos-bloom-centre-hero); }
+@container (max-height: 420px) { .bloom__note:nth-child(n + 3) { display: none; } }
+.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
+
 /* ---------- Prevently case ---------- */
-.stats--5 { grid-template-columns: var(--layout-cols-5); }
+/* Five figures: the two with the longest captions on the first row, three on the second */
+.stats--5 { grid-template-columns: var(--layout-stats-5); }
+.stats--5 .stat { grid-column: span 2; }
+.stats--5 .stat:nth-child(-n + 2) { grid-column: span 3; }
 
 /* Phone frames: a screen in a bezel, the same height on both platforms */
 .phone { --h: var(--size-phone); display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-0); }
@@ -1232,14 +1299,17 @@
 /* Research: the persona and the journey map */
 .research { display: grid; grid-template-columns: var(--layout-research); gap: var(--space-12); margin-top: var(--space-28); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .research__persona, .research__journey { display: grid; gap: var(--space-12); align-content: start; min-width: var(--space-0); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.research__persona { grid-template-columns: var(--layout-persona); gap: var(--space-28); }
+.research__who { display: grid; gap: var(--space-8); align-content: start; }
 .prose .research p { margin: var(--space-0); }
 .prose .research__eyebrow, .research__eyebrow { margin: var(--space-0); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .research__name { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); }
-.research dl { display: grid; gap: var(--space-12); margin: var(--space-0); }
+.research dl { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-20); margin: var(--space-0); }
 .research dt { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .research dd { margin: var(--space-4) var(--space-0) var(--space-0); color: var(--color-ink); }
-.prose .journey { display: grid; grid-template-columns: var(--layout-journey); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-4); overflow-x: auto; list-style: none; }
-.journey li { display: grid; align-content: start; gap: var(--space-10); padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
+/* Each stage is a column of four rows shared across the map, so the pains, the quotes and "In the app" start on one line */
+.prose .journey { display: grid; grid-template-columns: var(--layout-journey); grid-template-rows: repeat(4, auto); gap: var(--space-10) var(--space-8); margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-4); overflow-x: auto; list-style: none; }
+.journey li { display: grid; grid-row: span 4; grid-template-rows: subgrid; padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
 .journey b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
 .journey q { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; }
 .journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
@@ -1288,6 +1358,9 @@
 .voice s { color: var(--color-pencil); text-decoration-color: var(--color-redline); }
 .voice td:nth-child(2) { color: var(--color-pencil); font-size: var(--text-label); }
 .voice td:last-child { color: var(--color-ink); }
+.voice--stages table { min-width: var(--space-0); }
+.voice--stages tbody th { width: var(--size-stage-col); padding: var(--space-14) var(--space-16) var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-ink); font: var(--weight-semibold) var(--text-ui) / var(--leading-ui) var(--font-sans); letter-spacing: normal; text-transform: none; text-align: left; vertical-align: top; }
+.voice--stages td:nth-child(2) { color: var(--color-ink); font-size: inherit; }
 
 /* Small card rows, component pills, reviews */
 .prose .cards { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); padding: var(--space-0); list-style: none; }
@@ -1300,7 +1373,7 @@
 .parts-list small { margin-left: var(--space-6); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) var(--font-mono); }
 .prose .code.case-wide { margin-top: var(--space-12); margin-bottom: var(--space-28); }
 .reviews { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); margin: var(--space-28) var(--space-0); font-size: var(--text-ui); line-height: var(--leading-ui); }
-.reviews__list { display: grid; gap: var(--space-12); align-content: start; }
+.reviews__list { display: grid; grid-auto-rows: 1fr; gap: var(--space-12); }
 .reviews__list figure { display: grid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
 .reviews__stars { color: var(--color-ink); font-size: var(--text-label); letter-spacing: var(--tracking-eyebrow); }
 .reviews blockquote { margin: var(--space-0); color: var(--color-ink); font-size: var(--text-body); }
@@ -1311,9 +1384,31 @@
 .reviews__shipped b { color: var(--color-ink); font-weight: var(--weight-semibold); }
 .reviews__shipped span { color: var(--color-pencil); font-size: var(--text-label); }
 
+/* Spec to screen: a real spec document beside the screen built from it */
+.spec { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-14); margin-top: var(--space-18); margin-bottom: var(--space-28); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.spec__bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-10); }
+.spec__bar > .filter:last-child { flex: none; }
+/* Six examples: the tabs scroll sideways when they don't fit */
+.spec__bar > .filter:first-child { min-width: var(--space-0); max-width: var(--size-full); overflow-x: auto; scrollbar-width: none; }
+.spec__bar .filter__btn { flex: none; white-space: nowrap; }
+.spec__pair { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: var(--space-28); align-items: center; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.spec__doc { align-self: stretch; display: grid; align-content: start; min-width: var(--space-0); border-radius: var(--radius-inner); background: var(--color-page); box-shadow: var(--shadow-spec-doc); }
+.prose .spec__file { margin: var(--space-0); padding: var(--space-10) var(--space-16); border-bottom: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); }
+.spec__body { display: grid; gap: var(--space-8); padding: var(--space-18) var(--space-20) var(--space-22); color: var(--color-graphite); font: var(--weight-regular) var(--text-code) / var(--leading-code) var(--font-mono); }
+.prose .spec__body p { margin: var(--space-0); }
+.prose .spec__h { margin-top: var(--space-8); color: var(--color-ink); font-weight: var(--weight-medium); }
+.prose .spec__h:first-child { margin-top: var(--space-0); }
+.spec__body b { color: var(--color-ink); font-weight: var(--weight-medium); }
+.spec__code { display: block; margin-inline: calc(var(--space-20) * -1); padding: var(--space-2) var(--space-20); background: var(--color-code-hl); color: var(--color-ink); white-space: pre-wrap; }
+.spec__code + .spec__code { margin-top: calc(var(--space-8) * -1); }
+.spec .phone { --h: var(--size-phone-spec); }
+
 @media (max-width: 860px) {
-  .research, .try, .reviews { grid-template-columns: var(--layout-col-1); }
+  .research, .try, .reviews, .spec__pair { grid-template-columns: var(--layout-col-1); }
+  .spec__pair { padding: var(--space-18); }
   .stats--5 { grid-template-columns: var(--layout-cols-2); }
+  .stats--5 .stat, .stats--5 .stat:nth-child(-n + 2) { grid-column: auto; }
+  .research__persona, .research dl { grid-template-columns: var(--layout-col-1); }
   .prose .cards { grid-template-columns: var(--layout-col-1); }
   .try { padding: var(--space-18); }
   .phone { --h: var(--size-phone-phone); }

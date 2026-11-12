@@ -5,13 +5,27 @@ import grgParts from "./grg-assemble.json";
 
 /** The product shown inside a tile and, the same element, at the top of its case page. */
 export type Vis =
-  | { kind: "reveal"; logo: string; screens: string[] } // logo appears, hides, then a strip of phone screens
+  | Bloom // the flower opens into a lock screen with the app's reminders (Prevently)
   | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
   | { kind: "pan"; src: string } // a report read top to bottom
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
   | Assemble; // a product put together from its parts, primitive to page (GRG); live on the case page
 
 export type Shot = { src: string; alt: string };
+
+/** Prevently: the flower turns and opens, a lock screen shows through, the app's reminders arrive one by one. */
+export type Bloom = {
+  kind: "bloom";
+  logo: string;
+  /** The lock screen inside the glass phone */
+  time: string;
+  date: string;
+  notes: { title: string; body: string }[];
+  /** The app icon on the reminders */
+  icon: string;
+  /** Counted up at the end: the first big, the rest in a row under it; star: a rating */
+  figures: { to: number; decimals?: number; suffix?: string; star?: boolean; cap: string }[];
+};
 
 /** A point on a screenshot, as fractions of its width and height (0–1). */
 export type Point = { x: number; y: number };
@@ -165,9 +179,23 @@ export const cases: CaseEntry[] = [
     title: "Prevently",
     proof: { text: "Designed, built, shipped.", cap: "iOS live · Android in review" },
     vis: {
-      kind: "reveal",
+      kind: "bloom",
       logo: "/logos/prevently.svg",
-      screens: [1, 2, 3, 4, 5].map((i) => `/work/prevently/screen-${i}.jpg`),
+      icon: "/logos/prevently-app.svg",
+      time: "9:41",
+      date: "Thursday, 12 November",
+      // The app's own reminder texts (NotificationContent.swift), translated
+      notes: [
+        { title: "Check-up coming up", body: "In 7 days you have a mammography planned. There’s time to pick a clinic and book." },
+        { title: "Check-up soon", body: "In 2 days: blood pressure." },
+        { title: "Today: dentist", body: "Check-up day. Mark it in your plan when you’re done." },
+        { title: "A check-up is due again", body: "There’s a check-up in your plan that’s time to repeat." },
+      ],
+      figures: [
+        { to: 2650, cap: "Downloads in the first four months" },
+        { to: 39.5, decimals: 1, suffix: "%", cap: "App Store page conversion" },
+        { to: 5, decimals: 1, star: true, cap: "Rating from 44 ratings" },
+      ],
     },
     shape: "brand-tall",
     area: "prevently",

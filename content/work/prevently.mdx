@@ -2,7 +2,7 @@ export const APP_STORE = "https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D
 
 export const meta = {
   kicker: "Prevently",
-  heading: "A doctor turned designer took a health app from a survey to the App Store",
+  heading: "From idea to App Store, solo",
   lead: "Prevently plans a woman’s preventive check-ups from her own answers: which ones she needs, how often and why. I did the research, the medical logic, the design and the native code for iOS and Android.",
   facts: [
     { label: "Years", value: "Research 2025 · on the App Store since 14 July 2026" },
@@ -18,7 +18,7 @@ export const meta = {
   },
   answer: {
     problem: "Women want to look after their health ahead of time but don’t know which check-ups they need. Doctors prescribe too much or too little, every source says something else, and searching online mostly scares. Of the 358 women I surveyed, 88.8% wanted a list for their own age, health and family history.",
-    did: "I turned the clinical guidelines (USPSTF, ACOG, WHO, the Ukrainian Ministry of Health) into a rules engine, designed the app around a calm voice that doesn’t judge, and built it myself, natively for iOS and Android. Six weeks from the first commit to the App Store, then a second release built from users’ reviews.",
+    did: "I turned clinical guidelines into a rules engine: the general ones (USPSTF, ACOG, WHO, the Ukrainian Ministry of Health) and dozens of specialist ones, from oncology (NCCN) and cardiology (ESC) to diabetes (ADA) and kidney care (KDIGO). I designed the app around a calm voice that doesn’t judge, and built it myself, natively for iOS and Android, with Claude Code as my engineering partner: every stage started from a document I wrote first. Six weeks from the first commit to the App Store, then a second release built from users’ reviews.",
     didTitle: "What I did",
     result: "A personal plan of check-ups in five minutes, each with why it’s there and how to prepare, live on the App Store with no money spent on marketing.",
   },
@@ -69,9 +69,9 @@ The plan is not a list someone wrote by hand. A rules engine reads three data fi
 
 <Stats
   items={[
+    { value: "345", cap: "rules for conditions, medication, lifestyle and family history" },
     { value: "114", cap: "check-ups, tests and vaccines in the registry" },
     { value: "32", cap: "age rules" },
-    { value: "345", cap: "rules for conditions, medication, lifestyle and family history" },
     { value: "13", cap: "red-flag alerts" },
     { value: "9", cap: "test profiles, the same on both platforms" },
   ]}
@@ -89,6 +89,199 @@ Five rules for every line: calm, clear, no judgement, as equals, honest. Real li
     { before: "Your strength is in caring for yourself.", why: "A slogan on a screen about very low weight", after: "Low weight can have different causes. We’ll add the check-ups that help find out." },
     { before: "Thank you for your trust! Your answers help us grow.", why: "Makes her a tool for our growth", after: "Thanks for answering. Your answers are used only for your plan and go nowhere else." },
     { before: "You’ve just taken a step towards yourself: attentive, caring, strong 💗", why: "Praises her for finishing a survey", after: "Done. Below is your personal prevention plan, with a note on every item." },
+  ]}
+/>
+
+</Chapter>
+
+<Chapter id="process" title="How I worked: a document before every stage">
+
+I built Prevently with Claude Code. Before any code, I wrote down the decisions for that stage; the code came from these documents, and I checked every change against them, on both platforms.
+
+<StageTable
+  rows={[
+    { stage: "Product", doc: "MVP spec: what the app does, and what it deliberately doesn’t" },
+    { stage: "Onboarding", doc: "Onboarding spec, from v1.0 to v1.4, each version frozen before the next" },
+    { stage: "Voice", doc: "Voice and microcopy system: five principles, anti-patterns, rewritten lines" },
+    { stage: "Medicine", doc: "Rules schema, a glossary of sources, the registry of 114 check-ups, the red-flag catalogue" },
+    { stage: "Screens", doc: "A spec for the Today screen and UI handoffs for every tab" },
+    { stage: "Engine", doc: "Engine handoff and 9 test profiles both apps must pass" },
+    { stage: "Data", doc: "iCloud sync plan, privacy first: answers and files stay with her" },
+  ]}
+/>
+
+A few of them, next to what came out of them:
+
+<SpecToScreen
+  examples={[
+    {
+      id: "question",
+      tab: "A sensitive question",
+      file: "Prevently_Onboarding_Spec_v1_4_FREEZE.md",
+      ua: [
+        { h: "S18 — Незахищений секс (чутливий; опт-аут обовʼязковий)" },
+        { k: "Title", v: "Чи був незахищений секс із новим або непостійним партнером?" },
+        { k: "Subtitle", v: "За останній рік. Відповідь конфіденційна і потрібна лише для твого плану." },
+        { k: "Плашка (навіщо)", v: "Деякі інфекції протікають без симптомів, тому це допомагає зрозуміти, чи додати відповідні тести." },
+        { k: "Options", v: "Ні або не актуально / Так / Воліла б не відповідати" },
+        { k: "Buttons", v: "Назад" },
+      ],
+      en: [
+        { h: "S18 — Unprotected sex (sensitive; an opt-out is required)" },
+        { k: "Title", v: "Have you had unprotected sex with a new or casual partner?" },
+        { k: "Subtitle", v: "In the last year. Your answer is confidential and only needed for your plan." },
+        { k: "Note (why)", v: "Some infections have no symptoms, so this helps decide whether to add the right tests." },
+        { k: "Options", v: "No, or not relevant / Yes / I’d rather not answer" },
+        { k: "Buttons", v: "Back" },
+      ],
+      screen: { src: "/work/prevently/screens/ios-onboarding-s18.webp", width: 720, height: 1565, alt: "The onboarding question about unprotected sex, with I'd rather not answer and a note on why it's asked" },
+      caption: "Onboarding · the screen",
+    },
+    {
+      id: "today",
+      tab: "The Today screen",
+      file: "Prevently_Today_Screen_Spec.md",
+      ua: [
+        { h: "A. Коротка продуктова логіка" },
+        { p: "«Сьогодні» — це екран уваги й орієнтації, а не повний список (повний — у «Чекапи»). Він відповідає на чотири питання за 5 секунд: що важливо знати, що попереду, до чого варто повернутись і що варто додати в план." },
+        { p: "Принципи екрана: спокій без перегонів (нуль шкал «3/9» і «прогресу здоровʼя»), кожен блок — або корисна дія, або тиша, нуль провини за невідмічене." },
+        { h: "B. Структура сторінки (зверху вниз)" },
+        { lead: "1. Привітання —", li: "«Привіт, [Імʼя]» + спокійний орієнтир-рядок. Без рахунку-перегонів." },
+        { lead: "2. Алерти (умовно) —", li: "банери безпеки, відсортовані за пріоритетом." },
+        { lead: "3. Summary-картки (2) —", li: "Заплановано · Варто запланувати." },
+        { lead: "4. Найближче (умовно) —", li: "заплановане з датою, 2–3 найскоріші." },
+        { lead: "5. Варто повернутись (умовно) —", li: "заплановане, дата минула, не відмічено." },
+        { lead: "6. Варто запланувати (умовно) —", li: "топ рекомендованого без плану." },
+      ],
+      en: [
+        { h: "A. Product logic in short" },
+        { p: "“Today” is a screen of attention and orientation, not the full list (that lives in “Check-ups”). It answers four questions in 5 seconds: what’s important to know, what’s ahead, what to come back to, and what’s worth adding to the plan." },
+        { p: "Principles: calm without a race (no “3/9” scores, no “health progress”), every block is a useful action or silence, no guilt for what isn’t marked." },
+        { h: "B. Page structure, top to bottom" },
+        { lead: "1. Greeting —", li: "“Hi, [Name]” and a calm line to orient. No score." },
+        { lead: "2. Alerts (if any) —", li: "safety banners, by priority." },
+        { lead: "3. Summary cards (2) —", li: "Planned · Worth planning." },
+        { lead: "4. Coming up (if any) —", li: "planned with a date, the 2–3 soonest." },
+        { lead: "5. Worth coming back to (if any) —", li: "planned, the date has passed, not marked." },
+        { lead: "6. Worth planning (if any) —", li: "the top recommendations not planned yet." },
+      ],
+      screen: { src: "/work/prevently/screens/ios-today.webp", width: 720, height: 1565, alt: "The Today screen: Hi, Olena, two summary cards and Worth planning" },
+      caption: "Today · the screen",
+    },
+    {
+      id: "followup",
+      tab: "A follow-up question",
+      file: "Prevently_Onboarding_Spec_v1.0_FROZEN.md",
+      ua: [
+        { h: "S09_1 — Щитоподібна залоза (умовно)" },
+        { code: "show_if conditions includes \"thyroid\"" },
+        { k: "TITLE", v: "Уточни, будь ласка, про щитоподібну залозу" },
+        { k: "SUBTITLE", v: "Це допоможе точніше підібрати частоту обстежень." },
+        { k: "INPUT", v: "multi-select: Гіпотиреоз / Гіпертиреоз / Хашимото або Базедова хвороба / Вузли, кісти або збільшення / Операція / Не знаю точний діагноз (виключний)" },
+        { k: "EDGE", v: "якщо в S09 знято «thyroid» — пропускається, thyroid_details очищається." },
+        { k: "DATA", v: "feeds_recommendation yes" },
+      ],
+      en: [
+        { h: "S09_1 — Thyroid (conditional)" },
+        { code: "show_if conditions includes \"thyroid\"" },
+        { k: "TITLE", v: "Tell us a bit more about your thyroid" },
+        { k: "SUBTITLE", v: "It helps choose how often to check." },
+        { k: "INPUT", v: "multi-select: Hypothyroidism / Hyperthyroidism / Hashimoto’s or Graves’ disease / Nodules, cysts or enlargement / Surgery / I don’t know the exact diagnosis (exclusive)" },
+        { k: "EDGE", v: "if “thyroid” is unticked in S09, this step is skipped and thyroid_details is cleared." },
+        { k: "DATA", v: "feeds the recommendations" },
+      ],
+      screen: { src: "/work/prevently/screens/ios-onboarding-thyroid.webp", width: 720, height: 1565, alt: "The follow-up question about the thyroid, shown only when thyroid disease was ticked" },
+      caption: "Onboarding · only if she ticked thyroid",
+    },
+    {
+      id: "pregnant",
+      tab: "Pregnancy skips questions",
+      file: "Prevently_Onboarding_Spec_v1.0_FROZEN.md",
+      ua: [
+        { h: "S13 — Вагітність зараз" },
+        { k: "TITLE", v: "Чи ти зараз вагітна?" },
+        { k: "INPUT", v: "single-select — Так / Ні / Можливо, не впевнена" },
+        { k: "DATA", v: "feeds_recommendation yes (вагітність змінює перелік/протипоказання)" },
+        { h: "Наступні кроки показуються лише не вагітним" },
+        { code: "S14 Планування вагітності   show_if pregnant_now != \"yes\"" },
+        { code: "S15 Менструальний цикл      show_if pregnant_now != \"yes\"" },
+        { code: "S16 Симптоми циклу          show_if pregnant_now != \"yes\"" },
+        { k: "Граничний випадок (v1.4)", v: "відповідь різко змінює кількість екранів у розділі → лічильник прогрес-бару перераховуємо одразу після S13." },
+      ],
+      en: [
+        { h: "S13 — Pregnant now" },
+        { k: "TITLE", v: "Are you pregnant right now?" },
+        { k: "INPUT", v: "single-select — Yes / No / Maybe, not sure" },
+        { k: "DATA", v: "feeds the recommendations (pregnancy changes the list and the contraindications)" },
+        { h: "The next steps show only if she isn’t pregnant" },
+        { code: "S14 Planning a pregnancy   show_if pregnant_now != \"yes\"" },
+        { code: "S15 Menstrual cycle        show_if pregnant_now != \"yes\"" },
+        { code: "S16 Cycle symptoms         show_if pregnant_now != \"yes\"" },
+        { k: "Edge case (v1.4)", v: "the answer changes how many screens the section has, so the progress counter is recounted right after S13." },
+      ],
+      screen: { src: "/work/prevently/screens/ios-onboarding-pregnant.webp", width: 720, height: 1565, alt: "The pregnancy question: Yes, No or Maybe, not sure" },
+      caption: "Onboarding · the branch point",
+    },
+    {
+      id: "alert",
+      tab: "A red flag",
+      file: "rules_modifiers.json · alerts_catalog.md",
+      ua: [
+        { h: "Правило (рушій)" },
+        { code: "\"id\": \"intermenstrual_bleeding\"," },
+        { code: "\"trigger\": \"menstrual_symptoms includes intermenstrual\"," },
+        { code: "\"severity\": \"danger\"" },
+        { h: "Каталог алертів (тексти)" },
+        { k: "Порядок показу", v: "danger → contraindication → red_flag → warning → info" },
+        { k: "Згорнуто", v: "Кровотеча поза циклом" },
+        { k: "Розгорнуто", v: "«Кровотечу поза циклом варто показати гінекологу найближчим часом. Найчастіше причина нестрашна — але це саме той випадок, коли краще перевірити, ніж чекати.»" },
+        { k: "Заголовок", v: "= тема алерту; рівень — кольором/іконкою, не словом-тривогою." },
+      ],
+      en: [
+        { h: "The rule (engine)" },
+        { code: "\"id\": \"intermenstrual_bleeding\"," },
+        { code: "\"trigger\": \"menstrual_symptoms includes intermenstrual\"," },
+        { code: "\"severity\": \"danger\"" },
+        { h: "The alert catalogue (copy)" },
+        { k: "Order", v: "danger → contraindication → red flag → warning → info" },
+        { k: "Collapsed", v: "Bleeding outside the cycle" },
+        { k: "Expanded", v: "“Bleeding outside your cycle is worth showing to a gynaecologist soon. Most often the cause isn’t serious, but this is exactly the case where it’s better to check than to wait.”" },
+        { k: "Title", v: "= the topic of the alert; the level is shown by colour and icon, never by an alarming word." },
+      ],
+      screen: { src: "/work/prevently/screens/ios-alert.webp", width: 720, height: 1565, alt: "The alert as a full-screen story: Bleeding outside the cycle, with Plan a visit" },
+      caption: "Today · the alert opens as a story",
+    },
+    {
+      id: "bmi",
+      tab: "BMI on the spot",
+      file: "Prevently_Onboarding_Spec_v1_4_FREEZE.md · UserHealthProfile.swift",
+      ua: [
+        { h: "S05 — Зріст і вага" },
+        { k: "Title", v: "Твій зріст і вага" },
+        { k: "CARD", v: "Твій ІМТ · {значення} · «Це орієнтир для базового плану. Ми врахуємо його в рекомендаціях.»" },
+        { k: "Рішення", v: "колір ІМТ-картки однаковий для всіх значень. Без зеленого/світлофора: колір не несе оцінки. Текст один на всі значення." },
+        { h: "Код: ІМТ рахується, ніколи не зберігається" },
+        { code: "var bmi: Double? {" },
+        { code: "  guard let h = heightCm, h > 0, let w = weightKg, w > 0 else { return nil }" },
+        { code: "  let meters = h / 100" },
+        { code: "  return (w / (meters * meters) * 10).rounded() / 10" },
+        { code: "}" },
+      ],
+      en: [
+        { h: "S05 — Height and weight" },
+        { k: "Title", v: "Your height and weight" },
+        { k: "CARD", v: "Your BMI · {value} · “A reference point for your base plan. We’ll take it into account.”" },
+        { k: "Decision", v: "the BMI card is the same colour for every value. No green, no traffic light: colour carries no judgement. One text for all values." },
+        { h: "Code: BMI is computed, never stored" },
+        { code: "var bmi: Double? {" },
+        { code: "  guard let h = heightCm, h > 0, let w = weightKg, w > 0 else { return nil }" },
+        { code: "  let meters = h / 100" },
+        { code: "  return (w / (meters * meters) * 10).rounded() / 10" },
+        { code: "}" },
+      ],
+      screen: { src: "/work/prevently/screens/ios-onboarding-bmi.webp", width: 720, height: 1565, alt: "Height and weight, with the BMI card counted as she types" },
+      caption: "Onboarding · BMI as she types",
+    },
   ]}
 />
 
@@ -185,6 +378,7 @@ After launch I read every review and comment. The second release answered them.
   reviews={[
     { text: "Finally I can keep my check-ups in one convenient place. Great design!", meta: "App Store review" },
     { text: "Clear and pleasant. It would be even better with a little more on why each check-up matters.", meta: "App Store review, version 1.0" },
+    { text: "Very happy with the app! It’s great to have my plan of check-ups here. Simple and really useful.", meta: "App Store review" },
   ]}
   shipped={[
     { title: "Manage the plan", text: "Hide a check-up that doesn’t apply, bring it back any time." },
@@ -227,7 +421,7 @@ After launch I read every review and comment. The second release answered them.
     { src: "/work/prevently/screens/ios-docs-add.webp", width: 720, height: 1561, alt: "iOS: add a document by scan, photo, gallery or file", caption: "iOS · Add a document", island: true, os: "ios" },
     { src: "/work/prevently/screens/ios-docs.webp", width: 720, height: 1561, alt: "iOS: a check-up done, with two documents and a note", caption: "iOS · With a note", island: true, os: "ios" },
     { src: "/work/prevently/screens/android-docs-add.webp", width: 720, height: 1600, alt: "Android: add a document by scan, photo or file", caption: "Android · Add a document", os: "android" },
-    { src: "/work/prevently/screens/android-docs.webp", width: 720, height: 1600, alt: "Android: the same check-up with two documents and a note", caption: "Android · With a note", os: "android" },
+    { src: "/work/prevently/screens/android-docs.webp", width: 720, height: 1600, alt: "Android: the same check-up with two PDF results and a note", caption: "Android · With a note", os: "android" },
   ]}
 />
 

@@ -172,7 +172,7 @@ export function PhoneWipe({ light, dark, width, height, alt, caption }: { light:
   return (
     <figure className="phone-wipe">
       <span className="device device--ios" style={{ "--cut": `${cut}%` } as CSSProperties}>
-        <span className="device__screen" style={{ aspectRatio: `${width} / ${height}` }}>
+        <span className="device__screen" style={{ width: `calc(var(--h) * (1 - 2 * var(--ratio-device-pad)) * ${width} / ${height})` }}>
           <Image src={light} alt={`${alt}, light theme`} fill sizes="320px" quality={90} />
           <span className="phone-wipe__dark">
             <Image src={dark} alt={`${alt}, dark theme`} fill sizes="320px" quality={90} />

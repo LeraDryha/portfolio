@@ -11,7 +11,7 @@ export function Phone({ os, shot, size = "md" }: { os: "ios" | "android"; shot: 
   return (
     <figure className={`phone phone--${size}`}>
       <span className={`device device--${os}${shot.island ? " device--island" : ""}`}>
-        <span className="device__screen" style={{ aspectRatio: `${shot.width} / ${shot.height}` }}>
+        <span className="device__screen" style={{ width: `calc(var(--h) * (1 - 2 * var(--ratio-device-pad)) * ${shot.width} / ${shot.height})` }}>
           <Image src={shot.src} alt={shot.alt} fill sizes={size === "lg" ? "300px" : "200px"} quality={90} />
         </span>
       </span>
@@ -34,14 +34,16 @@ export function Phones({ label, os, shots, size }: { label?: string; os: "ios" |
   );
 }
 
-/** The persona and the journey map from the interviews, side by side. */
+/** The persona across the top, the journey map from the interviews under it. */
 export function Research({ persona, stages }: { persona: { name: string; line: string; rows: { label: string; text: string }[] }; stages: { title: string; pain: string; quote: string; answer: string }[] }) {
   return (
     <div className="research case-wide">
       <div className="research__persona">
-        <p className="research__eyebrow">Persona</p>
-        <b className="research__name">{persona.name}</b>
-        <p>{persona.line}</p>
+        <div className="research__who">
+          <p className="research__eyebrow">Persona</p>
+          <b className="research__name">{persona.name}</b>
+          <p>{persona.line}</p>
+        </div>
         <dl>
           {persona.rows.map((r) => (
             <div key={r.label}>
@@ -90,6 +92,30 @@ export function VoiceTable({ rows }: { rows: { before: string; why: string; afte
               </td>
               <td>{r.why}</td>
               <td>{r.after}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Each stage of the work and the document written before it. */
+export function StageTable({ rows }: { rows: { stage: string; doc: string }[] }) {
+  return (
+    <div className="voice voice--stages case-wide">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Stage</th>
+            <th scope="col">What I wrote before the code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.stage}>
+              <th scope="row">{r.stage}</th>
+              <td>{r.doc}</td>
             </tr>
           ))}
         </tbody>
