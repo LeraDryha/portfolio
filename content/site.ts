@@ -110,7 +110,7 @@ export const person = {
   fullName: "Valeriia Dryha",
   role: "Product Designer",
   email: "dryga_v@yahoo.com",
-  linkedin: "https://www.linkedin.com/in/valeriia-dryha-37b083247/",
+  linkedin: "https://www.linkedin.com/in/valeriia-starychenko-37b083247/",
   medium: "https://medium.com/@dynya.90",
 };
 
