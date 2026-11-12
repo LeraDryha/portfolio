@@ -460,6 +460,7 @@
   --color-device-edge: #3a3a3c;
   --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
   --size-phone: 380px;
+  --space-handsets: 44px;
   --size-phone-lg: 600px;
   --size-phone-phone: 340px;
   --size-phone-lg-phone: 460px;
@@ -1204,6 +1205,8 @@
 .phone--lg { --h: var(--size-phone-lg); }
 .phone figcaption, .phone-wipe figcaption, .handsets__label { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; text-align: center; }
 .handsets__label { text-align: left; }
+/* A caption never makes its phone wider: it wraps inside the phone's width */
+.phone figcaption { width: var(--space-0); min-width: var(--size-full); }
 .device { position: relative; display: block; height: var(--h); padding: calc(var(--h) * var(--ratio-device-pad)); background: var(--color-device); box-shadow: var(--shadow-device); }
 .device__screen { position: relative; display: block; height: 100%; overflow: hidden; }
 .device__screen img { object-fit: cover; }
@@ -1215,9 +1218,9 @@
 .device--island::after { content: ""; position: absolute; z-index: var(--z-raise); top: calc(var(--h) * var(--ratio-island-top)); left: var(--pos-centre); width: calc(var(--h) * var(--ratio-island-w)); height: calc(var(--h) * var(--ratio-island-h)); translate: var(--move-centre-x-only); border-radius: var(--radius-pill); background: var(--color-device); }
 .handsets { display: grid; gap: var(--space-12); margin-top: var(--space-28); margin-bottom: var(--space-28); }
 .prose .handsets__label { margin: var(--space-0); }
-.handsets__row { display: flex; justify-content: space-between; gap: var(--space-14); overflow-x: auto; padding: var(--space-4) var(--space-2) var(--space-8); }
-.handsets__row:not(.handsets__row--lg):has(> :nth-child(2):last-child) { justify-content: flex-start; gap: var(--space-28); }
-.handsets__row--lg { justify-content: center; gap: var(--space-48); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+/* One fixed gap on every row, so a shorter row keeps the spacing of a full one */
+.handsets__row { display: flex; justify-content: flex-start; gap: var(--space-handsets); overflow-x: auto; padding: var(--space-4) var(--space-2) var(--space-8); }
+.handsets__row--lg { display: flex; justify-content: center; gap: var(--space-48); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 
 /* Light and dark on one phone screen */
 .phone-wipe { --h: var(--size-phone-lg); display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-28) var(--space-0); }
