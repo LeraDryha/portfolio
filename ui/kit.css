@@ -1260,7 +1260,7 @@
 .bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
 .case-hero .bloom { --size-bloom-flower: var(--size-bloom-flower-hero); --size-bloom-phone: var(--size-bloom-phone-hero); --pos-bloom-centre: var(--pos-bloom-centre-hero); }
 @container (max-height: 420px) { .bloom__note:nth-child(n + 3) { display: none; } }
-.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
+.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: min(var(--size-bloom-figures-hero), var(--size-full)); translate: var(--move-centre); }
 
 /* ---------- Prevently case ---------- */
 /* Five figures: the two with the longest captions on the first row, three on the second */
