@@ -515,7 +515,8 @@
   --color-app-canvas: #f4f4f5;
   --color-app-card: #ffffff;
   --color-app-ink: #0a0a0a;
-  --color-app-soft: #737373;
+  /* A shade darker than the app's #737373, so small text passes 4.5:1 on the canvas */
+  --color-app-soft: #6b6b6b;
   --color-app-chip: #fbe7ef;
   --color-app-chip-ink: #a3305f;
   --color-app-new: #2fbf71;
@@ -539,6 +540,9 @@
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
   --size-stage-col: 160px;
+  --size-case-toc: 132px;
+  --space-toc-top: 96px;
+  --mask-scroll-edge: linear-gradient(to right, #000 calc(100% - 48px), transparent);
   --size-phone-spec: 520px;
   --shadow-spec-doc: 0 0 0 var(--size-hairline) var(--color-hairline);
   --size-wipe-line: 2px;
@@ -1259,7 +1263,7 @@
 .bloom__figure span { font-weight: var(--weight-medium); font-size: var(--text-label); opacity: var(--opacity-bloom-date); }
 .case-hero .bloom { --size-bloom-flower: var(--size-bloom-flower-hero); --size-bloom-phone: var(--size-bloom-phone-hero); --pos-bloom-centre: var(--pos-bloom-centre-hero); }
 @container (max-height: 420px) { .bloom__note:nth-child(n + 3) { display: none; } }
-.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: var(--size-bloom-figures-hero); translate: var(--move-centre); }
+.case-hero .bloom__figures { left: var(--pos-centre); right: auto; width: min(var(--size-bloom-figures-hero), var(--size-full)); translate: var(--move-centre); }
 
 /* ---------- Prevently case ---------- */
 /* Five figures: the two with the longest captions on the first row, three on the second */
@@ -1312,7 +1316,7 @@
 .journey li { display: grid; grid-row: span 4; grid-template-rows: subgrid; padding: var(--space-14); border-radius: var(--radius-inner); background: var(--color-page); font-size: var(--text-label); line-height: var(--leading-tag); }
 .journey b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
 .journey q { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; }
-.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); font-style: normal; }
+.journey em { padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); font-style: normal; }
 .journey strong { color: var(--color-ink); font-weight: var(--weight-medium); }
 
 /* Try it: questions on the left, the plan in the app's look on the right */
@@ -1416,3 +1420,39 @@
   .handsets__row--lg { justify-content: flex-start; gap: var(--space-20); padding: var(--space-18); overflow-x: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .try__card.is-new { animation: none; } }
+
+/* Phones: the voice table reads as cards (before, struck through → after; what was wrong as a caption under them) */
+@media (max-width: 640px) {
+  .voice:not(.voice--stages) table { min-width: var(--space-0); }
+  .voice:not(.voice--stages) thead { display: none; }
+  .voice:not(.voice--stages) tr { display: grid; gap: var(--space-4); padding: var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); }
+  .voice:not(.voice--stages) tbody tr:first-child { border-top: none; }
+  .voice:not(.voice--stages) td { padding: var(--space-0); border-top: none; }
+  .voice:not(.voice--stages) td:nth-child(1) { order: 1; }
+  .voice:not(.voice--stages) td:nth-child(3) { order: 2; }
+  .voice:not(.voice--stages) td:nth-child(2) { order: 3; }
+}
+
+/* Phones: the journey map is a list, one stage under another, instead of a strip to scroll */
+@media (max-width: 640px) {
+  .prose .journey { grid-template-columns: var(--layout-col-1); grid-template-rows: none; overflow-x: visible; }
+  .journey li { grid-row: auto; grid-template-rows: none; gap: var(--space-10); }
+}
+
+/* Narrow screens: rows that scroll sideways fade at the right edge, so it shows there is more */
+@media (max-width: 860px) {
+  .handsets__row, .spec__bar > .filter:first-child, .code__tabs { -webkit-mask-image: var(--mask-scroll-edge); mask-image: var(--mask-scroll-edge); }
+  .handsets__row { padding-right: var(--space-48); }
+}
+.handsets__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
+
+/* Chapters: on wide screens only, a quiet list fixed at the top left; the chapter in view in ink */
+.case-toc { display: none; }
+@media (min-width: 1400px) {
+  .case-toc { position: fixed; z-index: var(--z-raise); left: var(--space-24); top: var(--space-toc-top); display: block; width: var(--size-case-toc); }
+  .case-toc ol { display: grid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+  .case-toc a { display: block; color: var(--color-pencil); font-size: var(--text-micro); line-height: var(--leading-tag); text-decoration: none; }
+  .case-toc a:hover, .case-toc a[aria-current] { color: var(--color-ink); }
+  .case-toc a:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); border-radius: var(--radius-label); }
+}
+.prose section[id] { scroll-margin-top: var(--space-48); }

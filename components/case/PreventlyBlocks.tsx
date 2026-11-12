@@ -25,7 +25,8 @@ export function Phones({ label, os, shots, size }: { label?: string; os: "ios" |
   return (
     <div className="handsets case-wide">
       {label && <p className="handsets__label">{label}</p>}
-      <div className={size === "lg" ? "handsets__row handsets__row--lg" : "handsets__row"}>
+      {/* On a narrow screen the row scrolls sideways: a named region the keyboard can reach and scroll */}
+      <div className={size === "lg" ? "handsets__row handsets__row--lg" : "handsets__row"} role="region" aria-label={label ?? "Screens"} tabIndex={0}>
         {shots.map((s, i) => (
           <Phone key={s.src} os={s.os ?? (os === "both" ? (i === 0 ? "ios" : "android") : os)} shot={s} size={size} />
         ))}

@@ -5,6 +5,7 @@ import { caseHref, caseSlugs, loadCase, nextCase } from "@/lib/cases";
 import { Vis } from "@/components/shell/Vis";
 import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
+import { CaseToc } from "@/components/case/CaseToc";
 import { LiveProduct } from "@/components/case/LiveProduct";
 import { OpenCard, Stats } from "@/components/case/CaseBlocks";
 
@@ -93,6 +94,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <button className="float-btn float-btn--top" type="button" data-to-top aria-label="Back to top">
         <Icon name="up" />
       </button>
+      <CaseToc />
       <CaseBehavior />
     </>
   );
