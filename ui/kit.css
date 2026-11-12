@@ -170,6 +170,7 @@
   --layout-facts: max-content 1fr;
   --layout-side-copy-wide: 52%;
   --layout-image-ratio: 4 / 3;
+  --ratio-cert: 16 / 9;
   --layout-span-all: 1 / -1;
   --row-tile: 250px;
   /* GRG's two rows are lower: its tile ends just under the Invoices table in the last step; Prevently beside it gets shorter with it */
@@ -1113,6 +1114,10 @@
 .doc-link b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
 .doc-link:hover .sel, .doc-link:focus-visible .sel { opacity: var(--opacity-full); }
 .doc-link .sel b { display: none; }
+/* Learning: certificates whole (contained on the page colour), and the result the certificate shows */
+.doc-link__shot--cert { aspect-ratio: var(--ratio-cert); }
+.doc-link__shot--cert img { object-fit: contain; }
+.doc-link__result { color: var(--color-ink); font-weight: var(--weight-medium); }
 .prose .doc-link:focus-visible { outline: none; }
 .case-kicker { margin: var(--space-0) var(--space-0) var(--space-10); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 
