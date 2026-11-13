@@ -38,15 +38,24 @@ type FigureProps = {
   priority?: boolean;
 };
 
-/** A case image as it is. The image opens full size in a new tab; a Figma selection shows on hover. */
+/** A case image as it is. The image opens larger in the on-page lightbox; a Figma selection shows on hover. */
 export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority }: FigureProps) {
   return (
     <figure className="fig">
       <div className="fig__frame">
-        <a className="fig__zoom" href={src} target="_blank" rel="noopener">
+        {/* Opens the image larger in a modal on the page (see Lightbox); figures in a row are one set */}
+        <button
+          type="button"
+          className="fig__zoom"
+          data-zoom={src}
+          data-zoom-w={width}
+          data-zoom-h={height}
+          data-zoom-alt={alt}
+          data-zoom-cap={title ?? (typeof caption === "string" ? caption : "")}
+          aria-label={`Open larger: ${title ?? alt}`}
+        >
           <Image className="fig__img" src={src} width={width} height={height} alt={alt} sizes={sizes} quality={90} priority={priority} />
-          <span className="sr-only">Open full size in a new tab</span>
-        </a>
+        </button>
         <Selection />
       </div>
       {(caption || title) &&

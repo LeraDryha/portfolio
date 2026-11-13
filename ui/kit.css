@@ -975,7 +975,8 @@
 /* Figures: images as they are, rounded; the image opens full size; Figma selection on hover */
 .fig { position: relative; margin: var(--space-26) var(--space-0); }
 .fig__frame { position: relative; }
-.fig__zoom { display: block; cursor: zoom-in; }
+.fig__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; background: none; color: inherit; font: inherit; cursor: zoom-in; }
+.fig__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-4); }
 .fig__img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-figure); background: var(--color-tile); }
 .fig__cap { margin-top: var(--space-10); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); text-align: center; }
 .fig__cap b { color: var(--color-ink); font-weight: var(--weight-medium); }

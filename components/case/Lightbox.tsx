@@ -10,7 +10,7 @@ const read = (b: HTMLElement): Shot => ({
   w: Number(b.dataset.zoomW),
   h: Number(b.dataset.zoomH),
   alt: b.dataset.zoomAlt ?? "",
-  cap: b.dataset.zoomCap ?? "",
+  cap: (b.dataset.zoomCap ?? "").replace(/\.$/, ""),
 });
 
 /** Screens open larger in a modal, without leaving the page. One per case page: any [data-zoom] button opens it;
@@ -32,7 +32,7 @@ export function Lightbox() {
         setSet(JSON.parse(b.dataset.zoomList) as Shot[]);
         setI(Number(b.dataset.zoomIndex ?? 0));
       } else {
-        const row = b.closest(".handsets__row, .spec__pair") ?? b.parentElement!;
+        const row = b.closest(".handsets__row, .spec__pair, .fig-row") ?? b.parentElement!;
         const all = [...row.querySelectorAll<HTMLElement>("[data-zoom]")];
         setSet(all.map(read));
         setI(all.indexOf(b));
