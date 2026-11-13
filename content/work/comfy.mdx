@@ -10,7 +10,7 @@ export const meta = {
   ],
   answer: {
     problem: "Buying on credit felt risky. Terms were unclear, nobody explained how the final amount was calculated, checkout overloaded people at the moment they had to commit, and online they couldn’t tell if a product would suit them.",
-    did: "15 interviews, a survey of 178 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.",
+    did: "15 interviews, a survey of 179 shoppers and a review of 54 competitor features led to a clearer credit block, a bank-offer drawer with a payment calculator, a calmer checkout and video consultations.",
     result: "In moderated tests the redesign reached 100% task completion with zero errors, against 75% for the current flow. In Maze, the success rate rose from 87.5% to 92.3% between iterations.",
   },
   proof: { mark: "75% → 100%", cap: "task completion, current flow vs redesign (moderated, 4 and 7 sessions)" },
@@ -182,11 +182,40 @@ We looked for what makes people buy, or not buy, on credit: their barriers, moti
 
 ### Follow-up survey
 
-To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents; the survey closed at 178, so its numbers are a direction, not proof.
+To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents; the survey closed at 179, so its numbers are a direction, not proof.
 
 The survey tested four insights: clarity of information, package deals, comparing credit terms, and wanting to see a product in person before buying.
 
-<Figure src="/work/comfy/c09.jpg" width={1600} height={1137} alt="Survey results charts, at 90 responses." caption="Survey charts, captured at 90 responses, before the survey closed at 178." />
+<SurveyCharts
+  title="What the survey showed"
+  intro="179 shoppers took part: 75% aged 18–39, 64% women, and 48% of those who answered had already bought appliances on credit. The credit questions are shown as they stood at 90 responses."
+  charts={[
+    { question: "What influences your decision to take credit the most?", n: 90, rows: [
+      { label: "Seeing the number of payments", pct: 68.9 },
+      { label: "Clear credit terms", pct: 61.1 },
+      { label: "Comparing credit terms", pct: 35.6 },
+      { label: "Return conditions", pct: 27.8 },
+    ] },
+    { question: "What could make you decide not to take credit online?", n: 90, rows: [
+      { label: "Unclear credit terms", pct: 63.3 },
+      { label: "Technical problems on the site", pct: 53.3 },
+      { label: "The item isn’t available in a store", pct: 47.8 },
+      { label: "Too few payments", pct: 31.1 },
+    ] },
+    { question: "When do you buy in a store instead of online?", n: 90, rows: [
+      { label: "To see the item in person", pct: 74.4 },
+      { label: "To check the size", pct: 34.4 },
+      { label: "To make sure of the quality", pct: 32.2 },
+      { label: "I always buy online", pct: 10 },
+    ] },
+    { question: "Are package deals with credit interesting to you?", n: 90, rows: [
+      { label: "No", pct: 62.2 },
+      { label: "Yes", pct: 34.4 },
+      { label: "Not now, or not sure", pct: 3.4 },
+    ] },
+  ]}
+  note="Translated from Ukrainian. In the first three questions people could choose several answers, so the shares add up to more than 100%."
+/>
 
 </Chapter>
 
