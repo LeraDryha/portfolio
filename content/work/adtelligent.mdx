@@ -1,86 +1,112 @@
 export const meta = {
   heading: "Adtelligent: reports built around what users check every day",
-  lead: "Reports for an AdTech B2B SaaS platform. I focused on uncovering users’ pains and gains and crafted design solutions to improve their workflow and the overall product experience.",
+  lead: "A UX redesign of the reports in an AdTech B2B SaaS platform. I took the existing design and worked on the problems in it: how people check their daily numbers, find saved reports and build new ones.",
   facts: [
     { label: "Year", value: "2025" },
+    { label: "Role", value: "UX designer" },
     { label: "Product", value: "AdTech B2B SaaS platform" },
     { label: "Scope", value: "Reports: structure, overview, saved reports, report builder" },
   ],
-  proof: { mark: "Ad Requests · eCPM", cap: "what users log in to check, every day" },
 };
+
+<Note>The previous design isn’t public, so this case shows only the redesign. The visual style comes from the product’s existing interface; my part was the structure and the UX decisions, and the reasoning behind each one is written next to it.</Note>
 
 <Figure src="/work/adtelligent/r01.jpg" width={1600} height={892} alt="The redesigned reports overview on a laptop, with charts and a data table." caption="The redesigned reports." priority />
 
-## Reports information architecture
+<Chapter id="structure" n={1} of={5} label="Structure" title="Reports information architecture">
 
 Reports were rebuilt around three places: an Overview for the daily check, Statistic API Access, and My Reports for saved, template and scheduled reports, each with a clear way to create a new one.
 
 <Figure src="/work/adtelligent/r02.jpg" width={1600} height={755} alt="Map of the updated reports structure: Overview with charts, table and create report; Statistic API Access; My Reports with favourites, templates, current and scheduled reports, and create report." caption="Updated reports information architecture." />
 
-## Overview
+</Chapter>
 
-### What users need
+<Chapter id="overview" n={2} of={5} label="Overview" title="The daily check">
 
-Users log in every day to check the volume of Ad Requests, Ad Opportunities and Impressions, and ad spend (Spent and eCPM), broken down by campaigns, sites and countries.
+<ProblemSolved
+  n={1}
+  label="Area"
+  problem="Overview"
+  evidence="Users log in every day to check the volume of Ad Requests, Ad Opportunities and Impressions, and ad spend (Spent and eCPM), by campaigns, sites and countries."
+  steps={[
+    {
+      title: "Charts first, the familiar table under them",
+      text: "A separate Overview page for quick visualisation, because charts are read faster than tables. The charts filter by campaigns, sites and countries, and by date. Under them, the familiar table with quick view settings and export; sorting icons on the table pills show the available actions right away.",
+      desktop: { src: "/work/adtelligent/redesign/overview.webp", width: 1440, height: 960, alt: "Overview: filters, line charts for volumes and spend, and the data table." },
+      phones: [{ src: "/work/adtelligent/redesign/editcols.webp", width: 456, height: 447, alt: "Edit columns: search, deselect all and a checkbox per metric." }],
+    },
+  ]}
+/>
 
-### Ideas
+</Chapter>
 
-- A dedicated Overview page for quick data visualisation: charts are easier and faster to read than tables.
-- Flexible chart filters: by campaigns, sites and countries, plus dates.
-- The usual data table on the overview, with quick view settings and export.
-- Sorting icons on table pills, so users see the available actions right away.
+<Chapter id="my-reports" n={3} of={5} label="My reports" title="Saved reports, easy to find">
 
-<Figure src="/work/adtelligent/r03.jpg" width={1600} height={1075} alt="Overview page with filters, line charts for volumes and spend, and a data table." caption="Overview: charts first, the table under them." />
+<ProblemSolved
+  n={2}
+  label="Area"
+  problem="My reports"
+  evidence="Users want to save reports and add them to favourites for quick access, start new reports from proven templates, and move between report types: current reports, including saved ones, and scheduled reports sent by email."
+  steps={[
+    {
+      title: "One page for every report",
+      text: "A separate reports page with grouping by type, search and filters. Create report starts a new one or picks from saved reports and templates, and a list and grid switch makes scanning easier.",
+      thinking: "Why does someone add a report to favourites? If it’s to reuse it, that’s a template; if not, we need both tabs.",
+      desktop: { src: "/work/adtelligent/redesign/list.webp", width: 1440, height: 960, alt: "My Reports as a list: tabs for favourites, templates, current and scheduled reports, search and dates." },
+      phones: [{ src: "/work/adtelligent/redesign/dropdown.webp", width: 296, height: 282, alt: "The Create report menu: a new report, from saved reports or from templates." }],
+    },
+    {
+      title: "Large cards in the grid",
+      text: "In the grid, large cards with a preview of each report let people read the key information and find the right report faster. Card actions can sit on the card for quick access, hide in a menu, or both: frequent ones such as Edit or Export stay visible, the rest go into the menu.",
+      desktop: { src: "/work/adtelligent/redesign/grid.webp", width: 1440, height: 960, alt: "My Reports as a grid of large cards with chart and table previews." },
+    },
+  ]}
+/>
 
-<FigurePair>
-  <HalfFigure src="/work/adtelligent/r04.jpg" width={1600} height={858} alt="The charts block of the overview: volumes and spend." title="Charts" caption="Volumes and spend as separate charts." />
-  <HalfFigure src="/work/adtelligent/r05.jpg" width={1600} height={858} alt="Edit columns menu with checkboxes for metrics." title="Table" caption="Columns chosen in one menu." />
-</FigurePair>
+</Chapter>
 
-## My Reports
+<Chapter id="builder" n={4} of={5} label="Report builder" title="Building a report">
 
-### What users need
+<ProblemSolved
+  n={3}
+  label="Area"
+  problem="Report builder"
+  evidence="Users want to see their table as charts after applying filters, set up the table and charts, and save and export the report."
+  steps={[
+    {
+      title: "Charts grouped by what they measure",
+      text: "Metrics are grouped by meaning into separate charts: volumes (Ad Requests, Ad Opportunities, Impressions), money (Spent, eCPM) and percentages (Fill Rate by Ad Requests and by Ad Opportunities).",
+      thinking: "Whether charts appear after the table’s filters depends on the goal. If they’re an important part of the analysis, they sit right beside the table, so people see the data they filter. If not everyone works with charts, a “Show/Hide graphs” button lets people set up the view and keeps the interface light.",
+      desktop: { src: "/work/adtelligent/redesign/graphs.webp", width: 1440, height: 1330, alt: "A report with charts for volumes, spend, fill rates and countries, key metrics, the table and the settings panel." },
+    },
+    {
+      title: "Name the report as you create it",
+      text: "People can name a report right away, so the list isn’t full of “New Report” and stays structured and clear.",
+      desktop: { src: "/work/adtelligent/redesign/v1.webp", width: 1440, height: 960, alt: "A new report with an editable title, the table and the settings panel with applied campaign filters." },
+    },
+    {
+      title: "Every table setting in one side panel",
+      text: "A side panel brings the table’s columns, metrics and filter pills into one place, so people see and change all the parameters at once. Metrics and options are added with a plus, which keeps unused settings hidden; the plus next to each title is a familiar pattern in systems with complex settings, and applied filters move to the top of the list.",
+      desktop: { src: "/work/adtelligent/redesign/v2.webp", width: 1440, height: 960, alt: "A report with the side panel: columns, then collapsed Metrics and Filters, each with a plus." },
+      phones: [{ src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, alt: "Adding a filter: a searchable list, with the selected values at the top." }],
+    },
+    {
+      title: "Edit in place, save with a clear status",
+      text: "Editing opens in a pop-up or modal instead of a new tab, which is rarely a good idea in create and edit modes; the modal can still offer to open the editor in a tab. Saving depends on the work: “Save changes” for a template, “Save” for a new report, turning into “Saved” once it’s done.",
+      desktop: { src: "/work/adtelligent/redesign/v3.webp", width: 1440, height: 1366, alt: "A monthly report from a template: Save changes, Export and the full set of charts and filters." },
+      phones: [{ src: "/work/adtelligent/redesign/actions.webp", width: 296, height: 283, alt: "The report actions menu." }],
+    },
+  ]}
+/>
 
-- A convenient way to save reports and add them to favourites for quick access to important data.
-- Ready-made report sets (templates) to create new reports from proven setups.
-- Navigation between report types: current reports, including saved ones, and scheduled reports sent by email.
+</Chapter>
 
-### Ideas
+<Chapter id="next" n={5} of={5} label="Next steps" title="What I’d do next">
 
-- A dedicated reports page with grouping, search and filters.
-- A Create report button that starts from a saved report or a template.
-- A list and grid switch, for easier scanning of the reports.
+- **A UI kit for the product**, to keep every part of the system consistent. The screens use elements and styles taken from the existing product.
+- **Better charts.** Some of them may look illogical: I didn’t fully understand how some metrics work or which pains and gains they cover. With a detailed analysis of the metrics and user needs, the charts can be more useful and easier to read.
+- **Responsive layouts.** Dashboards and tables like these often break on small screens, so every size needs working through, whatever device people use.
 
-<FigurePair>
-  <HalfFigure src="/work/adtelligent/r06.jpg" width={1600} height={1075} alt="My Reports in a list view with tabs for favourites, templates, current and scheduled reports." title="List view" caption="Tabs by report type, search and filters." />
-  <HalfFigure src="/work/adtelligent/r07.jpg" width={1600} height={1075} alt="My Reports in a grid view with report preview cards." title="Grid view" caption="Report previews, actions in a menu." />
-</FigurePair>
+Some parts of the logic may be missing for lack of details and insights, which is why each decision above comes with my reasoning.
 
-<Statement>To test: larger cards in the grid view, so people scan report previews and find the right report faster; and frequent actions such as Edit or Export kept on the card, with the rest in a menu.</Statement>
-
-<Figure src="/work/adtelligent/r08.jpg" width={1600} height={1075} alt="Grid view with larger report cards and an actions menu open." caption="Larger cards, with actions on the card and in a menu." />
-
-## Creating a report
-
-### What users need
-
-When creating a report, users want to visualise the table after applying filters, manage and customise tables and charts, and save and export the report.
-
-### Ideas
-
-- Group metrics by meaning into separate charts instead of one mixed table: volumes (Ad Requests, Ad Opportunities, Impressions), money (Spent, eCPM) and percentages (Fill Rate by Ad Requests and by Ad Opportunities).
-- Let people name a report as they create it, so the list isn’t full of “New Report”.
-
-<Figure src="/work/adtelligent/r09.jpg" width={1600} height={1075} alt="Report builder: a table with a settings panel on the right." caption="Report builder, first version." />
-
-- A side panel brings every table setting into one place: columns, metrics and filter pills, so people see and change all parameters at once.
-- A plus next to each section title follows the pattern of most systems with complex settings. Selected filters move to the top of the list, so applied parameters are easy to review.
-
-<Figure src="/work/adtelligent/report.jpg" width={1600} height={1479} alt="Report with charts grouped by metric type, a data table and the settings side panel." caption="Charts grouped by what they measure, settings in one panel." />
-
-<Statement>To test: adding metrics and options with a “Plus” button keeps unused settings hidden and the interface cleaner.</Statement>
-
-<FigurePair>
-  <HalfFigure src="/work/adtelligent/r11.jpg" width={1600} height={1075} alt="Adding a filter with the Plus button and a search field." title="Adding a filter" caption="Plus opens a searchable list." />
-  <HalfFigure src="/work/adtelligent/r12.jpg" width={1600} height={1075} alt="Applied country filters shown at the top of the panel." title="Applied filters" caption="Selected filters stay on top." />
-</FigurePair>
+</Chapter>
