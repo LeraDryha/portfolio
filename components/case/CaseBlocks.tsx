@@ -474,24 +474,29 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
   const codes: Record<string, Mark> = { y: "yes", p: "part", n: "no", "-": "na" };
   return (
     <figure className="matrix case-wide">
-      <div className="matrix__legend" aria-hidden="true">
-        {(Object.keys(MARK) as Mark[]).map((m) => (
-          <span key={m}>
-            <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
-          </span>
-        ))}
+      <div className="matrix__bar">
+        <div className="matrix__legend" aria-hidden="true">
+          {(Object.keys(MARK) as Mark[]).map((m) => (
+            <span key={m}>
+              <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
+            </span>
+          ))}
+        </div>
+        {/* The original research files, whole, so the numbers can be checked */}
+        {sources && (
+          <div className="sources">
+            {sources.map((src, i) => (
+              <a key={src.href} className="source" href={src.href} target="_blank" rel="noopener" aria-label={`Artifact ${i + 1}: ${src.label}, ${src.note}, opens in a new tab`} title={`${src.label} · ${src.note}`}>
+                Artifact {i + 1}
+                <Icon name="out" />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
       <div className="matrix__scroll" role="region" aria-label={caption} tabIndex={0}>
         <table>
           <thead>
-            <tr>
-              <td />
-              {groups.map((g) => (
-                <th key={g.label} scope="colgroup" colSpan={g.stores.length} className="matrix__group">
-                  {g.label}
-                </th>
-              ))}
-            </tr>
             <tr>
               <th scope="col">Feature</th>
               {stores.map((st, i) => (
@@ -523,20 +528,6 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
       </div>
       <p className="matrix__parity">{parity}</p>
       <figcaption className="fig__cap">{caption}</figcaption>
-      {/* The original research files, whole, so the numbers can be checked */}
-      {sources && (
-        <div className="sources">
-          {sources.map((src) => (
-            <a key={src.href} className="source" href={src.href} target="_blank" rel="noopener">
-              <span>
-                <b>{src.label}</b>
-                <small>{src.note}</small>
-              </span>
-              <Icon name="out" />
-            </a>
-          ))}
-        </div>
-      )}
     </figure>
   );
 }
