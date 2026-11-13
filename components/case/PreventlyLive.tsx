@@ -51,7 +51,7 @@ export function LivePlan() {
     );
 
   return (
-    <div className="try case-wide">
+    <div className="try">
       <div className="try__ask">
         <label className="try__label" htmlFor="try-age">
           Age <output htmlFor="try-age">{age}</output>
