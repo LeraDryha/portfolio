@@ -124,3 +124,56 @@ export function ValueCanvas({ title, offer, customer, caption }: { title: string
     </Panel>
   );
 }
+
+/** The problems worth solving, one white card each, with the research stickies that back them (paper yellow). */
+export function ProblemBoard({ title, problems, caption }: { title: string; problems: { title: string; notes: string[] }[]; caption: string }) {
+  return (
+    <Panel title={title}>
+      <div className="problems">
+        {problems.map((p, i) => (
+          <section key={p.title} className="define__card problems__card">
+            <p className="define__label">Problem {i + 1}</p>
+            <h4>{p.title}</h4>
+            <ul className="stickies">
+              {p.notes.map((n) => (
+                <li key={n} className="sticky">
+                  {n}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+      <p className="voices__note">{caption}</p>
+    </Panel>
+  );
+}
+
+/** How Might We: each question on a green sticky, the team's ideas for it on grey ones beside it, as on the board. */
+export function HmwBoard({ title, questions, caption }: { title: string; questions: { q: string; tag?: string; ideas: string[] }[]; caption: string }) {
+  return (
+    <Panel title={title}>
+      <ol className="hmw">
+        {questions.map((h, i) => (
+          <li key={h.q} className="define__card hmw__row">
+            <div className="sticky sticky--hmw">
+              <span className="hmw__n">
+                HMW {i + 1}
+                {h.tag && <em> · {h.tag}</em>}
+              </span>
+              {h.q}
+            </div>
+            <ul className="stickies stickies--ideas">
+              {h.ideas.map((idea) => (
+                <li key={idea} className="sticky sticky--idea">
+                  {idea}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+      <p className="voices__note">{caption}</p>
+    </Panel>
+  );
+}
