@@ -1176,6 +1176,9 @@
 /* Problem solved (Comfy Deliver): problem → before → decisions, each decision with its HMW ideas and screens */
 .solved { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-14); margin: var(--space-28) var(--space-0); }
 .solved__head { display: grid; gap: var(--space-8); }
+/* Problems apart from each other (less than a chapter break), the heading a little apart from its cards */
+.prose .solved + .solved { margin-top: var(--space-76); }
+.solved__head { margin-bottom: var(--space-10); }
 .prose .solved__head h3 { margin: var(--space-0); font-size: var(--text-chapter); letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); }
 .prose .solved__evidence { margin: var(--space-0); color: var(--color-graphite); }
 .prose .solved__hmw { display: flex; align-items: center; gap: var(--space-10); margin: var(--space-0); color: var(--color-ink); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
@@ -1210,6 +1213,7 @@
 .solved__shots--2 .solved__phone--1 { right: calc(var(--size-solved-phone) - var(--space-28)); bottom: var(--space-12); }
 @media (max-width: 860px) {
   .solved__before, .solved__step { grid-template-columns: var(--layout-col-1); padding: var(--space-20); border-radius: var(--radius-tile-tablet); }
+  .prose .solved + .solved { margin-top: var(--space-56); }
   .solved__shots { padding: var(--space-0); }
   .solved__phone { position: static; display: inline-block; width: var(--size-solved-phone-narrow); margin-top: var(--space-12); margin-right: var(--space-8); }
   .solved__more { grid-column: auto; }
