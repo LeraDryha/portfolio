@@ -194,14 +194,14 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, label = "Problem", problem, evidence, hmw, before, steps }: { n: number; label?: string; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop: Shot; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop: Shot; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
-        <p className="define__label">
-          {label} {n}
-        </p>
-        <h3>{problem}</h3>
+        {/* Numbered like a heading in a document: the number in the case accent, no separate label */}
+        <h3>
+          <span className="solved__num">{n}.</span> {problem}
+        </h3>
         <p className="solved__evidence">{evidence}</p>
         {hmw && (
           <p className="solved__hmw">

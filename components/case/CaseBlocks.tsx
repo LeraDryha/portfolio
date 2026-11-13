@@ -6,15 +6,14 @@ import { Icon, Selection } from "@/components/shell/Icons";
    Class names come straight from ui/kit.css. */
 
 /** A part of the story: a heading and an optional line under it.
-    With `n`, `of` and `label` it is a chapter break: a gap, a hairline and "04 / 07 · Process" over a larger heading. */
-export function Chapter({ id, title, sub, n, of, label, children }: { id: string; title: string; sub?: string; n?: number; of?: number; label?: string; children: ReactNode }) {
-  const pad = (x: number) => String(x).padStart(2, "0");
-  const isBreak = n !== undefined && of !== undefined && label !== undefined;
+    With `n` and `of` it is a chapter break: a gap, a hairline and "Chapter 4 of 7" in plain words over a larger heading. */
+export function Chapter({ id, title, sub, n, of, children }: { id: string; title: string; sub?: string; n?: number; of?: number; children: ReactNode }) {
+  const isBreak = n !== undefined && of !== undefined;
   return (
     <section id={id} aria-labelledby={`h-${id}`} className={isBreak ? "chapter--break" : undefined}>
       {isBreak && (
         <p className="part__eyebrow" aria-hidden="true">
-          <span className="chapter__num">{pad(n)}</span> / {pad(of)} · {label}
+          Chapter {n} of {of}
         </p>
       )}
       <h2 id={`h-${id}`}>{title}</h2>
@@ -413,7 +412,7 @@ export function Idea({ n, of, title, src, width, height, alt, children }: { n: n
     <article className="idea">
       <div className="idea__text">
         <p className="part__eyebrow">
-          Idea {n} / {of}
+          Idea {n} of {of}
         </p>
         <h3>{title}</h3>
         {children}
