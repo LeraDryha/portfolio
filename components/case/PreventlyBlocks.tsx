@@ -76,7 +76,7 @@ export function Research({ persona, stages }: { persona: { name: string; line: s
 /** Each stage of the work and the document written before it. */
 export function StageTable({ rows }: { rows: { stage: string; doc: string }[] }) {
   return (
-    <div className="voice voice--stages case-wide">
+    <div className="voice voice--stages">
       <table>
         <thead>
           <tr>

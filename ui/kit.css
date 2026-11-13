@@ -1472,6 +1472,10 @@
   .voice:not(.voice--stages) td:nth-child(3) { order: 2; }
   .voice:not(.voice--stages) td:nth-child(2) { order: 3; }
   .voice--lines td:first-child { width: auto; }
+  .voice--stages thead { display: none; }
+  .voice--stages tr { display: grid; gap: var(--space-2); padding: var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); }
+  .voice--stages tbody tr:first-child { border-top: none; }
+  .voice--stages tbody th, .voice--stages td { width: auto; padding: var(--space-0); border-top: none; }
 }
 
 /* Phones: the journey map is a list, one stage under another, instead of a strip to scroll */
