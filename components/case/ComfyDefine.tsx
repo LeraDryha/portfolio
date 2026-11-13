@@ -194,7 +194,7 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before: { shot: Shot; issues: string[] }; steps: { title: string; text: string; ideas: string[]; desktop: Shot; phones: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; desktop: Shot; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
@@ -215,7 +215,21 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
             ))}
           </ul>
         </div>
-        <Zoom shot={before.shot} cap="Before" className="solved__shot" />
+        <div className={`solved__shots solved__shots--${before.phones?.length ?? 0}`}>
+          <Zoom shot={before.shot} cap="Before" className="solved__shot" />
+          {/* The screen's own tooltip, as it opened from a bank icon */}
+          {before.overlay && <Zoom shot={before.overlay} cap="Before · the bank tooltip" className="solved__overlay" />}
+          {before.phones?.map((p, j) => (
+            <Zoom key={p.src} shot={p} cap="Before · mobile" className={`solved__phone solved__phone--${j + 1}`} />
+          ))}
+        </div>
+        {before.more && (
+          <div className="solved__more">
+            {before.more.map((m) => (
+              <Zoom key={m.src} shot={m} cap="Before" className="solved__thumb" />
+            ))}
+          </div>
+        )}
       </section>
       <ol className="solved__steps case-wide">
         {steps.map((s, i) => (
@@ -224,6 +238,7 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
               <span className="solved__n">{String(i + 1).padStart(2, "0")}</span>
               <h4>{s.title}</h4>
               <p>{s.text}</p>
+              {s.ideas && s.ideas.length > 0 && (
               <ul className="solved__ideas" aria-label="From How Might We">
                 {s.ideas.map((idea) => {
                   const [tag, ...rest] = idea.split(" · ");
@@ -234,10 +249,11 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
                   );
                 })}
               </ul>
+              )}
             </div>
-            <div className={`solved__shots solved__shots--${s.phones.length}`}>
+            <div className={`solved__shots solved__shots--${s.phones?.length ?? 0}`}>
               <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />
-              {s.phones.map((p, j) => (
+              {s.phones?.map((p, j) => (
                 <Zoom key={p.src} shot={p} cap={`${s.title} · mobile`} className={`solved__phone solved__phone--${j + 1}`} />
               ))}
             </div>
