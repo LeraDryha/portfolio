@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Icon, Selection } from "@/components/shell/Icons";
 
 /* Building blocks for case pages, used from MDX (see mdx-components.tsx).
@@ -427,6 +427,112 @@ export function Idea({ n, of, title, src, width, height, alt, children }: { n: n
   );
 }
 
+type CanvasPart = { title: string; items?: string[]; quote?: string };
+type CanvasCell = { area: string; parts: CanvasPart[] };
+
+/** A business canvas as a live block (Comfy: Business Model Canvas and Lean Canvas, combined): the top row in the
+ *  Lean Canvas order, the business-model cells under it; one column of cells on phones. */
+export function BusinessCanvas({ top, bottom, caption }: { top: CanvasCell[]; bottom: CanvasCell[]; caption: string }) {
+  const cell = (c: CanvasCell) => (
+    <section key={c.area} className="canvas__cell" style={{ "--area": c.area } as CSSProperties}>
+      {c.parts.map((p) => (
+        <div key={p.title} className="canvas__part">
+          <h4>{p.title}</h4>
+          {p.items && (
+            <ol>
+              {p.items.map((i) => (
+                <li key={i}>{i}</li>
+              ))}
+            </ol>
+          )}
+          {p.quote && <p className="canvas__quote">{p.quote}</p>}
+        </div>
+      ))}
+    </section>
+  );
+  return (
+    <figure className="canvas case-wide">
+      <div className="canvas__top">{top.map(cell)}</div>
+      <div className="canvas__bottom">{bottom.map(cell)}</div>
+      <figcaption className="fig__cap">{caption}</figcaption>
+    </figure>
+  );
+}
+
+type Mark = "yes" | "part" | "no" | "na";
+const MARK: Record<Mark, { sign: string; label: string }> = {
+  yes: { sign: "●", label: "Has it" },
+  part: { sign: "◐", label: "Partly, or hard to find" },
+  no: { sign: "○", label: "Doesn’t have it" },
+  na: { sign: "–", label: "Not checked" },
+};
+
+/** Competitor features as a compact matrix: one row per feature, a mark per store (shape and colour both carry it),
+ *  the client's column tinted; what every store has goes in one line under it. Scrolls sideways on phones. */
+export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string }[]; parity: string; caption: string; sources?: { label: string; note: string; href: string }[] }) {
+  const stores = groups.flatMap((g) => g.stores);
+  const codes: Record<string, Mark> = { y: "yes", p: "part", n: "no", "-": "na" };
+  return (
+    <figure className="matrix case-wide">
+      <div className="matrix__bar">
+        <div className="matrix__legend" aria-hidden="true">
+          {(Object.keys(MARK) as Mark[]).map((m) => (
+            <span key={m}>
+              <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
+            </span>
+          ))}
+        </div>
+        {/* The original research files, whole, so the numbers can be checked */}
+        {sources && (
+          <div className="sources">
+            {sources.map((src, i) => (
+              <a key={src.href} className="source" href={src.href} target="_blank" rel="noopener" aria-label={`Artifact ${i + 1}: ${src.label}, ${src.note}, opens in a new tab`} title={`${src.label} · ${src.note}`}>
+                Artifact {i + 1}
+                <Icon name="out" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="matrix__scroll" role="region" aria-label={caption} tabIndex={0}>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Feature</th>
+              {stores.map((st, i) => (
+                <th key={st} scope="col" className={i === 0 ? "matrix__own" : undefined}>
+                  {st}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.feature}>
+                <th scope="row">{r.feature}</th>
+                {r.marks.split("").map((c, i) => {
+                  const m = codes[c];
+                  return (
+                    <td key={i} className={i === 0 ? "matrix__own" : undefined}>
+                      <i className={`matrix__mark matrix__mark--${m}`} aria-hidden="true">
+                        {MARK[m].sign}
+                      </i>
+                      <span className="sr-only">{MARK[m].label}</span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <figcaption className="matrix__parity">{parity}</figcaption>
+    </figure>
+  );
+}
+
+export { InterviewQuotes } from "@/components/case/InterviewQuotes";
+export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { TokenAnatomy } from "@/components/case/TokenAnatomy";
 
 /** The start of a larger part of the story, set apart from the chapters before it. */

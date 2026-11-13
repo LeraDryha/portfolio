@@ -39,7 +39,33 @@ Before the kick-off meeting, we explored the context from several angles to prep
 
 After the kick-off we combined a Business Model Canvas and a Lean Canvas, adapted to cover every aspect of the business. It helped us understand the domain and organise everything we had collected.
 
-<Figure src="/work/comfy/c04.jpg" width={1600} height={938} alt="Combined Business Model Canvas and Lean Canvas for Comfy’s credit purchases." caption="Business Model Canvas and Lean Canvas, combined." />
+<BusinessCanvas
+  caption="Business Model Canvas and Lean Canvas, combined."
+  top={[
+    { area: "problem", parts: [
+      { title: "Problem", items: ["Slow page loading", "Insufficient clarity and transparency of information", "Customer fear of purchasing online due to potential mismatches in product expectations", "Low engagement of buyers / users / payers"] },
+      { title: "Existing alternatives", items: ["MOYO", "Stylus", "Foxtrot", "ROZETKA", "ALLO", "Citrus"] },
+    ] },
+    { area: "solution", parts: [{ title: "Solution", items: ["If a user purchases a product on credit and selects an additional service, the credit term is extended", "Partnerships with banks, allowing users to quickly receive a loan from the bank for purchasing a product"] }] },
+    { area: "metrics", parts: [{ title: "Metrics", items: ["The share of credit purchases is 30%", "Number of people who complete a purchase with credit", "Churn rate", "Number of people who land on the “Credit and Payment in Installments” page", "Keywords (type: credit in Comfy)"] }] },
+    { area: "value", parts: [
+      { title: "Unique value proposition", items: ["First omnichannel service in Ukraine", "#2 in e-commerce since 2023 (after Rozetka)", "102 offline stores", "Simplicity", "Self-irony"] },
+      { title: "Slogan", quote: "“Comfy – number one for home gadgets”" },
+    ] },
+    { area: "advantage", parts: [{ title: "Unfair advantage", items: ["More credit options than some competitors", "Omnichannel business model", "Real customer reviews (not just negative but positive too)"] }] },
+    { area: "channels", parts: [{ title: "Channels", items: ["Website", "App", "102 physical stores", "Comfy has direct agreements with vendors; everything goes through Comfy", "Comfy takes responsibility if any issues arise"] }] },
+    { area: "segments", parts: [
+      { title: "Customer segments", items: ["Tech enthusiasts (newcomers)", "IT specialists", "Parents", "People who need household appliances", "People moving into a new home", "Immigrants"] },
+      { title: "Early adopters", items: ["People living on the Naberezhna Peremohy in Dnipro (where it all started)"] },
+    ] },
+  ]}
+  bottom={[
+    { area: "costs", parts: [{ title: "Cost structure", items: ["Salaries", "Office", "Logistics", "Advertising", "Bank commission (for partnership)", "Business premises (stores and warehouses)", "Dedicated employees responsible for crediting (for consultations and training)", "Development and support + hosting and payment on Google Play and App Store"] }] },
+    { area: "revenue", parts: [{ title: "Revenue streams", items: ["Offline stores", "Website", "App"] }] },
+    { area: "partners", parts: [{ title: "Key partners", items: ["Vendors", "PrivatBank", "Mono", "OTP Bank", "PUMB", "Sense Bank", "UKRSIBBANK", "GlobusPlus", "Nova Poshta", "Meest"] }] },
+    { area: "resources", parts: [{ title: "Key resources", items: ["560 office employees", "3100 store employees", "335 warehouse employees", "225 contact center employees", "520 delivery employees", "Stores", "Warehouses", "Logistics (delivery)", "IT team"] }] },
+  ]}
+/>
 
 ### Competitor analysis
 
@@ -51,9 +77,34 @@ We reviewed UX flows, UI patterns and best practices, and sorted features into P
   { value: "54", cap: "features compared" },
 ]} />
 
+<CompetitorMatrix
+  caption="8 of the 54 features we compared: the ones where the stores differ."
+  groups={[
+    { label: "Direct", stores: ["Comfy", "Foxtrot", "MOYO", "Stylus"] },
+    { label: "Secondary", stores: ["ROZETKA", "ALLO", "Citrus"] },
+  ]}
+  rows={[
+    { feature: "Installment filter in the catalogue", marks: "yyyynnn" },
+    { feature: "Extras on the product: −% for paying online, delivery for 1 ₴", marks: "ypnnynn" },
+    { feature: "“Be first” list for items not yet on sale", marks: "ynynnn-" },
+    { feature: "Stock in stores, on the product page", marks: "yyynnyn" },
+    { feature: "Repair status in the account", marks: "ynynnpp" },
+    { feature: "Move an item from the cart to favourites", marks: "yynnnnn" },
+    { feature: "Undo removing an item from the cart", marks: "ynpynn-" },
+    { feature: "Chat on the site", marks: "yynnnnn" },
+  ]}
+  sources={[
+    { label: "Full feature comparison", note: "54 features · PDF · in Ukrainian", href: "/work/comfy/docs/competitor-features.pdf" },
+    { label: "Market and services comparison", note: "PDF · in Ukrainian", href: "/work/comfy/docs/competitor-market.pdf" },
+  ]}
+  parity="Points of parity, which every store has: search, catalogue, filters and sorting, reviews and questions, a choice of delivery, payment and credit terms, bonuses, an account with orders. The table shows the other side: 8 of the 54 features we compared, the ones where the stores differ."
+/>
+
+What sets Comfy apart is already on its pages, before checkout:
+
 <FigurePair>
-  <HalfFigure src="/work/comfy/c05.jpg" width={1600} height={1519} alt="Feature comparison matrix across six competitors." caption="Feature comparison across competitors." />
-  <HalfFigure src="/work/comfy/c06.jpg" width={1600} height={1259} alt="Comfy product pages annotated with Points of Parity and Difference." caption="Points of Parity and Difference, shown on Comfy pages." />
+  <HalfFigure src="/work/comfy/c05-card-conditions.jpg" width={1390} height={1600} alt="Comfy product cards with badges: delivery for 1 hryvnia, 200 bonuses for a review, Trade-In, and −5% extra for paying by card." title="Conditions on the product card" caption="Delivery for 1 ₴, bonuses for a review and −5% for paying by card. ROZETKA and Foxtrot show a discount only at checkout." />
+  <HalfFigure src="/work/comfy/c05-be-first.jpg" width={588} height={491} alt="An iPhone not yet on sale, with a green “Be first” button." title="“Be first”" caption="An item that isn’t on sale yet goes to a waiting list in one tap. Of the stores we checked, only MOYO has this." />
 </FigurePair>
 
 ### What needs to be better
@@ -66,10 +117,66 @@ We reviewed UX flows, UI patterns and best practices, and sorted features into P
 
 We looked for what makes people buy, or not buy, on credit: their barriers, motivations, triggers and context.
 
-<FigurePair>
-  <HalfFigure src="/work/comfy/c07.jpg" width={1600} height={854} alt="Interview participants and their key quotes." caption="Who we talked to." />
-  <HalfFigure src="/work/comfy/c08.jpg" width={1353} height={1600} alt="Interview notes grouped by respondent, one board each." caption="Interview notes, one board per respondent." />
-</FigurePair>
+<InterviewQuotes
+  title="Who we talked to"
+  quotes={[
+    { name: "Yaroslav", nameUa: "Ярослав", en: "If I put down 1,000 as the first payment, it’s charged now, and a month later comes the first installment… […] Whoa, **I’d be shocked** if they took that much from me at once.", ua: "Якщо я вношу першим внеском 1000 то зараз зніме цю суму, а вже через місяць – перший платіж… […] Оооо, **я б офігів** якби з мене зняло одразу стільки" },
+    { name: "Yuliia", nameUa: "Юлія", en: "Right now, because of the renovation, we buy more often: this year there were **a lot of appliance purchases**.", ua: "Зараз, через ремонт, покупки відбуваються частіше, цього року було **багато покупок техніки**" },
+    { name: "Tetiana", nameUa: "Тетяна", en: "Because there are always some mismatches, **a feeling of distrust appears**.", ua: "Через те, що є постійно якісь невідповідності **з’являється відчуття недовіри**" },
+    { name: "Anastasiia", nameUa: "Анастасія", en: "I can’t always come to a store and look at things. But it’s great when there’s an option to **see the appliance in person**.", ua: "Не завжди є можливість прийти в магазин і шось подивитись. Але класно, коли є опція **подивитися вживу** техніку" },
+    { name: "Bohdan", nameUa: "Богдан", en: "I compared the price of the monthly payments: **multiplied the monthly payment** by 6 months and compared it with the order price.", ua: "Я порівнював ціну одноразових платежів – **помножив ціну одноразових платежів** на 6 місяців і порівняв з ціною за замовлення" },
+    { name: "Vlad", nameUa: "Влад", en: "I try not to take loans, I try to **pay in installments**.", ua: "Я намагаюся не брати кредити, я намагаюся **брати оплату частинами.**" },
+    { name: "Iryna", nameUa: "Ірина", en: "Comfy has a **great delivery service, support** and everything else.", ua: "У Comfy є **чудова служба доставки, підтримки** і всього іншого" },
+    { name: "Oleh", nameUa: "Олег", en: "I think prices in stores have gone up a lot lately.", ua: "Я вважаю, що ціни в магазинах наразі дуже підвищились." },
+    { name: "Svitlana", nameUa: "Світлана", en: "I like that Comfy always has promotions and discounts.", ua: "Мені подобається, що у Comfy завжди є акції та знижки." },
+  ]}
+/>
+
+<InterviewBoards
+  title="What we asked, and one board per respondent"
+  guide={[
+    { en: "Tell us a bit about yourself. What do you do? What are your main interests and hobbies?", ua: "Розкажіть трохи про себе. Чим займаєтесь? Які ваші основні інтереси та хобі?" },
+    { en: "How often do you buy appliances and electronics?", ua: "Як часто ви купуєте техніку та електроніку?" },
+    { en: "What prompted your last purchase? Did you plan it or was it spontaneous?", ua: "Що стало причиною вашої останньої покупки? Планували заздалегідь чи це було спонтанно?" },
+    { en: "Do you prefer shopping online or offline? Why?", ua: "Якому шопінгу ви надаєте перевагу: онлайн чи офлайн? Чому?" },
+    { en: "Tell us about your last appliance purchase. What was it? Where did you buy it?", ua: "Розкажіть про вашу останню покупку техніки. Що це було? Де купували?" },
+    { en: "Why did you decide not to buy it on credit?", ua: "Чому вирішили не брати в кредит?" },
+    { en: "How do you choose what to buy? What matters to you? What do you look at first?", ua: "Як ви обираєте товар для покупки? Що для вас важливо? На які критерії звертаєте увагу в першу чергу?" },
+    { en: "Why did you choose Comfy for the purchase?", ua: "Чому ви обрали Comfy для покупки?" },
+    { en: "Which other stores have you bought appliances from? What drew you to them?", ua: "В яких інших магазинах ви купували техніку? Що вас привабило в них?" },
+    { en: "Have you bought appliances on credit in other stores? Tell us about it.", ua: "Чи брали ви кредит на техніку в інших магазинах? Розкажіть про свій досвід" },
+    { en: "How often do you take out credit? What matters most to you when choosing a bank?", ua: "Як часто ви оформлюєте кредити? Які критерії для вас найбільш важливі при виборі банку?" },
+    { en: "What difficulties or inconveniences did you face when taking out credit?", ua: "Які труднощі або незручності ви відчували під час оформлення кредиту?" },
+    { en: "Have you used credit at Comfy or other stores? What was the deciding factor?", ua: "Чи користувалися ви кредитом у Comfy або інших магазинах? Що було вирішальним фактором для цього?" },
+    { en: "What usually makes you consider credit for a purchase?", ua: "Що зазвичай спонукає вас розглядати кредит як опцію для покупки?" },
+    { en: "Were there times you chose not to take credit even though you could? What held you back?", ua: "Чи були випадки, коли ви обирали не оформлювати кредит, хоча мали таку можливість? Що вас стримало?" },
+    { en: "What doubts or worries do you have before taking out credit?", ua: "Які сумніви або тривоги виникають у вас перед оформленням кредиту?" },
+    { en: "If you could describe the ideal process of buying on credit, what would it be like?", ua: "Якби ви могли описати ідеальний процес покупки в кредит, яким би він був?" },
+    { en: "How do you choose a bank for credit? Which banks do you use and why?", ua: "Як ви обираєте банк для кредитування? Якими банками користуєтесь і чому?" },
+    { en: "How do you study the credit terms? Are they clear to you?", ua: "Як ви вивчаєте умови кредитування? Чи зрозумілі вони вам?" },
+    { en: "Is it easy for you to keep track of credit payments? How does it work?", ua: "Чи зручно вам слідкувати за списанням грошей за кредитом? Як це відбувається?" },
+    { en: "What else worries you when buying in a physical store?", ua: "Що ще турбує під час покупки у фізичному магазині?" },
+    { en: "How do you feel about the bonus program? Have you ever bought something with bonuses?", ua: "Як ставитеся до бонусної програми? Чи купували колись через бонуси?" },
+    { en: "A package deal offer: what do you think?", ua: "Пропозиція про пакетні покупки" },
+  ]}
+  boards={[
+    { src: "/work/comfy/boards/b01.jpg", width: 800, height: 220, name: "Bohdan", nameUa: "Богдан" },
+    { src: "/work/comfy/boards/b02.jpg", width: 800, height: 534, name: "Vlad", nameUa: "Влад" },
+    { src: "/work/comfy/boards/b03.jpg", width: 800, height: 366, name: "Yaroslav", nameUa: "Ярослав" },
+    { src: "/work/comfy/boards/b04.jpg", width: 800, height: 275, name: "Vadym", nameUa: "Вадим" },
+    { src: "/work/comfy/boards/b05.jpg", width: 800, height: 277, name: "Dmytro", nameUa: "Дмитро" },
+    { src: "/work/comfy/boards/b06.jpg", width: 800, height: 365, name: "Nastia", nameUa: "Настя" },
+    { src: "/work/comfy/boards/b07.jpg", width: 800, height: 343, name: "Liza", nameUa: "Ліза" },
+    { src: "/work/comfy/boards/b08.jpg", width: 800, height: 296, name: "Marian", nameUa: "Мар’ян" },
+    { src: "/work/comfy/boards/b09.jpg", width: 800, height: 273, name: "Iryna", nameUa: "Ірина" },
+    { src: "/work/comfy/boards/b10.jpg", width: 800, height: 260, name: "Hanna", nameUa: "Ганна" },
+    { src: "/work/comfy/boards/b11.jpg", width: 800, height: 223, name: "Yuliia", nameUa: "Юлія" },
+    { src: "/work/comfy/boards/b12.jpg", width: 800, height: 267, name: "Elena", nameUa: "Елена" },
+    { src: "/work/comfy/boards/b13.jpg", width: 800, height: 228, name: "Dmytro", nameUa: "Дмитро" },
+    { src: "/work/comfy/boards/b14.jpg", width: 800, height: 291, name: "Anastasiia", nameUa: "Анастасія" },
+  ]}
+  note={{ en: "Questions in yellow, answers in grey. The boards are shown small on purpose: the respondents didn’t agree to publish their answers, so the full transcripts stay private; I’m happy to walk through them on request.", ua: "Питання жовті, відповіді сірі. Дошки навмисно маленькі: респонденти не погоджувалися на публікацію відповідей, тож повні розшифровки лишаються приватними." }}
+/>
 
 <Quote by="A shopper in an interview, translated from Ukrainian">“I didn’t read the terms, like everyone who doesn’t read the small print. All I did was multiply the monthly payment by six and compare it with the order price.”</Quote>
 

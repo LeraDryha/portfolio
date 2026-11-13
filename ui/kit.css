@@ -549,6 +549,13 @@
   --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
+  --size-matrix: 640px;
+  --size-matrix-mark: 10px;
+  /* Business canvas (Comfy): Lean Canvas order on top, business-model cells under it */
+  --layout-canvas-top: "problem solution value advantage segments" "problem metrics value channels segments";
+  --layout-canvas-bottom: "costs revenue partners resources";
+  --layout-canvas-top-tablet: "problem solution" "metrics value" "advantage channels" "segments segments";
+  --layout-canvas-bottom-tablet: "costs revenue" "partners resources";
   /* Ideas rows (Comfy) */
   --layout-idea: minmax(0, .8fr) minmax(0, 1.6fr);
   --text-idea: clamp(20px, 2.2vw, 26px);
@@ -1015,6 +1022,84 @@
 .fig-row .fig__img { width: var(--size-full); height: var(--size-full); object-fit: contain; background: var(--color-transparent); }
 .fig-row .fig__cap { font-size: var(--text-label); }
 .fig__cap--stack { display: grid; gap: var(--space-4); text-align: left; }
+
+/* Interview quotes (Comfy): separate cards, three in a row; the key phrase in the accent; EN / UA */
+.voices { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); }
+/* The title and EN / UA sit on the page above the grey panel, as on the Prevently voice table */
+.voices__panel { display: grid; gap: var(--space-14); padding: var(--space-20) var(--space-24) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.voices__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-10); }
+.voices__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.prose .voices__list { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.voices__card { display: grid; gap: var(--space-14); align-content: space-between; padding: var(--space-18) var(--space-20); border-radius: var(--radius-inner); background: var(--color-raised); }
+.voices blockquote { margin: var(--space-0); }
+.prose .voices blockquote p { margin: var(--space-0); color: var(--color-graphite); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
+.voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+@media (max-width: 860px) { .prose .voices__list { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 640px) { .prose .voices__list { grid-template-columns: var(--layout-col-1); } }
+
+/* Interview guide and boards (Comfy): the questions in one white card in columns, the boards as small pictures */
+.boards__guide { padding: var(--space-18) var(--space-20); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.prose .boards__label { margin: var(--space-0) var(--space-0) var(--space-12); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.prose .boards__guide ol { columns: 3; column-gap: var(--space-28); margin: var(--space-0); padding-left: var(--space-list-indent); }
+.prose .boards__guide li { break-inside: avoid; margin-bottom: var(--space-6); }
+.prose .boards__grid { display: grid; grid-template-columns: var(--layout-cols-4); gap: var(--space-14) var(--space-12); align-items: start; margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.boards__grid li { display: grid; gap: var(--space-6); }
+.boards__shot { display: block; overflow: hidden; border-radius: var(--radius-inner); }
+.boards__shot img { width: var(--size-full); height: auto; }
+@media (max-width: 860px) { .prose .boards__guide ol { columns: 2; } .prose .boards__grid { grid-template-columns: var(--layout-cols-3); } }
+@media (max-width: 640px) { .prose .boards__grid { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 640px) { .prose .boards__guide ol { columns: 1; } }
+
+/* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
+.matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
+.matrix__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-10); }
+.matrix__legend { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-20); color: var(--color-pencil); }
+.matrix__legend span { display: inline-flex; align-items: center; gap: var(--space-6); }
+.matrix__scroll { position: relative; overflow-x: auto; }
+.matrix__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.matrix table { width: var(--size-full); min-width: var(--size-matrix); border-collapse: collapse; }
+.matrix th, .matrix td { padding: var(--space-8) var(--space-10); border-top: var(--size-hairline) solid var(--color-hairline); text-align: center; vertical-align: middle; }
+.matrix thead td { border-top: none; }
+.matrix thead th { border-top: none; color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-label); }
+.matrix thead th[scope="col"]:first-child, .matrix tbody th { text-align: left; }
+.matrix thead th[scope="col"]:first-child { color: var(--color-pencil); font-weight: var(--weight-regular); }
+.matrix tbody th { color: var(--color-ink); font-weight: var(--weight-regular); }
+.matrix .matrix__own { background: var(--color-raised); }
+.matrix__mark { display: inline-block; width: var(--size-matrix-mark); height: var(--size-matrix-mark); border-radius: var(--radius-round); vertical-align: middle; font-size: var(--space-0); }
+.matrix__mark--yes { background: var(--color-positive); }
+.matrix__mark--part { border: var(--size-stroke) solid var(--color-caution); background: linear-gradient(90deg, var(--color-caution) 50%, transparent 50%); }
+.matrix__mark--no { border: var(--size-stroke) solid var(--color-negative); }
+.matrix__mark--na { width: var(--size-matrix-mark); height: var(--size-stroke); border-radius: var(--space-0); background: var(--color-pencil); }
+.prose .matrix__parity { margin: var(--space-0); color: var(--color-graphite); }
+.matrix .fig__cap { margin-top: var(--space-0); }
+
+/* Source files under a research block: the originals, whole, open in a new tab */
+.sources { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.prose .source { display: inline-flex; align-items: center; gap: var(--space-6); padding: var(--space-6) var(--space-12); border-radius: var(--radius-pill); background: var(--color-raised); color: var(--color-ink); font-weight: var(--weight-medium); font-size: var(--text-label); text-decoration: none; box-shadow: var(--shadow-float); }
+.source svg { flex: none; width: var(--size-icon-small); height: var(--size-icon-small); }
+.prose .source:hover { text-decoration: underline; text-underline-offset: var(--offset-underline); }
+.source:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+
+/* Business canvas (Comfy): white cells on a grey block, titles in ink, numbered lists */
+.canvas { display: grid; gap: var(--space-10); margin: var(--space-28) var(--space-0); padding: var(--space-12); border-radius: var(--radius-block); background: var(--color-tile); }
+.canvas__top, .canvas__bottom { display: grid; gap: var(--space-10); }
+.canvas__top { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-top); }
+.canvas__bottom { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-bottom); }
+.canvas__cell { grid-area: var(--area); display: grid; gap: var(--space-20); align-content: start; min-width: var(--space-0); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.prose .canvas h4 { margin: var(--space-0) var(--space-0) var(--space-8); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .canvas ol { display: grid; gap: var(--space-4); margin: var(--space-0); padding-left: var(--space-list-indent); }
+.prose .canvas__quote { margin: var(--space-0); color: var(--color-accent); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.canvas .fig__cap { margin-top: var(--space-2); }
+@media (max-width: 860px) {
+  .canvas__top { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-top-tablet); }
+  .canvas__bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-bottom-tablet); }
+}
+@media (max-width: 640px) {
+  .canvas__top, .canvas__bottom { grid-template-columns: var(--layout-col-1); grid-template-areas: none; }
+  .canvas__cell { grid-area: auto; }
+}
 
 /* Ideas for the business, one per row (Comfy): text on the left, the concept large on the right; stacked on phones */
 .ideas { display: grid; gap: var(--space-16); margin-top: var(--space-28); margin-bottom: var(--space-28); }
