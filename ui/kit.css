@@ -323,7 +323,7 @@
   --pos-col-4: 100%;
   --pos-row-1: 0%;
   --pos-row-2: 100%;
-  --size-pan: 112% auto;
+  --size-pan: cover; /* fills any tile: a tall tile pans across the report, a wide hero down it */
   --size-phones: 400% auto;
   --size-phones-hero: 100% auto;
 
