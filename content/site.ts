@@ -232,7 +232,7 @@ export const cases: CaseEntry[] = [
     vis: { kind: "pan", src: "/work/adtelligent/report.jpg" },
     shape: "tall",
     area: "adtelligent",
-    cursor: { role: "designer", label: "UX designer", x: "58%", y: "58%" },
+    cursor: { role: "designer", label: "Product designer", x: "58%", y: "58%" },
     notionUrl: "https://app.notion.com/p/Solutions-for-Adtelligent-AdTech-B2B-SaaS-platform-26d44bdcbfce8057b34ecc668599d5f2",
   },
   {
