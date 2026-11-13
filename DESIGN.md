@@ -23,6 +23,9 @@ colors:
   linkedin: "#0a66c2"
   verdict-green: "#1e7a3e"
   verdict-red: "#b42318"
+  verdict-green-tint: "#e9f6ee"
+  verdict-orange: "#b54708"
+  verdict-orange-tint: "#fdf1e6"
   night-page: "#000000"
   night-tile: "#1c1c1e"
   night-raised: "#2c2c2e"
@@ -194,7 +197,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 - **Prevently pink** (three stops, 160° gradient): only the Prevently tile and its case hero.
 - **Yahoo violet** and **LinkedIn blue**: only the two contact logos.
 - **Type Green** (#0d8a4b): only the type measurement on the GRG modal specimen.
-- **Verdict Green / Red**: only the titles of paired "what works / what doesn't" lists on case pages.
+- **Verdict Green / Orange**: only the paired "what works / what doesn't" lists on case pages: what works on a light green card with its title in Verdict Green, what doesn't on a light orange card with its title in a dark orange; both re-tuned at night (deep green and deep brown cards, lighter titles).
 
 ### Named Rules
 **The Ink Headline Rule.** Where a tile has a headline (the smaller cases), it is evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.

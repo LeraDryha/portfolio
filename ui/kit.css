@@ -31,6 +31,10 @@
   /* Verdict colours: only the titles of paired good / bad lists on case pages */
   --color-positive: #1e7a3e;
   --color-negative: #b42318;
+  /* Paired verdict lists: a light green card for what works, a light orange one for what doesn't */
+  --color-positive-tint: #e9f6ee;
+  --color-caution: #b54708;
+  --color-caution-tint: #fdf1e6;
   /* The Figma layer: selection, measurements and the people in the file */
   --color-figma: #0d99ff;
   /* Figma's colour for components: frames and names of the parts of a product (GRG tile and live product) */
@@ -607,6 +611,9 @@
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
+    --color-positive-tint: #14271b;
+    --color-caution: #f5a86b;
+    --color-caution-tint: #2d1f13;
     --color-who-lera: oklch(48% 0.15 352);
         --color-yahoo: #a678ff;
     --color-linkedin: #4c9be8;
@@ -635,6 +642,9 @@
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
+  --color-positive-tint: #14271b;
+  --color-caution: #f5a86b;
+  --color-caution-tint: #2d1f13;
   --color-who-lera: oklch(48% 0.15 352);
   --color-yahoo: #a678ff;
   --color-linkedin: #4c9be8;
@@ -994,8 +1004,10 @@
 .lists section { padding: var(--space-20) var(--space-22); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-ui); }
 .lists h3 { margin: var(--space-0) var(--space-0) var(--space-8); font-size: var(--text-ui); }
 .lists ul { margin: var(--space-0); }
-.lists__title--positive { color: var(--color-positive); }
-.lists__title--negative { color: var(--color-negative); }
+.lists .lists__card--positive { background: var(--color-positive-tint); }
+.lists .lists__card--negative { background: var(--color-caution-tint); }
+.prose .lists__title--positive { color: var(--color-positive); }
+.prose .lists__title--negative { color: var(--color-caution); }
 
 /* Results table: only improved values in the accent */
 .table-wrap { overflow-x: auto; margin: var(--space-14) var(--space-0) var(--space-22); }

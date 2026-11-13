@@ -174,12 +174,12 @@ export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: {
   );
 }
 
-/** Paired lists. A tone colours the title: green for what works, red for what doesn't. */
+/** Paired lists. A tone colours the card and its title: light green for what works, light orange for what doesn't. */
 export function TileLists({ lists }: { lists: { title: string; tone?: "positive" | "negative"; items: string[] }[] }) {
   return (
     <div className="lists">
       {lists.map((l) => (
-        <section key={l.title}>
+        <section key={l.title} className={l.tone ? `lists__card--${l.tone}` : undefined}>
           <h3 className={l.tone ? `lists__title--${l.tone}` : undefined}>{l.title}</h3>
           <ul>
             {l.items.map((i) => (
