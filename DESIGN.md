@@ -11,6 +11,10 @@ colors:
   hairline: "#e3e3e6"
   mulberry-ink: "oklch(48% 0.15 352)"
   mulberry-ink-night: "oklch(74% 0.11 352)"
+  comfy-green: "#007d0f"
+  comfy-green-night: "#00b302"
+  grg-gold: "#996100"
+  grg-gold-night: "#f5a70f"
   figma-blue: "#0d99ff"
   redline: "#f24822"
   who-designer: "#9747ff"
@@ -23,6 +27,9 @@ colors:
   linkedin: "#0a66c2"
   verdict-green: "#1e7a3e"
   verdict-red: "#b42318"
+  verdict-green-tint: "#e9f6ee"
+  verdict-orange: "#b54708"
+  verdict-orange-tint: "#fdf1e6"
   night-page: "#000000"
   night-tile: "#1c1c1e"
   night-raised: "#2c2c2e"
@@ -194,9 +201,11 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 - **Prevently pink** (three stops, 160° gradient): only the Prevently tile and its case hero.
 - **Yahoo violet** and **LinkedIn blue**: only the two contact logos.
 - **Type Green** (#0d8a4b): only the type measurement on the GRG modal specimen.
-- **Verdict Green / Red**: only the titles of paired "what works / what doesn't" lists on case pages.
+- **Verdict Green / Orange**: only the paired "what works / what doesn't" lists on case pages: what works on a light green card with its title in Verdict Green, what doesn't on a light orange card with its title in a dark orange; both re-tuned at night (deep green and deep brown cards, lighter titles).
 
 ### Named Rules
+**The Client Accent Rule.** A client case may take the client's brand colour as its evidence accent instead of Mulberry Ink, on its case page only: Comfy uses its green (#00b302), deepened to #007d0f in the light theme so text keeps 4.5:1 on a tile, and the brand value itself at night. GRG uses its gold (#f5a70f), deepened to #996100 in the light theme (4.75:1 on a tile), the brand gold at night. The home page, the intro and Lera's own colour in the Figma layer stay Mulberry Ink.
+
 **The Ink Headline Rule.** Where a tile has a headline (the smaller cases), it is evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.
 
 **The Figma Only Rule.** Figma Blue appears only as the Figma layer (selection, focus, "You", the components layer over a live product and the part names that select in it). It is never a link colour or a button fill.
@@ -263,7 +272,9 @@ Learning & recognition: a title (21px, ink) and a line (Pencil) at the bottom-le
 Pill segmented control: All / About / Work / Writing hides and shows tiles; the tiles that stay close up in the same order with no holes and slide to their new places (Work: Prevently and GRG side by side, then Comfy, Adtelligent, Financial Assistant). More work shows only with All and Work. Theme cycles Auto → Light → Dark and is remembered; a script in the page head applies it before first paint.
 
 ### Case Page Blocks
-Facts (labels in a column, values aligned; a value can be a link), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens full size), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.
+Facts (labels in a column, values aligned; a value can be a link), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens larger in the screen lightbox; figures in a row are one set), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.
+
+**Ideas** (Comfy, its own Growth chapter): ideas for the business, set apart from the UX fixes, one per row on the page width: a grey card (tile corners) with “Idea 1 / 4” as the mono eyebrow, the idea's title (20–26px, ink) and its why on the left, the concept large on the right (opens in the lightbox, the four ideas are one set); on tablets and phones the text sits over the image.
 
 ### Live Product (GRG case page)
 The GRG card frames its animation: a 4px inner edge in the card's own colour (tile and hero), so the white product never runs into the white page. On the GRG case the hero is the same grey card as the tile, at the size of every case hero, with the same assembly (in a wider box the animation's canvas gets shorter, so the product still fills the width) (the tile moves up into it); the live product comes after the summary (Problem, What I did, Result, the proof). The case's product, live: the GRG Storybook's Dashboard story in a frame, on a grey band with the screen's name, a line on what to try in it, and a Product / Show components switch (the filter's pill control on the page colour). On desktop widths the product keeps its 1440 layout scaled to fit; on narrow screens it shows its own phone layout. Show components outlines every system component in Figma Blue and the parts made for this page in dashed Redline; the one under the pointer is selected with its name. Under the product, the parts it is built from as pills (with ×count): hovering or focusing one selects it in the product; a system part opens its Storybook page. A legend and a line say the Storybook is rebuilt for the portfolio. The product follows the site's theme. Until the frame answers, the tile's screenshot stands in.
@@ -282,12 +293,12 @@ Part (an eyebrow and a heading over a hairline: the start of a larger part of th
 
 ### Prevently Case Blocks
 - **Phone frames**: a screen in a near-black bezel, the same height for every phone in a row. iPhone with round corners (a Dynamic Island is drawn on screenshots taken on a phone; simulator shots carry their own), Android with smaller corners and a camera dot. A pair (iOS beside Android) sits big on a grey block; a flow is five phones in a row (scrolls sideways on phones) with a mono caption under each and a platform label over the row. Screens come from the real apps: the iOS simulator, the Android emulator, or Lera's phone.
-- **Screen lightbox**: every phone frame on a case is a button (zoom-in cursor, Figma-blue ring on keyboard focus) that opens its screen larger in a modal on the page: the screenshot whole on a dark scrim (up to the screen height minus room for the caption), its caption in mono with “2 / 5”, a × at the top right where the case's close button sits, and ‹ › to move through the phones in the same row (← → keys too; on phones the arrows sit at the bottom). Esc, × or a click outside closes it and focus returns to the phone; Esc closes the modal before it closes the case.
+- **Screen lightbox**: every phone frame and every case figure is a button (zoom-in cursor, Figma-blue ring on keyboard focus) that opens its screen larger in a modal on the page: the screenshot whole on a dark scrim (up to the screen height minus room for the caption), its caption in mono with “2 / 5”, a × at the top right where the case's close button sits, and ‹ › to move through the phones in the same row (← → keys too; on phones the arrows sit at the bottom). Esc, × or a click outside closes it and focus returns to the phone; Esc closes the modal before it closes the case.
 - **Try it** (as wide as the reading column, like the text above it): the app's questions on the left (an age slider and pill toggles), the plan on the right in an iPhone frame (the same near-black bezel and Dynamic Island as the case's phone frames, 9:41 in the status bar), laid out at a real phone width (375) and zoomed to the screen so it reads like the app, scrolling inside the screen, in the app's own look (Mulish, its category colours, pink "why" chips, the source in mono); a check-up the last change added gets a green ring and "New". The rules are the app's own, translated.
 - **Research**: the persona across the top (who she is, then wants, fears and needs in three columns), and under it a five-stage journey map whose rows line up across the stages (pain, a quote from the interviews in Newsreader italic in the accent, and what the app answers with).
 - **Voice table** (as wide as the reading column): two columns, before (struck through in Redline) with what was wrong under it in Pencil, and after (in ink); an EN / UA switch above it on the right reads the lines in English or in the app's original Ukrainian (from its Voice and Microcopy System). On phones each line stacks: before, what was wrong, after.
 - **Spec to screen**: a real spec from the project, as a document (white page, “Excerpt from the spec” in ink semibold, then its file name in mono, over a hairline, the text in Geist Mono with keys and headings in ink), beside the iPhone with the screen built from it, on a grey block; tabs choose the example, an EN / UA switch on the right of the tabs reads the spec in English or in its original Ukrainian.
-- **Chapter break** (Prevently and GRG; other cases later): each chapter is set apart from the one before it: a 112px gap (72px on phones), a hairline across the reading column, an eyebrow in Geist Mono ("04 / 07 · Process", the number in ink, the rest Pencil, uppercase like the Part eyebrow) and the chapter title at 26–34px instead of Case H2. Inside a chapter the blocks keep their own tighter spacing, so the gap between chapters is clearly larger than any gap within one.
+- **Chapter break** (Prevently, GRG and Comfy; other cases later): each chapter is set apart from the one before it: a 112px gap (72px on phones), a hairline across the reading column, an eyebrow in Geist Mono ("04 / 07 · Process", the number in ink, the rest Pencil, uppercase like the Part eyebrow) and the chapter title at 26–34px instead of Case H2. Inside a chapter the blocks keep their own tighter spacing, so the gap between chapters is clearly larger than any gap within one.
 - **Chapter list** (every case, screens 1400px and wider): the case's chapter titles in a quiet column fixed at the top left, its first line level with the top of the hero card and the close button, 12px Pencil, the chapter in view in ink; built from the page's own sections.
 - **Stage table** (as wide as the reading column): the same grey table: each stage of the work in semibold, and the document written before its code; on phones the stage sits over its document.
 - **Phone wipe**: one phone screen in both themes, the light one cut by a Component Violet line with the same "Light · Dark" pill as the theme wipe; it sweeps once on first view and rests in the middle (still with reduced motion), then drags.

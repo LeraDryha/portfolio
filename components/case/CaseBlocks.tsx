@@ -38,15 +38,24 @@ type FigureProps = {
   priority?: boolean;
 };
 
-/** A case image as it is. The image opens full size in a new tab; a Figma selection shows on hover. */
+/** A case image as it is. The image opens larger in the on-page lightbox; a Figma selection shows on hover. */
 export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority }: FigureProps) {
   return (
     <figure className="fig">
       <div className="fig__frame">
-        <a className="fig__zoom" href={src} target="_blank" rel="noopener">
+        {/* Opens the image larger in a modal on the page (see Lightbox); figures in a row are one set */}
+        <button
+          type="button"
+          className="fig__zoom"
+          data-zoom={src}
+          data-zoom-w={width}
+          data-zoom-h={height}
+          data-zoom-alt={alt}
+          data-zoom-cap={title ?? (typeof caption === "string" ? caption : "")}
+          aria-label={`Open larger: ${title ?? alt}`}
+        >
           <Image className="fig__img" src={src} width={width} height={height} alt={alt} sizes={sizes} quality={90} priority={priority} />
-          <span className="sr-only">Open full size in a new tab</span>
-        </a>
+        </button>
         <Selection />
       </div>
       {(caption || title) &&
@@ -165,12 +174,12 @@ export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: {
   );
 }
 
-/** Paired lists. A tone colours the title: green for what works, red for what doesn't. */
+/** Paired lists. A tone colours the card and its title: light green for what works, light orange for what doesn't. */
 export function TileLists({ lists }: { lists: { title: string; tone?: "positive" | "negative"; items: string[] }[] }) {
   return (
     <div className="lists">
       {lists.map((l) => (
-        <section key={l.title}>
+        <section key={l.title} className={l.tone ? `lists__card--${l.tone}` : undefined}>
           <h3 className={l.tone ? `lists__title--${l.tone}` : undefined}>{l.title}</h3>
           <ul>
             {l.items.map((i) => (
@@ -390,6 +399,31 @@ export function Scenario({ n, task, checks, success, measure }: { n: number; tas
         <dd>{measure}</dd>
       </dl>
     </div>
+  );
+}
+
+/** Ideas, one per row, each set apart: a number, a title and why it works on the left, its concept large on the right.
+ *  The image opens larger in the lightbox; the ideas are one set there. */
+export function Ideas({ children }: { children: ReactNode }) {
+  return <div className="ideas case-wide">{children}</div>;
+}
+
+export function Idea({ n, of, title, src, width, height, alt, children }: { n: number; of: number; title: string; src: string; width: number; height: number; alt: string; children: ReactNode }) {
+  return (
+    <article className="idea">
+      <div className="idea__text">
+        <p className="part__eyebrow">
+          Idea {n} / {of}
+        </p>
+        <h3>{title}</h3>
+        {children}
+      </div>
+      <div className="idea__img">
+        <button type="button" className="fig__zoom" data-zoom={src} data-zoom-w={width} data-zoom-h={height} data-zoom-alt={alt} data-zoom-cap={title} aria-label={`Open larger: ${title}`}>
+          <Image src={src} width={width} height={height} alt={alt} sizes="(max-width: 860px) 100vw, 660px" quality={90} />
+        </button>
+      </div>
+    </article>
   );
 }
 

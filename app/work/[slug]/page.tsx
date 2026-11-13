@@ -36,7 +36,8 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       <a className="float-btn float-btn--close" href={home} data-close aria-label="Close case, back to all work">
         <Icon name="close" />
       </a>
-      <main className="case">
+      {/* data-case lets a case take its client's brand colour as the accent (Comfy: its green) */}
+      <main className="case" data-case={slug}>
         <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
           <Vis entry={entry} priority />
         </div>

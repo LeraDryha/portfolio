@@ -16,7 +16,7 @@ export const meta = {
   proof: { mark: "75% → 100%", cap: "task completion, current flow vs redesign (moderated, 4 and 7 sessions)" },
 };
 
-<Chapter id="discover" title="Discover" sub="Desk research, a kick-off with the business, competitors, 15 interviews and a survey.">
+<Chapter id="discover" n={1} of={6} label="Research" title="Discover" sub="Desk research, a kick-off with the business, competitors, 15 interviews and a survey.">
 
 COMFY is the largest retailer of home appliances and electronics in Ukraine. It has run an omnichannel business for over 10 years and is the #2 player in Ukrainian e-commerce.
 
@@ -75,9 +75,7 @@ We looked for what makes people buy, or not buy, on credit: their barriers, moti
 
 ### Follow-up survey
 
-To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents.
-
-<Stats items={[{ value: "178 / 385", cap: "responses against the target sample" }]} />
+To check interview insights at scale, we turned recurring themes into survey questions. For a 95% confidence level we needed 385 respondents; the survey closed at 178, so its numbers are a direction, not proof.
 
 The survey tested four insights: clarity of information, package deals, comparing credit terms, and wanting to see a product in person before buying.
 
@@ -85,7 +83,7 @@ The survey tested four insights: clarity of information, package deals, comparin
 
 </Chapter>
 
-<Chapter id="define" title="Define" sub="Jobs to be done, the customer journey and the value proposition.">
+<Chapter id="define" n={2} of={6} label="Synthesis" title="Define" sub="Jobs to be done, the customer journey and the value proposition.">
 
 Comfy is a large product, and narrowing it to one or two personas wasn’t realistic. We used Jobs to be Done instead. The JTBD timeline showed the real-life context, decision triggers and emotional journey from the first need to the final purchase.
 
@@ -108,7 +106,7 @@ The value proposition canvas showed which needs Comfy already meets, and which b
 
 </Chapter>
 
-<Chapter id="develop" title="Develop" sub="Three problems worth solving, How Might We, and a MoSCoW-ranked MVP.">
+<Chapter id="develop" n={3} of={6} label="Problems" title="Develop" sub="Three problems worth solving, How Might We, and a MoSCoW-ranked MVP.">
 
 From the research we picked the problems with the biggest impact on trust, decisions and completion. Each is backed by direct quotes from interviews.
 
@@ -125,7 +123,7 @@ From the research we picked the problems with the biggest impact on trust, decis
 
 </Chapter>
 
-<Chapter id="deliver" title="Deliver" sub="Solutions for each problem, two rounds of usability testing, and ideas for the business goal.">
+<Chapter id="deliver" n={4} of={6} label="Design and tests" title="Deliver" sub="Solutions for each problem and two rounds of usability testing.">
 
 ### 1. Lack of transparency in credit terms
 
@@ -211,26 +209,44 @@ We tested twice: unmoderated in Maze, and moderated sessions comparing the curre
   ]}
 />
 
-### Ideas for the business goal
+</Chapter>
 
-To grow the share of credit orders, we prepared four ideas for the product and marketing teams.
+<Chapter id="growth" n={5} of={6} label="Growth" title="Beyond the fixes: ideas to grow credit orders">
 
-<FigureGrid>
-  <HalfFigure src="/work/comfy/c28.jpg" width={1600} height={1133} alt="Banner concept for package deals with extended installments." title="Package deals with longer installments" caption="About 40% of surveyed shoppers were interested or open to the idea. Next step is a fake-door test." />
-  <HalfFigure src="/work/comfy/c29.jpg" width={1600} height={1190} alt="Higher cashback for credit purchases." title="Higher cashback on credit purchases" caption="Than on cash purchases." />
-  <HalfFigure src="/work/comfy/c30.jpg" width={1600} height={1026} alt="Transferring bonuses to family and friends." title="Transfer bonuses to family and friends" caption="Bonuses can already cover the first installment." />
-  <HalfFigure src="/work/comfy/c31.jpg" width={1600} height={1069} alt="Loyalty levels for credit purchases." title="Loyalty levels" caption="Each credit purchase counts toward extra rewards." />
-</FigureGrid>
+The redesign removes what stops people. These four ideas give them a reason to choose installments, prepared for the product and marketing teams.
+
+<Ideas>
+  <Idea n={1} of={4} title="Package deals with extended installments" src="/work/comfy/c28.jpg" width={1600} height={1133} alt="Banner concept for package deals with extended installments.">
+    <p>The idea came from interviewees who, after a move or for other reasons, needed to buy several appliances at once and said 10–15 payments weren’t enough for their budget.</p>
+    <p>In the survey <strong>40% were interested</strong>, so the next step is a fake-door test: a banner that adds the option to a wishlist. High interest could lead to full implementation.</p>
+  </Idea>
+  <Idea n={2} of={4} title="Higher cashback on credit purchases" src="/work/comfy/c29.jpg" width={1600} height={1190} alt="Higher cashback for credit purchases at checkout.">
+    <p>A higher cashback percentage for buying on credit than for paying in full.</p>
+  </Idea>
+  <Idea n={3} of={4} title="Transfer bonuses to family and friends" src="/work/comfy/c30.jpg" width={1600} height={1026} alt="Transferring bonuses to family and friends in the app.">
+    <p>Most respondents were interested in Comfy’s bonus program, which already lets people pay the first installment with bonuses. Making this visible, and letting people transfer bonuses, could encourage more of them to buy on credit.</p>
+  </Idea>
+  <Idea n={4} of={4} title="Gamification: loyalty levels" src="/work/comfy/c31.jpg" width={1600} height={1069} alt="Loyalty levels for credit purchases.">
+    <p>A loyalty program that counts each credit purchase, or purchases over a set amount. At each new level the customer gets extra bonuses from the store: discounts or rewards.</p>
+  </Idea>
+</Ideas>
 
 </Chapter>
 
-<Chapter id="outcome" title="Outcome" sub="A credit flow that is clear, calm and tested.">
+<Chapter id="outcome" n={6} of={6} label="Result" title="Outcome" sub="A credit flow that is clear, calm and tested.">
 
 The project uncovered real pain points and turned the credit purchase into something transparent, intuitive and emotionally comfortable, because “credit” shouldn’t feel like a horror story.
 
-Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow. Next, the improvements that tested well go into implementation, and the ideas for growing credit orders get validated and tested further with the product and marketing teams.
+Testing showed the redesign working: in the second moderated round every participant completed the task, with no errors and less time than in the current flow.
 
-<ProofStrip mark="87.5% → 92.3%" cap="success rate in Maze, iteration 1 vs 2 (10 and 14 tests)" sr="In unmoderated Maze tests the success rate rose from 87.5% in iteration 1 to 92.3% in iteration 2, with 10 and 14 tests." />
+<Stats
+  items={[
+    { value: "75% → 100%", cap: "completed the task: Comfy today vs the redesign (moderated, 4 and 7 tests)" },
+    { value: "1.75 → 0", cap: "errors: Comfy today vs the redesign" },
+    { value: "5.75 → 3.52", cap: "minutes on task: Comfy today vs the redesign" },
+  ]}
+/>
 
+The business goal, credit orders from 30% to 40% of the total, can only be measured after release. The work was handed over to Comfy at the end of the course, so this case shows the tested flow and the ideas for reaching the goal, not a measured share. Next, the improvements that tested well go into implementation, and the ideas for growing credit orders get validated with the product and marketing teams.
 
 </Chapter>

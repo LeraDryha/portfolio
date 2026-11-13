@@ -23,6 +23,12 @@
   --color-pencil: #6e6e73;
   --color-hairline: #e3e3e6;
   --color-accent: oklch(48% 0.15 352);
+  /* Comfy's brand green (#00b302) as the accent on its case: deepened in light for text contrast (4.9:1 on a tile), the brand value itself at night */
+  --color-comfy-accent: #007d0f;
+  --color-comfy-accent-soft: rgb(0 125 15 / .16);
+  /* GRG's brand gold (#f5a70f) the same way: deepened in light (4.75:1 on a tile), the brand value at night */
+  --color-grg-accent: #996100;
+  --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-accent-soft: oklch(48% 0.15 352 / .16);
   --color-on-dark: #ffffff;
   --color-scrim: rgb(22 24 29 / .72);
@@ -31,6 +37,10 @@
   /* Verdict colours: only the titles of paired good / bad lists on case pages */
   --color-positive: #1e7a3e;
   --color-negative: #b42318;
+  /* Paired verdict lists: a light green card for what works, a light orange one for what doesn't */
+  --color-positive-tint: #e9f6ee;
+  --color-caution: #b54708;
+  --color-caution-tint: #fdf1e6;
   /* The Figma layer: selection, measurements and the people in the file */
   --color-figma: #0d99ff;
   /* Figma's colour for components: frames and names of the parts of a product (GRG tile and live product) */
@@ -539,6 +549,9 @@
   --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
+  /* Ideas rows (Comfy) */
+  --layout-idea: minmax(0, .8fr) minmax(0, 1.6fr);
+  --text-idea: clamp(20px, 2.2vw, 26px);
   /* Lightbox: a phone screen larger, in a modal on the page */
   --color-scrim: rgb(0 0 0 / .78);
   --color-on-scrim: #f5f5f7;
@@ -604,9 +617,16 @@
     --color-pencil: #98989d;
     --color-hairline: #2c2c2e;
     --color-accent: oklch(74% 0.11 352);
+    --color-comfy-accent: #00b302;
+    --color-comfy-accent-soft: rgb(0 179 2 / .22);
+    --color-grg-accent: #f5a70f;
+    --color-grg-accent-soft: rgb(245 167 15 / .22);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
+    --color-positive-tint: #14271b;
+    --color-caution: #f5a86b;
+    --color-caution-tint: #2d1f13;
     --color-who-lera: oklch(48% 0.15 352);
         --color-yahoo: #a678ff;
     --color-linkedin: #4c9be8;
@@ -632,9 +652,16 @@
   --color-pencil: #98989d;
   --color-hairline: #2c2c2e;
   --color-accent: oklch(74% 0.11 352);
+  --color-comfy-accent: #00b302;
+  --color-comfy-accent-soft: rgb(0 179 2 / .22);
+  --color-grg-accent: #f5a70f;
+  --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
+  --color-positive-tint: #14271b;
+  --color-caution: #f5a86b;
+  --color-caution-tint: #2d1f13;
   --color-who-lera: oklch(48% 0.15 352);
   --color-yahoo: #a678ff;
   --color-linkedin: #4c9be8;
@@ -975,7 +1002,8 @@
 /* Figures: images as they are, rounded; the image opens full size; Figma selection on hover */
 .fig { position: relative; margin: var(--space-26) var(--space-0); }
 .fig__frame { position: relative; }
-.fig__zoom { display: block; cursor: zoom-in; }
+.fig__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; background: none; color: inherit; font: inherit; cursor: zoom-in; }
+.fig__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-4); }
 .fig__img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-figure); background: var(--color-tile); }
 .fig__cap { margin-top: var(--space-10); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); text-align: center; }
 .fig__cap b { color: var(--color-ink); font-weight: var(--weight-medium); }
@@ -988,13 +1016,30 @@
 .fig-row .fig__cap { font-size: var(--text-label); }
 .fig__cap--stack { display: grid; gap: var(--space-4); text-align: left; }
 
+/* Ideas for the business, one per row (Comfy): text on the left, the concept large on the right; stacked on phones */
+.ideas { display: grid; gap: var(--space-16); margin-top: var(--space-28); margin-bottom: var(--space-28); }
+.idea { display: grid; grid-template-columns: var(--layout-idea); gap: var(--space-28); align-items: center; padding: var(--space-32); border-radius: var(--radius-tile); background: var(--color-tile); }
+.idea__text { display: grid; gap: var(--space-10); align-content: center; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .idea h3 { margin: var(--space-0); font-size: var(--text-idea); letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); text-wrap: balance; }
+.prose .idea p { margin: var(--space-0); }
+.idea__img img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-inner); }
+@media (max-width: 860px) {
+  .idea { grid-template-columns: var(--layout-col-1); gap: var(--space-16); padding: var(--space-20); border-radius: var(--radius-tile-tablet); }
+}
+
+/* A client case takes the client's brand colour as its evidence accent */
+.case[data-case="comfy"] { --color-accent: var(--color-comfy-accent); --color-accent-soft: var(--color-comfy-accent-soft); }
+.case[data-case="grg-design-system"] { --color-accent: var(--color-grg-accent); --color-accent-soft: var(--color-grg-accent-soft); }
+
 /* Paired verdict lists */
 .lists { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); margin: var(--space-20) var(--space-0); }
 .lists section { padding: var(--space-20) var(--space-22); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-ui); }
 .lists h3 { margin: var(--space-0) var(--space-0) var(--space-8); font-size: var(--text-ui); }
 .lists ul { margin: var(--space-0); }
-.lists__title--positive { color: var(--color-positive); }
-.lists__title--negative { color: var(--color-negative); }
+.lists .lists__card--positive { background: var(--color-positive-tint); }
+.lists .lists__card--negative { background: var(--color-caution-tint); }
+.prose .lists__title--positive { color: var(--color-positive); }
+.prose .lists__title--negative { color: var(--color-caution); }
 
 /* Results table: only improved values in the accent */
 .table-wrap { overflow-x: auto; margin: var(--space-14) var(--space-0) var(--space-22); }
