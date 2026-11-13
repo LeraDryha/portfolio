@@ -349,62 +349,94 @@ We generated many solutions and ranked them with MoSCoW: must-haves first, shoul
 
 <Chapter id="deliver" n={4} of={6} label="Design and tests" title="Deliver" sub="Solutions for each problem and two rounds of usability testing.">
 
-### 1. Lack of transparency in credit terms
+<ProblemSolved
+  n={1}
+  problem="Lack of transparency in credit terms"
+  evidence="In the survey, 63% said unclear credit terms could stop them taking credit online, and 69% said seeing the number of payments matters most."
+  hmw="How might we make sure people fully understand the credit terms?"
+  before={{
+    shot: { src: "/work/comfy/deliver/p1-before.webp", width: 2000, height: 1526, alt: "The product page before: a separate “Купити в кредит” (Buy on credit) button and small bank icons." },
+    overlay: { src: "/work/comfy/deliver/p1-tooltip.webp", width: 600, height: 779, alt: "The monobank tooltip before: four generic requirements and a “Детальніше” (More) button." },
+    issues: ["Bank icons weren’t clickable; they only opened a tooltip.", "The tooltip held generic information that didn’t help anyone choose.", "“Buy on credit” and “Buy” led to the same drawer, with no difference in the flow."],
+  }}
+  steps={[
+    {
+      title: "Pay in installments, right next to Buy",
+      text: "A second button beside “Купити” (Buy) shows the lowest monthly payment the banks offer. It used to say “Buy on credit”: interviews showed the word “credit” made people anxious, so it became “Оплата частинами” (Pay in installments).",
+      ideas: ["HMW 1 · Clear labels: credit or installments", "HMW 5 · The first payment, stated clearly"],
+      desktop: { src: "/work/comfy/deliver/s1-desktop.webp", width: 2000, height: 1500, alt: "Redesigned price block: “Купити” and “Оплата частинами від 1 233.27 ₴ / міс.” side by side." },
+      phones: [{ src: "/work/comfy/deliver/s1-phone.webp", width: 700, height: 1367, alt: "The same price block in the app, with bank offers and the installments button." }],
+    },
+    {
+      title: "Every bank is a button with its own terms",
+      text: "Bank icons used to open a tooltip with generic text. Now each opens that bank’s offer for this product: the number of payments, one payment’s amount and what you need to apply.",
+      ideas: ["HMW 5 · Click a bank icon on the product page: the number of payments, one payment’s amount and an order button", "HMW 5 · Partner banks’ terms without leaving the product page"],
+      desktop: { src: "/work/comfy/deliver/s2-desktop.webp", width: 2000, height: 1489, alt: "Installment offers from nine banks under the price, each a button with its number of payments." },
+      phones: [{ src: "/work/comfy/deliver/s2-phone.webp", width: 700, height: 1367, alt: "In the app, a bank’s offer opens in a sheet with its requirements and the monthly payment." }],
+    },
+    {
+      title: "All offers in one place, with a calculator",
+      text: "One drawer lists every bank, split into installments without overpaying and credit with interest. Choose the number of payments, add a down payment, and the monthly sum updates.",
+      ideas: ["HMW 5 · A credit calculator", "HMW 3 · A bank comparison table without leaving the product page"],
+      desktop: { src: "/work/comfy/deliver/s3-desktop.webp", width: 2000, height: 1656, alt: "Drawer with installment offers from each bank, a payment picker and the monthly sum." },
+      phones: [{ src: "/work/comfy/deliver/s3-phone.webp", width: 700, height: 1367, alt: "The same offers in the app, with a slider for the number of months." }],
+    },
+    {
+      title: "How it works, step by step",
+      text: "“Як це працює” (How it works) opens the payment timeline: what is charged today, what comes each month, and what you need to apply.",
+      ideas: ["HMW 3 · Clear credit steps for each bank", "HMW 1 · A calculator for the payment details"],
+      desktop: { src: "/work/comfy/deliver/s4-desktop.webp", width: 2000, height: 1656, alt: "monobank selected: step 1, what is charged today; step 2, the monthly payments; requirements on the right." },
+      phones: [{ src: "/work/comfy/deliver/s4-phone.webp", width: 700, height: 1367, alt: "How it works in the app: step 1, today’s charge." }, { src: "/work/comfy/deliver/s4-phone-b.webp", width: 700, height: 1367, alt: "How it works in the app: step 2, the monthly payments and the total." }],
+    },
+  ]}
+/>
 
-- Bank icons weren’t clickable; they only opened a tooltip.
-- The tooltip held generic information that didn’t help anyone choose.
-- “Buy on credit” and “Buy” led to the same drawer, with no difference in the flow.
+<ProblemSolved
+  n={2}
+  problem="Cognitive overload during the credit flow"
+  evidence="People called the credit checkout inconvenient and complex, and 53% of surveyed shoppers said problems on the site could stop them taking credit online."
+  hmw="How might we make taking credit or installments more comfortable?"
+  before={{
+    shot: { src: "/work/comfy/deliver/p2-before.webp", width: 2000, height: 2081, alt: "Checkout before: grey sections that look alike, and the order summary on the right." },
+    phones: [{ src: "/work/comfy/deliver/p2-before-phone.webp", width: 700, height: 1367, alt: "Mobile checkout before: grey delivery and payment sections, each with a “Змінити” (Change) button." }],
+    issues: ["Product details, total cost and credit info disappeared while scrolling.", "Completed form sections looked the same as empty ones."],
+  }}
+  steps={[
+    {
+      title: "On desktop, every step is open at once",
+      text: "Contact details, delivery and payment are all open on one page, so nothing hides behind a “Change” button and people keep the whole order in view. The summary with the total stays on the right, and the store picked on the product page shows “Можна забрати сьогодні” (Pick up today).",
+      ideas: ["HMW 3 · Remember the store and pickup chosen before"],
+      desktop: { src: "/work/comfy/deliver/s5-desktop.webp", width: 1800, height: 1636, alt: "Checkout after, on desktop: contact, delivery and payment all open, the order summary and total on the right." },
+      phones: [{ src: "/work/comfy/deliver/s5-phone.webp", width: 660, height: 1384, alt: "Mobile checkout after: the order with “Можна забрати сьогодні” at the top, then contact details." }],
+    },
+    {
+      title: "The chosen offer, spelled out",
+      text: "Picking installments shows the bank’s offer right in the checkout: the number of payments, the first payment and the ones after it. The summary switches to what is paid today, how many payments are left and the monthly sum, and says what comes next: confirming in the bank’s app.",
+      ideas: ["HMW 5 · The first payment, stated clearly", "HMW 5 · On the checkout page, what comes next: a push from the bank’s app to confirm"],
+      desktop: { src: "/work/comfy/deliver/s7-desktop.webp", width: 1800, height: 2084, alt: "Checkout with a bank selected: 7 payments, first payment 3 357 ₴, future payments 2 357 ₴; the summary shows pay today, payments left and the monthly payment." },
+      phones: [
+        { src: "/work/comfy/deliver/s7-phone-a.webp", width: 660, height: 1384, alt: "Mobile: installments selected, with the bank’s offer, first and future payments." },
+        { src: "/work/comfy/deliver/s7-phone-b.webp", width: 660, height: 1384, alt: "Mobile: the total with the down payment, first payment, number of payments and monthly payment." },
+      ],
+    },
+  ]}
+/>
 
-<Figure src="/work/comfy/before.webp" width={2506} height={2074} alt="Original product page: a separate “Купити в кредит” button, small bank icons and a monobank tooltip with generic requirements." label="Before" caption="Bank icons only open a tooltip with generic text; both buttons do the same thing." />
-
-We put a visible “Оплата частинами” (Pay in installments) button next to the main “Купити” (Buy) button, showing the lowest monthly payment the banks offer.
-
-<Note>We renamed it from “Купити в кредит” (Buy on credit) after interviews showed that the word “credit” made people anxious.</Note>
-
-<Figure src="/work/comfy/after-1.webp" width={2506} height={2074} alt="Redesigned price block: “Купити” and “Оплата частинами від 1 233.27 ₴ / міс.” side by side, with installment offers from nine banks below." label="After" caption="“Pay in installments” sits next to “Buy”, with the lowest monthly payment on the button." />
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/after-2.webp" width={2506} height={2074} alt="A bank offer opened from its icon: how to use monobank installments, extra terms and the monthly payment." label="After" caption="Each bank offer is a button with its own terms." />
-  <HalfFigure src="/work/comfy/c18.jpg" width={1600} height={1340} alt="Drawer listing all credit offers with a payment calculator." label="After" caption="All offers in one drawer, with a calculator." />
-</FigurePair>
-
-A “Як це працює” (How it works) button inside the calculator opens the full terms with a timeline of payments.
-
-<Figure src="/work/comfy/after-3.webp" width={2506} height={2074} alt="Credit offers drawer with monobank selected and “Як це працює” open: step 1, what is charged today; step 2, the monthly payments; requirements on the right." label="After" caption="“How it works” lays out the payments: what’s charged today, then every month." />
-
-<Figure src="/work/comfy/c20.jpg" width={1600} height={654} alt="The same credit changes in the mobile app." caption="The same changes in the mobile app." />
-
-### 2. Cognitive overload
-
-- Product details, total cost and credit info disappeared while scrolling.
-- Completed form sections looked the same as empty ones.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c21.jpg" width={1600} height={1033} alt="Original checkout where the order summary scrolls away." label="Before" caption="The order summary scrolls away." />
-  <HalfFigure src="/work/comfy/c22.jpg" width={1525} height={1600} alt="Original checkout form where completed and empty sections look identical." label="Before" caption="Done and empty sections look alike." />
-</FigurePair>
-
-- The product and payment summary stays visible while scrolling.
-- Completed blocks change colour, so progress is easy to scan.
-- The store chosen on the product page carries over to checkout.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c23.jpg" width={1600} height={1584} alt="Redesigned checkout with a sticky summary and highlighted completed blocks." label="After" caption="Sticky summary, completed blocks stand out." />
-  <HalfFigure src="/work/comfy/c24.jpg" width={1600} height={1154} alt="Mobile checkout before and after." caption="Mobile app, before and after." />
-</FigurePair>
-
-In the list of stores for pickup, people skimmed without reading and struggled to spot the ones with the item in stock. We highlighted “Pick up today” in green and kept the other stores neutral.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c25.jpg" width={1600} height={804} alt="Store pickup list before and after, with “Pick up today” highlighted in the redesign." label="Before & after" caption="“Pick up today” stands out." />
-  <HalfFigure src="/work/comfy/c26.jpg" width={1600} height={1154} alt="Mobile pickup options before and after." caption="Mobile app, before and after." />
-</FigurePair>
-
-### 3. Uncertainty about product suitability
-
-People wanted to see a product in person before committing to credit. We added a video consultation on the product page.
-
-<Figure src="/work/comfy/c27.jpg" width={1600} height={905} alt="Product page with a video consultation entry point." label="After" caption="Video consultation on the product page." />
+<ProblemSolved
+  n={3}
+  problem="Uncertainty about product suitability"
+  evidence="People wanted to see a product in person before committing to credit: 74% of surveyed shoppers buy in a store to see the item themselves."
+  hmw="How might we raise confidence in a product bought online?"
+  steps={[
+    {
+      title: "See it live, without going to the store",
+      text: "A video consultation sits on the product page, under the gallery: people talk to a Comfy employee and see the product with their own eyes before they commit.",
+      ideas: ["HMW 4 · Video consultations", "HMW 4 · Video reviews of products"],
+      desktop: { src: "/work/comfy/deliver/s8-desktop.webp", width: 2000, height: 1535, alt: "Product page with “Бажаєте роздивитися краще?” (Want a closer look?) and a “Відеоконсультація” (Video consultation) button under the gallery." },
+      phones: [{ src: "/work/comfy/deliver/s8-phone.webp", width: 700, height: 1367, alt: "The same video consultation block on the product page in the app." }],
+    },
+  ]}
+/>
 
 ### Usability testing
 

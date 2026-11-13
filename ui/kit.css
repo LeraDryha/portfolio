@@ -560,6 +560,15 @@
   --size-sticky: 128px;
   --size-sticky-h: 92px;
   --size-sticky-hmw: 240px;
+  --layout-solved: minmax(0, .78fr) minmax(0, 1.62fr);
+  --size-solved-phone: 25%;
+  --size-solved-phone-narrow: 46%;
+  --size-solved-tip: 26%;
+  --pos-solved-tip-x: 63%;
+  --pos-solved-tip-y: 50%;
+  --size-solved-thumb: 22%;
+  --shadow-shot: 0 18px 40px -22px rgb(0 0 0 / .35);
+  --filter-phone-shadow: drop-shadow(0 16px 24px rgb(0 0 0 / .25));
   --shadow-sticky: 0 2px 6px -2px rgb(0 0 0 / .25);
   --vpc-unit: calc(100cqw / 1100);
   --duration-sticky: 650ms;
@@ -1164,6 +1173,44 @@
 .prose .hmw { display: grid; gap: var(--space-12); margin: var(--space-0); padding: var(--space-0); list-style: none; }
 .hmw__row { display: grid; grid-template-columns: var(--size-sticky-hmw) minmax(0, 1fr); gap: var(--space-20); align-items: start; }
 @media (max-width: 860px) { .problems, .hmw__row { grid-template-columns: var(--layout-col-1); } }
+/* Problem solved (Comfy Deliver): problem → before → decisions, each decision with its HMW ideas and screens */
+.solved { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-14); margin: var(--space-28) var(--space-0); }
+.solved__head { display: grid; gap: var(--space-8); }
+.prose .solved__head h3 { margin: var(--space-0); font-size: var(--text-chapter); letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); }
+.prose .solved__evidence { margin: var(--space-0); color: var(--color-graphite); }
+.prose .solved__hmw { display: flex; align-items: center; gap: var(--space-10); margin: var(--space-0); color: var(--color-ink); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.solved__hmw-tag { flex: none; min-height: auto; padding: var(--space-4) var(--space-8); font: var(--weight-semibold) var(--text-label) / var(--leading-tag) var(--font-sans); font-style: normal; }
+.solved__before, .solved__step { display: grid; grid-template-columns: var(--layout-solved); gap: var(--space-28); align-items: center; padding: var(--space-32); border-radius: var(--radius-tile); background: var(--color-tile); }
+.solved__before-text { display: grid; gap: var(--space-14); align-content: center; }
+.solved__badge { justify-self: start; padding: var(--space-4) var(--space-10); border-radius: var(--radius-pill); background: var(--color-caution-tint); color: var(--color-caution); font: var(--weight-semibold) var(--text-label) / var(--leading-tag) var(--font-sans); }
+.prose .solved__before ul { display: grid; gap: var(--space-8); margin: var(--space-0); padding-left: var(--space-list-indent); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .solved__steps { display: grid; gap: var(--space-14); margin-top: var(--space-0); margin-bottom: var(--space-0); padding: var(--space-0); list-style: none; }
+.solved__text { display: grid; gap: var(--space-10); align-content: center; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.solved__n { color: var(--color-accent); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-mono); }
+.prose .solved__text h4 { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-idea); letter-spacing: var(--tracking-heading); line-height: var(--leading-heading); text-wrap: balance; }
+.prose .solved__text p { margin: var(--space-0); }
+.prose .solved__ideas { display: grid; gap: var(--space-6); margin: var(--space-6) var(--space-0) var(--space-0); padding: var(--space-0); list-style: none; }
+.solved__ideas li { justify-self: start; padding: var(--space-6) var(--space-10); background: var(--color-sticky-idea); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
+.solved__ideas b { font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); }
+.solved__shots { position: relative; padding-bottom: var(--space-32); padding-right: var(--space-28); }
+.solved__shot img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); }
+.solved__overlay { position: absolute; left: var(--pos-solved-tip-x); top: var(--pos-solved-tip-y); width: var(--size-solved-tip); }
+.solved__overlay img, .solved__thumb img { display: block; width: var(--size-full); height: auto; }
+.solved__overlay img { filter: var(--filter-phone-shadow); }
+.solved__more { grid-column: 2; display: flex; gap: var(--space-12); align-items: flex-start; }
+.solved__thumb { width: var(--size-solved-thumb); }
+.solved__thumb img { border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); }
+.solved__phone { position: absolute; bottom: var(--space-0); right: var(--space-0); width: var(--size-solved-phone); }
+.solved__phone img { display: block; width: var(--size-full); height: auto; filter: var(--filter-phone-shadow); }
+/* Two phones read left to right: the first sits further left, the second on the corner */
+.solved__shots--2 .solved__phone--1 { right: calc(var(--size-solved-phone) - var(--space-28)); bottom: var(--space-12); }
+@media (max-width: 860px) {
+  .solved__before, .solved__step { grid-template-columns: var(--layout-col-1); padding: var(--space-20); border-radius: var(--radius-tile-tablet); }
+  .solved__shots { padding: var(--space-0); }
+  .solved__phone { position: static; display: inline-block; width: var(--size-solved-phone-narrow); margin-top: var(--space-12); margin-right: var(--space-8); }
+  .solved__more { grid-column: auto; }
+  .solved__thumb { width: var(--size-solved-phone-narrow); }
+}
 
 /* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
 .matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
