@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Icon, Selection } from "@/components/shell/Icons";
 
 /* Building blocks for case pages, used from MDX (see mdx-components.tsx).
@@ -424,6 +424,38 @@ export function Idea({ n, of, title, src, width, height, alt, children }: { n: n
         </button>
       </div>
     </article>
+  );
+}
+
+type CanvasPart = { title: string; items?: string[]; quote?: string };
+type CanvasCell = { area: string; parts: CanvasPart[] };
+
+/** A business canvas as a live block (Comfy: Business Model Canvas and Lean Canvas, combined): the top row in the
+ *  Lean Canvas order, the business-model cells under it; one column of cells on phones. */
+export function BusinessCanvas({ top, bottom, caption }: { top: CanvasCell[]; bottom: CanvasCell[]; caption: string }) {
+  const cell = (c: CanvasCell) => (
+    <section key={c.area} className="canvas__cell" style={{ "--area": c.area } as CSSProperties}>
+      {c.parts.map((p) => (
+        <div key={p.title} className="canvas__part">
+          <h4>{p.title}</h4>
+          {p.items && (
+            <ol>
+              {p.items.map((i) => (
+                <li key={i}>{i}</li>
+              ))}
+            </ol>
+          )}
+          {p.quote && <p className="canvas__quote">{p.quote}</p>}
+        </div>
+      ))}
+    </section>
+  );
+  return (
+    <figure className="canvas case-wide">
+      <div className="canvas__top">{top.map(cell)}</div>
+      <div className="canvas__bottom">{bottom.map(cell)}</div>
+      <figcaption className="fig__cap">{caption}</figcaption>
+    </figure>
   );
 }
 

@@ -549,6 +549,11 @@
   --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
+  /* Business canvas (Comfy): Lean Canvas order on top, business-model cells under it */
+  --layout-canvas-top: "problem solution value advantage segments" "problem metrics value channels segments";
+  --layout-canvas-bottom: "costs revenue partners resources";
+  --layout-canvas-top-tablet: "problem solution" "metrics value" "advantage channels" "segments segments";
+  --layout-canvas-bottom-tablet: "costs revenue" "partners resources";
   /* Ideas rows (Comfy) */
   --layout-idea: minmax(0, .8fr) minmax(0, 1.6fr);
   --text-idea: clamp(20px, 2.2vw, 26px);
@@ -1015,6 +1020,25 @@
 .fig-row .fig__img { width: var(--size-full); height: var(--size-full); object-fit: contain; background: var(--color-transparent); }
 .fig-row .fig__cap { font-size: var(--text-label); }
 .fig__cap--stack { display: grid; gap: var(--space-4); text-align: left; }
+
+/* Business canvas (Comfy): white cells on a grey block, titles in ink, numbered lists */
+.canvas { display: grid; gap: var(--space-10); margin: var(--space-28) var(--space-0); padding: var(--space-12); border-radius: var(--radius-block); background: var(--color-tile); }
+.canvas__top, .canvas__bottom { display: grid; gap: var(--space-10); }
+.canvas__top { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-top); }
+.canvas__bottom { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-bottom); }
+.canvas__cell { grid-area: var(--area); display: grid; gap: var(--space-20); align-content: start; min-width: var(--space-0); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.prose .canvas h4 { margin: var(--space-0) var(--space-0) var(--space-8); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .canvas ol { display: grid; gap: var(--space-4); margin: var(--space-0); padding-left: var(--space-list-indent); }
+.prose .canvas__quote { margin: var(--space-0); color: var(--color-accent); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.canvas .fig__cap { margin-top: var(--space-2); }
+@media (max-width: 860px) {
+  .canvas__top { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-top-tablet); }
+  .canvas__bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: var(--layout-canvas-bottom-tablet); }
+}
+@media (max-width: 640px) {
+  .canvas__top, .canvas__bottom { grid-template-columns: var(--layout-col-1); grid-template-areas: none; }
+  .canvas__cell { grid-area: auto; }
+}
 
 /* Ideas for the business, one per row (Comfy): text on the left, the concept large on the right; stacked on phones */
 .ideas { display: grid; gap: var(--space-16); margin-top: var(--space-28); margin-bottom: var(--space-28); }

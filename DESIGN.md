@@ -274,6 +274,8 @@ Pill segmented control: All / About / Work / Writing hides and shows tiles; the 
 ### Case Page Blocks
 Facts (labels in a column, values aligned; a value can be a link), Problem / What we did / Result, Proof Block, Stats (3 in a row), Quote, Insight (heading, quote, meaning), Hypothesis (If / Then / Because / This will lead to, with Mixpanel events in mono), Figure (opens larger in the screen lightbox; figures in a row are one set), Figures in a row, Verdict Lists, Results Table (improved values in accent), Note.
 
+**Business Canvas** (Comfy): the combined Business Model Canvas and Lean Canvas as a live block on the page width instead of a picture: white cells (inner corners) on a grey block, the top row in the Lean Canvas order (Problem with Existing alternatives, Solution over Metrics, Unique value proposition with the slogan in Newsreader italic in the case accent, Unfair advantage over Channels, Customer segments with Early adopters), the business-model cells under it (Cost structure, Revenue streams, Key partners, Key resources); each cell a semibold title over a numbered list in 13px; two columns on tablets, one on phones; the caption under it.
+
 **Ideas** (Comfy, its own Growth chapter): ideas for the business, set apart from the UX fixes, one per row on the page width: a grey card (tile corners) with “Idea 1 / 4” as the mono eyebrow, the idea's title (20–26px, ink) and its why on the left, the concept large on the right (opens in the lightbox, the four ideas are one set); on tablets and phones the text sits over the image.
 
 ### Live Product (GRG case page)
