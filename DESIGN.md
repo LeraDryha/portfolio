@@ -11,6 +11,8 @@ colors:
   hairline: "#e3e3e6"
   mulberry-ink: "oklch(48% 0.15 352)"
   mulberry-ink-night: "oklch(74% 0.11 352)"
+  comfy-green: "#007d0f"
+  comfy-green-night: "#00b302"
   figma-blue: "#0d99ff"
   redline: "#f24822"
   who-designer: "#9747ff"
@@ -200,6 +202,8 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 - **Verdict Green / Orange**: only the paired "what works / what doesn't" lists on case pages: what works on a light green card with its title in Verdict Green, what doesn't on a light orange card with its title in a dark orange; both re-tuned at night (deep green and deep brown cards, lighter titles).
 
 ### Named Rules
+**The Client Accent Rule.** A client case may take the client's brand colour as its evidence accent instead of Mulberry Ink, on its case page only: Comfy uses its green (#00b302), deepened to #007d0f in the light theme so text keeps 4.5:1 on a tile, and the brand value itself at night. The home page, the intro and Lera's own colour in the Figma layer stay Mulberry Ink.
+
 **The Ink Headline Rule.** Where a tile has a headline (the smaller cases), it is evidence, set in ink. The accent belongs to case pages and the intro's italic phrase.
 
 **The Figma Only Rule.** Figma Blue appears only as the Figma layer (selection, focus, "You", the components layer over a live product and the part names that select in it). It is never a link colour or a button fill.

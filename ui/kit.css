@@ -23,6 +23,9 @@
   --color-pencil: #6e6e73;
   --color-hairline: #e3e3e6;
   --color-accent: oklch(48% 0.15 352);
+  /* Comfy's brand green (#00b302) as the accent on its case: deepened in light for text contrast (4.9:1 on a tile), the brand value itself at night */
+  --color-comfy-accent: #007d0f;
+  --color-comfy-accent-soft: rgb(0 125 15 / .16);
   --color-accent-soft: oklch(48% 0.15 352 / .16);
   --color-on-dark: #ffffff;
   --color-scrim: rgb(22 24 29 / .72);
@@ -611,6 +614,8 @@
     --color-pencil: #98989d;
     --color-hairline: #2c2c2e;
     --color-accent: oklch(74% 0.11 352);
+    --color-comfy-accent: #00b302;
+    --color-comfy-accent-soft: rgb(0 179 2 / .22);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
@@ -642,6 +647,8 @@
   --color-pencil: #98989d;
   --color-hairline: #2c2c2e;
   --color-accent: oklch(74% 0.11 352);
+  --color-comfy-accent: #00b302;
+  --color-comfy-accent-soft: rgb(0 179 2 / .22);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
@@ -1012,6 +1019,9 @@
 @media (max-width: 860px) {
   .idea { grid-template-columns: var(--layout-col-1); gap: var(--space-16); padding: var(--space-20); border-radius: var(--radius-tile-tablet); }
 }
+
+/* A client case takes the client's brand colour as its evidence accent */
+.case[data-case="comfy"] { --color-accent: var(--color-comfy-accent); --color-accent-soft: var(--color-comfy-accent-soft); }
 
 /* Paired verdict lists */
 .lists { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); margin: var(--space-20) var(--space-0); }
