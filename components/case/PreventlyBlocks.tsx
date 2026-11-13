@@ -73,34 +73,6 @@ export function Research({ persona, stages }: { persona: { name: string; line: s
   );
 }
 
-/** Lines from the first version, what was wrong, and the rewrite. */
-export function VoiceTable({ rows }: { rows: { before: string; why: string; after: string }[] }) {
-  return (
-    <div className="voice case-wide">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Before</th>
-            <th scope="col">What was wrong</th>
-            <th scope="col">After</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.after}>
-              <td>
-                <s>{r.before}</s>
-              </td>
-              <td>{r.why}</td>
-              <td>{r.after}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 /** Each stage of the work and the document written before it. */
 export function StageTable({ rows }: { rows: { stage: string; doc: string }[] }) {
   return (
