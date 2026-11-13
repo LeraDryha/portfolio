@@ -37,10 +37,12 @@ function CaseTile({ entry }: { entry: CaseEntry }) {
   return (
     <article className={`tile case-tile ${SHAPE[entry.shape]} area-${entry.area}`} id={`tile-${entry.slug}`} data-cat="work">
       <div className="case-tile__head">
-        <p className={entry.proof.quote ? "case-tile__proof case-tile__proof--quote" : "case-tile__proof"}>
-          {entry.proof.text}
-          {entry.proof.cap && <small>{entry.proof.cap}</small>}
-        </p>
+        {entry.proof && (
+          <p className={entry.proof.quote ? "case-tile__proof case-tile__proof--quote" : "case-tile__proof"}>
+            {entry.proof.text}
+            {entry.proof.cap && <small>{entry.proof.cap}</small>}
+          </p>
+        )}
         {title}
       </div>
       <Vis entry={entry} />
