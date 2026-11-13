@@ -9,7 +9,7 @@ export const meta = {
   ],
 };
 
-<Note>The previous design isn’t public, so this case shows only the redesign. The visual style comes from the product’s existing interface; my part was the structure and the UX decisions, and the reasoning behind each one is written next to it.</Note>
+<Note>Each area starts with the product as it was. The visual style of the redesign comes from the product’s existing interface; my part was the structure and the UX decisions, and the reasoning behind each one is written next to it.</Note>
 
 <Figure src="/work/adtelligent/r01.jpg" width={1600} height={892} alt="The redesigned reports overview on a laptop, with charts and a data table." caption="The redesigned reports." priority />
 
@@ -28,6 +28,14 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
   label="Area"
   problem="Overview"
   evidence="Users log in every day to check the volume of Ad Requests, Ad Opportunities and Impressions, and ad spend (Spent and eCPM), by campaigns, sites and countries."
+  before={{
+    issues: [
+      "No overview: every visit starts on the report form, and the numbers appear only after Run Report.",
+      "The daily check is a table read row by row; there are no charts to see a trend at a glance.",
+      "Templates hide in a “Type something…” field over the table, beside five buttons of equal weight.",
+    ],
+    shot: { src: "/work/adtelligent/before/table.webp", width: 1600, height: 826, alt: "The old report: templates in a field, five equal buttons and the data table grouped by date, campaign, country and domain." },
+  }}
   steps={[
     {
       title: "Charts first, the familiar table under them",
@@ -47,6 +55,14 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
   label="Area"
   problem="My reports"
   evidence="Users want to save reports and add them to favourites for quick access, start new reports from proven templates, and move between report types: current reports, including saved ones, and scheduled reports sent by email."
+  before={{
+    issues: [
+      "Saved reports live in a narrow side list: three “New Report”s with nothing to tell them apart.",
+      "Scheduled reports, Statistic API Access and New report are three identical buttons.",
+      "No favourites and no preview; templates sit elsewhere, in a field above the table.",
+    ],
+    shot: { src: "/work/adtelligent/before/sidebar.webp", width: 1600, height: 541, alt: "The old side list of reports beside the report form: Scheduled reports, Statistic API Access, New report, then Default, three New Report items and My awesome report." },
+  }}
   steps={[
     {
       title: "One page for every report",
@@ -72,6 +88,15 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
   label="Area"
   problem="Report builder"
   evidence="Users want to see their table as charts after applying filters, set up the table and charts, and save and export the report."
+  before={{
+    issues: [
+      "Every filter is on screen at once: 13 selects, each with its own Summ and Exclude, used or not.",
+      "Columns are set in a separate Custom View window, with two lists and three buttons: Apply, Cancel and Create.",
+      "Nothing changes until Run Report, and there are no charts to check the result.",
+    ],
+    shot: { src: "/work/adtelligent/before/filters.webp", width: 1600, height: 1439, alt: "The old filter form: date range, timezone, RTB traffic and thirteen selects, each with Summ and Exclude, then metric filters and report views." },
+    overlay: { src: "/work/adtelligent/before/columns.webp", width: 800, height: 698, alt: "The old Custom View window: available and selected columns, with Apply, Cancel and Create." },
+  }}
   steps={[
     {
       title: "Charts grouped by what they measure",
