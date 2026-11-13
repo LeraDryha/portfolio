@@ -32,7 +32,7 @@ export function Lightbox() {
         setSet(JSON.parse(b.dataset.zoomList) as Shot[]);
         setI(Number(b.dataset.zoomIndex ?? 0));
       } else {
-        const row = b.closest(".handsets__row, .spec__pair, .fig-row") ?? b.parentElement!;
+        const row = b.closest(".handsets__row, .spec__pair, .fig-row, .ideas") ?? b.parentElement!;
         const all = [...row.querySelectorAll<HTMLElement>("[data-zoom]")];
         setSet(all.map(read));
         setI(all.indexOf(b));

@@ -402,6 +402,31 @@ export function Scenario({ n, task, checks, success, measure }: { n: number; tas
   );
 }
 
+/** Ideas, one per row, each set apart: a number, a title and why it works on the left, its concept large on the right.
+ *  The image opens larger in the lightbox; the ideas are one set there. */
+export function Ideas({ children }: { children: ReactNode }) {
+  return <div className="ideas case-wide">{children}</div>;
+}
+
+export function Idea({ n, of, title, src, width, height, alt, children }: { n: number; of: number; title: string; src: string; width: number; height: number; alt: string; children: ReactNode }) {
+  return (
+    <article className="idea">
+      <div className="idea__text">
+        <p className="part__eyebrow">
+          Idea {n} / {of}
+        </p>
+        <h3>{title}</h3>
+        {children}
+      </div>
+      <div className="idea__img">
+        <button type="button" className="fig__zoom" data-zoom={src} data-zoom-w={width} data-zoom-h={height} data-zoom-alt={alt} data-zoom-cap={title} aria-label={`Open larger: ${title}`}>
+          <Image src={src} width={width} height={height} alt={alt} sizes="(max-width: 860px) 100vw, 660px" quality={90} />
+        </button>
+      </div>
+    </article>
+  );
+}
+
 export { TokenAnatomy } from "@/components/case/TokenAnatomy";
 
 /** The start of a larger part of the story, set apart from the chapters before it. */
