@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Icon } from "@/components/shell/Icons";
 
 /** focus: the part of the screen a phone shows, as an object-position ("88% 20%") */
 type Screen = { name: string; light: string; dark: string; width: number; height: number; alt: string; focus?: string };
@@ -67,6 +68,21 @@ export function ThemeShowcase({ screens }: { screens: Screen[] }) {
         <span className="wipe__line" aria-hidden="true">
           <span>Light · Dark</span>
         </span>
+        <button
+          className="wipe__zoom"
+          type="button"
+          data-zoom={s.light}
+          data-zoom-index={current * 2}
+          data-zoom-list={JSON.stringify(
+            screens.flatMap((sc) => [
+              { src: sc.light, w: sc.width, h: sc.height, alt: `${sc.alt}, light theme`, cap: `${sc.name} · Light` },
+              { src: sc.dark, w: sc.width, h: sc.height, alt: `${sc.alt}, dark theme`, cap: `${sc.name} · Dark` },
+            ]),
+          )}
+          aria-label={`Open ${s.name} larger, in both themes`}
+        >
+          <Icon name="expand" />
+        </button>
         <input
           className="wipe__range"
           type="range"
