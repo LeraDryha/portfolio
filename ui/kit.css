@@ -547,7 +547,7 @@
   --layout-research: minmax(0, 1fr);
   --layout-persona: minmax(0, 1fr) minmax(0, 3fr);
   --layout-stats-5: repeat(6, minmax(0, 1fr));
-  --layout-try: minmax(0, 1fr) minmax(0, 1.15fr);
+  --layout-try: minmax(0, .8fr) minmax(0, 1.2fr);
   --layout-journey: repeat(5, minmax(150px, 1fr));
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
