@@ -349,30 +349,46 @@ We generated many solutions and ranked them with MoSCoW: must-haves first, shoul
 
 <Chapter id="deliver" n={4} of={6} label="Design and tests" title="Deliver" sub="Solutions for each problem and two rounds of usability testing.">
 
-### 1. Lack of transparency in credit terms
-
-- Bank icons weren’t clickable; they only opened a tooltip.
-- The tooltip held generic information that didn’t help anyone choose.
-- “Buy on credit” and “Buy” led to the same drawer, with no difference in the flow.
-
-<Figure src="/work/comfy/before.webp" width={2506} height={2074} alt="Original product page: a separate “Купити в кредит” button, small bank icons and a monobank tooltip with generic requirements." label="Before" caption="Bank icons only open a tooltip with generic text; both buttons do the same thing." />
-
-We put a visible “Оплата частинами” (Pay in installments) button next to the main “Купити” (Buy) button, showing the lowest monthly payment the banks offer.
-
-<Note>We renamed it from “Купити в кредит” (Buy on credit) after interviews showed that the word “credit” made people anxious.</Note>
-
-<Figure src="/work/comfy/after-1.webp" width={2506} height={2074} alt="Redesigned price block: “Купити” and “Оплата частинами від 1 233.27 ₴ / міс.” side by side, with installment offers from nine banks below." label="After" caption="“Pay in installments” sits next to “Buy”, with the lowest monthly payment on the button." />
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/after-2.webp" width={2506} height={2074} alt="A bank offer opened from its icon: how to use monobank installments, extra terms and the monthly payment." label="After" caption="Each bank offer is a button with its own terms." />
-  <HalfFigure src="/work/comfy/c18.jpg" width={1600} height={1340} alt="Drawer listing all credit offers with a payment calculator." label="After" caption="All offers in one drawer, with a calculator." />
-</FigurePair>
-
-A “Як це працює” (How it works) button inside the calculator opens the full terms with a timeline of payments.
-
-<Figure src="/work/comfy/after-3.webp" width={2506} height={2074} alt="Credit offers drawer with monobank selected and “Як це працює” open: step 1, what is charged today; step 2, the monthly payments; requirements on the right." label="After" caption="“How it works” lays out the payments: what’s charged today, then every month." />
-
-<Figure src="/work/comfy/c20.jpg" width={1600} height={654} alt="The same credit changes in the mobile app." caption="The same changes in the mobile app." />
+<ProblemSolved
+  n={1}
+  problem="Lack of transparency in credit terms"
+  evidence="In the survey, 63% said unclear credit terms could stop them taking credit online, and 69% said seeing the number of payments matters most."
+  hmw="How might we make sure people fully understand the credit terms?"
+  before={{
+    shot: { src: "/work/comfy/deliver/p1-before.webp", width: 2000, height: 1526, alt: "The product page before: a separate “Купити в кредит” (Buy on credit) button and small bank icons." },
+    issues: ["Bank icons weren’t clickable; they only opened a tooltip.", "The tooltip held generic information that didn’t help anyone choose.", "“Buy on credit” and “Buy” led to the same drawer, with no difference in the flow."],
+  }}
+  steps={[
+    {
+      title: "Pay in installments, right next to Buy",
+      text: "A second button beside “Купити” (Buy) shows the lowest monthly payment the banks offer. It used to say “Buy on credit”: interviews showed the word “credit” made people anxious, so it became “Оплата частинами” (Pay in installments).",
+      ideas: ["HMW 1 · Clear labels: credit or installments", "HMW 5 · The first payment, stated clearly"],
+      desktop: { src: "/work/comfy/deliver/s1-desktop.webp", width: 2000, height: 1500, alt: "Redesigned price block: “Купити” and “Оплата частинами від 1 233.27 ₴ / міс.” side by side." },
+      phones: [{ src: "/work/comfy/deliver/s1-phone.webp", width: 700, height: 1367, alt: "The same price block in the app, with bank offers and the installments button." }],
+    },
+    {
+      title: "Every bank is a button with its own terms",
+      text: "Bank icons used to open a tooltip with generic text. Now each opens that bank’s offer for this product: the number of payments, one payment’s amount and what you need to apply.",
+      ideas: ["HMW 5 · Click a bank icon on the product page: the number of payments, one payment’s amount and an order button", "HMW 5 · Partner banks’ terms without leaving the product page"],
+      desktop: { src: "/work/comfy/deliver/s2-desktop.webp", width: 2000, height: 1489, alt: "Installment offers from nine banks under the price, each a button with its number of payments." },
+      phones: [{ src: "/work/comfy/deliver/s2-phone.webp", width: 700, height: 1367, alt: "In the app, a bank’s offer opens in a sheet with its requirements and the monthly payment." }],
+    },
+    {
+      title: "All offers in one place, with a calculator",
+      text: "One drawer lists every bank, split into installments without overpaying and credit with interest. Choose the number of payments, add a down payment, and the monthly sum updates.",
+      ideas: ["HMW 5 · A credit calculator", "HMW 3 · A bank comparison table without leaving the product page"],
+      desktop: { src: "/work/comfy/deliver/s3-desktop.webp", width: 2000, height: 1656, alt: "Drawer with installment offers from each bank, a payment picker and the monthly sum." },
+      phones: [{ src: "/work/comfy/deliver/s3-phone.webp", width: 700, height: 1367, alt: "The same offers in the app, with a slider for the number of months." }],
+    },
+    {
+      title: "How it works, step by step",
+      text: "“Як це працює” (How it works) opens the payment timeline: what is charged today, what comes each month, and what you need to apply.",
+      ideas: ["HMW 3 · Clear credit steps for each bank", "HMW 1 · A calculator for the payment details"],
+      desktop: { src: "/work/comfy/deliver/s4-desktop.webp", width: 2000, height: 1656, alt: "monobank selected: step 1, what is charged today; step 2, the monthly payments; requirements on the right." },
+      phones: [{ src: "/work/comfy/deliver/s4-phone.webp", width: 700, height: 1367, alt: "How it works in the app: step 1, today’s charge." }, { src: "/work/comfy/deliver/s4-phone-b.webp", width: 700, height: 1367, alt: "How it works in the app: step 2, the monthly payments and the total." }],
+    },
+  ]}
+/>
 
 ### 2. Cognitive overload
 

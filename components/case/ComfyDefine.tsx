@@ -177,3 +177,73 @@ export function HmwBoard({ title, questions, caption }: { title: string; questio
     </Panel>
   );
 }
+
+type Shot = { src: string; width: number; height: number; alt: string };
+
+function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: string }) {
+  return (
+    <button type="button" className={`fig__zoom ${className}`} data-zoom={shot.src} data-zoom-w={shot.width} data-zoom-h={shot.height} data-zoom-alt={shot.alt} data-zoom-cap={cap} aria-label={`Open larger: ${shot.alt}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- transparent device mockups, sized by CSS */}
+      <img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt} loading="lazy" />
+    </button>
+  );
+}
+
+/**
+ * One problem from Develop carried through to the design: the problem with its evidence and the HMW it answers,
+ * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
+ * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
+ */
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before: { shot: Shot; issues: string[] }; steps: { title: string; text: string; ideas: string[]; desktop: Shot; phones: Shot[] }[] }) {
+  return (
+    <div className="solved">
+      <header className="solved__head">
+        <p className="define__label">Problem {n}</p>
+        <h3>{problem}</h3>
+        <p className="solved__evidence">{evidence}</p>
+        <p className="solved__hmw">
+          <span className="sticky sticky--hmw solved__hmw-tag">HMW</span>
+          {hmw}
+        </p>
+      </header>
+      <section className="solved__before case-wide">
+        <div className="solved__before-text">
+          <span className="solved__badge">Before</span>
+          <ul>
+            {before.issues.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <Zoom shot={before.shot} cap="Before" className="solved__shot" />
+      </section>
+      <ol className="solved__steps case-wide">
+        {steps.map((s, i) => (
+          <li key={s.title} className="solved__step">
+            <div className="solved__text">
+              <span className="solved__n">{String(i + 1).padStart(2, "0")}</span>
+              <h4>{s.title}</h4>
+              <p>{s.text}</p>
+              <ul className="solved__ideas" aria-label="From How Might We">
+                {s.ideas.map((idea) => {
+                  const [tag, ...rest] = idea.split(" · ");
+                  return (
+                    <li key={idea}>
+                      <b>{tag}</b> {rest.join(" · ")}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className={`solved__shots solved__shots--${s.phones.length}`}>
+              <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />
+              {s.phones.map((p, j) => (
+                <Zoom key={p.src} shot={p} cap={`${s.title} · mobile`} className={`solved__phone solved__phone--${j + 1}`} />
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
