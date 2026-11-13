@@ -532,6 +532,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 }
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
+export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { TokenAnatomy } from "@/components/case/TokenAnatomy";
 
 /** The start of a larger part of the story, set apart from the chapters before it. */
