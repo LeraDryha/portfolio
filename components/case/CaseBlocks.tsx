@@ -469,7 +469,7 @@ const MARK: Record<Mark, { sign: string; label: string }> = {
 
 /** Competitor features as a compact matrix: one row per feature, a mark per store (shape and colour both carry it),
  *  the client's column tinted; what every store has goes in one line under it. Scrolls sideways on phones. */
-export function CompetitorMatrix({ groups, rows, parity, caption }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string }[]; parity: string; caption: string }) {
+export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string }[]; parity: string; caption: string; sources?: { label: string; note: string; href: string }[] }) {
   const stores = groups.flatMap((g) => g.stores);
   const codes: Record<string, Mark> = { y: "yes", p: "part", n: "no", "-": "na" };
   return (
@@ -523,6 +523,20 @@ export function CompetitorMatrix({ groups, rows, parity, caption }: { groups: { 
       </div>
       <p className="matrix__parity">{parity}</p>
       <figcaption className="fig__cap">{caption}</figcaption>
+      {/* The original research files, whole, so the numbers can be checked */}
+      {sources && (
+        <div className="sources">
+          {sources.map((src) => (
+            <a key={src.href} className="source" href={src.href} target="_blank" rel="noopener">
+              <span>
+                <b>{src.label}</b>
+                <small>{src.note}</small>
+              </span>
+              <Icon name="out" />
+            </a>
+          ))}
+        </div>
+      )}
     </figure>
   );
 }

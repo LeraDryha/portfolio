@@ -1046,6 +1046,16 @@
 .prose .matrix__parity { margin: var(--space-0); color: var(--color-graphite); }
 .matrix .fig__cap { margin-top: var(--space-0); }
 
+/* Source files under a research block: the originals, whole, open in a new tab */
+.sources { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-8); }
+.prose .source { display: inline-flex; align-items: center; gap: var(--space-12); padding: var(--space-8) var(--space-16); border-radius: var(--radius-pill); background: var(--color-raised); color: var(--color-ink); text-decoration: none; box-shadow: var(--shadow-float); }
+.source span { display: grid; text-align: left; line-height: var(--leading-tag); }
+.source b { font-weight: var(--weight-medium); font-size: var(--text-label); }
+.source small { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.source svg { flex: none; width: var(--size-icon-small); height: var(--size-icon-small); }
+.prose .source:hover b { text-decoration: underline; text-underline-offset: var(--offset-underline); }
+.source:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+
 /* Business canvas (Comfy): white cells on a grey block, titles in ink, numbered lists */
 .canvas { display: grid; gap: var(--space-10); margin: var(--space-28) var(--space-0); padding: var(--space-12); border-radius: var(--radius-block); background: var(--color-tile); }
 .canvas__top, .canvas__bottom { display: grid; gap: var(--space-10); }
