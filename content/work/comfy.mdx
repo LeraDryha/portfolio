@@ -291,18 +291,16 @@ The customer journey map showed pain points, motivations and friction at each st
 
 The value proposition canvas showed which needs Comfy already meets, and which barriers create friction or distrust.
 
-<ValueCanvas
+<ValueProposition
   title="Value proposition canvas"
-  caption="Translated from Ukrainian. Gains and pains as the customer named them."
-  offer={[
-    { label: "Products and services", items: ["Credit from several banks with different terms (number of payments), online on the site or in the app"] },
-    { label: "Gain creators", items: ["A wide choice of banks and payout terms, including the number of payments", "Detailed terms for each kind of credit", "Credit online, without visiting a bank or a store", "More flexible terms when services are added: a longer credit", "Fast support that is almost always on the customer’s side", "Credit on almost every product", "Fast credit approval", "Bonuses for the next purchase"] },
-    { label: "Pain relievers", items: ["Credit instead of paying the whole sum at once"] },
-  ]}
-  customer={[
-    { label: "Customer job", items: ["Buy a product and use it quickly and conveniently, here and now, on credit"] },
-    { label: "Gains", tone: "gain", items: ["Checking the product in a physical store", "Credit from the banks I already use", "Using the money elsewhere instead of spending the big sum at once", "Using saved bonuses and getting perks", "Advice on getting credit", "No interest or overpaying"] },
-    { label: "Pains", tone: "pain", items: ["A big purchase needs a lot of money at once, which isn’t always there", "An inconvenient site or app, from the store and the bank", "Not knowing how returns work with credit", "Not knowing if promotions apply to installments", "Worry that the needed number of payments won’t be offered", "Not knowing how the exchange rate affects the terms", "Anxiety about not being able to repay", "Discomfort that it’s debt", "Dealing with the bank takes a lot of effort", "Banks keep calling after an application", "Unclear credit terms"] },
+  caption="Translated from Ukrainian and shortened on the stickies; gains and pains as the customer named them."
+  parts={[
+    { region: "products", label: "Products and services", short: ["Credit from several banks online, with different numbers of payments"], full: ["Credit from several banks with different terms (number of payments), online on the site or in the app"] },
+    { region: "creators", label: "Gain creators", short: ["Many banks and payout terms", "Detailed terms for each credit", "Credit online, no bank or store visit", "Longer credit when services are added", "Fast support on the customer’s side", "Credit on almost every product", "Fast credit approval", "Bonuses for the next purchase"], full: ["A wide choice of banks and payout terms, including the number of payments", "Detailed terms for each kind of credit", "Credit online, without visiting a bank or a store", "More flexible terms when services are added: a longer credit", "Fast support that is almost always on the customer’s side", "Credit on almost every product", "Fast credit approval", "Bonuses for the next purchase"] },
+    { region: "relievers", label: "Pain relievers", short: ["Credit instead of paying the whole sum at once"], full: ["Credit instead of paying the whole sum at once"] },
+    { region: "job", label: "Customer job", short: ["Buy it and use it quickly, here and now, on credit"], full: ["Buy a product and use it quickly and conveniently, here and now, on credit"] },
+    { region: "gains", label: "Gains", short: ["Check the product in a store", "Credit from the banks I use", "Keep money for other things", "Use saved bonuses and perks", "Advice on getting credit", "No interest or overpaying"], full: ["Checking the product in a physical store", "Credit from the banks I already use", "Using the money elsewhere instead of spending the big sum at once", "Using saved bonuses and getting perks", "Advice on getting credit", "No interest or overpaying"] },
+    { region: "pains", label: "Pains", short: ["A big sum needed at once", "Inconvenient store and bank apps", "How do returns work on credit?", "Do promotions apply to installments?", "Will I get the number of payments I need?", "How the exchange rate affects the terms", "Fear of not being able to repay", "It feels like debt", "Dealing with the bank takes effort", "Banks keep calling", "Unclear credit terms", "General uncertainty"], full: ["A big purchase needs a lot of money at once, which isn’t always there", "An inconvenient site or app, from the store and the bank", "Not knowing how returns work with credit", "Not knowing if promotions apply to installments", "Worry that the needed number of payments won’t be offered", "Not knowing how the exchange rate affects the terms", "Anxiety about not being able to repay", "Discomfort that it’s debt", "Dealing with the bank takes a lot of effort", "Banks keep calling after an application", "Unclear credit terms", "General uncertainty"] },
   ]}
 />
 
