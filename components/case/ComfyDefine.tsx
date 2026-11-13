@@ -194,17 +194,21 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; desktop: Shot; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, label = "Problem", problem, evidence, hmw, before, steps }: { n: number; label?: string; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop: Shot; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
-        <p className="define__label">Problem {n}</p>
+        <p className="define__label">
+          {label} {n}
+        </p>
         <h3>{problem}</h3>
         <p className="solved__evidence">{evidence}</p>
-        <p className="solved__hmw">
-          <span className="sticky sticky--hmw solved__hmw-tag">HMW</span>
-          {hmw}
-        </p>
+        {hmw && (
+          <p className="solved__hmw">
+            <span className="sticky sticky--hmw solved__hmw-tag">HMW</span>
+            {hmw}
+          </p>
+        )}
       </header>
       {before && (
       <section className="solved__before case-wide">
@@ -240,6 +244,13 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
               <span className="solved__n">{String(i + 1).padStart(2, "0")}</span>
               <h4>{s.title}</h4>
               <p>{s.text}</p>
+              {/* A question the designer asked herself while deciding, in her own reasoning */}
+              {s.thinking && (
+                <blockquote className="solved__thinking">
+                  <span className="define__label">Thinking</span>
+                  <p>{s.thinking}</p>
+                </blockquote>
+              )}
               {s.ideas && s.ideas.length > 0 && (
               <ul className="solved__ideas" aria-label="From How Might We">
                 {s.ideas.map((idea) => {
