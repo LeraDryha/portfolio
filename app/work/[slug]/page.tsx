@@ -6,6 +6,7 @@ import { Vis } from "@/components/shell/Vis";
 import { Icon } from "@/components/shell/Icons";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
 import { CaseToc } from "@/components/case/CaseToc";
+import { Lightbox } from "@/components/case/Lightbox";
 import { LiveProduct } from "@/components/case/LiveProduct";
 import { OpenCard, Stats } from "@/components/case/CaseBlocks";
 
@@ -95,6 +96,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
         <Icon name="up" />
       </button>
       <CaseToc />
+      <Lightbox />
       <CaseBehavior />
     </>
   );

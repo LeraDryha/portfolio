@@ -10,7 +10,8 @@ export function CaseBehavior() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && close) window.location.href = close.href;
+      // Esc closes an open modal (the screen lightbox) first, and only then the case
+      if (e.key === "Escape" && close && !document.querySelector("dialog[open]")) window.location.href = close.href;
     };
     const onScroll = () => top?.classList.toggle("is-on", window.scrollY > 600);
     const toTop = () => window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });

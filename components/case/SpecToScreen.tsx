@@ -60,7 +60,10 @@ export function SpecToScreen({ examples }: { examples: SpecExample[] }) {
       </div>
       <div className="spec__pair">
         <div className="spec__doc">
-          <p className="spec__file">{ex.file}</p>
+          <p className="spec__file">
+            <span className="spec__kind">Excerpt from the spec</span>
+            <span>{ex.file}</span>
+          </p>
           <div className="spec__body" lang={lang === "ua" ? "uk" : "en"}>
             {(lang === "en" ? ex.en : ex.ua).map((l, i) => (
               <Line key={`${ex.id}-${lang}-${i}`} l={l} />

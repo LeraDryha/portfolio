@@ -10,11 +10,23 @@ type Shot = { src: string; width: number; height: number; alt: string; caption?:
 export function Phone({ os, shot, size = "md" }: { os: "ios" | "android"; shot: Shot; size?: "md" | "lg" }) {
   return (
     <figure className={`phone phone--${size}`}>
-      <span className={`device device--${os}${shot.island ? " device--island" : ""}`}>
-        <span className="device__screen" style={{ width: `calc(var(--h) * (1 - 2 * var(--ratio-device-pad)) * ${shot.width} / ${shot.height})` }}>
-          <Image src={shot.src} alt={shot.alt} fill sizes={size === "lg" ? "300px" : "200px"} quality={90} />
+      {/* The whole phone opens the screen larger in a modal on the page (see Lightbox) */}
+      <button
+        type="button"
+        className="phone__zoom"
+        data-zoom={shot.src}
+        data-zoom-w={shot.width}
+        data-zoom-h={shot.height}
+        data-zoom-alt={shot.alt}
+        data-zoom-cap={shot.caption ?? ""}
+        aria-label={`Open larger: ${shot.caption ?? shot.alt}`}
+      >
+        <span className={`device device--${os}${shot.island ? " device--island" : ""}`}>
+          <span className="device__screen" style={{ width: `calc(var(--h) * (1 - 2 * var(--ratio-device-pad)) * ${shot.width} / ${shot.height})` }}>
+            <Image src={shot.src} alt={shot.alt} fill sizes={size === "lg" ? "300px" : "200px"} quality={90} />
+          </span>
         </span>
-      </span>
+      </button>
       {shot.caption && <figcaption>{shot.caption}</figcaption>}
     </figure>
   );
@@ -73,38 +85,10 @@ export function Research({ persona, stages }: { persona: { name: string; line: s
   );
 }
 
-/** Lines from the first version, what was wrong, and the rewrite. */
-export function VoiceTable({ rows }: { rows: { before: string; why: string; after: string }[] }) {
-  return (
-    <div className="voice case-wide">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Before</th>
-            <th scope="col">What was wrong</th>
-            <th scope="col">After</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.after}>
-              <td>
-                <s>{r.before}</s>
-              </td>
-              <td>{r.why}</td>
-              <td>{r.after}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 /** Each stage of the work and the document written before it. */
 export function StageTable({ rows }: { rows: { stage: string; doc: string }[] }) {
   return (
-    <div className="voice voice--stages case-wide">
+    <div className="voice voice--stages">
       <table>
         <thead>
           <tr>
