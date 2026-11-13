@@ -225,13 +225,84 @@ Comfy is a large product, and narrowing it to one or two personas wasn’t reali
 
 <Figure src="/work/comfy/c10.jpg" width={1600} height={815} alt="Jobs to be Done timeline from need to purchase." caption="JTBD timeline." />
 
+The persona was our bridge to the journey map: before mapping the journey, we described whose journey it is.
+
+<Persona
+  title="Who we designed for"
+  name="Kyrylo, 35"
+  line="Family man, works as a manager, volunteers."
+  quote="“Since childhood I was told: ‘Don’t get into credit.’ So I buy when I have the whole sum in hand.”"
+  jobs={["Choose a product", "Understand the credit terms", "Choose a convenient way to pay", "Buy what he needs"]}
+  goal="To have the thing he wants."
+  needs={["Easy search", "Clear credit terms: interest, payment periods, installments without overpaying", "A credit and installment calculator", "Several credit and installment options from partner banks", "Several ways to pay: card, cash, apps", "Quick credit approval without complex steps", "A simple checkout with as few steps as possible", "Loyalty programs or promotions that make the purchase worth more"]}
+  fears={["Not being able to pay", "Being in debt", "Financial instability", "A bad experience with earlier purchases", "Unclear or confusing terms: hidden interest or payments", "No bank that suits him, and distrust of the others", "No convenient way to pay", "A slow, complex credit process: long forms, many documents, a long approval", "Low product quality", "Trouble returning something bought on credit"]}
+  story="He usually plans purchases and saves up to buy appliances in one payment. But things happen, like an old appliance breaking down, and it has to be replaced fast. Then he buys on credit or in installments to get it quickly. When he can close the credit early, he does, so he doesn’t feel he owes the banks. He worries about his financial stability and whether he can keep up the monthly payments on an expensive purchase."
+/>
+
 The customer journey map showed pain points, motivations and friction at each step of the purchase, so we could improve where it mattered most.
 
-<Figure src="/work/comfy/c11.jpg" width={1600} height={1415} alt="Customer journey map of a credit purchase." caption="Customer journey map." />
+<JourneyMap
+  title="Customer journey map"
+  caption="Translated from Ukrainian; the quotes are from the interviews. On a phone the table scrolls sideways."
+  steps={["Wants new appliances", "Chooses the product", "Chooses credit terms and how to pay", "Pays", "Receives the product", "Uses it"]}
+  rows={[
+    { label: "Doing", cells: [
+      null,
+      ["Compares prices on aggregator sites", "Googles prices in different stores", "Visits stores to see the product, ask sellers and try it"],
+      ["Goes through the site to read the credit terms and installment options"],
+      ["Fills in the order form", "Chooses delivery or pickup", "Enters payment details", "Signs the credit agreement or confirms online"],
+      ["Picks it up in a store or waits for the courier"],
+      ["Uses the product", "Turns to the warranty service", "Turns to the service programme"],
+    ] },
+    { label: "Thinking", cells: [
+      null,
+      ["Weighs the budget", "Studies the product and compares specs", "Reads reviews, watches video reviews", "Asks consultants in the store and friends"],
+      ["Asks a consultant about the credit", "Re-reads the site", "Studies partner banks’ offers or interest-free installments", "Picks the number of payments and the down payment", "Uses credit calculators for the monthly payment"],
+      ["Checks the form", "Checks the bank and payment terms", "Waits for the product"],
+      ["Tracks the delivery", "Checks the product matches the description and is intact"],
+      null,
+    ] },
+    { label: "Saying", cells: [
+      ["“I need it urgently, the sum is big, and I don’t have it right now.”"],
+      ["“I search and compare products in different stores, but still end up at Comfy.”", "“In the store it’s hard to choose, even with consultants. Online there are more models, reviews, and the specs are easy to browse.”"],
+      ["“It wasn’t my first credit, so I didn’t read the terms in advance.”", "“I didn’t read the terms… I multiplied the monthly payment by 6 months and compared it with the order price.”"],
+      ["“I think: here I am in debt again. But I usually pay it off early, it’s just easier for my budget.”", "“I’m glad I don’t have to pay the whole sum at once, and I can use the coffee machine right away.”"],
+      null,
+      null,
+    ] },
+    { label: "Feelings", cells: [
+      ["Inspired to buy something new", "Curious", "Unsure which product to choose", "Afraid of a big expense"],
+      ["Doubts about which product and store are better", "The site makes information hard to find", "Unsure the information is accurate", "Hard to compare"],
+      ["Glad there’s an interest-free installment", "Afraid of debt", "Worried the credit becomes a burden", "Unclear terms: fear of hidden interest or fees", "A complex process: long forms, documents, a long approval"],
+      ["Paying through a familiar bank is convenient", "Happy to get the appliance", "Worried about hidden payments", "Afraid of not being able to pay"],
+      ["Happy to get it", "Afraid of low quality", "Afraid of getting a display unit"],
+      ["Problems with the product: defects", "Afraid of not being able to pay, and of debt", "Uneasy about returning something bought on credit"],
+    ] },
+    { label: "Ideas", cells: [
+      null,
+      ["Promotions and discounts as a trigger", "Clear navigation, sorting and filters", "Detailed product information", "Comparing several products", "Package deals", "Video reviews and video consultations", "Real photos and videos from buyers", "Installation and setup packages"],
+      ["A credit and installment calculator", "All extra payments and fees, upfront", "Partner banks’ terms without leaving the product page", "Installments without overpaying, separate from credit", "A “Buy on credit or in installments” button, to ease the word “credit”", "Remember the chosen bank in the comparison", "The bank’s terms for this product, not general info on hover", "Returns for installment purchases"],
+      ["Contactless payment through banking apps", "Bonuses or cashback for paying on credit, e.g. 1% vs 2.5%", "Remember the store and delivery choice", "Fill in the chosen bank’s details", "Remove an item at checkout without going back to the cart", "Payment and credit approval by SMS or email"],
+      ["Fast or free delivery", "Delivery tracking at every stage", "Pickup at a convenient time"],
+      ["Support through chatbots and messengers"],
+    ] },
+  ]}
+/>
 
 The value proposition canvas showed which needs Comfy already meets, and which barriers create friction or distrust.
 
-<Figure src="/work/comfy/c12.jpg" width={1600} height={1101} alt="Value proposition canvas." caption="Value proposition canvas." />
+<ValueProposition
+  title="Value proposition canvas"
+  caption="Translated from Ukrainian and shortened on the stickies; gains and pains as the customer named them."
+  parts={[
+    { region: "products", label: "Products and services", short: ["Credit from several banks online, with different numbers of payments"], full: ["Credit from several banks with different terms (number of payments), online on the site or in the app"] },
+    { region: "creators", label: "Gain creators", short: ["Many banks and payout terms", "Detailed terms for each credit", "Credit online, no bank or store visit", "Longer credit when services are added", "Fast support on the customer’s side", "Credit on almost every product", "Fast credit approval", "Bonuses for the next purchase"], full: ["A wide choice of banks and payout terms, including the number of payments", "Detailed terms for each kind of credit", "Credit online, without visiting a bank or a store", "More flexible terms when services are added: a longer credit", "Fast support that is almost always on the customer’s side", "Credit on almost every product", "Fast credit approval", "Bonuses for the next purchase"] },
+    { region: "relievers", label: "Pain relievers", short: ["Credit instead of paying the whole sum at once"], full: ["Credit instead of paying the whole sum at once"] },
+    { region: "job", label: "Customer job", short: ["Buy it and use it quickly, here and now, on credit"], full: ["Buy a product and use it quickly and conveniently, here and now, on credit"] },
+    { region: "gains", label: "Gains", short: ["Check the product in a store", "Credit from the banks I use", "Keep money for other things", "Use saved bonuses and perks", "Advice on getting credit", "No interest or overpaying"], full: ["Checking the product in a physical store", "Credit from the banks I already use", "Using the money elsewhere instead of spending the big sum at once", "Using saved bonuses and getting perks", "Advice on getting credit", "No interest or overpaying"] },
+    { region: "pains", label: "Pains", short: ["A big sum needed at once", "Inconvenient store and bank apps", "How do returns work on credit?", "Do promotions apply to installments?", "Will I get the number of payments I need?", "How the exchange rate affects the terms", "Fear of not being able to repay", "It feels like debt", "Dealing with the bank takes effort", "Banks keep calling", "Unclear credit terms", "General uncertainty"], full: ["A big purchase needs a lot of money at once, which isn’t always there", "An inconvenient site or app, from the store and the bank", "Not knowing how returns work with credit", "Not knowing if promotions apply to installments", "Worry that the needed number of payments won’t be offered", "Not knowing how the exchange rate affects the terms", "Anxiety about not being able to repay", "Discomfort that it’s debt", "Dealing with the bank takes a lot of effort", "Banks keep calling after an application", "Unclear credit terms", "General uncertainty"] },
+  ]}
+/>
 
 <Statement>Comfy helps people buy conveniently and right away by offering credit and installments through many banks, without visiting a bank or a store.</Statement>
 

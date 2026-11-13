@@ -550,6 +550,23 @@
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
   --size-matrix: 640px;
+  /* Value proposition canvas (Comfy): stickies are paper, the same in both themes, like a product screen */
+  --color-sticky: #ffd966;
+  --color-sticky-pain: #ffbd85;
+  --color-sticky-job: #f7b9ec;
+  --color-sticky-ink: #2b2b2b;
+  --shadow-sticky: 0 2px 6px -2px rgb(0 0 0 / .25);
+  --vpc-unit: calc(100cqw / 1100);
+  --duration-sticky: 650ms;
+  --vpc-stroke: 2;
+  --vpc-stroke-icon: 2.4;
+  --vpc-text-head: 13px;
+  --vpc-text-label: 18px;
+  --delay-sticky: 85ms;
+  --size-journey-map: 1040px;
+  --size-journey-label: 110px;
+  --layout-persona-comfy: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  --layout-persona-comfy-areas: "who jobs goal" "who needs fears" "story story story";
   --size-survey-bar: 8px;
   --size-matrix-mark: 10px;
   /* Business canvas (Comfy): Lean Canvas order on top, business-model cells under it */
@@ -1066,6 +1083,67 @@
 .survey__track { grid-column: 1 / -1; height: var(--size-survey-bar); border-radius: var(--radius-pill); background: var(--color-tile); }
 .survey__fill { display: block; width: var(--pct); height: var(--size-full); border-radius: var(--radius-pill); background: var(--color-accent); }
 @media (max-width: 860px) { .survey__grid { grid-template-columns: var(--layout-col-1); } }
+
+/* Define blocks (Comfy): persona, journey map, value proposition canvas — white cards on the research panel */
+.define__card { min-width: var(--space-0); padding: var(--space-18) var(--space-20); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.prose .define__card p { margin: var(--space-0); }
+.prose .define__label { margin: var(--space-0) var(--space-0) var(--space-10); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.prose .define__list { display: grid; gap: var(--space-6); margin: var(--space-0); padding-left: var(--space-list-indent); }
+.persona { display: grid; grid-template-columns: var(--layout-persona-comfy); grid-template-areas: var(--layout-persona-comfy-areas); gap: var(--space-12); }
+.persona__who { grid-area: who; display: grid; align-content: start; gap: var(--space-6); }
+.persona__name { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); }
+.persona__line { color: var(--color-graphite); }
+.persona__quote { margin: var(--space-14) var(--space-0) var(--space-0); }
+.prose .persona__quote p { color: var(--color-accent); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.prose .persona__goal { color: var(--color-ink); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.persona__needs { grid-area: needs; }
+.persona__fears { grid-area: fears; }
+.persona__story { grid-area: story; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.journey-map { position: relative; overflow-x: auto; padding: var(--space-0); }
+.journey-map:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.journey-map table { width: var(--size-full); min-width: var(--size-journey-map); border-collapse: collapse; }
+.journey-map th, .journey-map td { padding: var(--space-12) var(--space-14); border-top: var(--size-hairline) solid var(--color-hairline); text-align: left; vertical-align: top; }
+.journey-map thead th, .journey-map thead td { border-top: none; color: var(--color-ink); font-weight: var(--weight-semibold); }
+.journey-map__n { display: block; color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); }
+.journey-map tbody th { position: sticky; left: var(--space-0); z-index: var(--z-raise); width: var(--size-journey-label); background: var(--color-raised); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.journey-map thead td { position: sticky; left: var(--space-0); z-index: var(--z-raise); background: var(--color-raised); }
+.prose .journey-map__quotes p { margin: var(--space-0) var(--space-0) var(--space-8); color: var(--color-accent); font-family: var(--font-serif); font-style: italic; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.value-canvas { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-20); }
+.value-canvas__side { display: grid; align-content: start; gap: var(--space-10); }
+.value-canvas__part { display: grid; gap: var(--space-8); }
+.value-canvas__part b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.value-canvas .value-canvas__part--gain { background: var(--color-positive-tint); }
+.value-canvas .value-canvas__part--gain b { color: var(--color-positive); }
+.value-canvas .value-canvas__part--pain { background: var(--color-caution-tint); }
+.value-canvas .value-canvas__part--pain b { color: var(--color-caution); }
+@media (max-width: 860px) {
+  .persona { grid-template-columns: var(--layout-col-1); grid-template-areas: none; }
+  .persona > * { grid-area: auto; }
+  .value-canvas { grid-template-columns: var(--layout-col-1); }
+}
+
+/* Value proposition canvas (Comfy): the square and the circle drawn in ink, stickies fly into their regions */
+.vpc__stage { position: relative; aspect-ratio: 1100 / 600; container-type: inline-size; border-radius: var(--radius-inner); background: var(--color-raised); }
+.vpc__lines { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); fill: none; stroke: var(--color-ink); stroke-width: var(--vpc-stroke); stroke-linejoin: round; }
+.vpc__lines marker path, .vpc__dot { fill: var(--color-ink); stroke: none; }
+.vpc__lines text { stroke: none; }
+.vpc__head { fill: var(--color-pencil); font: var(--weight-medium) var(--vpc-text-head) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.vpc__label { fill: var(--color-ink); font: var(--weight-semibold) var(--vpc-text-label) var(--font-sans); }
+.vpc__icon { stroke-width: var(--vpc-stroke-icon); }
+.vpc__icon rect, .vpc__icon circle:not(.vpc__dot) { fill: var(--color-raised); }
+.vpc__cluster { position: absolute; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: calc(var(--vpc-unit) * 6); }
+.vpc__sticky { min-height: calc(var(--vpc-unit) * 62); padding: calc(var(--vpc-unit) * 7); background: var(--color-sticky); color: var(--color-sticky-ink); font-size: calc(var(--vpc-unit) * 10.5); line-height: 1.25; box-shadow: var(--shadow-sticky); rotate: -1deg; }
+.vpc__sticky:nth-child(even) { rotate: 1.2deg; }
+.vpc__cluster--pains .vpc__sticky { background: var(--color-sticky-pain); }
+.vpc__cluster--job .vpc__sticky { background: var(--color-sticky-job); }
+.vpc__cluster--products .vpc__sticky, .vpc__cluster--relievers .vpc__sticky, .vpc__cluster--job .vpc__sticky { min-height: calc(var(--vpc-unit) * 86); }
+.vpc__stage--armed .vpc__sticky { opacity: var(--opacity-hidden); translate: 0 calc(var(--vpc-unit) * -70); scale: 1.12; }
+.vpc__stage--in .vpc__sticky { transition: opacity var(--duration-sticky) var(--ease-cam), translate var(--duration-sticky) var(--ease-cam), scale var(--duration-sticky) var(--ease-cam); transition-delay: calc(var(--i) * var(--delay-sticky)); }
+.vpc__lists { position: absolute; width: var(--size-sr); height: var(--size-sr); margin: calc(var(--size-sr) * -1); overflow: hidden; clip: var(--clip-hidden); white-space: nowrap; }
+@media (max-width: 860px) {
+  .vpc__stage { display: none; }
+  .vpc__lists { position: static; width: auto; height: auto; margin: var(--space-0); overflow: visible; clip: auto; white-space: normal; }
+}
 
 /* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
 .matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
