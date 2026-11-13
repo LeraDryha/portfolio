@@ -194,7 +194,7 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; desktop: Shot; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; desktop: Shot; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
@@ -206,6 +206,7 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
           {hmw}
         </p>
       </header>
+      {before && (
       <section className="solved__before case-wide">
         <div className="solved__before-text">
           <span className="solved__badge">Before</span>
@@ -231,6 +232,7 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
           </div>
         )}
       </section>
+      )}
       <ol className="solved__steps case-wide">
         {steps.map((s, i) => (
           <li key={s.title} className="solved__step">
