@@ -526,8 +526,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
           </tbody>
         </table>
       </div>
-      <p className="matrix__parity">{parity}</p>
-      <figcaption className="fig__cap">{caption}</figcaption>
+      <figcaption className="matrix__parity">{parity}</figcaption>
     </figure>
   );
 }
