@@ -550,6 +550,7 @@
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
   --size-matrix: 640px;
+  --size-survey-bar: 8px;
   --size-matrix-mark: 10px;
   /* Business canvas (Comfy): Lean Canvas order on top, business-model cells under it */
   --layout-canvas-top: "problem solution value advantage segments" "problem metrics value channels segments";
@@ -1051,6 +1052,20 @@
 @media (max-width: 860px) { .prose .boards__guide ol { columns: 2; } .prose .boards__grid { grid-template-columns: var(--layout-cols-3); } }
 @media (max-width: 640px) { .prose .boards__grid { grid-template-columns: var(--layout-cols-2); } }
 @media (max-width: 640px) { .prose .boards__guide ol { columns: 1; } }
+
+/* Survey charts (Comfy): bar charts two in a row, bars in the case accent on a hairline track */
+.prose .survey__intro { margin: var(--space-0); color: var(--color-graphite); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.survey__grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); }
+.survey__card { display: grid; align-content: start; gap: var(--space-4); padding: var(--space-18) var(--space-20) var(--space-20); border-radius: var(--radius-inner); background: var(--color-raised); }
+.prose .survey__card h4 { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .survey__n { margin: var(--space-0) var(--space-0) var(--space-10); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.prose .survey__card ul { display: grid; gap: var(--space-12); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.survey__card li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-4) var(--space-12); font-size: var(--text-label); line-height: var(--leading-tag); }
+.survey__label { color: var(--color-graphite); }
+.survey__value { color: var(--color-ink); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
+.survey__track { grid-column: 1 / -1; height: var(--size-survey-bar); border-radius: var(--radius-pill); background: var(--color-tile); }
+.survey__fill { display: block; width: var(--pct); height: var(--size-full); border-radius: var(--radius-pill); background: var(--color-accent); }
+@media (max-width: 860px) { .survey__grid { grid-template-columns: var(--layout-col-1); } }
 
 /* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
 .matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }

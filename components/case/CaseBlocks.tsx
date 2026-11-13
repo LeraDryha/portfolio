@@ -533,6 +533,41 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
+/** Survey answers as bar charts, two in a row on a grey panel: the question, how many answered, then the top answers
+ *  as bars in the case accent with the share written out (the text carries the value; the bar only shows it). */
+export function SurveyCharts({ title, intro, charts, note }: { title: string; intro: string; charts: { question: string; n: number; rows: { label: string; pct: number }[] }[]; note: string }) {
+  return (
+    <figure className="voices survey case-wide">
+      <div className="voices__bar">
+        <figcaption className="voices__title">{title}</figcaption>
+      </div>
+      <div className="voices__panel">
+        <p className="survey__intro">{intro}</p>
+        <div className="survey__grid">
+          {charts.map((c) => (
+            <section key={c.question} className="survey__card">
+              <h4>{c.question}</h4>
+              <p className="survey__n">{c.n} responses</p>
+              <ul>
+                {c.rows.map((r) => (
+                  <li key={r.label}>
+                    <span className="survey__label">{r.label}</span>
+                    <span className="survey__value">{r.pct.toFixed(1)}%</span>
+                    <span className="survey__track" aria-hidden="true">
+                      <span className="survey__fill" style={{ "--pct": `${r.pct}%` } as CSSProperties} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+        <p className="voices__note">{note}</p>
+      </div>
+    </figure>
+  );
+}
+
 export { TokenAnatomy } from "@/components/case/TokenAnatomy";
 
 /** The start of a larger part of the story, set apart from the chapters before it. */
