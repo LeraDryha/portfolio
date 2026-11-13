@@ -30,7 +30,7 @@ export const meta = {
   ],
 };
 
-<Chapter id="figma" title="The system in Figma">
+<Chapter id="figma" n={1} of={4} label="Figma" title="The system in Figma">
 
 Built on Figma variables for several products at once (payments, a crypto exchange, internal admin panels and a website), in a light (gold) and a dark theme: 35 components with 2,700+ variants and usage guidelines. Every part is documented in the <Storybook />.
 
@@ -47,7 +47,7 @@ Built on Figma variables for several products at once (payments, a crypto exchan
 
 </Chapter>
 
-<Chapter id="code" title="From Figma to code">
+<Chapter id="code" n={2} of={4} label="Code" title="From Figma to code">
 
 Tokens are generated from the Figma variables, and the components use nothing else: no raw colours, sizes or font names. PrimeReact gives the behaviour, the keyboard support and the ARIA; it runs without its theme, so every pixel comes from the system.
 
@@ -66,7 +66,7 @@ Every component page in the <Storybook /> has the same parts: its status, a play
 
 </Chapter>
 
-<Chapter id="dark" title="Light and dark from the same tokens" sub="So the dark theme is one switch, not a second design.">
+<Chapter id="dark" n={3} of={4} label="Themes" title="Light and dark from the same tokens" sub="So the dark theme is one switch, not a second design.">
 
 Each semantic token has a light and a dark value in Figma, and the code only ever asks for the token. Follow one through, then switch a whole product.
 
@@ -82,7 +82,7 @@ Each semantic token has a light and a dark value in Figma, and the code only eve
 
 </Chapter>
 
-<Chapter id="learned" title="What I learned">
+<Chapter id="learned" n={4} of={4} label="Lessons" title="What I learned">
 
 A component isn’t finished when it looks right in Figma. It’s finished when its states, keyboard behaviour and edge cases are written down where developers read them, and tested there.
 
