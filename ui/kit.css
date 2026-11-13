@@ -1446,7 +1446,8 @@
 .spec__bar .filter__btn { flex: none; white-space: nowrap; }
 .spec__pair { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: var(--space-28); align-items: center; padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .spec__doc { align-self: stretch; display: grid; align-content: start; min-width: var(--space-0); border-radius: var(--radius-inner); background: var(--color-page); box-shadow: var(--shadow-spec-doc); }
-.prose .spec__file { margin: var(--space-0); padding: var(--space-10) var(--space-16); border-bottom: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); }
+.prose .spec__file { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-10); margin: var(--space-0); padding: var(--space-10) var(--space-16); border-bottom: var(--size-hairline) solid var(--color-hairline); color: var(--color-pencil); font: var(--weight-medium) var(--text-micro) / var(--leading-ui) var(--font-mono); }
+.spec__kind { color: var(--color-ink); font: var(--weight-semibold) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .spec__body { display: grid; gap: var(--space-8); padding: var(--space-18) var(--space-20) var(--space-22); color: var(--color-graphite); font: var(--weight-regular) var(--text-code) / var(--leading-code) var(--font-mono); }
 .prose .spec__body p { margin: var(--space-0); }
 .prose .spec__h { margin-top: var(--space-8); color: var(--color-ink); font-weight: var(--weight-medium); }
