@@ -1023,6 +1023,20 @@
 .fig-row .fig__cap { font-size: var(--text-label); }
 .fig__cap--stack { display: grid; gap: var(--space-4); text-align: left; }
 
+/* Interview quotes (Comfy): separate cards, three in a row; the key phrase in the accent; EN / UA */
+.voices { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-14); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.voices__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-10); }
+.voices__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-ui); }
+.prose .voices__list { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.voices__card { display: grid; gap: var(--space-14); align-content: space-between; padding: var(--space-18) var(--space-20); border-radius: var(--radius-inner); background: var(--color-raised); }
+.voices blockquote { margin: var(--space-0); }
+.prose .voices blockquote p { margin: var(--space-0); color: var(--color-graphite); font-family: var(--font-serif); font-style: italic; font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
+.voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+@media (max-width: 860px) { .prose .voices__list { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 640px) { .prose .voices__list { grid-template-columns: var(--layout-col-1); } }
+
 /* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
 .matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
 .matrix__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-10); }
