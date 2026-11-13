@@ -391,31 +391,36 @@ We generated many solutions and ranked them with MoSCoW: must-haves first, shoul
   ]}
 />
 
-### 2. Cognitive overload
-
-- Product details, total cost and credit info disappeared while scrolling.
-- Completed form sections looked the same as empty ones.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c21.jpg" width={1600} height={1033} alt="Original checkout where the order summary scrolls away." label="Before" caption="The order summary scrolls away." />
-  <HalfFigure src="/work/comfy/c22.jpg" width={1525} height={1600} alt="Original checkout form where completed and empty sections look identical." label="Before" caption="Done and empty sections look alike." />
-</FigurePair>
-
-- The product and payment summary stays visible while scrolling.
-- Completed blocks change colour, so progress is easy to scan.
-- The store chosen on the product page carries over to checkout.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c23.jpg" width={1600} height={1584} alt="Redesigned checkout with a sticky summary and highlighted completed blocks." label="After" caption="Sticky summary, completed blocks stand out." />
-  <HalfFigure src="/work/comfy/c24.jpg" width={1600} height={1154} alt="Mobile checkout before and after." caption="Mobile app, before and after." />
-</FigurePair>
-
-In the list of stores for pickup, people skimmed without reading and struggled to spot the ones with the item in stock. We highlighted “Pick up today” in green and kept the other stores neutral.
-
-<FigurePair>
-  <HalfFigure src="/work/comfy/c25.jpg" width={1600} height={804} alt="Store pickup list before and after, with “Pick up today” highlighted in the redesign." label="Before & after" caption="“Pick up today” stands out." />
-  <HalfFigure src="/work/comfy/c26.jpg" width={1600} height={1154} alt="Mobile pickup options before and after." caption="Mobile app, before and after." />
-</FigurePair>
+<ProblemSolved
+  n={2}
+  problem="Cognitive overload during the credit flow"
+  evidence="People called the credit checkout inconvenient and complex, and 53% of surveyed shoppers said problems on the site could stop them taking credit online."
+  hmw="How might we make taking credit or installments more comfortable?"
+  before={{
+    shot: { src: "/work/comfy/deliver/p2-before.webp", width: 2000, height: 2081, alt: "Checkout before: grey sections that look alike, and the order summary on the right." },
+    phones: [{ src: "/work/comfy/deliver/p2-before-phone.webp", width: 700, height: 1367, alt: "Mobile checkout before: grey delivery and payment sections, each with a “Змінити” (Change) button." }],
+    more: [
+      { src: "/work/comfy/deliver/p2-stores-before.webp", width: 800, height: 1562, alt: "Store list before: every store’s date in green with a check, so none stands out." },
+      { src: "/work/comfy/deliver/p2-stores-before-phone.webp", width: 700, height: 1367, alt: "Mobile store list before: dates in green for several stores." },
+    ],
+    issues: ["Product details, total cost and credit info disappeared while scrolling.", "Completed form sections looked the same as empty ones.", "In the list of stores every date was green, so the stores with the item today didn’t stand out."],
+  }}
+  steps={[
+    {
+      title: "Every step shows what you chose",
+      text: "Completed sections keep what was chosen, the open one is clearly active, and the order with its total stays on the right while you scroll. The store picked on the product page is already filled in, and the checkout says what comes next: confirming in the bank’s app.",
+      ideas: ["HMW 3 · Remember the store and pickup chosen before", "HMW 5 · On the checkout page, what comes next: a push from the bank’s app to confirm"],
+      desktop: { src: "/work/comfy/deliver/s5-desktop.webp", width: 1800, height: 1697, alt: "Checkout after: contact info done, store pickup selected with “Сьогодні” (Today), the order summary and total on the right." },
+      phones: [{ src: "/work/comfy/deliver/s5-phone.webp", width: 700, height: 1367, alt: "Mobile checkout after: the chosen store, then payment with the monobank installment selected." }],
+    },
+    {
+      title: "Stores with the item today stand out",
+      text: "People skimmed the store list without reading. Now only the stores where the item can be picked up today get the green check; the rest stay neutral, and the map shows them all.",
+      desktop: { src: "/work/comfy/deliver/s6-desktop.webp", width: 2000, height: 1392, alt: "Store picker after: the list beside a map, the store with “Сьогодні” (Today) checked in green." },
+      phones: [{ src: "/work/comfy/deliver/s6-phone.webp", width: 700, height: 1367, alt: "Mobile store list after: only “Сьогодні” has the green check; other dates are neutral." }],
+    },
+  ]}
+/>
 
 ### 3. Uncertainty about product suitability
 
