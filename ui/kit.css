@@ -457,6 +457,10 @@
   --size-tab-line: 2px;
   --size-chain-table: 640px;
   --space-part: 88px;
+  /* Chapter break (Prevently case): a clear gap, a hairline, a numbered eyebrow and a larger heading */
+  --space-chapter: 112px;
+  --space-chapter-phone: 72px;
+  --text-chapter: clamp(26px, 3vw, 34px);
   /* Prevently case: phone frames, and the app's own colours inside the "Try it" phone */
   --color-device: #0b0b0c;
   --color-device-edge: #3a3a3c;
@@ -1484,6 +1488,15 @@
   .case-toc a:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); border-radius: var(--radius-label); }
 }
 .prose section[id] { scroll-margin-top: var(--space-48); }
+
+/* Chapter break: a chapter set apart from the one before it (Prevently case) */
+.chapter--break { margin-top: var(--space-chapter); padding-top: var(--space-24); border-top: var(--size-hairline) solid var(--color-hairline); }
+.chapter--break .part__eyebrow { margin-bottom: var(--space-12); }
+.prose .chapter--break > h2 { margin-top: var(--space-0); font-size: var(--text-chapter); letter-spacing: var(--tracking-heading); text-wrap: balance; }
+.chapter__num { color: var(--color-ink); }
+@media (max-width: 640px) {
+  .chapter--break { margin-top: var(--space-chapter-phone); }
+}
 
 
 /* Dark theme: the Storybook's white page previews are dimmed so they don't glare (its docs pages have no dark mode) */

@@ -5,10 +5,18 @@ import { Icon, Selection } from "@/components/shell/Icons";
 /* Building blocks for case pages, used from MDX (see mdx-components.tsx).
    Class names come straight from ui/kit.css. */
 
-/** A part of the story: a heading and an optional line under it. */
-export function Chapter({ id, title, sub, children }: { id: string; title: string; sub?: string; children: ReactNode }) {
+/** A part of the story: a heading and an optional line under it.
+    With `n`, `of` and `label` it is a chapter break: a gap, a hairline and "04 / 07 · Process" over a larger heading. */
+export function Chapter({ id, title, sub, n, of, label, children }: { id: string; title: string; sub?: string; n?: number; of?: number; label?: string; children: ReactNode }) {
+  const pad = (x: number) => String(x).padStart(2, "0");
+  const isBreak = n !== undefined && of !== undefined && label !== undefined;
   return (
-    <section id={id} aria-labelledby={`h-${id}`}>
+    <section id={id} aria-labelledby={`h-${id}`} className={isBreak ? "chapter--break" : undefined}>
+      {isBreak && (
+        <p className="part__eyebrow" aria-hidden="true">
+          <span className="chapter__num">{pad(n)}</span> / {pad(of)} · {label}
+        </p>
+      )}
       <h2 id={`h-${id}`}>{title}</h2>
       {sub && <p className="chapter__sub">{sub}</p>}
       {children}
