@@ -71,7 +71,10 @@ export function LivePlan() {
         ))}
         <p className="try__fine">The app asks 15–25 questions and covers 114 check-ups; this demo uses five of them. Names are translated from the Ukrainian app.</p>
       </div>
-      <div className={`try__phone ${mulish.variable}`} aria-live="polite">
+      <div className="device device--ios device--island try__device">
+        <div className={`device__screen try__screen ${mulish.variable}`}>
+          <div className="try__status" aria-hidden="true">9:41</div>
+          <div className="try__phone" aria-live="polite">
         <div className="try__head">
           <b>Check-ups</b>
           <span>{items.length} in your plan</span>
@@ -105,6 +108,8 @@ export function LivePlan() {
             </div>
           );
         })}
+          </div>
+        </div>
       </div>
     </div>
   );

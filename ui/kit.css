@@ -539,6 +539,12 @@
   --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
+  /* Try it: the plan in an iPhone frame; the app is laid out at a real phone width (375) and zoomed to the screen */
+  --size-try-device-h: 690px;
+  --size-try-screen: 300px;
+  --size-try-app: 375px;
+  --zoom-try-app: .8;
+  --size-try-status: 50px;
   --size-try-icon: 40px;
   --radius-try-phone: 32px;
   --radius-try-card: 20px;
@@ -547,7 +553,7 @@
   --layout-research: minmax(0, 1fr);
   --layout-persona: minmax(0, 1fr) minmax(0, 3fr);
   --layout-stats-5: repeat(6, minmax(0, 1fr));
-  --layout-try: minmax(0, .8fr) minmax(0, 1.2fr);
+  --layout-try: minmax(0, 1fr) auto;
   --layout-journey: repeat(5, minmax(150px, 1fr));
   --layout-cols-5: repeat(5, minmax(0, 1fr));
   --size-voice-table: 640px;
@@ -1365,7 +1371,10 @@
 .try__toggle:focus-visible, .try__range:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-2); }
 .prose .try p { margin: var(--space-0); }
 .try__fine { color: var(--color-pencil); font-size: var(--text-label); }
-.try__phone { display: grid; align-content: start; gap: var(--space-8); max-height: var(--size-try-phone); min-width: var(--space-0); overflow-y: auto; padding: var(--space-20) var(--space-16); border: var(--size-hairline) solid var(--color-hairline); border-radius: var(--radius-try-phone); background: var(--color-app-canvas); color: var(--color-app-ink); font-family: var(--font-prevently-app); }
+.try__device { --h: var(--size-try-device-h); align-self: start; width: calc(var(--size-try-screen) + var(--h) * var(--ratio-device-pad) * 2); }
+.try__screen { display: flex; flex-direction: column; background: var(--color-app-canvas); color: var(--color-app-ink); font-family: var(--font-prevently-app); }
+.try__status { flex: none; height: calc(var(--size-try-status) * var(--zoom-try-app)); padding: calc(var(--space-16) * var(--zoom-try-app)) calc(var(--space-28) * var(--zoom-try-app)) 0; font-weight: var(--weight-semibold); font-size: calc(var(--text-ui) * var(--zoom-try-app)); }
+.try__phone { display: grid; align-content: start; gap: var(--space-8); width: var(--size-try-app); min-height: 0; flex: 1; overflow-y: auto; scrollbar-width: none; padding: var(--space-8) var(--space-16) var(--space-28); zoom: var(--zoom-try-app); }
 .try__head { display: flex; justify-content: space-between; align-items: baseline; padding: var(--space-0) var(--space-4); }
 .try__head b { font-weight: var(--weight-bold); font-size: var(--text-try-title); line-height: var(--leading-tight); }
 .try__head span, .try__cat-name, .try__freq { color: var(--color-app-soft); font-size: var(--text-label); font-weight: var(--weight-medium); }
@@ -1455,6 +1464,7 @@
   .research__persona, .research dl { grid-template-columns: var(--layout-col-1); }
   .prose .cards { grid-template-columns: var(--layout-col-1); }
   .try { padding: var(--space-18); }
+  .try__device { --size-try-device-h: 620px; --size-try-screen: 270px; --zoom-try-app: .72; justify-self: center; }
   .phone { --h: var(--size-phone-phone); }
   .phone--lg, .phone-wipe { --h: var(--size-phone-lg-phone); }
   .handsets__row--lg { justify-content: flex-start; gap: var(--space-20); padding: var(--space-18); overflow-x: auto; }
