@@ -315,18 +315,35 @@ The value proposition canvas showed which needs Comfy already meets, and which b
 
 <Chapter id="develop" n={3} of={6} label="Problems" title="Develop" sub="Three problems worth solving, How Might We, and a MoSCoW-ranked MVP.">
 
-From the research we picked the problems with the biggest impact on trust, decisions and completion. Each is backed by direct quotes from interviews.
+From the research we picked the problems with the biggest impact on trust, decisions and completion. Each is backed by what people told us in the interviews and the survey.
 
-<Figure src="/work/comfy/c13.jpg" width={1600} height={508} alt="Three key problems with supporting user quotes: lack of transparency in credit terms, cognitive overload, uncertainty about product suitability." caption="Three key problems, with what users said." />
+<ProblemBoard
+  title="Three problems worth solving"
+  caption="The notes on each problem are from the interviews and the survey, translated from Ukrainian."
+  problems={[
+    { title: "Lack of transparency in credit terms", notes: ["Worry whether the needed number of payments will be offered", "Unclear how the sum is formed; complex terms", "Unclear credit terms", "Not enough advice on the best bank terms", "A high interest rate", "Opaque rules", "Not enough good advice to decide to buy", "Unclear or confusing credit terms", "Offline stores offer extra discounts and promotions"] },
+    { title: "Cognitive overload during the credit flow", notes: ["An inconvenient or complex credit or installment process", "After an application, banks keep calling", "Possible trouble returning something bought on credit", "Not knowing if promotions apply to installments", "Dealing with the bank about credit takes a lot of effort"] },
+    { title: "Uncertainty about product suitability", notes: ["Online it’s hard to check the size of large appliances", "Online it’s hard to see if an appliance has small flaws"] },
+  ]}
+/>
 
-<Side>
-  <HalfFigure src="/work/comfy/c14.jpg" width={1010} height={1600} alt="How Might We map with grouped ideas." caption="How Might We map." />
-  <SideCopy>
-    <p>These became the base for How Might We mapping, which guided ideation.</p>
-    <h3>From ideas to action</h3>
-    <p>We generated many solutions and ranked them with MoSCoW: must-haves first, should-haves if possible, could-haves for the backlog. It aligned the team on a realistic MVP with the highest user and business impact.</p>
-  </SideCopy>
-</Side>
+These became the base for How Might We mapping, which guided ideation.
+
+<HmwBoard
+  title="How Might We"
+  caption="The questions on green, the team’s ideas for each on grey; translated from Ukrainian."
+  questions={[
+    { q: "How might we raise trust in buying on credit or in installments?", ideas: ["Payment and credit approval by SMS or email", "Buyers’ reviews of credit and installments", "Clear labels: credit or installments", "A calculator for the payment details", "Financial literacy lessons on the site", "Support", "Return information for installment purchases", "Real buyers’ reviews with photos and video that mention paying in installments or on credit"] },
+    { q: "How might we bring more buyers to purchase on credit or in installments?", tag: "business requirement", ideas: ["Bonuses or cashback for buying on credit, e.g. 1% vs 2.5%", "Package deals, advertised to users", "A wheel of fortune: discounts or bonuses for buying on credit", "Extra discounts for customers who take credit", "An ad campaign on how easy credit is in store: “Buy now, pay later”", "Levels: each credit raises the customer’s level, and each level brings bonuses, from discounts to special gifts"] },
+    { q: "How might we make taking credit or installments more comfortable?", ideas: ["Remember the store and pickup chosen before", "Fill in the chosen bank’s details", "Clear credit steps for each bank", "Contactless payment through apps or online banking", "Remove an item at checkout without going back to the cart", "A bank comparison table without leaving the product page", "On hover over the bank icons, a helper: “I see you’re interested in installments, let me help”"] },
+    { q: "How might we raise confidence in a product bought online?", ideas: ["Video consultations", "Video reviews of products", "Real buyers’ reviews with photos and video", "Installation and setup packages", "Interactive 360° views", "Real photos and videos from users", "Comparing several products", "Independent product tests published on the site"] },
+    { q: "How might we make sure people fully understand the credit terms?", ideas: ["Partner banks’ terms without leaving the product page", "A credit calculator", "The first payment, stated clearly", "Click a bank icon on the product page: the number of payments, one payment’s amount and an order button", "On the checkout page, what comes next: a push from the bank’s app to confirm"] },
+  ]}
+/>
+
+### From ideas to action
+
+We generated many solutions and ranked them with MoSCoW: must-haves first, should-haves if possible, could-haves for the backlog. It aligned the team on a realistic MVP with the highest user and business impact.
 
 </Chapter>
 
