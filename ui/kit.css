@@ -544,6 +544,8 @@
   --color-on-scrim: #f5f5f7;
   --color-on-scrim-soft: #a1a1a6;
   --size-lightbox-h: calc(100dvh - 140px);
+  /* Wide screens stay clear of the ‹ › buttons at the sides */
+  --size-lightbox-w: calc(100vw - 160px);
   --radius-lightbox: 22px;
   /* Try it: the plan in an iPhone frame; the app is laid out at a real phone width (375) and zoomed to the screen */
   --size-try-device-h: 690px;
@@ -1152,6 +1154,9 @@
 .wipe__line { position: absolute; top: var(--space-0); bottom: var(--space-0); left: var(--cut); width: var(--size-stroke); translate: var(--move-centre-x-only); background: var(--color-figma-component); pointer-events: none; }
 .wipe__line span, .phone-wipe__line span { position: absolute; top: var(--pos-centre); left: var(--pos-centre); translate: var(--move-centre); padding: var(--space-6) var(--space-10); border-radius: var(--radius-pill); background: var(--color-figma-component); color: var(--color-on-dark); font: var(--weight-medium) var(--text-micro) / var(--leading-tight) var(--font-mono); white-space: nowrap; box-shadow: var(--shadow-float); }
 .wipe__range { position: absolute; inset: var(--space-0); width: var(--size-full); height: var(--size-full); margin: var(--space-0); opacity: var(--opacity-hidden); cursor: ew-resize; }
+.wipe__zoom { position: absolute; z-index: var(--z-badge); top: var(--space-12); right: var(--space-12); width: var(--size-tap); height: var(--size-tap); display: grid; place-items: center; border: none; border-radius: var(--radius-round); background: var(--color-tile); color: var(--color-ink); box-shadow: var(--shadow-float); cursor: zoom-in; }
+.wipe__zoom svg { width: var(--size-icon); height: var(--size-icon); }
+.wipe__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
 .wipe:has(.wipe__range:focus-visible) { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--offset-focus); }
 .wipe.is-sweeping .wipe__dark { transition: clip-path var(--duration-wipe) var(--ease-cam); }
 .wipe.is-sweeping .wipe__line { transition: left var(--duration-wipe) var(--ease-cam); }
@@ -1338,7 +1343,7 @@
 .lightbox::backdrop { background: none; }
 .lightbox[open] { display: grid; place-items: center; }
 .lightbox__body { display: grid; justify-items: center; gap: var(--space-12); }
-.lightbox__img { width: auto; height: auto; max-width: calc(100vw - var(--space-32)); max-height: var(--size-lightbox-h); border-radius: var(--radius-lightbox); }
+.lightbox__img { width: auto; height: auto; max-width: var(--size-lightbox-w); max-height: var(--size-lightbox-h); border-radius: var(--radius-lightbox); }
 .lightbox__cap { display: flex; gap: var(--space-12); margin: var(--space-0); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 .lightbox__count { color: var(--color-on-scrim-soft); }
 .lightbox__btn { position: fixed; width: var(--size-tap); height: var(--size-tap); display: grid; place-items: center; border: none; border-radius: var(--radius-round); background: var(--color-tile); color: var(--color-ink); box-shadow: var(--shadow-float); cursor: pointer; }
@@ -1349,6 +1354,7 @@
 .lightbox__btn--prev { left: var(--gutter); }
 .lightbox__btn--next { right: var(--gutter-right); }
 @media (max-width: 640px) {
+  .lightbox__img { max-width: calc(100vw - var(--space-32)); }
   .lightbox__btn--prev, .lightbox__btn--next { top: auto; bottom: calc(var(--space-20) + var(--safe-bottom)); translate: none; }
   .lightbox__btn--prev { left: var(--gutter-phone); }
   .lightbox__btn--next { right: var(--gutter-phone-right); }

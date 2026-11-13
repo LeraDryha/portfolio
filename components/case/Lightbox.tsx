@@ -13,7 +13,7 @@ const read = (b: HTMLElement): Shot => ({
   cap: b.dataset.zoomCap ?? "",
 });
 
-/** Phone screens open larger in a modal, without leaving the page. One per case page: any [data-zoom] button opens it;
+/** Screens open larger in a modal, without leaving the page. One per case page: any [data-zoom] button opens it;
  *  the phones in the same row are the set (arrows and ← → move through it). Esc, the × or a click outside closes it,
  *  and focus goes back to the phone that opened it. */
 export function Lightbox() {
@@ -26,11 +26,17 @@ export function Lightbox() {
     const onClick = (e: MouseEvent) => {
       const b = (e.target as HTMLElement).closest<HTMLElement>("[data-zoom]");
       if (!b) return;
-      const row = b.closest(".handsets__row, .spec__pair") ?? b.parentElement!;
-      const all = [...row.querySelectorAll<HTMLElement>("[data-zoom]")];
       opener.current = b;
-      setSet(all.map(read));
-      setI(all.indexOf(b));
+      if (b.dataset.zoomList) {
+        // The trigger names its own set (the theme wipe: every product in both themes)
+        setSet(JSON.parse(b.dataset.zoomList) as Shot[]);
+        setI(Number(b.dataset.zoomIndex ?? 0));
+      } else {
+        const row = b.closest(".handsets__row, .spec__pair") ?? b.parentElement!;
+        const all = [...row.querySelectorAll<HTMLElement>("[data-zoom]")];
+        setSet(all.map(read));
+        setI(all.indexOf(b));
+      }
       dialog.current?.showModal();
     };
     document.addEventListener("click", onClick);
