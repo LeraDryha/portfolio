@@ -549,6 +549,8 @@
   --color-cat-q: #e8e1fb; --color-cat-q-ink: #6a4bc4;
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
+  --size-matrix: 640px;
+  --size-matrix-mark: 10px;
   /* Business canvas (Comfy): Lean Canvas order on top, business-model cells under it */
   --layout-canvas-top: "problem solution value advantage segments" "problem metrics value channels segments";
   --layout-canvas-bottom: "costs revenue partners resources";
@@ -1020,6 +1022,29 @@
 .fig-row .fig__img { width: var(--size-full); height: var(--size-full); object-fit: contain; background: var(--color-transparent); }
 .fig-row .fig__cap { font-size: var(--text-label); }
 .fig__cap--stack { display: grid; gap: var(--space-4); text-align: left; }
+
+/* Competitor matrix (Comfy): marks by shape and colour, the client's column tinted, scrolls sideways on phones */
+.matrix { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-28) var(--space-0); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-label); line-height: var(--leading-tag); }
+.matrix__legend { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-20); color: var(--color-pencil); }
+.matrix__legend span { display: inline-flex; align-items: center; gap: var(--space-6); }
+.matrix__scroll { position: relative; overflow-x: auto; }
+.matrix__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.matrix table { width: var(--size-full); min-width: var(--size-matrix); border-collapse: collapse; }
+.matrix th, .matrix td { padding: var(--space-8) var(--space-10); border-top: var(--size-hairline) solid var(--color-hairline); text-align: center; vertical-align: middle; }
+.matrix thead td { border-top: none; }
+.matrix thead th { border-top: none; color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-label); }
+.matrix thead th[scope="col"]:first-child, .matrix tbody th { text-align: left; }
+.matrix thead th[scope="col"]:first-child { color: var(--color-pencil); font-weight: var(--weight-regular); }
+.matrix thead .matrix__group { padding-bottom: var(--space-0); color: var(--color-pencil); font: var(--weight-medium) var(--text-eyebrow) / var(--leading-ui) var(--font-mono); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
+.matrix tbody th { color: var(--color-ink); font-weight: var(--weight-regular); }
+.matrix .matrix__own { background: var(--color-raised); }
+.matrix__mark { display: inline-block; width: var(--size-matrix-mark); height: var(--size-matrix-mark); border-radius: var(--radius-round); vertical-align: middle; font-size: var(--space-0); }
+.matrix__mark--yes { background: var(--color-positive); }
+.matrix__mark--part { border: var(--size-stroke) solid var(--color-caution); background: linear-gradient(90deg, var(--color-caution) 50%, transparent 50%); }
+.matrix__mark--no { border: var(--size-stroke) solid var(--color-negative); }
+.matrix__mark--na { width: var(--size-matrix-mark); height: var(--size-stroke); border-radius: var(--space-0); background: var(--color-pencil); }
+.prose .matrix__parity { margin: var(--space-0); color: var(--color-graphite); }
+.matrix .fig__cap { margin-top: var(--space-0); }
 
 /* Business canvas (Comfy): white cells on a grey block, titles in ink, numbered lists */
 .canvas { display: grid; gap: var(--space-10); margin: var(--space-28) var(--space-0); padding: var(--space-12); border-radius: var(--radius-block); background: var(--color-tile); }

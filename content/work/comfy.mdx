@@ -77,9 +77,30 @@ We reviewed UX flows, UI patterns and best practices, and sorted features into P
   { value: "54", cap: "features compared" },
 ]} />
 
+<CompetitorMatrix
+  caption="8 of the 54 features we compared: the ones where the stores differ."
+  groups={[
+    { label: "Direct", stores: ["Comfy", "Foxtrot", "MOYO", "Stylus"] },
+    { label: "Secondary", stores: ["ROZETKA", "ALLO", "Citrus"] },
+  ]}
+  rows={[
+    { feature: "Installment filter in the catalogue", marks: "yyyynnn" },
+    { feature: "Extras on the product: −% for paying online, delivery for 1 ₴", marks: "ypnnynn" },
+    { feature: "“Be first” list for items not yet on sale", marks: "ynynnn-" },
+    { feature: "Stock in stores, on the product page", marks: "yyynnyn" },
+    { feature: "Repair status in the account", marks: "ynynnpp" },
+    { feature: "Move an item from the cart to favourites", marks: "yynnnnn" },
+    { feature: "Undo removing an item from the cart", marks: "ynpynn-" },
+    { feature: "Chat on the site", marks: "yynnnnn" },
+  ]}
+  parity="Points of parity, which every store has: search, catalogue, filters and sorting, reviews and questions, a choice of delivery, payment and credit terms, bonuses, an account with orders."
+/>
+
+What sets Comfy apart is already on its pages, before checkout:
+
 <FigurePair>
-  <HalfFigure src="/work/comfy/c05.jpg" width={1600} height={1519} alt="Feature comparison matrix across six competitors." caption="Feature comparison across competitors." />
-  <HalfFigure src="/work/comfy/c06.jpg" width={1600} height={1259} alt="Comfy product pages annotated with Points of Parity and Difference." caption="Points of Parity and Difference, shown on Comfy pages." />
+  <HalfFigure src="/work/comfy/c05-card-conditions.jpg" width={1390} height={1600} alt="Comfy product cards with badges: delivery for 1 hryvnia, 200 bonuses for a review, Trade-In, and −5% extra for paying by card." title="Conditions on the product card" caption="Delivery for 1 ₴, bonuses for a review and −5% for paying by card. ROZETKA and Foxtrot show a discount only at checkout." />
+  <HalfFigure src="/work/comfy/c05-be-first.jpg" width={588} height={491} alt="An iPhone not yet on sale, with a green “Be first” button." title="“Be first”" caption="An item that isn’t on sale yet goes to a waiting list in one tap. Of the stores we checked, only MOYO has this." />
 </FigurePair>
 
 ### What needs to be better

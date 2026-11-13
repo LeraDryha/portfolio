@@ -459,6 +459,74 @@ export function BusinessCanvas({ top, bottom, caption }: { top: CanvasCell[]; bo
   );
 }
 
+type Mark = "yes" | "part" | "no" | "na";
+const MARK: Record<Mark, { sign: string; label: string }> = {
+  yes: { sign: "●", label: "Has it" },
+  part: { sign: "◐", label: "Partly, or hard to find" },
+  no: { sign: "○", label: "Doesn’t have it" },
+  na: { sign: "–", label: "Not checked" },
+};
+
+/** Competitor features as a compact matrix: one row per feature, a mark per store (shape and colour both carry it),
+ *  the client's column tinted; what every store has goes in one line under it. Scrolls sideways on phones. */
+export function CompetitorMatrix({ groups, rows, parity, caption }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string }[]; parity: string; caption: string }) {
+  const stores = groups.flatMap((g) => g.stores);
+  const codes: Record<string, Mark> = { y: "yes", p: "part", n: "no", "-": "na" };
+  return (
+    <figure className="matrix case-wide">
+      <div className="matrix__legend" aria-hidden="true">
+        {(Object.keys(MARK) as Mark[]).map((m) => (
+          <span key={m}>
+            <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
+          </span>
+        ))}
+      </div>
+      <div className="matrix__scroll" role="region" aria-label={caption} tabIndex={0}>
+        <table>
+          <thead>
+            <tr>
+              <td />
+              {groups.map((g) => (
+                <th key={g.label} scope="colgroup" colSpan={g.stores.length} className="matrix__group">
+                  {g.label}
+                </th>
+              ))}
+            </tr>
+            <tr>
+              <th scope="col">Feature</th>
+              {stores.map((st, i) => (
+                <th key={st} scope="col" className={i === 0 ? "matrix__own" : undefined}>
+                  {st}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.feature}>
+                <th scope="row">{r.feature}</th>
+                {r.marks.split("").map((c, i) => {
+                  const m = codes[c];
+                  return (
+                    <td key={i} className={i === 0 ? "matrix__own" : undefined}>
+                      <i className={`matrix__mark matrix__mark--${m}`} aria-hidden="true">
+                        {MARK[m].sign}
+                      </i>
+                      <span className="sr-only">{MARK[m].label}</span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="matrix__parity">{parity}</p>
+      <figcaption className="fig__cap">{caption}</figcaption>
+    </figure>
+  );
+}
+
 export { TokenAnatomy } from "@/components/case/TokenAnatomy";
 
 /** The start of a larger part of the story, set apart from the chapters before it. */
