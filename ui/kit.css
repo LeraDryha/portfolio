@@ -1202,7 +1202,8 @@
 .solved__thumb img { border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); }
 .solved__phone { position: absolute; bottom: var(--space-0); right: var(--space-0); width: var(--size-solved-phone); }
 .solved__phone img { display: block; width: var(--size-full); height: auto; filter: var(--filter-phone-shadow); }
-.solved__phone--2 { right: calc(var(--size-solved-phone) - var(--space-28)); bottom: var(--space-12); }
+/* Two phones read left to right: the first sits further left, the second on the corner */
+.solved__shots--2 .solved__phone--1 { right: calc(var(--size-solved-phone) - var(--space-28)); bottom: var(--space-12); }
 @media (max-width: 860px) {
   .solved__before, .solved__step { grid-template-columns: var(--layout-col-1); padding: var(--space-20); border-radius: var(--radius-tile-tablet); }
   .solved__shots { padding: var(--space-0); }
