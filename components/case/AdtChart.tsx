@@ -182,7 +182,7 @@ export function AdtNameField({ src, width, height, alt }: { src: string; width: 
   );
 }
 
-type Frame = { src: string; alt: string; label: string; /** how long the frame stays, in ms */ ms?: number; /** where the pointer taps before the next frame, in screen px */ tap?: [number, number]; overlay?: { src: string; width: number; height: number; at: [number, number] } };
+type Frame = { src: string; alt: string; /** a frame without a label belongs to the labelled one before it */ label?: string; /** how long the frame stays, in ms */ ms?: number; /** where the pointer taps before the next frame, in screen px */ tap?: [number, number]; overlay?: { src: string; width: number; height: number; at: [number, number] } };
 
 /**
  * A short flow on one screen size: frames of the same screen crossfade in turn while on screen, each with its
@@ -226,13 +226,19 @@ export function AdtFlow({ frames, width = 1440, height = 960, overhang = 0 }: { 
         ))}
       </div>
       <ol className="adt-flow__steps">
-        {frames.map((f, i) => (
-          <li key={f.label}>
-            <button type="button" aria-pressed={i === at} onClick={() => setAt(i)}>
-              <b>{i + 1}</b> {f.label}
-            </button>
-          </li>
-        ))}
+        {frames.map((f, i) => {
+          if (!f.label) return null;
+          const n = frames.slice(0, i + 1).filter((x) => x.label).length;
+          const end = frames.findIndex((x, j) => j > i && x.label);
+          const on = at >= i && (end === -1 || at < end);
+          return (
+            <li key={f.label}>
+              <button type="button" aria-pressed={on} onClick={() => setAt(i)}>
+                <b>{n}</b> {f.label}
+              </button>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );

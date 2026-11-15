@@ -138,7 +138,9 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
           height={1330}
           frames={[
             { src: "/work/adtelligent/redesign/filter-1.webp", ms: 2600, tap: [1388, 802], label: "The panel", alt: "A new report with charts, the table and the side panel; Countries has a plus." },
-            { src: "/work/adtelligent/redesign/filter-2.webp", ms: 3000, tap: [1362, 1274], label: "+ Countries", alt: "The plus next to Countries opens a list of countries, four checked." },
+            { src: "/work/adtelligent/redesign/filter-2a.webp", ms: 1800, tap: [1195, 845], label: "+ Countries", alt: "The plus next to Countries opens a list of countries, none checked yet." },
+            { src: "/work/adtelligent/redesign/filter-2b.webp", ms: 1500, tap: [1195, 881], alt: "Ukraine is checked." },
+            { src: "/work/adtelligent/redesign/filter-2c.webp", ms: 2200, tap: [1362, 1274], alt: "Ukraine and Spain are checked; next, Apply." },
             { src: "/work/adtelligent/redesign/filter-3.webp", ms: 2600, label: "Apply: new columns light up", alt: "After Apply, Campaign and Countries appear as table columns, highlighted pink." },
             { src: "/work/adtelligent/redesign/filter-4.webp", ms: 2400, label: "Highlight fades", alt: "A few seconds later the Campaign and Countries columns look like the rest of the table." },
           ]}
@@ -150,11 +152,11 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
       text: "Metrics and options are added with a plus, which hides what isn’t used and keeps the interface cleaner; the old form showed every setting at once. The plus next to a title is a clear, familiar pattern in systems with complex settings, and filters already chosen rise to the top of the list, so people can check and change them quickly. The list behind the plus came in two versions: values nested under each filter, or filters on the left and their values on the right.",
       live: (
         <AdtFlow
-          overhang={300}
+          overhang={124}
           frames={[
             { src: "/work/adtelligent/redesign/v2.webp", ms: 2600, tap: [1393, 605], label: "Plus next to Filters", alt: "The side panel with Columns open and Metrics and Filters collapsed, each with a plus." },
             { src: "/work/adtelligent/redesign/v2.webp", ms: 3200, label: "Version 1: values nested", alt: "The list behind the Filters plus, with values nested under each filter.", overlay: { src: "/work/adtelligent/redesign/plus-list.webp", width: 376, height: 456, at: [1057, 611] } },
-            { src: "/work/adtelligent/redesign/v2.webp", ms: 3200, label: "Version 2: side by side", alt: "The list behind the plus with filters on the left and their values on the right.", overlay: { src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, at: [1000, 611] } },
+            { src: "/work/adtelligent/redesign/v2.webp", ms: 3200, label: "Version 2: side by side", alt: "The list behind the plus with filters on the left and their values on the right.", overlay: { src: "/work/adtelligent/redesign/plus-split.webp", width: 433, height: 471, at: [1000, 611] } },
           ]}
         />
       ),
