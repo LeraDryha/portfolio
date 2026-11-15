@@ -125,10 +125,10 @@ export function ValueCanvas({ title, offer, customer, caption }: { title: string
   );
 }
 
-/** What the research found, a row per finding, each with a link to the part of the case that answers it. */
+/** What the research found, as wide as the text: a row per finding, each with a link to the part of the case that answers it. */
 export function Findings({ title, items, caption }: { title: string; items: { text: string; area: string; href: string }[]; caption?: string }) {
   return (
-    <Panel title={title}>
+    <Panel title={title} wide={false}>
       <div className="define__card">
         <ol className="findings">
           {items.map((f) => (
