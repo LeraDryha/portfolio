@@ -1221,6 +1221,9 @@
 .solved__ideas b { font-weight: var(--weight-semibold); }
 .solved__thinking { display: grid; gap: var(--space-4); margin: var(--space-4) var(--space-0) var(--space-0); padding: var(--space-12) var(--space-14); border-left: var(--size-stroke) solid var(--color-accent); background: var(--color-raised); }
 .prose .solved__thinking .define__label { margin: var(--space-0); }
+.solved__details { display: grid; gap: var(--space-6); padding-top: var(--space-12); border-top: var(--size-hairline) solid var(--color-hairline); }
+.prose .solved__details .define__label { margin: var(--space-0); }
+.prose .solved__details ul { display: grid; gap: var(--space-6); margin: var(--space-0); list-style: disc; padding-left: var(--space-list-indent); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .solved__thinking p { color: var(--color-ink); font-family: var(--font-serif); font-style: italic; font-size: var(--text-ui); line-height: var(--leading-ui); }
 .solved__shots { position: relative; padding-bottom: var(--space-32); padding-right: var(--space-28); }
 .solved__shot img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); }

@@ -213,7 +213,7 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop?: Shot; live?: ReactNode; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; details?: string[]; desktop?: Shot; live?: ReactNode; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
@@ -269,6 +269,17 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
                   <span className="define__label">Thinking</span>
                   <p>{s.thinking}</p>
                 </blockquote>
+              )}
+              {/* Small, useful decisions inside the step, set apart from its main idea */}
+              {s.details && (
+                <div className="solved__details">
+                  <span className="define__label">Small details</span>
+                  <ul>
+                    {s.details.map((d) => (
+                      <li key={d}>{d}</li>
+                    ))}
+                  </ul>
+                </div>
               )}
               {s.ideas && s.ideas.length > 0 && (
               <ul className="solved__ideas" aria-label="From How Might We">
