@@ -127,6 +127,7 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
     {
       title: "Name the report as you create it",
       text: "People can name their report right away, while creating it. That avoids default names like “New Report” and keeps the list of reports structured and clear. Before, a report could only be renamed separately, after it was created.",
+      details: ["Saving depends on the work: “Save changes” for a template, so it’s clear the changes went into the current template; “Save” for a new report, which turns into “Saved” once it’s done."],
       live: <AdtNameField src="/work/adtelligent/redesign/v1.webp" width={1440} height={960} alt="A new report: its title becomes a field where the name is typed, then the report is named." />,
     },
     {
@@ -136,8 +137,8 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
         <AdtFlow
           height={1330}
           frames={[
-            { src: "/work/adtelligent/redesign/filter-1.webp", ms: 2000, label: "The panel", alt: "A new report with charts, the table and the side panel; Countries has a plus." },
-            { src: "/work/adtelligent/redesign/filter-2.webp", ms: 2600, label: "+ Countries", alt: "The plus next to Countries opens a list of countries, four checked." },
+            { src: "/work/adtelligent/redesign/filter-1.webp", ms: 2600, tap: [1388, 802], label: "The panel", alt: "A new report with charts, the table and the side panel; Countries has a plus." },
+            { src: "/work/adtelligent/redesign/filter-2.webp", ms: 3000, tap: [1362, 1274], label: "+ Countries", alt: "The plus next to Countries opens a list of countries, four checked." },
             { src: "/work/adtelligent/redesign/filter-3.webp", ms: 2600, label: "Apply: new columns light up", alt: "After Apply, Campaign and Countries appear as table columns, highlighted pink." },
             { src: "/work/adtelligent/redesign/filter-4.webp", ms: 2400, label: "Highlight fades", alt: "A few seconds later the Campaign and Countries columns look like the rest of the table." },
           ]}
@@ -149,18 +150,14 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
       text: "Metrics and options are added with a plus, which hides what isn’t used and keeps the interface cleaner; the old form showed every setting at once. The plus next to a title is a clear, familiar pattern in systems with complex settings, and filters already chosen rise to the top of the list, so people can check and change them quickly. The list behind the plus came in two versions: values nested under each filter, or filters on the left and their values on the right.",
       live: (
         <AdtFlow
+          overhang={300}
           frames={[
-            { src: "/work/adtelligent/redesign/v2.webp", alt: "The side panel with Metrics and Filters collapsed; the list behind the Filters plus, with values nested under each filter.", label: "Version 1: values nested", overlay: { src: "/work/adtelligent/redesign/plus-list.webp", width: 376, height: 456, at: [1032, 524] } },
-            { src: "/work/adtelligent/redesign/v2.webp", alt: "The same panel; the list behind the plus with filters on the left and their values on the right.", label: "Version 2: filters and values side by side", overlay: { src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, at: [975, 351] } },
+            { src: "/work/adtelligent/redesign/v2.webp", ms: 2600, tap: [1393, 605], label: "Plus next to Filters", alt: "The side panel with Columns open and Metrics and Filters collapsed, each with a plus." },
+            { src: "/work/adtelligent/redesign/v2.webp", ms: 3200, label: "Version 1: values nested", alt: "The list behind the Filters plus, with values nested under each filter.", overlay: { src: "/work/adtelligent/redesign/plus-list.webp", width: 376, height: 456, at: [1057, 611] } },
+            { src: "/work/adtelligent/redesign/v2.webp", ms: 3200, label: "Version 2: side by side", alt: "The list behind the plus with filters on the left and their values on the right.", overlay: { src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, at: [1000, 611] } },
           ]}
         />
       ),
-    },
-    {
-      title: "Edit in place",
-      text: "Editing opens in a pop-up or modal instead of a new tab, which is rarely a good idea in create and edit modes; the modal can still offer to open the editor in a tab when people need it.",
-      details: ["Saving depends on the work: “Save changes” for a template, so it’s clear the changes went into the current template; “Save” for a new report, which turns into “Saved” once it’s done."],
-      desktop: { src: "/work/adtelligent/redesign/v3.webp", width: 1440, height: 1366, alt: "A monthly report from a template: Save changes, Export and the full set of charts and filters." },
     },
   ]}
 />

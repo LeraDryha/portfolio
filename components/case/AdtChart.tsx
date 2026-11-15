@@ -182,13 +182,14 @@ export function AdtNameField({ src, width, height, alt }: { src: string; width: 
   );
 }
 
-type Frame = { src: string; alt: string; label: string; /** how long the frame stays, in ms */ ms?: number; overlay?: { src: string; width: number; height: number; at: [number, number] } };
+type Frame = { src: string; alt: string; label: string; /** how long the frame stays, in ms */ ms?: number; /** where the pointer taps before the next frame, in screen px */ tap?: [number, number]; overlay?: { src: string; width: number; height: number; at: [number, number] } };
 
 /**
  * A short flow on one screen size: frames of the same screen crossfade in turn while on screen, each with its
  * overlay in place; the labels under it name each moment and can be picked by hand.
  */
-export function AdtFlow({ frames, width = 1440, height = 960 }: { frames: Frame[]; width?: number; height?: number }) {
+/** `overhang`: how far, in screen px, an overlay may hang below the screen (room is kept for it) */
+export function AdtFlow({ frames, width = 1440, height = 960, overhang = 0 }: { frames: Frame[]; width?: number; height?: number; overhang?: number }) {
   const root = useRef<HTMLDivElement>(null);
   const [at, setAt] = useState(0);
   const pct = (v: number, of: number) => `${(v / of) * 100}%`;
@@ -210,7 +211,7 @@ export function AdtFlow({ frames, width = 1440, height = 960 }: { frames: Frame[
 
   return (
     <div ref={root} className="adt-flow">
-      <div className="adt-flow__stage" style={{ aspectRatio: `${width} / ${height}` }}>
+      <div className="adt-flow__stage" style={{ aspectRatio: `${width} / ${height}`, marginBottom: pct(overhang, width) }}>
         {frames.map((f, i) => (
           <div key={f.src + i} className="adt-flow__frame" data-on={i === at} aria-hidden={i !== at}>
             {/* eslint-disable-next-line @next/next/no-img-element -- frames of one screen, sized by CSS */}
@@ -219,6 +220,8 @@ export function AdtFlow({ frames, width = 1440, height = 960 }: { frames: Frame[
               // eslint-disable-next-line @next/next/no-img-element -- the overlay in its place on the screen
               <img className="adt-flow__overlay" src={f.overlay.src} alt="" style={{ left: pct(f.overlay.at[0], width), top: pct(f.overlay.at[1], height), width: pct(f.overlay.width, width) }} />
             )}
+            {/* The pointer: a pink dot that lands and taps, late in the frame, on what opens the next one */}
+            {f.tap && <span className="adt-flow__tap" style={{ left: pct(f.tap[0], width), top: pct(f.tap[1], height), "--tap-delay": `${Math.round((f.ms ?? 3200) * 0.4)}ms` } as CSSProperties} />}
           </div>
         ))}
       </div>
