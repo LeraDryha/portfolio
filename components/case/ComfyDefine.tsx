@@ -209,6 +209,22 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
 }
 
 /**
+ * A screen with one of its menus open where it really opens (not floated in a corner), so the menu is read in
+ * its place on the page. `at` is the menu image's top-left corner in the screen's own pixels.
+ */
+export function InPlace({ screen, menu, at, cap }: { screen: Shot; menu: Shot; at: [number, number]; cap: string }) {
+  const pct = (v: number, of: number) => `${(v / of) * 100}%`;
+  return (
+    <div className="inplace">
+      <Zoom shot={screen} cap={cap} className="solved__shot" />
+      <span className="inplace__menu" style={{ left: pct(at[0], screen.width), top: pct(at[1], screen.height), width: pct(menu.width, screen.width) }}>
+        <Zoom shot={menu} cap={`${cap} · menu`} className="inplace__zoom" />
+      </span>
+    </div>
+  );
+}
+
+/**
  * One problem from Develop carried through to the design: the problem with its evidence and the HMW it answers,
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.

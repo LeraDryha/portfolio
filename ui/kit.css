@@ -1352,6 +1352,12 @@
 @media (max-width: 860px) { .adt-focus { overflow: visible; box-shadow: none; } .adt-focus__screen { border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); } .adt-focus::after { bottom: auto; aspect-ratio: 1440 / 960; border-radius: var(--radius-inner); } .adt-focus__lift { position: relative; left: auto; top: auto; width: auto; margin: -24% var(--space-12) var(--space-0); } }
 @media (prefers-reduced-motion: reduce) { .adt-chart__line, .adt-chart__metric, .adt-chart__cursor { transition: none; } }
 
+/* A screen with its menu open in place: the menu sits where it opens, at the screen's own scale */
+.inplace { position: relative; }
+.inplace__menu { position: absolute; z-index: var(--z-raise); }
+.inplace__zoom { display: block; width: var(--size-full); }
+.inplace__zoom img { display: block; width: var(--size-full); height: auto; filter: var(--filter-phone-shadow); }
+
 /* Findings from the tests: one white card, a row per finding with the part of the case that answers it */
 .prose .findings { display: grid; margin: var(--space-0); padding: var(--space-0); list-style: none; counter-reset: finding; }
 .prose .findings li { display: grid; grid-template-columns: var(--space-28) minmax(0, 1fr) auto; gap: var(--space-14); align-items: baseline; margin: var(--space-0); padding: var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); counter-increment: finding; font-size: var(--text-ui); line-height: var(--leading-ui); }
