@@ -1401,7 +1401,7 @@
 @media (prefers-reduced-motion: reduce) { .adt-flow__frame, .adt-name__field { transition: none; } .adt-flow__tap, .adt-flow__tap::after { animation: none; opacity: 1; } .adt-name__caret { animation: none; } }
 
 /* A usability test as it was built: activity cards, then the questions asked after each */
-.prose .activities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-12); margin: var(--space-0) var(--space-0) var(--space-12); padding: var(--space-0); list-style: none; }
+.prose .activities { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-0) var(--space-0) var(--space-12); padding: var(--space-0); list-style: none; }
 .prose .activities > li { margin: var(--space-0); }
 .activity { display: flex; flex-direction: column; gap: var(--space-6); }
 .prose .activity .define__label { margin: var(--space-0); }
@@ -1414,7 +1414,6 @@
 .prose .activity__tests:hover { color: var(--color-ink); }
 .prose .activity__after ul { display: grid; gap: var(--space-4); margin: var(--space-6) var(--space-0) var(--space-0); padding-left: var(--space-list-indent); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .activity__after .define__label { margin: var(--space-0); }
-@media (max-width: 860px) { .prose .activities { grid-template-columns: var(--layout-col-1); } }
 
 /* Findings from the tests: one white card, a row per finding with the part of the case that answers it */
 .prose .findings { display: grid; margin: var(--space-0); padding: var(--space-0); list-style: none; counter-reset: finding; }

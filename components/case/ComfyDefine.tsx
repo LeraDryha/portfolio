@@ -150,7 +150,7 @@ export function Findings({ title, items, caption }: { title: string; items: { te
  */
 export function Activities({ title, items, after, note }: { title: string; items: { task: string; goal: string; path: string[]; tests: string; href: string }[]; after: string[]; note?: string }) {
   return (
-    <Panel title={title}>
+    <Panel title={title} wide={false}>
       <ol className="activities">
         {items.map((a, i) => {
           const [before, rest] = a.task.split(a.goal);
