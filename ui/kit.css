@@ -863,6 +863,7 @@
 .case-tile__proof--quote { font-family: var(--font-serif); font-style: italic; font-weight: var(--weight-regular); letter-spacing: var(--tracking-none); }
 .case-tile__title { margin: var(--space-10) var(--space-0) var(--space-0); color: var(--color-graphite); font-size: var(--text-ui); font-weight: var(--weight-regular); line-height: var(--leading-tag); }
 .case-tile__name { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.case-tile { cursor: pointer; }
 .case-tile--small .case-tile__proof { font-size: var(--text-proof-small); }
 .case-tile--side { flex-direction: row; }
 .case-tile--side .case-tile__head { flex: var(--flex-side); padding: var(--space-30) var(--space-0) var(--space-30) var(--space-30); display: flex; flex-direction: column; justify-content: center; }
