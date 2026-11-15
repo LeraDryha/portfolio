@@ -57,33 +57,15 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
   }}
   steps={[
     {
-      title: "A separate Overview page",
-      text: "The daily check gets its own page, which opens with charts: the volumes on one, spend on the other.",
-      thinking: "Charts are read more easily and faster than table data.",
+      title: "Charts first, the familiar table under them",
+      text: "A separate Overview page for quick visualisation, because charts are read faster than tables. The charts filter by campaigns, sites and countries, and by date. Under them, the familiar table with quick view settings and export; sorting icons on the table pills show the available actions right away.",
       desktop: { src: "/work/adtelligent/redesign/overview.webp", width: 1440, height: 960, alt: "Overview: filters, line charts for volumes and spend, and the data table." },
+      phones: [{ src: "/work/adtelligent/redesign/editcols.webp", width: 456, height: 447, alt: "Edit columns: search, deselect all and a checkbox per metric." }],
     },
     {
       title: "Charts that filter the way people look",
-      text: "The charts filter by campaigns, sites and countries, and by date, from Today to six months. A click on a metric in the legend leaves only its line; a second click brings the others back. Try it.",
-      live: <AdtChart />,
-    },
-    {
-      title: "The familiar table, with quick settings and export",
-      text: "Under the charts stays the table people already know. Edit Columns sets which metrics it shows, with search, Deselect all and Apply, and Export is right beside it.",
-      desktop: { src: "/work/adtelligent/redesign/ov-table.webp", width: 1193, height: 430, alt: "The table on Overview: Compare, Edit Columns, Get API URL, Download API doc, Export, and the data by date." },
-      phones: [{ src: "/work/adtelligent/redesign/editcols.webp", width: 456, height: 447, alt: "Edit Columns: search, deselect all and a checkbox per metric, with Apply." }],
-    },
-    {
-      title: "Sorting icons always on the column pills",
-      text: "Each column pill shows its sorting icon all the time. Before, the icons appeared only on hover.",
-      thinking: "The user sees the available actions right away.",
-      live: <AdtSortPills />,
-    },
-    {
-      title: "A new report, right from Overview",
-      text: "Create report opens a short menu: start a new report or pick one from the templates, without leaving the daily view.",
-      desktop: { src: "/work/adtelligent/redesign/ov-filters.webp", width: 1193, height: 144, alt: "The top of Overview: country, campaign and site filters, dates from Today to 6M, and Create report." },
-      phones: [{ src: "/work/adtelligent/redesign/create.webp", width: 264, height: 198, alt: "The Create report menu: New report, From templates." }],
+      text: "The same screen, with the volumes chart lifted off it. Picking a metric in the legend leaves only its line; picking it again brings all three back.",
+      live: <AdtOverviewFocus src="/work/adtelligent/redesign/overview.webp" width={1440} height={960} alt="The Overview screen under a veil, with its volumes chart lifted off it." />,
     },
   ]}
 />
