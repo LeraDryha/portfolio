@@ -351,7 +351,6 @@
   --pos-col-4: 100%;
   --pos-row-1: 0%;
   --pos-row-2: 100%;
-  --size-pan: cover; /* fills any tile: a tall tile pans across the report, a wide hero down it */
   --size-phones: 400% auto;
   --size-phones-hero: 100% auto;
 
@@ -944,7 +943,6 @@
 
 
 /* A report read top to bottom */
-.pan { position: absolute; inset: var(--space-0); background: var(--img) top center / var(--size-pan) no-repeat; animation: pan var(--duration-pan) var(--ease-loop) infinite alternate; }
 @keyframes pan { 0%, 10% { background-position: var(--pos-start); } 90%, 100% { background-position: var(--pos-end); } }
 
 /* Phone screens one after another (a 4 × 2 sheet) */
@@ -997,7 +995,7 @@
 /* Tile animations run only on screen, and stop on hover so the product can be read */
 .tile .vis * { animation-play-state: paused; }
 .tile.is-running .vis * { animation-play-state: running; }
-.tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .pan, .tile.is-running:hover .story * { animation-play-state: paused; }
+.tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .story * { animation-play-state: paused; }
 
 /* More work */
 .more-row[hidden], .minis[hidden] { display: none; }
@@ -1369,9 +1367,12 @@
 .inplace__zoom img { display: block; width: var(--size-full); height: auto; filter: var(--filter-phone-shadow); }
 
 /* Adtelligent: a live part on its own screen (the report title), sized in the screen's own pixels */
-.adt-screen { position: relative; container-type: inline-size; border-radius: var(--radius-inner); overflow: hidden; box-shadow: var(--shadow-shot); }
-.adt-screen__img { display: block; width: var(--size-full); height: auto; }
-.adt-name { position: absolute; left: calc(36 * var(--adt-px)); top: calc(124 * var(--adt-px)); width: calc(300 * var(--adt-px)); height: calc(48 * var(--adt-px)); display: flex; align-items: center; gap: calc(8 * var(--adt-px)); padding-left: calc(4 * var(--adt-px)); background: var(--color-adt-surface); color: var(--color-adt-ink); font: var(--weight-semibold) calc(19 * var(--adt-px)) / 1 var(--font-sans); }
+.adt-screen { --crop-x: 0; --crop-y: 0; --crop-w: 1440; --adt-px: calc(100cqw / var(--crop-w)); position: relative; container-type: inline-size; border-radius: var(--radius-inner); overflow: hidden; box-shadow: var(--shadow-shot); }
+.adt-screen__img { display: block; width: calc(1440 * var(--adt-px)); max-width: none; height: auto; margin: calc(var(--crop-y) * -1 * var(--adt-px)) var(--space-0) var(--space-0) calc(var(--crop-x) * -1 * var(--adt-px)); }
+/* The home tile: the title's corner of the new report, close up; the whole screen on the case hero */
+.adt-screen--crop { --crop-x: 24; --crop-y: 92; --crop-w: 270; height: var(--size-full); border-radius: var(--radius-none); box-shadow: none; background: var(--color-adt-surface); }
+.case-hero .adt-screen--crop { --crop-x: 24; --crop-y: 64; --crop-w: 760; }
+.adt-name { position: absolute; left: calc((36 - var(--crop-x)) * var(--adt-px)); top: calc((124 - var(--crop-y)) * var(--adt-px)); width: calc(300 * var(--adt-px)); height: calc(48 * var(--adt-px)); display: flex; align-items: center; gap: calc(8 * var(--adt-px)); padding-left: calc(4 * var(--adt-px)); background: var(--color-adt-surface); color: var(--color-adt-ink); font: var(--weight-semibold) calc(19 * var(--adt-px)) / 1 var(--font-sans); }
 .adt-name__field { display: inline-flex; align-items: center; height: calc(38 * var(--adt-px)); padding: 0 calc(2 * var(--adt-px)); border: calc(1.5 * var(--adt-px)) solid var(--color-transparent); border-radius: calc(5 * var(--adt-px)); white-space: nowrap; transition: border-color var(--duration-fast) var(--ease-fade), background var(--duration-fast) var(--ease-fade), box-shadow var(--duration-fast) var(--ease-fade), padding var(--duration-fast) var(--ease-fade); }
 .adt-name[data-mode="active"] .adt-name__field { padding: 0 calc(12 * var(--adt-px)); border-color: var(--color-adt-teal); background: var(--color-adt-teal-fill); box-shadow: 0 0 0 calc(3 * var(--adt-px)) var(--color-adt-teal-ring); }
 .adt-name__caret { display: inline-block; width: calc(1.5 * var(--adt-px)); height: calc(22 * var(--adt-px)); margin-left: calc(1 * var(--adt-px)); background: var(--color-adt-ink); animation: adt-caret 1s steps(1) infinite; }
