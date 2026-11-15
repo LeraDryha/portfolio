@@ -125,6 +125,25 @@ export function ValueCanvas({ title, offer, customer, caption }: { title: string
   );
 }
 
+/** What the research found, a row per finding, each with a link to the part of the case that answers it. */
+export function Findings({ title, items, caption }: { title: string; items: { text: string; area: string; href: string }[]; caption?: string }) {
+  return (
+    <Panel title={title}>
+      <div className="define__card">
+        <ol className="findings">
+          {items.map((f) => (
+            <li key={f.text}>
+              <span>{f.text}</span>
+              <a href={f.href}>{f.area} ↓</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+      {caption && <p className="voices__note">{caption}</p>}
+    </Panel>
+  );
+}
+
 /** The problems worth solving, one white card each, with the research stickies that back them (paper yellow). */
 export function ProblemBoard({ title, problems, caption }: { title: string; problems: { title: string; notes: string[] }[]; caption: string }) {
   return (
@@ -194,7 +213,7 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop: Shot; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop?: Shot; live?: ReactNode; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
@@ -265,7 +284,8 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
               )}
             </div>
             <div className={`solved__shots solved__shots--${s.phones?.length ?? 0}`}>
-              <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />
+              {/* A step shows its screen, or the product itself, live */}
+              {s.live ?? (s.desktop && <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />)}
               {s.phones?.map((p, j) => (
                 <Zoom key={p.src} shot={p} cap={`${s.title} · mobile`} className={`solved__phone solved__phone--${j + 1}`} />
               ))}

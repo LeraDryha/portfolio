@@ -31,6 +31,17 @@
   --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-adtelligent-accent: #d6005a;
   --color-adtelligent-accent-soft: rgb(255 0 102 / .14);
+  /* The Adtelligent product, light in both themes (its own iOS-like series colours, from the Figma) */
+  --color-adt-surface: #ffffff;
+  --color-adt-ink: #1d1d1f;
+  --color-adt-muted: #8e8e93;
+  --color-adt-grid: #ececee;
+  --color-adt-hover: #f2f2f4;
+  --color-adt-down: #d70015;
+  --color-adt-req: #007aff;
+  --color-adt-opp: #5856d6;
+  --color-adt-imp: #ff2d55;
+  --size-adt-line: 1.6px;
   --color-accent-soft: oklch(48% 0.15 352 / .16);
   --color-on-dark: #ffffff;
   --color-scrim: rgb(22 24 29 / .72);
@@ -1290,6 +1301,51 @@
 .case[data-case="comfy"] { --color-accent: var(--color-comfy-accent); --color-accent-soft: var(--color-comfy-accent-soft); }
 .case[data-case="grg-design-system"] { --color-accent: var(--color-grg-accent); --color-accent-soft: var(--color-grg-accent-soft); }
 .case[data-case="adtelligent"] { --color-accent: var(--color-adtelligent-accent); --color-accent-soft: var(--color-adtelligent-accent-soft); }
+
+/* Adtelligent: the Overview chart, live (a click on a metric leaves only its line) */
+.adt-chart { display: grid; gap: var(--space-8); padding: var(--space-20) var(--space-20) var(--space-14); border-radius: var(--radius-inner); background: var(--color-adt-surface); color: var(--color-adt-ink); box-shadow: var(--shadow-shot); }
+.adt-chart__legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+.adt-chart__metric { display: grid; gap: var(--space-2); justify-items: start; padding: var(--space-6) var(--space-8); border: none; border-radius: var(--radius-control); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background var(--duration-fast) var(--ease-fade), opacity var(--duration-fast) var(--ease-fade); }
+.adt-chart__metric:hover, .adt-chart__metric[aria-pressed="true"] { background: var(--color-adt-hover); }
+.adt-chart__metric:focus-visible { outline: var(--size-stroke) solid var(--color-figma); outline-offset: var(--space-2); }
+.adt-chart__name { display: flex; gap: var(--space-6); align-items: center; color: var(--color-adt-muted); font-size: var(--text-label); line-height: var(--leading-ui); }
+.adt-chart__name::before { content: ""; width: var(--space-10); height: var(--space-10); border-radius: var(--space-2); background: var(--dot); }
+.adt-chart__metric--req { --dot: var(--color-adt-req); }
+.adt-chart__metric--opp { --dot: var(--color-adt-opp); }
+.adt-chart__metric--imp { --dot: var(--color-adt-imp); }
+.adt-chart__total { font-weight: var(--weight-semibold); font-size: var(--text-ui); font-variant-numeric: tabular-nums; }
+.adt-chart__total small { margin-left: var(--space-4); color: var(--color-adt-down); font-weight: var(--weight-regular); font-size: var(--text-micro); }
+.adt-chart__plot { display: block; width: var(--size-full); height: auto; overflow: visible; }
+.adt-chart__grid { stroke: var(--color-adt-grid); stroke-width: var(--size-hairline); }
+.adt-chart__tick { fill: var(--color-adt-muted); font-size: var(--text-badge); font-variant-numeric: tabular-nums; }
+.adt-chart__line { fill: none; stroke-width: var(--size-adt-line); stroke-linejoin: round; stroke-linecap: round; transition: opacity var(--duration-color) var(--ease-fade); }
+.adt-chart__line--req { stroke: var(--color-adt-req); }
+.adt-chart__line--opp { stroke: var(--color-adt-opp); }
+.adt-chart__line--imp { stroke: var(--color-adt-imp); }
+.adt-chart__line[data-hidden="true"] { opacity: 0; }
+@media (max-width: 640px) { .adt-chart { padding: var(--space-14) var(--space-12) var(--space-10); } .adt-chart__legend { grid-template-columns: var(--layout-col-1); gap: var(--space-2); } .adt-chart__metric { display: flex; justify-content: space-between; align-items: center; padding: var(--space-6) var(--space-8); } .adt-chart__total { font-size: var(--text-label); } }
+@media (prefers-reduced-motion: reduce) { .adt-chart__line, .adt-chart__metric { transition: none; } }
+
+/* Adtelligent: the table's column pills, the sorting icon on hover only (before) and always (after) */
+.adt-pills { display: grid; gap: var(--space-14); padding: var(--space-20); border-radius: var(--radius-inner); background: var(--color-adt-surface); color: var(--color-adt-ink); box-shadow: var(--shadow-shot); }
+.adt-pills__row { display: grid; gap: var(--space-6); min-width: 0; }
+.prose .adt-pills__label { margin: var(--space-0); color: var(--color-adt-muted); font-size: var(--text-label); line-height: var(--leading-ui); }
+.adt-pills__head { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); }
+.adt-pills__pill { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-width: 0; padding: var(--space-8) var(--space-10); background: var(--color-adt-hover); font-size: var(--text-label); font-weight: var(--weight-semibold); white-space: nowrap; }
+.adt-pills__sort { flex: none; width: var(--space-8); height: var(--space-12); fill: var(--color-adt-muted); transition: opacity var(--duration-fast) var(--ease-fade); }
+.adt-pills__row--before .adt-pills__sort { opacity: 0; }
+.adt-pills__row--before .adt-pills__pill:hover .adt-pills__sort { opacity: 1; }
+@media (max-width: 640px) { .adt-pills { padding: var(--space-12); } .adt-pills__head { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Findings from the tests: one white card, a row per finding with the part of the case that answers it */
+.prose .findings { display: grid; margin: var(--space-0); padding: var(--space-0); list-style: none; counter-reset: finding; }
+.prose .findings li { display: grid; grid-template-columns: var(--space-28) minmax(0, 1fr) auto; gap: var(--space-14); align-items: baseline; margin: var(--space-0); padding: var(--space-14) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); counter-increment: finding; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .findings li:first-child { border-top: none; padding-top: var(--space-0); }
+.prose .findings li:last-child { padding-bottom: var(--space-0); }
+.prose .findings li::before { content: counter(finding); color: var(--color-accent); font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
+.prose .findings a { color: var(--color-pencil); font-size: var(--text-label); white-space: nowrap; text-decoration: none; }
+.prose .findings a:hover { color: var(--color-ink); }
+@media (max-width: 640px) { .prose .findings li { grid-template-columns: var(--space-20) minmax(0, 1fr); } .prose .findings a { grid-column: 2; } }
 
 /* Paired verdict lists */
 .lists { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); margin: var(--space-20) var(--space-0); }

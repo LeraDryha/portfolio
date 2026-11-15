@@ -532,7 +532,8 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
-export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved } from "@/components/case/ComfyDefine";
+export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings } from "@/components/case/ComfyDefine";
+export { AdtChart, AdtSortPills } from "@/components/case/AdtChart";
 export { ValueProposition } from "@/components/case/ValueProposition";
 /** Survey answers as bar charts, two in a row on a grey panel: the question, how many answered, then the top answers
  *  as bars in the case accent with the share written out (the text carries the value; the bar only shows it). */
