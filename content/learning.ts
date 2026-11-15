@@ -35,7 +35,7 @@ export const courses: LearningItem[] = [
   {
     title: "Design Engineering Pro Max",
     meta: "MD-Academy · 2026",
-    result: "12 sessions · 18 hours: the full product cycle in code, from research to handoff",
+    result: "The full product cycle in code, from research to handoff",
     href: "/learning/design-engineering-md-academy.webp",
     shot: { src: "/learning/design-engineering-md-academy.webp", width: 1200, height: 848 },
   },
