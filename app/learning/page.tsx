@@ -49,10 +49,12 @@ export default function LearningPage() {
           <h1 id="learning-title" style={{ viewTransitionName: "learning-title" }}>
             Learning &amp; recognition
           </h1>
-          <p className="lead">A design award, the courses behind my work, and what I&apos;m learning now.</p>
-          <p>
-            <b>Now:</b> {now}
-          </p>
+          <p className="lead">{now ? <>A design award, the courses behind my work, and what I&apos;m learning now.</> : <>A design award and the courses behind my work.</>}</p>
+          {now && (
+            <p>
+              <b>Now:</b> {now}
+            </p>
+          )}
 
           <section id="recognition">
             <h2>Recognition</h2>

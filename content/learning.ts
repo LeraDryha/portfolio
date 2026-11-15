@@ -28,10 +28,17 @@ export const recognition: LearningItem[] = [
   },
 ];
 
-/** What I am learning now; becomes a course card when the certificate comes */
-export const now = "Design Engineering: the certificate comes in a few weeks.";
+/** What I am learning now; null when nothing is in progress (a finished course becomes a card) */
+export const now: string | null = null;
 
 export const courses: LearningItem[] = [
+  {
+    title: "Design Engineering Pro Max",
+    meta: "MD-Academy · 2026",
+    result: "The full product cycle in code, from research to handoff",
+    href: "/learning/design-engineering-md-academy.webp",
+    shot: { src: "/learning/design-engineering-md-academy.webp", width: 1200, height: 848 },
+  },
   {
     title: "UX Design",
     meta: "Projector Institute · 2024",
