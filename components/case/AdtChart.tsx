@@ -136,7 +136,8 @@ const NAME_TO = "Monthly report";
  * The new report's title on its own screen, playing the Figma states: the default title with a pencil, then the
  * active field (teal border) where the name is typed, then the named report. Sized in the screen's own pixels.
  */
-export function AdtNameField({ src, width, height, alt }: { src: string; width: number; height: number; alt: string }) {
+/** With `crop` it shows only the title's corner of the screen, close up (the home tile); the crop is set in the kit. */
+export function AdtNameField({ src, width, height, alt, crop = false }: { src: string; width: number; height: number; alt: string; crop?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<{ mode: "normal" | "active"; text: string }>({ mode: "normal", text: NAME_FROM });
 
@@ -157,7 +158,7 @@ export function AdtNameField({ src, width, height, alt }: { src: string; width: 
   });
 
   return (
-    <div ref={root} className="adt-screen">
+    <div ref={root} className={crop ? "adt-screen adt-screen--crop" : "adt-screen"}>
       {/* eslint-disable-next-line @next/next/no-img-element -- the screen the title sits on, sized by CSS */}
       <img className="adt-screen__img" src={src} width={width} height={height} alt={alt} loading="lazy" />
       <div className="adt-name" data-mode={state.mode} aria-hidden="true">

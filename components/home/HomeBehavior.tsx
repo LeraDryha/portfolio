@@ -113,6 +113,22 @@ export function HomeBehavior() {
       });
     });
 
+    /* A case tile opens its case from anywhere on it, not only from its name: the live product inside sits above
+       the name's stretched link, so a click on it is passed on to that link (with the same modifier keys). */
+    document.querySelectorAll<HTMLElement>(".case-tile").forEach((tile) => {
+      const link = tile.querySelector<HTMLAnchorElement>(".case-tile__name");
+      if (!link) return;
+      on(tile, "click", (e) => {
+        const m = e as MouseEvent;
+        if ((m.target as Element).closest("a, button")) return;
+        link.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, ctrlKey: m.ctrlKey, metaKey: m.metaKey, shiftKey: m.shiftKey, altKey: m.altKey }));
+      });
+      on(tile, "auxclick", (e) => {
+        const m = e as MouseEvent;
+        if (m.button === 1 && !(m.target as Element).closest("a, button")) window.open(link.href, "_blank", "noopener");
+      });
+    });
+
     /* Animations and cursors wake up when a tile is on screen */
     const io = new IntersectionObserver(
       (entries) =>

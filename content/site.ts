@@ -7,7 +7,7 @@ import grgParts from "./grg-assemble.json";
 export type Vis =
   | Bloom // the flower opens into a lock screen with the app's reminders (Prevently)
   | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
-  | { kind: "pan"; src: string } // a report that fills its box and is read across it (tall tile) or down it (wide hero)
+  | { kind: "name"; src: string; width: number; height: number; alt: string } // a new report's title typed in place: close up on the tile, the whole screen on the case
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
   | Assemble; // a product put together from its parts, primitive to page (GRG); live on the case page
 
@@ -229,7 +229,7 @@ export const cases: CaseEntry[] = [
     name: "Adtelligent.",
     line: "Reports built around what users check every day.",
     title: "Solutions for Adtelligent (AdTech B2B SaaS platform)",
-    vis: { kind: "pan", src: "/work/adtelligent/report.jpg" },
+    vis: { kind: "name", src: "/work/adtelligent/redesign/v1.webp", width: 1440, height: 960, alt: "A new report whose title becomes a field where its name is typed." },
     shape: "tall",
     area: "adtelligent",
     cursor: { role: "designer", label: "Product designer", x: "58%", y: "58%" },

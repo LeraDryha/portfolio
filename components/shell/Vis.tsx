@@ -4,6 +4,7 @@ import type { CaseEntry, Cursor as CursorData, Focus, Pin, Point } from "@/conte
 import { Icon } from "@/components/shell/Icons";
 import { AssembleVis } from "@/components/shell/AssembleVis";
 import { BloomVis } from "@/components/shell/BloomVis";
+import { AdtNameField } from "@/components/case/AdtChart";
 
 const style = (vars: Record<string, string>) => vars as CSSProperties;
 const pct = (n: number) => `${+(n * 100).toFixed(2)}%`;
@@ -54,10 +55,10 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
     );
   }
 
-  if (v.kind === "pan") {
+  if (v.kind === "name") {
     return (
-      <div className="vis vis--inset" style={vt} aria-hidden="true">
-        <div className="pan" style={style({ "--img": `url(${v.src})` })} />
+      <div className="vis vis--inset vis--name" style={vt} aria-hidden="true">
+        <AdtNameField src={v.src} width={v.width} height={v.height} alt={v.alt} crop />
       </div>
     );
   }
