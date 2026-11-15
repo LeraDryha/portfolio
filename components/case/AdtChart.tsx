@@ -113,3 +113,114 @@ export function AdtOverviewFocus({ src, width, height, alt }: { src: string; wid
     </div>
   );
 }
+
+/* Plays `run` only while `el` is on screen (and never with reduced motion); `run` returns its own cleanup. */
+function useWhileVisible(el: React.RefObject<HTMLElement | null>, run: () => () => void) {
+  useEffect(() => {
+    const node = el.current;
+    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let stop: (() => void) | undefined;
+    const io = new IntersectionObserver(([e]) => {
+      stop?.();
+      stop = e.isIntersecting ? run() : undefined;
+    }, { threshold: 0.4 });
+    io.observe(node);
+    return () => {
+      io.disconnect();
+      stop?.();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once per mount
+  }, []);
+}
+
+const NAME_FROM = "New report";
+const NAME_TO = "Monthly report";
+
+/**
+ * The new report's title on its own screen, playing the Figma states: the default title with a pencil, then the
+ * active field (teal border) where the name is typed, then the named report. Sized in the screen's own pixels.
+ */
+export function AdtNameField({ src, width, height, alt }: { src: string; width: number; height: number; alt: string }) {
+  const root = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<{ mode: "normal" | "active"; text: string }>({ mode: "normal", text: NAME_FROM });
+
+  useWhileVisible(root, () => {
+    const timers: number[] = [];
+    const at = (ms: number, f: () => void) => timers.push(window.setTimeout(f, ms));
+    const loop = () => {
+      at(1400, () => setState({ mode: "active", text: NAME_FROM }));
+      at(2200, () => setState({ mode: "active", text: "" }));
+      [...NAME_TO].forEach((_, i) => at(2500 + i * 90, () => setState({ mode: "active", text: NAME_TO.slice(0, i + 1) })));
+      const typed = 2500 + NAME_TO.length * 90;
+      at(typed + 900, () => setState({ mode: "normal", text: NAME_TO }));
+      at(typed + 3400, () => setState({ mode: "normal", text: NAME_FROM }));
+      at(typed + 3500, loop);
+    };
+    loop();
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  });
+
+  return (
+    <div ref={root} className="adt-screen">
+      {/* eslint-disable-next-line @next/next/no-img-element -- the screen the title sits on, sized by CSS */}
+      <img className="adt-screen__img" src={src} width={width} height={height} alt={alt} loading="lazy" />
+      <div className="adt-name" data-mode={state.mode} aria-hidden="true">
+        <span className="adt-name__field">
+          {state.text}
+          {state.mode === "active" && <i className="adt-name__caret" />}
+        </span>
+        {state.mode === "normal" ? (
+          <svg className="adt-name__icon" viewBox="0 0 16 16"><path d="M10.5 2.5l3 3L6 13H3v-3zM9 4l3 3M3 15h10" /></svg>
+        ) : (
+          <span className="adt-name__actions">
+            <svg className="adt-name__icon" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5" /></svg>
+            <svg className="adt-name__icon" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" /></svg>
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+type Frame = { src: string; alt: string; label: string; overlay?: { src: string; width: number; height: number; at: [number, number] } };
+
+/**
+ * A short flow on one screen size: frames of the same screen crossfade in turn while on screen, each with its
+ * overlay in place; the labels under it name each moment and can be picked by hand.
+ */
+export function AdtFlow({ frames, width = 1440, height = 960 }: { frames: Frame[]; width?: number; height?: number }) {
+  const root = useRef<HTMLDivElement>(null);
+  const [at, setAt] = useState(0);
+  const pct = (v: number, of: number) => `${(v / of) * 100}%`;
+
+  useWhileVisible(root, () => {
+    const t = window.setInterval(() => setAt((i) => (i + 1) % frames.length), 3200);
+    return () => window.clearInterval(t);
+  });
+
+  return (
+    <div ref={root} className="adt-flow">
+      <div className="adt-flow__stage" style={{ aspectRatio: `${width} / ${height}` }}>
+        {frames.map((f, i) => (
+          <div key={f.src + i} className="adt-flow__frame" data-on={i === at} aria-hidden={i !== at}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- frames of one screen, sized by CSS */}
+            <img src={f.src} width={width} height={height} alt={f.alt} loading="lazy" />
+            {f.overlay && (
+              // eslint-disable-next-line @next/next/no-img-element -- the overlay in its place on the screen
+              <img className="adt-flow__overlay" src={f.overlay.src} alt="" style={{ left: pct(f.overlay.at[0], width), top: pct(f.overlay.at[1], height), width: pct(f.overlay.width, width) }} />
+            )}
+          </div>
+        ))}
+      </div>
+      <ol className="adt-flow__steps">
+        {frames.map((f, i) => (
+          <li key={f.label}>
+            <button type="button" aria-pressed={i === at} onClick={() => setAt(i)}>
+              <b>{i + 1}</b> {f.label}
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}

@@ -48,6 +48,11 @@
   --pos-adt-lift-y: 18%;
   --size-adt-lift: 66%;
   --size-adt-cursor: 14px;
+  --color-adt-teal: #33c4c4;
+  --color-adt-teal-fill: #f5fcfc;
+  --color-adt-teal-ring: #ddf4f4;
+  /* One pixel of a 1440-wide product screen, at whatever size the screen is drawn */
+  --adt-px: calc(100cqw / 1440);
   --color-accent-soft: oklch(48% 0.15 352 / .16);
   --color-on-dark: #ffffff;
   --color-scrim: rgb(22 24 29 / .72);
@@ -1357,6 +1362,32 @@
 .inplace__menu { position: absolute; z-index: var(--z-raise); }
 .inplace__zoom { display: block; width: var(--size-full); }
 .inplace__zoom img { display: block; width: var(--size-full); height: auto; filter: var(--filter-phone-shadow); }
+
+/* Adtelligent: a live part on its own screen (the report title), sized in the screen's own pixels */
+.adt-screen { position: relative; container-type: inline-size; border-radius: var(--radius-inner); overflow: hidden; box-shadow: var(--shadow-shot); }
+.adt-screen__img { display: block; width: var(--size-full); height: auto; }
+.adt-name { position: absolute; left: calc(36 * var(--adt-px)); top: calc(124 * var(--adt-px)); width: calc(300 * var(--adt-px)); height: calc(48 * var(--adt-px)); display: flex; align-items: center; gap: calc(8 * var(--adt-px)); padding-left: calc(4 * var(--adt-px)); background: var(--color-adt-surface); color: var(--color-adt-ink); font: var(--weight-semibold) calc(19 * var(--adt-px)) / 1 var(--font-sans); }
+.adt-name__field { display: inline-flex; align-items: center; height: calc(38 * var(--adt-px)); padding: 0 calc(2 * var(--adt-px)); border: calc(1.5 * var(--adt-px)) solid var(--color-transparent); border-radius: calc(5 * var(--adt-px)); white-space: nowrap; transition: border-color var(--duration-fast) var(--ease-fade), background var(--duration-fast) var(--ease-fade), box-shadow var(--duration-fast) var(--ease-fade), padding var(--duration-fast) var(--ease-fade); }
+.adt-name[data-mode="active"] .adt-name__field { padding: 0 calc(12 * var(--adt-px)); border-color: var(--color-adt-teal); background: var(--color-adt-teal-fill); box-shadow: 0 0 0 calc(3 * var(--adt-px)) var(--color-adt-teal-ring); }
+.adt-name__caret { display: inline-block; width: calc(1.5 * var(--adt-px)); height: calc(22 * var(--adt-px)); margin-left: calc(1 * var(--adt-px)); background: var(--color-adt-ink); animation: adt-caret 1s steps(1) infinite; }
+@keyframes adt-caret { 50% { opacity: 0; } }
+.adt-name__actions { display: inline-flex; gap: calc(8 * var(--adt-px)); }
+.adt-name__icon { width: calc(16 * var(--adt-px)); height: calc(16 * var(--adt-px)); fill: none; stroke: var(--color-adt-muted); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Adtelligent: a short flow on one screen, frames crossfading in turn, labels under it */
+.adt-flow { display: grid; gap: var(--space-12); }
+.adt-flow__stage { position: relative; border-radius: var(--radius-inner); overflow: hidden; box-shadow: var(--shadow-shot); background: var(--color-adt-surface); }
+.adt-flow__frame { position: absolute; inset: var(--space-0); opacity: 0; transition: opacity var(--duration-arrive) var(--ease-fade); }
+.adt-flow__frame[data-on="true"] { opacity: 1; }
+.adt-flow__frame > img { display: block; width: var(--size-full); height: auto; }
+.adt-flow__overlay { position: absolute; height: auto; filter: var(--filter-phone-shadow); }
+.prose .adt-flow__steps { display: flex; flex-wrap: wrap; gap: var(--space-6); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .adt-flow__steps li { margin: var(--space-0); }
+.adt-flow__steps button { display: inline-flex; gap: var(--space-6); align-items: baseline; padding: var(--space-6) var(--space-12); border: none; border-radius: var(--radius-pill); background: var(--color-raised); color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); cursor: pointer; }
+.adt-flow__steps button[aria-pressed="true"] { color: var(--color-ink); box-shadow: inset 0 0 0 var(--size-hairline) var(--color-hairline); }
+.adt-flow__steps b { color: var(--color-accent); }
+.adt-flow__steps button:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+@media (prefers-reduced-motion: reduce) { .adt-flow__frame, .adt-name__field { transition: none; } .adt-name__caret { animation: none; } }
 
 /* Findings from the tests: one white card, a row per finding with the part of the case that answers it */
 .prose .findings { display: grid; margin: var(--space-0); padding: var(--space-0); list-style: none; counter-reset: finding; }

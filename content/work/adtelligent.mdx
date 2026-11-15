@@ -61,7 +61,6 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
       text: "A separate Overview page for quick visualisation, because charts are read faster than tables. The charts filter by campaigns, sites and countries, and by date. Under them, the familiar table with quick view settings and export.",
       details: ["Sorting icons on the table pills show the available actions right away."],
       desktop: { src: "/work/adtelligent/redesign/overview.webp", width: 1440, height: 960, alt: "Overview: filters, line charts for volumes and spend, and the data table." },
-      phones: [{ src: "/work/adtelligent/redesign/editcols.webp", width: 456, height: 447, alt: "Edit columns: search, deselect all and a checkbox per metric." }],
     },
     {
       title: "Charts that filter the way people look",
@@ -117,7 +116,6 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
       "Nothing changes until Run Report, and there are no charts to check the result.",
     ],
     shot: { src: "/work/adtelligent/before/filters.webp", width: 1600, height: 1439, alt: "The old filter form: date range, timezone, RTB traffic and thirteen selects, each with Summ and Exclude, then metric filters and report views." },
-    overlay: { src: "/work/adtelligent/before/columns.webp", width: 800, height: 698, alt: "The old Custom View window: available and selected columns, with Apply, Cancel and Create." },
   }}
   steps={[
     {
@@ -128,20 +126,38 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
     },
     {
       title: "Name the report as you create it",
-      text: "People can name a report right away, so the list isn’t full of “New Report” and stays structured and clear.",
-      desktop: { src: "/work/adtelligent/redesign/v1.webp", width: 1440, height: 960, alt: "A new report with an editable title, the table and the settings panel with applied campaign filters." },
+      text: "People can name their report right away, while creating it. That avoids default names like “New Report” and keeps the list of reports structured and clear. Before, a report could only be renamed separately, after it was created.",
+      live: <AdtNameField src="/work/adtelligent/redesign/v1.webp" width={1440} height={960} alt="A new report: its title becomes a field where the name is typed, then the report is named." />,
     },
     {
       title: "Every table setting in one side panel",
-      text: "A side panel brings the table’s columns, metrics and filter pills into one place, so people see and change all the parameters at once. Metrics and options are added with a plus, which keeps unused settings hidden; the plus next to each title is a familiar pattern in systems with complex settings, and applied filters move to the top of the list.",
-      desktop: { src: "/work/adtelligent/redesign/v2.webp", width: 1440, height: 960, alt: "A report with the side panel: columns, then collapsed Metrics and Filters, each with a plus." },
-      phones: [{ src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, alt: "Adding a filter: a searchable list, with the selected values at the top." }],
+      text: "Instead of the separate Custom View window, a side panel brings the table’s columns, metrics and filter pills into one place, so people see and manage every parameter at once and set up the table faster. A filter added in the panel appears in the table as a column, highlighted pink for a while, so people see what was added.",
+      live: (
+        <AdtFlow
+          frames={[
+            { src: "/work/adtelligent/redesign/v1.webp", alt: "The report with the side panel; the Countries filter open, four countries checked.", label: "A filter is added in the panel", overlay: { src: "/work/adtelligent/redesign/countries.webp", width: 342, height: 256, at: [1086, 740] } },
+            { src: "/work/adtelligent/redesign/graphs-added.webp", alt: "The same report scrolled down: the Campaign and Countries columns in the table, highlighted pink.", label: "It appears as a column, highlighted" },
+          ]}
+        />
+      ),
     },
     {
-      title: "Edit in place, save with a clear status",
-      text: "Editing opens in a pop-up or modal instead of a new tab, which is rarely a good idea in create and edit modes; the modal can still offer to open the editor in a tab. Saving depends on the work: “Save changes” for a template, “Save” for a new report, turning into “Saved” once it’s done.",
+      title: "A second version to test: settings behind a plus",
+      text: "Metrics and options are added with a plus, which hides what isn’t used and keeps the interface cleaner; the old form showed every setting at once. The plus next to a title is a clear, familiar pattern in systems with complex settings, and filters already chosen rise to the top of the list, so people can check and change them quickly. The list behind the plus came in two versions: values nested under each filter, or filters on the left and their values on the right.",
+      live: (
+        <AdtFlow
+          frames={[
+            { src: "/work/adtelligent/redesign/v2.webp", alt: "The side panel with Metrics and Filters collapsed; the list behind the Filters plus, with values nested under each filter.", label: "Version 1: values nested", overlay: { src: "/work/adtelligent/redesign/plus-list.webp", width: 376, height: 456, at: [1032, 524] } },
+            { src: "/work/adtelligent/redesign/v2.webp", alt: "The same panel; the list behind the plus with filters on the left and their values on the right.", label: "Version 2: filters and values side by side", overlay: { src: "/work/adtelligent/redesign/filters.webp", width: 433, height: 629, at: [975, 351] } },
+          ]}
+        />
+      ),
+    },
+    {
+      title: "Edit in place",
+      text: "Editing opens in a pop-up or modal instead of a new tab, which is rarely a good idea in create and edit modes; the modal can still offer to open the editor in a tab when people need it.",
+      details: ["Saving depends on the work: “Save changes” for a template, so it’s clear the changes went into the current template; “Save” for a new report, which turns into “Saved” once it’s done."],
       desktop: { src: "/work/adtelligent/redesign/v3.webp", width: 1440, height: 1366, alt: "A monthly report from a template: Save changes, Export and the full set of charts and filters." },
-      phones: [{ src: "/work/adtelligent/redesign/actions.webp", width: 296, height: 283, alt: "The report actions menu." }],
     },
   ]}
 />
