@@ -144,6 +144,50 @@ export function Findings({ title, items, caption }: { title: string; items: { te
   );
 }
 
+/**
+ * A usability test as it was built: one card per activity (the task, its goal in the accent, what success looks like,
+ * and which part of the case it checks), the questions asked after each, and a quiet note under it.
+ */
+export function Activities({ title, items, after, note }: { title: string; items: { task: string; goal: string; path: string[]; tests: string; href: string }[]; after: string[]; note?: string }) {
+  return (
+    <Panel title={title}>
+      <ol className="activities">
+        {items.map((a, i) => {
+          const [before, rest] = a.task.split(a.goal);
+          return (
+            <li key={a.task} className="define__card activity">
+              <p className="define__label">Activity {i + 1}</p>
+              <p className="activity__task">
+                {before}
+                <b>{a.goal}</b>
+                {rest}
+              </p>
+              <p className="define__label">Success looks like</p>
+              <ol className="activity__path">
+                {a.path.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ol>
+              <a className="activity__tests" href={a.href}>
+                Tests: {a.tests} ↑
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="define__card activity__after">
+        <p className="define__label">After each activity</p>
+        <ul>
+          {after.map((q) => (
+            <li key={q}>{q}</li>
+          ))}
+        </ul>
+      </div>
+      {note && <p className="voices__note">{note}</p>}
+    </Panel>
+  );
+}
+
 /** The problems worth solving, one white card each, with the research stickies that back them (paper yellow). */
 export function ProblemBoard({ title, problems, caption }: { title: string; problems: { title: string; notes: string[] }[]; caption: string }) {
   return (

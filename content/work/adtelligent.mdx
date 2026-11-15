@@ -6,6 +6,7 @@ export const meta = {
     { label: "Role", value: "Product designer" },
     { label: "Product", value: "AdTech B2B SaaS platform" },
     { label: "Research", value: "Moderated usability tests with users" },
+    { label: "Testing", value: "7 users, Figma prototype, moderated online" },
     { label: "Scope", value: "Reports: structure, overview, saved reports, report builder" },
   ],
 };
@@ -14,7 +15,7 @@ export const meta = {
 
 <Figure src="/work/adtelligent/r01.jpg" width={1600} height={892} alt="The redesigned reports overview on a laptop, with charts and a data table." caption="The redesigned reports." priority />
 
-<Chapter id="research" n={1} of={6} title="What the tests showed">
+<Chapter id="research" n={1} of={7} title="What the tests showed">
 
 In 2025 we ran moderated usability tests of the existing reports with the platform’s users. This is what we found.
 
@@ -33,7 +34,7 @@ Then we went through the current interface against each finding and decided how 
 
 </Chapter>
 
-<Chapter id="structure" n={2} of={6} title="Reports information architecture">
+<Chapter id="structure" n={2} of={7} title="Reports information architecture">
 
 Reports were rebuilt around three places: an Overview for the daily check, Statistic API Access, and My Reports for saved, template and scheduled reports, each with a clear way to create a new one.
 
@@ -41,7 +42,7 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
 
 </Chapter>
 
-<Chapter id="overview" n={3} of={6} title="The daily check">
+<Chapter id="overview" n={3} of={7} title="The daily check">
 
 <ProblemSolved
   n={1}
@@ -72,7 +73,7 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
 
 </Chapter>
 
-<Chapter id="my-reports" n={4} of={6} title="Saved reports, easy to find">
+<Chapter id="my-reports" n={4} of={7} title="Saved reports, easy to find">
 
 <ProblemSolved
   n={2}
@@ -103,7 +104,7 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
 
 </Chapter>
 
-<Chapter id="builder" n={5} of={6} title="Building a report">
+<Chapter id="builder" n={5} of={7} title="Building a report">
 
 <ProblemSolved
   n={3}
@@ -166,7 +167,24 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
 
 </Chapter>
 
-<Chapter id="next" n={6} of={6} title="Shipped, and the start of something bigger">
+<Chapter id="testing" n={6} of={7} title="Testing the designs">
+
+We tested the new designs in moderated online sessions with 7 users, on a Figma prototype. Each activity checks one of the decisions above and goes back to a finding from the first tests.
+
+<Activities
+  title="Three activities"
+  items={[
+    { task: "You’ve opened the reports to check all Impressions for your campaign over the past week.", goal: "all Impressions for your campaign over the past week", path: ["Overview", "Campaigns filter", "7D", "Impressions in the legend"], tests: "Overview", href: "#overview" },
+    { task: "Create a report that shows the data for Ukraine and Spain for your two campaigns.", goal: "data for Ukraine and Spain for your two campaigns", path: ["Create report", "Campaign +", "Countries +", "Ukraine, Spain", "Apply"], tests: "Report builder", href: "#builder" },
+    { task: "Find the Monthly report and export its data.", goal: "Find the Monthly report and export its data", path: ["My Reports", "Templates or Search", "the card’s menu", "Export"], tests: "My reports", href: "#my-reports" },
+  ]}
+  after={["How clear or confusing did this task feel? (1 = very difficult, 5 = very easy and clear)", "Did anything surprise you, in a good or bad way?"]}
+  note="The results of these sessions didn’t survive, so this shows how the test was built."
+/>
+
+</Chapter>
+
+<Chapter id="next" n={7} of={7} title="Shipped, and the start of something bigger">
 
 The reports were only the beginning.
 
