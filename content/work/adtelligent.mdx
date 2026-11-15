@@ -131,12 +131,15 @@ Reports were rebuilt around three places: an Overview for the daily check, Stati
     },
     {
       title: "Every table setting in one side panel",
-      text: "Instead of the separate Custom View window, a side panel brings the table’s columns, metrics and filter pills into one place, so people see and manage every parameter at once and set up the table faster. A filter added in the panel appears in the table as a column, highlighted pink for a while, so people see what was added.",
+      text: "Instead of the separate Custom View window, a side panel brings the table’s columns, metrics and filter pills into one place, so people see and manage every parameter at once and set up the table faster. A filter added in the panel appears in the table as a column, highlighted pink for a few seconds, so people see what was added.",
       live: (
         <AdtFlow
+          height={1330}
           frames={[
-            { src: "/work/adtelligent/redesign/v1.webp", alt: "The report with the side panel; the Countries filter open, four countries checked.", label: "A filter is added in the panel", overlay: { src: "/work/adtelligent/redesign/countries.webp", width: 342, height: 256, at: [1086, 740] } },
-            { src: "/work/adtelligent/redesign/graphs-added.webp", alt: "The same report scrolled down: the Campaign and Countries columns in the table, highlighted pink.", label: "It appears as a column, highlighted" },
+            { src: "/work/adtelligent/redesign/filter-1.webp", ms: 2000, label: "The panel", alt: "A new report with charts, the table and the side panel; Countries has a plus." },
+            { src: "/work/adtelligent/redesign/filter-2.webp", ms: 2600, label: "+ Countries", alt: "The plus next to Countries opens a list of countries, four checked." },
+            { src: "/work/adtelligent/redesign/filter-3.webp", ms: 2600, label: "Apply: new columns light up", alt: "After Apply, Campaign and Countries appear as table columns, highlighted pink." },
+            { src: "/work/adtelligent/redesign/filter-4.webp", ms: 2400, label: "Highlight fades", alt: "A few seconds later the Campaign and Countries columns look like the rest of the table." },
           ]}
         />
       ),

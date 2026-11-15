@@ -182,7 +182,7 @@ export function AdtNameField({ src, width, height, alt }: { src: string; width: 
   );
 }
 
-type Frame = { src: string; alt: string; label: string; overlay?: { src: string; width: number; height: number; at: [number, number] } };
+type Frame = { src: string; alt: string; label: string; /** how long the frame stays, in ms */ ms?: number; overlay?: { src: string; width: number; height: number; at: [number, number] } };
 
 /**
  * A short flow on one screen size: frames of the same screen crossfade in turn while on screen, each with its
@@ -194,8 +194,18 @@ export function AdtFlow({ frames, width = 1440, height = 960 }: { frames: Frame[
   const pct = (v: number, of: number) => `${(v / of) * 100}%`;
 
   useWhileVisible(root, () => {
-    const t = window.setInterval(() => setAt((i) => (i + 1) % frames.length), 3200);
-    return () => window.clearInterval(t);
+    let t: number;
+    let i = 0;
+    const next = () => {
+      t = window.setTimeout(() => {
+        i = (i + 1) % frames.length;
+        setAt(i);
+        next();
+      }, frames[i].ms ?? 3200);
+    };
+    setAt(0);
+    next();
+    return () => window.clearTimeout(t);
   });
 
   return (
