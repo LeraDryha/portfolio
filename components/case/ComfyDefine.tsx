@@ -125,6 +125,69 @@ export function ValueCanvas({ title, offer, customer, caption }: { title: string
   );
 }
 
+/** What the research found, as wide as the text: a row per finding, each with a link to the part of the case that answers it. */
+export function Findings({ title, items, caption }: { title: string; items: { text: string; area: string; href: string }[]; caption?: string }) {
+  return (
+    <Panel title={title} wide={false}>
+      <div className="define__card">
+        <ol className="findings">
+          {items.map((f) => (
+            <li key={f.text}>
+              <span>{f.text}</span>
+              <a href={f.href}>{f.area} ↓</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+      {caption && <p className="voices__note">{caption}</p>}
+    </Panel>
+  );
+}
+
+/**
+ * A usability test as it was built: one card per activity (the task, its goal in the accent, what success looks like,
+ * and which part of the case it checks), the questions asked after each, and a quiet note under it.
+ */
+export function Activities({ title, items, after, note }: { title: string; items: { task: string; goal: string; path: string[]; tests: string; href: string }[]; after: string[]; note?: string }) {
+  return (
+    <Panel title={title} wide={false}>
+      <ol className="activities">
+        {items.map((a, i) => {
+          const [before, rest] = a.task.split(a.goal);
+          return (
+            <li key={a.task} className="define__card activity">
+              <p className="define__label">Activity {i + 1}</p>
+              <p className="activity__task">
+                {before}
+                <b>{a.goal}</b>
+                {rest}
+              </p>
+              <p className="define__label">Success looks like</p>
+              <ol className="activity__path">
+                {a.path.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ol>
+              <a className="activity__tests" href={a.href}>
+                Tests: {a.tests} ↑
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="define__card activity__after">
+        <p className="define__label">After each activity</p>
+        <ul>
+          {after.map((q) => (
+            <li key={q}>{q}</li>
+          ))}
+        </ul>
+      </div>
+      {note && <p className="voices__note">{note}</p>}
+    </Panel>
+  );
+}
+
 /** The problems worth solving, one white card each, with the research stickies that back them (paper yellow). */
 export function ProblemBoard({ title, problems, caption }: { title: string; problems: { title: string; notes: string[] }[]; caption: string }) {
   return (
@@ -190,11 +253,27 @@ function Zoom({ shot, cap, className }: { shot: Shot; cap: string; className: st
 }
 
 /**
+ * A screen with one of its menus open where it really opens (not floated in a corner), so the menu is read in
+ * its place on the page. `at` is the menu image's top-left corner in the screen's own pixels.
+ */
+export function InPlace({ screen, menu, at, cap }: { screen: Shot; menu: Shot; at: [number, number]; cap: string }) {
+  const pct = (v: number, of: number) => `${(v / of) * 100}%`;
+  return (
+    <div className="inplace">
+      <Zoom shot={screen} cap={cap} className="solved__shot" />
+      <span className="inplace__menu" style={{ left: pct(at[0], screen.width), top: pct(at[1], screen.height), width: pct(menu.width, screen.width) }}>
+        <Zoom shot={menu} cap={`${cap} · menu`} className="inplace__zoom" />
+      </span>
+    </div>
+  );
+}
+
+/**
  * One problem from Develop carried through to the design: the problem with its evidence and the HMW it answers,
  * the screen as it was with what was wrong, then each decision as a card — what changed and why on the left,
  * the ideas from How Might We it came from as chips, the desktop screen with the phone over its corner on the right.
  */
-export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; desktop: Shot; phones?: Shot[] }[] }) {
+export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n: number; problem: string; evidence: string; hmw?: string; before?: { shot: Shot; overlay?: Shot; phones?: Shot[]; more?: Shot[]; issues: string[] }; steps: { title: string; text: string; ideas?: string[]; thinking?: string; details?: string[]; desktop?: Shot; live?: ReactNode; phones?: Shot[] }[] }) {
   return (
     <div className="solved">
       <header className="solved__head">
@@ -251,6 +330,17 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
                   <p>{s.thinking}</p>
                 </blockquote>
               )}
+              {/* Small, useful decisions inside the step, set apart from its main idea */}
+              {s.details && (
+                <div className="solved__details">
+                  <span className="define__label">Small details</span>
+                  <ul>
+                    {s.details.map((d) => (
+                      <li key={d}>{d}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               {s.ideas && s.ideas.length > 0 && (
               <ul className="solved__ideas" aria-label="From How Might We">
                 {s.ideas.map((idea) => {
@@ -265,7 +355,8 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
               )}
             </div>
             <div className={`solved__shots solved__shots--${s.phones?.length ?? 0}`}>
-              <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />
+              {/* A step shows its screen, or the product itself, live */}
+              {s.live ?? (s.desktop && <Zoom shot={s.desktop} cap={s.title} className="solved__shot" />)}
               {s.phones?.map((p, j) => (
                 <Zoom key={p.src} shot={p} cap={`${s.title} · mobile`} className={`solved__phone solved__phone--${j + 1}`} />
               ))}
