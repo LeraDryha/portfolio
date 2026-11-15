@@ -1344,8 +1344,10 @@
 .adt-chart__legend { position: relative; }
 .adt-chart--auto .adt-chart__metric { cursor: default; }
 .adt-chart__metric[data-on="true"] { background: var(--color-adt-hover); }
-.adt-chart__cursor { position: absolute; left: calc((var(--at) + .62) * 100% / 3); top: var(--space-28); width: var(--size-adt-cursor); height: auto; fill: var(--color-adt-ink); stroke: var(--color-adt-surface); stroke-width: var(--size-hairline); opacity: 0; transition: left var(--duration-curtain) var(--ease-cam), opacity var(--duration-color) var(--ease-fade); pointer-events: none; }
-.adt-chart__cursor[data-on="true"] { opacity: 1; }
+.adt-chart__tap { position: absolute; z-index: var(--z-raise); left: calc((var(--at) + .55) * 100% / 3); top: 50%; width: calc(var(--size-adt-tap) * 1.5); aspect-ratio: 1; border: var(--size-stroke) solid var(--color-adt-tap); border-radius: var(--radius-round); background: var(--color-adt-tap-soft); translate: -50% -50%; opacity: 0; pointer-events: none; }
+.adt-chart__tap::after { content: ""; position: absolute; inset: calc(var(--size-stroke) * -1); border: var(--size-stroke) solid var(--color-adt-tap); border-radius: inherit; opacity: 0; }
+.adt-chart__tap[data-on="true"] { animation: adt-tap var(--duration-tap) var(--ease-out) both; }
+.adt-chart__tap[data-on="true"]::after { animation: adt-tap-ring var(--duration-tap) var(--ease-out) both; }
 
 /* Adtelligent: the Overview screen under a veil, its volumes chart lifted off it and playing by itself */
 .adt-focus { position: relative; border-radius: var(--radius-inner); overflow: hidden; box-shadow: var(--shadow-shot); }
@@ -1356,10 +1358,9 @@
 .adt-focus .adt-chart__name { font-size: var(--text-micro); white-space: nowrap; }
 .adt-focus .adt-chart__total { font-size: var(--text-label); }
 .adt-focus .adt-chart__metric { padding: var(--space-4) var(--space-6); }
-.adt-focus .adt-chart__cursor { top: var(--space-22); }
-@media (max-width: 640px) { .adt-chart { padding: var(--space-14) var(--space-12) var(--space-10); } .adt-chart__legend { grid-template-columns: var(--layout-col-1); gap: var(--space-2); } .adt-chart__metric { display: flex; justify-content: space-between; align-items: center; padding: var(--space-6) var(--space-8); } .adt-chart__total { font-size: var(--text-label); } .adt-chart__cursor { display: none; } }
+@media (max-width: 640px) { .adt-chart { padding: var(--space-14) var(--space-12) var(--space-10); } .adt-chart__legend { grid-template-columns: var(--layout-col-1); gap: var(--space-2); } .adt-chart__metric { display: flex; justify-content: space-between; align-items: center; padding: var(--space-6) var(--space-8); } .adt-chart__total { font-size: var(--text-label); } .adt-chart__tap { display: none; } }
 @media (max-width: 860px) { .adt-focus { overflow: visible; box-shadow: none; } .adt-focus__screen { border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); } .adt-focus::after { bottom: auto; aspect-ratio: 1440 / 960; border-radius: var(--radius-inner); } .adt-focus__lift { position: relative; left: auto; top: auto; width: auto; margin: -24% var(--space-12) var(--space-0); } }
-@media (prefers-reduced-motion: reduce) { .adt-chart__line, .adt-chart__metric, .adt-chart__cursor { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .adt-chart__line, .adt-chart__metric { transition: none; } }
 
 /* A screen with its menu open in place: the menu sits where it opens, at the screen's own scale */
 .inplace { position: relative; }

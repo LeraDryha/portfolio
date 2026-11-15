@@ -69,12 +69,8 @@ export function AdtChart({ auto = false }: { auto?: boolean }) {
             </button>
           ),
         )}
-        {/* The pointer that does the picking */}
-        {auto && (
-          <svg className="adt-chart__cursor" data-on={at >= 0} style={{ "--at": Math.max(at, 0) } as CSSProperties} viewBox="0 0 12 16" aria-hidden="true">
-            <path d="M1 1v12.5l3.2-3 2.3 5 2-.9-2.2-4.9H10.5z" />
-          </svg>
-        )}
+        {/* The pointer that does the picking: the same pink tap as in the report flows, re-tapping on each pick */}
+        {auto && <span key={solo ?? "all"} className="adt-chart__tap" data-on={at >= 0} style={{ "--at": Math.max(at, 0) } as CSSProperties} />}
       </div>
       <svg className="adt-chart__plot" viewBox="0 88 552 185" role="img" aria-label={auto ? "Ad Requests, Ad Opportunities and Impressions Ads over the week; picking a metric in the legend leaves only its line" : solo ? `${SERIES.find((s) => s.key === solo)!.name} over the week` : "Ad Requests, Ad Opportunities and Impressions Ads over the week"}>
         {GRID.map(([y, label]) => (
