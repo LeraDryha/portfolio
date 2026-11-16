@@ -152,7 +152,7 @@ export function Insight({ n, title, quote, children }: { n: number; title: strin
 }
 
 /** A hypothesis in the If / Then / Because / This will lead to form, with the events that measure it. */
-export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: { title: string; ifText: string; then: string; because: string; leadsTo: string; metrics?: string }) {
+export function Hypothesis({ title, ifText, then, because, leadsTo, metrics, success }: { title: string; ifText: string; then: string; because: string; leadsTo: string; metrics?: string; success?: string[] }) {
   return (
     <div className="hyp">
       <h3>{title}</h3>
@@ -168,6 +168,16 @@ export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: {
       <p>
         <b>This will lead to</b> {leadsTo}
       </p>
+      {success && (
+        <div className="hyp__success">
+          <p className="define__label">Success looks like</p>
+          <ul>
+            {success.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       {metrics && <small>Mixpanel: {metrics}</small>}
     </div>
   );

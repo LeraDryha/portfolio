@@ -31,6 +31,9 @@
   --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-adtelligent-accent: #d6005a;
   --color-adtelligent-accent-soft: rgb(255 0 102 / .14);
+  /* hubmee's product green (#009850, from its screens) on the Smart Financial Assistant case: deepened in light (5:1 on a tile), the product value at night (4.5:1) */
+  --color-sfa-accent: #007a40;
+  --color-sfa-accent-soft: rgb(0 152 80 / .14);
   /* The Adtelligent product, light in both themes (its own iOS-like series colours, from the Figma) */
   --color-adt-surface: #ffffff;
   --color-adt-ink: #1d1d1f;
@@ -689,6 +692,8 @@
     --color-grg-accent-soft: rgb(245 167 15 / .22);
     --color-adtelligent-accent: #ff0066;
     --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
+    --color-sfa-accent: #009850;
+    --color-sfa-accent-soft: rgb(0 152 80 / .22);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
@@ -726,6 +731,8 @@
   --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-adtelligent-accent: #ff0066;
   --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
+  --color-sfa-accent: #009850;
+  --color-sfa-accent-soft: rgb(0 152 80 / .22);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
@@ -1318,6 +1325,7 @@
 .case[data-case="comfy"] { --color-accent: var(--color-comfy-accent); --color-accent-soft: var(--color-comfy-accent-soft); }
 .case[data-case="grg-design-system"] { --color-accent: var(--color-grg-accent); --color-accent-soft: var(--color-grg-accent-soft); }
 .case[data-case="adtelligent"] { --color-accent: var(--color-adtelligent-accent); --color-accent-soft: var(--color-adtelligent-accent-soft); }
+.case[data-case="smart-financial-assistant"] { --color-accent: var(--color-sfa-accent); --color-accent-soft: var(--color-sfa-accent-soft); }
 
 /* Adtelligent: the Overview chart, live (a click on a metric leaves only its line) */
 .adt-chart { display: grid; gap: var(--space-8); padding: var(--space-20) var(--space-20) var(--space-14); border-radius: var(--radius-inner); background: var(--color-adt-surface); color: var(--color-adt-ink); box-shadow: var(--shadow-shot); }
@@ -1452,6 +1460,8 @@
 .hyp h3 { margin: var(--space-0) var(--space-0) var(--space-10); }
 .hyp p { margin: var(--space-0) var(--space-0) var(--space-6); }
 .hyp b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.hyp__success { margin-top: var(--space-14); padding-top: var(--space-12); border-top: var(--border-hairline); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .hyp__success ul { margin: var(--space-0); }
 .hyp small { display: block; margin-top: var(--space-10); color: var(--color-pencil); font-family: var(--font-mono); font-size: var(--text-label); line-height: var(--leading-ui); }
 
 /* End of a case */
