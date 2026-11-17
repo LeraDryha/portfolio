@@ -234,7 +234,30 @@ My favorite part of any design process is brainstorming. We worked as a team of 
 - Embrace even the craziest ideas
 - Focus on quantity over quality
 
-<Figure src="/work/dnipro-education-center/10.webp" width={1800} height={1125} alt="Brainstorming stickies with ideas for the website." caption="Ideation." />
+<StickyBoard cols={4} caption="Ideation." notes={[
+  {text: "Offer search suggestions based on user input"},
+  {text: "Add a FAQ section to address common questions, reducing the need for users to contact the Regional Center"},
+  {text: "Move contact information to the site header for quicker access"},
+  {text: "Enhance site navigation for easier information search – add a search bar and group content logically by section"},
+  {text: "Organize the menu logically by sections and update its design"},
+  {text: "A mobile-friendly version of the site is needed"},
+  {text: "Clearly indicate the user’s current section and add a “Back to Top” button at the end of each page."},
+  {text: "Create a clear news interface, possibly with a slider, to easily browse news without taking up too much space"},
+  {text: "Keep the menu at the top and structure it logically by sections."},
+  {text: "Select a contrasting color palette for the site"},
+  {text: "Create a custom error page"},
+  {text: "Fix the menu at the top of the page."},
+  {text: "Simplify access to \"Registration\" and registration guidelines"},
+  {text: "Add a \"Back to Top\" button at the end of each page."},
+  {text: "Remove the “Gallery” section if it has low value and instead categorize images by topic"},
+  {text: "Use blue for hyperlinks and underline them to indicate clickable links"},
+  {text: "Emphasize the regions that the site serves"},
+  {text: "Add a menu with breadcrumbs to make it easy for users to navigate between sections and know their current location."},
+  {text: "Choose appropriate typography styles"},
+  {text: "Standardize the layout of all sections"},
+  {text: "Highlight key sections like NMT (EIT), EVI/EFVV, and sub-sections such as “Registration,” “Instructions,” and “Terms.”"},
+  {text: "Unify design elements like layout, font size, and color schemes to give users a consistent and familiar interface"},
+]} />
 
 ### Design system
 
@@ -242,7 +265,43 @@ The design system was developed to ensure consistency, efficiency, and a cohesiv
 
 By standardizing colors, typography, components, and interactions, the design system simplifies the design process and workflow, enabling faster iterations and easier maintenance as the project evolves.
 
-<Figure src="/work/dnipro-education-center/11.webp" width={1800} height={1125} alt="The design system: colour palettes, typography in Roboto, buttons, inputs, filters, cards." caption="Design system." />
+<KitFoundations caption="Design system: colors and typography." font="Roboto" ramps={[
+  { name: "Watermelon", swatches: [["20", "#FEEDEF"], ["30", "#F9A6AF"], ["40", "#F5717F"], ["50", "#F34E5F"], ["60", "#AA3743"], ["70", "#7A2730"], ["80", "#49171D"]] },
+  { name: "Jungle Green", swatches: [["20", "#E5F5F3"], ["30", "#9DD8D0"], ["40", "#51B1A5"], ["50", "#339E90"], ["60", "#287E73"], ["70", "#194F48"], ["80", "#0F2F2B"]] },
+  { name: "Blueberry Blue", swatches: [["20", "#E6EDF8"], ["30", "#9AB8E5"], ["40", "#4E83D2"], ["50", "#024EBE"]] },
+  { name: "Dove Grey", swatches: [["10", "#FFFFFF"], ["15", "#FAFAFA"], ["20", "#E1E1E2"], ["30", "#B4B5B8"], ["40", "#88898D"], ["50", "#6D6E71"], ["60", "#4B4C4F"], ["70", "#2B2C2D"], ["80", "#161616"]] },
+]} styles={[
+  { name: "H1", weight: "Bold", size: "40/48" },
+  { name: "H2", weight: "Medium", size: "32/40" },
+  { name: "H3", weight: "Semi bold", size: "24/28" },
+  { name: "Subtitle 1", weight: "Semi bold", size: "20/22" },
+  { name: "Subtitle 2", weight: "Regular", size: "16/20" },
+  { name: "Body 1", weight: "Regular", size: "16/24" },
+  { name: "Body 2", weight: "Regular", size: "14/20" },
+  { name: "Button 1", weight: "Semi bold", size: "16/20" },
+  { name: "Button 2", weight: "Medium", size: "14/16" },
+  { name: "Caption 1", weight: "Medium", size: "14/16" },
+  { name: "Caption 2", weight: "Medium", size: "12/16" },
+  { name: "Overline", weight: "Regular", size: "12/12" },
+]} />
+
+<FigurePair>
+  <HalfFigure src="/work/dnipro-education-center/kit-buttons.webp" width={652} height={445} alt="Buttons in red and green: filled, outlined and text, in every state." caption="Buttons." />
+  <HalfFigure src="/work/dnipro-education-center/kit-inputs.webp" width={628} height={501} alt="Search inputs in every state, on white and on green." caption="Inputs." />
+</FigurePair>
+
+<Figure src="/work/dnipro-education-center/kit-filters.webp" width={1081} height={572} alt="Filters, a side menu with sections, phone links and a dropdown menu." caption="Filters, links and dropdown menu." />
+
+<Figure src="/work/dnipro-education-center/kit-cards.webp" width={1100} height={776} alt="News cards with an image, label, date, title, text and a button, in three layouts." caption="Cards." />
+
+<FigurePair>
+  <HalfFigure src="/work/dnipro-education-center/kit-lists.webp" width={1056} height={914} alt="Service tiles with an icon, a numbered list with arrows, and an FAQ accordion closed and open." caption="Tiles, lists and accordion." />
+  <HalfFigure src="/work/dnipro-education-center/kit-articles.webp" width={1056} height={612} alt="Article previews with a read-more link, and contact blocks with address, phone and email." caption="Articles and contacts." />
+</FigurePair>
+
+<Figure src="/work/dnipro-education-center/kit-header.webp" width={1800} height={989} alt="The header: logo, phone, email, served regions, social icons, search and the main menu, closed and with a dropdown open." caption="Header." />
+
+<Figure src="/work/dnipro-education-center/kit-footer.webp" width={1200} height={1130} alt="The green footer on desktop, tablet and mobile: logo, contacts, working hours and menu links." caption="Footer." />
 
 ### Main page
 

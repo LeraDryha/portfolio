@@ -532,6 +532,8 @@
   --layout-rivals: repeat(5, minmax(0, 1fr));
   --size-sitemap-min: 1000px;
   --layout-persona-who: 2fr 3fr;
+  --layout-kitf: 3fr 2fr;
+  --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
   --color-sticky-blue: #a8dafd;
   --color-sticky-red: #ff6159;
@@ -1242,6 +1244,22 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Kit foundations (DRCEQA): the client's colour ramps and type scale, live */
+.kitf { margin: var(--space-28) var(--space-0); }
+.kitf__panel { display: grid; grid-template-columns: var(--layout-kitf); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.kitf__colors, .kitf__type { display: grid; align-content: start; gap: var(--space-16); }
+.prose .kitf__title { margin: var(--space-0); font-size: var(--text-subhead); line-height: var(--leading-subhead); font-weight: var(--weight-semibold); }
+.prose .kitf__swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-kitf-chip), 1fr)); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .kitf__swatches li { display: grid; gap: var(--space-2); margin: var(--space-0); padding: var(--space-0); }
+.kitf__chip { display: block; aspect-ratio: 1; border-radius: var(--radius-inner); background: var(--chip); box-shadow: inset 0 0 0 var(--size-hairline) var(--color-hairline); }
+.kitf__step { color: var(--color-ink); font-size: var(--text-micro); }
+.kitf__hex { color: var(--color-pencil); font-family: var(--font-mono); font-size: var(--text-micro); }
+.kitf__table { width: var(--size-full); border-collapse: collapse; font-size: var(--text-label); line-height: var(--leading-tag); }
+.kitf__table th, .kitf__table td { padding: var(--space-6) var(--space-8) var(--space-6) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); text-align: left; font-weight: var(--weight-regular); }
+.kitf__table thead th { border-top: none; color: var(--color-pencil); }
+.kitf__table tbody th { color: var(--color-ink); font-weight: var(--weight-medium); }
+.kitf__table td { color: var(--color-graphite); }
+@media (max-width: 900px) { .kitf__panel { grid-template-columns: var(--layout-col-1); } }
 /* Persona cards (DRCEQA): three personas side by side, white cards on a grey panel */
 .personas { margin: var(--space-28) var(--space-0); }
 .personas__panel { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
@@ -1271,9 +1289,9 @@
 .sticky-board__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .sticky-board__grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .sticky-board__grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.sticky-board__item { display: grid; }
+.sticky-board__item { display: grid; grid-template-columns: var(--layout-col-1); min-width: var(--space-0); }
 .prose .sticky-board__note { margin: var(--space-0); min-height: var(--size-sticky-h); font-size: var(--text-ui); line-height: var(--leading-ui); }
-.prose .sticky-board__note, .prose .sticky-board__over--blue { aspect-ratio: 1; min-height: auto; }
+.prose .sticky-board__note, .prose .sticky-board__over--blue { box-sizing: border-box; width: var(--size-full); min-width: var(--space-0); aspect-ratio: 1; min-height: auto; }
 .prose .sticky-board__over--blue { font-size: var(--text-micro); }
 .prose .sticky-board__item--wide .sticky-board__note { width: calc(50% - var(--space-7)); }
 .sticky-board__item--wide { grid-column: span 2; }
