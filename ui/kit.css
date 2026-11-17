@@ -508,6 +508,7 @@
   --size-phone: 380px;
   --space-handsets: 44px;
   --layout-rivals: repeat(5, minmax(0, 1fr));
+  --size-sfa-strip: 620px;
   --layout-rivals-sm: repeat(4, minmax(0, 1fr));
   --size-bloom-flower: 44%;
   --size-bloom-flower-hero: 150px;
@@ -1110,6 +1111,23 @@
 .voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+/* Smart Financial Assistant: the app's screens in phone frames — before/after pair, the Before card, a row under each hypothesis */
+.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
+.before-after { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); margin: var(--space-28) var(--space-0); }
+.before-after .before-after__panel { justify-content: center; align-items: center; gap: var(--space-32); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.before-after__side { display: grid; justify-items: center; gap: var(--space-12); }
+.before-after__arrow { color: var(--color-accent); font-size: var(--text-case-h2); }
+.before-after__note { width: var(--layout-reading); max-width: 100%; margin: var(--space-0) auto; color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); text-align: center; }
+.before-screens { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-20); margin: var(--space-20) var(--space-0) var(--space-28); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.before-screens__text { display: grid; gap: var(--space-12); justify-items: start; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .before-screens__text ul { margin: var(--space-0); }
+.before-screens .before-screens__row { justify-content: center; gap: var(--space-24); }
+.screen-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-16); margin: var(--space-14) var(--space-0) var(--space-40); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.screen-row .screen-row__phones { justify-content: center; gap: var(--space-32); }
+.screen-row__strip { display: grid; justify-self: center; width: min(100%, var(--size-sfa-strip)); gap: var(--space-8); justify-items: center; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
+.screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
+@media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
 /* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
 .rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
 .rivals + .rivals { margin-top: var(--space-28); }
