@@ -293,7 +293,7 @@ export const moreWork: MoreEntry[] = [
   { slug: "task-creation", title: "Task Creation Reimagined", meta: "2025", cover: { src: "/work/task-creation/01.webp", width: 1800, height: 1125, alt: "The redesigned task form and custom repeat beside the results: +94% task saves, ~96% faster task creation, −65% drop-offs in custom repeat setup, +22 SUS." } },
   { slug: "onboarding-ab-testing", title: "Onboarding through Hypotheses & A/B Testing", meta: "2025 · concept", cover: { src: "/work/onboarding-ab-testing/01.webp", width: 1800, height: 910, alt: "Onboarding screens of a heart rate measurement app." } },
   { slug: "mental-health-mvp", title: "Mental health support MVP", meta: "2023", cover: { src: "/work/mental-health-mvp/01.webp", width: 1800, height: 1125, alt: "Screens of the mental health support app." } },
-  { slug: "dnipro-education-center", title: "Dnipropetrovsk Regional Center for Educational Quality Assessment", meta: "2023 · UX audit and redesign", cover: { src: "/work/dnipro-education-center/01.webp", width: 1800, height: 1125, alt: "The DRCEQA website redesign." } },
+  { slug: "dnipro-education-center", title: "Dnipropetrovsk Regional Center for Educational Quality Assessment", meta: "2023 · UX audit and redesign", cover: { src: "/work/dnipro-education-center/cover.webp", width: 1800, height: 1125, alt: "Usability results of the redesign: task completion 50% to 100%, time on task about 5 to 1.5 minutes, errors 5 to 0, satisfaction 2.16 to 4.14 out of 5; next to them the new main page on desktop and on a phone." } },
 ];
 
 /** Greeting on the first visit: English first, then Ukrainian. Never Russian or Belarusian. */

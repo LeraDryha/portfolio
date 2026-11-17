@@ -13,19 +13,25 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
 
 <Chapter id="discovery" n={1} of={4} title="Discovery">
 
-### Competitor analysis
-
 <Figure src="/work/onboarding-ab-testing/02.webp" width={1800} height={1412} alt="Competitor analysis of heart rate apps' onboarding." caption="Competitor analysis." />
 
-### Points of parity
+<StickyBoard cols={5} caption="Points of parity." notes={[
+  {text: "Privacy & Policy"},
+  {text: "Welcome screen"},
+  {text: "General data (name/age/sex)"},
+  {text: "Body metrics"},
+  {text: "Sync with Apple/ Google health"},
+]} />
 
-<Figure src="/work/onboarding-ab-testing/03.webp" width={1800} height={500} alt="Points of parity across the competitors." caption="Points of parity." />
-
-### Points of difference
-
-<Figure src="/work/onboarding-ab-testing/04.webp" width={1800} height={950} alt="Points of difference across the competitors." caption="Points of difference." />
-
-### UI patterns
+<StickyBoard cols={4} caption="Points of difference." notes={[
+  {text: "Health conditions"},
+  {text: "Heartbeat insights survey"},
+  {text: "User goals"},
+  {text: "Guest mode"},
+  {text: "First measurement"},
+  {text: "Feature Walkthrough"},
+  {text: "Non-medical disclaimer screen", note: "Both Apple and Google require clear disclaimers if a product is not a medical device. All apps using HealthKit must state they do not replace a doctor. If an app is positioned as a “medical” product without certification, it may fall under strict regulations (FDA in the US, MDR in the EU)", tone: "red"},
+]} />
 
 <Figure src="/work/onboarding-ab-testing/05.webp" width={1800} height={1108} alt="UI patterns from competitors' onboarding." caption="UI patterns." />
 
@@ -44,26 +50,33 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
 - **Know where I am, reduce anxiety, sense of control** → ↑ onboarding completion
 - **Feel safe sharing data, clear boundaries (“not medical advice”)** → ↑ credibility, ↑ user retention
 
-### Best practices
+<StickyBoard cols={3} caption="NN/g best practices for primary onboarding." notes={[
+  {text: "Lead users to the first “aha moment” quickly", note: "Don’t waste time on abstract slides. Let the user do something meaningful immediately (e.g., measure heart rate)."},
+  {text: "Minimize friction at entry", note: "Delay barriers like long forms, account creation, or complex permissions until after the user has seen value. If possible, allow explore without signup."},
+  {text: "Focus on core value, not all features", note: "Show only the minimum set of actions needed for success. Advanced features belong in secondary onboarding."},
+  {text: "Use contextual, just-in-time guidance", note: "If the first task needs explanation, provide lightweight, inline tips (not a heavy tour). Example: highlight the “Start measurement” button rather than showing a 5-step tutorial."},
+  {text: "Build trust and set expectations", note: "Add disclaimers, privacy notes, and transparent communication. Helps users feel safe during their first interaction."},
+  {text: "Make early wins visible", note: "Reward users with feedback after their first action (e.g., show a result, chart, or simple insight)."},
+]} />
 
-<FigurePair>
-  <HalfFigure src="/work/onboarding-ab-testing/06.webp" width={1800} height={1404} alt="NN/g best practices for primary onboarding." caption="NN/g best practices for primary onboarding." />
-  <HalfFigure src="/work/onboarding-ab-testing/07.webp" width={1800} height={1404} alt="Userpilot best practices for primary onboarding." caption="Userpilot best practices for primary onboarding." />
-</FigurePair>
-
-### Hypotheses
+<StickyBoard cols={3} caption="Userpilot best practices for primary onboarding." notes={[
+  {text: "Reduce friction at signup", note: "-Keep sign-up as simple as possible (SSO, minimal fields). -Allow “explore without account” (guest mode) if feasible. -Don’t overwhelm with long forms upfront."},
+  {text: "Communicate value instantly", note: "Use a short, clear welcome message → “This is what you can achieve here.” Reinforce the product’s core value proposition before asking for data or permissions."},
+  {text: "Guide users to their first “Aha! moment”", note: "Lead users directly to the activation point (e.g., first heart rate measurement). “Show, don’t tell”: (interactive guidance)"},
+  {text: "Personalize early", note: "Ask about goals/ expectations right away (what the user wants to achieve). Adjust experience accordingly (tailored copy, recommended features)."},
+  {text: "Keep it short & actionable", note: "Primary onboarding should take just a few minutes. Remove anything non-essential → advanced features belong in secondary onboarding."},
+  {text: "Create early wins & celebrate them", note: "After the first successful action (e.g., measured HR), show feedback/insight immediately. Microcopy, animation, or small celebration to reinforce success."},
+  {text: "Motivate with progress", note: "Progress bars, step counters, or checklists keep users engaged. Make completion feel rewarding (gamification light)."},
+  {text: "Delay push/ permission requests until value is clear", note: "Don’t ask for notifications or integrations on the very first screen. Wait until the user has seen why it matters (e.g., after their first result)."},
+]} />
 
 <Figure src="/work/onboarding-ab-testing/08.webp" width={1800} height={1844} alt="The onboarding hypotheses." caption="Hypotheses." />
-
-### Prioritisation
 
 <Figure src="/work/onboarding-ab-testing/09.webp" width={1800} height={836} alt="The hypotheses prioritised." caption="Prioritisation." />
 
 </Chapter>
 
 <Chapter id="develop" n={3} of={4} title="Develop">
-
-### User flow
 
 <Figure src="/work/onboarding-ab-testing/10.webp" width={1800} height={721} alt="The onboarding user flow." caption="User flow." />
 

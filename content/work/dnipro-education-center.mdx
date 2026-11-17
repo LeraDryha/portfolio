@@ -54,7 +54,7 @@ The client requested a website redesign to give it a modern look, align the inte
 7. Reduce bounce rate
 8. Increase visit duration
 
-<Figure src="/work/dnipro-education-center/03.webp" width={1800} height={1125} alt="The old website's main page next to the audit goals." caption="The website before the redesign." />
+<Figure src="/work/dnipro-education-center/old-site.webp" width={1800} height={1111} alt="The old main page: a two-row grey menu of personal accounts, a long side menu, a map of the region, icon tiles, a large banner and news cards." caption="The website before the redesign." />
 
 </Chapter>
 
@@ -75,11 +75,33 @@ I created a mood board with screenshots of competitors, organized into the follo
 5. Geometry
 6. Tone of Voice
 
-<Figure src="/work/dnipro-education-center/04.webp" width={1800} height={1125} alt="Mood board of other regional centers' websites." caption="UI competitor research." />
+<Figure src="/work/dnipro-education-center/rival-ukrainian.webp" width={1200} height={1000} alt="The Ukrainian Center for Educational Quality Assessment website: a top bar with search, a red and grey header, a news banner and service cards." caption="Ukrainian Center for Educational Quality Assessment." />
+
+<FigureGrid>
+  <HalfFigure src="/work/dnipro-education-center/rival-kyiv.webp" width={1200} height={1000} alt="The Kyiv regional center website: a ZNO banner, a dark blue menu and large blue icons." caption="Kyiv regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-ivano-frankivsk.webp" width={1200} height={1000} alt="The Ivano-Frankivsk regional center website: a light header, a photo carousel and three services with red icons." caption="Ivano-Frankivsk regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-odesa.webp" width={1200} height={1000} alt="The Odesa regional center website: contacts on top, a grey menu with dropdowns, a news column and a banner." caption="Odesa regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-vinnytsia.webp" width={1200} height={1000} alt="The Vinnytsia regional center website: working hours, contacts and served regions on top, a grey menu and a news slider." caption="Vinnytsia regional center." />
+</FigureGrid>
 
 ### Competitor analysis
 
-<Figure src="/work/dnipro-education-center/05.webp" width={1800} height={1125} alt="Competitor analysis table: the Dnipropetrovsk center lacks a mobile-friendly design, clear navigation, breadcrumbs, a modern design, search, a consistent layout, an FAQ and easily accessible contacts." caption="Competitor analysis." />
+<CompetitorMatrix
+  caption="Competitor analysis: the Dnipropetrovsk center against four other centers."
+  groups={[{ label: "Centers", stores: ["Dnipropetrovsk", "Ukrainian center", "Kyiv", "Vinnytsia", "Odesa"] }]}
+  rows={[
+    { feature: "Mobile-friendly design", marks: "nyyyy" },
+    { feature: "Clear navigation", marks: "nnyyn" },
+    { feature: "Breadcrumb navigation", marks: "nnnnn" },
+    { feature: "Region-specific content", marks: "yyyyy" },
+    { feature: "Modern design", marks: "nyyyy" },
+    { feature: "Search function", marks: "nyyny" },
+    { feature: "Consistent layout", marks: "nynnn" },
+    { feature: "FAQ section", marks: "nynnn" },
+    { feature: "Contact information easily accessible", marks: "nyyyy" },
+  ]}
+  parity="Every center shows region-specific content; none has breadcrumbs."
+/>
 
 ### Information architecture
 
@@ -87,7 +109,69 @@ To gain a clear understanding of the workflow, I created a mind map in FigJam ou
 
 This exercise helped me identify the key components of the future solution.
 
-<Figure src="/work/dnipro-education-center/06.webp" width={1800} height={1125} alt="Mind map of all sections of the website." caption="Information architecture." />
+<SiteMap root="Main page" caption="Information architecture." left={[
+  { title: "EVI / EFVV", pages: [
+    { page: "General Information", types: ["Text Page (Table)"] },
+    { page: "Registration Procedure", types: ["Text Page (Table)"] },
+    { page: "EVI / EFVV Subjects", types: ["Text Page"] },
+    { page: "Preparation for EVI / EFVV", types: ["Text Page"] },
+    { page: "FAQ", types: ["FAQ Page"] },
+    { page: "Master’s Admission Exam Participant’s Account", types: ["Account on the UCEQA Website"] },
+  ] },
+  { title: "Teacher certification", pages: [
+    { page: "General Information", types: ["Text Page"] },
+    { page: "Registration Procedure", types: ["Text Page"] },
+    { page: "Preparation for Testing", types: ["Link to UCEQA Website"] },
+    { page: "Independent Testing", types: ["Link to UCEQA Website"] },
+    { page: "Results Determination", types: ["Link to UCEQA Website"] },
+    { page: "Status of Registration Document Processing", types: ["Link to UCEQA Website"] },
+    { page: "Certification Participant’s Account", types: ["Link to UCEQA Website"] },
+  ] },
+  { title: "Monitoring studies", pages: [
+    { page: "General Information" },
+    { page: "PISA" },
+    { page: "Primary Education" },
+  ] },
+  { title: "Collaboration", pages: [
+    { page: "EIT Coordinators", types: ["Account on the DNEPRTEST Website"] },
+    { page: "Conferences for Coordinators", types: ["Account on the Website"] },
+    { page: "EIT Involvement", types: ["Text Page + Table"] },
+    { page: "School Principals’ Account", types: ["Account on the UCEQA Website"] },
+  ] },
+  { title: "Trial EIT", pages: [
+    { page: "Refunds", types: ["Text Page (Table)"] },
+    { page: "Trial EIT Participant’s Account", types: ["Account on the DRCEQA Website"] },
+  ] },
+  { title: "News", pages: [
+    { page: "News Archive" },
+  ] },
+]} right={[
+  { title: "About us", pages: [
+    { page: "General Information", types: ["Text Page"] },
+    { page: "Contact Information", types: ["Text Page + Map"] },
+    { page: "Access to Public Information", types: ["Text Page"] },
+    { page: "Legislation", types: ["Page with Links"] },
+    { page: "Statistics and Analytics", types: ["List of Links"] },
+    { page: "Public Monitoring", types: ["Text Page"] },
+  ] },
+  { title: "NMT / EIT", pages: [
+    { page: "General Information", types: ["Text Page (Table)"] },
+    { page: "Registration Procedure", types: ["Text Page (Table)"] },
+    { page: "NMT Subjects", types: ["Page with Links"] },
+    { page: "Preparation for NMT", types: ["Text Page + Subsections"], children: [
+      { page: "NMT Online", types: ["Page with Links", "Link to UCEQA website"] },
+      { page: "Practice Online Testing", types: ["Link to UCEQA website"] },
+      { page: "Past Year Tests", types: ["Page with Links", "Page with Test Years", "List of Links"] },
+    ] },
+    { page: "Certificates and Duplicates", types: ["Text Page + Table + Subsections"], children: [
+      { page: "Procedure for Preparing and Issuing Certificate Duplicates", types: ["Text Page (Table)"] },
+      { page: "Procedure for Preparing and Issuing Repeated Certificates", types: ["Text Page (Table)"] },
+      { page: "Information on Obtaining a Statement of NMT Results", types: ["Link to UCEQA website"] },
+    ] },
+    { page: "FAQ", types: ["FAQ Page"] },
+    { page: "Participant Information Page for NMT/EIT", types: ["Link to UCEQA Personal Account"] },
+  ] },
+]} />
 
 ### User survey
 
@@ -100,8 +184,6 @@ The goal was to gather as much information as possible and conduct a survey. My 
   { value: "13", cap: "educators" },
 ]} />
 
-<Figure src="/work/dnipro-education-center/07.webp" width={1800} height={1125} alt="The survey results and the survey question list." caption="User survey." />
-
 </Chapter>
 
 <Chapter id="define" n={3} of={4} title="Define">
@@ -110,7 +192,26 @@ The goal was to gather as much information as possible and conduct a survey. My 
 
 One of the outcomes of the interviews was transforming the insights about these roles into personas.
 
-<Figure src="/work/dnipro-education-center/08.webp" width={1800} height={1125} alt="Three personas: an applicant, a teacher and a contracted worker." caption="User personas." />
+<PersonaCards caption="User personas." items={[
+  { role: "Applicant", photo: { src: "/work/dnipro-education-center/persona-applicant.webp", alt: "A teenage girl with a backpack and notebooks." },
+    facts: [["Name", "Veronika"], ["Age", "16"], ["Gender", "Female"], ["Occupation", "Applicant"], ["Location", "Dnipropetrovsk Region"], ["Device", "Mobile phone"], ["Applications", "Instagram, Tik-Tok, Telegram, Google"]],
+    about: "A student in her final year, preparing for exams.",
+    goals: "To perform well in exams to gain admission to a good university.",
+    needs: "To find timely information about registration requirements for exams and details about the exam process.",
+    challenges: ["Difficulty finding the section with the needed information.", "Lack of a mobile-friendly version of the website."] },
+  { role: "Teacher", photo: { src: "/work/dnipro-education-center/persona-teacher.webp", alt: "A woman holding a book." },
+    facts: [["Name", "Natalia"], ["Age", "46"], ["Gender", "Female"], ["Occupation", "Teacher"], ["Location", "Zaporizhzhia Region"], ["Device", "Computer/laptop, mobile phone"], ["Applications", "Facebook, Google, YouTube, Viber"]],
+    about: "Teaches at a school and stays updated on events in the education sector.",
+    goals: "Responsibility toward students who are preparing for this year’s exams, as well as toward the school where she works.",
+    needs: "To find the necessary information about the exam, communicate key points to students, and locate resources to help applicants prepare for the exam.",
+    challenges: ["Students don’t search for information themselves; the teacher has to read it and explain it to them.", "The website lacks a search function."] },
+  { role: "Contracted worker", photo: { src: "/work/dnipro-education-center/persona-worker.webp", alt: "A smiling woman in glasses with her arms crossed." },
+    facts: [["Name", "Kateryna"], ["Age", "43"], ["Gender", "Female"], ["Occupation", "School or university staff"], ["Location", "Dnipropetrovsk Region"], ["Device", "Computer/laptop, mobile phone"], ["Applications", "Facebook, Google, YouTube, Viber"]],
+    about: "Works at a school or university. Hired temporarily for organizing exams",
+    goals: "Additional income.",
+    needs: "To receive clear instructions on the steps and tasks required.",
+    challenges: ["Information is spread across various sections, making it difficult to know where to go to find it.", "Inconvenient training schedule."] },
+]} />
 
 ### Problem definition
 
@@ -133,7 +234,30 @@ My favorite part of any design process is brainstorming. We worked as a team of 
 - Embrace even the craziest ideas
 - Focus on quantity over quality
 
-<Figure src="/work/dnipro-education-center/10.webp" width={1800} height={1125} alt="Brainstorming stickies with ideas for the website." caption="Ideation." />
+<StickyBoard cols={4} caption="Ideation." notes={[
+  {text: "Offer search suggestions based on user input"},
+  {text: "Add a FAQ section to address common questions, reducing the need for users to contact the Regional Center"},
+  {text: "Move contact information to the site header for quicker access"},
+  {text: "Enhance site navigation for easier information search – add a search bar and group content logically by section"},
+  {text: "Organize the menu logically by sections and update its design"},
+  {text: "A mobile-friendly version of the site is needed"},
+  {text: "Clearly indicate the user’s current section and add a “Back to Top” button at the end of each page."},
+  {text: "Create a clear news interface, possibly with a slider, to easily browse news without taking up too much space"},
+  {text: "Keep the menu at the top and structure it logically by sections."},
+  {text: "Select a contrasting color palette for the site"},
+  {text: "Create a custom error page"},
+  {text: "Fix the menu at the top of the page."},
+  {text: "Simplify access to \"Registration\" and registration guidelines"},
+  {text: "Add a \"Back to Top\" button at the end of each page."},
+  {text: "Remove the “Gallery” section if it has low value and instead categorize images by topic"},
+  {text: "Use blue for hyperlinks and underline them to indicate clickable links"},
+  {text: "Emphasize the regions that the site serves"},
+  {text: "Add a menu with breadcrumbs to make it easy for users to navigate between sections and know their current location."},
+  {text: "Choose appropriate typography styles"},
+  {text: "Standardize the layout of all sections"},
+  {text: "Highlight key sections like NMT (EIT), EVI/EFVV, and sub-sections such as “Registration,” “Instructions,” and “Terms.”"},
+  {text: "Unify design elements like layout, font size, and color schemes to give users a consistent and familiar interface"},
+]} />
 
 ### Design system
 
@@ -141,11 +265,44 @@ The design system was developed to ensure consistency, efficiency, and a cohesiv
 
 By standardizing colors, typography, components, and interactions, the design system simplifies the design process and workflow, enabling faster iterations and easier maintenance as the project evolves.
 
-<Figure src="/work/dnipro-education-center/11.webp" width={1800} height={1125} alt="The design system: colour palettes, typography in Roboto, buttons, inputs, filters, cards." caption="Design system." />
+<KitFoundations caption="Design system: colors and typography." font="Roboto" ramps={[
+  { name: "Watermelon", swatches: [["20", "#FEEDEF"], ["30", "#F9A6AF"], ["40", "#F5717F"], ["50", "#F34E5F"], ["60", "#AA3743"], ["70", "#7A2730"], ["80", "#49171D"]] },
+  { name: "Jungle Green", swatches: [["20", "#E5F5F3"], ["30", "#9DD8D0"], ["40", "#51B1A5"], ["50", "#339E90"], ["60", "#287E73"], ["70", "#194F48"], ["80", "#0F2F2B"]] },
+  { name: "Blueberry Blue", swatches: [["20", "#E6EDF8"], ["30", "#9AB8E5"], ["40", "#4E83D2"], ["50", "#024EBE"]] },
+  { name: "Dove Grey", swatches: [["10", "#FFFFFF"], ["15", "#FAFAFA"], ["20", "#E1E1E2"], ["30", "#B4B5B8"], ["40", "#88898D"], ["50", "#6D6E71"], ["60", "#4B4C4F"], ["70", "#2B2C2D"], ["80", "#161616"]] },
+]} styles={[
+  { name: "H1", weight: "Bold", size: "40/48" },
+  { name: "H2", weight: "Medium", size: "32/40" },
+  { name: "H3", weight: "Semi bold", size: "24/28" },
+  { name: "Subtitle 1", weight: "Semi bold", size: "20/22" },
+  { name: "Subtitle 2", weight: "Regular", size: "16/20" },
+  { name: "Body 1", weight: "Regular", size: "16/24" },
+  { name: "Body 2", weight: "Regular", size: "14/20" },
+  { name: "Button 1", weight: "Semi bold", size: "16/20" },
+  { name: "Button 2", weight: "Medium", size: "14/16" },
+  { name: "Caption 1", weight: "Medium", size: "14/16" },
+  { name: "Caption 2", weight: "Medium", size: "12/16" },
+  { name: "Overline", weight: "Regular", size: "12/12" },
+]} />
+
+<KitSheet caption="Design system: components." parts={[
+  { src: "/work/dnipro-education-center/kit-header.webp", width: 1800, height: 989, alt: "The header: logo, phone, email, served regions, social icons, search and the main menu, closed and with a dropdown open.", title: "Header" },
+  { src: "/work/dnipro-education-center/kit-buttons.webp", width: 652, height: 445, alt: "Buttons in red and green: filled, outlined and text, in every state.", title: "Buttons" },
+  { src: "/work/dnipro-education-center/kit-inputs.webp", width: 628, height: 501, alt: "Search inputs in every state, on white and on green.", title: "Inputs" },
+  { src: "/work/dnipro-education-center/kit-cards.webp", width: 1100, height: 776, alt: "News cards with an image, label, date, title, text and a button, in three layouts.", title: "Cards" },
+  { src: "/work/dnipro-education-center/kit-filters.webp", width: 1081, height: 572, alt: "Filters, a side menu with sections, phone links and a dropdown menu.", title: "Filters, link and dropdown menu" },
+  { src: "/work/dnipro-education-center/kit-lists.webp", width: 1056, height: 914, alt: "Service tiles with an icon, a numbered list with arrows, and an FAQ accordion closed and open.", title: "Tiles, lists and accordion" },
+  { src: "/work/dnipro-education-center/kit-articles.webp", width: 1056, height: 612, alt: "Article previews with a read-more link, and contact blocks with address, phone and email.", title: "Articles and contacts" },
+  { src: "/work/dnipro-education-center/kit-footer.webp", width: 1200, height: 1130, alt: "The green footer on desktop, tablet and mobile: logo, contacts, working hours and menu links.", title: "Footer" },
+]} />
 
 ### Main page
 
-<Figure src="/work/dnipro-education-center/12.webp" width={1800} height={1125} alt="The main page before and after the redesign, on desktop and mobile." label="Before & after" caption="Main page." />
+<PageScroll caption="Main page before and after, on desktop, mobile and tablet. The whole page opens on a click." pages={[
+  { src: "/work/dnipro-education-center/main-before.webp", width: 1200, height: 1385, label: "Before", alt: "The old main page: a two-row grey menu, a long side menu with a map, icon tiles, a banner, news cards and a gallery." },
+  { src: "/work/dnipro-education-center/main-after-desktop.webp", width: 1200, height: 3651, label: "After", after: true, phone: { src: "/work/dnipro-education-center/main-after-mobile.webp", width: 600, height: 1230, alt: "The new main page on mobile: regions, logo and menu button, the news slider and a button to all news." }, alt: "The new main page on desktop: header with contacts, regions and search, a menu with dropdowns, a news slider, services for participants, news, collaboration, partners and a green footer." },
+  { src: "/work/dnipro-education-center/main-after-tablet.webp", width: 860, height: 3807, label: "After, tablet", after: true, alt: "The new main page on a tablet: the same sections in a narrower layout with a menu button." },
+]} />
 
 ### Navigation
 
@@ -153,23 +310,48 @@ By standardizing colors, typography, components, and interactions, the design sy
 - Fixed left navigation and breadcrumb trail for easy site navigation
 - User-friendly mobile version
 
-<Figure src="/work/dnipro-education-center/13.webp" width={1800} height={1125} alt="The new navigation on desktop and mobile." caption="Navigation." />
+<Figure src="/work/dnipro-education-center/nav-dropdown.webp" width={1800} height={1480} alt="The desktop menu with НМТ/ЗНО open as a dropdown: general information, registration, subjects, preparation, certificates, FAQ." caption="Dropdown menu on hover." panel />
+
+<Figure src="/work/dnipro-education-center/nav-page.webp" width={1800} height={1269} alt="An inner page: the open section highlighted in the top menu, a left menu with the current page in green, and a breadcrumb trail above the title." caption="Fixed left navigation and breadcrumbs." panel />
+
+<FramedPhones panel shots={[
+  { src: "/work/dnipro-education-center/nav-phone-menu.webp", width: 600, height: 1230, alt: "The mobile menu: search and the sections as an accordion.", caption: "Mobile menu" },
+  { src: "/work/dnipro-education-center/nav-phone-open.webp", width: 600, height: 1230, alt: "The mobile menu with НМТ/ЗНО open and its pages listed.", caption: "A section open" },
+  { src: "/work/dnipro-education-center/nav-phone-sub.webp", width: 600, height: 1230, alt: "The mobile menu inside Підготовка до НМТ, with a back arrow, its pages, and contacts below.", caption: "A subsection, with contacts" },
+]} />
 
 ### Account
 
-<Figure src="/work/dnipro-education-center/14.webp" width={1800} height={1125} alt="The account page before and after the redesign." label="Before & after" caption="Account." />
+<PageScroll caption="Login to the account, before and after, on desktop and mobile." pages={[
+  { src: "/work/dnipro-education-center/account-login-before.webp", width: 1200, height: 1084, label: "Before", alt: "The old login: two bare fields and a dark button beside the long side menu." },
+  { src: "/work/dnipro-education-center/account-login-after.webp", width: 1200, height: 974, label: "After", after: true, phone: { src: "/work/dnipro-education-center/account-phone-login.webp", width: 600, height: 1233, alt: "The login on mobile: breadcrumbs, title, two full-width fields and a full-width red button." }, alt: "The new login: breadcrumbs, the section in the left menu, a title, labelled fields and a red button." },
+]} />
+
+<PageScroll caption="Inside the account, before and after, on desktop and mobile." pages={[
+  { src: "/work/dnipro-education-center/account-cabinet-before.webp", width: 1200, height: 774, label: "Before", alt: "The old account: a webinar notice in bold centred text and four round icons." },
+  { src: "/work/dnipro-education-center/account-cabinet-after.webp", width: 1200, height: 1152, label: "After", after: true, phone: { src: "/work/dnipro-education-center/account-phone-cabinet.webp", width: 600, height: 1233, alt: "The account on mobile: the notice, the numbered list of sections and a log-out button." }, alt: "The new account: breadcrumbs, the notice as plain text with a link, a numbered list of four sections and a log-out button." },
+]} />
+
 
 ### About us
 
 The information was organized into logical groups to make it easier to find and understand
 
-<Figure src="/work/dnipro-education-center/15.webp" width={1800} height={1125} alt="The About us page before and after the redesign." label="Before & after" caption="About us." />
+<PageScroll caption="About us before, and the new General information and Contacts pages. The whole page opens on a click." pages={[
+  { src: "/work/dnipro-education-center/about-before.webp", width: 1200, height: 2817, label: "Before", alt: "The old About us: one long table with general information, territory, tasks, contacts, hours, a map, directions, procurement and links." },
+  { src: "/work/dnipro-education-center/about-after-general.webp", width: 1200, height: 1093, label: "After", after: true, alt: "The new General information page: a left menu of About us pages, breadcrumbs, the text and contacts with icons." },
+  { src: "/work/dnipro-education-center/about-after-contacts.webp", width: 1200, height: 1866, label: "After", after: true, alt: "The new Contacts page: contacts, working hours and the map in labelled rows, procurement and useful links in accordions." },
+]} />
 
 ### News archive
 
 Articles were organized by year for easier navigation and search. Each article includes a tag indicating its topic, allowing users to quickly find relevant information.
 
-<Figure src="/work/dnipro-education-center/16.webp" width={1800} height={1125} alt="The news archive before and after the redesign." label="Before & after" caption="News archive." />
+<PageScroll caption="The news archive before, and the new archive and article. The whole page opens on a click." pages={[
+  { src: "/work/dnipro-education-center/news-before.webp", width: 1200, height: 986, label: "Before", alt: "The old news archive: one long list of dates and headlines with Read more links." },
+  { src: "/work/dnipro-education-center/news-after-archive.webp", width: 1200, height: 2065, label: "After", after: true, alt: "The new archive: years in the left menu, news cards with an image, topic tag, date, title, excerpt and pagination." },
+  { src: "/work/dnipro-education-center/news-after-article.webp", width: 1200, height: 2109, label: "After", after: true, alt: "The new article page: breadcrumbs down to the year, the topic tag and date, the image and the text." },
+]} />
 
 ### Moderated usability testing
 

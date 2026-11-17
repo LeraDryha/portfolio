@@ -35,12 +35,14 @@ type FigureProps = {
   title?: string;
   sizes?: string;
   priority?: boolean;
+  /** on a grey panel, so a white screenshot doesn't melt into the page */
+  panel?: boolean;
 };
 
 /** A case image as it is. The image opens larger in the on-page lightbox; a Figma selection shows on hover. */
-export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority }: FigureProps) {
+export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority, panel }: FigureProps) {
   return (
-    <figure className="fig">
+    <figure className={panel ? "fig fig--panel" : "fig"}>
       <div className="fig__frame">
         {/* Opens the image larger in a modal on the page (see Lightbox); figures in a row are one set */}
         <button
@@ -555,7 +557,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
     <figure className="matrix case-wide">
       <div className="matrix__bar">
         <div className="matrix__legend" aria-hidden="true">
-          {(Object.keys(MARK) as Mark[]).map((m) => (
+          {(Object.keys(MARK) as Mark[]).filter((m) => rows.some((r) => r.marks.split("").some((c) => codes[c] === m))).map((m) => (
             <span key={m}>
               <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
             </span>
@@ -612,6 +614,13 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { Rival } from "@/components/case/Rivals";
+export { SiteMap } from "@/components/case/SiteMap";
+export { PersonaCards } from "@/components/case/PersonaCards";
+export { KitFoundations } from "@/components/case/KitFoundations";
+export { KitSheet } from "@/components/case/KitSheet";
+export { PageScroll } from "@/components/case/PageScroll";
+export { FramedPhones } from "@/components/case/FramedPhones";
+export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings, InPlace, Activities } from "@/components/case/ComfyDefine";

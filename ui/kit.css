@@ -33,6 +33,10 @@
   --color-adtelligent-accent-soft: rgb(255 0 102 / .14);
   /* hubmee's product green (#009850, from its screens) on the Smart Financial Assistant case: deepened in light (5:1 on a tile), the product value at night (4.5:1) */
   --color-sfa-accent: #007a40;
+  /* DRCEQA mind map: the centre’s own red and green, as on Lera’s board */
+  --color-map-root: #c8293f;
+  --color-map-section: #1b7a6c;
+  --color-map-line: #c7c7cc;
   --color-sfa-accent-soft: rgb(0 152 80 / .14);
   /* Smart Financial Assistant's app (hubmee), drawn live on its tile and case hero */
   --color-log-bg: #f7f7f8;
@@ -526,6 +530,15 @@
   --size-phone: 380px;
   --space-handsets: 44px;
   --layout-rivals: repeat(5, minmax(0, 1fr));
+  --size-sitemap-min: 1000px;
+  --layout-persona-who: 2fr 3fr;
+  --layout-kitf: 3fr 2fr;
+  --size-page-window: 460px;
+  --size-page-phone: 30%;
+  --size-kitf-chip: 52px;
+  /* stickies from Lera's boards, paper: the same in both themes */
+  --color-sticky-blue: #a8dafd;
+  --color-sticky-red: #ff6159;
   --size-sfa-strip: 620px;
   /* a framed phone in a device row: as wide as its share of the text column, between these */
   --size-device-min: 120px;
@@ -717,6 +730,12 @@
     --color-adtelligent-accent: #ff0066;
     --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
     --color-sfa-accent: #009850;
+  --color-map-root: #ff6b7d;
+  --color-map-section: #4cc7b3;
+  --color-map-line: #48484a;
+    --color-map-root: #ff6b7d;
+    --color-map-section: #4cc7b3;
+    --color-map-line: #48484a;
     --color-sfa-accent-soft: rgb(0 152 80 / .22);
     --color-log-bg: #000000;
     --color-log-card: #1c1c1e;
@@ -1131,6 +1150,10 @@
 .fig__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; background: none; color: inherit; font: inherit; cursor: zoom-in; }
 .fig__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-4); }
 .fig__img { display: block; width: var(--size-full); height: auto; border-radius: var(--radius-figure); background: var(--color-tile); }
+.fig--panel .fig__frame { padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.fig--panel .fig__img { border-radius: var(--radius-inner); background: var(--color-on-dark); }
+.phone-shots--panel { padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.case[data-case="dnipro-education-center"] .prose h3 { margin-top: var(--space-56); }
 .fig__cap { margin-top: var(--space-10); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); text-align: center; }
 .fig__cap b { color: var(--color-ink); font-weight: var(--weight-medium); }
 /* Figures in a row share one image area so captions line up (any card with image + title + line) */
@@ -1227,6 +1250,90 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Page scroll (DRCEQA): pages before and after side by side, cut to one window from the top; the whole page opens larger */
+.page-scroll { margin: var(--space-20) var(--space-0) var(--space-28); }
+.page-scroll__row { display: grid; align-items: start; gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.page-scroll__item { position: relative; display: grid; gap: var(--space-10); min-width: var(--space-0); }
+.page-scroll__window { display: block; width: var(--size-full); max-height: var(--size-page-window); padding: var(--space-0); overflow: hidden; border: none; border-radius: var(--radius-inner); background: var(--color-on-dark); cursor: zoom-in; }
+.page-scroll__window:focus-visible, .page-scroll__phone:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.page-scroll__window img { display: block; width: var(--size-full); height: auto; }
+.page-scroll__item--phone { padding-bottom: var(--space-24); }
+.page-scroll__phone { position: absolute; right: var(--space-0); bottom: var(--space-0); width: var(--size-page-phone); padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.page-scroll__phone img { display: block; width: var(--size-full); height: auto; }
+@media (max-width: 640px) { .page-scroll__row { grid-template-columns: var(--layout-col-1) !important; } }
+/* Framed phones (DRCEQA): Lera's phone mockups, already framed, whole and side by side */
+.phone-shots { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-16); margin: var(--space-20) var(--space-0) var(--space-28); }
+.phone-shots__item { margin: var(--space-0); }
+.phone-shots__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.phone-shots__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-4); }
+.phone-shots__zoom img { display: block; width: var(--size-full); height: auto; }
+.prose .phone-shots .fig__cap { font-size: var(--text-label); }
+/* Kit sheet (DRCEQA): the client's components together on one grey panel, three columns of white cards */
+.kit-sheet { margin: var(--space-20) var(--space-0) var(--space-28); }
+.kit-sheet__panel { columns: 3; column-gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.kit-sheet__part { display: block; width: var(--size-full); margin: var(--space-0) var(--space-0) var(--space-12); padding: var(--space-8); break-inside: avoid; border: none; border-radius: var(--radius-inner); background: var(--color-on-dark); cursor: zoom-in; }
+.kit-sheet__part:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.kit-sheet__part img { display: block; width: var(--size-full); height: auto; }
+@media (max-width: 900px) { .kit-sheet__panel { columns: 2; } }
+@media (max-width: 560px) { .kit-sheet__panel { columns: 1; } }
+/* Kit foundations (DRCEQA): the client's colour ramps and type scale, live */
+.kitf { margin: var(--space-28) var(--space-0); }
+.kitf__panel { display: grid; grid-template-columns: var(--layout-kitf); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.kitf__colors, .kitf__type { display: grid; align-content: start; gap: var(--space-16); }
+.prose .kitf__title { margin: var(--space-0); font-size: var(--text-subhead); line-height: var(--leading-subhead); font-weight: var(--weight-semibold); }
+.prose .kitf__swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-kitf-chip), 1fr)); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .kitf__swatches li { display: grid; gap: var(--space-2); margin: var(--space-0); padding: var(--space-0); }
+.kitf__chip { display: block; aspect-ratio: 1; border-radius: var(--radius-inner); background: var(--chip); box-shadow: inset 0 0 0 var(--size-hairline) var(--color-hairline); }
+.kitf__step { color: var(--color-ink); font-size: var(--text-micro); }
+.kitf__hex { color: var(--color-pencil); font-family: var(--font-mono); font-size: var(--text-micro); }
+.kitf__table { width: var(--size-full); border-collapse: collapse; font-size: var(--text-label); line-height: var(--leading-tag); }
+.kitf__table th, .kitf__table td { padding: var(--space-6) var(--space-8) var(--space-6) var(--space-0); border-top: var(--size-hairline) solid var(--color-hairline); text-align: left; font-weight: var(--weight-regular); }
+.kitf__table thead th { border-top: none; color: var(--color-pencil); }
+.kitf__table tbody th { color: var(--color-ink); font-weight: var(--weight-medium); }
+.kitf__table td { color: var(--color-graphite); }
+@media (max-width: 900px) { .kitf__panel { grid-template-columns: var(--layout-col-1); } }
+/* Persona cards (DRCEQA): three personas side by side, white cards on a grey panel */
+.personas { margin: var(--space-28) var(--space-0); }
+.personas__panel { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.personas__card { display: grid; align-content: start; gap: var(--space-16); }
+.prose .personas__role { margin: var(--space-0); font-size: var(--text-subhead); line-height: var(--leading-subhead); font-weight: var(--weight-semibold); }
+.personas__who { display: grid; grid-template-columns: var(--layout-persona-who); gap: var(--space-12); align-items: start; }
+.personas__photo { width: var(--size-full); height: auto; border-radius: var(--radius-inner); background: var(--color-tile); }
+.prose .personas__facts { display: grid; gap: var(--space-4); margin: var(--space-0); }
+.prose .personas__facts dt { display: inline; color: var(--color-pencil); }
+.prose .personas__facts dt::after { content: ": "; }
+.prose .personas__facts dd { display: inline; margin: var(--space-0); color: var(--color-ink); }
+@media (max-width: 900px) { .personas__panel { grid-template-columns: var(--layout-col-1); } }
+/* Site map (DRCEQA): Lera's information architecture mind map, live in SVG; scrolls sideways on narrow screens */
+.sitemap { margin: var(--space-28) var(--space-0); }
+.sitemap__scroll { overflow-x: auto; padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.sitemap__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.sitemap__svg { display: block; width: var(--size-full); min-width: var(--size-sitemap-min); height: auto; font-family: var(--font-sans); }
+.sitemap__lines path { fill: none; stroke: var(--color-map-line); stroke-width: 1; }
+.sitemap__svg text { stroke: var(--color-tile); stroke-width: 7px; stroke-linejoin: round; paint-order: stroke; }
+.sitemap__root { fill: var(--color-map-root); font-weight: var(--weight-semibold); }
+.sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
+.sitemap__page { fill: var(--color-ink); }
+.sitemap__type { fill: var(--color-pencil); }
+/* Sticky board (Onboarding): the boards' stickies as live paper on a grey panel, dropping in one by one */
+.sticky-board { display: grid; gap: var(--space-10); margin: var(--space-20) var(--space-0) var(--space-28); }
+.sticky-board__grid { display: grid; gap: var(--space-14); align-items: start; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.sticky-board__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sticky-board__grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.sticky-board__grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.sticky-board__item { display: grid; grid-template-columns: var(--layout-col-1); min-width: var(--space-0); }
+.prose .sticky-board__note { margin: var(--space-0); min-height: var(--size-sticky-h); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .sticky-board__note, .prose .sticky-board__over--blue { box-sizing: border-box; width: var(--size-full); min-width: var(--space-0); aspect-ratio: 1; min-height: auto; }
+.prose .sticky-board__over--blue { font-size: var(--text-micro); }
+.prose .sticky-board__item--wide .sticky-board__note { width: calc(50% - var(--space-7)); }
+.sticky-board__item--wide { grid-column: span 2; }
+.prose .sticky-board__over { position: relative; margin: -45% var(--space-10) var(--space-0) calc(-1 * var(--space-8)); rotate: 1.2deg; }
+.prose .sticky-board__over--red { margin-top: calc(-1 * var(--space-24)); }
+.sticky.sticky-board__over--blue { background: var(--color-sticky-blue); }
+.sticky.sticky-board__over--red { background: var(--color-sticky-red); color: var(--color-sticky-ink); }
+.sticky-board__grid[data-ready="true"] .sticky-board__item { opacity: 0; transform: translateY(calc(-1 * var(--space-16))) scale(.96); transition: opacity .45s ease, transform .55s cubic-bezier(.2, .9, .3, 1.2); transition-delay: calc(var(--i) * 70ms); }
+.sticky-board__grid[data-in="true"] .sticky-board__item { opacity: 1; transform: none; }
+@media (max-width: 640px) { .sticky-board__grid--3, .sticky-board__grid--4, .sticky-board__grid--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sticky-board__grid { padding: var(--space-16); } }
 /* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
 .rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
 .rivals + .rivals { margin-top: var(--space-28); }
