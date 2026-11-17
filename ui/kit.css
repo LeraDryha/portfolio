@@ -533,6 +533,7 @@
   --size-sitemap-min: 1000px;
   --layout-persona-who: 2fr 3fr;
   --layout-kitf: 3fr 2fr;
+  --size-page-window: 620px;
   --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
   --color-sticky-blue: #a8dafd;
@@ -1244,6 +1245,21 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Page scroll (DRCEQA): whole pages before and after in windows of one height that scroll inside */
+.page-scroll { margin: var(--space-20) var(--space-0) var(--space-28); }
+.page-scroll__row { display: grid; gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.page-scroll__item { display: grid; gap: var(--space-10); min-width: var(--space-0); }
+.page-scroll__window { height: var(--size-page-window); overflow-y: auto; overscroll-behavior: contain; border-radius: var(--radius-inner); background: var(--color-on-dark); }
+.page-scroll__window:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.page-scroll__window img { display: block; width: var(--size-full); height: auto; }
+@media (max-width: 640px) { .page-scroll__row { grid-template-columns: var(--layout-col-1) !important; } .page-scroll__window { height: auto; max-height: var(--size-page-window); } }
+/* Framed phones (DRCEQA): Lera's phone mockups, already framed, whole and side by side */
+.phone-shots { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-16); margin: var(--space-20) var(--space-0) var(--space-28); }
+.phone-shots__item { margin: var(--space-0); }
+.phone-shots__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.phone-shots__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-4); }
+.phone-shots__zoom img { display: block; width: var(--size-full); height: auto; }
+.prose .phone-shots .fig__cap { font-size: var(--text-label); }
 /* Kit sheet (DRCEQA): the client's components together on one grey panel, three columns of white cards */
 .kit-sheet { margin: var(--space-20) var(--space-0) var(--space-28); }
 .kit-sheet__panel { columns: 3; column-gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
