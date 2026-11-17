@@ -54,7 +54,7 @@ The client requested a website redesign to give it a modern look, align the inte
 7. Reduce bounce rate
 8. Increase visit duration
 
-<Figure src="/work/dnipro-education-center/03.webp" width={1800} height={1125} alt="The old website's main page next to the audit goals." caption="The website before the redesign." />
+<Figure src="/work/dnipro-education-center/old-site.webp" width={1800} height={1111} alt="The old main page: a two-row grey menu of personal accounts, a long side menu, a map of the region, icon tiles, a large banner and news cards." caption="The website before the redesign." />
 
 </Chapter>
 
@@ -75,11 +75,33 @@ I created a mood board with screenshots of competitors, organized into the follo
 5. Geometry
 6. Tone of Voice
 
-<Figure src="/work/dnipro-education-center/04.webp" width={1800} height={1125} alt="Mood board of other regional centers' websites." caption="UI competitor research." />
+<Figure src="/work/dnipro-education-center/rival-ukrainian.webp" width={1200} height={1000} alt="The Ukrainian Center for Educational Quality Assessment website: a top bar with search, a red and grey header, a news banner and service cards." caption="Ukrainian Center for Educational Quality Assessment." />
+
+<FigureGrid>
+  <HalfFigure src="/work/dnipro-education-center/rival-kyiv.webp" width={1200} height={1000} alt="The Kyiv regional center website: a ZNO banner, a dark blue menu and large blue icons." caption="Kyiv regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-ivano-frankivsk.webp" width={1200} height={1000} alt="The Ivano-Frankivsk regional center website: a light header, a photo carousel and three services with red icons." caption="Ivano-Frankivsk regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-odesa.webp" width={1200} height={1000} alt="The Odesa regional center website: contacts on top, a grey menu with dropdowns, a news column and a banner." caption="Odesa regional center." />
+  <HalfFigure src="/work/dnipro-education-center/rival-vinnytsia.webp" width={1200} height={1000} alt="The Vinnytsia regional center website: working hours, contacts and served regions on top, a grey menu and a news slider." caption="Vinnytsia regional center." />
+</FigureGrid>
 
 ### Competitor analysis
 
-<Figure src="/work/dnipro-education-center/05.webp" width={1800} height={1125} alt="Competitor analysis table: the Dnipropetrovsk center lacks a mobile-friendly design, clear navigation, breadcrumbs, a modern design, search, a consistent layout, an FAQ and easily accessible contacts." caption="Competitor analysis." />
+<CompetitorMatrix
+  caption="Competitor analysis: the Dnipropetrovsk center against four other centers."
+  groups={[{ label: "Centers", stores: ["Dnipropetrovsk", "Ukrainian center", "Kyiv", "Vinnytsia", "Odesa"] }]}
+  rows={[
+    { feature: "Mobile-friendly design", marks: "nyyyy" },
+    { feature: "Clear navigation", marks: "nnyyn" },
+    { feature: "Breadcrumb navigation", marks: "nnnnn" },
+    { feature: "Region-specific content", marks: "yyyyy" },
+    { feature: "Modern design", marks: "nyyyy" },
+    { feature: "Search function", marks: "nyyny" },
+    { feature: "Consistent layout", marks: "nynnn" },
+    { feature: "FAQ section", marks: "nynnn" },
+    { feature: "Contact information easily accessible", marks: "nyyyy" },
+  ]}
+  parity="Every center shows region-specific content; none has breadcrumbs."
+/>
 
 ### Information architecture
 
@@ -87,7 +109,68 @@ To gain a clear understanding of the workflow, I created a mind map in FigJam ou
 
 This exercise helped me identify the key components of the future solution.
 
-<Figure src="/work/dnipro-education-center/06.webp" width={1800} height={1125} alt="Mind map of all sections of the website." caption="Information architecture." />
+<SiteMap root="Main page" caption="Information architecture." sections={[
+  { title: "About us", pages: [
+    { page: "General Information", types: ["Text Page"] },
+    { page: "Contact Information", types: ["Text Page + Map"] },
+    { page: "Access to Public Information", types: ["Text Page"] },
+    { page: "Legislation", types: ["Page with Links"] },
+    { page: "Statistics and Analytics", types: ["List of Links"] },
+    { page: "Public Monitoring", types: ["Text Page"] },
+  ] },
+  { title: "NMT / EIT", pages: [
+    { page: "General Information", types: ["Text Page (Table)"] },
+    { page: "Registration Procedure", types: ["Text Page (Table)"] },
+    { page: "NMT Subjects", types: ["Page with Links"] },
+    { page: "Preparation for NMT", types: ["Text Page + Subsections"], children: [
+      { page: "NMT Online", types: ["Page with Links", "Link to UCEQA website"] },
+      { page: "Practice Online Testing", types: ["Link to UCEQA website"] },
+      { page: "Past Year Tests", types: ["Page with Links", "Page with Test Years", "List of Links"] },
+    ] },
+    { page: "Certificates and Duplicates", types: ["Text Page + Table + Subsections"], children: [
+      { page: "Procedure for Preparing and Issuing Certificate Duplicates", types: ["Text Page (Table)"] },
+      { page: "Procedure for Preparing and Issuing Repeated Certificates", types: ["Text Page (Table)"] },
+      { page: "Information on Obtaining a Statement of NMT Results", types: ["Link to UCEQA website"] },
+    ] },
+    { page: "FAQ", types: ["FAQ Page"] },
+    { page: "Participant Information Page for NMT/EIT", types: ["Link to UCEQA Personal Account"] },
+  ] },
+  { title: "EVI / EFVV", pages: [
+    { page: "General Information", types: ["Text Page (Table)"] },
+    { page: "Registration Procedure", types: ["Text Page (Table)"] },
+    { page: "EVI / EFVV Subjects", types: ["Text Page"] },
+    { page: "Preparation for EVI / EFVV", types: ["Text Page"] },
+    { page: "FAQ", types: ["FAQ Page"] },
+    { page: "Master’s Admission Exam Participant’s Account", types: ["Account on the UCEQA Website"] },
+  ] },
+  { title: "Teacher certification", pages: [
+    { page: "General Information", types: ["Text Page"] },
+    { page: "Registration Procedure", types: ["Text Page"] },
+    { page: "Preparation for Testing", types: ["Link to UCEQA Website"] },
+    { page: "Independent Testing", types: ["Link to UCEQA Website"] },
+    { page: "Results Determination", types: ["Link to UCEQA Website"] },
+    { page: "Status of Registration Document Processing", types: ["Link to UCEQA Website"] },
+    { page: "Certification Participant’s Account", types: ["Link to UCEQA Website"] },
+  ] },
+  { title: "Monitoring studies", pages: [
+    { page: "General Information" },
+    { page: "PISA" },
+    { page: "Primary Education" },
+  ] },
+  { title: "Collaboration", pages: [
+    { page: "EIT Coordinators", types: ["Account on the DNEPRTEST Website"] },
+    { page: "Conferences for Coordinators", types: ["Account on the Website"] },
+    { page: "EIT Involvement", types: ["Text Page + Table"] },
+    { page: "School Principals’ Account", types: ["Account on the UCEQA Website"] },
+  ] },
+  { title: "Trial EIT", pages: [
+    { page: "Refunds", types: ["Text Page (Table)"] },
+    { page: "Trial EIT Participant’s Account", types: ["Account on the DRCEQA Website"] },
+  ] },
+  { title: "News", pages: [
+    { page: "News Archive" },
+  ] },
+]} />
 
 ### User survey
 

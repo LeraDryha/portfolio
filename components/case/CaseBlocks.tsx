@@ -555,7 +555,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
     <figure className="matrix case-wide">
       <div className="matrix__bar">
         <div className="matrix__legend" aria-hidden="true">
-          {(Object.keys(MARK) as Mark[]).map((m) => (
+          {(Object.keys(MARK) as Mark[]).filter((m) => rows.some((r) => r.marks.split("").some((c) => codes[c] === m))).map((m) => (
             <span key={m}>
               <i className={`matrix__mark matrix__mark--${m}`}>{MARK[m].sign}</i> {MARK[m].label}
             </span>
@@ -612,6 +612,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { Rival } from "@/components/case/Rivals";
+export { SiteMap } from "@/components/case/SiteMap";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings, InPlace, Activities } from "@/components/case/ComfyDefine";

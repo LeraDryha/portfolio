@@ -298,6 +298,8 @@ Facts (labels in a column, values aligned; a value can be a link), Problem / Wha
 
 **Bright screenshots in dark** (Smart Financial Assistant): light figures and the widgets strip take `--filter-shot` at night, as the Storybook previews do, so they don't glare on black.
 
+**Site map** (DRCEQA): the information architecture as a live tree on a grey panel, case-wide: “Main page” as an ink pill, sections in three columns (two on tablets, one on phones), each page with its kind under it in pencil (Text page, Link to UCEQA website…), nested pages on a hairline. The caption sits under it like a figure’s. The competitor matrix legend shows only the marks the table uses.
+
 **Process** (Smart Financial Assistant, between chapters 1 and 2): Lera's process from Notion word for word on a grey block in the reading column: “My Process” at case-H2 size, the line with **Design Thinking** in semibold ink, the steps as a list. Not a chapter, so it stays out of the chapter list.
 
 **Goal** (Smart Financial Assistant): what a part of the research set out to learn, right under its heading: “Goal” as a label in the case accent (semibold) over the line in ink at UI size, on the case accent's soft tint with inner corners. Lera's own goal lines only, one per part.

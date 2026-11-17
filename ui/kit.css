@@ -1227,6 +1227,21 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Site map (DRCEQA): the information architecture as a live tree, sections in columns, the page type under each page */
+.sitemap { margin: var(--space-28) var(--space-0); }
+.sitemap__panel { display: grid; gap: var(--space-20); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .sitemap__root { justify-self: start; margin: var(--space-0); padding: var(--space-4) var(--space-12); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font-size: var(--text-label); font-weight: var(--weight-semibold); line-height: var(--leading-tag); }
+.sitemap__sections { columns: 3; column-gap: var(--space-28); }
+.sitemap__section { break-inside: avoid; margin-bottom: var(--space-20); }
+.prose .sitemap__section h4 { margin: var(--space-0) var(--space-0) var(--space-6); font-size: var(--text-ui); line-height: var(--leading-ui); font-weight: var(--weight-semibold); }
+.prose .sitemap__tree { margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-0) var(--space-14); border-left: var(--size-hairline) solid var(--color-hairline); list-style: none; }
+.prose .sitemap__tree li { position: relative; margin: var(--space-0); padding: var(--space-4) var(--space-0); font-size: var(--text-label); line-height: var(--leading-tag); }
+.prose .sitemap__tree li::before { content: ""; position: absolute; top: var(--space-12); left: calc(-1 * var(--space-14)); width: var(--space-10); border-top: var(--size-hairline) solid var(--color-hairline); }
+.sitemap__page { display: block; color: var(--color-ink); }
+.sitemap__type { display: block; color: var(--color-pencil); font-size: var(--text-micro); }
+.prose .sitemap__tree .sitemap__tree { margin-top: var(--space-4); }
+@media (max-width: 900px) { .sitemap__sections { columns: 2; } }
+@media (max-width: 560px) { .sitemap__sections { columns: 1; } .sitemap__panel { padding: var(--space-16); } }
 /* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
 .rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
 .rivals + .rivals { margin-top: var(--space-28); }
