@@ -1476,9 +1476,13 @@
 .hyp h3 { margin: var(--space-0) var(--space-0) var(--space-10); }
 .hyp p { margin: var(--space-0) var(--space-0) var(--space-6); }
 .hyp b { color: var(--color-ink); font-weight: var(--weight-semibold); }
-.hyp__success { margin-top: var(--space-14); padding-top: var(--space-12); border-top: var(--border-hairline); font-size: var(--text-ui); line-height: var(--leading-ui); }
-.prose .hyp__success ul { margin: var(--space-0); }
-.hyp small { display: block; margin-top: var(--space-10); color: var(--color-pencil); font-family: var(--font-mono); font-size: var(--text-label); line-height: var(--leading-ui); }
+.hyp__plan { display: grid; gap: var(--space-10); margin-top: var(--space-16); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .hyp__plan-title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); }
+.hyp__plan-cols { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12) var(--space-20); }
+.prose .hyp__plan ul { margin: var(--space-6) var(--space-0) var(--space-0); }
+.prose .hyp__plan .define__label { margin: var(--space-0); }
+.hyp__events { font-family: var(--font-mono); font-size: var(--text-label); overflow-wrap: anywhere; }
+@media (max-width: 640px) { .hyp__plan-cols { grid-template-columns: var(--layout-col-1); } }
 
 /* End of a case */
 /* GRG case: wider bands than the reading column (the live product, the token anatomy) */

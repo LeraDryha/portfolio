@@ -161,13 +161,20 @@ export function Insight({ n, title, quote, children }: { n: number; title: strin
   );
 }
 
-/** A hypothesis in the If / Then / Because / This will lead to form, with the events that measure it. */
-export function Hypothesis({ title, ifText, then, because, leadsTo, metrics, success }: { title: string; ifText: string; then: string; because: string; leadsTo: string; metrics?: string; success?: string[] }) {
+/** A hypothesis as Lera wrote it in Notion: If / Then / Because / This will lead to (an optional second If line),
+ *  and under it her Validation plan: key metrics (Mixpanel events) and success indicators. */
+export function Hypothesis({ title, ifText, and, then, because, leadsTo, metrics, success }: { title: string; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[] }) {
   return (
     <div className="hyp">
       <h3>{title}</h3>
       <p>
         <b>If</b> {ifText}
+        {and && (
+          <>
+            <br />
+            {and}
+          </>
+        )}
       </p>
       <p>
         <b>Then</b> {then}
@@ -178,17 +185,50 @@ export function Hypothesis({ title, ifText, then, because, leadsTo, metrics, suc
       <p>
         <b>This will lead to</b> {leadsTo}
       </p>
-      {success && (
-        <div className="hyp__success">
-          <p className="define__label">Success looks like</p>
-          <ul>
-            {success.map((i) => (
-              <li key={i}>{i}</li>
-            ))}
-          </ul>
+      {(metrics || success) && (
+        <div className="hyp__plan">
+          <p className="hyp__plan-title">Validation plan</p>
+          <div className="hyp__plan-cols">
+            {metrics && (
+              <div>
+                <p className="define__label">Key metrics (Mixpanel events)</p>
+                <ul className="hyp__events">
+                  {metrics.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {success && (
+              <div>
+                <p className="define__label">Success indicators</p>
+                <ul>
+                  {success.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       )}
-      {metrics && <small>Mixpanel: {metrics}</small>}
+    </div>
+  );
+}
+
+/** The null hypothesis: its title over Lera's lines, on the same card as a hypothesis. */
+export function NullHypothesis({ title, lines }: { title: string; lines: string[] }) {
+  return (
+    <div className="hyp">
+      <h3>{title}</h3>
+      <p>
+        {lines.map((l, i) => (
+          <span key={l}>
+            {i > 0 && <br />}
+            {l}
+          </span>
+        ))}
+      </p>
     </div>
   );
 }
