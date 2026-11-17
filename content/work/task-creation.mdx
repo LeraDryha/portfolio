@@ -98,7 +98,11 @@ All core functions were grouped on a single screen with clearly separated blocks
 
 Task date is pre-filled as “Today” to reduce effort. Advanced settings (e.g. presets are added for quick selection, enabling users to set the desired date and specific time with ease) are collapsed and available on demand.
 
-<Figure src="/work/task-creation/07.webp" width={1800} height={1280} alt="The new task creation screen with the date pre-filled as Today." caption="One screen, the date pre-filled as Today." />
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-form.webp", width: 640, height: 1313, alt: "The new task form on one screen: status, assignees, location, date, reminder, repeat, attachments and a note; the date row highlighted.", caption: "One screen" },
+  { src: "/work/task-creation/new-date-presets.webp", width: 640, height: 1313, alt: "Date presets: Today, Tomorrow, Next week, No date, On date, and a time.", caption: "Date presets" },
+  { src: "/work/task-creation/new-date-calendar.webp", width: 640, height: 1313, alt: "On date opens a calendar in place.", caption: "On date" },
+]} />
 
 ### Fully flexible repeat
 
@@ -108,10 +112,21 @@ The repeat component was redesigned to support complex schedules (e.g., “every
 
 Additionally, the copy was revised for clarity — instead of a vague “Frequency - 1 month,” it now says “Repeat every 1 month,” and instead of “End - May 2, 2025,” it now clearly states “Repeat ends – May 2, 2025.”
 
-<FigurePair>
-  <HalfFigure src="/work/task-creation/08.webp" width={1800} height={1280} alt="The new repeat settings with specific days." caption="Repeat on specific days." />
-  <HalfFigure src="/work/task-creation/09.webp" width={1800} height={1280} alt="The new repeat end conditions." caption="Repeat ends on a date or after a number of times." />
-</FigurePair>
+**Repeat on specific days**
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-repeat-weekly.webp", width: 640, height: 1313, alt: "Custom repeat every week on Thursday.", caption: "Every week on Thu" },
+  { src: "/work/task-creation/new-repeat-monthly.webp", width: 640, height: 1313, alt: "Custom repeat every month on day 2 or on the first Wednesday.", caption: "On day 2 or the first Wednesday" },
+  { src: "/work/task-creation/new-repeat-yearly.webp", width: 640, height: 1313, alt: "Custom repeat every year.", caption: "Every year" },
+]} />
+
+**Repeat ends on a date or after a number of times**
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-ends.webp", width: 640, height: 1313, alt: "Repeat ends: never, on a date, or after 30 occurrences.", caption: "Never, on a date, after N" },
+  { src: "/work/task-creation/new-ends-date.webp", width: 640, height: 1313, alt: "Repeat ends on a date picked in a calendar.", caption: "On a date" },
+  { src: "/work/task-creation/new-ends-month.webp", width: 640, height: 1313, alt: "The month and year wheel for the end date.", caption: "Month and year" },
+]} />
 
 </Chapter>
 
