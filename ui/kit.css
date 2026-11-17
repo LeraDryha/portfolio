@@ -532,6 +532,9 @@
   --layout-rivals: repeat(5, minmax(0, 1fr));
   --size-sitemap-min: 1000px;
   --layout-persona-who: 2fr 3fr;
+  /* stickies from Lera's boards, paper: the same in both themes */
+  --color-sticky-blue: #a8dafd;
+  --color-sticky-red: #ff6159;
   --size-sfa-strip: 620px;
   /* a framed phone in a device row: as wide as its share of the text column, between these */
   --size-device-min: 120px;
@@ -1262,6 +1265,25 @@
 .sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
 .sitemap__page { fill: var(--color-ink); }
 .sitemap__type { fill: var(--color-pencil); }
+/* Sticky board (Onboarding): the boards' stickies as live paper on a grey panel, dropping in one by one */
+.sticky-board { display: grid; gap: var(--space-10); margin: var(--space-20) var(--space-0) var(--space-28); }
+.sticky-board__grid { display: grid; gap: var(--space-14); align-items: start; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.sticky-board__grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sticky-board__grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.sticky-board__grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.sticky-board__item { display: grid; }
+.prose .sticky-board__note { margin: var(--space-0); min-height: var(--size-sticky-h); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .sticky-board__note, .prose .sticky-board__over--blue { aspect-ratio: 1; min-height: auto; }
+.prose .sticky-board__over--blue { font-size: var(--text-micro); }
+.prose .sticky-board__item--wide .sticky-board__note { width: calc(50% - var(--space-7)); }
+.sticky-board__item--wide { grid-column: span 2; }
+.prose .sticky-board__over { position: relative; margin: -45% var(--space-10) var(--space-0) calc(-1 * var(--space-8)); rotate: 1.2deg; }
+.prose .sticky-board__over--red { margin-top: calc(-1 * var(--space-24)); }
+.sticky.sticky-board__over--blue { background: var(--color-sticky-blue); }
+.sticky.sticky-board__over--red { background: var(--color-sticky-red); color: var(--color-sticky-ink); }
+.sticky-board__grid[data-ready="true"] .sticky-board__item { opacity: 0; transform: translateY(calc(-1 * var(--space-16))) scale(.96); transition: opacity .45s ease, transform .55s cubic-bezier(.2, .9, .3, 1.2); transition-delay: calc(var(--i) * 70ms); }
+.sticky-board__grid[data-in="true"] .sticky-board__item { opacity: 1; transform: none; }
+@media (max-width: 640px) { .sticky-board__grid--3, .sticky-board__grid--4, .sticky-board__grid--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sticky-board__grid { padding: var(--space-16); } }
 /* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
 .rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
 .rivals + .rivals { margin-top: var(--space-28); }

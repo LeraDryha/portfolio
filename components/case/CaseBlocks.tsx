@@ -614,6 +614,7 @@ export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { Rival } from "@/components/case/Rivals";
 export { SiteMap } from "@/components/case/SiteMap";
 export { PersonaCards } from "@/components/case/PersonaCards";
+export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings, InPlace, Activities } from "@/components/case/ComfyDefine";
