@@ -1,0 +1,171 @@
+export const meta = {
+  heading: "Mental health support MVP",
+  lead: "Create an MVP to aid Ukrainians with mental health issues by providing essential information and helpful practices.",
+  facts: [
+    { label: "Role", value: "Product designer" },
+    { label: "Year", value: "2023" },
+    { label: "Research", value: "11 interviews, 9 local and international resources" },
+    { label: "Methods", value: "Design Thinking, interviews, personas, CJM, wireframing, prototyping, Atomic Design, UI kit" },
+  ],
+};
+
+This design project was developed to support the many Ukrainians experiencing mental health challenges, especially since the war began. It offers valuable information about their conditions and provides practical tools to help them find relief.
+
+Design of a service to support mental health. The project focused on improving the user experience for individuals seeking emotional support and self-development resources. The process included user research, persona creation, customer journey mapping, and prototyping to ensure intuitive navigation and access to valuable resources. The Atomic Design approach was used to develop the UI kit, ensuring consistency and scalability.
+
+<Chapter id="empathise" n={1} of={5} title="Empathise">
+
+### User interviews
+
+“What exactly do people with mental health issues need, and how can we help them?”
+
+<Stats items={[
+  { value: "6", cap: "interviews focused on anxiety disorders" },
+  { value: "5", cap: "interviews focused on panic attacks" },
+  { value: "9", cap: "local and international resources" },
+]} />
+
+<Figure src="/work/mental-health-mvp/02.webp" width={1800} height={1747} alt="The interview findings board." caption="User interviews." />
+
+### Competitor research
+
+This analysis showed that no app on the Ukrainian market fully addresses our users' pain points and needs, though some provide narrower solutions.
+
+<Figure src="/work/mental-health-mvp/03.webp" width={1800} height={1007} alt="Competitor research of 9 local and international resources." caption="Competitor research." />
+
+</Chapter>
+
+<Chapter id="define" n={2} of={5} title="Define">
+
+### User personas
+
+<Figure src="/work/mental-health-mvp/04.webp" width={1800} height={1397} alt="User personas for anxiety disorders and panic attacks." caption="User personas." />
+
+<TileLists lists={[
+  { title: "Pain points for people with anxiety disorders", items: [
+    "Lack of support from family members and others with similar experiences.",
+    "Difficulty accessing clear, reliable information about their condition from trusted sources and specialists.",
+    "Uncertainty about how to reduce anxious thoughts and challenges in shifting focus in a timely way.",
+  ] },
+  { title: "Pain points for people with panic attacks", items: [
+    "Difficulty finding clear, reliable information on mental health from trusted sources and professionals.",
+    "Struggles with understanding and managing emotions, resulting in a lack of control over one’s condition.",
+    "Limited support and assistance during panic attacks.",
+    "A lack of empathy and understanding from others.",
+    "Absence of tools to track and monitor mental health progress and identify triggers for panic attacks.",
+  ] },
+]} />
+
+### Customer journey map
+
+<Figure src="/work/mental-health-mvp/05.webp" width={1265} height={1408} alt="Customer journey map for people with anxiety disorders." caption="CJM for people with anxiety disorders." />
+
+<Figure src="/work/mental-health-mvp/06.webp" width={1265} height={1342} alt="Customer journey map for people with panic attacks." caption="CJM for people with panic attacks." />
+
+</Chapter>
+
+<Chapter id="ideate" n={3} of={5} title="Ideate">
+
+### Problem statement and prioritising
+
+<Figure src="/work/mental-health-mvp/07.webp" width={1800} height={811} alt="Brainstorming board with problem statements." caption="Brainstorming." />
+
+### User flow
+
+I created a user journey map from discovering our website to downloading and using the app. All app features are based on identified user problems and competitor research
+
+<Figure src="/work/mental-health-mvp/08.webp" width={1800} height={2565} alt="User flow from the website to the app." caption="User flow." />
+
+</Chapter>
+
+<Chapter id="prototype" n={4} of={5} title="Prototype">
+
+### Wireframes
+
+<Figure src="/work/mental-health-mvp/09.webp" width={1800} height={1019} alt="Wireframes of the app." caption="Wireframes." />
+
+### Prototype
+
+<Figure src="/work/mental-health-mvp/10.webp" width={1764} height={1746} alt="The clickable prototype in Figma." caption="Prototype." />
+
+### UI kit
+
+I did an atomic design library and create a design system. The design system contains next items:
+
+- Color scheme
+- Typography
+- Icons
+- Component library
+- Grid system
+- Effects
+- Layout and navigation patterns description
+
+<Figure src="/work/mental-health-mvp/11.webp" width={1800} height={2998} alt="The UI kit built with Atomic Design." caption="UI kit." />
+
+### Screen design
+
+The app provides tools for managing anxiety and self-discovery
+
+Practices and sounds are points of parity features for apps in this domain, providing essential relaxation and stress-relief tools commonly found in mental health applications.
+
+<Figure src="/work/mental-health-mvp/12.webp" width={1800} height={2433} alt="Practices and sounds screens." caption="Practices and sounds." />
+
+### 1. Difficulty understanding and managing emotions, leading to a sense of losing control.
+
+Coping cards help users reframe negative thoughts by pairing automatic, distressing thoughts with rational responses. This tool, inspired by cognitive-behavioral therapy, supports emotional regulation, helping users feel more in control during moments of anxiety.
+
+<Figure src="/work/mental-health-mvp/13.webp" width={1800} height={1204} alt="Coping cards screens." caption="Coping cards." />
+
+### 2. Difficulty accessing clear, reliable mental health information from trusted sources. Lack of tools to track and monitor mental health progress.
+
+The app offers clinically validated tests for users to assess mental health, understand symptoms, and track progress over time. Visual progress tracking helps users observe changes and make informed decisions about their well-being.
+
+<Figure src="/work/mental-health-mvp/14.webp" width={1800} height={1200} alt="Clinically validated tests and progress tracking." caption="Tests and progress." />
+
+### 3. Lack of support and guidance during panic attacks. Lack of empathy and understanding from others.
+
+The app offers a "Hotlines" feature, providing users with immediate access to trusted helplines and specialists for real-time support. Users can connect with verified mental health professionals who provide empathy, guidance, and expert assistance.
+
+This feature addresses the need for timely support, helping users feel understood and supported during moments of distress.
+
+<Figure src="/work/mental-health-mvp/15.webp" width={1800} height={1172} alt="Hotlines screens." caption="Hotlines." />
+
+### 4. Lack of empathy and understanding from others.
+
+The "Community" feature fosters a supportive environment where users can share experiences, seek inspiration, and find comfort in stories from others facing similar challenges.
+
+The "Ask an Expert" option, available with a premium subscription, allows users to receive guidance from mental health professionals, providing trusted insights and empathy to address their concerns.
+
+<Figure src="/work/mental-health-mvp/16.webp" width={1800} height={1134} alt="Community and Ask an Expert screens." caption="Community and Ask an Expert." />
+
+### 5. Lack of tools to track and monitor mental health progress.
+
+The app’s Diary and Mood Tracking features enable users to log daily emotions, track mood patterns, and reflect on their mental health journey. By recording feelings, surrounding factors, and gratitude entries, users gain insights into their mental health progress and identify trends, supporting better self-awareness and emotional management.
+
+<Figure src="/work/mental-health-mvp/17.webp" width={1800} height={1200} alt="Diary and mood tracking screens." caption="Diary and mood tracking." />
+
+### Gamification
+
+I incorporate gamification into the app to encourage consistent engagement, making mental health management feel approachable and rewarding. By offering achievements, progress tracking, and rewards for completing tasks, users are motivated to use the app regularly, reinforcing healthy habits.
+
+Gamification helps transform mental health practices into a more interactive and enjoyable experience, fostering long-term commitment to self-care and emotional well-being.
+
+<Figure src="/work/mental-health-mvp/18.webp" width={1800} height={1134} alt="Achievements and rewards screens." caption="Gamification." />
+
+</Chapter>
+
+<Chapter id="strategy" n={5} of={5} title="Strategy">
+
+### Initial scale
+
+A strong start would be to collaborate with mental health professionals—psychologists, psychotherapists, and neurologists—to recommend the app as a tool for journaling, tracking health dynamics and triggers, and using coping cards to reinforce rational thoughts
+
+### Monetisation
+
+Core features that address user pain points should be free to gather feedback and assess their value. Future monetization could include paid features such as:
+
+- Specialist interaction within the community through a "question-answer" format.
+- Access to specialist contacts for booking appointments, with potential discounts through the app.
+- Access to video lectures and online masterclasses on mental health topics.
+
+</Chapter>

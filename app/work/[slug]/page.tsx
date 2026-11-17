@@ -9,6 +9,7 @@ import { CaseToc } from "@/components/case/CaseToc";
 import { Lightbox } from "@/components/case/Lightbox";
 import { LiveProduct } from "@/components/case/LiveProduct";
 import { OpenCard, Stats } from "@/components/case/CaseBlocks";
+import Image from "next/image";
 
 export const dynamicParams = false;
 
@@ -29,7 +30,8 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
   if (!c) notFound();
   const { entry, meta, Body } = c;
   const next = nextCase(slug);
-  const home = `/#tile-${slug}`;
+  const tile = "vis" in entry;
+  const home = tile ? `/#tile-${slug}` : "/#more-list";
 
   return (
     <>
@@ -38,9 +40,15 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
       </a>
       {/* data-case lets a case take its client's brand colour as the accent (Comfy: its green) */}
       <main className="case" data-case={slug}>
-        <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
-          <Vis entry={entry} priority />
-        </div>
+        {tile ? (
+          <div className={entry.shape === "brand-tall" ? "case-hero case-hero--brand" : "case-hero"}>
+            <Vis entry={entry} priority />
+          </div>
+        ) : (
+          <div className="case-hero case-hero--cover">
+            <Image src={entry.cover.src} width={entry.cover.width} height={entry.cover.height} alt={entry.cover.alt} sizes="(max-width: 640px) 100vw, 1100px" quality={90} priority />
+          </div>
+        )}
 
         <article className="prose" aria-labelledby="case-title">
           {meta.kicker && <p className="case-kicker">{meta.kicker}</p>}
@@ -81,7 +89,7 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
             </div>
           )}
           {/* A product that can be used live (GRG): after the summary, before the story */}
-          {entry.vis.kind === "assemble" && <LiveProduct v={entry.vis} />}
+          {tile && entry.vis.kind === "assemble" && <LiveProduct v={entry.vis} />}
 
           <Body />
 

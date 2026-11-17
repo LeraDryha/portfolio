@@ -280,12 +280,20 @@ export const cases: CaseEntry[] = [
   },
 ];
 
-/** "More work": small cards under the bento, behind a button. */
-export const moreWork = [
-  { title: "Task Creation Reimagined", meta: "2025", url: "https://app.notion.com/p/Task-Creation-Reimagined-22f44bdcbfce803b8820ff2f98222f09" },
-  { title: "Onboarding through Hypotheses & A/B Testing", meta: "2025", url: "https://app.notion.com/p/Onboarding-through-Hypotheses-A-B-Testing-26e44bdcbfce8067a499f30c9ae13e82" },
-  { title: "Mental health support MVP", meta: "2023", url: "https://app.notion.com/p/Case-Study-ce5fb0f537104a5eb7d2346460588691" },
-  { title: "Dnipropetrovsk Regional Center for Educational Quality Assessment", meta: "UX audit", url: "https://app.notion.com/p/Dnipropetrovsk-Regional-Center-for-Educational-Quality-Assessment-13b44bdcbfce8050b01ecb958ac85f3b" },
+/** "More work": smaller cases, as small cards under the bento behind a button. Each has its own page with a cover at the top. */
+export type MoreEntry = {
+  slug: string;
+  title: string;
+  meta: string;
+  /** The picture at the top of the case page (no live product) */
+  cover: { src: string; width: number; height: number; alt: string };
+};
+
+export const moreWork: MoreEntry[] = [
+  { slug: "task-creation", title: "Task Creation Reimagined", meta: "2025", cover: { src: "/work/task-creation/01.webp", width: 1800, height: 1125, alt: "The task creation flow, redesigned." } },
+  { slug: "onboarding-ab-testing", title: "Onboarding through Hypotheses & A/B Testing", meta: "2025 · concept", cover: { src: "/work/onboarding-ab-testing/01.webp", width: 1800, height: 910, alt: "Onboarding screens of a heart rate measurement app." } },
+  { slug: "mental-health-mvp", title: "Mental health support MVP", meta: "2023", cover: { src: "/work/mental-health-mvp/01.webp", width: 1800, height: 1125, alt: "Screens of the mental health support app." } },
+  { slug: "dnipro-education-center", title: "Dnipropetrovsk Regional Center for Educational Quality Assessment", meta: "2023 · UX audit and redesign", cover: { src: "/work/dnipro-education-center/01.webp", width: 1800, height: 1125, alt: "The DRCEQA website redesign." } },
 ];
 
 /** Greeting on the first visit: English first, then Ukrainian. Never Russian or Belarusian. */

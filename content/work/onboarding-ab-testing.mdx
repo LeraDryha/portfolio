@@ -1,0 +1,140 @@
+export const meta = {
+  heading: "Onboarding through Hypotheses & A/B Testing",
+  lead: "Exploring onboarding as a product experiment from discovery and hypothesis framing to A/B test variants and success metrics.",
+  facts: [
+    { label: "Role", value: "Product designer" },
+    { label: "Year", value: "2025" },
+    { label: "Context", value: "Concept project: onboarding for a heart rate measurement app" },
+    { label: "Methods", value: "Double Diamond, wireframing, A/B testing, product metrics, hypotheses, prioritisation, user flows" },
+  ],
+};
+
+While exploring the topic of A/B testing, I immersed myself in webinars and talks by product analysts and product managers, learning how to frame hypotheses and which metrics to track. To practice applying this knowledge, I decided to work on an onboarding flow as a concept project for a heart rate measurement app. This allowed me to combine discovery research with hypothesis-driven design and prepare variants suitable for A/B testing.
+
+<Chapter id="discovery" n={1} of={4} title="Discovery">
+
+### Competitor analysis
+
+<Figure src="/work/onboarding-ab-testing/02.webp" width={1800} height={1412} alt="Competitor analysis of heart rate apps' onboarding." caption="Competitor analysis." />
+
+### Points of parity
+
+<Figure src="/work/onboarding-ab-testing/03.webp" width={1800} height={500} alt="Points of parity across the competitors." caption="Points of parity." />
+
+### Points of difference
+
+<Figure src="/work/onboarding-ab-testing/04.webp" width={1800} height={950} alt="Points of difference across the competitors." caption="Points of difference." />
+
+### UI patterns
+
+<Figure src="/work/onboarding-ab-testing/05.webp" width={1800} height={1108} alt="UI patterns from competitors' onboarding." caption="UI patterns." />
+
+</Chapter>
+
+<Chapter id="define" n={2} of={4} title="Define">
+
+### User needs (based on best practices) → Business goals
+
+- **Start quickly, no commitment stress, avoid long forms** → ↑ activation rate, ↓ drop-off
+- **Understand “Why am I here?” and “What’s in it for me?”** → ↑ conversion from install to active user
+- **See immediate benefit, feel progress, reduce uncertainty** → ↑ activation & retention, ↓ churn during day 0–1
+- **Feel understood, get tailored experience, not generic flow** → ↑ engagement, ↑ relevance of content, better data for segmentation
+- **Save time, avoid overwhelm, get to value without friction** → ↑ completion rate, ↓ drop-off
+- **Feel rewarded, motivated, see “wow effect”** → ↑ retention, ↑ emotional bond
+- **Know where I am, reduce anxiety, sense of control** → ↑ onboarding completion
+- **Feel safe sharing data, clear boundaries (“not medical advice”)** → ↑ credibility, ↑ user retention
+
+### Best practices
+
+<FigurePair>
+  <HalfFigure src="/work/onboarding-ab-testing/06.webp" width={1800} height={1404} alt="NN/g best practices for primary onboarding." caption="NN/g best practices for primary onboarding." />
+  <HalfFigure src="/work/onboarding-ab-testing/07.webp" width={1800} height={1404} alt="Userpilot best practices for primary onboarding." caption="Userpilot best practices for primary onboarding." />
+</FigurePair>
+
+### Hypotheses
+
+<Figure src="/work/onboarding-ab-testing/08.webp" width={1800} height={1844} alt="The onboarding hypotheses." caption="Hypotheses." />
+
+### Prioritisation
+
+<Figure src="/work/onboarding-ab-testing/09.webp" width={1800} height={836} alt="The hypotheses prioritised." caption="Prioritisation." />
+
+</Chapter>
+
+<Chapter id="develop" n={3} of={4} title="Develop">
+
+### User flow
+
+<Figure src="/work/onboarding-ab-testing/10.webp" width={1800} height={721} alt="The onboarding user flow." caption="User flow." />
+
+<Hypothesis n={1} title="Test 1 - Signup after value" lead="Objective: increase onboarding completion and activation by moving signup to the end." ifText="we move signup from the first screen to the end of onboarding," then="more users will complete onboarding and reach activation," because="they experience value before being asked to commit," leadsTo="↑ onboarding completion and ↑ activation rate." plan={{ title: "Test plan", parts: [
+  { label: "Variants", items: ["A - signup first: signup before welcome (control)", "B - signup last: signup after first measurement & insight"] },
+  { label: "Metric", items: ["activation rate (first measurement completed + result seen), onboarding completion"] },
+  { label: "Guardrails", items: ["drop-off at signup step"] },
+] }} />
+
+<Figure src="/work/onboarding-ab-testing/11.webp" width={1800} height={562} alt="Test 1 variants: signup first and signup last." caption="Test 1: signup first or last." />
+
+<Hypothesis n={2} title="Test 2 - Guest mode onboarding" lead="Objective: reduce friction at entry and increase activation by allowing users to explore without creating an account" ifText="we allow Guest Mode (explore without account)," then="more users will try the app and reach first measurement," because="signup is a high-friction barrier at the very beginning," leadsTo="↑ activation without hurting later signup." plan={{ title: "Test plan", parts: [
+  { label: "Variants", items: ["A - no guest mode: signup required before onboarding (control)", "B - guest mode enabled: users can skip signup, explore and measure first"] },
+  { label: "Metric", items: ["activation rate, onboarding completion, later signup conversion (track when guest users convert to full signup)"] },
+  { label: "Guardrails", items: ["drop-off after first measurement"] },
+] }} />
+
+<Figure src="/work/onboarding-ab-testing/12.webp" width={1800} height={849} alt="Test 2 variants: with and without guest mode." caption="Test 2: guest mode." />
+
+<Hypothesis n={3} title="Test 3 - Early insight (BMI)" lead="Objective: increase activation by giving users immediate value from their input before the main feature" ifText="we provide an early wow-effect by showing BMI insight after entering body metrics," then="more users will proceed to the heart rate measurement," because="they already see value from their data before the main feature," leadsTo="↑ HR measurement rate, ↑ activation" plan={{ title: "Test plan", parts: [
+  { label: "Variants", items: ["A - BMI insight: show BMI + short friendly comment (“Your BMI is within healthy range”)", "B - no insight: only collect data and proceed directly to HR measurement"] },
+  { label: "Metric", items: ["activation rate (users who completed HR measurement + saw result), onboarding completion"] },
+  { label: "Guardrails", items: ["drop-off on BMI screen"] },
+] }} />
+
+<Figure src="/work/onboarding-ab-testing/13.webp" width={1800} height={2992} alt="Test 3 variants: with and without the BMI insight." caption="Test 3: early insight." />
+
+<Hypothesis n={4} title="Test 4 - Optimal sync placement" lead="Objective: increase sync adoption and retention by testing the best timing for device sync request" ifText="we move the sync request to the right timing," then="more users will complete it and continue onboarding," because="they already experienced value and trust the app," leadsTo="↑ sync adoption and better retention" plan={{ title: "Test plan", parts: [
+  { label: "Variants", items: ["A - early sync: show sync request right after welcome (before any value)", "B - post-value sync: show sync after the first HR measurement & insight", "C - deferred sync: skip sync in onboarding, show as a native nudge in home during first session"] },
+  { label: "Metric", items: ["sync rate, onboarding completion"] },
+  { label: "Guardrails", items: ["drop-off at sync step"] },
+] }} />
+
+<Figure src="/work/onboarding-ab-testing/14.webp" width={1800} height={853} alt="Test 4 variants: early, post-value and deferred sync." caption="Test 4: sync placement." />
+
+</Chapter>
+
+<Chapter id="deliver" n={4} of={4} title="Deliver">
+
+### Sign up + Welcome screen (carousel)
+
+Sign Up flow uses less friction with social login and Guest Mode.
+
+Welcome Screen carousel presents the value proposition and a non-medical disclaimer.
+
+<Figure src="/work/onboarding-ab-testing/15.webp" width={1800} height={910} alt="Sign up and the welcome carousel." caption="Sign up and welcome." />
+
+### Base information
+
+I separated the Base Info and Body Metrics steps so that on the Body Metrics step I can show the user their BMI right after they enter their parameters — creating that first wow effect. (Create early wins & celebrate them. Userpilot)
+
+<Figure src="/work/onboarding-ab-testing/16.webp" width={1800} height={910} alt="Base information and body metrics with the BMI insight." caption="Base information and body metrics." />
+
+### Health conditions
+
+Personalisation+segmentation. For ex. - users with diagnosed conditions receive tailored articles, recommendations and alerts. With no history – get preventive tips and general health content. If risk patterns appear (e.g., blood pressure fluctuations + medical history) app can suggest seeking medical attention. As a wow effect too.
+
+Screen asks “What would you like us to help with?” (track heart rate, get prevention tips, keep a diary for doctor) – purpose: collect goals to segment users and show them what value they can expect from the app.
+
+<Figure src="/work/onboarding-ab-testing/17.webp" width={1800} height={910} alt="Health conditions and goals screens." caption="Health conditions and goals." />
+
+### First measurement
+
+First Measurement lets users quickly experience the product: measure, see insights, and feel a second wow-effect. (Guide users to their first “Aha! moment”. Userpilot)
+
+<Figure src="/work/onboarding-ab-testing/18.webp" width={1800} height={910} alt="The first heart rate measurement and its result." caption="First measurement." />
+
+### Sync Apple/Google health + Notification
+
+Final screens build the first and second hooks: sync with Apple/Google Health and allow notifications. (Delay push/permission requests until value is clear. Userpilot)
+
+<Figure src="/work/onboarding-ab-testing/19.webp" width={1800} height={910} alt="Sync with Apple or Google Health and notification permission." caption="Sync and notifications." />
+
+</Chapter>
