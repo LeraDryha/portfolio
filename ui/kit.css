@@ -1077,6 +1077,9 @@
 .insight .quote { margin: var(--space-6) var(--space-0) var(--space-8); }
 .insight .quote p { font-size: var(--text-quote-small); }
 .prose .insight ul { margin: var(--space-0); }
+.prose p, .prose li, .prose .hyp p { text-wrap: pretty; }
+.prose h3, .insight h3, .hyp h3 { text-wrap: balance; }
+.case[data-case="smart-financial-assistant"] .screen-row__strip img, .case[data-case="smart-financial-assistant"] .fig__img { filter: var(--filter-shot, none); }
 .process { display: grid; gap: var(--space-10); margin: var(--space-56) var(--space-0) var(--space-0); padding: var(--space-22) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-body); }
 .prose .process h2 { margin: var(--space-0); font-size: var(--text-case-h2); }
 .prose .process p, .prose .process ul { margin: var(--space-0); }

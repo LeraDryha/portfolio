@@ -232,14 +232,7 @@ export function NullHypothesis({ title, lines }: { title: string; lines: string[
   return (
     <div className="hyp">
       <h3>{title}</h3>
-      <p>
-        {lines.map((l, i) => (
-          <span key={l}>
-            {i > 0 && <br />}
-            {l}
-          </span>
-        ))}
-      </p>
+      <p>{lines.join(" ")}</p>
     </div>
   );
 }
