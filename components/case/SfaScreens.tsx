@@ -75,10 +75,10 @@ export function ScreenRow({ shots, strip }: { shots: Shot[]; strip?: Shot }) {
   );
 }
 
-/** Screens exported with their own device frame (transparent around it): a row on a grey panel, each captioned. */
+/** Screens exported with their own device frame (transparent around it): a row on a grey panel as wide as the text, each captioned; the phones shrink to fit. */
 export function DeviceRow({ shots }: { shots: Shot[] }) {
   return (
-    <div className="screen-row case-wide">
+    <div className="screen-row device-panel">
       <div className="handsets__row screen-row__phones device-row" role="region" aria-label="Screens" tabIndex={0}>
         {shots.map((s) => (
           <figure key={s.src} className="device-row__item">
