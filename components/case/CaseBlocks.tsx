@@ -119,6 +119,16 @@ export function Stats({ items }: { items: { value: string; cap: string }[] }) {
   );
 }
 
+/** What a part of the research set out to learn: "Goal" as a label over the line, on the case accent's tint. */
+export function Goal({ children }: { children: ReactNode }) {
+  return (
+    <p className="goal">
+      <span className="goal__label">Goal</span>
+      {children}
+    </p>
+  );
+}
+
 export function Note({ children }: { children: ReactNode }) {
   return <p className="note">{children}</p>;
 }

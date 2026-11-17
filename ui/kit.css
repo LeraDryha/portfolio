@@ -1075,6 +1075,8 @@
 .insight { margin: var(--space-22) var(--space-0) var(--space-0); }
 .insight .quote { margin: var(--space-6) var(--space-0) var(--space-8); }
 .insight .quote p { font-size: var(--text-quote-small); }
+.prose .goal { display: grid; gap: var(--space-4); margin: var(--space-8) var(--space-0) var(--space-18); padding: var(--space-14) var(--space-18); border-radius: var(--radius-inner); background: var(--color-accent-soft); color: var(--color-ink); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.goal__label { color: var(--color-accent); font: var(--weight-semibold) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .note { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); }
 .statement { margin: var(--space-24) var(--space-0); padding: var(--space-24) var(--space-26); border-radius: var(--radius-block); background: var(--color-tile); color: var(--color-ink); font-weight: var(--weight-medium); }
 
