@@ -35,12 +35,14 @@ type FigureProps = {
   title?: string;
   sizes?: string;
   priority?: boolean;
+  /** on a grey panel, so a white screenshot doesn't melt into the page */
+  panel?: boolean;
 };
 
 /** A case image as it is. The image opens larger in the on-page lightbox; a Figma selection shows on hover. */
-export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority }: FigureProps) {
+export function Figure({ src, width, height, alt, caption, label, title, sizes = "(max-width: 640px) 100vw, 640px", priority, panel }: FigureProps) {
   return (
-    <figure className="fig">
+    <figure className={panel ? "fig fig--panel" : "fig"}>
       <div className="fig__frame">
         {/* Opens the image larger in a modal on the page (see Lightbox); figures in a row are one set */}
         <button

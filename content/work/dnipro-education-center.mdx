@@ -298,7 +298,7 @@ By standardizing colors, typography, components, and interactions, the design sy
 
 ### Main page
 
-<PageScroll caption="Main page before and after, on desktop and tablet. Each page scrolls." pages={[
+<PageScroll caption="Main page before and after, on desktop and tablet. The whole page opens on a click." pages={[
   { src: "/work/dnipro-education-center/main-before.webp", width: 1200, height: 1385, label: "Before", alt: "The old main page: a two-row grey menu, a long side menu with a map, icon tiles, a banner, news cards and a gallery." },
   { src: "/work/dnipro-education-center/main-after-desktop.webp", width: 1200, height: 3651, label: "After", after: true, alt: "The new main page on desktop: header with contacts, regions and search, a menu with dropdowns, a news slider, services for participants, news, collaboration, partners and a green footer." },
   { src: "/work/dnipro-education-center/main-after-tablet.webp", width: 860, height: 3807, label: "After, tablet", after: true, alt: "The new main page on a tablet: the same sections in a narrower layout with a menu button." },
@@ -310,11 +310,11 @@ By standardizing colors, typography, components, and interactions, the design sy
 - Fixed left navigation and breadcrumb trail for easy site navigation
 - User-friendly mobile version
 
-<Figure src="/work/dnipro-education-center/nav-dropdown.webp" width={1800} height={1480} alt="The desktop menu with НМТ/ЗНО open as a dropdown: general information, registration, subjects, preparation, certificates, FAQ." caption="Dropdown menu on hover." />
+<Figure src="/work/dnipro-education-center/nav-dropdown.webp" width={1800} height={1480} alt="The desktop menu with НМТ/ЗНО open as a dropdown: general information, registration, subjects, preparation, certificates, FAQ." caption="Dropdown menu on hover." panel />
 
-<Figure src="/work/dnipro-education-center/nav-page.webp" width={1800} height={1269} alt="An inner page: the open section highlighted in the top menu, a left menu with the current page in green, and a breadcrumb trail above the title." caption="Fixed left navigation and breadcrumbs." />
+<Figure src="/work/dnipro-education-center/nav-page.webp" width={1800} height={1269} alt="An inner page: the open section highlighted in the top menu, a left menu with the current page in green, and a breadcrumb trail above the title." caption="Fixed left navigation and breadcrumbs." panel />
 
-<FramedPhones shots={[
+<FramedPhones panel shots={[
   { src: "/work/dnipro-education-center/nav-phone-menu.webp", width: 600, height: 1230, alt: "The mobile menu: search and the sections as an accordion.", caption: "Mobile menu" },
   { src: "/work/dnipro-education-center/nav-phone-open.webp", width: 600, height: 1230, alt: "The mobile menu with НМТ/ЗНО open and its pages listed.", caption: "A section open" },
   { src: "/work/dnipro-education-center/nav-phone-sub.webp", width: 600, height: 1230, alt: "The mobile menu inside Підготовка до НМТ, with a back arrow, its pages, and contacts below.", caption: "A subsection, with contacts" },
@@ -322,26 +322,22 @@ By standardizing colors, typography, components, and interactions, the design sy
 
 ### Account
 
-<PageScroll caption="Login to the account, before and after." pages={[
+<PageScroll narrow caption="Login to the account, before and after, on desktop and mobile." pages={[
   { src: "/work/dnipro-education-center/account-login-before.webp", width: 1200, height: 1084, label: "Before", alt: "The old login: two bare fields and a dark button beside the long side menu." },
-  { src: "/work/dnipro-education-center/account-login-after.webp", width: 1200, height: 974, label: "After", after: true, alt: "The new login: breadcrumbs, the section in the left menu, a title, labelled fields and a red button." },
+  { src: "/work/dnipro-education-center/account-login-after.webp", width: 1200, height: 974, label: "After", after: true, phone: { src: "/work/dnipro-education-center/account-phone-login.webp", width: 600, height: 1229, alt: "The login on mobile: breadcrumbs, title, two full-width fields and a full-width red button." }, alt: "The new login: breadcrumbs, the section in the left menu, a title, labelled fields and a red button." },
 ]} />
 
-<PageScroll caption="Inside the account, before and after." pages={[
+<PageScroll narrow caption="Inside the account, before and after, on desktop and mobile." pages={[
   { src: "/work/dnipro-education-center/account-cabinet-before.webp", width: 1200, height: 774, label: "Before", alt: "The old account: a webinar notice in bold centred text and four round icons." },
-  { src: "/work/dnipro-education-center/account-cabinet-after.webp", width: 1200, height: 1152, label: "After", after: true, alt: "The new account: breadcrumbs, the notice as plain text with a link, a numbered list of four sections and a log-out button." },
+  { src: "/work/dnipro-education-center/account-cabinet-after.webp", width: 1200, height: 1152, label: "After", after: true, phone: { src: "/work/dnipro-education-center/account-phone-cabinet.webp", width: 600, height: 1229, alt: "The account on mobile: the notice, the numbered list of sections and a log-out button." }, alt: "The new account: breadcrumbs, the notice as plain text with a link, a numbered list of four sections and a log-out button." },
 ]} />
 
-<FramedPhones shots={[
-  { src: "/work/dnipro-education-center/account-phone-login.webp", width: 600, height: 1229, alt: "The login on mobile: breadcrumbs, title, two full-width fields and a full-width red button.", caption: "Login on mobile" },
-  { src: "/work/dnipro-education-center/account-phone-cabinet.webp", width: 600, height: 1229, alt: "The account on mobile: the notice, the numbered list of sections and a log-out button.", caption: "Account on mobile" },
-]} />
 
 ### About us
 
 The information was organized into logical groups to make it easier to find and understand
 
-<PageScroll caption="About us before, and the new General information and Contacts pages. Each page scrolls." pages={[
+<PageScroll caption="About us before, and the new General information and Contacts pages. The whole page opens on a click." pages={[
   { src: "/work/dnipro-education-center/about-before.webp", width: 1200, height: 2817, label: "Before", alt: "The old About us: one long table with general information, territory, tasks, contacts, hours, a map, directions, procurement and links." },
   { src: "/work/dnipro-education-center/about-after-general.webp", width: 1200, height: 1093, label: "After", after: true, alt: "The new General information page: a left menu of About us pages, breadcrumbs, the text and contacts with icons." },
   { src: "/work/dnipro-education-center/about-after-contacts.webp", width: 1200, height: 1866, label: "After", after: true, alt: "The new Contacts page: contacts, working hours and the map in labelled rows, procurement and useful links in accordions." },
@@ -351,7 +347,7 @@ The information was organized into logical groups to make it easier to find and 
 
 Articles were organized by year for easier navigation and search. Each article includes a tag indicating its topic, allowing users to quickly find relevant information.
 
-<PageScroll caption="The news archive before, and the new archive and article. Each page scrolls." pages={[
+<PageScroll caption="The news archive before, and the new archive and article. The whole page opens on a click." pages={[
   { src: "/work/dnipro-education-center/news-before.webp", width: 1200, height: 986, label: "Before", alt: "The old news archive: one long list of dates and headlines with Read more links." },
   { src: "/work/dnipro-education-center/news-after-archive.webp", width: 1200, height: 2065, label: "After", after: true, alt: "The new archive: years in the left menu, news cards with an image, topic tag, date, title, excerpt and pagination." },
   { src: "/work/dnipro-education-center/news-after-article.webp", width: 1200, height: 2109, label: "After", after: true, alt: "The new article page: breadcrumbs down to the year, the topic tag and date, the image and the text." },
