@@ -1476,6 +1476,7 @@
 .hyp h3 { margin: var(--space-0) var(--space-0) var(--space-10); }
 .hyp p { margin: var(--space-0) var(--space-0) var(--space-6); }
 .hyp b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.hyp__n { color: var(--color-accent); }
 .hyp__plan { display: grid; gap: var(--space-10); margin-top: var(--space-16); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .hyp__plan-title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); }
 .hyp__plan-cols { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12) var(--space-20); }

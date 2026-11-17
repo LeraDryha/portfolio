@@ -163,10 +163,13 @@ export function Insight({ n, title, quote, children }: { n: number; title: strin
 
 /** A hypothesis as Lera wrote it in Notion: If / Then / Because / This will lead to (an optional second If line),
  *  and under it her Validation plan: key metrics (Mixpanel events) and success indicators. */
-export function Hypothesis({ title, ifText, and, then, because, leadsTo, metrics, success }: { title: string; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[] }) {
+export function Hypothesis({ n, title, ifText, and, then, because, leadsTo, metrics, success }: { n?: number; title: string; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[] }) {
   return (
     <div className="hyp">
-      <h3>{title}</h3>
+      <h3>
+        {n !== undefined && <span className="hyp__n">{n}. </span>}
+        {title}
+      </h3>
       <p>
         <b>If</b> {ifText}
         {and && (
