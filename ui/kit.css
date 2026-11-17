@@ -1244,6 +1244,14 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Kit sheet (DRCEQA): the client's components together on one grey panel, three columns of white cards */
+.kit-sheet { margin: var(--space-20) var(--space-0) var(--space-28); }
+.kit-sheet__panel { columns: 3; column-gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.kit-sheet__part { display: block; width: var(--size-full); margin: var(--space-0) var(--space-0) var(--space-12); padding: var(--space-8); break-inside: avoid; border: none; border-radius: var(--radius-inner); background: var(--color-on-dark); cursor: zoom-in; }
+.kit-sheet__part:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.kit-sheet__part img { display: block; width: var(--size-full); height: auto; }
+@media (max-width: 900px) { .kit-sheet__panel { columns: 2; } }
+@media (max-width: 560px) { .kit-sheet__panel { columns: 1; } }
 /* Kit foundations (DRCEQA): the client's colour ramps and type scale, live */
 .kitf { margin: var(--space-28) var(--space-0); }
 .kitf__panel { display: grid; grid-template-columns: var(--layout-kitf); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }

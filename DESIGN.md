@@ -298,7 +298,7 @@ Facts (labels in a column, values aligned; a value can be a link), Problem / Wha
 
 **Bright screenshots in dark** (Smart Financial Assistant): light figures and the widgets strip take `--filter-shot` at night, as the Storybook previews do, so they don't glare on black.
 
-**Kit foundations** (DRCEQA): a client design system’s colours and type, live, case-wide: colour ramps as rounded swatches with step and hex (hex in Geist Mono; the client’s colours are data, like a screenshot), the type scale as a hairline table; two white cards on a grey panel, stacked under 900px. Components stay as crops of Lera’s Figma, captioned.
+**Kit foundations** (DRCEQA): a client design system’s colours and type, live, case-wide: colour ramps as rounded swatches with step and hex (hex in Geist Mono; the client’s colours are data, like a screenshot), the type scale as a hairline table; two white cards on a grey panel, stacked under 900px. Components follow as one **kit sheet**: crops of Lera’s Figma together on a grey panel in three columns (two, then one on smaller screens), each a white card that opens larger, one caption for the sheet.
 
 **Persona cards** (DRCEQA): Lera’s three personas side by side as white cards on a grey panel, case-wide (one under another under 900px): role, photo with the facts (“Name: Veronika”, label in pencil), then About the user, Goals and motivation, Needs and expectations, Challenges and issues with plain-word labels. Caption under it like a figure’s.
 

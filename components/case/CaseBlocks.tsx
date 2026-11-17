@@ -615,6 +615,7 @@ export { Rival } from "@/components/case/Rivals";
 export { SiteMap } from "@/components/case/SiteMap";
 export { PersonaCards } from "@/components/case/PersonaCards";
 export { KitFoundations } from "@/components/case/KitFoundations";
+export { KitSheet } from "@/components/case/KitSheet";
 export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
