@@ -9,7 +9,7 @@ const style = (vars: Record<string, string>) => vars as CSSProperties;
 // Positions in the app's own points (a 375-point-wide screen): the log, then the recurring screen under the forecast
 const LIST_TOP = 112;
 const LIST_STEP = 66;
-const GROUPS_TOP = 364;
+const GROUPS_TOP = 332;
 const LABEL_H = 28;
 const ROW_STEP = 62;
 const GROUP_GAP = 20;
