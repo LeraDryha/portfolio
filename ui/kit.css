@@ -507,6 +507,8 @@
   --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
   --size-phone: 380px;
   --space-handsets: 44px;
+  --size-rival-phone: 140px;
+  --size-rival-phone-sm: 118px;
   --size-bloom-flower: 44%;
   --size-bloom-flower-hero: 150px;
   --pos-bloom-centre: 40%;
@@ -1106,7 +1108,19 @@
 .voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+/* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
+.rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
+.rivals + .rivals { margin-top: var(--space-28); }
+.rivals__bar { display: grid; justify-items: start; gap: var(--space-10); }
+.rivals__name { color: var(--color-graphite); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.rivals__name b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.rivals__row { display: flex; gap: var(--space-12); overflow-x: auto; padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); scroll-snap-type: x proximity; scroll-padding-inline: var(--space-24); }
+.rivals__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); }
+.rivals__phone { flex: none; width: var(--size-rival-phone); padding: var(--space-0); border: none; background: none; cursor: zoom-in; scroll-snap-align: start; }
+.rivals__phone img { display: block; width: 100%; height: auto; }
+.rivals__phone:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
 @media (max-width: 860px) { .prose .voices__list { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 640px) { .rivals .filter { max-width: 100%; overflow-x: auto; } .rivals__row { padding: var(--space-16); scroll-padding-inline: var(--space-16); } .rivals__phone { width: var(--size-rival-phone-sm); } }
 @media (max-width: 640px) { .prose .voices__list { grid-template-columns: var(--layout-col-1); } }
 
 /* Interview guide and boards (Comfy): the questions in one white card in columns, the boards as small pictures */
