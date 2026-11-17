@@ -298,7 +298,7 @@ Facts (labels in a column, values aligned; a value can be a link), Problem / Wha
 
 **Bright screenshots in dark** (Smart Financial Assistant): light figures and the widgets strip take `--filter-shot` at night, as the Storybook previews do, so they don't glare on black.
 
-**Sticky board** (Onboarding): stickies from Lera’s boards as live paper on a grey panel in the reading column, 3–5 in a row (2 on phones): yellow for the point, a blue sticky over its lower part for the detail, a red one (two columns wide) for a warning; they drop in one by one when the board comes into view (still with reduced motion, visible without script). The caption sits under it like a figure’s, with no heading above.
+**Sticky board** (Onboarding): stickies from Lera’s boards as live paper on a grey panel in the reading column, 3–5 in a row (2 on phones), all square: yellow for the point, a blue square over its lower half for the detail (12px, grows only if its text needs it), a red one (two columns wide, not square) for a warning; they drop in one by one when the board comes into view (still with reduced motion, visible without script). The caption sits under it like a figure’s, with no heading above.
 
 **Process** (Smart Financial Assistant, between chapters 1 and 2): Lera's process from Notion word for word on a grey block in the reading column: “My Process” at case-H2 size, the line with **Design Thinking** in semibold ink, the steps as a list. Not a chapter, so it stays out of the chapter list.
 
