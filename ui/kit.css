@@ -49,7 +49,9 @@
   --shadow-log-note: 0 8px 24px rgb(0 0 0 / .18);
   --shadow-log-card: 0 1px 3px rgb(0 0 0 / .06);
   --blur-log-note: blur(12px);
-  --ratio-log-phone: 375 / 812;
+  /* the phone keeps its proportions: as wide as the tile allows, cut by the tile's bottom edge; on the case hero, as tall as Prevently's */
+  --size-log-phone: min(calc(100cqw - var(--space-48)), 300px);
+  --size-log-phone-hero: max(calc(92cqh * 9 / 19.5), 250px);
   /* The Adtelligent product, light in both themes (its own iOS-like series colours, from the Figma) */
   --color-adt-surface: #ffffff;
   --color-adt-ink: #1d1d1f;
@@ -1148,9 +1150,10 @@
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
 /* Log (Smart Financial Assistant tile and case hero): the app drawn in its own points (375 wide), scaled to the phone */
-.log { container-type: size; display: grid; justify-items: center; align-content: start; }
-.log__phone { width: min(calc(100cqw - var(--space-24)), calc((100cqh - var(--space-16)) * 375 / 812)); aspect-ratio: var(--ratio-log-phone); margin-top: var(--space-16); padding: 3%; border-radius: 15% / 7%; background: var(--color-log-bezel); box-shadow: var(--shadow-log-phone); box-sizing: border-box; }
-.log__screen { container-type: size; position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 12% / 5.6%; background: var(--color-log-bg); }
+.log { container-type: size; overflow: hidden; }
+.log__phone { container-type: size; position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); width: var(--size-log-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); border-radius: 15% / 7%; background: var(--color-log-bezel); box-shadow: var(--shadow-log-phone); }
+.log__screen { container-type: size; position: absolute; inset: 3.6cqw; overflow: hidden; border-radius: 12cqw; background: var(--color-log-bg); }
+.case-hero .log { --size-log-phone: var(--size-log-phone-hero); }
 .log__ui { --p: calc(100cqw / 375); position: absolute; inset: 0; color: var(--color-log-ink); font-family: var(--font-ios); transition: opacity .6s ease; }
 .log__ui[data-out="true"] { opacity: 0; }
 .log__nav { position: absolute; left: 0; right: 0; top: 0; height: calc(100 * var(--p)); background: var(--color-log-card); transition: background .7s ease, color .7s ease; }
