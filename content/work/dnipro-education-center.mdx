@@ -109,32 +109,7 @@ To gain a clear understanding of the workflow, I created a mind map in FigJam ou
 
 This exercise helped me identify the key components of the future solution.
 
-<SiteMap root="Main page" caption="Information architecture." sections={[
-  { title: "About us", pages: [
-    { page: "General Information", types: ["Text Page"] },
-    { page: "Contact Information", types: ["Text Page + Map"] },
-    { page: "Access to Public Information", types: ["Text Page"] },
-    { page: "Legislation", types: ["Page with Links"] },
-    { page: "Statistics and Analytics", types: ["List of Links"] },
-    { page: "Public Monitoring", types: ["Text Page"] },
-  ] },
-  { title: "NMT / EIT", pages: [
-    { page: "General Information", types: ["Text Page (Table)"] },
-    { page: "Registration Procedure", types: ["Text Page (Table)"] },
-    { page: "NMT Subjects", types: ["Page with Links"] },
-    { page: "Preparation for NMT", types: ["Text Page + Subsections"], children: [
-      { page: "NMT Online", types: ["Page with Links", "Link to UCEQA website"] },
-      { page: "Practice Online Testing", types: ["Link to UCEQA website"] },
-      { page: "Past Year Tests", types: ["Page with Links", "Page with Test Years", "List of Links"] },
-    ] },
-    { page: "Certificates and Duplicates", types: ["Text Page + Table + Subsections"], children: [
-      { page: "Procedure for Preparing and Issuing Certificate Duplicates", types: ["Text Page (Table)"] },
-      { page: "Procedure for Preparing and Issuing Repeated Certificates", types: ["Text Page (Table)"] },
-      { page: "Information on Obtaining a Statement of NMT Results", types: ["Link to UCEQA website"] },
-    ] },
-    { page: "FAQ", types: ["FAQ Page"] },
-    { page: "Participant Information Page for NMT/EIT", types: ["Link to UCEQA Personal Account"] },
-  ] },
+<SiteMap root="Main page" caption="Information architecture." left={[
   { title: "EVI / EFVV", pages: [
     { page: "General Information", types: ["Text Page (Table)"] },
     { page: "Registration Procedure", types: ["Text Page (Table)"] },
@@ -169,6 +144,32 @@ This exercise helped me identify the key components of the future solution.
   ] },
   { title: "News", pages: [
     { page: "News Archive" },
+  ] },
+]} right={[
+  { title: "About us", pages: [
+    { page: "General Information", types: ["Text Page"] },
+    { page: "Contact Information", types: ["Text Page + Map"] },
+    { page: "Access to Public Information", types: ["Text Page"] },
+    { page: "Legislation", types: ["Page with Links"] },
+    { page: "Statistics and Analytics", types: ["List of Links"] },
+    { page: "Public Monitoring", types: ["Text Page"] },
+  ] },
+  { title: "NMT / EIT", pages: [
+    { page: "General Information", types: ["Text Page (Table)"] },
+    { page: "Registration Procedure", types: ["Text Page (Table)"] },
+    { page: "NMT Subjects", types: ["Page with Links"] },
+    { page: "Preparation for NMT", types: ["Text Page + Subsections"], children: [
+      { page: "NMT Online", types: ["Page with Links", "Link to UCEQA website"] },
+      { page: "Practice Online Testing", types: ["Link to UCEQA website"] },
+      { page: "Past Year Tests", types: ["Page with Links", "Page with Test Years", "List of Links"] },
+    ] },
+    { page: "Certificates and Duplicates", types: ["Text Page + Table + Subsections"], children: [
+      { page: "Procedure for Preparing and Issuing Certificate Duplicates", types: ["Text Page (Table)"] },
+      { page: "Procedure for Preparing and Issuing Repeated Certificates", types: ["Text Page (Table)"] },
+      { page: "Information on Obtaining a Statement of NMT Results", types: ["Link to UCEQA website"] },
+    ] },
+    { page: "FAQ", types: ["FAQ Page"] },
+    { page: "Participant Information Page for NMT/EIT", types: ["Link to UCEQA Personal Account"] },
   ] },
 ]} />
 

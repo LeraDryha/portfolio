@@ -33,6 +33,10 @@
   --color-adtelligent-accent-soft: rgb(255 0 102 / .14);
   /* hubmee's product green (#009850, from its screens) on the Smart Financial Assistant case: deepened in light (5:1 on a tile), the product value at night (4.5:1) */
   --color-sfa-accent: #007a40;
+  /* DRCEQA mind map: the centre’s own red and green, as on Lera’s board */
+  --color-map-root: #c8293f;
+  --color-map-section: #1b7a6c;
+  --color-map-line: #c7c7cc;
   --color-sfa-accent-soft: rgb(0 152 80 / .14);
   /* Smart Financial Assistant's app (hubmee), drawn live on its tile and case hero */
   --color-log-bg: #f7f7f8;
@@ -526,6 +530,7 @@
   --size-phone: 380px;
   --space-handsets: 44px;
   --layout-rivals: repeat(5, minmax(0, 1fr));
+  --size-sitemap-min: 1000px;
   --size-sfa-strip: 620px;
   /* a framed phone in a device row: as wide as its share of the text column, between these */
   --size-device-min: 120px;
@@ -717,6 +722,12 @@
     --color-adtelligent-accent: #ff0066;
     --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
     --color-sfa-accent: #009850;
+  --color-map-root: #ff6b7d;
+  --color-map-section: #4cc7b3;
+  --color-map-line: #48484a;
+    --color-map-root: #ff6b7d;
+    --color-map-section: #4cc7b3;
+    --color-map-line: #48484a;
     --color-sfa-accent-soft: rgb(0 152 80 / .22);
     --color-log-bg: #000000;
     --color-log-card: #1c1c1e;
@@ -1227,21 +1238,17 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
-/* Site map (DRCEQA): the information architecture as a live tree, sections in columns, the page type under each page */
+/* Site map (DRCEQA): Lera's information architecture mind map, live in SVG; scrolls sideways on narrow screens */
 .sitemap { margin: var(--space-28) var(--space-0); }
-.sitemap__panel { display: grid; gap: var(--space-20); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
-.prose .sitemap__root { justify-self: start; margin: var(--space-0); padding: var(--space-4) var(--space-12); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font-size: var(--text-label); font-weight: var(--weight-semibold); line-height: var(--leading-tag); }
-.sitemap__sections { columns: 3; column-gap: var(--space-28); }
-.sitemap__section { break-inside: avoid; margin-bottom: var(--space-20); }
-.prose .sitemap__section h4 { margin: var(--space-0) var(--space-0) var(--space-6); font-size: var(--text-ui); line-height: var(--leading-ui); font-weight: var(--weight-semibold); }
-.prose .sitemap__tree { margin: var(--space-0); padding: var(--space-0) var(--space-0) var(--space-0) var(--space-14); border-left: var(--size-hairline) solid var(--color-hairline); list-style: none; }
-.prose .sitemap__tree li { position: relative; margin: var(--space-0); padding: var(--space-4) var(--space-0); font-size: var(--text-label); line-height: var(--leading-tag); }
-.prose .sitemap__tree li::before { content: ""; position: absolute; top: var(--space-12); left: calc(-1 * var(--space-14)); width: var(--space-10); border-top: var(--size-hairline) solid var(--color-hairline); }
-.sitemap__page { display: block; color: var(--color-ink); }
-.sitemap__type { display: block; color: var(--color-pencil); font-size: var(--text-micro); }
-.prose .sitemap__tree .sitemap__tree { margin-top: var(--space-4); }
-@media (max-width: 900px) { .sitemap__sections { columns: 2; } }
-@media (max-width: 560px) { .sitemap__sections { columns: 1; } .sitemap__panel { padding: var(--space-16); } }
+.sitemap__scroll { overflow-x: auto; padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.sitemap__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.sitemap__svg { display: block; width: var(--size-full); min-width: var(--size-sitemap-min); height: auto; font-family: var(--font-sans); }
+.sitemap__lines path { fill: none; stroke: var(--color-map-line); stroke-width: 1; }
+.sitemap__svg text { stroke: var(--color-tile); stroke-width: 7px; stroke-linejoin: round; paint-order: stroke; }
+.sitemap__root { fill: var(--color-map-root); font-weight: var(--weight-semibold); }
+.sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
+.sitemap__page { fill: var(--color-ink); }
+.sitemap__type { fill: var(--color-pencil); }
 /* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
 .rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
 .rivals + .rivals { margin-top: var(--space-28); }
