@@ -531,6 +531,7 @@
   --space-handsets: 44px;
   --layout-rivals: repeat(5, minmax(0, 1fr));
   --size-sitemap-min: 1000px;
+  --layout-persona-who: 2fr 3fr;
   --size-sfa-strip: 620px;
   /* a framed phone in a device row: as wide as its share of the text column, between these */
   --size-device-min: 120px;
@@ -1238,6 +1239,18 @@
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 @media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Persona cards (DRCEQA): three personas side by side, white cards on a grey panel */
+.personas { margin: var(--space-28) var(--space-0); }
+.personas__panel { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.personas__card { display: grid; align-content: start; gap: var(--space-16); }
+.prose .personas__role { margin: var(--space-0); font-size: var(--text-subhead); line-height: var(--leading-subhead); font-weight: var(--weight-semibold); }
+.personas__who { display: grid; grid-template-columns: var(--layout-persona-who); gap: var(--space-12); align-items: start; }
+.personas__photo { width: var(--size-full); height: auto; border-radius: var(--radius-inner); background: var(--color-tile); }
+.prose .personas__facts { display: grid; gap: var(--space-4); margin: var(--space-0); }
+.prose .personas__facts dt { display: inline; color: var(--color-pencil); }
+.prose .personas__facts dt::after { content: ": "; }
+.prose .personas__facts dd { display: inline; margin: var(--space-0); color: var(--color-ink); }
+@media (max-width: 900px) { .personas__panel { grid-template-columns: var(--layout-col-1); } }
 /* Site map (DRCEQA): Lera's information architecture mind map, live in SVG; scrolls sideways on narrow screens */
 .sitemap { margin: var(--space-28) var(--space-0); }
 .sitemap__scroll { overflow-x: auto; padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }

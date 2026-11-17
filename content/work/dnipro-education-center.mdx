@@ -192,7 +192,26 @@ The goal was to gather as much information as possible and conduct a survey. My 
 
 One of the outcomes of the interviews was transforming the insights about these roles into personas.
 
-<Figure src="/work/dnipro-education-center/08.webp" width={1800} height={1125} alt="Three personas: an applicant, a teacher and a contracted worker." caption="User personas." />
+<PersonaCards caption="User personas." items={[
+  { role: "Applicant", photo: { src: "/work/dnipro-education-center/persona-applicant.webp", alt: "A teenage girl with a backpack and notebooks." },
+    facts: [["Name", "Veronika"], ["Age", "16"], ["Gender", "Female"], ["Occupation", "Applicant"], ["Location", "Dnipropetrovsk Region"], ["Device", "Mobile phone"], ["Applications", "Instagram, Tik-Tok, Telegram, Google"]],
+    about: "A student in her final year, preparing for exams.",
+    goals: "To perform well in exams to gain admission to a good university.",
+    needs: "To find timely information about registration requirements for exams and details about the exam process.",
+    challenges: ["Difficulty finding the section with the needed information.", "Lack of a mobile-friendly version of the website."] },
+  { role: "Teacher", photo: { src: "/work/dnipro-education-center/persona-teacher.webp", alt: "A woman holding a book." },
+    facts: [["Name", "Natalia"], ["Age", "46"], ["Gender", "Female"], ["Occupation", "Teacher"], ["Location", "Zaporizhzhia Region"], ["Device", "Computer/laptop, mobile phone"], ["Applications", "Facebook, Google, YouTube, Viber"]],
+    about: "Teaches at a school and stays updated on events in the education sector.",
+    goals: "Responsibility toward students who are preparing for this year’s exams, as well as toward the school where she works.",
+    needs: "To find the necessary information about the exam, communicate key points to students, and locate resources to help applicants prepare for the exam.",
+    challenges: ["Students don’t search for information themselves; the teacher has to read it and explain it to them.", "The website lacks a search function."] },
+  { role: "Contracted worker", photo: { src: "/work/dnipro-education-center/persona-worker.webp", alt: "A smiling woman in glasses with her arms crossed." },
+    facts: [["Name", "Kateryna"], ["Age", "43"], ["Gender", "Female"], ["Occupation", "School or university staff"], ["Location", "Dnipropetrovsk Region"], ["Device", "Computer/laptop, mobile phone"], ["Applications", "Facebook, Google, YouTube, Viber"]],
+    about: "Works at a school or university. Hired temporarily for organizing exams",
+    goals: "Additional income.",
+    needs: "To receive clear instructions on the steps and tasks required.",
+    challenges: ["Information is spread across various sections, making it difficult to know where to go to find it.", "Inconvenient training schedule."] },
+]} />
 
 ### Problem definition
 
