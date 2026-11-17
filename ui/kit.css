@@ -1214,6 +1214,10 @@
 .before-screens .before-screens__row { justify-content: center; gap: var(--space-24); }
 .screen-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-16); margin: var(--space-14) var(--space-0) var(--space-40); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .screen-row .screen-row__phones { justify-content: center; gap: var(--space-32); }
+.device-row__item { display: grid; justify-items: center; gap: var(--space-10); margin: var(--space-0); flex: none; }
+.device-row__zoom { padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.device-row__zoom img { display: block; width: auto; height: var(--size-phone); }
+.device-row__item figcaption { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .screen-row__strip { display: grid; justify-self: center; width: min(100%, var(--size-sfa-strip)); gap: var(--space-8); justify-items: center; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }

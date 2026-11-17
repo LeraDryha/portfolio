@@ -74,3 +74,31 @@ export function ScreenRow({ shots, strip }: { shots: Shot[]; strip?: Shot }) {
     </div>
   );
 }
+
+/** Screens exported with their own device frame (transparent around it): a row on a grey panel, each captioned. */
+export function DeviceRow({ shots }: { shots: Shot[] }) {
+  return (
+    <div className="screen-row case-wide">
+      <div className="handsets__row screen-row__phones device-row" role="region" aria-label="Screens" tabIndex={0}>
+        {shots.map((s) => (
+          <figure key={s.src} className="device-row__item">
+            <button
+              type="button"
+              className="device-row__zoom"
+              data-zoom={s.src}
+              data-zoom-w={s.width}
+              data-zoom-h={s.height}
+              data-zoom-alt={s.alt}
+              data-zoom-cap={s.caption ?? ""}
+              aria-label={`Open larger: ${s.caption ?? s.alt}`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={s.src} width={s.width} height={s.height} alt={s.alt} loading="lazy" />
+            </button>
+            {s.caption && <figcaption>{s.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
