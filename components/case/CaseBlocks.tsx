@@ -106,9 +106,9 @@ export function SideCopy({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function Stats({ items }: { items: { value: string; cap: string }[] }) {
+export function Stats({ items, cols }: { items: { value: string; cap: string }[]; /** 2 for long captions: two cards in a row */ cols?: 2 }) {
   return (
-    <div className={items.length === 5 ? "stats stats--5" : items.length === 4 ? "stats stats--4" : "stats"}>
+    <div className={cols === 2 ? "stats stats--2" : items.length === 5 ? "stats stats--5" : items.length === 4 ? "stats stats--4" : "stats"}>
       {items.map((s) => (
         <div className="stat" key={s.value + s.cap}>
           <b>{s.value}</b>

@@ -1102,6 +1102,7 @@
 .proof-block span { display: block; margin-top: var(--space-8); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); }
 .stats { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); }
 .stats--4 { grid-template-columns: var(--layout-cols-4); }
+.stats--2 { grid-template-columns: var(--layout-cols-2); }
 .stat { padding: var(--space-16); border-radius: var(--radius-figure); background: var(--color-tile); }
 .stat b { display: block; color: var(--color-accent); font-size: var(--text-stat); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-heading); line-height: var(--leading-tight); }
 .stat span { display: block; margin-top: var(--space-6); color: var(--color-pencil); font-size: var(--text-label); line-height: var(--leading-tag); }
