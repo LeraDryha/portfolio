@@ -534,8 +534,7 @@
   --layout-persona-who: 2fr 3fr;
   --layout-kitf: 3fr 2fr;
   --size-page-window: 460px;
-  --size-page-phone: 26%;
-  --shadow-page-phone: 0 10px 18px rgb(0 0 0 / .22);
+  --size-page-phone: 22%;
   --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
   --color-sticky-blue: #a8dafd;
@@ -1259,7 +1258,7 @@
 .page-scroll__window:focus-visible, .page-scroll__phone:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
 .page-scroll__window img { display: block; width: var(--size-full); height: auto; }
 .page-scroll__item--phone { padding-bottom: var(--space-24); }
-.page-scroll__phone { position: absolute; right: calc(-1 * var(--space-4)); bottom: var(--space-0); width: var(--size-page-phone); padding: var(--space-0); border: none; background: none; cursor: zoom-in; filter: drop-shadow(var(--shadow-page-phone)); }
+.page-scroll__phone { position: absolute; right: var(--space-0); bottom: var(--space-0); width: var(--size-page-phone); padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
 .page-scroll__phone img { display: block; width: var(--size-full); height: auto; }
 @media (max-width: 640px) { .page-scroll__row { grid-template-columns: var(--layout-col-1) !important; } }
 /* Framed phones (DRCEQA): Lera's phone mockups, already framed, whole and side by side */
