@@ -8,7 +8,7 @@ type Shot = { src: string; width: number; height: number; alt: string; caption?:
 /** The product before and after, side by side: two phones with an arrow between, a line under them on what changed. */
 export function BeforeAfter({ before, after, children }: { before: Shot; after: Shot; children: ReactNode }) {
   return (
-    <figure className="before-after case-wide">
+    <figure className="before-after">
       <div className="before-after__panel handsets__row">
         <div className="before-after__side">
           <span className="solved__badge">Before</span>

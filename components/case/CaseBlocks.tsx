@@ -146,17 +146,26 @@ export function Quote({ by, children }: { by: string; children: ReactNode }) {
   );
 }
 
-/** A research insight: a short heading, what a user said, what it means. */
-export function Insight({ n, title, quote, children }: { n: number; title: string; quote: string; children: ReactNode }) {
+/** A research insight: a numbered heading, what a user said, and what it means (a line or Lera's points). */
+export function Insight({ n, title, quote, points, children }: { n: number; title: string; quote: string; points?: string[]; children?: ReactNode }) {
   return (
     <div className="insight">
       <h3>
-        {n}. {title}
+        <span className="hyp__n">{n}. </span>
+        {title}
       </h3>
       <blockquote className="quote">
-        <p>“{quote}”</p>
+        <p>{quote}</p>
       </blockquote>
-      <p>{children}</p>
+      {points ? (
+        <ul>
+          {points.map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+      ) : (
+        children && <p>{children}</p>
+      )}
     </div>
   );
 }

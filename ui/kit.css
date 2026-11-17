@@ -1076,6 +1076,11 @@
 .insight { margin: var(--space-22) var(--space-0) var(--space-0); }
 .insight .quote { margin: var(--space-6) var(--space-0) var(--space-8); }
 .insight .quote p { font-size: var(--text-quote-small); }
+.prose .insight ul { margin: var(--space-0); }
+.process { display: grid; gap: var(--space-10); margin: var(--space-56) var(--space-0) var(--space-0); padding: var(--space-22) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-body); }
+.prose .process h2 { margin: var(--space-0); font-size: var(--text-case-h2); }
+.prose .process p, .prose .process ul { margin: var(--space-0); }
+.process b { color: var(--color-ink); font-weight: var(--weight-semibold); }
 .prose .goal { display: grid; gap: var(--space-4); margin: var(--space-8) var(--space-0) var(--space-18); padding: var(--space-14) var(--space-18); border-radius: var(--radius-inner); background: var(--color-accent-soft); color: var(--color-ink); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .goal__label { color: var(--color-accent); font: var(--weight-semibold) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .note { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); }
@@ -1112,12 +1117,12 @@
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
 /* Smart Financial Assistant: the app's screens in phone frames — before/after pair, the Before card, a row under each hypothesis */
-.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
+.solved__badge.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
 .before-after { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); margin: var(--space-28) var(--space-0); }
-.before-after .before-after__panel { justify-content: center; align-items: center; gap: var(--space-32); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.before-after .before-after__panel { justify-content: center; align-items: center; gap: var(--space-24); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
 .before-after__side { display: grid; justify-items: center; gap: var(--space-12); }
 .before-after__arrow { color: var(--color-accent); font-size: var(--text-case-h2); }
-.before-after__note { width: var(--layout-reading); max-width: 100%; margin: var(--space-0) auto; color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); text-align: center; }
+.before-after__note { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); text-align: center; }
 .before-screens { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-20); margin: var(--space-20) var(--space-0) var(--space-28); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .before-screens__text { display: grid; gap: var(--space-12); justify-items: start; font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .before-screens__text ul { margin: var(--space-0); }

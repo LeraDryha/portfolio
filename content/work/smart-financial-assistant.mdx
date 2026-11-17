@@ -32,8 +32,8 @@ I needed to rethink how to turn raw financial data into something actionable, in
   ] },
 ]} />
 
-<BeforeAfter before={{ src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Before: the Finance screen, Overview tab, with spending this month, accounts and payment history.", caption: "Finance · Overview" }} after={{ src: "/work/smart-financial-assistant/screens/home-upcoming.webp", width: 375, height: 812, alt: "After: Home with the balance chart, upcoming bills and recurring payments.", caption: "Home" }}>
-Before, Finance was a separate screen with its own tabs: Overview, Payment history and Wallet. After the redesign it is the app’s tab bar: Home, Transaction, Recurring and Wallet, with Recurring as a tab of its own. Names and amounts in all screens are sample data.
+<BeforeAfter before={{ src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Before: Home with spending this month, accounts and payment history.", caption: "Home" }} after={{ src: "/work/smart-financial-assistant/screens/home-spent.webp", width: 750, height: 1624, alt: "After: Home with the balance chart, upcoming bills and recurring payments.", caption: "Home" }}>
+Recurring became a tab of its own, and Home shows what is coming up. Names and amounts in all screens are sample data.
 </BeforeAfter>
 
 ### The challenge
@@ -46,8 +46,8 @@ The product was originally designed as a household finance manager for the US ma
   "Category-based spending insights and percentages",
   "An overview of account balances and total balance",
 ]} shots={[
-  { src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Old Finance Overview: spent this month, accounts, payment history.", caption: "Overview" },
-  { src: "/work/smart-financial-assistant/screens/before-history.webp", width: 750, height: 1624, alt: "Old Payment history: all accounts and a list of transactions by day.", caption: "Payment history" },
+  { src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Old Home: spent this month, accounts, payment history.", caption: "Home" },
+  { src: "/work/smart-financial-assistant/screens/before-history.webp", width: 750, height: 1624, alt: "Old Transaction tab: all accounts and a list of transactions by day.", caption: "Transaction" },
   { src: "/work/smart-financial-assistant/screens/before-wallet.webp", width: 750, height: 1624, alt: "Old Wallet: a linked credit card and a payment card.", caption: "Wallet" },
   { src: "/work/smart-financial-assistant/screens/before-transaction.webp", width: 750, height: 1624, alt: "Old transaction details: Walmart, category, payment method, description, attachments.", caption: "Transaction" },
 ]} />
@@ -60,9 +60,21 @@ I started by gathering insights through product analytics, competitor analysis, 
 
 </Chapter>
 
+<section className="process" aria-labelledby="h-process">
+  <h2 id="h-process">My Process</h2>
+  <p>I followed a <b>Design Thinking</b> approach to ensure the solution aligned with both user needs and business goals.</p>
+  <ul>
+    <li>Desk research</li>
+    <li>In-depth interviews</li>
+    <li>Competitive analysis</li>
+    <li>Hypothesis</li>
+    <li>Testing</li>
+    <li>Let’s keep building</li>
+  </ul>
+</section>
+
 <Chapter id="research" n={2} of={5} title="What the data and users told us">
 
-Design Thinking, to keep the solution aligned with both user needs and business goals: desk research, in-depth interviews, competitive analysis, hypotheses, testing, and building on.
 
 ### What the data told us
 
@@ -82,12 +94,12 @@ Design Thinking, to keep the solution aligned with both user needs and business 
 
 Based on support requests and 6 user interviews, I uncovered several critical insights that helped me reshape the direction of the product:
 
-<Insight n={1} title="Viewing transactions alone isn’t valuable" quote="I already have banking apps, why would I use another just to look at the same list of transactions?">People trusted their bank apps more and didn’t want to duplicate them.</Insight>
-<Insight n={2} title="Users want control over recurring payments" quote="I want to track my subscriptions, mortgage, and insurance, not every cup of coffee.">They cared about regular, essential commitments more than everyday spending.</Insight>
-<Insight n={3} title="Fear of price changes or unexpected charges" quote="What if Netflix suddenly charges more and I don’t notice?">They wanted cues about unusual patterns in recurring charges.</Insight>
-<Insight n={4} title="Need to anticipate what’s coming next" quote="Show me which bills are coming soon and from which card.">Predictability was key: upcoming payments by date and source.</Insight>
-<Insight n={5} title="Desire for spending breakdowns" quote="I’d love to see how much I spend on subscriptions vs. insurance.">Category-level analytics on recurring expenses, in % and in money.</Insight>
-<Insight n={6} title="Poor feedback after account connection" quote="I connected my account... and nothing happened. Did it even work?">No confirmation or next step after Plaid led to drop-off.</Insight>
+<Insight n={1} title="Viewing transactions alone isn’t valuable" quote="“I already have banking apps, why would I use another just to look at the same list of transactions?”" points={["Users weren’t interested in simply viewing aggregated transaction lists.", "They trusted their existing apps more and didn’t feel the need to duplicate the experience."]} />
+<Insight n={2} title="Users want control over recurring payments" quote="“I want to track my subscriptions, mortgage, and insurance, not every cup of coffee.”" points={["Users cared more about recurring commitments than everyday spending.", "They needed visibility into what's regular, essential, and non-negotiable."]} />
+<Insight n={3} title="Fear of price changes or unexpected charges" quote="“What if Netflix suddenly charges more and I don’t notice?”" points={["Users were anxious about missing changes in billing amounts.", "They wanted alerts or visual cues about unusual patterns in their recurring charges."]} />
+<Insight n={4} title="Need to anticipate what’s coming next" quote="“Show me which bills are coming soon and from which card.”" points={["Predictability was key. Users wanted to plan upcoming payments by date and source (e.g., which card).", "Just showing historical data wasn’t enough."]} />
+<Insight n={5} title="Desire for spending breakdowns" quote="“I’d love to see how much I spend on subscriptions vs. insurance.”" points={["Users wanted category-level analytics on recurring expenses, both in % and actual values.", "They asked for insights, not just numbers."]} />
+<Insight n={6} title="Poor feedback after account connection" quote="“I connected my account... and nothing happened. Did it even work?”" points={["Many users were confused after Plaid connection.", "No confirmation, feedback, or next step, which led to drop-off and uncertainty."]} />
 
 ### What others are doing
 
@@ -114,38 +126,38 @@ I formulated hypotheses for new recurring payments features based on user resear
 <Hypothesis n={1} title="Hypothesis (recurring payments tracking)" ifText="we add the feature of tracking recurring bills (recurring payments) to the financial section," then="users will be able to better control regular spending, forecast budgets, and avoid missed charges," because="they will get structured, automated analytics on their recurring payments." leadsTo="higher conversion to the financial feature +50% and lower rate of bank account disconnections" metrics={["Recurring_Tab_Opened", "Recurring_Widget_Viewed", "Avg_Time_on_Recurring_Screen", "Bank_Disconnect (drop rate)"]} success={["Increased interaction with the Recurring block from users exploring the Financial section", "Higher conversion to recurring tracking after connecting a bank", "Lower rate of bank disconnections after engaging with recurring analytics"]} />
 
 <ScreenRow shots={[
-  { src: "/work/smart-financial-assistant/screens/home-spent.webp", width: 375, height: 812, alt: "Home: Spent this month and the recurring chart.", caption: "Home" },
-  { src: "/work/smart-financial-assistant/screens/home-accounts.webp", width: 375, height: 812, alt: "Accounts, the spending ring and payment history.", caption: "Accounts" },
-  { src: "/work/smart-financial-assistant/screens/spending-breakdown.webp", width: 375, height: 812, alt: "Spending breakdown by category.", caption: "Spending breakdown" },
+  { src: "/work/smart-financial-assistant/screens/home-spent.webp", width: 750, height: 1624, alt: "Home: Spent this month and the recurring chart.", caption: "Home" },
+  { src: "/work/smart-financial-assistant/screens/home-accounts.webp", width: 750, height: 1624, alt: "Accounts, the spending ring and payment history.", caption: "Accounts" },
+  { src: "/work/smart-financial-assistant/screens/spending-breakdown.webp", width: 750, height: 1624, alt: "Spending breakdown by category.", caption: "Spending breakdown" },
 ]} strip={{ src: "/work/smart-financial-assistant/screens/widgets.webp", width: 1133, height: 312, alt: "Balance, Spent and Income widgets.", caption: "Balance, Spent and Income widgets" }} />
 
 <Hypothesis n={2} title="Hypothesis (upcoming payments)" ifText="we show users their upcoming charges – the date, amount, and card," then="they will be able to better plan their expenses and avoid unexpected withdrawals," because="they will have clarity and control over future transactions." leadsTo="fewer overdue bills and increased trust and user retention" metrics={["Upcoming_Widget_Clicked", "Recurring_Calendar_Date_Clicked", "Recurring_Tab_All_Viewed"]} success={["Increased interaction with the Recurring block", "Higher retention among users engaging with this block", "Reduced bank disconnect rate"]} />
 
 <ScreenRow shots={[
-  { src: "/work/smart-financial-assistant/screens/home-upcoming.webp", width: 375, height: 812, alt: "Home: upcoming bills.", caption: "Upcoming on Home" },
-  { src: "/work/smart-financial-assistant/screens/recurring-due.webp", width: 375, height: 812, alt: "Recurring, sorted by due date.", caption: "By due date" },
-  { src: "/work/smart-financial-assistant/screens/recurring-calendar.webp", width: 375, height: 812, alt: "Recurring calendar for the month.", caption: "Calendar" },
+  { src: "/work/smart-financial-assistant/screens/home-upcoming.webp", width: 750, height: 1624, alt: "Home: upcoming bills.", caption: "Upcoming on Home" },
+  { src: "/work/smart-financial-assistant/screens/recurring-due.webp", width: 750, height: 1624, alt: "Recurring, sorted by due date.", caption: "By due date" },
+  { src: "/work/smart-financial-assistant/screens/recurring-calendar.webp", width: 750, height: 1624, alt: "Recurring calendar for the month.", caption: "Calendar" },
 ]} />
 
 <Hypothesis n={3} title="Hypothesis (Breakdown by type)" ifText="we allow users to sort bills by type (e.g. subscriptions, rent, utilities, insurance...)," then="they will be able to better analyze the structure of their expenses and prioritize spending," because="it simplifies the perception and budgeting of recurring costs." leadsTo="increased engagement and better retention of active users" metrics={["Recurring_Widget_Clicked", "Sort_By_Type_Selected (optional)"]} success={["Increased interaction with the breakdown block"]} />
 
 <ScreenRow shots={[
-  { src: "/work/smart-financial-assistant/screens/recurring-type.webp", width: 375, height: 812, alt: "Recurring bills sorted by type, with totals per year.", caption: "By type" },
-  { src: "/work/smart-financial-assistant/screens/monthly-breakdown.webp", width: 375, height: 812, alt: "Monthly view: breakdown by type.", caption: "Breakdown by type" },
+  { src: "/work/smart-financial-assistant/screens/recurring-type.webp", width: 750, height: 1624, alt: "Recurring bills sorted by type, with totals per year.", caption: "By type" },
+  { src: "/work/smart-financial-assistant/screens/monthly-breakdown.webp", width: 750, height: 1624, alt: "Monthly view: breakdown by type.", caption: "Breakdown by type" },
 ]} />
 
 <Hypothesis n={4} title="Hypothesis (forecasting)" ifText="we forecast the total expected amount of recurring charges for the current month," then="users will be able to better plan their remaining budget and make informed decisions (e.g. cancel a subscription)," because="they will see the financial picture ahead of time." leadsTo="improved engagement and higher satisfaction and trust" metrics={["Recurring_Tab_Monthly_Viewed", "Forecast_Return_Visits"]} success={["Increased interaction with the forecast block within the Recurring tab"]} />
 
 <ScreenRow shots={[
-  { src: "/work/smart-financial-assistant/screens/monthly-forecast.webp", width: 375, height: 812, alt: "Projected recurring expenses for the month.", caption: "Forecast" },
-  { src: "/work/smart-financial-assistant/screens/monthly-breakdown2.webp", width: 375, height: 812, alt: "Monthly view with overdue and this month’s bills.", caption: "This month" },
+  { src: "/work/smart-financial-assistant/screens/monthly-forecast.webp", width: 750, height: 1624, alt: "Projected recurring expenses for the month.", caption: "Forecast" },
+  { src: "/work/smart-financial-assistant/screens/monthly-breakdown2.webp", width: 750, height: 1624, alt: "Monthly view with overdue and this month’s bills.", caption: "This month" },
 ]} />
 
 <Hypothesis n={5} title="Hypothesis (bill details + merchant grouping)" ifText="we show users the full history of each bill (payment graphs, previous charges)," and="and group bills by merchant (even if names differ slightly)," then="they will have a complete picture of spending per service," because="they won’t have to manually track down recurring charges from various records." leadsTo="less confusion / better understanding of recurring expenses and increased trust and sense of control" metrics={["Recurring_Merchant_Clicked", "Recurring_Details_Viewed"]} success={["Increased interaction with the recurring bill details block", "Greater engagement with grouped bill history and past payments"]} />
 
 <ScreenRow shots={[
-  { src: "/work/smart-financial-assistant/screens/details-all.webp", width: 375, height: 812, alt: "Recurring details for one merchant, all its bills.", caption: "Merchant, all bills" },
-  { src: "/work/smart-financial-assistant/screens/details-one.webp", width: 375, height: 812, alt: "Recurring details for one bill.", caption: "One bill" },
+  { src: "/work/smart-financial-assistant/screens/details-all.webp", width: 750, height: 1624, alt: "Recurring details for one merchant, all its bills.", caption: "Merchant, all bills" },
+  { src: "/work/smart-financial-assistant/screens/details-one.webp", width: 750, height: 1624, alt: "Recurring details for one bill.", caption: "One bill" },
 ]} />
 
 </Chapter>
