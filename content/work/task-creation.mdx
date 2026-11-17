@@ -1,0 +1,152 @@
+export const meta = {
+  heading: "Task Creation Reimagined",
+  lead: "Fixing a broken flow that confused 8 out of 10 users during task creation.",
+  facts: [
+    { label: "Role", value: "Product designer, the only designer" },
+    { label: "Year", value: "2025" },
+    { label: "Focus", value: "Research, behavioral analytics, UX simplification, UI redesign, custom repeat logic" },
+    { label: "Testing", value: "7 users before the redesign, 9 after; Mixpanel" },
+  ],
+  answer: {
+    problem: "Our task manager had an overloaded and fragmented task creation flow. Only 32.78% of users completed task creation.",
+    didTitle: "What I did",
+    did: "I led a UX audit, conducted usability tests, and redesigned the entire flow — simplifying the interface, prioritizing essential actions, and reworking the repeat logic to better reflect real user needs.",
+    result: "Task saves rose from 32.8% to 63.7%, the average time to create a task dropped from 90 to 46 seconds, drop-offs in custom repeat fell from 43% to 15%, and the SUS score rose from 61 to 83.",
+  },
+  proof: { mark: "32.8% → 63.7%", cap: "of users saved the task they started, before and after the redesign (Mixpanel, 3 months)" },
+};
+
+Our task manager had an overloaded and fragmented task creation flow. Key actions like adding attachments, notes, or setting a location were hidden in separate tabs, while the form was cluttered with rarely used fields like “Due by” and “Timeframe.”
+
+As a result, many users dropped off midway or skipped important settings altogether.
+
+I led a UX audit, conducted usability tests, and redesigned the entire flow — simplifying the interface, prioritizing essential actions, and reworking the repeat logic to better reflect real user needs.
+
+<Chapter id="broken" n={1} of={4} title="What was broken">
+
+### 1. Low conversion
+
+Only 32.78% of users complete task creation. This indicates friction in the flow — either due to complexity, unclear structure, or distracting UI. It may also point to cognitive overload or a lack of clarity and motivation to finish the action.
+
+<Figure src="/work/task-creation/02.webp" width={1800} height={964} alt="Mixpanel funnel of task creation: 32.78% of users finish." caption="Task creation funnel in Mixpanel." />
+
+### 2. Cognitive overload
+
+The users who provided feedback through support conversations and in-app reports mentioned that the task creation form felt “overloaded” and included “unnecessary fields.” The form displayed every possible input field upfront even those rarely used, which led to friction, confusion, and slower task completion.
+
+### 3. Unused fields
+
+Only 12% of tasks included a value for the ‘timeframe’ or ‘due by’ fields. This was confirmed through Mixpanel event data.
+
+<DeviceRow shots={[{ src: "/work/task-creation/old-labels.webp", width: 640, height: 1313, alt: "The old form: a long column of fields, from Status to Repeat, all shown at once.", caption: "Every field upfront" }]} />
+
+### 4. Disjointed layout
+
+Additional features, such as adding notes or attaching files, were placed in separate tabs, causing users who provided feedback to be unaware of their availability. Fields like notes, attachments, or location were scattered across different sections, making it difficult for users to quickly find and access these options, which are also important to them.
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/old-tabs.webp", width: 640, height: 1313, alt: "The old form: notes, attachments, location and checklist in separate tabs.", caption: "Features in separate tabs" },
+  { src: "/work/task-creation/old-notes.webp", width: 640, height: 1313, alt: "The old Notes tab.", caption: "Notes" },
+  { src: "/work/task-creation/old-attachments.webp", width: 640, height: 1313, alt: "The old Attachments tab.", caption: "Attachments" },
+]} />
+
+### 5. Confusing custom repeat
+
+The repeat logic was rigid and unintuitive. Users couldn’t choose specific days or set an end condition, leading to a 43% drop-off on this step.
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/old-repeat-daily.webp", width: 640, height: 1313, alt: "The old custom repeat: every 3 days.", caption: "Daily" },
+  { src: "/work/task-creation/old-repeat-weekly.webp", width: 640, height: 1313, alt: "The old custom repeat: weekly, with days of the week.", caption: "Weekly" },
+  { src: "/work/task-creation/old-repeat-monthly.webp", width: 640, height: 1313, alt: "The old custom repeat: monthly, no way to pick a day.", caption: "Monthly" },
+  { src: "/work/task-creation/old-repeat-ends.webp", width: 640, height: 1313, alt: "The old custom repeat: an end date only.", caption: "Ends" },
+]} />
+
+</Chapter>
+
+<Chapter id="research" n={2} of={4} title="Testing and insights">
+
+<TileLists lists={[
+  { title: "Testing setup", items: [
+    "Mixpanel data from live product",
+    "Qualitative feedback from support conversations and user-reported issues",
+    "7 users in moderated usability tests before redesign",
+    "9 users tested after redesign",
+  ] },
+  { title: "Key metrics tracked", items: [
+    "Time to complete",
+    "Task completion rate",
+    "Drop-offs",
+    "Perceived usability (SUS)",
+  ] },
+]} />
+
+### Key insights
+
+- Users want to quickly specify the title, date, reminder, and, if needed, repetition.
+- Additional fields (location, notes, attachments) should be accessible but don’t need to be immediately visible.
+- People expect repetition to work like in Google Calendar: “on the 4th day of every month until the end of December.”
+
+</Chapter>
+
+<Chapter id="changes" n={3} of={4} title="What I changed">
+
+### One screen, logical structure
+
+All core functions were grouped on a single screen with clearly separated blocks. Secondary fields are hidden by default but still easily accessible.
+
+### Smart default for date
+
+Task date is pre-filled as “Today” to reduce effort. Advanced settings (e.g. presets are added for quick selection, enabling users to set the desired date and specific time with ease) are collapsed and available on demand.
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-form.webp", width: 640, height: 1313, alt: "The new task form on one screen: status, assignees, location, date, reminder, repeat, attachments and a note; the date row highlighted.", caption: "One screen" },
+  { src: "/work/task-creation/new-date-presets.webp", width: 640, height: 1313, alt: "Date presets: Today, Tomorrow, Next week, No date, On date, and a time.", caption: "Date presets" },
+  { src: "/work/task-creation/new-date-calendar.webp", width: 640, height: 1313, alt: "On date opens a calendar in place.", caption: "On date" },
+]} />
+
+### Fully flexible repeat
+
+After analyzing competitors and the most popular tools users rely on, all desired options were incorporated to provide greater flexibility and freedom for the user.
+
+The repeat component was redesigned to support complex schedules (e.g., “every Tue and Fri,” “on day 2,” or “on the first Wednesday every 1 month”) and end conditions like “until October 24” or “after 30 occurrences.”
+
+Additionally, the copy was revised for clarity — instead of a vague “Frequency - 1 month,” it now says “Repeat every 1 month,” and instead of “End - May 2, 2025,” it now clearly states “Repeat ends – May 2, 2025.”
+
+**Repeat on specific days**
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-repeat-weekly.webp", width: 640, height: 1313, alt: "Custom repeat every week on Thursday.", caption: "Every week on Thu" },
+  { src: "/work/task-creation/new-repeat-monthly.webp", width: 640, height: 1313, alt: "Custom repeat every month on day 2 or on the first Wednesday.", caption: "On day 2 or the first Wednesday" },
+  { src: "/work/task-creation/new-repeat-yearly.webp", width: 640, height: 1313, alt: "Custom repeat every year.", caption: "Every year" },
+]} />
+
+**Repeat ends on a date or after a number of times**
+
+<DeviceRow shots={[
+  { src: "/work/task-creation/new-ends.webp", width: 640, height: 1313, alt: "Repeat ends: never, on a date, or after 30 occurrences.", caption: "Never, on a date, after N" },
+  { src: "/work/task-creation/new-ends-date.webp", width: 640, height: 1313, alt: "Repeat ends on a date picked in a calendar.", caption: "On a date" },
+  { src: "/work/task-creation/new-ends-month.webp", width: 640, height: 1313, alt: "The month and year wheel for the end date.", caption: "Month and year" },
+]} />
+
+</Chapter>
+
+<Chapter id="impact" n={4} of={4} title="Measurable impact">
+
+To evaluate the effectiveness of the new task creation flow, I combined usability testing with behavioral analytics from Mixpanel. The results showed clear improvements across several key metrics:
+
+<Figure src="/work/task-creation/10.webp" width={1800} height={964} alt="Mixpanel funnels before and after the redesign." caption="Before and after in Mixpanel." />
+
+<Stats cols={2} items={[
+  { value: "+94%", cap: "increase in task saves: create_task_selected → create_task_finish rose from 32.8% to 63.7% (3-month Mixpanel funnel comparison, 2410 → 1898 users)" },
+  { value: "~96%", cap: "faster task creation: the average time dropped from 90 to 46 seconds (Mixpanel event time and usability session recordings)" },
+  { value: "−65%", cap: "drop-offs in custom repeat setup: from 43% to 15% (Mixpanel funnel repeat_selected → repeat_finish)" },
+  { value: "+22", cap: "SUS score: from an average of 61 to 83, based on post-task surveys conducted during testing" },
+]} />
+
+### Outcome
+
+Through user research and behavioral analysis, I was able to simplify a critical flow and reduce cognitive load during task creation.
+
+This case demonstrates how even small but frequent interactions, like creating a task, can significantly impact the overall user experience.
+
+</Chapter>

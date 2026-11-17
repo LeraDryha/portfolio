@@ -86,14 +86,31 @@ export function HomeBehavior() {
       }),
     );
 
-    /* More work */
-    if (moreBtn && moreList)
+    /* More work: stays open until the visitor closes it, also after coming back from a case */
+    const MORE_KEY = "more-work-open";
+    const setMore = (open: boolean) => {
+      if (!moreBtn || !moreList) return;
+      moreList.hidden = !open || (moreRow?.hidden ?? false);
+      moreBtn.setAttribute("aria-expanded", String(open));
+      moreBtn.textContent = open ? "Less work" : "More work";
+    };
+    if (moreBtn && moreList) {
+      try {
+        if (localStorage.getItem(MORE_KEY) === "1") setMore(true);
+      } catch {}
+      // Back from a More work case: open the list and bring it into view
+      if (location.hash === "#more-list") {
+        setMore(true);
+        moreList.scrollIntoView({ block: "center" });
+      }
       on(moreBtn, "click", () => {
-        const open = moreList.hidden;
-        moreList.hidden = !open;
-        moreBtn.setAttribute("aria-expanded", String(open));
-        moreBtn.textContent = open ? "Less work" : "More work";
+        const open = moreBtn.getAttribute("aria-expanded") !== "true";
+        setMore(open);
+        try {
+          localStorage.setItem(MORE_KEY, open ? "1" : "0");
+        } catch {}
       });
+    }
 
     /* Copy email, with a short confirmation */
     document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {

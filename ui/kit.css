@@ -527,6 +527,9 @@
   --space-handsets: 44px;
   --layout-rivals: repeat(5, minmax(0, 1fr));
   --size-sfa-strip: 620px;
+  /* a framed phone in a device row: as wide as its share of the text column, between these */
+  --size-device-min: 120px;
+  --size-device-max: 190px;
   --layout-rivals-sm: repeat(4, minmax(0, 1fr));
   --size-bloom-flower: 44%;
   --size-bloom-flower-hero: 150px;
@@ -1065,6 +1068,8 @@
 .case { max-width: var(--layout-reading); margin: var(--space-0) auto; padding: var(--space-40) var(--gutter-reading-right) var(--space-140) var(--gutter-reading); }
 .case-hero { position: relative; height: var(--size-hero); display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-tile); background: var(--color-tile); }
 .case-hero--brand { background: var(--gradient-prevently); }
+.case-hero--cover { height: auto; }
+.case-hero--cover img { display: block; width: 100%; height: auto; }
 .prose .live { margin-top: var(--space-40); margin-bottom: var(--space-40); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .live__parts { display: flex; margin: var(--space-0); padding: var(--space-0); }
 .prose .live p { margin: var(--space-0); }
@@ -1097,6 +1102,7 @@
 .proof-block span { display: block; margin-top: var(--space-8); color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-caption); }
 .stats { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); margin: var(--space-18) var(--space-0) var(--space-22); }
 .stats--4 { grid-template-columns: var(--layout-cols-4); }
+.stats--2 { grid-template-columns: var(--layout-cols-2); }
 .stat { padding: var(--space-16); border-radius: var(--radius-figure); background: var(--color-tile); }
 .stat b { display: block; color: var(--color-accent); font-size: var(--text-stat); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-heading); line-height: var(--leading-tight); }
 .stat span { display: block; margin-top: var(--space-6); color: var(--color-pencil); font-size: var(--text-label); line-height: var(--leading-tag); }
@@ -1212,6 +1218,11 @@
 .before-screens .before-screens__row { justify-content: center; gap: var(--space-24); }
 .screen-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-16); margin: var(--space-14) var(--space-0) var(--space-40); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
 .screen-row .screen-row__phones { justify-content: center; gap: var(--space-32); }
+.screen-row .device-row { justify-content: center; gap: var(--space-20); }
+.device-row__item { display: grid; justify-items: center; align-content: start; gap: var(--space-10); flex: 1 1 0; min-width: var(--size-device-min); max-width: var(--size-device-max); margin: var(--space-0); }
+.device-row__zoom { width: 100%; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.device-row__zoom img { display: block; width: 100%; height: auto; }
+.device-row__item figcaption { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .screen-row__strip { display: grid; justify-self: center; width: min(100%, var(--size-sfa-strip)); gap: var(--space-8); justify-items: center; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
 .screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
 .screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
@@ -1583,6 +1594,7 @@
 .hyp p { margin: var(--space-0) var(--space-0) var(--space-6); }
 .hyp b { color: var(--color-ink); font-weight: var(--weight-semibold); }
 .hyp__n { color: var(--color-accent); }
+.prose .hyp__lead { margin-bottom: var(--space-12); color: var(--color-graphite); }
 .hyp__plan { display: grid; gap: var(--space-10); margin-top: var(--space-16); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-ui); line-height: var(--leading-ui); }
 .prose .hyp__plan-title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); }
 .hyp__plan-cols { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12) var(--space-20); }

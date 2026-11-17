@@ -1,0 +1,192 @@
+export const meta = {
+  heading: "Website redesign for the Dnipropetrovsk Regional Center for Educational Quality Assessment",
+  lead: "Perform a UX audit, improve the user experience, and redesign the website to minimize user support requests.",
+  facts: [
+    { label: "Role", value: "Product designer" },
+    { label: "Year", value: "2023" },
+    { label: "Client", value: "Dnipropetrovsk Regional Center for Educational Quality Assessment (DRCEQA)" },
+    { label: "Website", value: "dneprtest.dp.ua", href: "https://dneprtest.dp.ua" },
+  ],
+  answer: {
+    problem: "The center’s website looked dated, was not mobile-friendly, and its information was hard to find: unclear regions, poor navigation, an inconsistent and overloaded layout.",
+    didTitle: "What I did",
+    did: "A UX audit, a competitor analysis, a survey with 38 answers, personas, information architecture, ideation with a team of designers, a design system, the redesign and moderated usability testing.",
+    result: "In testing, completion rose from 50% to 100%, time on task fell from about 5 to about 1.5 minutes, and errors from 5 to 0. All changes were implemented in 2023.",
+  },
+  proof: { mark: "50% → 100%", cap: "task completion in moderated usability testing, the old website (6 users) vs the new concept (7 users)" },
+};
+
+The center is responsible for organizing and conducting external independent testing (EIT) in the Dnipropetrovsk and Zaporizhzhia regions, entrance exams for master's programs using EIT technologies, monitoring educational quality, independent testing of participants, and certification of teaching staff.
+
+<TileLists lists={[
+  { title: "Responsibilities", items: [
+    "Define audit goals",
+    "Gather user feedback",
+    "User flow analysis",
+    "Usability evaluation",
+    "Content analysis",
+    "Conduct usability testing",
+    "Identify issues and provide recommendations",
+    "Implement changes and retest",
+  ] },
+  { title: "Methods", items: [
+    "User interviews and surveys",
+    "Competitor analysis",
+    "Mapping",
+    "Information architecture",
+    "Problem statements and ideation",
+    "User flows",
+    "Wireframing & prototyping",
+    "Design system",
+  ] },
+]} />
+
+<Chapter id="audit" n={1} of={4} title="Audit goals">
+
+The client requested a website redesign to give it a modern look, align the interface with industry competitors, and enhance user-friendliness.
+
+1. Identify and address issues that prevent users from easily completing their tasks on the website
+2. Reduce customer support requests
+3. Optimize user flow
+4. Align with modern design standards
+5. Improve accessibility
+6. Conduct competitor analysis
+7. Reduce bounce rate
+8. Increase visit duration
+
+<Figure src="/work/dnipro-education-center/03.webp" width={1800} height={1125} alt="The old website's main page next to the audit goals." caption="The website before the redesign." />
+
+</Chapter>
+
+<Chapter id="discover" n={2} of={4} title="Discover">
+
+### UI competitor research
+
+At this stage, I already know that the solution will be based on a UI familiar to similar websites, and the only thing left to define is the overall look and feel.
+
+The client’s only requirement was to keep the green color, which distinguishes their center from others.
+
+I created a mood board with screenshots of competitors, organized into the following categories:
+
+1. Iconography
+2. Typography
+3. Color Scheme
+4. Animation (Microinteractions)
+5. Geometry
+6. Tone of Voice
+
+<Figure src="/work/dnipro-education-center/04.webp" width={1800} height={1125} alt="Mood board of other regional centers' websites." caption="UI competitor research." />
+
+### Competitor analysis
+
+<Figure src="/work/dnipro-education-center/05.webp" width={1800} height={1125} alt="Competitor analysis table: the Dnipropetrovsk center lacks a mobile-friendly design, clear navigation, breadcrumbs, a modern design, search, a consistent layout, an FAQ and easily accessible contacts." caption="Competitor analysis." />
+
+### Information architecture
+
+To gain a clear understanding of the workflow, I created a mind map in FigJam outlining all the sections and aspects of the process.
+
+This exercise helped me identify the key components of the future solution.
+
+<Figure src="/work/dnipro-education-center/06.webp" width={1800} height={1125} alt="Mind map of all sections of the website." caption="Information architecture." />
+
+### User survey
+
+The goal was to gather as much information as possible and conduct a survey. My objective was to explore issues, understand user experiences and pain points, and identify user expectations.
+
+<Stats items={[
+  { value: "38", cap: "answers" },
+  { value: "20", cap: "NMT applicants" },
+  { value: "5", cap: "parents of an applicant" },
+  { value: "13", cap: "educators" },
+]} />
+
+<Figure src="/work/dnipro-education-center/07.webp" width={1800} height={1125} alt="The survey results and the survey question list." caption="User survey." />
+
+</Chapter>
+
+<Chapter id="define" n={3} of={4} title="Define">
+
+### User personas
+
+One of the outcomes of the interviews was transforming the insights about these roles into personas.
+
+<Figure src="/work/dnipro-education-center/08.webp" width={1800} height={1125} alt="Three personas: an applicant, a teacher and a contracted worker." caption="User personas." />
+
+### Problem definition
+
+1. Lack of a mobile-friendly version of the website
+2. Unclear information about the regions served by the site
+3. Difficulty finding information due to poor navigation and lack of guidance
+4. Inconsistent design and layout across the site
+5. Cluttered and overloaded website design
+
+</Chapter>
+
+<Chapter id="develop" n={4} of={4} title="Develop">
+
+### Ideation
+
+My favorite part of any design process is brainstorming. We worked as a team of designers, collaborating to tackle each problem creatively and effectively. Naturally, we followed all the brainstorming rules:
+
+- No judgment
+- No leading
+- Embrace even the craziest ideas
+- Focus on quantity over quality
+
+<Figure src="/work/dnipro-education-center/10.webp" width={1800} height={1125} alt="Brainstorming stickies with ideas for the website." caption="Ideation." />
+
+### Design system
+
+The design system was developed to ensure consistency, efficiency, and a cohesive user experience across the project.
+
+By standardizing colors, typography, components, and interactions, the design system simplifies the design process and workflow, enabling faster iterations and easier maintenance as the project evolves.
+
+<Figure src="/work/dnipro-education-center/11.webp" width={1800} height={1125} alt="The design system: colour palettes, typography in Roboto, buttons, inputs, filters, cards." caption="Design system." />
+
+### Main page
+
+<Figure src="/work/dnipro-education-center/12.webp" width={1800} height={1125} alt="The main page before and after the redesign, on desktop and mobile." label="Before & after" caption="Main page." />
+
+### Navigation
+
+- Dropdown menu on hover
+- Fixed left navigation and breadcrumb trail for easy site navigation
+- User-friendly mobile version
+
+<Figure src="/work/dnipro-education-center/13.webp" width={1800} height={1125} alt="The new navigation on desktop and mobile." caption="Navigation." />
+
+### Account
+
+<Figure src="/work/dnipro-education-center/14.webp" width={1800} height={1125} alt="The account page before and after the redesign." label="Before & after" caption="Account." />
+
+### About us
+
+The information was organized into logical groups to make it easier to find and understand
+
+<Figure src="/work/dnipro-education-center/15.webp" width={1800} height={1125} alt="The About us page before and after the redesign." label="Before & after" caption="About us." />
+
+### News archive
+
+Articles were organized by year for easier navigation and search. Each article includes a tag indicating its topic, allowing users to quickly find relevant information.
+
+<Figure src="/work/dnipro-education-center/16.webp" width={1800} height={1125} alt="The news archive before and after the redesign." label="Before & after" caption="News archive." />
+
+### Moderated usability testing
+
+The task of the usability test was to find out if Biology is listed as a mandatory or optional subject in the NMT framework
+
+<ResultsTable caption="Moderated usability testing: the website (6 users) and the new concept (7 users)" columns={["Website", "New concept"]} rows={[
+  { metric: "Completion rate", cells: [{ v: "50%" }, { v: "100%", improved: true }] },
+  { metric: "Time on task", cells: [{ v: "~5 min" }, { v: "~1.5 min", improved: true }] },
+  { metric: "Number of errors", cells: [{ v: "5" }, { v: "0", improved: true }] },
+  { metric: "Easy to use", cells: [{ v: "2/5" }, { v: "4.34/5", improved: true }] },
+  { metric: "User satisfaction", cells: [{ v: "2.16/5" }, { v: "4.14/5", improved: true }] },
+]} />
+
+### What’s next
+
+- It was recommended to implement analytics on the website to track key metrics.
+- Designs were prepared and handed off to the developers.
+- All changes were implemented in 2023, followed by a design review to ensure consistency and functionality.
+
+</Chapter>

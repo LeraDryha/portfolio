@@ -109,10 +109,9 @@ export function Bento() {
       </div>
       <div className="minis" id="more-list" hidden>
         {moreWork.map((m) => (
-          <a className="mini" key={m.url} href={m.url} target="_blank" rel="noopener">
+          <a className="mini" key={m.slug} href={`/work/${m.slug}`}>
             <b>{m.title}</b>
             <span>{m.meta}</span>
-            <NewTab />
           </a>
         ))}
       </div>

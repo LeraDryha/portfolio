@@ -106,9 +106,9 @@ export function SideCopy({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 
-export function Stats({ items }: { items: { value: string; cap: string }[] }) {
+export function Stats({ items, cols }: { items: { value: string; cap: string }[]; /** 2 for long captions: two cards in a row */ cols?: 2 }) {
   return (
-    <div className={items.length === 5 ? "stats stats--5" : items.length === 4 ? "stats stats--4" : "stats"}>
+    <div className={cols === 2 ? "stats stats--2" : items.length === 5 ? "stats stats--5" : items.length === 4 ? "stats stats--4" : "stats"}>
       {items.map((s) => (
         <div className="stat" key={s.value + s.cap}>
           <b>{s.value}</b>
@@ -171,13 +171,14 @@ export function Insight({ n, title, quote, points, children }: { n: number; titl
 
 /** A hypothesis as Lera wrote it in Notion: If / Then / Because / This will lead to (an optional second If line),
  *  and under it her Validation plan: key metrics (Mixpanel events) and success indicators. */
-export function Hypothesis({ n, title, ifText, and, then, because, leadsTo, metrics, success }: { n?: number; title: string; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[] }) {
+export function Hypothesis({ n, title, lead, ifText, and, then, because, leadsTo, metrics, success, plan }: { n?: number; title: string; /** a line before the hypothesis, e.g. the test's objective */ lead?: ReactNode; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[]; /** a test plan in the author's own parts (Variants, Metric, Guardrails…) */ plan?: { title: string; parts: { label: string; items: string[] }[] } }) {
   return (
     <div className="hyp">
       <h3>
         {n !== undefined && <span className="hyp__n">{n}. </span>}
         {title}
       </h3>
+      {lead && <p className="hyp__lead">{lead}</p>}
       <p>
         <b>If</b> {ifText}
         {and && (
@@ -196,6 +197,21 @@ export function Hypothesis({ n, title, ifText, and, then, because, leadsTo, metr
       <p>
         <b>This will lead to</b> {leadsTo}
       </p>
+      {plan && (
+        <div className="hyp__plan">
+          <p className="hyp__plan-title">{plan.title}</p>
+          {plan.parts.map((part) => (
+            <div key={part.label}>
+              <p className="define__label">{part.label}</p>
+              <ul>
+                {part.items.map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
       {(metrics || success) && (
         <div className="hyp__plan">
           <p className="hyp__plan-title">Validation plan</p>
@@ -596,7 +612,7 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
 export { Rival } from "@/components/case/Rivals";
-export { BeforeAfter, BeforeScreens, ScreenRow } from "@/components/case/SfaScreens";
+export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings, InPlace, Activities } from "@/components/case/ComfyDefine";
 export { AdtChart, AdtOverviewFocus, AdtNameField, AdtFlow } from "@/components/case/AdtChart";
