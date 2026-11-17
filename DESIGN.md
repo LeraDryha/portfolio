@@ -298,7 +298,7 @@ Facts (labels in a column, values aligned; a value can be a link), Problem / Wha
 
 **Bright screenshots in dark** (Smart Financial Assistant): light figures and the widgets strip take `--filter-shot` at night, as the Storybook previews do, so they don't glare on black.
 
-**Page scroll** (DRCEQA): whole pages before and after side by side in windows of one height (620px) that scroll inside, on a grey panel, case-wide; a Before badge (caution) or After badge (positive) over each; one under another on phones, where a short page keeps its own height. **Framed phones**: Lera’s phone mockups that already have a device frame, shown whole three in a row with small captions; each opens larger.
+**Page scroll** (DRCEQA): whole pages before and after side by side in windows up to 620px tall that scroll inside (a shorter page shows whole, no empty space), on a grey panel, case-wide; a Before badge (caution) or After badge (positive) over each; one under another on phones. **Framed phones**: Lera’s phone mockups that already have a device frame, shown whole three in a row with small captions; each opens larger.
 
 **Kit foundations** (DRCEQA): a client design system’s colours and type, live, case-wide: colour ramps as rounded swatches with step and hex (hex in Geist Mono; the client’s colours are data, like a screenshot), the type scale as a hairline table; two white cards on a grey panel, stacked under 900px. Components follow as one **kit sheet**: crops of Lera’s Figma together on a grey panel in three columns (two, then one on smaller screens), each a white card that opens larger, one caption for the sheet.
 
