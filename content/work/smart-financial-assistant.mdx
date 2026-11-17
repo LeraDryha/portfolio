@@ -2,32 +2,90 @@ export const meta = {
   heading: "From transaction log to smart financial assistant",
   lead: "A household finance manager for the US market, for hubmee. People connected their bank accounts and then had no reason to come back. I reworked raw transaction data into something actionable, insightful and worth revisiting.",
   facts: [
-    { label: "Role", value: "UX/UI Designer, led the design" },
-    { label: "Team", value: "UX/UI designer, PM, system architect" },
+    { label: "Role", value: "Product designer" },
+    { label: "Team", value: "Product designer (me), PM, system architect" },
     { label: "Year", value: "2024" },
     { label: "Market", value: "US · household finance" },
     { label: "Client", value: "hubmee" },
   ],
+  answer: {
+    problem: "People connected their bank accounts and didn’t come back: only 3.66% went on to explore the financial tabs, and with no action within 14 days after connecting, the feature failed to retain interest.",
+    didTitle: "What I did",
+    did: "Discovery: desk research, an analysis of Rocket Money, Monarch and Revolut, in-depth interviews and support requests. I mapped the insights onto user personas and a CJM, ran a workshop with the team and prioritised the focus on the recurring payments module. Then hypotheses with Mixpanel events, prototypes, usability testing and the hand-off.",
+    result: "After release, over 60% of users returned to the forecast graph more than once a month (Mixpanel). Users came back to the recurring section regularly and dug into the details, and fewer of them disconnected their bank accounts.",
+  },
   proof: { mark: "60%+", cap: "of users returned to the forecast graph more than once a month after release (Mixpanel)" },
 };
 
-## The problem
+<Chapter id="problem" n={1} of={5} title="I connected my accounts… and then what?">
 
-Users could connect their bank accounts via Plaid, but the product failed to keep them engaged. After the initial setup many didn’t return or explore further. The experience lacked perceived value beyond basic transaction aggregation.
+Users were able to connect their bank accounts via Plaid, but the product failed to keep them engaged. After the initial setup, many users didn’t return or explore further features. This highlighted a clear gap: the experience lacked perceived value beyond basic transaction aggregation.
 
-<Figure src="/work/smart-financial-assistant/s03.jpg" width={1600} height={610} alt="User problems: no clear way to understand money flow, recurring payments, spending habits or context, and the question “I connected my accounts… and then what?”" caption="User problems, and the question behind them." />
+I needed to rethink how to turn raw financial data into something actionable, insightful, and worth revisiting.
 
-## The challenge
+<TileLists lists={[
+  { title: "User problems", items: [
+    "No clear way to understand where money goes, everything feels mixed and raw",
+    "Difficult to identify recurring payments or plan for upcoming bills",
+    "No visual tools to track spending habits or income vs. expenses",
+    "Lack of context around balances, categories, or financial trends",
+  ] },
+  { title: "Business goals", items: [
+    "Increase user engagement and retention after onboarding",
+    "Build a scalable foundation for financial insights and bill tracking",
+    "Improve perceived product value beyond data aggregation",
+    "Prepare the platform for monetization through premium features (e.g. advanced analytics, alerts)",
+  ] },
+]} />
 
-The MVP offered a list of all transactions from connected accounts, filtering by account and category, category-based spending insights, and an overview of balances. It quickly proved insufficient for long-term engagement. As part of a small product team, I led the design as we began scaling the product.
 
-## Process
+### The challenge
 
-Design Thinking, to keep the solution aligned with both user needs and business goals: desk research, in-depth interviews, competitive analysis, hypotheses, testing, and building on.
+The product was originally designed as a household finance manager for the US market, allowing users to connect their accounts and track income and expenses. At its core, it offered a simple MVP with:
+
+<BeforeScreens items={[
+  "A list of all transactions from connected accounts",
+  "Filtering by account and category",
+  "Category-based spending insights and percentages",
+  "An overview of account balances and total balance",
+]} shots={[
+  { src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Old Home: spent this month, accounts, payment history.", caption: "Home" },
+  { src: "/work/smart-financial-assistant/screens/before-history.webp", width: 750, height: 1624, alt: "Old Transaction tab: all accounts and a list of transactions by day.", caption: "Transaction" },
+  { src: "/work/smart-financial-assistant/screens/before-wallet.webp", width: 750, height: 1624, alt: "Old Wallet: a linked credit card and a payment card.", caption: "Wallet" },
+  { src: "/work/smart-financial-assistant/screens/before-transaction.webp", width: 750, height: 1624, alt: "Old transaction details: Walmart, category, payment method, description, attachments.", caption: "Transaction" },
+]} />
+
+However, this functionality quickly proved insufficient for long-term engagement.
+
+As part of a small product team (Product designer, PM, and system architect), I led the design efforts as we began scaling the product experience.
+
+I started by gathering insights through product analytics, competitor analysis, and hypothesis mapping to identify what would make the experience more valuable, intuitive, and proactive for our users.
+
+<BeforeAfter before={{ src: "/work/smart-financial-assistant/screens/before-overview.webp", width: 750, height: 1624, alt: "Before: Home with spending this month, accounts and payment history.", caption: "Home" }} after={{ src: "/work/smart-financial-assistant/screens/home-spent.webp", width: 750, height: 1624, alt: "After: Home with the balance chart, upcoming bills and recurring payments.", caption: "Home" }}>
+Recurring became a tab of its own, and Home shows what is coming up. Names and amounts in all screens are sample data.
+</BeforeAfter>
+
+</Chapter>
+
+<section className="process" aria-labelledby="h-process">
+  <h2 id="h-process">My Process</h2>
+  <p>I followed a <b>Design Thinking</b> approach to ensure the solution aligned with both user needs and business goals.</p>
+  <ul>
+    <li>Desk research</li>
+    <li>In-depth interviews</li>
+    <li>Competitive analysis</li>
+    <li>Hypothesis</li>
+    <li>Testing</li>
+    <li>Let’s keep building</li>
+  </ul>
+</section>
+
+<Chapter id="research" n={2} of={5} title="What the data and users told us">
+
 
 ### What the data told us
 
-The goal was to understand real behaviour, find drop-off points and spot opportunities.
+<Goal>to understand real user behavior, identify drop-off points and spot opportunities for improvement.</Goal>
 
 <Stats items={[
   { value: "3.66%", cap: "of users who connected a bank account went on to explore the financial tabs" },
@@ -39,69 +97,113 @@ The goal was to understand real behaviour, find drop-off points and spot opportu
 
 ### What we learned from users
 
-<Insight n={1} title="Viewing transactions alone isn’t valuable" quote="I already have banking apps, why would I use another just to look at the same list of transactions?">People trusted their bank apps more and didn’t want to duplicate them.</Insight>
-<Insight n={2} title="Users want control over recurring payments" quote="I want to track my subscriptions, mortgage, and insurance, not every cup of coffee.">They cared about regular, essential commitments more than everyday spending.</Insight>
-<Insight n={3} title="Fear of price changes or unexpected charges" quote="What if Netflix suddenly charges more and I don’t notice?">They wanted cues about unusual patterns in recurring charges.</Insight>
-<Insight n={4} title="Need to anticipate what’s coming next" quote="Show me which bills are coming soon and from which card.">Predictability was key: upcoming payments by date and source.</Insight>
-<Insight n={5} title="Desire for spending breakdowns" quote="I’d love to see how much I spend on subscriptions vs. insurance.">Category-level analytics on recurring expenses, in % and in money.</Insight>
-<Insight n={6} title="Poor feedback after account connection" quote="I connected my account... and nothing happened. Did it even work?">No confirmation or next step after Plaid led to drop-off.</Insight>
+<Goal>to explore user motivations, unmet needs, and emotional triggers behind their decisions.</Goal>
+
+Based on support requests and 6 user interviews, I uncovered several critical insights that helped me reshape the direction of the product:
+
+<Insight n={1} title="Viewing transactions alone isn’t valuable" quote="“I already have banking apps, why would I use another just to look at the same list of transactions?”" points={["Users weren’t interested in simply viewing aggregated transaction lists.", "They trusted their existing apps more and didn’t feel the need to duplicate the experience."]} />
+<Insight n={2} title="Users want control over recurring payments" quote="“I want to track my subscriptions, mortgage, and insurance, not every cup of coffee.”" points={["Users cared more about recurring commitments than everyday spending.", "They needed visibility into what's regular, essential, and non-negotiable."]} />
+<Insight n={3} title="Fear of price changes or unexpected charges" quote="“What if Netflix suddenly charges more and I don’t notice?”" points={["Users were anxious about missing changes in billing amounts.", "They wanted alerts or visual cues about unusual patterns in their recurring charges."]} />
+<Insight n={4} title="Need to anticipate what’s coming next" quote="“Show me which bills are coming soon and from which card.”" points={["Predictability was key. Users wanted to plan upcoming payments by date and source (e.g., which card).", "Just showing historical data wasn’t enough."]} />
+<Insight n={5} title="Desire for spending breakdowns" quote="“I’d love to see how much I spend on subscriptions vs. insurance.”" points={["Users wanted category-level analytics on recurring expenses, both in % and actual values.", "They asked for insights, not just numbers."]} />
+<Insight n={6} title="Poor feedback after account connection" quote="“I connected my account... and nothing happened. Did it even work?”" points={["Many users were confused after Plaid connection.", "No confirmation, feedback, or next step, which led to drop-off and uncertainty."]} />
 
 ### What others are doing
 
-Three direct competitors for this functionality, to benchmark and find room to differ.
+<Goal>to benchmark against similar products, find inspiration, and spot differentiation opportunities.</Goal>
 
-<FigureRow3>
-  <ThirdFigure src="/work/smart-financial-assistant/s05.jpg" width={1600} height={597} alt="Monarch screens: dashboard, recurring, budget and categories." caption="Monarch" />
-  <ThirdFigure src="/work/smart-financial-assistant/s06.jpg" width={1600} height={597} alt="Revolut screens: dashboard, widgets, budget and categories." caption="Revolut" />
-  <ThirdFigure src="/work/smart-financial-assistant/s07.jpg" width={1600} height={597} alt="Origin screens: dashboard, recurring, widgets and categories." caption="Origin" />
-</FigureRow3>
+While we’re not a financial product per se, we identified 3 direct competitors in terms of this particular functionality.
 
-## Hypotheses and validation
+<Rival name="Revolut" line="All-in-one finance app for your money" app="revolut" groups={[["Dashboard", "dashboard", 8], ["Widgets", "widgets", 10], ["Wallet", "wallet", 7], ["Categories", "categories", 8]]} />
 
-I formulated hypotheses for new recurring-payment features from research and behaviour, and defined the Mixpanel events and success metrics so product and data teams could measure the real impact after launch.
+<Rival name="Monarch" line="Budget & track money" app="monarch" groups={[["Dashboard", "dashboard", 7], ["Recurring", "recurrings", 7], ["Wallet", "wallet", 7], ["Categories", "categories", 4]]} />
 
-<Note>Null hypothesis: recurring bill tracking does not increase perceived value, does not improve conversion into financial features, and does not reduce bank disconnections.</Note>
+<Rival name="Origin" line="Spending, saving, & net worth" app="origin" groups={[["Dashboard", "dashboard", 8], ["Widgets", "widgets", 8], ["Recurring", "recurrings", 7], ["Categories", "categories", 4]]} />
 
-<Hypothesis title="Recurring payments tracking" ifText="we add tracking of recurring bills to the financial section," then="users will better control regular spending, forecast budgets and avoid missed charges," because="they get structured, automated analytics on recurring payments." leadsTo="+50% conversion to the financial feature and fewer bank disconnections." metrics="Recurring_Tab_Opened · Recurring_Widget_Viewed · Avg_Time_on_Recurring_Screen · Bank_Disconnect" />
+</Chapter>
 
-<Figure src="/work/smart-financial-assistant/s08.jpg" width={1600} height={764} alt="Overview screens with recurring payments and spending charts." caption="Recurring payments on the overview." />
+<Chapter id="hypotheses" n={3} of={5} title="Hypotheses and validation">
 
-<Hypothesis title="Upcoming payments" ifText="we show upcoming charges with date, amount and card," then="users can plan expenses and avoid unexpected withdrawals," because="they get clarity and control over future transactions." leadsTo="fewer overdue bills, more trust and retention." metrics="Upcoming_Widget_Clicked · Recurring_Calendar_Date_Clicked · Recurring_Tab_All_Viewed" />
+<Goal>to turn our best guesses into experiments before we waste a sprint (or ten) 😂</Goal>
 
-<Figure src="/work/smart-financial-assistant/s09.jpg" width={1600} height={1092} alt="Upcoming payments widget, a recurring calendar and the list of upcoming bills." caption="Upcoming payments and the recurring calendar." />
+I formulated hypotheses for new recurring payments features based on user research and behavioral patterns and defined target Mixpanel events and success metrics for post-launch validation to help product and data teams measure real impact.
 
-<Hypothesis title="Breakdown by type" ifText="users can sort bills by type (subscriptions, rent, utilities, insurance)," then="they can analyse the structure of their expenses and prioritise," because="it simplifies how recurring costs are perceived and budgeted." leadsTo="more engagement and better retention of active users." metrics="Recurring_Widget_Clicked · Sort_By_Type_Selected" />
+With the recurring payments module we were at a crossroads: we wanted everything at once, so the question was how to prioritise our resources and effort. In parallel I ran discovery: desk research, an analysis of Rocket Money, Monarch and Revolut, and then in-depth interviews, which gave clear insights: users don’t want to track their coffee, they want to know they aren’t being charged more than planned. I synthesised the data, mapped it onto user personas, prepared a CJM and ran a workshop with the team, where we defined the key opportunities and prioritised the focus on the recurring module. I wrote hypotheses so we could measure the impact of our decisions, built prototypes and ran usability testing.
 
-<Figure src="/work/smart-financial-assistant/s10.jpg" width={1600} height={1092} alt="Recurring bills grouped by type with totals per year." caption="Recurring bills by type." />
+<NullHypothesis title="Null Hypothesis" lines={["Adding recurring bill tracking to the financial section does not significantly increase user-perceived value,", "does not improve conversion into financial features,", "and does not reduce the rate of bank account disconnections."]} />
 
-<Hypothesis title="Forecasting" ifText="we forecast the total of recurring charges for the current month," then="users can plan the remaining budget and decide, for example, to cancel a subscription," because="they see the financial picture ahead of time." leadsTo="more engagement, satisfaction and trust." metrics="Recurring_Tab_Monthly_Viewed · Forecast_Return_Visits" />
+<Hypothesis n={1} title="Hypothesis (recurring payments tracking)" ifText="we add the feature of tracking recurring bills (recurring payments) to the financial section," then="users will be able to better control regular spending, forecast budgets, and avoid missed charges," because="they will get structured, automated analytics on their recurring payments." leadsTo="higher conversion to the financial feature +50% and lower rate of bank account disconnections" metrics={["Recurring_Tab_Opened", "Recurring_Widget_Viewed", "Avg_Time_on_Recurring_Screen", "Bank_Disconnect (drop rate)"]} success={["Increased interaction with the Recurring block from users exploring the Financial section", "Higher conversion to recurring tracking after connecting a bank", "Lower rate of bank disconnections after engaging with recurring analytics"]} />
 
-<Figure src="/work/smart-financial-assistant/s11.jpg" width={1600} height={1092} alt="Monthly forecast of recurring charges with a progress bar." caption="Monthly forecast of recurring charges." />
+<ScreenRow shots={[
+  { src: "/work/smart-financial-assistant/screens/home-spent.webp", width: 750, height: 1624, alt: "Home: Spent this month and the recurring chart.", caption: "Home" },
+  { src: "/work/smart-financial-assistant/screens/home-accounts.webp", width: 750, height: 1624, alt: "Accounts, the spending ring and payment history.", caption: "Accounts" },
+  { src: "/work/smart-financial-assistant/screens/spending-breakdown.webp", width: 750, height: 1624, alt: "Spending breakdown by category.", caption: "Spending breakdown" },
+]} strip={{ src: "/work/smart-financial-assistant/screens/widgets.webp", width: 1133, height: 312, alt: "Balance, Spent and Income widgets.", caption: "Balance, Spent and Income widgets" }} />
 
-<Hypothesis title="Bill details and merchant grouping" ifText="we show each bill’s full history and group bills by merchant," then="users get a complete picture of spending per service," because="they don’t have to track recurring charges down across records." leadsTo="less confusion and a stronger sense of control." metrics="Recurring_Merchant_Clicked · Recurring_Details_Viewed" />
+<Hypothesis n={2} title="Hypothesis (upcoming payments)" ifText="we show users their upcoming charges – the date, amount, and card," then="they will be able to better plan their expenses and avoid unexpected withdrawals," because="they will have clarity and control over future transactions." leadsTo="fewer overdue bills and increased trust and user retention" metrics={["Upcoming_Widget_Clicked", "Recurring_Calendar_Date_Clicked", "Recurring_Tab_All_Viewed"]} success={["Increased interaction with the Recurring block", "Higher retention among users engaging with this block", "Reduced bank disconnect rate"]} />
 
-<Figure src="/work/smart-financial-assistant/s12.jpg" width={1600} height={1092} alt="Bill details with a chart of past payments." caption="Bill details with payment history." />
+<ScreenRow shots={[
+  { src: "/work/smart-financial-assistant/screens/recurring-due.webp", width: 750, height: 1624, alt: "Recurring, sorted by due date.", caption: "By due date" },
+  { src: "/work/smart-financial-assistant/screens/recurring-calendar.webp", width: 750, height: 1624, alt: "Recurring calendar for the month.", caption: "Calendar" },
+]} />
 
-<Hypothesis title="Main hypothesis: Dark Mode = happy CEO" ifText="we implement Dark Mode," then="our CEO will finally feel seen and indescribably happy," because="he’s been using Dark Mode on everything since 2017." leadsTo="increased happiness across the team, and maybe fewer design debates at the end of the day." />
+<Hypothesis n={3} title="Hypothesis (Breakdown by type)" ifText="we allow users to sort bills by type (e.g. subscriptions, rent, utilities, insurance...)," then="they will be able to better analyze the structure of their expenses and prioritize spending," because="it simplifies the perception and budgeting of recurring costs." leadsTo="increased engagement and better retention of active users" metrics={["Recurring_Widget_Clicked", "Sort_By_Type_Selected (optional)"]} success={["Increased interaction with the breakdown block"]} />
 
-<Figure src="/work/smart-financial-assistant/s13.jpg" width={1600} height={1125} alt="Meme: hypotheses by level of ambition, from a null hypothesis to one that makes the CEO happy." caption="Hypotheses, by level of ambition." />
+<ScreenRow shots={[
+  { src: "/work/smart-financial-assistant/screens/recurring-type.webp", width: 750, height: 1624, alt: "Recurring bills sorted by type, with totals per year.", caption: "By type" },
+  { src: "/work/smart-financial-assistant/screens/monthly-breakdown.webp", width: 750, height: 1624, alt: "Monthly view: breakdown by type.", caption: "Breakdown by type" },
+]} />
+
+<Hypothesis n={4} title="Hypothesis (forecasting)" ifText="we forecast the total expected amount of recurring charges for the current month," then="users will be able to better plan their remaining budget and make informed decisions (e.g. cancel a subscription)," because="they will see the financial picture ahead of time." leadsTo="improved engagement and higher satisfaction and trust" metrics={["Recurring_Tab_Monthly_Viewed", "Forecast_Return_Visits"]} success={["Increased interaction with the forecast block within the Recurring tab"]} />
+
+<ScreenRow shots={[
+  { src: "/work/smart-financial-assistant/screens/monthly-forecast.webp", width: 750, height: 1624, alt: "Projected recurring expenses for the month.", caption: "Forecast" },
+  { src: "/work/smart-financial-assistant/screens/monthly-breakdown2.webp", width: 750, height: 1624, alt: "Monthly view with overdue and this month’s bills.", caption: "This month" },
+]} />
+
+<Hypothesis n={5} title="Hypothesis (bill details + merchant grouping)" ifText="we show users the full history of each bill (payment graphs, previous charges)," and="and group bills by merchant (even if names differ slightly)," then="they will have a complete picture of spending per service," because="they won’t have to manually track down recurring charges from various records." leadsTo="less confusion / better understanding of recurring expenses and increased trust and sense of control" metrics={["Recurring_Merchant_Clicked", "Recurring_Details_Viewed"]} success={["Increased interaction with the recurring bill details block", "Greater engagement with grouped bill history and past payments"]} />
+
+<ScreenRow shots={[
+  { src: "/work/smart-financial-assistant/screens/details-all.webp", width: 750, height: 1624, alt: "Recurring details for one merchant, all its bills.", caption: "Merchant, all bills" },
+  { src: "/work/smart-financial-assistant/screens/details-one.webp", width: 750, height: 1624, alt: "Recurring details for one bill.", caption: "One bill" },
+]} />
+
+### Edge cases: data accuracy
+
+In personal finance products the biggest risks and constraints usually come from data accuracy. Wrong categorisation, missed or falsely detected recurring payments, transaction statuses (authorisation within 30 days, then capture), wrongly detected transfers, duplicate transactions or delayed data sync can badly distort analytics and budgets. We tried to work through each of these edge cases, so we could signal them to the user correctly and our system worked correctly. Plus, for more control and automation, we introduced a rules feature where users could manage their transactions.
+
+</Chapter>
+
+
+<Chapter id="impact" n={4} of={5} title="Impact and what’s next">
+
+<ProofStrip mark="60%+" cap="of users returned to the forecast graph more than once per month after release, confirming interest in proactive financial planning" />
+
+- **Higher interaction with recurring payments.** Significant increase in clicks on the Recurring widget and calendar, showing that users actively explore upcoming charges.
+- **Increased retention after onboarding.** Recurring features correlated with higher user retention during Week 2, suggesting perceived value and higher stickiness.
+
+<Note>Based on Mixpanel usage frequency on Forecast view; Upcoming_Widget_Clicked and Recurring_Calendar_Date_Clicked events; compared engagement of users with and without recurring interactions.</Note>
+
+After the hand-off we released the module: users regularly came back to this section and dug into the details, and fewer users disconnected their bank accounts, so the value hypothesis was confirmed. It was a full cycle, from discovery to validation.
+
+### After release
+
+Then we moved on to updates. For example, we learned to group recurring bills: a medical insurance had several parts that the system read as separate recurring bills.
+
+### What’s next
+
+- Explore adding reminders for upcoming charges
+- Introduce month-over-month spending comparison
+- A/B test alternative layouts for the forecast block (e.g., calendar view vs. chart)
+
+</Chapter>
+
+<Chapter id="dark-mode" n={5} of={5} title="Dark mode">
+
+<Hypothesis n={6} title="Main Hypothesis (Dark Mode = Happy CEO)" ifText="we implement Dark Mode," then="our CEO will finally feel seen and indescribably happy" because="he’s been using Dark Mode on everything since 2017, and this will meet his unspoken expectations." leadsTo="increased happiness across the team, a more aesthetically pleasing product, ...and possibly even some delightful and unexpected benefits. Like fewer design debates at the end of the day. ✨" />
 
 <Figure src="/work/smart-financial-assistant/s14.jpg" width={1600} height={1581} alt="Colour variables with light and dark values." caption="Colour variables for light and dark." />
 
 <Figure src="/work/smart-financial-assistant/s16.jpg" width={1600} height={779} alt="All widgets in dark mode." caption="The widgets in dark mode." />
 
-## Impact
-
-<Stats items={[
-  { value: "60%+", cap: "returned to the forecast graph more than once a month" },
-  { value: "↑", cap: "clicks on the Recurring widget and calendar" },
-  { value: "Week 2", cap: "higher retention among users who used recurring features" },
-]} />
-
-<Note>Based on Mixpanel: Forecast view frequency; Upcoming_Widget_Clicked and Recurring_Calendar_Date_Clicked events; engagement of users with and without recurring interactions.</Note>
-
-## What’s next
-
-- Reminders for upcoming charges
-- Month-over-month spending comparison
-- A/B test alternative layouts for the forecast block, such as a calendar view vs a chart
+</Chapter>

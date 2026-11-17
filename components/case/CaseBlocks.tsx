@@ -119,6 +119,16 @@ export function Stats({ items }: { items: { value: string; cap: string }[] }) {
   );
 }
 
+/** What a part of the research set out to learn: "Goal" as a label over the line, on the case accent's tint. */
+export function Goal({ children }: { children: ReactNode }) {
+  return (
+    <p className="goal">
+      <span className="goal__label">Goal</span>
+      {children}
+    </p>
+  );
+}
+
 export function Note({ children }: { children: ReactNode }) {
   return <p className="note">{children}</p>;
 }
@@ -136,28 +146,46 @@ export function Quote({ by, children }: { by: string; children: ReactNode }) {
   );
 }
 
-/** A research insight: a short heading, what a user said, what it means. */
-export function Insight({ n, title, quote, children }: { n: number; title: string; quote: string; children: ReactNode }) {
+/** A research insight: a numbered heading, what a user said, and what it means (a line or Lera's points). */
+export function Insight({ n, title, quote, points, children }: { n: number; title: string; quote: string; points?: string[]; children?: ReactNode }) {
   return (
     <div className="insight">
       <h3>
         {n}. {title}
       </h3>
       <blockquote className="quote">
-        <p>“{quote}”</p>
+        <p>{quote}</p>
       </blockquote>
-      <p>{children}</p>
+      {points ? (
+        <ul>
+          {points.map((p) => (
+            <li key={p}>{p}</li>
+          ))}
+        </ul>
+      ) : (
+        children && <p>{children}</p>
+      )}
     </div>
   );
 }
 
-/** A hypothesis in the If / Then / Because / This will lead to form, with the events that measure it. */
-export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: { title: string; ifText: string; then: string; because: string; leadsTo: string; metrics?: string }) {
+/** A hypothesis as Lera wrote it in Notion: If / Then / Because / This will lead to (an optional second If line),
+ *  and under it her Validation plan: key metrics (Mixpanel events) and success indicators. */
+export function Hypothesis({ n, title, ifText, and, then, because, leadsTo, metrics, success }: { n?: number; title: string; ifText: string; and?: string; then: string; because: string; leadsTo: string; metrics?: string[]; success?: string[] }) {
   return (
     <div className="hyp">
-      <h3>{title}</h3>
+      <h3>
+        {n !== undefined && <span className="hyp__n">{n}. </span>}
+        {title}
+      </h3>
       <p>
         <b>If</b> {ifText}
+        {and && (
+          <>
+            <br />
+            {and}
+          </>
+        )}
       </p>
       <p>
         <b>Then</b> {then}
@@ -168,7 +196,43 @@ export function Hypothesis({ title, ifText, then, because, leadsTo, metrics }: {
       <p>
         <b>This will lead to</b> {leadsTo}
       </p>
-      {metrics && <small>Mixpanel: {metrics}</small>}
+      {(metrics || success) && (
+        <div className="hyp__plan">
+          <p className="hyp__plan-title">Validation plan</p>
+          <div className="hyp__plan-cols">
+            {metrics && (
+              <div>
+                <p className="define__label">Key metrics (Mixpanel events)</p>
+                <ul className="hyp__events">
+                  {metrics.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {success && (
+              <div>
+                <p className="define__label">Success indicators</p>
+                <ul>
+                  {success.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** The null hypothesis: its title over Lera's lines, on the same card as a hypothesis. */
+export function NullHypothesis({ title, lines }: { title: string; lines: string[] }) {
+  return (
+    <div className="hyp">
+      <h3>{title}</h3>
+      <p>{lines.join(" ")}</p>
     </div>
   );
 }
@@ -531,6 +595,8 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
 }
 
 export { InterviewQuotes } from "@/components/case/InterviewQuotes";
+export { Rival } from "@/components/case/Rivals";
+export { BeforeAfter, BeforeScreens, ScreenRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
 export { Persona, JourneyMap, ValueCanvas, ProblemBoard, HmwBoard, ProblemSolved, Findings, InPlace, Activities } from "@/components/case/ComfyDefine";
 export { AdtChart, AdtOverviewFocus, AdtNameField, AdtFlow } from "@/components/case/AdtChart";

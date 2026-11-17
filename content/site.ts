@@ -241,7 +241,7 @@ export const cases: CaseEntry[] = [
     line: "From transaction log to assistant.",
     title: "From Transaction Log to Smart Financial Assistant",
     proof: { text: "“I connected my accounts… and then what?”", cap: "a user, before the redesign", quote: true },
-    vis: { kind: "phones", src: "/work/smart-financial-assistant/screens.jpg" },
+    vis: { kind: "phones", src: "/work/smart-financial-assistant/screens.webp" },
     shape: "tall",
     area: "sfa",
     cursor: { role: "research", label: "Researcher", x: "16%", y: "62%" },

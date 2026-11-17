@@ -31,6 +31,9 @@
   --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-adtelligent-accent: #d6005a;
   --color-adtelligent-accent-soft: rgb(255 0 102 / .14);
+  /* hubmee's product green (#009850, from its screens) on the Smart Financial Assistant case: deepened in light (5:1 on a tile), the product value at night (4.5:1) */
+  --color-sfa-accent: #007a40;
+  --color-sfa-accent-soft: rgb(0 152 80 / .14);
   /* The Adtelligent product, light in both themes (its own iOS-like series colours, from the Figma) */
   --color-adt-surface: #ffffff;
   --color-adt-ink: #1d1d1f;
@@ -504,6 +507,9 @@
   --shadow-device: inset 0 0 0 1.5px var(--color-device-edge), 0 0 0 1px var(--color-hairline), 0 14px 32px -14px rgb(0 0 0 / .35);
   --size-phone: 380px;
   --space-handsets: 44px;
+  --layout-rivals: repeat(5, minmax(0, 1fr));
+  --size-sfa-strip: 620px;
+  --layout-rivals-sm: repeat(4, minmax(0, 1fr));
   --size-bloom-flower: 44%;
   --size-bloom-flower-hero: 150px;
   --pos-bloom-centre: 40%;
@@ -689,6 +695,8 @@
     --color-grg-accent-soft: rgb(245 167 15 / .22);
     --color-adtelligent-accent: #ff0066;
     --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
+    --color-sfa-accent: #009850;
+    --color-sfa-accent-soft: rgb(0 152 80 / .22);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
@@ -726,6 +734,8 @@
   --color-grg-accent-soft: rgb(245 167 15 / .22);
   --color-adtelligent-accent: #ff0066;
   --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
+  --color-sfa-accent: #009850;
+  --color-sfa-accent-soft: rgb(0 152 80 / .22);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
@@ -1066,6 +1076,16 @@
 .insight { margin: var(--space-22) var(--space-0) var(--space-0); }
 .insight .quote { margin: var(--space-6) var(--space-0) var(--space-8); }
 .insight .quote p { font-size: var(--text-quote-small); }
+.prose .insight ul { margin: var(--space-0); }
+.prose p, .prose li, .prose .hyp p { text-wrap: pretty; }
+.prose h3, .insight h3, .hyp h3 { text-wrap: balance; }
+.case[data-case="smart-financial-assistant"] .screen-row__strip img, .case[data-case="smart-financial-assistant"] .fig__img { filter: var(--filter-shot, none); }
+.process { display: grid; gap: var(--space-10); margin: var(--space-56) var(--space-0) var(--space-0); padding: var(--space-22) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); font-size: var(--text-body); }
+.prose .process h2 { margin: var(--space-0); font-size: var(--text-case-h2); }
+.prose .process p, .prose .process ul { margin: var(--space-0); }
+.process b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.prose .goal { display: grid; gap: var(--space-4); margin: var(--space-8) var(--space-0) var(--space-18); padding: var(--space-14) var(--space-18); border-radius: var(--radius-inner); background: var(--color-accent-soft); color: var(--color-ink); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.goal__label { color: var(--color-accent); font: var(--weight-semibold) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .note { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); }
 .statement { margin: var(--space-24) var(--space-0); padding: var(--space-24) var(--space-26); border-radius: var(--radius-block); background: var(--color-tile); color: var(--color-ink); font-weight: var(--weight-medium); }
 
@@ -1099,7 +1119,36 @@
 .voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+/* Smart Financial Assistant: the app's screens in phone frames — before/after pair, the Before card, a row under each hypothesis */
+.solved__badge.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
+.before-after { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); margin: var(--space-28) var(--space-0); }
+.before-after .before-after__panel { justify-content: center; align-items: center; gap: var(--space-24); padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.before-after__side { display: grid; justify-items: center; gap: var(--space-12); }
+.before-after__arrow { color: var(--color-accent); font-size: var(--text-case-h2); }
+.before-after__note { color: var(--color-pencil); font-size: var(--text-caption); line-height: var(--leading-ui); text-align: center; }
+.before-screens { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-20); margin: var(--space-20) var(--space-0) var(--space-28); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.before-screens__text { display: grid; gap: var(--space-12); justify-items: start; font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .before-screens__text ul { margin: var(--space-0); }
+.before-screens .before-screens__row { justify-content: center; gap: var(--space-24); }
+.screen-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-16); margin: var(--space-14) var(--space-0) var(--space-40); padding: var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.screen-row .screen-row__phones { justify-content: center; gap: var(--space-32); }
+.screen-row__strip { display: grid; justify-self: center; width: min(100%, var(--size-sfa-strip)); gap: var(--space-8); justify-items: center; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.screen-row__strip img { width: 100%; height: auto; border-radius: var(--radius-inner); }
+.screen-row__strip span { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
+@media (max-width: 640px) { .before-after__panel, .before-screens, .screen-row { padding: var(--space-16); } .before-after .before-after__panel, .before-screens .before-screens__row, .screen-row .screen-row__phones { justify-content: flex-start; gap: var(--space-16); } .before-after__arrow { display: none; } }
+/* Rival (Smart Financial Assistant): a competitor app — name and store line, a switch between the parts studied, that part's phones in a row */
+.rivals { display: grid; gap: var(--space-12); margin: var(--space-20) var(--space-0) var(--space-28); }
+.rivals + .rivals { margin-top: var(--space-28); }
+.rivals__bar { display: grid; justify-items: start; gap: var(--space-10); }
+.rivals__name { color: var(--color-graphite); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.rivals__name b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.rivals__row { display: grid; grid-template-columns: var(--layout-rivals); gap: var(--space-16) var(--space-12); padding: var(--space-20) var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.rivals__row:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); }
+.rivals__phone { min-width: 0; padding: var(--space-0); border: none; background: none; cursor: zoom-in; }
+.rivals__phone img { display: block; width: 100%; height: auto; }
+.rivals__phone:focus-visible { outline: var(--size-focus) solid var(--color-accent); outline-offset: var(--space-4); border-radius: var(--radius-inner); }
 @media (max-width: 860px) { .prose .voices__list { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 640px) { .rivals .filter { max-width: 100%; overflow-x: auto; } .rivals__row { grid-template-columns: var(--layout-rivals-sm); gap: var(--space-12) var(--space-8); padding: var(--space-16); } }
 @media (max-width: 640px) { .prose .voices__list { grid-template-columns: var(--layout-col-1); } }
 
 /* Interview guide and boards (Comfy): the questions in one white card in columns, the boards as small pictures */
@@ -1318,6 +1367,7 @@
 .case[data-case="comfy"] { --color-accent: var(--color-comfy-accent); --color-accent-soft: var(--color-comfy-accent-soft); }
 .case[data-case="grg-design-system"] { --color-accent: var(--color-grg-accent); --color-accent-soft: var(--color-grg-accent-soft); }
 .case[data-case="adtelligent"] { --color-accent: var(--color-adtelligent-accent); --color-accent-soft: var(--color-adtelligent-accent-soft); }
+.case[data-case="smart-financial-assistant"] { --color-accent: var(--color-sfa-accent); --color-accent-soft: var(--color-sfa-accent-soft); }
 
 /* Adtelligent: the Overview chart, live (a click on a metric leaves only its line) */
 .adt-chart { display: grid; gap: var(--space-8); padding: var(--space-20) var(--space-20) var(--space-14); border-radius: var(--radius-inner); background: var(--color-adt-surface); color: var(--color-adt-ink); box-shadow: var(--shadow-shot); }
@@ -1452,7 +1502,14 @@
 .hyp h3 { margin: var(--space-0) var(--space-0) var(--space-10); }
 .hyp p { margin: var(--space-0) var(--space-0) var(--space-6); }
 .hyp b { color: var(--color-ink); font-weight: var(--weight-semibold); }
-.hyp small { display: block; margin-top: var(--space-10); color: var(--color-pencil); font-family: var(--font-mono); font-size: var(--text-label); line-height: var(--leading-ui); }
+.hyp__n { color: var(--color-accent); }
+.hyp__plan { display: grid; gap: var(--space-10); margin-top: var(--space-16); padding: var(--space-16) var(--space-18); border-radius: var(--radius-inner); background: var(--color-raised); font-size: var(--text-ui); line-height: var(--leading-ui); }
+.prose .hyp__plan-title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); }
+.hyp__plan-cols { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12) var(--space-20); }
+.prose .hyp__plan ul { margin: var(--space-6) var(--space-0) var(--space-0); }
+.prose .hyp__plan .define__label { margin: var(--space-0); }
+.hyp__events { font-family: var(--font-mono); font-size: var(--text-label); overflow-wrap: anywhere; }
+@media (max-width: 640px) { .hyp__plan-cols { grid-template-columns: var(--layout-col-1); } }
 
 /* End of a case */
 /* GRG case: wider bands than the reading column (the live product, the token anatomy) */
