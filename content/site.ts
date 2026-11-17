@@ -253,7 +253,6 @@ export const cases: CaseEntry[] = [
     name: "Smart Financial Assistant.",
     line: "From transaction log to assistant.",
     title: "From Transaction Log to Smart Financial Assistant",
-    proof: { text: "“I connected my accounts… and then what?”", cap: "a user, before the redesign", quote: true },
     vis: {
       kind: "log",
       rows: [
