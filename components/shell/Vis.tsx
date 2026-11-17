@@ -4,6 +4,7 @@ import type { CaseEntry, Cursor as CursorData, Focus, Pin, Point } from "@/conte
 import { Icon } from "@/components/shell/Icons";
 import { AssembleVis } from "@/components/shell/AssembleVis";
 import { BloomVis } from "@/components/shell/BloomVis";
+import { LogVis } from "@/components/shell/LogVis";
 import { AdtNameField } from "@/components/case/AdtChart";
 
 const style = (vars: Record<string, string>) => vars as CSSProperties;
@@ -21,6 +22,7 @@ export function Vis({ entry, priority = false }: { entry: CaseEntry; priority?: 
   const vt = style({ viewTransitionName: `case-${entry.slug}` });
 
   if (v.kind === "bloom") return <BloomVis v={v} viewTransitionName={`case-${entry.slug}`} />;
+  if (v.kind === "log") return <LogVis v={v} viewTransitionName={`case-${entry.slug}`} />;
 
   if (v.kind === "story") {
     // The camera is drawn at the deepest zoom (k × the stage) and scaled down, never up:

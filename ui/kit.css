@@ -34,6 +34,24 @@
   /* hubmee's product green (#009850, from its screens) on the Smart Financial Assistant case: deepened in light (5:1 on a tile), the product value at night (4.5:1) */
   --color-sfa-accent: #007a40;
   --color-sfa-accent-soft: rgb(0 152 80 / .14);
+  /* Smart Financial Assistant's app (hubmee), drawn live on its tile and case hero */
+  --color-log-bg: #f7f7f8;
+  --color-log-card: #ffffff;
+  --color-log-ink: #1c1c1e;
+  --color-log-muted: #6e6e73;
+  --color-log-line: #ececee;
+  --color-log-green: #009850;
+  --color-log-green-deep: #00733c;
+  --color-log-tint: rgb(0 152 80 / .1);
+  --color-log-bezel: #111113;
+  --color-log-note: rgb(255 255 255 / .9);
+  --shadow-log-phone: 0 10px 30px rgb(0 0 0 / .18);
+  --shadow-log-note: 0 8px 24px rgb(0 0 0 / .18);
+  --shadow-log-card: 0 1px 3px rgb(0 0 0 / .06);
+  --blur-log-note: blur(12px);
+  /* the phone keeps its proportions: as wide as the tile allows, cut by the tile's bottom edge; on the case hero, as tall as Prevently's */
+  --size-log-phone: min(calc(100cqw - var(--space-48)), 300px);
+  --size-log-phone-hero: max(calc(92cqh * 9 / 19.5), 250px);
   /* The Adtelligent product, light in both themes (its own iOS-like series colours, from the Figma) */
   --color-adt-surface: #ffffff;
   --color-adt-ink: #1d1d1f;
@@ -697,6 +715,12 @@
     --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
     --color-sfa-accent: #009850;
     --color-sfa-accent-soft: rgb(0 152 80 / .22);
+    --color-log-bg: #000000;
+    --color-log-card: #1c1c1e;
+    --color-log-ink: #f5f5f7;
+    --color-log-muted: #98989d;
+    --color-log-line: #2c2c2e;
+    --color-log-note: rgb(44 44 46 / .9);
     --color-accent-soft: oklch(74% 0.11 352 / .2);
     --color-positive: #5fcf86;
     --color-negative: #f28b82;
@@ -736,6 +760,12 @@
   --color-adtelligent-accent-soft: rgb(255 0 102 / .22);
   --color-sfa-accent: #009850;
   --color-sfa-accent-soft: rgb(0 152 80 / .22);
+  --color-log-bg: #000000;
+  --color-log-card: #1c1c1e;
+  --color-log-ink: #f5f5f7;
+  --color-log-muted: #98989d;
+  --color-log-line: #2c2c2e;
+  --color-log-note: rgb(44 44 46 / .9);
   --color-accent-soft: oklch(74% 0.11 352 / .2);
   --color-positive: #5fcf86;
   --color-negative: #f28b82;
@@ -1119,6 +1149,56 @@
 .voices strong { color: var(--color-accent); font-weight: var(--weight-regular); }
 .voices__name { color: var(--color-pencil); font: var(--weight-medium) var(--text-label) / var(--leading-ui) var(--font-sans); }
 .prose .voices__note { margin: var(--space-0); color: var(--color-pencil); font-size: var(--text-label); }
+/* Log (Smart Financial Assistant tile and case hero): the app drawn in its own points (375 wide), scaled to the phone */
+.log { container-type: size; overflow: hidden; }
+.log__phone { container-type: size; position: absolute; left: var(--pos-centre); top: var(--space-bloom-phone-top); width: var(--size-log-phone); aspect-ratio: var(--ratio-bloom-phone); translate: var(--move-centre-x-only); border-radius: 15% / 7%; background: var(--color-log-bezel); box-shadow: var(--shadow-log-phone); }
+.log__screen { container-type: size; position: absolute; inset: 3.6cqw; overflow: hidden; border-radius: 12cqw; background: var(--color-log-bg); }
+.case-hero .log { --size-log-phone: var(--size-log-phone-hero); }
+.log__ui { --p: calc(100cqw / 375); position: absolute; inset: 0; color: var(--color-log-ink); font-family: var(--font-ios); transition: opacity .6s ease; }
+.log__ui[data-out="true"] { opacity: 0; }
+.log__nav { position: absolute; left: 0; right: 0; top: 0; height: calc(100 * var(--p)); background: var(--color-log-card); transition: background .7s ease, color .7s ease; }
+.log__ui[data-rec="true"] .log__nav { background: linear-gradient(180deg, var(--color-log-green), var(--color-log-green-deep)); color: var(--color-on-dark); }
+.log__status { position: absolute; left: calc(38 * var(--p)); top: calc(13 * var(--p)); margin: 0; font-weight: var(--weight-semibold); font-size: calc(17 * var(--p)); }
+.log__title { position: absolute; left: 0; right: 0; top: calc(56 * var(--p)); margin: 0; text-align: center; font-weight: var(--weight-semibold); font-size: calc(19 * var(--p)); }
+.log__row { position: absolute; left: calc(16 * var(--p)); top: 0; width: calc(343 * var(--p)); height: calc(60 * var(--p)); display: flex; align-items: center; gap: calc(12 * var(--p)); padding: 0 calc(16 * var(--p)); border-radius: calc(16 * var(--p)); background: var(--color-log-card); box-sizing: border-box; transform: translateY(calc(var(--y) * var(--p))); transition: transform .9s cubic-bezier(.2, .8, .2, 1), opacity .5s ease, background .4s ease; }
+.log__row[data-badge="true"], .log__row[data-today="true"] { background: linear-gradient(var(--color-log-tint), var(--color-log-tint)), var(--color-log-card); }
+.log__row[data-gone="true"] { opacity: 0; transform: translate(calc(-40 * var(--p)), calc(var(--y) * var(--p))); }
+.log__logo { flex: none; width: calc(40 * var(--p)); height: calc(40 * var(--p)); border-radius: var(--radius-round); background: var(--color-log-card) var(--logo) center / cover no-repeat; }
+.log__badge { position: absolute; left: calc(44 * var(--p)); top: calc(8 * var(--p)); width: calc(20 * var(--p)); height: calc(20 * var(--p)); display: grid; place-items: center; border-radius: var(--radius-round); background: var(--color-log-green); color: var(--color-on-dark); font-size: calc(12 * var(--p)); font-weight: var(--weight-semibold); transform: scale(0); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); }
+.log__row[data-badge="true"] .log__badge { transform: scale(1); }
+.log__name { flex: 1; min-width: 0; font-weight: var(--weight-medium); font-size: calc(16 * var(--p)); line-height: 1.2; }
+.log__name small { display: block; color: var(--color-log-muted); font-weight: var(--weight-regular); font-size: calc(13 * var(--p)); }
+.log__amount { font-weight: var(--weight-semibold); font-size: calc(16 * var(--p)); font-variant-numeric: tabular-nums; }
+.log__label { position: absolute; left: calc(18 * var(--p)); right: calc(18 * var(--p)); top: calc(var(--y) * var(--p)); display: flex; justify-content: space-between; margin: 0; color: var(--color-log-muted); font-size: calc(13 * var(--p)); text-transform: uppercase; opacity: 0; transition: opacity .5s ease .3s; }
+.log__label span { text-transform: none; }
+.log__ui[data-rec="true"] .log__label { opacity: 1; }
+.log__forecast { position: absolute; left: calc(16 * var(--p)); top: calc(112 * var(--p)); width: calc(343 * var(--p)); height: calc(192 * var(--p)); padding: calc(20 * var(--p)) calc(16 * var(--p)) 0; border-radius: calc(22 * var(--p)); background: var(--color-log-card); box-shadow: var(--shadow-log-card); box-sizing: border-box; opacity: 0; transform: translateY(calc(16 * var(--p))); transition: opacity .6s ease, transform .6s ease; }
+.log__forecast[data-step="1"], .log__forecast[data-step="2"], .log__forecast[data-step="3"] { opacity: 1; transform: none; }
+.log__forecast p { margin: 0; font-size: calc(14 * var(--p)); white-space: nowrap; }
+.log__forecast > b { display: block; margin-top: calc(4 * var(--p)); font-weight: var(--weight-semibold); font-size: calc(26 * var(--p)); }
+.log__bar { position: relative; margin-top: calc(34 * var(--p)); }
+.log__track { display: block; height: calc(36 * var(--p)); overflow: hidden; border-radius: calc(10 * var(--p)); background: repeating-linear-gradient(135deg, var(--color-log-line) 0 calc(9 * var(--p)), var(--color-log-card) calc(9 * var(--p)) calc(18 * var(--p))); }
+.log__track span { display: block; width: 0; height: 100%; border-radius: calc(10 * var(--p)) 0 0 calc(10 * var(--p)); background: var(--color-log-green); transition: width 2s cubic-bezier(.2, .8, .2, 1); }
+.log__forecast[data-step="2"] .log__track span, .log__forecast[data-step="3"] .log__track span { width: 85%; }
+.log__mark-value { position: absolute; left: 85%; bottom: calc(100% + 8 * var(--p)); translate: -50% 0; color: var(--color-log-muted); font-size: calc(13 * var(--p)); opacity: 0; transition: opacity .4s ease .2s; }
+.log__mark { position: absolute; left: 85%; top: calc(-6 * var(--p)); bottom: calc(-6 * var(--p)); border-left: calc(1.5 * var(--p)) dashed var(--color-log-muted); opacity: 0; transition: opacity .4s ease .2s; }
+.log__forecast[data-step="3"] .log__mark-value, .log__forecast[data-step="3"] .log__mark { opacity: .8; }
+.log__axis { display: flex; justify-content: space-between; margin-top: calc(10 * var(--p)); color: var(--color-log-muted); font-size: calc(13 * var(--p)); }
+.log__note { position: absolute; z-index: 2; left: calc(10 * var(--p)); right: calc(10 * var(--p)); top: calc(52 * var(--p)); display: flex; align-items: center; gap: calc(10 * var(--p)); padding: calc(12 * var(--p)) calc(14 * var(--p)); border-radius: calc(22 * var(--p)); background: var(--color-log-note); box-shadow: var(--shadow-log-note); -webkit-backdrop-filter: var(--blur-log-note); backdrop-filter: var(--blur-log-note); transform: translateY(calc(-140 * var(--p))); transition: transform .6s cubic-bezier(.2, .9, .2, 1.1); }
+.log__note[data-on="true"] { transform: none; }
+.log__note .log__logo { width: calc(38 * var(--p)); height: calc(38 * var(--p)); border-radius: calc(10 * var(--p)); }
+.log__note p { flex: 1; margin: 0; font-size: calc(14 * var(--p)); line-height: 1.3; }
+.log__note b { display: flex; justify-content: space-between; font-weight: var(--weight-semibold); }
+.log__note em { color: var(--color-log-muted); font-style: normal; font-weight: var(--weight-regular); font-size: calc(13 * var(--p)); }
+.log__tabs { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: calc(84 * var(--p)); display: flex; padding: calc(8 * var(--p)) calc(20 * var(--p)) 0; border-top: calc(1 * var(--p)) solid var(--color-log-line); background: var(--color-log-card); box-sizing: border-box; }
+.log__tabs::after { content: ""; position: absolute; left: 50%; bottom: calc(8 * var(--p)); width: calc(134 * var(--p)); height: calc(5 * var(--p)); translate: -50% 0; border-radius: var(--radius-pill); background: var(--color-log-ink); }
+.log__tab { flex: 1 1 0; display: grid; justify-items: center; align-content: start; gap: calc(4 * var(--p)); overflow: hidden; color: var(--color-log-muted); font-size: calc(11 * var(--p)); white-space: nowrap; transition: flex-grow .7s cubic-bezier(.2, .8, .2, 1), opacity .5s ease, color .4s ease; }
+.log__tab i { width: calc(26 * var(--p)); height: calc(26 * var(--p)); background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
+.log__tab[data-active="true"] { color: var(--color-log-ink); font-weight: var(--weight-semibold); }
+.log__ui[data-rec="true"] .log__tab[data-active="true"] { color: var(--color-log-green); }
+.log__tab[data-new="true"] { flex-grow: 0; opacity: 0; }
+.log__ui[data-rec="true"] .log__tab[data-new="true"] { flex-grow: 1; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .log * { transition: none !important; } }
 /* Smart Financial Assistant: the app's screens in phone frames — before/after pair, the Before card, a row under each hypothesis */
 .solved__badge.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
 .before-after { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); margin: var(--space-28) var(--space-0); }

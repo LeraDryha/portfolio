@@ -9,9 +9,22 @@ export type Vis =
   | Story // whole screens: zoom into the before, wipe to the after, zoom in, then a drawer slides in; a comment opens on each step
   | { kind: "name"; src: string; width: number; height: number; alt: string } // a new report's title typed in place: close up on the tile, the whole screen on the case
   | { kind: "phones"; src: string } // a 4 × 2 sheet of phone screens, one after another
+  | Log // a transaction log turns into the recurring payments screen, the forecast fills, a reminder arrives (Smart Financial Assistant)
   | Assemble; // a product put together from its parts, primitive to page (GRG); live on the case page
 
 export type Shot = { src: string; alt: string };
+
+/** Smart Financial Assistant: the log of transactions becomes the recurring payments screen. */
+export type Log = {
+  kind: "log";
+  /** The transactions, top to bottom; a group marks a recurring payment */
+  rows: { logo: string; name: string; date: string; amount: string; group?: number }[];
+  /** The groups of recurring payments, in order */
+  groups: { label: string; total: string }[];
+  forecast: { title: string; total: string; mark: string; axis: [string, string, string] };
+  /** The reminder that arrives at the end (a concept from the case's What's next) */
+  reminder: { logo: string; title: string; body: string };
+};
 
 /** Prevently: the flower turns and opens, a lock screen shows through, the app's reminders arrive one by one. */
 export type Bloom = {
@@ -240,8 +253,26 @@ export const cases: CaseEntry[] = [
     name: "Smart Financial Assistant.",
     line: "From transaction log to assistant.",
     title: "From Transaction Log to Smart Financial Assistant",
-    proof: { text: "“I connected my accounts… and then what?”", cap: "a user, before the redesign", quote: true },
-    vis: { kind: "phones", src: "/work/smart-financial-assistant/screens.webp" },
+    vis: {
+      kind: "log",
+      rows: [
+        { logo: "spotify", name: "Spotify", date: "Oct 18", amount: "−$10.99", group: 0 },
+        { logo: "walmart", name: "Walmart", date: "Oct 17", amount: "−$78.00" },
+        { logo: "netflix", name: "Netflix", date: "Oct 18", amount: "−$15.49", group: 0 },
+        { logo: "starbucks", name: "Starbucks", date: "Oct 16", amount: "−$6.45" },
+        { logo: "zillow", name: "Zillow Rentals", date: "Oct 24", amount: "−$1,450.00", group: 1 },
+        { logo: "amazon", name: "Amazon", date: "Oct 15", amount: "−$32.89" },
+        { logo: "conedison", name: "Con Edison", date: "Oct 30", amount: "−$110.00", group: 2 },
+        { logo: "apple", name: "Apple", date: "Oct 14", amount: "−$2.99" },
+      ],
+      groups: [
+        { label: "Subscription", total: "$1,095.00 per year" },
+        { label: "Rent and mortgage", total: "$21,095.00 per year" },
+        { label: "Utilities", total: "$3,095.00 per year" },
+      ],
+      forecast: { title: "Projected recurring expenses for December", total: "$1,280", mark: "$845", axis: ["$0", "$640", "$1,280"] },
+      reminder: { logo: "spotify", title: "Spotify", body: "$10.99 is due today." },
+    },
     shape: "tall",
     area: "sfa",
     cursor: { role: "research", label: "Researcher", x: "16%", y: "62%" },
