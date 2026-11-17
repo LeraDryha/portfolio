@@ -151,8 +151,7 @@ export function Insight({ n, title, quote, points, children }: { n: number; titl
   return (
     <div className="insight">
       <h3>
-        <span className="hyp__n">{n}. </span>
-        {title}
+        {n}. {title}
       </h3>
       <blockquote className="quote">
         <p>{quote}</p>
