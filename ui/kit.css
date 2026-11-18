@@ -108,6 +108,8 @@
   /* Brands that appear on the page */
   --color-yahoo: #6001d2;
   --color-linkedin: #0a66c2;
+  --color-telegram: #229ed9;
+  --color-telegram-light: #2aabee;
   --color-prevently-1: #b8487a;
   --color-prevently-2: #a83f6d;
   --color-prevently-3: #8f2f5c;
@@ -139,6 +141,9 @@
   --text-yahoo-phone: 30px;
   --text-linkedin: 52px;
   --text-linkedin-phone: 40px;
+  /* the Telegram circle, optically as big as LinkedIn’s “in” (a circle reads smaller than letters, so a little taller) */
+  --size-telegram: 46px;
+  --size-telegram-phone: 36px;
   --text-article: 24px;
   --text-article-phone: 19px;
   --text-subhead: 18px;
@@ -238,7 +243,9 @@
   --row-tile: 250px;
   /* GRG's two rows are lower: its tile ends just under the Invoices table in the last step; Prevently beside it gets shorter with it */
   --row-grg: 208px;
-  --layout-bento-rows: var(--row-tile) var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile) var(--row-tile);
+  --layout-bento-rows: var(--row-tile) var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile) var(--row-tile) var(--row-text-wide);
+  /* the wide Learning & recognition tile under the cases: a text line, not a full tile height */
+  --row-text-wide: 120px;
   --row-tile-tablet: 200px;
   --row-tile-phone: 168px;
   --span-2: span 2;
@@ -436,11 +443,11 @@
   /* On the pink tile: blur only; extra saturation turns the caption band bright pink */
   --blur-caption-brand: blur(14px);
   --space-caption-top: 56px;
-  --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium learning" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
+  --layout-bento-areas: "intro intro linkedin telegram" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium email" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa" "learning learning learning learning";
   /* Filtered views: the tiles left close up in the same order, with no holes */
   --layout-bento-areas-work: "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
   --layout-bento-rows-work: var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile);
-  --layout-bento-areas-about: "intro intro email linkedin" "learning . . .";
+  --layout-bento-areas-about: "intro intro linkedin telegram" "email learning learning .";
   --layout-bento-areas-writing: "medium . . .";
   --layout-wide: min(var(--layout-page), calc(100vw - var(--space-48)));
   --layout-wide-phone: calc(100vw - var(--space-32));
@@ -752,6 +759,10 @@
     --color-who-lera: oklch(48% 0.15 352);
         --color-yahoo: #a678ff;
     --color-linkedin: #4c9be8;
+  --color-telegram: #229ed9;
+  --color-telegram-light: #2aabee;
+    --color-telegram: #229ed9;
+    --color-telegram-light: #2aabee;
     --color-curtain: #f5f5f7;
     --color-curtain-ink: #000000;
     --display-light: none;
@@ -852,7 +863,7 @@
 /* Desktop: every tile has its place (layout A: Prevently tallest; GRG and Comfy the same size beside it) */
 @media (min-width: 861px) {
   .bento { grid-template-areas: var(--layout-bento-areas); grid-template-rows: var(--layout-bento-rows); }
-  .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; }
+  .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; } .area-telegram { grid-area: telegram; }
   .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
   .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
   .area-medium { grid-area: medium; } .area-learning { grid-area: learning; }
@@ -861,7 +872,7 @@
   .bento[data-view="writing"] { grid-template-areas: var(--layout-bento-areas-writing); grid-template-rows: none; }
 }
 /* Each tile is its own view-transition group, so switching the filter slides the tiles to their new places */
-.area-intro { view-transition-name: tile-intro; } .area-email { view-transition-name: tile-email; } .area-linkedin { view-transition-name: tile-linkedin; }
+.area-intro { view-transition-name: tile-intro; } .area-email { view-transition-name: tile-email; } .area-linkedin { view-transition-name: tile-linkedin; } .area-telegram { view-transition-name: tile-telegram; }
 .area-prevently { view-transition-name: tile-prevently; } .area-grg { view-transition-name: tile-grg; } .area-comfy { view-transition-name: tile-comfy; }
 .area-adtelligent { view-transition-name: tile-adtelligent; } .area-sfa { view-transition-name: tile-sfa; }
 .area-medium { view-transition-name: tile-medium; } .area-learning { view-transition-name: tile-learning; }
@@ -911,6 +922,7 @@
 .logo-yahoo { font: var(--weight-heavy) var(--text-yahoo) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-yahoo); }
 .logo-linkedin { font: var(--weight-bold) var(--text-linkedin) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-linkedin); }
 .logo-medium { width: var(--size-medium); height: var(--size-medium); color: var(--color-ink); }
+.logo-telegram { width: var(--size-telegram); height: var(--size-telegram); }
 .act { position: absolute; top: var(--space-14); right: var(--space-14); width: var(--size-tap); height: var(--size-tap); display: grid; place-items: center; border-radius: var(--radius-round); background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-action); opacity: var(--opacity-hidden); transform: var(--move-action-rest); transition: opacity var(--duration-color), transform var(--duration-color); }
 .act svg { width: var(--size-icon); height: var(--size-icon); }
 .logo-tile:hover .act, .logo-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
@@ -1918,6 +1930,7 @@
 @media (max-width: 860px) {
   :root { --row-tile: var(--row-tile-tablet); --space-tile-gap: var(--space-tile-gap-phone); --radius-tile: var(--radius-tile-tablet); }
   .bento { grid-template-columns: var(--layout-cols-2); }
+  .area-learning { grid-column: var(--span-2); }
   .minis { grid-template-columns: var(--layout-cols-2); }
   .case-tile--side { flex-direction: column; grid-row: var(--span-2); }
   .case-tile--side .case-tile__head { flex: none; padding: var(--space-24) var(--space-22) var(--space-0); }
@@ -1942,6 +1955,7 @@
   .logo-yahoo { font-size: var(--text-yahoo-phone); }
   .logo-linkedin { font-size: var(--text-linkedin-phone); }
   .logo-medium { width: var(--size-medium-phone); height: var(--size-medium-phone); }
+  .logo-telegram { width: var(--size-telegram-phone); height: var(--size-telegram-phone); }
   .text-tile { padding: var(--space-18); }
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
