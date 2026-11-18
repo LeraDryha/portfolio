@@ -397,6 +397,8 @@
   --z-curtain: 30;
   --z-you: 60;
   --opacity-hidden: 0;
+  /* step numbers and sources on the flow board stickies */
+  --opacity-flow-muted: .6;
   --pos-centre: 50%;
   --size-dot: .2em;
   --row-second: 2;
@@ -630,6 +632,9 @@
   --color-sticky: #ffd966;
   /* the ICE score column: the sticky yellow, lighter, the same in both themes */
   --color-sticky-soft: #fdefc0;
+  --color-sticky-green: #c6f4cf;
+  --color-sticky-orange: #ffbd3a;
+  --color-sticky-grey: #e4e4e4;
   --color-sticky-pain: #ffbd85;
   --color-sticky-job: #f7b9ec;
   --color-sticky-ink: #2b2b2b;
@@ -1331,6 +1336,30 @@
 .sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
 .sitemap__page { fill: var(--color-ink); }
 .sitemap__type { fill: var(--color-pencil); }
+/* Flow board (Onboarding): the user flow as live stickies, a/b test and best practices above each step, the description below */
+.flow { margin: var(--space-20) var(--space-0) var(--space-28); }
+.flow__panel { display: grid; gap: var(--space-20); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .flow__legend { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-20); margin: var(--space-0); padding: var(--space-0); list-style: none; color: var(--color-graphite); font-size: var(--text-label); }
+.prose .flow__legend li { display: inline-flex; align-items: center; gap: var(--space-8); margin: var(--space-0); }
+.flow__chip { width: var(--space-14); height: var(--space-14); border-radius: var(--radius-label); }
+.flow__chip--flow, .flow__item { background: var(--color-sticky-soft); }
+.flow__chip--desc, .flow__note--desc { background: var(--color-sticky-blue); }
+.flow__chip--practice, .flow__note--practice { background: var(--color-sticky-green); }
+.flow__chip--ab, .flow__note--ab { background: var(--color-sticky-orange); }
+.prose .flow__steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: var(--space-28); column-gap: var(--space-20); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .flow__step { display: grid; grid-row: span 3; grid-template-rows: subgrid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); min-width: var(--space-0); }
+.flow__top, .flow__bottom { display: grid; gap: var(--space-8); align-content: end; }
+.flow__bottom { align-content: start; }
+.prose .flow__item { position: relative; margin: var(--space-0); min-height: var(--size-sticky-h); padding: var(--space-10); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
+.flow__item--optional { background: var(--color-sticky-grey); }
+.flow__n { display: block; margin-bottom: var(--space-4); color: var(--color-sticky-ink); opacity: var(--opacity-flow-muted); font-size: var(--text-micro); }
+.flow__step:not(:nth-child(5n)):not(:last-child) .flow__item::after { content: "→"; position: absolute; top: var(--pos-centre); right: calc(-1 * var(--space-18)); translate: 0 -50%; color: var(--color-pencil); font-size: var(--text-label); }
+.prose .flow__note { margin: var(--space-0); padding: var(--space-8) var(--space-10); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
+.flow__practice em { display: block; margin-bottom: var(--space-6); color: var(--color-sticky-ink); opacity: var(--opacity-flow-muted); }
+.flow__line { display: block; }
+.prose .flow__note ul { margin: var(--space-2) var(--space-0) var(--space-0); padding-left: var(--space-14); }
+.prose .flow__note li { margin: var(--space-0); }
+@media (max-width: 640px) { .prose .flow__steps { grid-template-columns: var(--layout-cols-2); column-gap: var(--space-12); } .flow__item::after { display: none; } }
 /* Hypothesis board and ICE table (Onboarding): the board's hypothesis stickies and the prioritisation, live */
 .hyp-board { margin: var(--space-20) var(--space-0) var(--space-28); }
 .hyp-board__grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }

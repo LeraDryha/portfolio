@@ -111,7 +111,18 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
 
 <Chapter id="develop" n={3} of={4} title="Develop">
 
-<Figure src="/work/onboarding-ab-testing/10.webp" width={1800} height={721} alt="The onboarding user flow." caption="User flow." />
+<FlowBoard caption="User flow." steps={[
+  { flow: "sign up", ab: ["A - guest mode enabled", "B - guest mode disabled"], practices: [{ text: "Reduce friction at signup", source: "Userpilot" }, { text: "Minimize friction at entry", source: "NN/g" }], description: ["less friction:"], list: ["guest mode", "social login"] },
+  { flow: "welcome screen (carousel)", ab: ["A - sign up as first screen", "B - sign up as last screen"], description: ["value proposition", "disclaimer", "policy/privacy"] },
+  { flow: "base info (name, age, sex)" },
+  { flow: "body metrics (height, weight)", practices: [{ text: "Create early wins & celebrate them", source: "Userpilot" }, { text: "Make early wins visible", source: "NN/g" }], description: ["show BMI", "(1st wow effect)"] },
+  { flow: "health conditions (heartbeat insights survey)", practices: [{ text: "Personalize early", source: "Userpilot" }, { text: "Build trust and set expectations", source: "NN/g" }], description: ["personalisation+ segmentation"] },
+  { flow: "screen based on health conditions (optional)", optional: true, practices: [{ text: "Personalize early", source: "Userpilot" }, { text: "Build trust and set expectations", source: "NN/g" }], description: ["-as a separate screen with clear messaging", "-as a small pop-up/push after selection", "-as an expandable inline message below the chosen option"] },
+  { flow: "User Goals", practices: [{ text: "Personalize early", source: "Userpilot" }, { text: "Build trust and set expectations", source: "NN/g" }] },
+  { flow: "first measurement", practices: [{ text: "Guide users to their first “Aha! moment”", source: "Userpilot" }, { text: "Lead users to the first “aha moment” quickly", source: "NN/g" }], description: ["how it works+show result", "(2nd wow effect)"] },
+  { flow: "sync Apple/ Google health", ab: ["A - after welcome screen", "B - after first measurement", "C - skip in primary onboarding, show as native nudge in home during first session."], practices: [{ text: "Delay push/permission requests until value is clear", source: "Userpilot" }], description: ["1st hook"] },
+  { flow: "allow notification", description: ["2nd hook"] },
+]} />
 
 <Hypothesis n={1} title="Test 1 - Signup after value" lead="Objective: increase onboarding completion and activation by moving signup to the end." ifText="we move signup from the first screen to the end of onboarding," then="more users will complete onboarding and reach activation," because="they experience value before being asked to commit," leadsTo="↑ onboarding completion and ↑ activation rate." plan={{ title: "Test plan", parts: [
   { label: "Variants", items: ["A - signup first: signup before welcome (control)", "B - signup last: signup after first measurement & insight"] },
