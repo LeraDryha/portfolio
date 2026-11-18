@@ -264,7 +264,7 @@ A 1.5px Figma Blue square frame 5px outside the element, four white handles, the
 A Figma cursor with a name tag in the person's colour. They arrive when their tile scrolls into view and drift slightly. Decorative (hidden from screen readers), hidden on phones and with reduced motion they stay still.
 
 ### Logo Tiles
-Yahoo (copies the email, "Email copied" toast), LinkedIn, Telegram and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
+Yahoo (copies the email, "Email copied" toast), LinkedIn, Telegram and Medium (open in a new tab). The Telegram circle is 46px (36px on phones), optically as big as LinkedIn’s “in”. Just the logo; a round action button appears on hover (always visible on phones).
 
 ### Text Tile
 Learning & recognition: a title (21px, ink) and a line (Pencil) at the bottom-left, no action button; the whole tile opens the page the way a case tile opens its case (the title moves into the page heading). The page: a lead and a "Now" line (what is being learned), Recognition (the DEV Challenge award), Courses as grey cards two in a row (the certificate whole on the page colour, title, school · year, the result the certificate shows in ink medium; the card opens the certificate), then the CASES foundations as one line of links and a note on the previous surname. Filtered under About.

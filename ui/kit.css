@@ -141,6 +141,9 @@
   --text-yahoo-phone: 30px;
   --text-linkedin: 52px;
   --text-linkedin-phone: 40px;
+  /* the Telegram circle, optically as big as LinkedIn’s “in” (a circle reads smaller than letters, so a little taller) */
+  --size-telegram: 46px;
+  --size-telegram-phone: 36px;
   --text-article: 24px;
   --text-article-phone: 19px;
   --text-subhead: 18px;
@@ -919,7 +922,7 @@
 .logo-yahoo { font: var(--weight-heavy) var(--text-yahoo) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-yahoo); }
 .logo-linkedin { font: var(--weight-bold) var(--text-linkedin) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-linkedin); }
 .logo-medium { width: var(--size-medium); height: var(--size-medium); color: var(--color-ink); }
-.logo-telegram { width: var(--size-medium); height: var(--size-medium); }
+.logo-telegram { width: var(--size-telegram); height: var(--size-telegram); }
 .act { position: absolute; top: var(--space-14); right: var(--space-14); width: var(--size-tap); height: var(--size-tap); display: grid; place-items: center; border-radius: var(--radius-round); background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-action); opacity: var(--opacity-hidden); transform: var(--move-action-rest); transition: opacity var(--duration-color), transform var(--duration-color); }
 .act svg { width: var(--size-icon); height: var(--size-icon); }
 .logo-tile:hover .act, .logo-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
@@ -1951,7 +1954,8 @@
   .vis--inset { margin: var(--space-14) var(--space-18) var(--space-0); }
   .logo-yahoo { font-size: var(--text-yahoo-phone); }
   .logo-linkedin { font-size: var(--text-linkedin-phone); }
-  .logo-medium, .logo-telegram { width: var(--size-medium-phone); height: var(--size-medium-phone); }
+  .logo-medium { width: var(--size-medium-phone); height: var(--size-medium-phone); }
+  .logo-telegram { width: var(--size-telegram-phone); height: var(--size-telegram-phone); }
   .text-tile { padding: var(--space-18); }
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
