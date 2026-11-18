@@ -124,6 +124,7 @@ export const person = {
   role: "Product Designer",
   email: "dryga_v@yahoo.com",
   linkedin: "https://www.linkedin.com/in/valeriia-starychenko-37b083247/",
+  telegram: "https://t.me/lera_starychenko",
   medium: "https://medium.com/@dynya.90",
 };
 

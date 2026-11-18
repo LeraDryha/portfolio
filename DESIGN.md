@@ -199,7 +199,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 
 ### Brand and verdict
 - **Prevently pink** (three stops, 160° gradient): only the Prevently tile and its case hero.
-- **Yahoo violet** and **LinkedIn blue**: only the two contact logos.
+- **Yahoo violet**, **LinkedIn blue** and **Telegram blue**: only the contact logos.
 - **Type Green** (#0d8a4b): only the type measurement on the GRG modal specimen.
 - **Verdict Green / Orange**: only the paired "what works / what doesn't" lists on case pages: what works on a light green card with its title in Verdict Green, what doesn't on a light orange card with its title in a dark orange; both re-tuned at night (deep green and deep brown cards, lighter titles).
 
@@ -231,7 +231,7 @@ The previous direction ("The Proof Sheet": paper, white tiles, italic side index
 ## Layout
 
 - **Top bar** (sticky, frosted page colour): the mark on the left (back to the top), the filter in the centre, the theme switch on the right. On phones the filter drops to a second row.
-- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Desktop places every tile by name (layout A): intro (2 wide), email, LinkedIn; Prevently (2 wide, 3 tall) on the left, GRG (2 × 2) beside it with Medium and Learning (1 × 1) under GRG; then Comfy (2 × 2), Adtelligent and Smart Financial Assistant (1 × 2 each). GRG's two rows are lower (208px): its tile ends just under the Invoices table at the last step, with no empty space; Comfy keeps 250px rows; Prevently is the tallest. At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
+- **Bento**: 4 columns, 250px rows, 20px gaps, max 1100px, 64px under the top bar. Desktop places every tile by name (layout A): intro (2 wide), LinkedIn, Telegram; Prevently (2 wide, 3 tall) on the left, GRG (2 × 2) beside it with Medium and email (Yahoo, 1 × 1) under GRG; then Comfy (2 × 2), Adtelligent and Smart Financial Assistant (1 × 2 each); Learning & recognition last, the full width in a lower row (120px). On 2 columns Learning spans both. GRG's two rows are lower (208px): its tile ends just under the Invoices table at the last step, with no empty space; Comfy keeps 250px rows; Prevently is the tallest. At 860px and below: 2 columns, 200px rows, 14px gaps, 22px corners; at 640px: 168px rows, 16px gutters.
 - **More work**: a pill under the bento opens four small cards in a row (2 on tablets, 1 on phones). Each card opens its own case page on the same template; with no live product, the top of the page is the case’s cover picture in the hero card (its own proportions, not cropped), and the cards no longer carry the new-tab icon. Once opened, the list stays open (remembered in the browser) until the visitor presses “Less work”; closing a More work case returns to the open list.
 - **Case page**: no top bar. A round close button top right (Esc does the same) returns to the tile; the hero (the tile's product, 280–480px tall) sits on top; one reading column below; a back-to-top button appears after scrolling. The page ends with "All work" on the left and "Next case: <title> →" on the right.
 - **Wide bands** (GRG): the live product and the token anatomy break out of the reading column to the page width (1100px; the screen minus 32px on phones), centred on it. Everything else stays in the column.
@@ -264,7 +264,7 @@ A 1.5px Figma Blue square frame 5px outside the element, four white handles, the
 A Figma cursor with a name tag in the person's colour. They arrive when their tile scrolls into view and drift slightly. Decorative (hidden from screen readers), hidden on phones and with reduced motion they stay still.
 
 ### Logo Tiles
-Yahoo (copies the email, "Email copied" toast), LinkedIn and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
+Yahoo (copies the email, "Email copied" toast), LinkedIn, Telegram and Medium (open in a new tab). Just the logo; a round action button appears on hover (always visible on phones).
 
 ### Text Tile
 Learning & recognition: a title (21px, ink) and a line (Pencil) at the bottom-left, no action button; the whole tile opens the page the way a case tile opens its case (the title moves into the page heading). The page: a lead and a "Now" line (what is being learned), Recognition (the DEV Challenge award), Courses as grey cards two in a row (the certificate whole on the page colour, title, school · year, the result the certificate shows in ink medium; the card opens the certificate), then the CASES foundations as one line of links and a note on the previous surname. Filtered under About.
