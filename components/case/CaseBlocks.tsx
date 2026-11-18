@@ -550,7 +550,7 @@ const MARK: Record<Mark, { sign: string; label: string }> = {
 
 /** Competitor features as a compact matrix: one row per feature, a mark per store (shape and colour both carry it),
  *  the client's column tinted; what every store has goes in one line under it. Scrolls sideways on phones. */
-export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string }[]; parity: string; caption: string; sources?: { label: string; note: string; href: string }[] }) {
+export function CompetitorMatrix({ groups, rows, parity, caption, sources, own = true, showGroups = false }: { groups: { label: string; stores: string[] }[]; rows: { feature: string; marks: string; /** a short note under a mark, by column index */ notes?: Record<number, string> }[]; parity: string; caption: string; sources?: { label: string; note: string; href: string }[]; /** tint the first column as the client's own product */ own?: boolean; /** a row with the group names (Direct, Secondary) over the products */ showGroups?: boolean }) {
   const stores = groups.flatMap((g) => g.stores);
   const codes: Record<string, Mark> = { y: "yes", p: "part", n: "no", "-": "na" };
   return (
@@ -578,10 +578,20 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
       <div className="matrix__scroll" role="region" aria-label={caption} tabIndex={0}>
         <table>
           <thead>
+            {showGroups && (
+              <tr className="matrix__groups">
+                <td />
+                {groups.map((g) => (
+                  <th key={g.label} scope="colgroup" colSpan={g.stores.length}>
+                    {g.label}
+                  </th>
+                ))}
+              </tr>
+            )}
             <tr>
               <th scope="col">Feature</th>
               {stores.map((st, i) => (
-                <th key={st} scope="col" className={i === 0 ? "matrix__own" : undefined}>
+                <th key={st} scope="col" className={own && i === 0 ? "matrix__own" : undefined}>
                   {st}
                 </th>
               ))}
@@ -594,11 +604,12 @@ export function CompetitorMatrix({ groups, rows, parity, caption, sources }: { g
                 {r.marks.split("").map((c, i) => {
                   const m = codes[c];
                   return (
-                    <td key={i} className={i === 0 ? "matrix__own" : undefined}>
+                    <td key={i} className={own && i === 0 ? "matrix__own" : undefined}>
                       <i className={`matrix__mark matrix__mark--${m}`} aria-hidden="true">
                         {MARK[m].sign}
                       </i>
                       <span className="sr-only">{MARK[m].label}</span>
+                      {r.notes?.[i] && <span className="matrix__note">{r.notes[i]}</span>}
                     </td>
                   );
                 })}
@@ -620,6 +631,9 @@ export { KitFoundations } from "@/components/case/KitFoundations";
 export { KitSheet } from "@/components/case/KitSheet";
 export { PageScroll } from "@/components/case/PageScroll";
 export { FramedPhones } from "@/components/case/FramedPhones";
+export { HypothesisBoard, IceTable } from "@/components/case/HypothesisBoard";
+export { FlowBoard } from "@/components/case/FlowBoard";
+export { VariantFlow } from "@/components/case/VariantFlow";
 export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";

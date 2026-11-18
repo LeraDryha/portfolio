@@ -397,6 +397,8 @@
   --z-curtain: 30;
   --z-you: 60;
   --opacity-hidden: 0;
+  /* step numbers and sources on the flow board stickies */
+  --opacity-flow-muted: .6;
   --pos-centre: 50%;
   --size-dot: .2em;
   --row-second: 2;
@@ -541,6 +543,9 @@
   --layout-persona-who: 2fr 3fr;
   --layout-kitf: 3fr 2fr;
   --size-page-window: 460px;
+  /* one wireframe per variant, side by side */
+  --size-vflow-side: 240px;
+  --layout-vflow-note: minmax(0, 2fr) minmax(0, 3fr);
   --size-page-phone: 30%;
   --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
@@ -624,8 +629,15 @@
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
   --size-matrix: 640px;
+  /* a note under a matrix mark wraps narrow, so one note does not widen its column */
+  --size-matrix-note: 13ch;
   /* Value proposition canvas (Comfy): stickies are paper, the same in both themes, like a product screen */
   --color-sticky: #ffd966;
+  /* the ICE score column: the sticky yellow, lighter, the same in both themes */
+  --color-sticky-soft: #fdefc0;
+  --color-sticky-green: #c6f4cf;
+  --color-sticky-orange: #ffbd3a;
+  --color-sticky-grey: #e4e4e4;
   --color-sticky-pain: #ffbd85;
   --color-sticky-job: #f7b9ec;
   --color-sticky-ink: #2b2b2b;
@@ -1327,6 +1339,74 @@
 .sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
 .sitemap__page { fill: var(--color-ink); }
 .sitemap__type { fill: var(--color-pencil); }
+/* Variant flow (Onboarding): an A/B test's variants as rows of wireframes in order; the moved screen outlined orange */
+.vflow { margin: var(--space-20) var(--space-0) var(--space-28); }
+.vflow__panel { display: grid; gap: var(--space-24); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }
+.vflow__variant { display: grid; gap: var(--space-10); }
+.prose .vflow__label { justify-self: start; margin: var(--space-0); padding: var(--space-6) var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); box-shadow: var(--shadow-sticky); font-size: var(--text-label); font-weight: var(--weight-medium); line-height: var(--leading-tag); }
+.prose .vflow__row { display: grid; align-items: start; gap: var(--space-6); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .vflow__screen { position: relative; display: grid; gap: var(--space-4); margin: var(--space-0); min-width: var(--space-0); }
+.vflow__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; border-radius: var(--radius-label); overflow: hidden; background: var(--color-on-dark); box-shadow: var(--shadow-wipe); cursor: zoom-in; }
+.vflow__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.vflow__zoom img { display: block; width: var(--size-full); height: auto; }
+.vflow__screen--moved .vflow__zoom { box-shadow: 0 0 0 var(--size-focus) var(--color-sticky-orange); }
+.vflow__tag { justify-self: center; padding: var(--space-2) var(--space-6); border-radius: var(--radius-label); background: var(--color-sticky-orange); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); text-align: center; overflow-wrap: anywhere; }
+.vflow--side .vflow__panel { grid-template-columns: repeat(auto-fit, minmax(var(--size-vflow-side), 1fr)); justify-items: center; }
+.vflow--side .vflow__variant { align-content: start; width: var(--size-vflow-side); }
+.vflow__why { align-self: start; }
+.vflow--wide .vflow__panel { grid-template-columns: var(--layout-cols-2); justify-items: stretch; }
+.vflow--wide .vflow__variant { width: auto; }
+.vflow__note { grid-column: 1 / -1; display: grid; grid-template-columns: var(--layout-vflow-note); gap: var(--space-16); align-items: start; padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); }
+.prose .flow__why ul { margin: var(--space-0); padding-left: var(--space-16); font-size: var(--text-micro); line-height: var(--leading-tag); }
+.prose .flow__why li { margin: var(--space-0); }
+@media (max-width: 640px) { .prose .vflow:not(.vflow--side) .vflow__row { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } .vflow--side .vflow__panel { grid-template-columns: var(--layout-cols-2); padding: var(--space-14); gap: var(--space-12); } .vflow--side .vflow__variant { width: auto; } .vflow--wide .vflow__panel { grid-template-columns: var(--layout-col-1); } .vflow__note { grid-template-columns: var(--layout-col-1); } }
+/* Flow board (Onboarding): the user flow as live stickies, a/b test and best practices above each step, the description below */
+.flow { margin: var(--space-20) var(--space-0) var(--space-28); }
+.flow__panel { display: grid; gap: var(--space-20); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .flow__legend { display: flex; flex-wrap: wrap; gap: var(--space-6) var(--space-20); margin: var(--space-0); padding: var(--space-0); list-style: none; color: var(--color-graphite); font-size: var(--text-label); }
+.prose .flow__legend li { display: inline-flex; align-items: center; gap: var(--space-8); margin: var(--space-0); }
+.flow__chip { width: var(--space-14); height: var(--space-14); border-radius: var(--radius-label); }
+.flow__chip--flow, .flow__item { background: var(--color-sticky-soft); }
+.flow__chip--desc, .flow__note--desc { background: var(--color-sticky-blue); }
+.flow__chip--practice, .flow__note--practice { background: var(--color-sticky-green); }
+.flow__chip--ab, .flow__note--ab { background: var(--color-sticky-orange); }
+.prose .flow__steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: var(--space-28); column-gap: var(--space-20); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .flow__step { display: grid; grid-row: span 3; grid-template-rows: subgrid; gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); min-width: var(--space-0); }
+.flow__top, .flow__bottom { display: grid; gap: var(--space-8); align-content: end; }
+.flow__bottom { align-content: start; }
+.prose .flow__item { position: relative; margin: var(--space-0); min-height: var(--size-sticky-h); padding: var(--space-10); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
+.flow__item--optional { background: var(--color-sticky-grey); }
+.flow__n { display: block; margin-bottom: var(--space-4); color: var(--color-sticky-ink); opacity: var(--opacity-flow-muted); font-size: var(--text-micro); }
+.flow__step:not(:nth-child(5n)):not(:last-child) .flow__item::after { content: "→"; position: absolute; top: var(--pos-centre); right: calc(-1 * var(--space-18)); translate: 0 -50%; color: var(--color-pencil); font-size: var(--text-label); }
+.prose .flow__note { margin: var(--space-0); padding: var(--space-8) var(--space-10); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
+.flow__practice em { display: block; margin-bottom: var(--space-6); color: var(--color-sticky-ink); opacity: var(--opacity-flow-muted); }
+.flow__line { display: block; }
+.flow__why { display: grid; gap: var(--space-6); padding: var(--space-10); border: var(--size-stroke) solid var(--color-figma); border-radius: var(--radius-label); background: var(--color-raised); font-size: var(--text-micro); line-height: var(--leading-tag); }
+.flow__why b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.prose .flow__why p { margin: var(--space-0); color: var(--color-ink); font-size: var(--text-micro); line-height: var(--leading-tag); }
+.prose .flow__note ul { margin: var(--space-2) var(--space-0) var(--space-0); padding-left: var(--space-14); }
+.prose .flow__note li { margin: var(--space-0); }
+@media (max-width: 640px) { .prose .flow__steps { grid-template-columns: var(--layout-cols-2); column-gap: var(--space-12); } .flow__item::after { display: none; } }
+/* Hypothesis board and ICE table (Onboarding): the board's hypothesis stickies and the prioritisation, live */
+.hyp-board { margin: var(--space-20) var(--space-0) var(--space-28); }
+.hyp-board__grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.hyp-board__card { display: grid; align-content: start; gap: var(--space-12); padding: var(--space-20) var(--space-22); background: var(--color-sticky); color: var(--color-sticky-ink); box-shadow: var(--shadow-sticky); font-size: var(--text-label); line-height: var(--leading-ui); }
+.prose .hyp-board__card h4 { margin: var(--space-0); color: var(--color-sticky-ink); font-size: var(--text-ui); line-height: var(--leading-ui); font-weight: var(--weight-semibold); }
+.prose .hyp-board__card p { margin: var(--space-0); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-ui); }
+.prose .hyp-board__card b { font-weight: var(--weight-semibold); }
+.ice { margin: var(--space-20) var(--space-0) var(--space-28); }
+.ice__scroll { overflow-x: auto; border-radius: var(--radius-block); background: var(--color-tile); padding: var(--space-16); }
+.ice__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.ice table { width: var(--size-full); border-collapse: collapse; border-radius: var(--radius-inner); overflow: hidden; background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.ice th, .ice td { padding: var(--space-10) var(--space-12); border-top: var(--size-hairline) solid var(--color-hairline); text-align: left; vertical-align: top; font-weight: var(--weight-regular); color: var(--color-ink); }
+.ice thead th { border-top: none; color: var(--color-pencil); }
+.ice thead th:first-child { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.ice tbody th { font-weight: var(--weight-medium); }
+.ice .ice__score { background: var(--color-sticky-soft); color: var(--color-sticky-ink); font-weight: var(--weight-semibold); }
+.ice thead .ice__score { font-weight: var(--weight-medium); }
+.ice .ice__note { color: var(--color-graphite); }
+.ice thead .ice__score { white-space: nowrap; }
+@media (max-width: 640px) { .hyp-board__grid { grid-template-columns: var(--layout-col-1); } .ice table { min-width: var(--size-matrix); } }
 /* Sticky board (Onboarding): the boards' stickies as live paper on a grey panel, dropping in one by one */
 .sticky-board { display: grid; gap: var(--space-10); margin: var(--space-20) var(--space-0) var(--space-28); }
 .sticky-board__grid { display: grid; gap: var(--space-14); align-items: start; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
@@ -1451,7 +1531,7 @@
 
 /* Stickies on research boards (Comfy Develop): paper notes, the same in both themes */
 .prose .stickies { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-sticky), 1fr)); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
-.sticky { min-height: var(--size-sticky-h); padding: var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); rotate: -.6deg; }
+.sticky { overflow-wrap: break-word; min-height: var(--size-sticky-h); padding: var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); rotate: -.6deg; }
 .sticky:nth-child(even) { rotate: .8deg; }
 .sticky--idea { background: var(--color-sticky-idea); }
 .sticky--hmw { display: grid; align-content: start; gap: var(--space-8); background: var(--color-sticky-hmw); font-size: var(--text-ui); line-height: var(--leading-ui); rotate: none; }
@@ -1528,6 +1608,8 @@
 .matrix thead th[scope="col"]:first-child { color: var(--color-pencil); font-weight: var(--weight-regular); }
 .matrix tbody th { color: var(--color-ink); font-weight: var(--weight-regular); }
 .matrix .matrix__own { background: var(--color-raised); }
+.matrix .matrix__groups th { padding-bottom: var(--space-2); color: var(--color-pencil); font-weight: var(--weight-regular); text-align: center; }
+.matrix__note { display: block; max-width: var(--size-matrix-note); margin: var(--space-4) auto var(--space-0); color: var(--color-graphite); font-size: var(--text-micro); line-height: var(--leading-tag); }
 .matrix__mark { display: inline-block; width: var(--size-matrix-mark); height: var(--size-matrix-mark); border-radius: var(--radius-round); vertical-align: middle; font-size: var(--space-0); }
 .matrix__mark--yes { background: var(--color-positive); }
 .matrix__mark--part { border: var(--size-stroke) solid var(--color-caution); background: linear-gradient(90deg, var(--color-caution) 50%, transparent 50%); }
