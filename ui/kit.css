@@ -109,6 +109,7 @@
   --color-yahoo: #6001d2;
   --color-linkedin: #0a66c2;
   --color-telegram: #229ed9;
+  --color-telegram-light: #2aabee;
   --color-prevently-1: #b8487a;
   --color-prevently-2: #a83f6d;
   --color-prevently-3: #8f2f5c;
@@ -755,8 +756,10 @@
     --color-who-lera: oklch(48% 0.15 352);
         --color-yahoo: #a678ff;
     --color-linkedin: #4c9be8;
-  --color-telegram: #2aabee;
-    --color-telegram: #2aabee;
+  --color-telegram: #229ed9;
+  --color-telegram-light: #2aabee;
+    --color-telegram: #229ed9;
+    --color-telegram-light: #2aabee;
     --color-curtain: #f5f5f7;
     --color-curtain-ink: #000000;
     --display-light: none;
@@ -916,7 +919,7 @@
 .logo-yahoo { font: var(--weight-heavy) var(--text-yahoo) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-yahoo); }
 .logo-linkedin { font: var(--weight-bold) var(--text-linkedin) / var(--leading-tight) var(--font-sans); letter-spacing: var(--tracking-logo); color: var(--color-linkedin); }
 .logo-medium { width: var(--size-medium); height: var(--size-medium); color: var(--color-ink); }
-.logo-telegram { width: var(--size-medium); height: var(--size-medium); color: var(--color-telegram); }
+.logo-telegram { width: var(--size-medium); height: var(--size-medium); }
 .act { position: absolute; top: var(--space-14); right: var(--space-14); width: var(--size-tap); height: var(--size-tap); display: grid; place-items: center; border-radius: var(--radius-round); background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-action); opacity: var(--opacity-hidden); transform: var(--move-action-rest); transition: opacity var(--duration-color), transform var(--duration-color); }
 .act svg { width: var(--size-icon); height: var(--size-icon); }
 .logo-tile:hover .act, .logo-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
