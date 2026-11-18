@@ -549,6 +549,14 @@
   /* the interview quotes on the script: the lavender of Lera's chat bubbles, readable in both themes */
   --color-quote-bubble: #d8dbea;
   --color-quote-ink: #2d2f5a;
+  /* Lera's user flow lavenders: light before the app, deepest at the main screen; the same in both themes */
+  --color-flow-entry: #b0b4dc;
+  --color-flow-detail: #dcdcef;
+  --color-flow-main: #3d4580;
+  --color-flow-branch: #4f5aa6;
+  --color-flow-leaf: #6f78b8;
+  --color-flow-ink: #23264a;
+  --size-appflow-auth: 640px;
   /* one wireframe per variant, side by side */
   --size-vflow-side: 240px;
   --layout-vflow-note: minmax(0, 2fr) minmax(0, 3fr);
@@ -1345,6 +1353,30 @@
 .sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
 .sitemap__page { fill: var(--color-ink); }
 .sitemap__type { fill: var(--color-pencil); }
+/* App flow (Mental health): the user flow as live lavender chips, a line into the app, then each part as a tree */
+.appflow { margin: var(--space-20) var(--space-0) var(--space-28); }
+.appflow__panel { display: grid; gap: var(--space-20); justify-items: center; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
+.appflow__chip { display: inline-block; padding: var(--space-8) var(--space-14); border-radius: var(--radius-control); font-size: var(--text-label); line-height: var(--leading-tag); text-align: center; }
+.appflow__chip--entry { background: var(--color-flow-entry); color: var(--color-flow-ink); }
+.appflow__chip--detail { background: var(--color-flow-detail); color: var(--color-flow-ink); }
+.appflow__chip--main { background: var(--color-flow-main); color: var(--color-on-dark); font-weight: var(--weight-semibold); }
+.appflow__chip--branch { background: var(--color-flow-branch); color: var(--color-on-dark); font-weight: var(--weight-medium); }
+.appflow__chip--leaf { background: var(--color-flow-leaf); color: var(--color-on-dark); }
+.prose .appflow__line, .prose .appflow__chain { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-8) var(--space-28); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .appflow__line li, .prose .appflow__chain li { position: relative; margin: var(--space-0); }
+.appflow__line li:not(:last-child)::after { content: "→"; position: absolute; top: var(--pos-centre); right: calc(-1 * var(--space-20)); translate: 0 -50%; color: var(--color-pencil); }
+.prose .appflow__chain { flex-direction: column; gap: var(--space-24); }
+.appflow__chain li:not(:last-child)::after { content: "↓"; position: absolute; left: var(--pos-centre); bottom: calc(-1 * var(--space-20)); translate: -50% 0; color: var(--color-pencil); font-size: var(--text-label); }
+.appflow__auth { position: relative; display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-48); width: var(--size-full); max-width: var(--size-appflow-auth); }
+.appflow__or { position: absolute; top: var(--space-8); left: var(--pos-centre); translate: -50% 0; color: var(--color-pencil); font-size: var(--text-label); }
+.appflow__branches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-16); width: var(--size-full); padding-top: var(--space-16); border-top: var(--size-hairline) solid var(--color-hairline); }
+.prose .appflow__tree { margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .appflow__tree .appflow__tree { margin-top: var(--space-8); padding-left: var(--space-14); border-left: var(--size-hairline) solid var(--color-map-line); }
+.prose .appflow__tree li { position: relative; margin: var(--space-0) var(--space-0) var(--space-8); }
+.prose .appflow__tree .appflow__tree li::before { content: ""; position: absolute; top: var(--space-16); left: calc(-1 * var(--space-14)); width: var(--space-10); border-top: var(--size-hairline) solid var(--color-map-line); }
+.appflow__tree .appflow__chip { text-align: left; }
+@media (max-width: 900px) { .appflow__branches { grid-template-columns: var(--layout-cols-2); } }
+@media (max-width: 560px) { .prose .appflow__line { flex-direction: column; gap: var(--space-24); } .appflow__line li:not(:last-child)::after { content: "↓"; top: auto; right: auto; left: var(--pos-centre); bottom: calc(-1 * var(--space-20)); translate: -50% 0; font-size: var(--text-label); } .appflow__branches { grid-template-columns: var(--layout-col-1); } .appflow__auth { gap: var(--space-16); } .appflow__panel { padding: var(--space-16); } }
 /* Mental health MVP: persona sheets, the interview script with live quote bubbles, the journey mood curve */
 .psheets { margin: var(--space-28) var(--space-0); }
 .psheets__panel { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-16); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }

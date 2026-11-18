@@ -635,6 +635,7 @@ export { HypothesisBoard, IceTable } from "@/components/case/HypothesisBoard";
 export { FlowBoard } from "@/components/case/FlowBoard";
 export { VariantFlow } from "@/components/case/VariantFlow";
 export { PersonaSheets, ScriptQuotes } from "@/components/case/MentalHealth";
+export { AppFlow } from "@/components/case/AppFlow";
 export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";

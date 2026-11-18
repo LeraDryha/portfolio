@@ -189,13 +189,49 @@ This analysis showed that no app on the Ukrainian market fully addresses our use
 
 ### Problem statement and prioritising
 
-<Figure src="/work/mental-health-mvp/07.webp" width={1800} height={811} alt="Brainstorming board with problem statements." caption="Brainstorming." />
+<StickyBoard cols={4} caption="Brainstorming: ideas for the pain points of people with panic attacks and anxiety disorders." notes={[
+  {text: "Users find our website, offering detailed info on panic attacks, anxiety disorders, and symptom-checking tests"},
+  {text: "Statistics: Track and view personal results"},
+  {text: "Community: Share feelings, read similar stories"},
+  {text: "Success stories on overcoming anxiety, highlighting positive experiences with psychologists to build trust"},
+  {text: "Share articles with loved ones to explain mental health"},
+  {text: "\"Help Lines\" section: Option to message a specialist in the community"},
+  {text: "Reminders: Pop-up exercise notifications and rewards for completed practices"},
+  {text: "Provide users with comprehensive resources on their condition, including articles, coping tools, and video lectures."},
+  {text: "If no improvement over time, prompt to consult a doctor with clear, trust-building copy on the benefits of professional help"},
+  {text: "Meditations, music for reducing stress, breathing practices."},
+  {text: "Diary-based statistics to share with a specialist"},
+  {text: "Motivational pop-ups for support and connection"},
+  {text: "\"Community\" widget for chatting and sharing anxiety experiences"},
+]} />
 
 ### User flow
 
 I created a user journey map from discovering our website to downloading and using the app. All app features are based on identified user problems and competitor research
 
-<Figure src="/work/mental-health-mvp/08.webp" width={1800} height={2565} alt="User flow from the website to the app." caption="User flow." />
+<AppFlow caption="User flow: from finding the website to each part of the app."
+  entry={["Query in Google", "Website", "Installing the application", "Welcome screen"]}
+  auth={[{ title: "Sign up", steps: ["Email, password, info", "By Social Media"] }, { title: "Sign in", steps: ["Email, password", "By Social Media"] }]}
+  merge="Onboarding"
+  main="Main screen"
+  branches={[
+    { label: "Community", children: [{ label: "Filters", children: [
+      { label: "Create a new post", children: [{ label: "Publishing" }, { label: "Delete post" }, { label: "Edit post" }] },
+      { label: "Open an existing post", children: [{ label: "Leave a reaction" }, { label: "Leave a comment" }, { label: "To complain" }] },
+    ] }] },
+    { label: "Diary", children: [{ label: "Calendar" }, { label: "Moodbar" }, { label: "Filling in the diary" }] },
+    { label: "Coping cards", children: [{ label: "Filters", children: [
+      { label: "Card", children: [
+        { label: "Create a new card", children: [{ label: "Choose a category" }, { label: "Name of card" }, { label: "Automatic thought" }, { label: "Rational thought" }] },
+        { label: "Edit card" },
+        { label: "Settings of notifications" },
+      ] },
+      { label: "Info" },
+    ] }] },
+    { label: "Test", children: [{ label: "List of tests" }, { label: "Results" }] },
+    { label: "Lines of trust", children: [{ label: "Hotline contacts" }, { label: "Find a specialist" }] },
+  ]}
+/>
 
 </Chapter>
 
