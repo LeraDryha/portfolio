@@ -130,7 +130,38 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
   { label: "Guardrails", items: ["drop-off at signup step"] },
 ] }} />
 
-<Figure src="/work/onboarding-ab-testing/11.webp" width={1800} height={562} alt="Test 1 variants: signup first and signup last." caption="Test 1: signup first or last." />
+<VariantFlow caption="Test 1: signup first or last." variants={[
+  { label: "A - Signup first", screens: [
+    { src: "/work/onboarding-ab-testing/wf/signup.webp", name: "Sign up", moved: true },
+    { src: "/work/onboarding-ab-testing/wf/welcome.webp", name: "Welcome to “Name”" },
+    { src: "/work/onboarding-ab-testing/wf/measure.webp", name: "Measure & understand" },
+    { src: "/work/onboarding-ab-testing/wf/share.webp", name: "Share with you coach or doctor" },
+    { src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" },
+    { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" },
+    { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "Additional info with BMI" },
+    { src: "/work/onboarding-ab-testing/wf/conditions.webp", name: "Conditions" },
+    { src: "/work/onboarding-ab-testing/wf/goals.webp", name: "Goals" },
+    { src: "/work/onboarding-ab-testing/wf/check.webp", name: "Let’s check your heart" },
+    { src: "/work/onboarding-ab-testing/wf/measuring.webp", name: "Measuring" },
+    { src: "/work/onboarding-ab-testing/wf/result.webp", name: "Your result is ready!" },
+    { src: "/work/onboarding-ab-testing/wf/sync.webp", name: "Get the full picture of your health" },
+  ] },
+  { label: "B - Signup last", screens: [
+    { src: "/work/onboarding-ab-testing/wf/welcome.webp", name: "Welcome to “Name”" },
+    { src: "/work/onboarding-ab-testing/wf/measure.webp", name: "Measure & understand" },
+    { src: "/work/onboarding-ab-testing/wf/share.webp", name: "Share with you coach or doctor" },
+    { src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" },
+    { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" },
+    { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "Additional info with BMI" },
+    { src: "/work/onboarding-ab-testing/wf/conditions.webp", name: "Conditions" },
+    { src: "/work/onboarding-ab-testing/wf/goals.webp", name: "Goals" },
+    { src: "/work/onboarding-ab-testing/wf/check.webp", name: "Let’s check your heart" },
+    { src: "/work/onboarding-ab-testing/wf/measuring.webp", name: "Measuring" },
+    { src: "/work/onboarding-ab-testing/wf/result.webp", name: "Your result is ready!" },
+    { src: "/work/onboarding-ab-testing/wf/sync.webp", name: "Get the full picture of your health" },
+    { src: "/work/onboarding-ab-testing/wf/signup.webp", name: "Sign up", moved: true },
+  ] },
+]} />
 
 <Hypothesis n={2} title="Test 2 - Guest mode onboarding" lead="Objective: reduce friction at entry and increase activation by allowing users to explore without creating an account" ifText="we allow Guest Mode (explore without account)," then="more users will try the app and reach first measurement," because="signup is a high-friction barrier at the very beginning," leadsTo="↑ activation without hurting later signup." plan={{ title: "Test plan", parts: [
   { label: "Variants", items: ["A - no guest mode: signup required before onboarding (control)", "B - guest mode enabled: users can skip signup, explore and measure first"] },

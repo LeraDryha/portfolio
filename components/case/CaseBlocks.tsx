@@ -633,6 +633,7 @@ export { PageScroll } from "@/components/case/PageScroll";
 export { FramedPhones } from "@/components/case/FramedPhones";
 export { HypothesisBoard, IceTable } from "@/components/case/HypothesisBoard";
 export { FlowBoard } from "@/components/case/FlowBoard";
+export { VariantFlow } from "@/components/case/VariantFlow";
 export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";
