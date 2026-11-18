@@ -543,6 +543,8 @@
   --layout-persona-who: 2fr 3fr;
   --layout-kitf: 3fr 2fr;
   --size-page-window: 460px;
+  /* one wireframe per variant, side by side */
+  --size-vflow-side: 240px;
   --size-page-phone: 30%;
   --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
@@ -1348,7 +1350,10 @@
 .vflow__zoom img { display: block; width: var(--size-full); height: auto; }
 .vflow__screen--moved .vflow__zoom { box-shadow: 0 0 0 var(--size-focus) var(--color-sticky-orange); }
 .vflow__tag { justify-self: center; padding: var(--space-2) var(--space-6); border-radius: var(--radius-label); background: var(--color-sticky-orange); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); white-space: nowrap; }
-@media (max-width: 640px) { .prose .vflow__row { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+.vflow--side .vflow__panel { grid-template-columns: repeat(auto-fit, minmax(var(--size-vflow-side), 1fr)); justify-items: center; }
+.vflow--side .vflow__variant { align-content: start; width: var(--size-vflow-side); }
+.vflow__why { align-self: start; }
+@media (max-width: 640px) { .prose .vflow:not(.vflow--side) .vflow__row { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } .vflow--side .vflow__panel { grid-template-columns: var(--layout-cols-2); padding: var(--space-14); gap: var(--space-12); } .vflow--side .vflow__variant { width: auto; } }
 /* Flow board (Onboarding): the user flow as live stickies, a/b test and best practices above each step, the description below */
 .flow { margin: var(--space-20) var(--space-0) var(--space-28); }
 .flow__panel { display: grid; gap: var(--space-20); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }

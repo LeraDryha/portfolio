@@ -169,7 +169,10 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
   { label: "Guardrails", items: ["drop-off after first measurement"] },
 ] }} />
 
-<Figure src="/work/onboarding-ab-testing/12.webp" width={1800} height={849} alt="Test 2 variants: with and without guest mode." caption="Test 2: guest mode." />
+<VariantFlow side caption="Test 2: guest mode." variants={[
+  { label: "A - no guest mode", screens: [{ src: "/work/onboarding-ab-testing/wf/t2-a.webp", name: "Sign up, no guest mode" }] },
+  { label: "B - guest mode enabled", screens: [{ src: "/work/onboarding-ab-testing/wf/t2-b.webp", name: "Skip for now", moved: true }], rationale: "We move the signup option into Settings and add a notification so users don’t forget to complete it" },
+]} />
 
 <Hypothesis n={3} title="Test 3 - Early insight (BMI)" lead="Objective: increase activation by giving users immediate value from their input before the main feature" ifText="we provide an early wow-effect by showing BMI insight after entering body metrics," then="more users will proceed to the heart rate measurement," because="they already see value from their data before the main feature," leadsTo="↑ HR measurement rate, ↑ activation" plan={{ title: "Test plan", parts: [
   { label: "Variants", items: ["A - BMI insight: show BMI + short friendly comment (“Your BMI is within healthy range”)", "B - no insight: only collect data and proceed directly to HR measurement"] },
