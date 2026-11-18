@@ -21,7 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const c = await loadCase(slug);
   if (!c) return {};
-  return { title: c.entry.title, description: c.meta.lead };
+  return {
+    title: c.entry.title,
+    description: c.meta.lead,
+    openGraph: { type: "article", title: `${c.entry.title} · Lera Starychenko`, description: c.meta.lead, url: `/work/${slug}` },
+    twitter: { card: "summary_large_image", title: `${c.entry.title} · Lera Starychenko`, description: c.meta.lead },
+  };
 }
 
 export default async function CasePage({ params }: { params: Promise<{ slug: string }> }) {

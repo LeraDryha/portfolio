@@ -6,7 +6,7 @@ import { courses, foundations, now, recognition, type LearningItem } from "@/con
 
 export const metadata: Metadata = {
   title: "Learning & recognition",
-  description: "An award, courses and certificates of Lera Dryha, product designer.",
+  description: "An award, courses and certificates of Lera Starychenko, product designer.",
 };
 
 function Card({ it }: { it: LearningItem }) {

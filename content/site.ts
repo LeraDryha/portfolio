@@ -119,8 +119,8 @@ export type CaseEntry = {
 };
 
 export const person = {
-  name: "Lera Dryha",
-  fullName: "Valeriia Dryha",
+  name: "Lera Starychenko",
+  fullName: "Valeriia Starychenko",
   role: "Product Designer",
   email: "dryga_v@yahoo.com",
   linkedin: "https://www.linkedin.com/in/valeriia-starychenko-37b083247/",

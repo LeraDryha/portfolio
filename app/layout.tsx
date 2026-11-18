@@ -25,10 +25,15 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
 });
 
+const description =
+  "Portfolio of Lera Starychenko, a product designer. Case studies in e-commerce, fintech and adtech, a design system, and Prevently, a product taken from idea to the App Store.";
+
 export const metadata: Metadata = {
-  title: { default: "Lera Dryha · Product Designer", template: "%s · Lera Dryha" },
-  description:
-    "Portfolio of Lera Dryha, a product designer. Case studies in e-commerce, fintech and adtech, a design system, and Prevently, a product taken from idea to the App Store.",
+  metadataBase: new URL("https://lerastarychenko.vercel.app"),
+  title: { default: "Lera Starychenko · Product Designer", template: "%s · Lera Starychenko" },
+  description,
+  openGraph: { type: "website", siteName: "Lera Starychenko", title: "Lera Starychenko · Product Designer", description, url: "/" },
+  twitter: { card: "summary_large_image", title: "Lera Starychenko · Product Designer", description },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
