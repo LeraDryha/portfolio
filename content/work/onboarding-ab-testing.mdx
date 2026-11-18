@@ -13,7 +13,30 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
 
 <Chapter id="discovery" n={1} of={4} title="Discovery">
 
-<Figure src="/work/onboarding-ab-testing/02.webp" width={1800} height={1412} alt="Competitor analysis of heart rate apps' onboarding." caption="Competitor analysis." />
+<CompetitorMatrix
+  own={false}
+  showGroups
+  caption="Competitor analysis of onboarding in heart rate and health apps."
+  groups={[
+    { label: "Direct", stores: ["Welltory", "Withings", "Cardiio"] },
+    { label: "Secondary", stores: ["Apple Health", "Google Fit", "Samsung Health"] },
+  ]}
+  rows={[
+    { feature: "Welcome screen", marks: "yyyyyp" },
+    { feature: "Privacy & Policy", marks: "yyyyyy" },
+    { feature: "Non-medical Disclaimer screen", marks: "ynynny" },
+    { feature: "General data (name/age/sex)", marks: "yyyyyy" },
+    { feature: "Body metrics", marks: "yyyyyy" },
+    { feature: "Health conditions", marks: "nnnynn" },
+    { feature: "Heartbeat insights survey", marks: "ynnynn" },
+    { feature: "User goals", marks: "ynnnpn", notes: { 4: "about steps" } },
+    { feature: "Sync with Apple/ Google health", marks: "yypyyy", notes: { 2: "in settings" } },
+    { feature: "Guest mode", marks: "nnynnn" },
+    { feature: "First measurement", marks: "ynynpn", notes: { 4: "not on primary onboarding" } },
+    { feature: "Feature Walkthrough", marks: "nyynnn" },
+  ]}
+  parity="Competitor analysis. All six apps ask for privacy consent, general data and body metrics."
+/>
 
 <StickyBoard cols={5} caption="Points of parity." notes={[
   {text: "Privacy & Policy"},

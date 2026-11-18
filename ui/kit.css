@@ -624,6 +624,8 @@
   --font-prevently-app: var(--font-prevently, "Mulish"), var(--font-sans);
   --size-try-phone: 640px;
   --size-matrix: 640px;
+  /* a note under a matrix mark wraps narrow, so one note does not widen its column */
+  --size-matrix-note: 13ch;
   /* Value proposition canvas (Comfy): stickies are paper, the same in both themes, like a product screen */
   --color-sticky: #ffd966;
   /* the ICE score column: the sticky yellow, lighter, the same in both themes */
@@ -1550,6 +1552,8 @@
 .matrix thead th[scope="col"]:first-child { color: var(--color-pencil); font-weight: var(--weight-regular); }
 .matrix tbody th { color: var(--color-ink); font-weight: var(--weight-regular); }
 .matrix .matrix__own { background: var(--color-raised); }
+.matrix .matrix__groups th { padding-bottom: var(--space-2); color: var(--color-pencil); font-weight: var(--weight-regular); text-align: center; }
+.matrix__note { display: block; max-width: var(--size-matrix-note); margin: var(--space-4) auto var(--space-0); color: var(--color-graphite); font-size: var(--text-micro); line-height: var(--leading-tag); }
 .matrix__mark { display: inline-block; width: var(--size-matrix-mark); height: var(--size-matrix-mark); border-radius: var(--radius-round); vertical-align: middle; font-size: var(--space-0); }
 .matrix__mark--yes { background: var(--color-positive); }
 .matrix__mark--part { border: var(--size-stroke) solid var(--color-caution); background: linear-gradient(90deg, var(--color-caution) 50%, transparent 50%); }
