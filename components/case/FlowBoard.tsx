@@ -1,5 +1,5 @@
 type Practice = { text: string; source: string };
-type Step = { flow: string; optional?: boolean; ab?: string[]; practices?: Practice[]; description?: string[]; list?: string[] };
+type Step = { flow: string; optional?: boolean; ab?: string[]; practices?: Practice[]; description?: string[]; list?: string[]; /** Lera's annotation on the board: why the step is there */ rationale?: string[] };
 
 const LEGEND: [string, string][] = [
   ["flow", "flow item"],
@@ -67,6 +67,14 @@ export function FlowBoard({ steps, caption }: { steps: Step[]; caption: string }
                         ))}
                       </ul>
                     )}
+                  </div>
+                )}
+                {s.rationale && (
+                  <div className="flow__why">
+                    <b>Rationale</b>
+                    {s.rationale.map((r) => (
+                      <p key={r}>{r}</p>
+                    ))}
                   </div>
                 )}
               </div>

@@ -1357,6 +1357,9 @@
 .prose .flow__note { margin: var(--space-0); padding: var(--space-8) var(--space-10); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); }
 .flow__practice em { display: block; margin-bottom: var(--space-6); color: var(--color-sticky-ink); opacity: var(--opacity-flow-muted); }
 .flow__line { display: block; }
+.flow__why { display: grid; gap: var(--space-6); padding: var(--space-10); border: var(--size-stroke) solid var(--color-figma); border-radius: var(--radius-label); background: var(--color-raised); font-size: var(--text-micro); line-height: var(--leading-tag); }
+.flow__why b { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.prose .flow__why p { margin: var(--space-0); color: var(--color-ink); font-size: var(--text-micro); line-height: var(--leading-tag); }
 .prose .flow__note ul { margin: var(--space-2) var(--space-0) var(--space-0); padding-left: var(--space-14); }
 .prose .flow__note li { margin: var(--space-0); }
 @media (max-width: 640px) { .prose .flow__steps { grid-template-columns: var(--layout-cols-2); column-gap: var(--space-12); } .flow__item::after { display: none; } }
