@@ -85,7 +85,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 
 - Next.js (App Router) і TypeScript.
 - Хостинг — Vercel (автодеплой з гілки `main`), адреса lerastarychenko.vercel.app. GitHub Pages більше не використовуємо.
-- Прев'ю посилань (Open Graph): `app/opengraph-image.tsx` (головна) і `app/work/[slug]/opengraph-image.tsx` (кейс: обкладинка для More work, текстова картка з доказом для головних кейсів), спільне в `lib/og.tsx`.
+- Прев'ю посилань (Open Graph): `app/opengraph-image.png` (головна, концепт A: привітання сайту з виділенням Figma) і `app/work/[slug]/opengraph-image.tsx` (кейс: обкладинка для More work, текстова картка з доказом для головних кейсів), спільне в `lib/og.tsx`.
 - Стилі: єдине джерело — `ui/kit.css` (імпортується в `app/layout.tsx`). Нових значень у компонентах не пишемо: лише класи кіта й змінні з його `:root`. Шрифти — через `next/font`, `app/globals.css` лише підміняє `--font-sans` / `--font-serif` / `--font-mono`.
 - Новий кейс: файл `content/work/<slug>.mdx` (`export const meta` + текст з компонентами з `components/case/CaseBlocks.tsx`), зображення в `public/work/<slug>/`, рядок у `lib/cases.ts`, плитка в `content/site.ts` (доказ, рядок, живий продукт, форма плитки). Кожна плитка кейсу веде на власну сторінку; поки повного тексту немає, сторінка коротка й чесно каже, що кейс готується.
 - Контент живе в репозиторії як MDX. Зображення з Notion переносимо в репозиторій.
