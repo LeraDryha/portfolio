@@ -108,6 +108,9 @@ export function JourneyMap({ title, steps, rows, caption, mood, moodAfter }: { t
   );
 }
 
+/** A face per mood level, as on CJM boards: crying, worried, neutral, content, happy */
+const FACE = ["😢", "😟", "😐", "🙂", "😊"];
+
 /** The emotional line of a journey: a soft curve through one dot per step, higher is better. */
 function MoodCurve({ mood }: { mood: number[] }) {
   const W = 100 * mood.length;
@@ -119,8 +122,10 @@ function MoodCurve({ mood }: { mood: number[] }) {
       <svg viewBox={`0 0 ${W} 64`} preserveAspectRatio="none">
         <path d={d} />
       </svg>
-      {pts.map(([x, py]) => (
-        <i key={x} style={{ left: `${(x / W) * 100}%`, top: `${(py / 64) * 100}%` }} />
+      {pts.map(([x, py], i) => (
+        <i key={x} style={{ left: `${(x / W) * 100}%`, top: `${(py / 64) * 100}%` }}>
+          {FACE[mood[i] - 1]}
+        </i>
       ))}
     </div>
   );

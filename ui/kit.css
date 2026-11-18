@@ -544,6 +544,7 @@
   --layout-kitf: 3fr 2fr;
   --size-page-window: 460px;
   --size-persona-photo: 64px;
+  --text-mood-face: 28px;
   --size-script-quotes: 860px;
   /* the interview quotes on the script: the lavender of Lera's chat bubbles, readable in both themes */
   --color-quote-bubble: #d8dbea;
@@ -1366,7 +1367,7 @@
 .journey-map__curve { position: relative; height: var(--space-64); }
 .journey-map__curve svg { display: block; width: var(--size-full); height: var(--size-full); overflow: visible; }
 .journey-map__curve path { fill: none; stroke: var(--color-sticky); stroke-width: 3; vector-effect: non-scaling-stroke; }
-.journey-map__curve i { position: absolute; width: var(--space-14); height: var(--space-14); translate: -50% -50%; border-radius: var(--radius-round); background: var(--color-sticky); box-shadow: 0 0 0 var(--size-hairline) var(--color-sticky-ink); }
+.journey-map__curve i { position: absolute; translate: -50% -50%; font-size: var(--text-mood-face); font-style: normal; line-height: 1; }
 @media (max-width: 760px) { .psheets__panel { grid-template-columns: var(--layout-col-1); } }
 @media (max-width: 640px) {
   .script-quotes__frame { display: grid; gap: var(--space-10); }
