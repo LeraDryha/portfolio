@@ -1475,7 +1475,7 @@
 
 /* Stickies on research boards (Comfy Develop): paper notes, the same in both themes */
 .prose .stickies { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--size-sticky), 1fr)); gap: var(--space-8); margin: var(--space-0); padding: var(--space-0); list-style: none; }
-.sticky { min-height: var(--size-sticky-h); padding: var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); rotate: -.6deg; }
+.sticky { overflow-wrap: break-word; min-height: var(--size-sticky-h); padding: var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-tag); box-shadow: var(--shadow-sticky); rotate: -.6deg; }
 .sticky:nth-child(even) { rotate: .8deg; }
 .sticky--idea { background: var(--color-sticky-idea); }
 .sticky--hmw { display: grid; align-content: start; gap: var(--space-8); background: var(--color-sticky-hmw); font-size: var(--text-ui); line-height: var(--leading-ui); rotate: none; }
