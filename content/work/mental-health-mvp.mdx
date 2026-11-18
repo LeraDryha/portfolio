@@ -25,13 +25,35 @@ Design of a service to support mental health. The project focused on improving t
   { value: "9", cap: "local and international resources" },
 ]} />
 
-<Figure src="/work/mental-health-mvp/02.webp" width={1800} height={1747} alt="The interview findings board." caption="User interviews." />
+<ScriptQuotes caption="User interviews: the script, and what people said." script={{ src: "/work/mental-health-mvp/interview-script.webp", width: 1800, height: 1747, alt: "The interview script: introductory and main questions about fear, triggers, help from professionals and mental health apps." }} quotes={[
+  { text: "\"The main realisation that you are not going to die now, and that this has already happened to you and this is not new for you, this time will be the same as last time, and it will not end in anything bad\"", at: [45.3, 21.8, 46] },
+  { text: "\"I clearly understand that this is a problem \"in my head\" and I am even ashamed to call the doctors\"", at: [37.8, 37.2, 46] },
+  { text: "\"This is the fear of death. It's the feeling of dizziness, the feeling of losing your vision, the feeling that you can't breathe.\"", at: [51.9, 48.6, 46] },
+  { text: "\"The worst thing is uncertainty, some say one thing, others another\"", at: [49.2, 67.7, 46] },
+]} />
 
 ### Competitor research
 
 This analysis showed that no app on the Ukrainian market fully addresses our users' pain points and needs, though some provide narrower solutions.
 
-<Figure src="/work/mental-health-mvp/03.webp" width={1800} height={1007} alt="Competitor research of 9 local and international resources." caption="Competitor research." />
+<CompetitorMatrix
+  own={false}
+  caption="Competitor research: 9 local and international mental health apps."
+  groups={[{ label: "Competitors", stores: ["UpLife", "Rootd", "VOS", "BetterMe", "MindDoc", "Happify", "Dare", "Qualia", "PanicShield"] }]}
+  rows={[
+    { feature: "Diary", marks: "nyynynnyn" },
+    { feature: "Statistics", marks: "nyyyyyyyn" },
+    { feature: "Practices", marks: "yyyyynyny" },
+    { feature: "Widget", marks: "nnynnnnnn" },
+    { feature: "Communication with a specialist", marks: "nnynnynnn" },
+    { feature: "Emergency button", marks: "nyynnnynn" },
+    { feature: "Tests", marks: "yyyyyynnn" },
+    { feature: "Literature, articles", marks: "nyyyynnny" },
+    { feature: "Chat or chatbot", marks: "nnnyyynny" },
+    { feature: "Coping cards", marks: "nnynnnnnn" },
+  ]}
+  parity="Competitor research. VOS covers the most; only VOS has a widget and coping cards."
+/>
 
 </Chapter>
 
@@ -39,7 +61,20 @@ This analysis showed that no app on the Ukrainian market fully addresses our use
 
 ### User personas
 
-<Figure src="/work/mental-health-mvp/04.webp" width={1800} height={1397} alt="User personas for anxiety disorders and panic attacks." caption="User personas." />
+<PersonaSheets caption="User personas." items={[
+  { photo: { src: "/work/mental-health-mvp/persona-anastasia.webp", alt: "A young woman with fair hair, black and white." }, name: "Anastasia, 32 years old", lines: ["Ukrainian, Kryvyi Rih", "Higher medical education, I’m neuropathologist. Married, no children"],
+    interests: "I like to embroider with a cross, sometimes to knit. I'm obsessed with orchids right now. I really like listening to music and meditating, I recently started driving.",
+    goals: ["To overcome excessive anxiety", "To feel healthy", "To feel a full member of society, to live a normal life", "To control your body and mind"],
+    motivation: ["Control the situation and thoughts", "Self-help for anxiety", "To be healthy for yourself and your loved ones", "To live a full life", "Support of loved ones and other people with similar problems and experiences"],
+    needs: ["Clear and competent information about your condition from reliable sources or from specialists", "To reduce the number of anxious thoughts and be able to switch in time", "To be able to control your feelings and understand your condition", "The need for empathy for oneself and one's condition"],
+    problems: ["Worsening of somatic symptoms (tachycardia, pain in the body)", "Prejudice due to referral to specialists", "Loss of control and not understanding what's wrong with me", "Fear due to heredity (mental disorders in relatives)", "Fear that I can harm others", "Incomprehension and devaluation of my feelings and state by other people"] },
+  { photo: { src: "/work/mental-health-mvp/persona-polina.webp", alt: "A young woman with dark curly hair, black and white." }, name: "Polina, 30 years old", lines: ["Ukrainian, Kharkiv", "Higher technical education, I'm a teacher, married, have a child"],
+    interests: "I like active recreation, travel, sports. I am fond of drawing and needlework. I like to read psychology books and learn new things about your mental health.",
+    goals: ["To be healthy for yourself and your loved ones", "To control your body and mind", "To be able to help yourself and prevent PA", "To feel a full member of society, to live a normal life", "To be free from medication"],
+    motivation: ["To feel myself secure", "To feel good physically and morally", "Acceptance of your condition", "To learn to control your mental health", "To overcome PA"],
+    needs: ["Clear and competent information about your condition from reliable sources or from specialists", "Methods of tracking and controlling your condition, knowledge of factors, that provoke it", "To control your feelings and understand your condition", "To be able to switch in time", "Support and assistance during an attack", "The need for empathy for oneself and one's condition"],
+    problems: ["Fear for your life and health", "Loss of control over your own body", "Difficulty finding clear and competent information about your condition from reliable sources and specialists;", "Bias against the help of specialists", "Fear of bad heredity with respect to mental issues", "Lack of motivation to systematically perform practices"] },
+]} />
 
 <TileLists lists={[
   { title: "Pain points for people with anxiety disorders", items: [
@@ -58,9 +93,95 @@ This analysis showed that no app on the Ukrainian market fully addresses our use
 
 ### Customer journey map
 
-<Figure src="/work/mental-health-mvp/05.webp" width={1265} height={1408} alt="Customer journey map for people with anxiety disorders." caption="CJM for people with anxiety disorders." />
+<JourneyMap
+  title="CJM for people with anxiety disorders"
+  caption="The line under Feelings and thoughts shows how the person feels at each stage, from worst to best."
+  steps={["I notice the deterioration of my health", "I ask for help from doctors", "I got feedback that my physical health is ok", "Interested in mental health", "Remission maintenance"]}
+  mood={[1, 2, 3, 3, 4]}
+  moodAfter="Feelings and thoughts"
+  rows={[
+    { label: "User actions", cells: [
+      ["I experienced a state of increased anxiety", "I google my symptoms to know more", "I feel that my physical health is getting worse", "I decide to see a doctor"],
+      ["I'm doing medical check-up", "I consult with doctors about my health"],
+      ["I am looking for information about my condition", "I am contacting a psychotherapist (psychologist)", "I take the medicine as was prescribed"],
+      ["I am looking for information about my condition", "I visit a psychologist (psychotherapist)", "I am looking for/learning non-medicinal methods (breathing, meditation, physical exercises)", "Looking for a community / I get support from it"],
+      ["I stop taking medicine", "I regularly use various practices to calm down and relief", "I live a healthy life"],
+    ] },
+    { label: "Goals and experiences", cells: [
+      ["To find out about my condition"],
+      ["To understand what I’m sick with"],
+      ["To find the cause of the problem", "To reduce anxiety level"],
+      ["To improve my condition", "To prevent deterioration of physical condition", "To enter into remission"],
+      ["To feel like a normal person", "Refusal to take medication if possible"],
+    ] },
+    { label: "Pain points", cells: [
+      ["Fear for my health and safety, uncertainty", "Loss of control, I don't understand what happened to me", "Prejudices about going to the doctors", "Lack of support from others", "Deterioration of physical health"],
+      ["Fear of bad inheritance and the fear that I may be dangerous to my loved ones", "Failure to identify the true cause of deterioration"],
+      ["Lack of high-quality, understandable information (mistrust of this information)", "Misunderstanding and devaluation of my feelings and condition by others", "Lack of understanding of the reasons for my condition", "Finding a competent specialist", "Prejudices about going to the doctors"],
+      ["Incompetent and complex information", "Lack of trust to non-pharmacological methods of treatment", "Lack of quick results from non-drug treatment methods", "Lack of support", "Don't understand where to find the community", "Lack of positive dynamics after visiting a psychologist (psychotherapist)"],
+      ["Lack of motivation to practice regularly", "Short-term remission after stopping the medication"],
+    ] },
+    { label: "Feelings and thoughts", cells: [
+      ["Constant anxious thoughts", "Anxiety about my physical and mental health", "Embarrassment", "The tension is emotional and physical", "Fear of anxious thoughts"],
+      ["Anxiety", "Disquietness"],
+      ["A partial relief", "Perplexity", "Improvement of physical condition"],
+      ["Interest", "Concentration", "Anxiety reduction"],
+      ["Anxiety reduction", "Disquietness"],
+    ] },
+    { label: "Opportunities", cells: [
+      ["Google it", "Go to a doctor", "Support from others"],
+      ["Pass a medical check-up", "Consult a doctor about my health"],
+      ["Google it", "consult a doctor about my health", "Drug treatment"],
+      ["Information from different sources", "Non-medicinal methods of treatment", "Psychologist (psychotherapist) support", "Communication in the community"],
+      ["Practices to calm and ease the condition", "Healthy Lifestyle", "Giving up bad habits"],
+    ] },
+  ]}
+/>
 
-<Figure src="/work/mental-health-mvp/06.webp" width={1265} height={1342} alt="Customer journey map for people with panic attacks." caption="CJM for people with panic attacks." />
+<JourneyMap
+  title="CJM for people with panic attacks"
+  caption="The line under Feelings and thoughts shows how the person feels at each stage, from worst to best."
+  steps={["A feeling of overwhelming fear for my life", "I’m curious about my health condition", "I’m asking for a specific medical help", "Treatment process and the rehabilitation", "Remission maintenance"]}
+  mood={[1, 3, 2, 4, 4]}
+  moodAfter="Feelings and thoughts"
+  rows={[
+    { label: "User actions", cells: [
+      ["I call an ambulance", "I call to my relatives to pick me up", "I’m asking for help"],
+      ["I google about it", "I making observation of myself", "I discuss the symptoms with my friends"],
+      ["I'm doing medical check-up", "I consult with doctors about physical health", "I consult with doctors about mental health"],
+      ["I take medicine", "I learn the information about my condition", "I consult a specialist from time to time", "I get support from the community", "I’m looking for/learning a non-medicinal method (breathing, meditation, physical exercises)"],
+      ["I practice non-medicinal methods (breathing, meditation, exercises…)", "I lead a healthy lifestyle", "I visit a psychologist/ psychotherapist regularly"],
+    ] },
+    { label: "Goals and experiences", cells: [
+      ["To overcome this condition", "To get help/support"],
+      ["To get as much information about your condition as possible", "To find out the reason of this condition", "Plan the next steps to help myself overcome this condition", "To find people with similar problems"],
+      ["To get qualified information", "To make sure that there are no problems with physical health", "To find out the reason"],
+      ["Want to understand that I am not alone with this problem", "Learn to maintain mental health", "Learn how to reduce physical pain"],
+      ["To be healthy (to overcomes PA)", "To control my body and my mind", "To know how to prevent panic attacks, to help myself", "To live a normal life and to be a full-fledged member of society", "To be free from taking medication"],
+    ] },
+    { label: "Pain points", cells: [
+      ["Lack of understanding of my emotions and physical condition", "Lack of empathy from others"],
+      ["Lack of competent and understandable information from competent sources", "Prejudices about going to the doctor", "Misunderstanding and lack of support from others"],
+      ["To find a competent doctor"],
+      ["Inefficient treatment methods", "Lack the motivation to systematically perform mental practices"],
+      ["It's hard to achieve long-term remission"],
+    ] },
+    { label: "Feelings and thoughts", cells: [
+      ["Dizziness", "The fear of death", "Losing control", "Rapid heartbeat"],
+      ["Interest", "To feel calm that you are not alone with this condittion", "Discomposure"],
+      ["Interest", "Disquietness"],
+      ["Confidence", "Expectations of improving mental health"],
+      ["Confidence (sense of control)", "Peace of mind (no fear for my life)"],
+    ] },
+    { label: "Opportunities", cells: [
+      ["Get help"],
+      ["Get maximum information about my condition", "To find out the reason of my condition"],
+      ["Get competent information", "To come up with a problem solving plan", "To find out the reason of my condition"],
+      ["Stabilisation of physical and mental condition", "To try different methods to improve my health", "Get support from specialists", "To find a solution to support my health without medication"],
+      ["To be a full member of society", "To become emotionally/ physically stable", "To be free from taking medication"],
+    ] },
+  ]}
+/>
 
 </Chapter>
 
@@ -68,13 +189,49 @@ This analysis showed that no app on the Ukrainian market fully addresses our use
 
 ### Problem statement and prioritising
 
-<Figure src="/work/mental-health-mvp/07.webp" width={1800} height={811} alt="Brainstorming board with problem statements." caption="Brainstorming." />
+<StickyBoard cols={4} caption="Brainstorming: ideas for the pain points of people with panic attacks and anxiety disorders." notes={[
+  {text: "Users find our website, offering detailed info on panic attacks, anxiety disorders, and symptom-checking tests"},
+  {text: "Statistics: Track and view personal results"},
+  {text: "Community: Share feelings, read similar stories"},
+  {text: "Success stories on overcoming anxiety, highlighting positive experiences with psychologists to build trust"},
+  {text: "Share articles with loved ones to explain mental health"},
+  {text: "\"Help Lines\" section: Option to message a specialist in the community"},
+  {text: "Reminders: Pop-up exercise notifications and rewards for completed practices"},
+  {text: "Provide users with comprehensive resources on their condition, including articles, coping tools, and video lectures."},
+  {text: "If no improvement over time, prompt to consult a doctor with clear, trust-building copy on the benefits of professional help"},
+  {text: "Meditations, music for reducing stress, breathing practices."},
+  {text: "Diary-based statistics to share with a specialist"},
+  {text: "Motivational pop-ups for support and connection"},
+  {text: "\"Community\" widget for chatting and sharing anxiety experiences"},
+]} />
 
 ### User flow
 
 I created a user journey map from discovering our website to downloading and using the app. All app features are based on identified user problems and competitor research
 
-<Figure src="/work/mental-health-mvp/08.webp" width={1800} height={2565} alt="User flow from the website to the app." caption="User flow." />
+<AppFlow caption="User flow: from finding the website to each part of the app."
+  entry={["Query in Google", "Website", "Installing the application", "Welcome screen"]}
+  auth={[{ title: "Sign up", steps: ["Email, password, info", "By Social Media"] }, { title: "Sign in", steps: ["Email, password", "By Social Media"] }]}
+  merge="Onboarding"
+  main="Main screen"
+  branches={[
+    { label: "Community", children: [{ label: "Filters", children: [
+      { label: "Create a new post", children: [{ label: "Publishing" }, { label: "Delete post" }, { label: "Edit post" }] },
+      { label: "Open an existing post", children: [{ label: "Leave a reaction" }, { label: "Leave a comment" }, { label: "To complain" }] },
+    ] }] },
+    { label: "Diary", children: [{ label: "Calendar" }, { label: "Moodbar" }, { label: "Filling in the diary" }] },
+    { label: "Coping cards", children: [{ label: "Filters", children: [
+      { label: "Card", children: [
+        { label: "Create a new card", children: [{ label: "Choose a category" }, { label: "Name of card" }, { label: "Automatic thought" }, { label: "Rational thought" }] },
+        { label: "Edit card" },
+        { label: "Settings of notifications" },
+      ] },
+      { label: "Info" },
+    ] }] },
+    { label: "Test", children: [{ label: "List of tests" }, { label: "Results" }] },
+    { label: "Lines of trust", children: [{ label: "Hotline contacts" }, { label: "Find a specialist" }] },
+  ]}
+/>
 
 </Chapter>
 
@@ -108,19 +265,36 @@ The app provides tools for managing anxiety and self-discovery
 
 Practices and sounds are points of parity features for apps in this domain, providing essential relaxation and stress-relief tools commonly found in mental health applications.
 
-<Figure src="/work/mental-health-mvp/12.webp" width={1800} height={2433} alt="Practices and sounds screens." caption="Practices and sounds." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/home.webp", width: 395, height: 832, alt: "Home: a greeting, Coping Cards, Practices, Tests and Learning, and articles you may find interesting.", caption: "Home" },
+  { src: "/work/mental-health-mvp/screens/practices.webp", width: 395, height: 832, alt: "Practices: meditation, breathing and melodies, each with a list of sessions.", caption: "Practices" },
+  { src: "/work/mental-health-mvp/screens/meditation-reminder.webp", width: 395, height: 832, alt: "A meditation playing, with a reminder to practise at 09:00.", caption: "Meditation reminder" },
+  { src: "/work/mental-health-mvp/screens/melodies.webp", width: 395, height: 832, alt: "Melodies and sounds for panic attacks and anxious states.", caption: "Melodies and sounds" },
+  { src: "/work/mental-health-mvp/screens/keep-it-up.webp", width: 395, height: 832, alt: "A reward after the first practice: Keep it up!", caption: "Keep it up!" },
+]} />
 
 ### 1. Difficulty understanding and managing emotions, leading to a sense of losing control.
 
 Coping cards help users reframe negative thoughts by pairing automatic, distressing thoughts with rational responses. This tool, inspired by cognitive-behavioral therapy, supports emotional regulation, helping users feel more in control during moments of anxiety.
 
-<Figure src="/work/mental-health-mvp/13.webp" width={1800} height={1204} alt="Coping cards screens." caption="Coping cards." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/card-front.webp", width: 395, height: 832, alt: "A coping card with an automatic thought: I’m about to have a heart attack.", caption: "Coping card" },
+  { src: "/work/mental-health-mvp/screens/card-back.webp", width: 395, height: 832, alt: "The back of the card: the rational response to the thought.", caption: "The rational answer" },
+  { src: "/work/mental-health-mvp/screens/card-info.webp", width: 395, height: 832, alt: "An explanation of coping cards and how to use them.", caption: "What a coping card is" },
+  { src: "/work/mental-health-mvp/screens/card-new.webp", width: 395, height: 832, alt: "A new card: thought category, automatic thought and rational thought.", caption: "New card" },
+]} />
 
 ### 2. Difficulty accessing clear, reliable mental health information from trusted sources. Lack of tools to track and monitor mental health progress.
 
 The app offers clinically validated tests for users to assess mental health, understand symptoms, and track progress over time. Visual progress tracking helps users observe changes and make informed decisions about their well-being.
 
-<Figure src="/work/mental-health-mvp/14.webp" width={1800} height={1200} alt="Clinically validated tests and progress tracking." caption="Tests and progress." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/tests.webp", width: 395, height: 832, alt: "A list of clinically validated tests.", caption: "Tests" },
+  { src: "/work/mental-health-mvp/screens/test-intro.webp", width: 395, height: 832, alt: "The Beck Anxiety Inventory introduction with a Start button.", caption: "Beck Anxiety Inventory" },
+  { src: "/work/mental-health-mvp/screens/test-question.webp", width: 395, height: 832, alt: "A test question with four answers.", caption: "A question" },
+  { src: "/work/mental-health-mvp/screens/test-result.webp", width: 395, height: 832, alt: "The Beck Anxiety Inventory result: 20 points, a low level of anxiety.", caption: "Result" },
+  { src: "/work/mental-health-mvp/screens/test-results.webp", width: 395, height: 832, alt: "Results over time as bars, with share in community.", caption: "Progress" },
+]} />
 
 ### 3. Lack of support and guidance during panic attacks. Lack of empathy and understanding from others.
 
@@ -128,7 +302,10 @@ The app offers a "Hotlines" feature, providing users with immediate access to tr
 
 This feature addresses the need for timely support, helping users feel understood and supported during moments of distress.
 
-<Figure src="/work/mental-health-mvp/15.webp" width={1800} height={1172} alt="Hotlines screens." caption="Hotlines." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/hotlines.webp", width: 395, height: 831, alt: "Hotlines: verified helplines with phone, email, messenger, working hours and ratings.", caption: "Hotline contacts" },
+  { src: "/work/mental-health-mvp/screens/find-specialist.webp", width: 395, height: 831, alt: "Find a Specialist: psychologist, psychotherapist, neurologist and cardiologist, locked behind Premium.", caption: "Find a specialist" },
+]} />
 
 ### 4. Lack of empathy and understanding from others.
 
@@ -136,13 +313,20 @@ The "Community" feature fosters a supportive environment where users can share e
 
 The "Ask an Expert" option, available with a premium subscription, allows users to receive guidance from mental health professionals, providing trusted insights and empathy to address their concerns.
 
-<Figure src="/work/mental-health-mvp/16.webp" width={1800} height={1134} alt="Community and Ask an Expert screens." caption="Community and Ask an Expert." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/community.webp", width: 395, height: 832, alt: "Community: categories and posts with reactions.", caption: "Community" },
+  { src: "/work/mental-health-mvp/screens/community-expert.webp", width: 395, height: 832, alt: "Ask an Expert, with premium subscription options.", caption: "Ask an Expert" },
+]} />
 
 ### 5. Lack of tools to track and monitor mental health progress.
 
 The app’s Diary and Mood Tracking features enable users to log daily emotions, track mood patterns, and reflect on their mental health journey. By recording feelings, surrounding factors, and gratitude entries, users gain insights into their mental health progress and identify trends, supporting better self-awareness and emotional management.
 
-<Figure src="/work/mental-health-mvp/17.webp" width={1800} height={1200} alt="Diary and mood tracking screens." caption="Diary and mood tracking." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/diary.webp", width: 395, height: 832, alt: "The diary: a calendar and how are you feeling today.", caption: "Diary" },
+  { src: "/work/mental-health-mvp/screens/mood.webp", width: 395, height: 832, alt: "Mood tracking: feelings, who is around and what you are doing.", caption: "Mood tracking" },
+  { src: "/work/mental-health-mvp/screens/entry.webp", width: 395, height: 832, alt: "A diary entry: mood, state, what happened and gratitude.", caption: "Entry" },
+]} />
 
 ### Gamification
 
@@ -150,7 +334,10 @@ I incorporate gamification into the app to encourage consistent engagement, maki
 
 Gamification helps transform mental health practices into a more interactive and enjoyable experience, fostering long-term commitment to self-care and emotional well-being.
 
-<Figure src="/work/mental-health-mvp/18.webp" width={1800} height={1134} alt="Achievements and rewards screens." caption="Gamification." />
+<FramedPhones panel wide shots={[
+  { src: "/work/mental-health-mvp/screens/statistics.webp", width: 395, height: 832, alt: "Weekly statistics of meditations, breathing and learning.", caption: "Statistics" },
+  { src: "/work/mental-health-mvp/screens/achievements.webp", width: 395, height: 832, alt: "Achievements earned for practices.", caption: "Achievements" },
+]} />
 
 </Chapter>
 

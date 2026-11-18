@@ -65,7 +65,7 @@ type JourneyRow = { label: string; cells: (string[] | string | null)[] };
 
 /** A customer journey map as a table: the steps across the top, a row per layer (doing, thinking, quotes, feelings,
  *  ideas); the layer names stay in view while the table scrolls sideways. A quote cell is set in the voice face. */
-export function JourneyMap({ title, steps, rows, caption }: { title: string; steps: string[]; rows: JourneyRow[]; caption: string }) {
+export function JourneyMap({ title, steps, rows, caption, mood, moodAfter }: { title: string; steps: string[]; rows: JourneyRow[]; caption: string; /** how the person feels at each step, 1 (worst) to 5 (best): drawn as a curve */ mood?: number[]; /** the row label the mood curve follows */ moodAfter?: string }) {
   return (
     <Panel title={title}>
       <div className="define__card journey-map" role="region" aria-label={title} tabIndex={0}>
@@ -82,19 +82,52 @@ export function JourneyMap({ title, steps, rows, caption }: { title: string; ste
             </tr>
           </thead>
           <tbody>
-            {rows.map((r) => (
+            {rows.map((r) => [
               <tr key={r.label} className={r.label === "Saying" ? "journey-map__quotes" : undefined}>
                 <th scope="row">{r.label}</th>
                 {r.cells.map((c, i) => (
                   <td key={i}>{c === null ? null : typeof c === "string" ? <p>{c}</p> : r.label === "Saying" ? c.map((q) => <p key={q}>{q}</p>) : <List items={c} />}</td>
                 ))}
-              </tr>
-            ))}
+              </tr>,
+              mood && r.label === moodAfter && (
+                <tr key="mood" className="journey-map__mood">
+                  <th scope="row">
+                    <span className="sr-only">Mood, from low to high: {mood.join(", ")} of 5</span>
+                  </th>
+                  <td colSpan={steps.length}>
+                    <MoodCurve mood={mood} />
+                  </td>
+                </tr>
+              ),
+            ])}
           </tbody>
         </table>
       </div>
       <p className="voices__note">{caption}</p>
     </Panel>
+  );
+}
+
+/** A face per mood level, as on CJM boards: crying, worried, neutral, content, happy */
+const FACE = ["😢", "😟", "😐", "🙂", "😊"];
+
+/** The emotional line of a journey: a soft curve through one dot per step, higher is better. */
+function MoodCurve({ mood }: { mood: number[] }) {
+  const W = 100 * mood.length;
+  const y = (m: number) => 54 - (m - 1) * 12;
+  const pts = mood.map((m, i) => [50 + i * 100, y(m)] as const);
+  const d = pts.map(([x, py], i) => (i ? `S${x - 50},${py} ${x},${py}` : `M${x},${py}`)).join(" ");
+  return (
+    <div className="journey-map__curve" aria-hidden="true">
+      <svg viewBox={`0 0 ${W} 64`} preserveAspectRatio="none">
+        <path d={d} />
+      </svg>
+      {pts.map(([x, py], i) => (
+        <i key={x} style={{ left: `${(x / W) * 100}%`, top: `${(py / 64) * 100}%` }}>
+          {FACE[mood[i] - 1]}
+        </i>
+      ))}
+    </div>
   );
 }
 
