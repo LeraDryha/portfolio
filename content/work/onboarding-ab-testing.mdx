@@ -70,9 +70,19 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
   {text: "Delay push/ permission requests until value is clear", note: "Don’t ask for notifications or integrations on the very first screen. Wait until the user has seen why it matters (e.g., after their first result)."},
 ]} />
 
-<Figure src="/work/onboarding-ab-testing/08.webp" width={1800} height={1844} alt="The onboarding hypotheses." caption="Hypotheses." />
+<HypothesisBoard caption="Hypotheses." items={[
+  { n: 1, ifText: "we move signup from the first screen to the end of onboarding,", then: "more users will complete onboarding and reach activation,", because: "they experience value before being asked to commit,", leadsTo: "↑ onboarding completion and ↑ activation rate.", variants: ["A - signup first (before welcome)", "B - signup last (after first measurement)"], metrics: "activation rate, onboarding completion" },
+  { n: 2, ifText: "we allow Guest Mode (explore without account),", then: "more users will try the app and reach first measurement,", because: "signup is a high-friction barrier at the very beginning,", leadsTo: "↑ activation without hurting later signup.", variants: ["A - guest mode enabled", "B - guest mode enabled"], metrics: "activation rate, onboarding completion, later signup conversion" },
+  { n: 3, ifText: "we provide an early wow-effect by showing BMI insight after entering body metrics,", then: "more users will proceed to the heart rate measurement,", because: "they already see value from their data before the main feature,", leadsTo: "↑ HR measurement rate, ↑ activation.", variants: ["A - show BMI insight (with short friendly comment)", "B - no BMI insight, only proceed to HR"], metrics: "activation rate" },
+  { n: 4, ifText: "we move the sync request to the right timing,", then: "more users will complete it and continue onboarding,", because: "they already experienced value and trust the app,", leadsTo: "↑ sync adoption and better retention.", variants: ["A - show sync right after welcome", "B - show sync after first HR measurement", "C - skip in onboarding, show as native nudge in home during first session."], metrics: "sync rate, onboarding completion, drop-off on sync step" },
+]} />
 
-<Figure src="/work/onboarding-ab-testing/09.webp" width={1800} height={836} alt="The hypotheses prioritised." caption="Prioritisation." />
+<IceTable caption="Prioritisation." rows={[
+  { name: "#1 Signup placement (first vs last)", impact: 9, confidence: 8, ease: 6, note: "impacts activation, confirmed by many cases" },
+  { name: "#2 Guest mode", impact: 9, confidence: 8, ease: 6, note: "there are retention risks, requires well-thought-out scenarios" },
+  { name: "#3 Early wow (BMI insight)", impact: 7, confidence: 6, ease: 9, note: "cheap to implement, delivers quick value, a good “quick win”" },
+  { name: "#4 Sync Apple/ Google health", impact: 6, confidence: 6, ease: 4, note: "technically more complex, part of the users don’t have wearables." },
+]} />
 
 </Chapter>
 

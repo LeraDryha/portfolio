@@ -620,6 +620,7 @@ export { KitFoundations } from "@/components/case/KitFoundations";
 export { KitSheet } from "@/components/case/KitSheet";
 export { PageScroll } from "@/components/case/PageScroll";
 export { FramedPhones } from "@/components/case/FramedPhones";
+export { HypothesisBoard, IceTable } from "@/components/case/HypothesisBoard";
 export { StickyBoard } from "@/components/case/Stickies";
 export { BeforeAfter, BeforeScreens, ScreenRow, DeviceRow } from "@/components/case/SfaScreens";
 export { InterviewBoards } from "@/components/case/InterviewBoards";

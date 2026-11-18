@@ -626,6 +626,8 @@
   --size-matrix: 640px;
   /* Value proposition canvas (Comfy): stickies are paper, the same in both themes, like a product screen */
   --color-sticky: #ffd966;
+  /* the ICE score column: the sticky yellow, lighter, the same in both themes */
+  --color-sticky-soft: #fdefc0;
   --color-sticky-pain: #ffbd85;
   --color-sticky-job: #f7b9ec;
   --color-sticky-ink: #2b2b2b;
@@ -1327,6 +1329,26 @@
 .sitemap__section { fill: var(--color-map-section); font-weight: var(--weight-semibold); }
 .sitemap__page { fill: var(--color-ink); }
 .sitemap__type { fill: var(--color-pencil); }
+/* Hypothesis board and ICE table (Onboarding): the board's hypothesis stickies and the prioritisation, live */
+.hyp-board { margin: var(--space-20) var(--space-0) var(--space-28); }
+.hyp-board__grid { display: grid; grid-template-columns: var(--layout-cols-2); gap: var(--space-12); padding: var(--space-16); border-radius: var(--radius-block); background: var(--color-tile); }
+.hyp-board__card { display: grid; align-content: start; gap: var(--space-12); padding: var(--space-20) var(--space-22); background: var(--color-sticky); color: var(--color-sticky-ink); box-shadow: var(--shadow-sticky); font-size: var(--text-label); line-height: var(--leading-ui); }
+.prose .hyp-board__card h4 { margin: var(--space-0); color: var(--color-sticky-ink); font-size: var(--text-ui); line-height: var(--leading-ui); font-weight: var(--weight-semibold); }
+.prose .hyp-board__card p { margin: var(--space-0); color: var(--color-sticky-ink); font-size: var(--text-label); line-height: var(--leading-ui); }
+.prose .hyp-board__card b { font-weight: var(--weight-semibold); }
+.ice { margin: var(--space-20) var(--space-0) var(--space-28); }
+.ice__scroll { overflow-x: auto; border-radius: var(--radius-block); background: var(--color-tile); padding: var(--space-16); }
+.ice__scroll:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
+.ice table { width: var(--size-full); border-collapse: collapse; border-radius: var(--radius-inner); overflow: hidden; background: var(--color-raised); font-size: var(--text-label); line-height: var(--leading-tag); }
+.ice th, .ice td { padding: var(--space-10) var(--space-12); border-top: var(--size-hairline) solid var(--color-hairline); text-align: left; vertical-align: top; font-weight: var(--weight-regular); color: var(--color-ink); }
+.ice thead th { border-top: none; color: var(--color-pencil); }
+.ice thead th:first-child { color: var(--color-ink); font-weight: var(--weight-semibold); }
+.ice tbody th { font-weight: var(--weight-medium); }
+.ice .ice__score { background: var(--color-sticky-soft); color: var(--color-sticky-ink); font-weight: var(--weight-semibold); }
+.ice thead .ice__score { font-weight: var(--weight-medium); }
+.ice .ice__note { color: var(--color-graphite); }
+.ice thead .ice__score { white-space: nowrap; }
+@media (max-width: 640px) { .hyp-board__grid { grid-template-columns: var(--layout-col-1); } .ice table { min-width: var(--size-matrix); } }
 /* Sticky board (Onboarding): the boards' stickies as live paper on a grey panel, dropping in one by one */
 .sticky-board { display: grid; gap: var(--space-10); margin: var(--space-20) var(--space-0) var(--space-28); }
 .sticky-board__grid { display: grid; gap: var(--space-14); align-items: start; padding: var(--space-24); border-radius: var(--radius-block); background: var(--color-tile); }
