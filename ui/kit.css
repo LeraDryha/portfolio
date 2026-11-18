@@ -545,6 +545,7 @@
   --size-page-window: 460px;
   /* one wireframe per variant, side by side */
   --size-vflow-side: 240px;
+  --layout-vflow-note: minmax(0, 2fr) minmax(0, 3fr);
   --size-page-phone: 30%;
   --size-kitf-chip: 52px;
   /* stickies from Lera's boards, paper: the same in both themes */
@@ -1343,17 +1344,22 @@
 .vflow__panel { display: grid; gap: var(--space-24); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }
 .vflow__variant { display: grid; gap: var(--space-10); }
 .prose .vflow__label { justify-self: start; margin: var(--space-0); padding: var(--space-6) var(--space-10); background: var(--color-sticky); color: var(--color-sticky-ink); box-shadow: var(--shadow-sticky); font-size: var(--text-label); font-weight: var(--weight-medium); line-height: var(--leading-tag); }
-.prose .vflow__row { display: grid; gap: var(--space-6); margin: var(--space-0); padding: var(--space-0); list-style: none; }
+.prose .vflow__row { display: grid; align-items: start; gap: var(--space-6); margin: var(--space-0); padding: var(--space-0); list-style: none; }
 .prose .vflow__screen { position: relative; display: grid; gap: var(--space-4); margin: var(--space-0); min-width: var(--space-0); }
 .vflow__zoom { display: block; width: var(--size-full); padding: var(--space-0); border: none; border-radius: var(--radius-label); overflow: hidden; background: var(--color-on-dark); box-shadow: var(--shadow-wipe); cursor: zoom-in; }
 .vflow__zoom:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
 .vflow__zoom img { display: block; width: var(--size-full); height: auto; }
 .vflow__screen--moved .vflow__zoom { box-shadow: 0 0 0 var(--size-focus) var(--color-sticky-orange); }
-.vflow__tag { justify-self: center; padding: var(--space-2) var(--space-6); border-radius: var(--radius-label); background: var(--color-sticky-orange); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); white-space: nowrap; }
+.vflow__tag { justify-self: center; padding: var(--space-2) var(--space-6); border-radius: var(--radius-label); background: var(--color-sticky-orange); color: var(--color-sticky-ink); font-size: var(--text-micro); line-height: var(--leading-tag); text-align: center; overflow-wrap: anywhere; }
 .vflow--side .vflow__panel { grid-template-columns: repeat(auto-fit, minmax(var(--size-vflow-side), 1fr)); justify-items: center; }
 .vflow--side .vflow__variant { align-content: start; width: var(--size-vflow-side); }
 .vflow__why { align-self: start; }
-@media (max-width: 640px) { .prose .vflow:not(.vflow--side) .vflow__row { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } .vflow--side .vflow__panel { grid-template-columns: var(--layout-cols-2); padding: var(--space-14); gap: var(--space-12); } .vflow--side .vflow__variant { width: auto; } }
+.vflow--wide .vflow__panel { grid-template-columns: var(--layout-cols-2); justify-items: stretch; }
+.vflow--wide .vflow__variant { width: auto; }
+.vflow__note { grid-column: 1 / -1; display: grid; grid-template-columns: var(--layout-vflow-note); gap: var(--space-16); align-items: start; padding-top: var(--space-8); border-top: var(--size-hairline) solid var(--color-hairline); }
+.prose .flow__why ul { margin: var(--space-0); padding-left: var(--space-16); font-size: var(--text-micro); line-height: var(--leading-tag); }
+.prose .flow__why li { margin: var(--space-0); }
+@media (max-width: 640px) { .prose .vflow:not(.vflow--side) .vflow__row { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } .vflow--side .vflow__panel { grid-template-columns: var(--layout-cols-2); padding: var(--space-14); gap: var(--space-12); } .vflow--side .vflow__variant { width: auto; } .vflow--wide .vflow__panel { grid-template-columns: var(--layout-col-1); } .vflow__note { grid-template-columns: var(--layout-col-1); } }
 /* Flow board (Onboarding): the user flow as live stickies, a/b test and best practices above each step, the description below */
 .flow { margin: var(--space-20) var(--space-0) var(--space-28); }
 .flow__panel { display: grid; gap: var(--space-20); padding: var(--space-20); border-radius: var(--radius-block); background: var(--color-tile); }

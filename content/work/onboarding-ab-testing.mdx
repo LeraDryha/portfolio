@@ -180,7 +180,16 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
   { label: "Guardrails", items: ["drop-off on BMI screen"] },
 ] }} />
 
-<Figure src="/work/onboarding-ab-testing/13.webp" width={1800} height={2992} alt="Test 3 variants: with and without the BMI insight." caption="Test 3: early insight." />
+<VariantFlow side wide caption="Test 3: early insight." variants={[
+  { label: "A - BMI insight", screens: [{ src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" }, { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" }, { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "BMI insight", moved: true }] },
+  { label: "B - no insight", screens: [{ src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" }, { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" }, { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info, no insight" }] },
+]} note={{ title: "Additional rationale", screens: [{ src: "/work/onboarding-ab-testing/wf/t3-long.webp", name: "One long form" }, { src: "/work/onboarding-ab-testing/wf/t3-long-bmi.webp", name: "One long form with the BMI alert" }], body: [
+  "I also explored the structural question - should basic info and body metrics be split across two separate steps, or should everything be combined into one long form?",
+  "Both options have trade-offs:",
+  ["two steps may feel lighter and reduce cognitive load", "one step could shorten the flow but risks making the form look heavy and increases the chance users will skip"],
+  "There’s also a UI constraint: if all fields plus the BMI alert are on a single screen, the alert might fall below the viewport and not be visible, which would undermine the whole point of delivering an early “wow” moment.",
+  "For now, I won’t treat this as a separate A/B test but rather as a design rationale to show I considered different approaches. In the future, this “one screen vs two screens” structure could itself become a valuable experiment to test form length and user drop-off.",
+] }} />
 
 <Hypothesis n={4} title="Test 4 - Optimal sync placement" lead="Objective: increase sync adoption and retention by testing the best timing for device sync request" ifText="we move the sync request to the right timing," then="more users will complete it and continue onboarding," because="they already experienced value and trust the app," leadsTo="↑ sync adoption and better retention" plan={{ title: "Test plan", parts: [
   { label: "Variants", items: ["A - early sync: show sync request right after welcome (before any value)", "B - post-value sync: show sync after the first HR measurement & insight", "C - deferred sync: skip sync in onboarding, show as a native nudge in home during first session"] },
