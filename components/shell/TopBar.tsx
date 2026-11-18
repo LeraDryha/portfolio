@@ -11,7 +11,7 @@ const FILTERS = [
 export function TopBar() {
   return (
     <header className="top">
-      <a className="mark" href="/" aria-label="Lera Dryha, home">
+      <a className="mark" href="/" aria-label="Lera Starychenko, home">
         <Icon name="mark" />
       </a>
       <nav className="filter" aria-label="Show">
