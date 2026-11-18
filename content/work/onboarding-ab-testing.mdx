@@ -197,7 +197,53 @@ While exploring the topic of A/B testing, I immersed myself in webinars and talk
   { label: "Guardrails", items: ["drop-off at sync step"] },
 ] }} />
 
-<Figure src="/work/onboarding-ab-testing/14.webp" width={1800} height={853} alt="Test 4 variants: early, post-value and deferred sync." caption="Test 4: sync placement." />
+<VariantFlow caption="Test 4: sync placement." variants={[
+  { label: "A - early sync", screens: [
+    { src: "/work/onboarding-ab-testing/wf/signup.webp", name: "Sign up" },
+    { src: "/work/onboarding-ab-testing/wf/welcome.webp", name: "Welcome to “Name”" },
+    { src: "/work/onboarding-ab-testing/wf/measure.webp", name: "Measure & understand" },
+    { src: "/work/onboarding-ab-testing/wf/share.webp", name: "Share with you coach or doctor" },
+    { src: "/work/onboarding-ab-testing/wf/sync.webp", name: "Sync request", moved: true },
+    { src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" },
+    { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" },
+    { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "Additional info with BMI" },
+    { src: "/work/onboarding-ab-testing/wf/conditions.webp", name: "Conditions" },
+    { src: "/work/onboarding-ab-testing/wf/goals.webp", name: "Goals" },
+    { src: "/work/onboarding-ab-testing/wf/check.webp", name: "Let’s check your heart" },
+    { src: "/work/onboarding-ab-testing/wf/measuring.webp", name: "Measuring" },
+    { src: "/work/onboarding-ab-testing/wf/result.webp", name: "Your result is ready!" },
+  ] },
+  { label: "B - post-value sync", screens: [
+    { src: "/work/onboarding-ab-testing/wf/signup.webp", name: "Sign up" },
+    { src: "/work/onboarding-ab-testing/wf/welcome.webp", name: "Welcome to “Name”" },
+    { src: "/work/onboarding-ab-testing/wf/measure.webp", name: "Measure & understand" },
+    { src: "/work/onboarding-ab-testing/wf/share.webp", name: "Share with you coach or doctor" },
+    { src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" },
+    { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" },
+    { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "Additional info with BMI" },
+    { src: "/work/onboarding-ab-testing/wf/conditions.webp", name: "Conditions" },
+    { src: "/work/onboarding-ab-testing/wf/goals.webp", name: "Goals" },
+    { src: "/work/onboarding-ab-testing/wf/check.webp", name: "Let’s check your heart" },
+    { src: "/work/onboarding-ab-testing/wf/measuring.webp", name: "Measuring" },
+    { src: "/work/onboarding-ab-testing/wf/result.webp", name: "Your result is ready!" },
+    { src: "/work/onboarding-ab-testing/wf/sync.webp", name: "Sync request", moved: true },
+  ] },
+  { label: "C - deferred sync", screens: [
+    { src: "/work/onboarding-ab-testing/wf/signup.webp", name: "Sign up" },
+    { src: "/work/onboarding-ab-testing/wf/welcome.webp", name: "Welcome to “Name”" },
+    { src: "/work/onboarding-ab-testing/wf/measure.webp", name: "Measure & understand" },
+    { src: "/work/onboarding-ab-testing/wf/share.webp", name: "Share with you coach or doctor" },
+    { src: "/work/onboarding-ab-testing/wf/base.webp", name: "Let’s set up your profile" },
+    { src: "/work/onboarding-ab-testing/wf/additional.webp", name: "Additional info" },
+    { src: "/work/onboarding-ab-testing/wf/bmi.webp", name: "Additional info with BMI" },
+    { src: "/work/onboarding-ab-testing/wf/conditions.webp", name: "Conditions" },
+    { src: "/work/onboarding-ab-testing/wf/goals.webp", name: "Goals" },
+    { src: "/work/onboarding-ab-testing/wf/check.webp", name: "Let’s check your heart" },
+    { src: "/work/onboarding-ab-testing/wf/measuring.webp", name: "Measuring" },
+    { src: "/work/onboarding-ab-testing/wf/result.webp", name: "Your result is ready!" },
+    { src: "/work/onboarding-ab-testing/wf/t4-home.webp", name: "Home, sync nudge", moved: true },
+  ], rationale: "We move the signup option into Settings and add a notification so users don’t forget to complete it" },
+]} />
 
 </Chapter>
 
