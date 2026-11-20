@@ -131,8 +131,8 @@ export const person = {
 export const intro = {
   lead: "Hi, I’m Lera,",
   accent: "a product designer.",
-  // Her background (10+ years as a doctor, see the Prevently case) turned into what it gives product work
-  text: "I was a doctor for over ten years. It taught me to make sense of a lot of information, hear what people really need and explain it in plain words. Now I bring that to product design.",
+  // What she brings to a team, from her own profile: platforms, domains, the whole process, design systems
+  text: "I design web and native iOS and Android products, B2B and B2C, in fintech, adtech, healthtech and e-commerce. From research and usability tests to design systems that hold up in code.",
 };
 
 /** Writing: Lera's articles on Medium, in Ukrainian (marked as such on the English site). */
