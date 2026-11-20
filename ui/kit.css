@@ -132,6 +132,10 @@
   --text-proof-small-phone: 17px;
   --text-case-title: clamp(30px, 3.6vw, 40px);
   --text-case-h2: 24px;
+  /* The voice face (Newsreader italic) for a line in Lera's own words */
+  --text-voice: 26px;
+  /* The email at the end of a case: the one action, a step under the voice line */
+  --text-contact-mail: 22px;
   --text-case-proof: 40px;
   --text-stat: 28px;
   --text-quote: 24px;
@@ -271,6 +275,7 @@
   --size-pill: 40px;
   --size-theme: 36px;
   --size-icon: 18px;
+  --size-contact-logo: 20px;
   --size-icon-small: 16px;
   --size-cursor: 16px;
   --size-handle: 8px;
@@ -2090,16 +2095,23 @@ html { scroll-padding-top: var(--space-bar-clear); }
 .case-end a { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-hairline); text-underline-offset: var(--offset-underline); }
 .case-end a:hover { text-decoration-color: currentColor; }
 .case-end__next { margin-left: auto; text-align: right; }
-/* Contact strip at the end of every case: a grey block, the three ways to reach Lera written out (not on the home page) */
-.contact-strip { margin-top: var(--space-64); padding: var(--space-28) var(--space-30); border-radius: var(--radius-block); background: var(--color-tile); }
-.prose .contact-strip__title { margin: var(--space-0) var(--space-0) var(--space-6); }
-.prose .contact-strip__line { margin: var(--space-0) var(--space-0) var(--space-22); color: var(--color-graphite); }
-.prose .contact-strip__list { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-16) var(--space-24); margin: var(--space-0); padding: var(--space-0); list-style: none; }
-.contact-strip__list li { display: grid; gap: var(--space-2); min-width: var(--space-0); }
-.contact-strip__list span { color: var(--color-pencil); font-size: var(--text-label); }
-.prose .contact-strip__list a { overflow-wrap: anywhere; font-weight: var(--weight-medium); }
+/* Contact strip at the end of every case (Lera's variant B): her question in the voice face, the email as the one action
+   with a copy button, LinkedIn and Telegram as pills under it. Only on case pages. */
+.contact-strip { display: grid; gap: var(--space-18); margin-top: var(--space-64); padding: var(--space-30) var(--space-30) var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .contact-strip__voice { margin: var(--space-0); color: var(--color-ink); font: italic var(--weight-regular) var(--text-voice) / var(--leading-heading) var(--font-serif); letter-spacing: var(--tracking-voice); text-wrap: balance; }
+.contact-strip__voice em { color: var(--color-accent); }
+.contact-strip__mail { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-12); min-width: var(--space-0); }
+.prose .contact-strip__mail a { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-contact-mail); line-height: var(--leading-tight); letter-spacing: var(--tracking-subhead); overflow-wrap: anywhere; text-decoration-thickness: var(--size-stroke); }
+.contact-strip__copy { display: grid; place-items: center; width: var(--size-theme); height: var(--size-theme); padding: var(--space-0); border: none; border-radius: var(--radius-round); background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-control); cursor: pointer; }
+.contact-strip__copy svg { width: var(--size-icon-small); height: var(--size-icon-small); }
+.contact-strip__toast { color: var(--color-pencil); font-size: var(--text-label); }
+.contact-strip__more { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.prose .contact-pill { display: inline-flex; align-items: center; gap: var(--space-8); height: var(--size-theme); padding: var(--space-0) var(--space-14) var(--space-0) var(--space-10); border-radius: var(--radius-pill); background: var(--color-raised); color: var(--color-ink); font-weight: var(--weight-medium); font-size: var(--text-control); text-decoration: none; box-shadow: var(--shadow-control); }
+.prose .contact-pill:hover { box-shadow: var(--shadow-float); }
+.contact-pill__in { display: grid; place-items: center; width: var(--size-contact-logo); height: var(--size-contact-logo); border-radius: var(--radius-label); background: var(--color-linkedin); color: var(--color-on-dark); font-weight: var(--weight-bold); font-size: var(--text-label); letter-spacing: var(--tracking-logo); }
+.contact-pill__tg { width: var(--size-contact-logo); height: var(--size-contact-logo); }
 .contact-strip + .case-end { margin-top: var(--space-28); border-top: none; }
-@media (max-width: 640px) { .contact-strip { padding: var(--space-22) var(--space-18); } .prose .contact-strip__list { grid-template-columns: var(--layout-col-1); } }
+@media (max-width: 640px) { .contact-strip { padding: var(--space-22) var(--space-18); } }
 
 /* Not found */
 .lost { max-width: var(--layout-reading); margin: var(--space-0) auto; padding: var(--space-page-top) var(--gutter-reading-right) var(--space-120) var(--gutter-reading); }

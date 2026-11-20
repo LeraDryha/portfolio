@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { caseHref, caseSlugs, loadCase, nextCase } from "@/lib/cases";
 import { Vis } from "@/components/shell/Vis";
-import { Icon, NewTab } from "@/components/shell/Icons";
-import { person } from "@/content/site";
+import { Icon } from "@/components/shell/Icons";
+import { ContactStrip } from "@/components/case/ContactStrip";
 import { CaseBehavior } from "@/components/case/CaseBehavior";
 import { CaseToc } from "@/components/case/CaseToc";
 import { Lightbox } from "@/components/case/Lightbox";
@@ -99,31 +99,8 @@ export default async function CasePage({ params }: { params: Promise<{ slug: str
 
           <Body />
 
-          {/* Every case ends where interest peaks: how to reach Lera, the address written out */}
-          <section className="contact-strip" aria-labelledby="contact-title">
-            <h2 className="contact-strip__title" id="contact-title">Let’s talk</h2>
-            <p className="contact-strip__line">Hiring a product designer, or have a question about this case? Write to me.</p>
-            <ul className="contact-strip__list">
-              <li>
-                <span>Email</span>
-                <a href={`mailto:${person.email}`}>{person.email}</a>
-              </li>
-              <li>
-                <span>LinkedIn</span>
-                <a href={person.linkedin} target="_blank" rel="noopener">
-                  {person.fullName}
-                  <NewTab />
-                </a>
-              </li>
-              <li>
-                <span>Telegram</span>
-                <a href={person.telegram} target="_blank" rel="noopener">
-                  @{person.telegram.split("/").pop()}
-                  <NewTab />
-                </a>
-              </li>
-            </ul>
-          </section>
+          {/* Every case ends where interest peaks: how to reach Lera */}
+          <ContactStrip />
 
           <nav className="case-end" aria-label="More work">
             <a href={home}>All work</a>
