@@ -66,10 +66,6 @@ export function Bento() {
           <Cursor c={{ role: "lera", label: "Lera", x: "84%", y: "24%" }} />
         </section>
 
-        {cases.map((c) => (
-          <CaseTile key={c.slug} entry={c} />
-        ))}
-
         <button className="tile logo-tile area-email" type="button" data-cat="about" data-copy={person.email} aria-label={`Copy email ${person.email}`}>
           <span className="logo-yahoo" aria-hidden="true">yahoo!</span>
           <span className="act" aria-hidden="true"><Icon name="copy" /></span>
@@ -85,28 +81,10 @@ export function Bento() {
           <Selection />
         </a>
 
-        {articles.map((a, i) => (
-          <a className={`tile text-tile article-tile area-article-${i + 1}`} key={a.href} data-cat="writing" href={a.href} target="_blank" rel="noopener">
-            <svg className="article-tile__mark" viewBox="0 0 48 48" aria-hidden="true">
-              <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
-              <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
-              <ellipse cx="41" cy="24" rx="1.8" ry="8.6" fill="currentColor" />
-            </svg>
-            <span className="article-tile__title" lang="uk">
-              {a.title}
-            </span>
-            <span className="text-tile__line">Article on Medium · in Ukrainian</span>
-            <span className="act" aria-hidden="true"><Icon name="out" /></span>
-            <NewTab />
-            <Selection />
-          </a>
+        {/* Prevently, GRG, Comfy; then Telegram and Learning beside Comfy; then Adtelligent and Smart Financial Assistant */}
+        {cases.slice(0, 3).map((c) => (
+          <CaseTile key={c.slug} entry={c} />
         ))}
-
-        <a className="tile text-tile area-learning" id="tile-learning" data-cat="about" href="/learning">
-          <span className="text-tile__title" style={{ viewTransitionName: "learning-title" }}>Learning &amp; recognition</span>
-          <span className="text-tile__line">An award, courses and certificates</span>
-          <Selection />
-        </a>
 
         <a className="tile logo-tile area-telegram" data-cat="about" href={person.telegram} target="_blank" rel="noopener">
           <span className="sr-only">Telegram</span>
@@ -125,6 +103,33 @@ export function Bento() {
           <NewTab />
           <Selection />
         </a>
+
+        <a className="tile text-tile area-learning" id="tile-learning" data-cat="about" href="/learning">
+          <span className="text-tile__title" style={{ viewTransitionName: "learning-title" }}>Learning &amp; recognition</span>
+          <span className="text-tile__line">An award, courses and certificates</span>
+          <Selection />
+        </a>
+
+        {cases.slice(3).map((c) => (
+          <CaseTile key={c.slug} entry={c} />
+        ))}
+
+        {articles.map((a, i) => (
+          <a className={`tile text-tile article-tile area-article-${i + 1}`} key={a.href} data-cat="writing" href={a.href} target="_blank" rel="noopener">
+            <svg className="article-tile__mark" viewBox="0 0 48 48" aria-hidden="true">
+              <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
+              <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
+              <ellipse cx="41" cy="24" rx="1.8" ry="8.6" fill="currentColor" />
+            </svg>
+            <span className="article-tile__title" lang="uk">
+              {a.title}
+            </span>
+            <span className="text-tile__line">Article on Medium · in Ukrainian</span>
+            <span className="act" aria-hidden="true"><Icon name="out" /></span>
+            <NewTab />
+            <Selection />
+          </a>
+        ))}
       </div>
 
       <div className="more-row" data-more-row>

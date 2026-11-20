@@ -445,7 +445,7 @@
   /* On the pink tile: blur only; extra saturation turns the caption band bright pink */
   --blur-caption-brand: blur(14px);
   --space-caption-top: 56px;
-  --layout-bento-areas: "intro intro prevently prevently" "grg grg prevently prevently" "grg grg comfy comfy" "adtelligent sfa comfy comfy" "adtelligent sfa email linkedin" "article-1 article-2 learning telegram";
+  --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy telegram learning" "comfy comfy adtelligent sfa" "article-1 article-2 adtelligent sfa";
   /* Filtered views: the tiles left close up in the same order, with no holes */
   --layout-bento-areas-work: "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
   --layout-bento-areas-about: "intro intro email linkedin" "learning telegram . .";
@@ -894,8 +894,9 @@ html { scroll-padding-top: var(--space-bar-clear); }
 .tile--w2 { grid-column: var(--span-2); }
 .tile--h2 { grid-row: var(--span-2); }
 .tile--h3 { grid-row: var(--span-3); }
-/* Desktop: a grid of squares, every tile has its place. Intro 2 squares; Prevently, GRG and Comfy 4 (2 × 2);
-   Adtelligent and Smart Financial Assistant 2 (1 × 2); contacts, articles and Learning 1 */
+/* Desktop: a grid of squares, every tile has its place (Lera's layout, 2026-11-20). Intro 2 squares with Yahoo and LinkedIn;
+   Prevently and GRG 4 each (2 × 2) side by side; Comfy 4 with Telegram and Learning beside it, then Adtelligent and
+   Smart Financial Assistant (1 × 2); the two articles under Comfy */
 @media (min-width: 861px) {
   .bento { grid-template-areas: var(--layout-bento-areas); grid-auto-rows: var(--row-cell); }
   .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; } .area-telegram { grid-area: telegram; }
