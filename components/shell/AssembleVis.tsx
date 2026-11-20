@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Assemble } from "@/content/site";
 import { startAssemble, type Theme } from "@/components/shell/assemble";
+import { useMotionOff } from "@/components/shell/motion";
 
 /** The site's theme: a choice in the top bar, or the system's. */
 const siteTheme = (): Theme => {
@@ -30,6 +31,8 @@ export function AssembleVis({ v, viewTransitionName }: { v: Assemble; viewTransi
     };
   }, []);
 
-  useEffect(() => (ref.current && theme ? startAssemble(ref.current, v, theme) : undefined), [v, theme]);
+  // Switching the theme, or pausing and playing motion, starts it again
+  const motion = useMotionOff();
+  useEffect(() => (ref.current && theme ? startAssemble(ref.current, v, theme) : undefined), [v, theme, motion]);
   return <div ref={ref} className="vis vis--full asm" style={{ viewTransitionName }} aria-hidden="true" />;
 }

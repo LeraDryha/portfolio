@@ -109,7 +109,7 @@ export type CaseEntry = {
   proof?: { text: string; cap?: string; quote?: boolean };
   vis: Vis;
   /** Tile shape in the bento */
-  shape: "brand-tall" | "wide-tall" | "wide-side" | "tall" | "wide";
+  shape: "brand" | "wide-tall" | "wide-side" | "tall" | "wide";
   /** Its place in the desktop bento (grid area) */
   area: "prevently" | "grg" | "comfy" | "adtelligent" | "sfa";
   /** The three lead cases: the product fills the tile, the name and one small fact sit at the bottom on a blur of it */
@@ -131,8 +131,15 @@ export const person = {
 export const intro = {
   lead: "Hi, I’m Lera,",
   accent: "a product designer.",
-  text: "I design intuitive interfaces for mobile and web, B2B and B2C.",
+  // Her background (10+ years as a doctor, see the Prevently case) turned into what it gives product work
+  text: "I was a doctor for over ten years. It taught me to make sense of a lot of information, hear what people really need and explain it in plain words. Now I bring that to product design.",
 };
+
+/** Writing: Lera's articles on Medium, in Ukrainian (marked as such on the English site). */
+export const articles = [
+  { title: "Місце, де UX помер", href: "https://medium.com/@dynya.90/місце-де-ux-помер-0227edc2c2b7" },
+  { title: "Hand-off без сліз: як не стати єдиним хранителем знань у команді", href: "https://medium.com/@dynya.90/hand-off-без-сліз-як-не-стати-єдиним-хранителем-знань-у-команді-415ebc85b2c9" },
+];
 
 const APP_STORE =
   "https://apps.apple.com/ua/app/prevently-%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BE%D0%B1%D1%81%D1%82%D0%B5%D0%B6%D0%B5%D0%BD%D1%8C/id6789842262";
@@ -211,7 +218,7 @@ export const cases: CaseEntry[] = [
         { to: 5, decimals: 1, star: true, cap: "Rating from 44 ratings" },
       ],
     },
-    shape: "brand-tall",
+    shape: "brand",
     area: "prevently",
     full: { fact: "iOS live · Android in review" },
   },
@@ -231,11 +238,11 @@ export const cases: CaseEntry[] = [
     name: "Comfy.",
     line: "Making credit purchases clear and calm.",
     title: "Comfy: UX Case Study",
-    proof: { text: "30% → 40%", cap: "credit order share, business goal" },
+    proof: { text: "75% → 100%", cap: "task completion, Comfy today vs the redesign" },
     vis: comfyVis,
     shape: "wide-tall",
     area: "comfy",
-    full: { fact: "30% → 40%", lightProduct: true },
+    full: { fact: "75% → 100% task completion", lightProduct: true },
     notionUrl: "https://app.notion.com/p/Comfy-UX-Case-Study-23a9d4c6be1c4d28abaeb971a83b0e43",
   },
   {
@@ -281,7 +288,7 @@ export const cases: CaseEntry[] = [
   },
 ];
 
-/** "More work": smaller cases, as small cards under the bento behind a button. Each has its own page with a cover at the top. */
+/** "Other work": smaller cases, square tiles in their own section under the bento, always visible. Each has its own page with a cover at the top. */
 export type MoreEntry = {
   slug: string;
   title: string;

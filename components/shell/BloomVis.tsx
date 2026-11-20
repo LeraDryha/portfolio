@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 import type { Bloom } from "@/content/site";
+import { motionOff, useMotionOff } from "@/components/shell/motion";
 
 const EASE = "cubic-bezier(.2, .8, .2, 1)";
 // The loop, in ms: the flower turns → a glass phone with the lock screen → reminders arrive in it →
@@ -19,6 +20,7 @@ const format = (n: number, decimals: number) => n.toLocaleString("en-US", { mini
  */
 export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionName: string }) {
   const root = useRef<HTMLDivElement>(null);
+  const motion = useMotionOff();
 
   useEffect(() => {
     const el = root.current;
@@ -40,7 +42,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
     };
     const setFinal = () => nums.forEach((b, i) => (b.textContent = format(v.figures[i].to, v.figures[i].decimals ?? 0) + (v.figures[i].suffix ?? "")));
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (motionOff()) {
       flower.style.opacity = "0";
       phone.style.opacity = "0";
       figures.style.opacity = "1";
@@ -48,6 +50,8 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
       return;
     }
 
+    // Played again after a pause: the loop's own animations take over from the still frame
+    [flower, phone, figures].forEach((e) => (e.style.opacity = ""));
     const timers: number[] = [];
     const frames: number[] = [];
     const at = (ms: number, fn: () => void) => timers.push(window.setTimeout(fn, ms));
@@ -117,7 +121,7 @@ export function BloomVis({ v, viewTransitionName }: { v: Bloom; viewTransitionNa
       frames.forEach((f) => cancelAnimationFrame(f));
       el.getAnimations({ subtree: true }).forEach((a) => a.cancel());
     };
-  }, [v]);
+  }, [v, motion]);
 
   return (
     <div ref={root} className="vis vis--full bloom" style={{ viewTransitionName, "--logo": `url(${v.logo})`, "--app-icon": `url(${v.icon})` } as CSSProperties} aria-hidden="true">

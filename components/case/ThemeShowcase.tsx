@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Icon } from "@/components/shell/Icons";
+import { motionOff } from "@/components/shell/motion";
 
 /** focus: the part of the screen a phone shows, as an object-position ("88% 20%") */
 type Screen = { name: string; light: string; dark: string; width: number; height: number; alt: string; focus?: string };
@@ -21,7 +22,7 @@ export function ThemeShowcase({ screens }: { screens: Screen[] }) {
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (motionOff()) {
       setCut(50);
       return;
     }

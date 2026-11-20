@@ -14,6 +14,12 @@ function Panel({ title, children, wide = true }: { title: string; children: Reac
   );
 }
 
+/** Quoted Ukrainian interface words inside English text (“Купити”) are marked as Ukrainian for screen readers. */
+function uk(text: string): ReactNode {
+  const parts = text.split(/(“[^”]*[А-ЯҐЄІЇа-яґєії][^”]*”)/);
+  return parts.length === 1 ? text : parts.map((p, i) => (i % 2 ? <span key={i} lang="uk">{p}</span> : p));
+}
+
 function List({ items }: { items: string[] }) {
   return (
     <ul className="define__list">
@@ -229,7 +235,8 @@ export function ProblemBoard({ title, problems, caption }: { title: string; prob
         {problems.map((p, i) => (
           <section key={p.title} className="define__card problems__card">
             <p className="define__label">Problem {i + 1}</p>
-            <h4>{p.title}</h4>
+            {/* Under the chapter's h2 (the panel's title is a caption), so the problems are h3 */}
+            <h3>{p.title}</h3>
             <ul className="stickies">
               {p.notes.map((n) => (
                 <li key={n} className="sticky">
@@ -355,7 +362,7 @@ export function ProblemSolved({ n, problem, evidence, hmw, before, steps }: { n:
             <div className="solved__text">
               <span className="solved__n">{String(i + 1).padStart(2, "0")}</span>
               <h4>{s.title}</h4>
-              <p>{s.text}</p>
+              <p>{uk(s.text)}</p>
               {/* A question the designer asked herself while deciding, in her own reasoning */}
               {s.thinking && (
                 <blockquote className="solved__thinking">

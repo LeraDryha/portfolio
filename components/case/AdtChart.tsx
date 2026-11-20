@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { motionOff, useMotionOff } from "@/components/shell/motion";
 
 /* The Overview chart from Lera's Figma (Adverts – Publishers, Overview), rebuilt live: the three volume metrics as
    lines over a week; picking a metric in the legend leaves only its line. Points are traced from the Figma frame,
@@ -24,12 +25,13 @@ const TOUR_MS = 1800;
  */
 export function AdtChart({ auto = false }: { auto?: boolean }) {
   const [solo, setSolo] = useState<Key | null>(null);
+  const motion = useMotionOff();
   const root = useRef<HTMLDivElement>(null);
   const shown = (k: Key) => solo === null || solo === k;
 
   useEffect(() => {
     const el = root.current;
-    if (!auto || !el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!auto || !el || motionOff()) return;
     let step = 0;
     let timer: number | undefined;
     const io = new IntersectionObserver(([e]) => {
@@ -45,7 +47,7 @@ export function AdtChart({ auto = false }: { auto?: boolean }) {
       io.disconnect();
       window.clearInterval(timer);
     };
-  }, [auto]);
+  }, [auto, motion]);
 
   const at = solo ? SERIES.findIndex((s) => s.key === solo) : -1;
 
@@ -112,9 +114,10 @@ export function AdtOverviewFocus({ src, width, height, alt }: { src: string; wid
 
 /* Plays `run` only while `el` is on screen (and never with reduced motion); `run` returns its own cleanup. */
 function useWhileVisible(el: React.RefObject<HTMLElement | null>, run: () => () => void) {
+  const motion = useMotionOff();
   useEffect(() => {
     const node = el.current;
-    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!node || motionOff()) return;
     let stop: (() => void) | undefined;
     const io = new IntersectionObserver(([e]) => {
       stop?.();
@@ -125,8 +128,8 @@ function useWhileVisible(el: React.RefObject<HTMLElement | null>, run: () => () 
       io.disconnect();
       stop?.();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once per mount
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once per mount, and again when motion is paused or played
+  }, [motion]);
 }
 
 const NAME_FROM = "New report";

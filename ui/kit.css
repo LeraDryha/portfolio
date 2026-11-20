@@ -132,6 +132,10 @@
   --text-proof-small-phone: 17px;
   --text-case-title: clamp(30px, 3.6vw, 40px);
   --text-case-h2: 24px;
+  /* The voice face (Newsreader italic) for a line in Lera's own words */
+  --text-voice: 26px;
+  /* The email at the end of a case: the one action, a step under the voice line */
+  --text-contact-mail: 22px;
   --text-case-proof: 40px;
   --text-stat: 28px;
   --text-quote: 24px;
@@ -215,6 +219,8 @@
   --space-64: 64px;
   --space-76: 76px;
   --space-120: 120px;
+  /* The sticky top bar plus air: a tile reached by Tab or a link is never under it */
+  --space-bar-clear: 96px;
   --space-140: 140px;
   --space-list-indent: 1.2em;
   --space-pull-3: -3px;
@@ -240,12 +246,9 @@
   --layout-image-ratio: 4 / 3;
   --ratio-cert: 16 / 9;
   --layout-span-all: 1 / -1;
+  /* Desktop: every cell is a square (a row as tall as a column is wide), so tiles are 1, 2 or 4 squares */
+  --row-cell: calc((100cqw - 3 * var(--space-tile-gap)) / 4);
   --row-tile: 250px;
-  /* GRG's two rows are lower: its tile ends just under the Invoices table in the last step; Prevently beside it gets shorter with it */
-  --row-grg: 208px;
-  --layout-bento-rows: var(--row-tile) var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile) var(--row-tile) var(--row-text-wide);
-  /* the wide Learning & recognition tile under the cases: a text line, not a full tile height */
-  --row-text-wide: 120px;
   --row-tile-tablet: 200px;
   --row-tile-phone: 168px;
   --span-2: span 2;
@@ -272,6 +275,7 @@
   --size-pill: 40px;
   --size-theme: 36px;
   --size-icon: 18px;
+  --size-contact-logo: 20px;
   --size-icon-small: 16px;
   --size-cursor: 16px;
   --size-handle: 8px;
@@ -281,6 +285,7 @@
   --size-note-phone-narrow: 140px;
   --size-medium: 64px;
   --size-medium-phone: 48px;
+  --size-article-mark: 32px;
   --size-logo-reveal: 132px;
   --size-hero: clamp(280px, 52vh, 480px);
   --size-hero-phone: 300px;
@@ -393,6 +398,8 @@
   --z-link: 4;
   --z-selection: 5;
   --z-cursor: 6;
+  /* The tile under the pointer or focus: above its neighbours (its size label hangs below it), under the top bar */
+  --z-tile-front: 7;
   --z-bar: 20;
   --z-curtain: 30;
   --z-you: 60;
@@ -445,12 +452,11 @@
   /* On the pink tile: blur only; extra saturation turns the caption band bright pink */
   --blur-caption-brand: blur(14px);
   --space-caption-top: 56px;
-  --layout-bento-areas: "intro intro linkedin telegram" "prevently prevently grg grg" "prevently prevently grg grg" "prevently prevently medium email" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa" "learning learning learning learning";
+  --layout-bento-areas: "intro intro email linkedin" "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy telegram learning" "comfy comfy adtelligent sfa" "article-1 article-2 adtelligent sfa";
   /* Filtered views: the tiles left close up in the same order, with no holes */
   --layout-bento-areas-work: "prevently prevently grg grg" "prevently prevently grg grg" "comfy comfy adtelligent sfa" "comfy comfy adtelligent sfa";
-  --layout-bento-rows-work: var(--row-grg) var(--row-grg) var(--row-tile) var(--row-tile);
-  --layout-bento-areas-about: "intro intro linkedin telegram" "email learning learning .";
-  --layout-bento-areas-writing: "medium . . .";
+  --layout-bento-areas-about: "intro intro email linkedin" "learning telegram . .";
+  --layout-bento-areas-writing: "article-1 article-2 . .";
   --layout-wide: min(var(--layout-page), calc(100vw - var(--space-48)));
   --layout-wide-phone: calc(100vw - var(--space-32));
   --layout-anatomy: minmax(0, 5fr) minmax(0, 6fr);
@@ -849,6 +855,7 @@
    BASE
    --------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: var(--space-bar-clear); }
 .page { margin: var(--space-0); background: var(--color-page); color: var(--color-graphite); font-family: var(--font-sans); font-size: var(--text-ui); line-height: var(--leading-ui); }
 :where(.page) a { color: inherit; text-decoration: none; }
 :where(.page) ::selection { background: var(--color-accent-soft); color: var(--color-ink); }
@@ -872,13 +879,21 @@
 .filter__btn { height: var(--size-control); padding: var(--space-0) var(--space-16); border: none; border-radius: var(--radius-pill); background: none; color: var(--color-graphite); font: var(--weight-medium) var(--text-control) var(--font-sans); cursor: pointer; }
 .filter__btn:hover { color: var(--color-ink); }
 .filter__btn[aria-pressed="true"] { background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-control); }
-.theme { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-6); height: var(--size-theme); padding: var(--space-0) var(--space-14); border: none; border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font: var(--weight-medium) var(--text-label) var(--font-sans); cursor: pointer; }
+.top__end { justify-self: end; display: flex; align-items: center; gap: var(--space-8); }
+.theme { display: inline-flex; align-items: center; gap: var(--space-6); height: var(--size-theme); padding: var(--space-0) var(--space-14); border: none; border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font: var(--weight-medium) var(--text-label) var(--font-sans); cursor: pointer; }
 .theme svg { width: var(--size-icon-small); height: var(--size-icon-small); }
+/* Motion: one round button beside the theme switch, pause ⇄ play */
+.motion { display: grid; place-items: center; width: var(--size-theme); height: var(--size-theme); padding: var(--space-0); border: none; border-radius: var(--radius-round); background: var(--color-tile); color: var(--color-ink); cursor: pointer; }
+.motion svg { width: var(--size-icon-small); height: var(--size-icon-small); }
+.theme:hover, .motion:hover { background: var(--color-hairline); }
+/* Skip link: hidden until a keyboard reaches it, then a pill at the top left */
+.skip { position: absolute; left: var(--gutter); top: var(--space-10); z-index: var(--z-bar); padding: var(--space-8) var(--space-14); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-page); font: var(--weight-medium) var(--text-control) var(--font-sans); translate: 0 calc(-1 * var(--space-120)); }
+.skip:focus-visible { translate: none; }
 
 /* ---------------------------------------------------------------------
    BENTO
    --------------------------------------------------------------------- */
-.home { max-width: var(--layout-page); margin: var(--space-0) auto; padding: var(--space-page-top) var(--gutter-right) var(--space-120) var(--gutter); display: grid; gap: var(--space-28); }
+.home { max-width: var(--layout-page); margin: var(--space-0) auto; padding: var(--space-page-top) var(--gutter-right) var(--space-120) var(--gutter); display: grid; gap: var(--space-28); container-type: inline-size; }
 .bento { display: grid; grid-template-columns: var(--layout-cols-bento); grid-auto-rows: var(--row-tile); gap: var(--space-tile-gap); grid-auto-flow: dense; }
 .tile { position: relative; display: flex; flex-direction: column; min-width: var(--space-0); min-height: var(--space-0); border-radius: var(--radius-tile); background: var(--color-tile); color: var(--color-ink); }
 .tile[hidden] { display: none; }
@@ -886,22 +901,24 @@
 .tile--w2 { grid-column: var(--span-2); }
 .tile--h2 { grid-row: var(--span-2); }
 .tile--h3 { grid-row: var(--span-3); }
-/* Desktop: every tile has its place (layout A: Prevently tallest; GRG and Comfy the same size beside it) */
+/* Desktop: a grid of squares, every tile has its place (Lera's layout, 2026-11-20). Intro 2 squares with Yahoo and LinkedIn;
+   Prevently and GRG 4 each (2 × 2) side by side; Comfy 4 with Telegram and Learning beside it, then Adtelligent and
+   Smart Financial Assistant (1 × 2); the two articles under Comfy */
 @media (min-width: 861px) {
-  .bento { grid-template-areas: var(--layout-bento-areas); grid-template-rows: var(--layout-bento-rows); }
+  .bento { grid-template-areas: var(--layout-bento-areas); grid-auto-rows: var(--row-cell); }
   .area-intro { grid-area: intro; } .area-email { grid-area: email; } .area-linkedin { grid-area: linkedin; } .area-telegram { grid-area: telegram; }
   .area-prevently { grid-area: prevently; } .area-grg { grid-area: grg; } .area-comfy { grid-area: comfy; }
   .area-adtelligent { grid-area: adtelligent; } .area-sfa { grid-area: sfa; }
-  .area-medium { grid-area: medium; } .area-learning { grid-area: learning; }
-  .bento[data-view="work"] { grid-template-areas: var(--layout-bento-areas-work); grid-template-rows: var(--layout-bento-rows-work); }
-  .bento[data-view="about"] { grid-template-areas: var(--layout-bento-areas-about); grid-template-rows: none; }
-  .bento[data-view="writing"] { grid-template-areas: var(--layout-bento-areas-writing); grid-template-rows: none; }
+  .area-article-1 { grid-area: article-1; } .area-article-2 { grid-area: article-2; } .area-learning { grid-area: learning; }
+  .bento[data-view="work"] { grid-template-areas: var(--layout-bento-areas-work); }
+  .bento[data-view="about"] { grid-template-areas: var(--layout-bento-areas-about); }
+  .bento[data-view="writing"] { grid-template-areas: var(--layout-bento-areas-writing); }
 }
 /* Each tile is its own view-transition group, so switching the filter slides the tiles to their new places */
 .area-intro { view-transition-name: tile-intro; } .area-email { view-transition-name: tile-email; } .area-linkedin { view-transition-name: tile-linkedin; } .area-telegram { view-transition-name: tile-telegram; }
 .area-prevently { view-transition-name: tile-prevently; } .area-grg { view-transition-name: tile-grg; } .area-comfy { view-transition-name: tile-comfy; }
 .area-adtelligent { view-transition-name: tile-adtelligent; } .area-sfa { view-transition-name: tile-sfa; }
-.area-medium { view-transition-name: tile-medium; } .area-learning { view-transition-name: tile-learning; }
+.area-article-1 { view-transition-name: tile-article-1; } .area-article-2 { view-transition-name: tile-article-2; } .area-learning { view-transition-name: tile-learning; }
 .is-filtering .tile [style*="view-transition-name"] { view-transition-name: none !important; }
 .tile:focus-visible { outline: none; }
 .stretch::after { content: ""; position: absolute; inset: var(--space-0); z-index: var(--z-link); border-radius: var(--radius-tile); }
@@ -915,6 +932,7 @@
 .sel i:nth-child(3) { left: var(--offset-handle); bottom: var(--offset-handle); }
 .sel i:nth-child(4) { right: var(--offset-handle); bottom: var(--offset-handle); }
 .sel b { position: absolute; left: var(--pos-centre); top: calc(var(--size-full) + var(--offset-measure)); transform: var(--move-centre-x); padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-figma); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
+.tile:is(:hover, :focus-visible, :focus-within) { z-index: var(--z-tile-front); }
 .tile:hover .sel, .tile:focus-visible .sel, .tile:focus-within .sel, .fig:hover .sel, .is-selected > .sel, .is-selected .fig__frame > .sel { opacity: var(--opacity-full); }
 
 /* People in the file: role cursors; positions come from content (--x, --y) */
@@ -942,6 +960,10 @@
 .text-tile { justify-content: flex-end; gap: var(--space-4); padding: var(--space-22) var(--space-24); }
 .text-tile__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-proof-small); line-height: var(--leading-proof); letter-spacing: var(--tracking-proof); }
 .text-tile__line { color: var(--color-pencil); font-size: var(--text-label); }
+/* Article tiles (Writing): the Medium mark at the top, the title in Ukrainian at the bottom, its language said in the line */
+.article-tile__mark { position: absolute; top: var(--space-22); left: var(--space-24); width: var(--size-article-mark); height: var(--size-article-mark); color: var(--color-ink); }
+.article-tile__title { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-tag); letter-spacing: var(--tracking-proof); text-wrap: balance; }
+.article-tile:hover .act, .article-tile:focus-visible .act { opacity: var(--opacity-full); transform: var(--move-none); }
 
 /* Logo tiles (email, LinkedIn, Medium); a round action appears on hover */
 .logo-tile { align-items: center; justify-content: center; border: none; font: inherit; cursor: pointer; }
@@ -1098,14 +1120,13 @@
 .tile.is-running .vis * { animation-play-state: running; }
 .tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .story * { animation-play-state: paused; }
 
-/* More work */
-.more-row[hidden], .minis[hidden] { display: none; }
+/* Other work: a section title over a row of square tiles (the bento's cells), always visible */
+.more { display: grid; gap: var(--space-16); margin-top: var(--space-28); }
+.more[hidden] { display: none; }
+.more__title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.more__grid { display: grid; grid-template-columns: var(--layout-cols-bento); grid-auto-rows: var(--row-tile); gap: var(--space-tile-gap); }
+@media (min-width: 861px) { .more__grid { grid-auto-rows: var(--row-cell); } }
 .pill { height: var(--size-pill); padding: var(--space-0) var(--space-18); border: none; border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font: var(--weight-medium) var(--text-control) var(--font-sans); cursor: pointer; }
-.minis { display: grid; grid-template-columns: var(--layout-cols-4); gap: var(--space-tile-gap); }
-.mini { position: relative; display: grid; gap: var(--space-6); align-content: start; padding: var(--space-18) var(--space-20); border-radius: var(--radius-mini); background: var(--color-tile); }
-.mini b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-control); line-height: var(--leading-subhead); }
-.mini span { color: var(--color-pencil); font-size: var(--text-micro); }
-.mini:hover { box-shadow: var(--shadow-mini-hover); }
 
 /* Greeting curtain on the first visit */
 .curtain { position: fixed; inset: var(--space-0); z-index: var(--z-curtain); display: grid; place-items: center; background: var(--color-curtain); color: var(--color-curtain-ink); transform: var(--move-curtain-up); pointer-events: none; }
@@ -1265,7 +1286,7 @@
 .log__ui[data-rec="true"] .log__tab[data-active="true"] { color: var(--color-log-green); }
 .log__tab[data-new="true"] { flex-grow: 0; opacity: 0; }
 .log__ui[data-rec="true"] .log__tab[data-new="true"] { flex-grow: 1; opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .log * { transition: none !important; } }
+:root[data-motion="off"] .log * { transition: none !important; }
 /* Smart Financial Assistant: the app's screens in phone frames — before/after pair, the Before card, a row under each hypothesis */
 .solved__badge.solved__badge--after { background: var(--color-positive-tint); color: var(--color-positive); }
 .before-after { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); margin: var(--space-28) var(--space-0); }
@@ -1609,7 +1630,7 @@
 .hmw__n em { font-style: normal; font-weight: var(--weight-medium); font-size: var(--text-label); }
 .problems { display: grid; grid-template-columns: var(--layout-cols-3); gap: var(--space-12); }
 .problems__card { display: grid; align-content: start; }
-.prose .problems__card h4 { margin: var(--space-0) var(--space-0) var(--space-14); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.prose .problems__card h3 { margin: var(--space-0) var(--space-0) var(--space-14); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-subhead); }
 .prose .hmw { display: grid; gap: var(--space-12); margin: var(--space-0); padding: var(--space-0); list-style: none; }
 .hmw__row { display: grid; grid-template-columns: var(--size-sticky-hmw) minmax(0, 1fr); gap: var(--space-20); align-items: start; }
 @media (max-width: 860px) { .problems, .hmw__row { grid-template-columns: var(--layout-col-1); } }
@@ -1771,7 +1792,7 @@
 .adt-focus .adt-chart__metric { padding: var(--space-4) var(--space-6); }
 @media (max-width: 640px) { .adt-chart { padding: var(--space-14) var(--space-12) var(--space-10); } .adt-chart__legend { grid-template-columns: var(--layout-col-1); gap: var(--space-2); } .adt-chart__metric { display: flex; justify-content: space-between; align-items: center; padding: var(--space-6) var(--space-8); } .adt-chart__total { font-size: var(--text-label); } .adt-chart__tap { display: none; } }
 @media (max-width: 860px) { .adt-focus { overflow: visible; box-shadow: none; } .adt-focus__screen { border-radius: var(--radius-inner); box-shadow: var(--shadow-shot); } .adt-focus::after { bottom: auto; aspect-ratio: 1440 / 960; border-radius: var(--radius-inner); } .adt-focus__lift { position: relative; left: auto; top: auto; width: auto; margin: -24% var(--space-12) var(--space-0); } }
-@media (prefers-reduced-motion: reduce) { .adt-chart__line, .adt-chart__metric { transition: none; } }
+:root[data-motion="off"] :is(.adt-chart__line, .adt-chart__metric) { transition: none; }
 
 /* A screen with its menu open in place: the menu sits where it opens, at the screen's own scale */
 .inplace { position: relative; }
@@ -1812,7 +1833,9 @@
 .adt-flow__steps button[aria-pressed="true"] { color: var(--color-ink); box-shadow: inset 0 0 0 var(--size-hairline) var(--color-hairline); }
 .adt-flow__steps b { color: var(--color-accent); }
 .adt-flow__steps button:focus-visible { outline: var(--size-focus) solid var(--color-figma); outline-offset: var(--space-2); }
-@media (prefers-reduced-motion: reduce) { .adt-flow__frame, .adt-name__field { transition: none; } .adt-flow__tap, .adt-flow__tap::after { animation: none; opacity: 1; } .adt-name__caret { animation: none; } }
+:root[data-motion="off"] :is(.adt-flow__frame, .adt-name__field) { transition: none; }
+:root[data-motion="off"] .adt-flow__tap, :root[data-motion="off"] .adt-flow__tap::after { animation: none; opacity: 1; }
+:root[data-motion="off"] .adt-name__caret { animation: none; }
 
 /* A usability test as it was built: activity cards, then the questions asked after each */
 .prose .activities { display: grid; grid-template-columns: var(--layout-col-1); gap: var(--space-12); margin: var(--space-0) var(--space-0) var(--space-12); padding: var(--space-0); list-style: none; }
@@ -2072,6 +2095,23 @@
 .case-end a { color: var(--color-ink); text-decoration: underline; text-decoration-color: var(--color-hairline); text-underline-offset: var(--offset-underline); }
 .case-end a:hover { text-decoration-color: currentColor; }
 .case-end__next { margin-left: auto; text-align: right; }
+/* Contact strip at the end of every case (Lera's variant B): her question in the voice face, the email as the one action
+   with a copy button, LinkedIn and Telegram as pills under it. Only on case pages. */
+.contact-strip { display: grid; gap: var(--space-18); margin-top: var(--space-64); padding: var(--space-30) var(--space-30) var(--space-28); border-radius: var(--radius-block); background: var(--color-tile); }
+.prose .contact-strip__voice { margin: var(--space-0); color: var(--color-ink); font: italic var(--weight-regular) var(--text-voice) / var(--leading-heading) var(--font-serif); letter-spacing: var(--tracking-voice); text-wrap: balance; }
+.contact-strip__voice em { color: var(--color-accent); }
+.contact-strip__mail { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-12); min-width: var(--space-0); }
+.prose .contact-strip__mail a { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-contact-mail); line-height: var(--leading-tight); letter-spacing: var(--tracking-subhead); overflow-wrap: anywhere; text-decoration-thickness: var(--size-stroke); }
+.contact-strip__copy { display: grid; place-items: center; width: var(--size-theme); height: var(--size-theme); padding: var(--space-0); border: none; border-radius: var(--radius-round); background: var(--color-raised); color: var(--color-ink); box-shadow: var(--shadow-control); cursor: pointer; }
+.contact-strip__copy svg { width: var(--size-icon-small); height: var(--size-icon-small); }
+.contact-strip__toast { color: var(--color-pencil); font-size: var(--text-label); }
+.contact-strip__more { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.prose .contact-pill { display: inline-flex; align-items: center; gap: var(--space-8); height: var(--size-theme); padding: var(--space-0) var(--space-14) var(--space-0) var(--space-10); border-radius: var(--radius-pill); background: var(--color-raised); color: var(--color-ink); font-weight: var(--weight-medium); font-size: var(--text-control); text-decoration: none; box-shadow: var(--shadow-control); }
+.prose .contact-pill:hover { box-shadow: var(--shadow-float); }
+.contact-pill__in { display: grid; place-items: center; width: var(--size-contact-logo); height: var(--size-contact-logo); border-radius: var(--radius-label); background: var(--color-linkedin); color: var(--color-on-dark); font-weight: var(--weight-bold); font-size: var(--text-label); letter-spacing: var(--tracking-logo); }
+.contact-pill__tg { width: var(--size-contact-logo); height: var(--size-contact-logo); }
+.contact-strip + .case-end { margin-top: var(--space-28); border-top: none; }
+@media (max-width: 640px) { .contact-strip { padding: var(--space-22) var(--space-18); } }
 
 /* Not found */
 .lost { max-width: var(--layout-reading); margin: var(--space-0) auto; padding: var(--space-page-top) var(--gutter-reading-right) var(--space-120) var(--gutter-reading); }
@@ -2081,9 +2121,10 @@
    --------------------------------------------------------------------- */
 @media (max-width: 860px) {
   :root { --row-tile: var(--row-tile-tablet); --space-tile-gap: var(--space-tile-gap-phone); --radius-tile: var(--radius-tile-tablet); }
-  .bento { grid-template-columns: var(--layout-cols-2); }
-  .area-learning { grid-column: var(--span-2); }
-  .minis { grid-template-columns: var(--layout-cols-2); }
+  /* Rows keep their height; only the intro's row grows if its text needs more (the other tiles never stretch a row) */
+  .bento { grid-template-columns: var(--layout-cols-2); grid-auto-rows: minmax(var(--row-tile), auto); }
+  .bento > .tile:not(.intro) { contain: size; }
+  .more__grid { grid-template-columns: var(--layout-cols-2); }
   .case-tile--side { flex-direction: column; grid-row: var(--span-2); }
   .case-tile--side .case-tile__head { flex: none; padding: var(--space-24) var(--space-22) var(--space-0); }
   .case-tile--side .vis--bare { margin-top: var(--space-16); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); }
@@ -2109,6 +2150,8 @@
   .logo-medium { width: var(--size-medium-phone); height: var(--size-medium-phone); }
   .logo-telegram { width: var(--size-telegram-phone); height: var(--size-telegram-phone); }
   .text-tile { padding: var(--space-18); }
+  .article-tile { grid-column: var(--span-2); }
+  .article-tile__mark { top: var(--space-18); left: var(--space-18); }
   .act { width: var(--size-tap-small); height: var(--size-tap-small); top: var(--space-10); right: var(--space-10); opacity: var(--opacity-full); transform: var(--move-none); }
   .cursor, .you { display: none; }
   .pin__note { width: var(--size-note-phone); font-size: var(--text-micro); }
@@ -2119,7 +2162,7 @@
   .pin--high.pin--right .pin__dot { border-radius: var(--radius-pin-below-right); transform-origin: var(--origin-start); }
   .pin--high .pin__note { margin: var(--space-12) var(--space-0) var(--space-0); transform-origin: var(--origin-end-top); }
   .pin--high.pin--right .pin__note { transform-origin: var(--origin-start); }
-  .minis { grid-template-columns: var(--layout-col-1); }
+  .more__grid { grid-template-columns: var(--layout-col-1); }
   .case { padding-top: var(--space-76); }
   .case-hero { height: var(--size-hero-phone); }
   .case-hero > .vis--inset { margin: var(--space-20) var(--space-18) var(--space-0); }
@@ -2136,15 +2179,15 @@
   .decision, .finding, .scenario { padding: var(--space-18); }
   .float-btn--close { right: var(--gutter-phone-right); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .vis *, .cursor.is-in { animation: none !important; }
-  .story__cam { transform: var(--cam-after); }
-  .story .badge--start { opacity: var(--opacity-hidden); }
-  .story .badge--end { opacity: var(--opacity-full); }
-  .act, .sel, .toast, .curtain--leave { transition: none; }
-  .curtain--leave { opacity: var(--opacity-hidden); }
-  ::view-transition-group(*) { animation: none; }
-}
+/* Motion off: the visitor paused it (the button beside the theme switch) or the system asks for reduced motion.
+   The head script sets data-motion="off" from either; the live products rest on their still frame. */
+:root[data-motion="off"] :is(.vis *, .cursor.is-in) { animation: none !important; }
+:root[data-motion="off"] .story__cam { transform: var(--cam-after); }
+:root[data-motion="off"] .story .badge--start { opacity: var(--opacity-hidden); }
+:root[data-motion="off"] .story .badge--end { opacity: var(--opacity-full); }
+:root[data-motion="off"] :is(.act, .sel, .toast, .curtain--leave) { transition: none; }
+:root[data-motion="off"] .curtain--leave { opacity: var(--opacity-hidden); }
+:root[data-motion="off"]::view-transition-group(*) { animation: none; }
 
 /* Bloom (Prevently): the flower turns; a phone in iOS glass shows the lock screen and the app's reminders; the phone
    slides away and the results count up. Pink in both themes. */
@@ -2368,7 +2411,7 @@
   .phone--lg, .phone-wipe { --h: var(--size-phone-lg-phone); }
   .handsets__row--lg { justify-content: flex-start; gap: var(--space-20); padding: var(--space-18); overflow-x: auto; }
 }
-@media (prefers-reduced-motion: reduce) { .try__card.is-new { animation: none; } }
+:root[data-motion="off"] .try__card.is-new { animation: none; }
 
 /* Phones: the voice table reads as cards (before, struck through → after; what was wrong as a caption under them) */
 @media (max-width: 640px) {

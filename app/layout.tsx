@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { IconSprite } from "@/components/shell/Icons";
-import { themeScript } from "@/components/shell/theme";
+import { motionScript, themeScript } from "@/components/shell/theme";
 import "../ui/kit.css";
 import "./globals.css";
 
@@ -41,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${geist.variable} ${geistMono.variable} ${newsreader.variable}`} suppressHydrationWarning>
       <head>
         <script id="theme-gate" dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script id="motion-gate" dangerouslySetInnerHTML={{ __html: motionScript }} />
       </head>
       <body className="page">
         <IconSprite />

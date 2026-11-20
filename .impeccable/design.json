@@ -184,7 +184,7 @@
       "kind": "card",
       "refersTo": "case-tile",
       "description": "Grey tile: evidence in ink, then bold product name and a short line, then the product alive. Whole tile links to the case; Figma selection on hover.",
-      "html": "<article class=\"ds-tile\"><p class=\"ds-proof\">30% → 40%<small>credit order share, business goal</small></p><p class=\"ds-line\"><b>Comfy.</b> Making credit purchases clear and calm.</p></article>",
+      "html": "<article class=\"ds-tile\"><p class=\"ds-proof\">75% → 100%<small>task completion, Comfy today vs the redesign</small></p><p class=\"ds-line\"><b>Comfy.</b> Making credit purchases clear and calm.</p></article>",
       "css": ".ds-tile{background:#f5f5f7;border-radius:28px;padding:28px 30px;font-family:Geist,Arial,sans-serif;color:#1d1d1f;max-width:460px}.ds-proof{margin:0;font-weight:600;font-size:34px;line-height:1.05;letter-spacing:-.025em}.ds-proof small{display:block;margin-top:8px;font-size:13px;font-weight:400;color:#6e6e73;letter-spacing:0}.ds-line{margin:10px 0 0;font-size:15px;color:#424245}.ds-line b{color:#1d1d1f}"
     },
     {

@@ -1,4 +1,5 @@
 import type { Assemble } from "@/content/site";
+import { motionOff } from "@/components/shell/motion";
 
 /*
  * GRG on its tile: primitives → semantic tokens → atoms → molecules → organism → product.
@@ -189,7 +190,7 @@ export function startAssemble(root: HTMLElement, v: Assemble, theme: Theme) {
   let viewH = TILE.h - (captioned ? CAPTION : 0);
   let cams = camsFor(viewH);
   let so = 1, ox = 0, oy = 0; // how the primitives' layer is scaled and moved
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce = motionOff();
   let step = reduce ? PRODUCT : 0;
 
   const show = (i: number) => {

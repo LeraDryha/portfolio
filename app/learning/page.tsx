@@ -83,7 +83,7 @@ export default function LearningPage() {
                 </span>
               ))}
             </p>
-            <p className="note">Some certificates carry my previous surname, Starychenko.</p>
+            <p className="note">Some certificates carry my previous surname, Dryha.</p>
           </section>
 
           <nav className="case-end" aria-label="More work">

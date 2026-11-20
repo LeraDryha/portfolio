@@ -1,10 +1,10 @@
-import { cases, intro, moreWork, person, type CaseEntry } from "@/content/site";
+import { articles, cases, intro, moreWork, person, type CaseEntry } from "@/content/site";
 import { caseHref } from "@/lib/cases";
 import { Cursor, Vis } from "@/components/shell/Vis";
 import { Icon, NewTab, Selection } from "@/components/shell/Icons";
 
 const SHAPE: Record<CaseEntry["shape"], string> = {
-  "brand-tall": "tile--w2 tile--h3 case-tile--brand",
+  brand: "tile--w2 tile--h2 case-tile--brand",
   "wide-tall": "tile--w2 tile--h2",
   "wide-side": "tile--w2 case-tile--side",
   wide: "tile--w2 tile--h2",
@@ -66,14 +66,28 @@ export function Bento() {
           <Cursor c={{ role: "lera", label: "Lera", x: "84%", y: "24%" }} />
         </section>
 
-        <a className="tile logo-tile area-linkedin" data-cat="about" href={person.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
+        <button className="tile logo-tile area-email" type="button" data-cat="about" data-copy={person.email} aria-label={`Copy email ${person.email}`}>
+          <span className="logo-yahoo" aria-hidden="true">yahoo!</span>
+          <span className="act" aria-hidden="true"><Icon name="copy" /></span>
+          <span className="toast" role="status" />
+          <Selection />
+        </button>
+
+        <a className="tile logo-tile area-linkedin" data-cat="about" href={person.linkedin} target="_blank" rel="noopener">
+          <span className="sr-only">LinkedIn</span>
           <span className="logo-linkedin" aria-hidden="true">in</span>
           <span className="act" aria-hidden="true"><Icon name="out" /></span>
           <NewTab />
           <Selection />
         </a>
 
-        <a className="tile logo-tile area-telegram" data-cat="about" href={person.telegram} target="_blank" rel="noopener" aria-label="Telegram">
+        {/* Prevently, GRG, Comfy; then Telegram and Learning beside Comfy; then Adtelligent and Smart Financial Assistant */}
+        {cases.slice(0, 3).map((c) => (
+          <CaseTile key={c.slug} entry={c} />
+        ))}
+
+        <a className="tile logo-tile area-telegram" data-cat="about" href={person.telegram} target="_blank" rel="noopener">
+          <span className="sr-only">Telegram</span>
           {/* The official Telegram mark (telegram.org brand assets): a light-to-deep blue circle and the white plane */}
           <svg className="logo-telegram" viewBox="0 0 240 240" aria-hidden="true">
             <defs>
@@ -90,48 +104,49 @@ export function Bento() {
           <Selection />
         </a>
 
-        {cases.map((c) => (
-          <CaseTile key={c.slug} entry={c} />
-        ))}
-
-        <a className="tile logo-tile area-medium" data-cat="writing" href={person.medium} target="_blank" rel="noopener" aria-label="Articles on Medium">
-          <svg className="logo-medium" viewBox="0 0 48 48" aria-hidden="true">
-            <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
-            <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
-            <ellipse cx="41" cy="24" rx="1.8" ry="8.6" fill="currentColor" />
-          </svg>
-          <span className="act" aria-hidden="true"><Icon name="out" /></span>
-          <NewTab />
-          <Selection />
-        </a>
-
-        <button className="tile logo-tile area-email" type="button" data-cat="about" data-copy={person.email} aria-label={`Copy email ${person.email}`}>
-          <span className="logo-yahoo" aria-hidden="true">yahoo!</span>
-          <span className="act" aria-hidden="true"><Icon name="copy" /></span>
-          <span className="toast" role="status" />
-          <Selection />
-        </button>
-
         <a className="tile text-tile area-learning" id="tile-learning" data-cat="about" href="/learning">
           <span className="text-tile__title" style={{ viewTransitionName: "learning-title" }}>Learning &amp; recognition</span>
           <span className="text-tile__line">An award, courses and certificates</span>
           <Selection />
         </a>
-      </div>
 
-      <div className="more-row" data-more-row>
-        <button className="pill" type="button" data-more aria-expanded="false" aria-controls="more-list">
-          More work
-        </button>
-      </div>
-      <div className="minis" id="more-list" hidden>
-        {moreWork.map((m) => (
-          <a className="mini" key={m.slug} href={`/work/${m.slug}`}>
-            <b>{m.title}</b>
-            <span>{m.meta}</span>
+        {cases.slice(3).map((c) => (
+          <CaseTile key={c.slug} entry={c} />
+        ))}
+
+        {articles.map((a, i) => (
+          <a className={`tile text-tile article-tile area-article-${i + 1}`} key={a.href} data-cat="writing" href={a.href} target="_blank" rel="noopener">
+            <svg className="article-tile__mark" viewBox="0 0 48 48" aria-hidden="true">
+              <ellipse cx="14" cy="24" rx="10" ry="10" fill="currentColor" />
+              <ellipse cx="31" cy="24" rx="5" ry="9.5" fill="currentColor" />
+              <ellipse cx="41" cy="24" rx="1.8" ry="8.6" fill="currentColor" />
+            </svg>
+            <span className="article-tile__title" lang="uk">
+              {a.title}
+            </span>
+            <span className="text-tile__line">Article on Medium · in Ukrainian</span>
+            <span className="act" aria-hidden="true"><Icon name="out" /></span>
+            <NewTab />
+            <Selection />
           </a>
         ))}
       </div>
+
+      {/* Other work: always visible, square tiles like the bento's, under a section title */}
+      <section className="more" id="more-list" aria-labelledby="more-title" data-more>
+        <h2 className="more__title" id="more-title">
+          Other work
+        </h2>
+        <div className="more__grid">
+          {moreWork.map((m) => (
+            <a className="tile text-tile more-tile" key={m.slug} href={`/work/${m.slug}`}>
+              <span className="text-tile__title">{m.title}</span>
+              <span className="text-tile__line">{m.meta}</span>
+              <Selection />
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
