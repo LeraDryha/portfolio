@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { greetingWords } from "@/content/site";
+import { motionOff } from "@/components/shell/motion";
 
 /** Plays the greeting once the curtain is down: words change, then the curtain slides up. Click or Esc skips. */
 export function GreetingPlayer({ storageKey }: { storageKey: string }) {
@@ -13,7 +14,7 @@ export function GreetingPlayer({ storageKey }: { storageKey: string }) {
       localStorage.setItem(storageKey, "1");
     } catch {}
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = motionOff();
     const seq = reduce ? ["Hello"] : greetingWords;
     let i = 0;
     let timer: ReturnType<typeof setTimeout>;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { Mulish } from "next/font/google";
 import { buildPlan, categories, exams, type Answer, type Category } from "@/content/prevently-plan";
+import { motionOff } from "@/components/shell/motion";
 
 // The Prevently app's typeface, for the plan inside the "Try it" phone only (not preloaded)
 const mulish = Mulish({ subsets: ["latin"], weight: ["500", "600", "700"], preload: false, variable: "--font-prevently" });
@@ -181,7 +182,7 @@ export function PhoneWipe({ light, dark, width, height, alt, caption }: { light:
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (motionOff()) {
       setCut(50);
       return;
     }

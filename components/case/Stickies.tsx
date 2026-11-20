@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import { motionOff } from "@/components/shell/motion";
 
 type Note = { text: string; /** a second sticky over the first: a detail (blue) or a warning (red) */ note?: string; tone?: "blue" | "red" };
 
@@ -13,7 +14,7 @@ export function StickyBoard({ notes, caption, cols = 4 }: { notes: Note[]; capti
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!el || motionOff()) return;
     el.dataset.ready = "true";
     const io = new IntersectionObserver(
       ([e]) => {

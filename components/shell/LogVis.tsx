@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type CSSProperties } from "react";
 import type { Log } from "@/content/site";
+import { motionOff, useMotionOff } from "@/components/shell/motion";
 
 const DIR = "/work/smart-financial-assistant/live";
 const style = (vars: Record<string, string>) => vars as CSSProperties;
@@ -26,9 +27,10 @@ const FINAL: State = { badges: 99, gone: true, rec: true, forecast: 3, today: tr
  */
 export function LogVis({ v, viewTransitionName }: { v: Log; viewTransitionName: string }) {
   const [s, setS] = useState<State>(START);
+  const motion = useMotionOff();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (motionOff()) {
       setS(FINAL);
       return;
     }
@@ -57,7 +59,7 @@ export function LogVis({ v, viewTransitionName }: { v: Log; viewTransitionName: 
     };
     run();
     return () => timers.forEach(clearTimeout);
-  }, [v]);
+  }, [v, motion]);
 
   // Where each recurring payment settles on the recurring screen, and where each group's label sits
   const groupY: number[] = [];

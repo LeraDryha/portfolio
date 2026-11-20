@@ -26,7 +26,7 @@ The site has worked when:
 ## Positioning
 
 A product designer who combines three things a typical portfolio shows one at a time:
-- **Decisions that move metrics:** research, hypotheses and numbers (Comfy's credit order goal from 30% to 40%, A/B-framed onboarding, task-flow conversion work).
+- **Decisions that move metrics:** research, hypotheses and numbers (Comfy: task completion from 75% to 100% in moderated tests, A/B-framed onboarding, task-flow conversion work).
 - **Systems thinking:** design systems, detailed specs and hand-off (GRG Design System, a Storybook built from scratch, articles about hand-off).
 - **Taking a product to release alone:** Prevently went from idea to the App Store with Lera doing research, design and build, working with AI tools.
 
@@ -50,14 +50,15 @@ A product designer who combines three things a typical portfolio shows one at a 
 
 ## Brand Commitments
 
-- Name: Lera Dryha (Valeriia Dryha).
+- Name: Lera Starychenko (Valeriia Starychenko); previously Dryha, which some certificates still carry.
 - Voice: first person, plain and direct ("Hi, I'm Lera").
+- Background: 10+ years as a doctor before design. The intro turns it into what it gives product work: making sense of a lot of information, hearing what people really need, explaining it in plain words.
 - Prevently is the owner's own product and leads the work section.
 
 ## Evidence on Hand
 
 Notion case studies (texts and images ready):
-- **Comfy: UX Case Study** (2024, e-commerce, team of 4 designers). A Projector school course project: the business came to the course and all work was handed over to Comfy. Business goal: credit order share from 30% to 40%. Full research cycle.
+- **Comfy: UX Case Study** (2024, e-commerce, team of 4 designers). A Projector school course project: the business came to the course and all work was handed over to Comfy. Business goal: credit order share from 30% to 40% (not measured: the work was handed over before release). Tested result: task completion from 75% (current flow) to 100% (redesign). Full research cycle.
 - **Solutions for Adtelligent** (2025, AdTech B2B SaaS). Role and Skills are empty in Notion and must be filled with Lera, not invented.
 - **From Transaction Log to Smart Financial Assistant** (2024, fintech, US market), for hubmee (https://hubmee.com). Includes the user problem "I connected my accounts… and then what?". Focus and Skills are empty in Notion.
 - **Task Creation Reimagined** (2025, sole designer). Has conversion and usability metrics in Notion.

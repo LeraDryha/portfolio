@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { THEME_KEY } from "@/components/shell/theme";
+import { motionOff, setMotion } from "@/components/shell/motion";
 
 const THEMES = ["auto", "light", "dark"] as const;
 type Theme = (typeof THEMES)[number];
@@ -15,7 +16,6 @@ type Theme = (typeof THEMES)[number];
 export function HomeBehavior() {
   useEffect(() => {
     const root = document.documentElement;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const off: (() => void)[] = [];
     const on = <K extends keyof HTMLElementEventMap>(el: EventTarget, type: K | string, fn: (e: Event) => void, opts?: AddEventListenerOptions) => {
       el.addEventListener(type, fn, opts);
@@ -45,6 +45,26 @@ export function HomeBehavior() {
           localStorage.setItem(THEME_KEY, mode);
         } catch {}
         paintTheme();
+      });
+
+    /* Motion: pause or play every animation on the site (the live products rest on their still frame) */
+    const mbtn = document.querySelector<HTMLButtonElement>("[data-motion-toggle]");
+    const paintMotion = () => {
+      if (!mbtn) return;
+      const off = motionOff();
+      const label = off ? "Play animations" : "Pause animations";
+      mbtn.querySelector("use")?.setAttribute("href", off ? "#i-play" : "#i-pause");
+      mbtn.setAttribute("aria-pressed", String(off));
+      mbtn.setAttribute("aria-label", label);
+      mbtn.title = label;
+    };
+    paintMotion();
+    if (mbtn)
+      on(mbtn, "click", () => {
+        setMotion(!motionOff());
+        paintMotion();
+        // Cursors that waited for motion arrive now
+        if (!motionOff()) document.querySelectorAll(".is-running [data-cursor]:not(.is-in)").forEach((c) => c.classList.add("is-in"));
       });
 
     /* Live size on each Figma selection */
@@ -78,7 +98,7 @@ export function HomeBehavior() {
       on(b, "click", () => {
         const go = () => filter(b.dataset.filter!);
         const d = document as Document & { startViewTransition?: (cb: () => void) => { finished: Promise<void> } };
-        if (d.startViewTransition && !reduce) {
+        if (d.startViewTransition && !motionOff()) {
           // While the tiles slide, the live products inside them move with their tile, not as their own layer
           document.documentElement.classList.add("is-filtering");
           d.startViewTransition(go).finished.finally(() => document.documentElement.classList.remove("is-filtering"));
@@ -151,7 +171,7 @@ export function HomeBehavior() {
       (entries) =>
         entries.forEach((e) => {
           e.target.classList.toggle("is-running", e.isIntersecting);
-          if (e.isIntersecting && !reduce) e.target.querySelectorAll("[data-cursor]:not(.is-in)").forEach((c) => c.classList.add("is-in"));
+          if (e.isIntersecting && !motionOff()) e.target.querySelectorAll("[data-cursor]:not(.is-in)").forEach((c) => c.classList.add("is-in"));
         }),
       { threshold: 0.25 },
     );

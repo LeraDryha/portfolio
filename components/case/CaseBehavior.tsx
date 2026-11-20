@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
+import { motionOff } from "@/components/shell/motion";
 
 /** Case page behaviour: Esc closes the case, a back-to-top button after scrolling, live sizes on Figma selections. */
 export function CaseBehavior() {
   useEffect(() => {
     const close = document.querySelector<HTMLAnchorElement>("[data-close]");
     const top = document.querySelector<HTMLButtonElement>("[data-to-top]");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = motionOff();
 
     const onKey = (e: KeyboardEvent) => {
       // Esc closes an open modal (the screen lightbox) first, and only then the case

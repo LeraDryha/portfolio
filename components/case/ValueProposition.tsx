@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { motionOff } from "@/components/shell/motion";
 
 type Region = "products" | "creators" | "relievers" | "job" | "gains" | "pains";
 type Part = { region: Region; label: string; short: string[]; full: string[] };
@@ -31,7 +32,7 @@ export function ValueProposition({ title, parts, caption }: { title: string; par
 
   useEffect(() => {
     const el = stage.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!el || motionOff()) return;
     setState("armed");
     const io = new IntersectionObserver(
       ([e]) => {

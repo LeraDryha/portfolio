@@ -41,6 +41,12 @@ export function IconSprite() {
         <circle cx="10" cy="10" r="3.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
         <path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M4 16l1.4-1.4M14.6 5.4 16 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
       </symbol>
+      <symbol id="i-pause" viewBox="0 0 20 20">
+        <path d="M7 4.5v11M13 4.5v11" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 20 20">
+        <path d="M6.5 4.6v10.8a.8.8 0 0 0 1.2.7l8.6-5.4a.8.8 0 0 0 0-1.4L7.7 3.9a.8.8 0 0 0-1.2.7Z" fill="currentColor" />
+      </symbol>
       <symbol id="i-dark" viewBox="0 0 20 20">
         <path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
       </symbol>
@@ -48,7 +54,7 @@ export function IconSprite() {
   );
 }
 
-export type IconName = "mark" | "cursor" | "copy" | "out" | "close" | "up" | "x" | "prev" | "next" | "expand" | "auto" | "light" | "dark";
+export type IconName = "mark" | "cursor" | "copy" | "out" | "close" | "up" | "x" | "prev" | "next" | "expand" | "auto" | "light" | "dark" | "pause" | "play";
 
 export function Icon({ name }: { name: IconName }) {
   return (
