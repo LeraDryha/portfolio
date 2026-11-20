@@ -52,7 +52,7 @@ A product designer who combines three things a typical portfolio shows one at a 
 
 - Name: Lera Starychenko (Valeriia Starychenko); previously Dryha, which some certificates still carry.
 - Voice: first person, plain and direct ("Hi, I'm Lera").
-- Background: 10+ years as a doctor before design. The intro turns it into what it gives product work: making sense of a lot of information, hearing what people really need, explaining it in plain words.
+- Background: 10+ years as a doctor before design. It lives in the Prevently case; the home intro says what Lera brings to a team instead: web and native apps, B2B and B2C, the domains, research through design systems.
 - Prevently is the owner's own product and leads the work section.
 
 ## Evidence on Hand
