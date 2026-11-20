@@ -82,17 +82,14 @@ export function HomeBehavior() {
     /* Filter */
     const tiles = Array.from(document.querySelectorAll<HTMLElement>("#bento > [data-cat]"));
     const fbtns = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filter]"));
-    const moreRow = document.querySelector<HTMLElement>("[data-more-row]");
-    const moreList = document.getElementById("more-list");
-    const moreBtn = document.querySelector<HTMLButtonElement>("[data-more]");
+    const more = document.querySelector<HTMLElement>("[data-more]");
     const filter = (f: string) => {
       fbtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === f)));
       tiles.forEach((t) => (t.hidden = !(f === "all" || t.dataset.cat === f)));
       const bento = document.getElementById("bento");
       if (bento) bento.dataset.view = f;
-      const showMore = f === "all" || f === "work";
-      if (moreRow) moreRow.hidden = !showMore;
-      if (moreList && moreBtn) moreList.hidden = !showMore || moreBtn.getAttribute("aria-expanded") !== "true";
+      // Other work shows with All and Work
+      if (more) more.hidden = !(f === "all" || f === "work");
     };
     fbtns.forEach((b) =>
       on(b, "click", () => {
@@ -106,31 +103,8 @@ export function HomeBehavior() {
       }),
     );
 
-    /* More work: stays open until the visitor closes it, also after coming back from a case */
-    const MORE_KEY = "more-work-open";
-    const setMore = (open: boolean) => {
-      if (!moreBtn || !moreList) return;
-      moreList.hidden = !open || (moreRow?.hidden ?? false);
-      moreBtn.setAttribute("aria-expanded", String(open));
-      moreBtn.textContent = open ? "Less work" : "More work";
-    };
-    if (moreBtn && moreList) {
-      try {
-        if (localStorage.getItem(MORE_KEY) === "1") setMore(true);
-      } catch {}
-      // Back from a More work case: open the list and bring it into view
-      if (location.hash === "#more-list") {
-        setMore(true);
-        moreList.scrollIntoView({ block: "center" });
-      }
-      on(moreBtn, "click", () => {
-        const open = moreBtn.getAttribute("aria-expanded") !== "true";
-        setMore(open);
-        try {
-          localStorage.setItem(MORE_KEY, open ? "1" : "0");
-        } catch {}
-      });
-    }
+    /* Back from an Other work case: bring the list into view */
+    if (location.hash === "#more-list") more?.scrollIntoView({ block: "center" });
 
     /* Copy email, with a short confirmation */
     document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {

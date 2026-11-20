@@ -43,7 +43,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 
 ### Інші кейси
 
-На головній вони приховані й відкриваються кнопкою на кшталт «More work».
+На головній вони завжди видимі: розділ «Other work» під бенто, квадратні плитки (назва й рік).
 - Task Creation Reimagined (2025): https://app.notion.com/p/Task-Creation-Reimagined-22f44bdcbfce803b8820ff2f98222f09
 - Onboarding through Hypotheses & A/B Testing (2025, концепт): https://app.notion.com/p/Onboarding-through-Hypotheses-A-B-Testing-26e44bdcbfce8067a499f30c9ae13e82
 - Mental health MVP (2023): https://app.notion.com/p/Case-Study-ce5fb0f537104a5eb7d2346460588691
@@ -65,7 +65,7 @@ Lera зробила продукт сама, від ідеї до релізу. 
 
 ### Сторінки
 
-- **Home:** верхня панель (знак, фільтр All / About / Work / Writing, кнопка паузи анімацій, тема) і бенто — чітка сітка квадратів: плитка займає 1 квадрат (контакти, статті, Learning), 2 (інтро; Adtelligent і Financial Assistant 1×2) або 4 (Prevently, GRG, Comfy, 2×2). Порядок (макет Lera): угорі інтро, Yahoo, LinkedIn; далі Prevently (рожева) і GRG поруч; потім Comfy зліва, а праворуч Telegram і Learning & recognition (сторінка `/learning`, дані в `content/learning.ts`), під ними Adtelligent і Financial Assistant; під Comfy дві статті Medium (по квадрату, українською); під бенто «More work». Інтро розповідає про 10+ років у медицині й що це дає продуктовому дизайну. Три головні кейси: продукт на всю плитку, внизу назва й один факт на розмитті. Adtelligent і Financial Assistant менші: назва й рядок, під ними живий продукт (у Financial Assistant телефон: журнал транзакцій стає екраном Recurring, приходить нагадування). Плитка Prevently: квітка обертається, у скляному телефоні приходять справжні нагадування застосунку, потім набігають цифри результату. Плитка GRG збирає продукт від примітивів до сторінки Invoices зі справжніх частин зі Storybook; коли Storybook зміниться, оновити їх: `npm run grg:assemble`.
+- **Home:** верхня панель (знак, фільтр All / About / Work / Writing, кнопка паузи анімацій, тема) і бенто — чітка сітка квадратів: плитка займає 1 квадрат (контакти, статті, Learning), 2 (інтро; Adtelligent і Financial Assistant 1×2) або 4 (Prevently, GRG, Comfy, 2×2). Порядок (макет Lera): угорі інтро, Yahoo, LinkedIn; далі Prevently (рожева) і GRG поруч; потім Comfy зліва, а праворуч Telegram і Learning & recognition (сторінка `/learning`, дані в `content/learning.ts`), під ними Adtelligent і Financial Assistant; під Comfy дві статті Medium (по квадрату, українською); під бенто розділ «Other work». Інтро розповідає про 10+ років у медицині й що це дає продуктовому дизайну. Три головні кейси: продукт на всю плитку, внизу назва й один факт на розмитті. Adtelligent і Financial Assistant менші: назва й рядок, під ними живий продукт (у Financial Assistant телефон: журнал транзакцій стає екраном Recurring, приходить нагадування). Плитка Prevently: квітка обертається, у скляному телефоні приходять справжні нагадування застосунку, потім набігають цифри результату. Плитка GRG збирає продукт від примітивів до сторінки Invoices зі справжніх частин зі Storybook; коли Storybook зміниться, оновити їх: `npm run grg:assemble`.
 - **Сторінка кейсу:** `/work/<slug>`, один шаблон для всіх кейсів; угорі той самий живий продукт, що на плитці; наприкінці смуга контактів «Let’s talk» (пошта текстом, LinkedIn, нік у Telegram). На головній такої смуги немає.
 - **About:** про Lera й контакти.
 
@@ -99,7 +99,7 @@ app/                    сторінки: layout, головна, work/[slug]/, 
 components/shell/       верхня панель, живі продукти (Vis, Assemble — збирання GRG) і курсори, іконки, тема
 components/home/        головна: бенто, поведінка (фільтр, тема, копіювання, анімації), привітання
 components/case/        блоки кейсу для MDX, поведінка сторінки кейсу, живий продукт (LiveProduct) і анатомія токена (GRG)
-content/site.ts         плитки кейсів, More work, контакти, привітання
+content/site.ts         плитки кейсів, Other work, контакти, привітання
 content/work/           кейси, по MDX-файлу на кейс
 lib/cases.ts            сторінки кейсів, посилання з плитки, наступний кейс
 mdx-components.tsx      як Markdown у кейсах мапиться на кіт

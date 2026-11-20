@@ -288,7 +288,7 @@ export const cases: CaseEntry[] = [
   },
 ];
 
-/** "More work": smaller cases, as small cards under the bento behind a button. Each has its own page with a cover at the top. */
+/** "Other work": smaller cases, square tiles in their own section under the bento, always visible. Each has its own page with a cover at the top. */
 export type MoreEntry = {
   slug: string;
   title: string;

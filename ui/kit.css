@@ -393,6 +393,8 @@
   --z-link: 4;
   --z-selection: 5;
   --z-cursor: 6;
+  /* The tile under the pointer or focus: above its neighbours (its size label hangs below it), under the top bar */
+  --z-tile-front: 7;
   --z-bar: 20;
   --z-curtain: 30;
   --z-you: 60;
@@ -925,6 +927,7 @@ html { scroll-padding-top: var(--space-bar-clear); }
 .sel i:nth-child(3) { left: var(--offset-handle); bottom: var(--offset-handle); }
 .sel i:nth-child(4) { right: var(--offset-handle); bottom: var(--offset-handle); }
 .sel b { position: absolute; left: var(--pos-centre); top: calc(var(--size-full) + var(--offset-measure)); transform: var(--move-centre-x); padding: var(--space-1) var(--space-6); border-radius: var(--radius-label); background: var(--color-figma); color: var(--color-on-dark); font: var(--weight-medium) var(--text-measure) / var(--leading-ui) var(--font-mono); white-space: nowrap; }
+.tile:is(:hover, :focus-visible, :focus-within) { z-index: var(--z-tile-front); }
 .tile:hover .sel, .tile:focus-visible .sel, .tile:focus-within .sel, .fig:hover .sel, .is-selected > .sel, .is-selected .fig__frame > .sel { opacity: var(--opacity-full); }
 
 /* People in the file: role cursors; positions come from content (--x, --y) */
@@ -1112,14 +1115,13 @@ html { scroll-padding-top: var(--space-bar-clear); }
 .tile.is-running .vis * { animation-play-state: running; }
 .tile.is-running:hover .strip, .tile.is-running:hover .phones, .tile.is-running:hover .story * { animation-play-state: paused; }
 
-/* More work */
-.more-row[hidden], .minis[hidden] { display: none; }
+/* Other work: a section title over a row of square tiles (the bento's cells), always visible */
+.more { display: grid; gap: var(--space-16); margin-top: var(--space-28); }
+.more[hidden] { display: none; }
+.more__title { margin: var(--space-0); color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: var(--leading-subhead); }
+.more__grid { display: grid; grid-template-columns: var(--layout-cols-bento); grid-auto-rows: var(--row-tile); gap: var(--space-tile-gap); }
+@media (min-width: 861px) { .more__grid { grid-auto-rows: var(--row-cell); } }
 .pill { height: var(--size-pill); padding: var(--space-0) var(--space-18); border: none; border-radius: var(--radius-pill); background: var(--color-tile); color: var(--color-ink); font: var(--weight-medium) var(--text-control) var(--font-sans); cursor: pointer; }
-.minis { display: grid; grid-template-columns: var(--layout-cols-4); gap: var(--space-tile-gap); }
-.mini { position: relative; display: grid; gap: var(--space-6); align-content: start; padding: var(--space-18) var(--space-20); border-radius: var(--radius-mini); background: var(--color-tile); }
-.mini b { color: var(--color-ink); font-weight: var(--weight-semibold); font-size: var(--text-control); line-height: var(--leading-subhead); }
-.mini span { color: var(--color-pencil); font-size: var(--text-micro); }
-.mini:hover { box-shadow: var(--shadow-mini-hover); }
 
 /* Greeting curtain on the first visit */
 .curtain { position: fixed; inset: var(--space-0); z-index: var(--z-curtain); display: grid; place-items: center; background: var(--color-curtain); color: var(--color-curtain-ink); transform: var(--move-curtain-up); pointer-events: none; }
@@ -2110,7 +2112,7 @@ html { scroll-padding-top: var(--space-bar-clear); }
   /* Rows keep their height; only the intro's row grows if its text needs more (the other tiles never stretch a row) */
   .bento { grid-template-columns: var(--layout-cols-2); grid-auto-rows: minmax(var(--row-tile), auto); }
   .bento > .tile:not(.intro) { contain: size; }
-  .minis { grid-template-columns: var(--layout-cols-2); }
+  .more__grid { grid-template-columns: var(--layout-cols-2); }
   .case-tile--side { flex-direction: column; grid-row: var(--span-2); }
   .case-tile--side .case-tile__head { flex: none; padding: var(--space-24) var(--space-22) var(--space-0); }
   .case-tile--side .vis--bare { margin-top: var(--space-16); border-radius: var(--radius-none) var(--radius-none) var(--radius-tile) var(--radius-tile); }
@@ -2148,7 +2150,7 @@ html { scroll-padding-top: var(--space-bar-clear); }
   .pin--high.pin--right .pin__dot { border-radius: var(--radius-pin-below-right); transform-origin: var(--origin-start); }
   .pin--high .pin__note { margin: var(--space-12) var(--space-0) var(--space-0); transform-origin: var(--origin-end-top); }
   .pin--high.pin--right .pin__note { transform-origin: var(--origin-start); }
-  .minis { grid-template-columns: var(--layout-col-1); }
+  .more__grid { grid-template-columns: var(--layout-col-1); }
   .case { padding-top: var(--space-76); }
   .case-hero { height: var(--size-hero-phone); }
   .case-hero > .vis--inset { margin: var(--space-20) var(--space-18) var(--space-0); }

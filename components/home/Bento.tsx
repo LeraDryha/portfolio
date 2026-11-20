@@ -132,19 +132,21 @@ export function Bento() {
         ))}
       </div>
 
-      <div className="more-row" data-more-row>
-        <button className="pill" type="button" data-more aria-expanded="false" aria-controls="more-list">
-          More work
-        </button>
-      </div>
-      <div className="minis" id="more-list" hidden>
-        {moreWork.map((m) => (
-          <a className="mini" key={m.slug} href={`/work/${m.slug}`}>
-            <b>{m.title}</b>
-            <span>{m.meta}</span>
-          </a>
-        ))}
-      </div>
+      {/* Other work: always visible, square tiles like the bento's, under a section title */}
+      <section className="more" id="more-list" aria-labelledby="more-title" data-more>
+        <h2 className="more__title" id="more-title">
+          Other work
+        </h2>
+        <div className="more__grid">
+          {moreWork.map((m) => (
+            <a className="tile text-tile more-tile" key={m.slug} href={`/work/${m.slug}`}>
+              <span className="text-tile__title">{m.title}</span>
+              <span className="text-tile__line">{m.meta}</span>
+              <Selection />
+            </a>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
